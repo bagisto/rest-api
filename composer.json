@@ -1,0 +1,24 @@
+{
+    "name": "bagisto/rest-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Devansh Bawari",
+            "email": "devansh.bawari419@webkul.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Webkul\\RestApi\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Webkul\\RestApi\\Providers\\RestApiServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
