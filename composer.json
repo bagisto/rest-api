@@ -7,10 +7,17 @@
             "email": "devansh.bawari419@webkul.com"
         }
     ],
-    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "9.5.x-dev"
+    },
     "autoload": {
         "psr-4": {
             "Webkul\\RestApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webkul\\RestApi\\Tests\\": "tests/"
         }
     },
     "extra": {
