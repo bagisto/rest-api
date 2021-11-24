@@ -26,6 +26,7 @@ class SessionController extends Controller
      */
     public function create(CustomerLoginRequest $request)
     {
+        dd('here');
         // $request->validated();
 
         // $jwtToken = null;
