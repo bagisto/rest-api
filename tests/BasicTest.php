@@ -9,9 +9,10 @@ class BasicTest extends BaseTestCase
     /**
      * A basic test example.
      *
+     * @test
      * @return void
      */
-    public function test_basic_test()
+    public function basic_test()
     {
         $this->assertTrue(true);
     }

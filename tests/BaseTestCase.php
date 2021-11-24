@@ -2,8 +2,6 @@
 
 namespace Webkul\RestApi\Tests;
 
-use PHPUnit\Framework\TestCase;
-
-class BaseTestCase extends TestCase
+class BaseTestCase extends \Orchestra\Testbench\TestCase
 {
 }
