@@ -34,6 +34,7 @@ class AuthController extends Controller
      *
      * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
      * @param  \Webkul\Customer\Repositories\CustomerGroupRepository  $customerGroupRepository
+     * @return void
      */
     public function __construct(
         CustomerRepository $customerRepository,

@@ -3,8 +3,9 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop;
 
 use Illuminate\Http\Request;
+use Webkul\Customer\Http\Requests\CustomerAddressRequest;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
-use Webkul\RestApi\Http\Resources\V1\Customer\CustomerAddress as CustomerAddressResource;
+use Webkul\RestApi\Http\Resources\V1\Customer\CustomerAddress;
 
 class CustomerAddressController extends Controller
 {
@@ -19,6 +20,7 @@ class CustomerAddressController extends Controller
      * Controller instance.
      *
      * @param  CustomerAddressRepository  $customerAddressRepository
+     * @return void
      */
     public function __construct(CustomerAddressRepository $customerAddressRepository)
     {
@@ -28,6 +30,7 @@ class CustomerAddressController extends Controller
     /**
      * Get customer addresses.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -37,93 +40,80 @@ class CustomerAddressController extends Controller
         $addresses = $customer->addresses()->get();
 
         return response()->json([
-            'data' => CustomerAddressResource::collection($addresses)
+            'data' => CustomerAddress::collection($addresses),
         ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store address.
      *
+     * @param  \Webkul\Customer\Http\Requests\CustomerAddressRequest  $request
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(CustomerAddressRequest $request)
     {
-        $customer = auth($this->guard)->user();
+        $data = $request->validated();
+        $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
+        $data['customer_id'] = $request->user()->id;
 
-        if (request()->input('address1') && ! is_array(request()->input('address1'))) {
-            return response()->json([
-                'message' => 'address1 must be an array.',
-            ]);
-        }
-
-        if (request()->input('address1')) {
-            request()->merge([
-                'address1' => implode(PHP_EOL, array_filter(request()->input('address1'))),
-                'customer_id' => $customer->id,
-            ]);
-        }
-
-        $this->validate(request(), [
-            'address1' => 'string|required',
-            'company' => 'string|nullable',
-            'vat_id' => 'string|nullable',
-            'country' => 'string|required',
-            'state' => 'string|nullable',
-            'city' => 'string|required',
-            'postcode' => 'required',
-            'phone' => 'required',
-        ]);
-
-        $customerAddress = $this->customerAddressRepository->create(request()->all());
+        $customerAddress = $this->customerAddressRepository->create($data);
 
         return response()->json([
             'message' => 'Your address has been created successfully.',
-            'data'    => new CustomerAddressResource($customerAddress),
+            'data'    => new CustomerAddress($customerAddress),
         ]);
-    }
-
-    public function show()
-    {
     }
 
     /**
-     * Update the specified resource in storage.
-     * @param int $id
+     * Show the specific adress.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(int $id)
+    public function show(Request $request, $id)
     {
-        if (request()->input('address1') && ! is_array(request()->input('address1'))) {
-            return response()->json([
-                'message' => 'address1 must be an array.',
-            ]);
-        }
-
-        request()->merge(['address1' => implode(PHP_EOL, array_filter(request()->input('address1')))]);
-
-        $this->validate(request(), [
-            'address1' => 'string|required',
-            'company' => 'string|nullable',
-            'vat_id' => 'string|nullable',
-            'country' => 'string|required',
-            'state' => 'string|nullable',
-            'city' => 'string|required',
-            'postcode' => 'required',
-            'phone' => 'required',
-        ]);
-
-        $customerAddress = $this->customerAddressRepository->update(request()->all(), $id);
+        $customerAddress = $request->user()->addresses()->find($id);
 
         return response()->json([
-            'message' => 'Your address has been updated successfully.',
-            'data'    => new CustomerAddressResource($customerAddress),
+            'data' => new CustomerAddress($customerAddress),
         ]);
     }
 
-    public function destroy()
+    /**
+     * Update address.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(int $id, CustomerAddressRequest $request)
     {
+        $data = $request->validated();
+        $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
+
+        $customerAddress = $this->customerAddressRepository->update($data, $id);
+
+        return response()->json([
+            'message' => 'Your address has been updated successfully.',
+            'data'    => new CustomerAddress($customerAddress),
+        ]);
+    }
+
+    /**
+     * Delete customer address.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+        $customerAddress = $request->user()->addresses()->find($id);
+
+        $customerAddress->delete();
+
+        return response()->json([
+            'message' => 'Item removed successfully.',
+        ]);
     }
 }
