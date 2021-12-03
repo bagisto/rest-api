@@ -71,7 +71,7 @@ class CustomerAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, int $id)
     {
         $customerAddress = $request->user()->addresses()->find($id);
 
@@ -86,7 +86,7 @@ class CustomerAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(int $id, CustomerAddressRequest $request)
+    public function update(CustomerAddressRequest $request, int $id)
     {
         $data = $request->validated();
         $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
@@ -106,7 +106,7 @@ class CustomerAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, int $id)
     {
         $customerAddress = $request->user()->addresses()->find($id);
 

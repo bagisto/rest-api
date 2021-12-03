@@ -4,12 +4,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
     /**
-     * Authentication routes.
+     * Customer authentication routes.
      */
-    require('auth-routes.php');
+    require('customer-auth-routes.php');
 
     /**
-     * Customer routes.
+     * Customer address routes.
      */
-    require('customer-routes.php');
+    require('customer-address-routes.php');
+
+    /**
+     * Customer cart routes.
+     */
+    require('customer-cart-routes.php');
+
+    /**
+     * Customer checkout routes.
+     */
+    require('customer-checkout-routes.php');
 });
