@@ -105,7 +105,7 @@ class CustomerCheckoutController extends Controller
 
         Cart::collectTotals();
 
-        return response()->json([
+        return response([
             'data' => [
                 'rates' => $rates,
                 'cart'  => new CartResource(Cart::getCart()),
@@ -131,7 +131,7 @@ class CustomerCheckoutController extends Controller
 
         Cart::collectTotals();
 
-        return response()->json([
+        return response([
             'data' => [
                 'methods' => Payment::getPaymentMethods(),
                 'cart'    => new CartResource(Cart::getCart()),
@@ -152,7 +152,7 @@ class CustomerCheckoutController extends Controller
             abort(400);
         }
 
-        return response()->json([
+        return response([
             'data' => [
                 'cart' => new CartResource(Cart::getCart()),
             ],
@@ -170,7 +170,7 @@ class CustomerCheckoutController extends Controller
 
         $status = Cart::checkMinimumOrder();
 
-        return response()->json([
+        return response([
             'status'  => ! $status ? false : true,
             'message' => ! $status ? trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]) : 'Success',
             'data'    => [
@@ -197,7 +197,7 @@ class CustomerCheckoutController extends Controller
         $cart = Cart::getCart();
 
         if ($redirectUrl = Payment::getRedirectUrl($cart)) {
-            return response()->json([
+            return response([
                 'success'      => true,
                 'redirect_url' => $redirectUrl,
             ]);
@@ -207,7 +207,7 @@ class CustomerCheckoutController extends Controller
 
         Cart::deActivateCart();
 
-        return response()->json([
+        return response([
             'success' => true,
             'order'   => new OrderResource($order),
         ]);

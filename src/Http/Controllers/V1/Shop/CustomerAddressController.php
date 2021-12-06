@@ -39,7 +39,7 @@ class CustomerAddressController extends Controller
 
         $addresses = $customer->addresses()->get();
 
-        return response()->json([
+        return response([
             'data' => CustomerAddress::collection($addresses),
         ]);
     }
@@ -58,9 +58,9 @@ class CustomerAddressController extends Controller
 
         $customerAddress = $this->customerAddressRepository->create($data);
 
-        return response()->json([
-            'message' => 'Your address has been created successfully.',
+        return response([
             'data'    => new CustomerAddress($customerAddress),
+            'message' => 'Your address has been created successfully.',
         ]);
     }
 
@@ -75,7 +75,7 @@ class CustomerAddressController extends Controller
     {
         $customerAddress = $request->user()->addresses()->find($id);
 
-        return response()->json([
+        return response([
             'data' => new CustomerAddress($customerAddress),
         ]);
     }
@@ -93,9 +93,9 @@ class CustomerAddressController extends Controller
 
         $customerAddress = $this->customerAddressRepository->update($data, $id);
 
-        return response()->json([
-            'message' => 'Your address has been updated successfully.',
+        return response([
             'data'    => new CustomerAddress($customerAddress),
+            'message' => 'Your address has been updated successfully.',
         ]);
     }
 
@@ -112,7 +112,7 @@ class CustomerAddressController extends Controller
 
         $customerAddress->delete();
 
-        return response()->json([
+        return response([
             'message' => 'Item removed successfully.',
         ]);
     }

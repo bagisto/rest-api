@@ -61,16 +61,16 @@ class CustomerAuthController extends Controller
         ]);
 
         $this->customerRepository->create([
-            'first_name'  => $request->first_name,
-            'last_name'   => $request->last_name,
-            'email'       => $request->email,
-            'password'    => bcrypt($request->password),
-            'is_verified' => 1,
-            'channel_id'  => core()->getCurrentChannel()->id,
-            'customer_group_id' => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id
+            'first_name'        => $request->first_name,
+            'last_name'         => $request->last_name,
+            'email'             => $request->email,
+            'password'          => bcrypt($request->password),
+            'is_verified'       => 1,
+            'channel_id'        => core()->getCurrentChannel()->id,
+            'customer_group_id' => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
         ]);
 
-        return response()->json([
+        return response([
             'message' => 'Your account has been created successfully.',
         ]);
     }
@@ -84,8 +84,8 @@ class CustomerAuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email'       => 'required|email',
+            'password'    => 'required',
             'device_name' => 'required',
         ]);
 
@@ -97,7 +97,7 @@ class CustomerAuthController extends Controller
             ]);
         }
 
-        return response()->json([
+        return response([
             'data'    => new CustomerResource($customer),
             'message' => 'Logged in successfully.',
             'token'   => $customer->createToken($request->device_name)->plainTextToken,
@@ -114,7 +114,7 @@ class CustomerAuthController extends Controller
     {
         $customer = $request->user();
 
-        return response()->json([
+        return response([
             'data' => new CustomerResource($customer),
         ]);
     }
@@ -147,7 +147,7 @@ class CustomerAuthController extends Controller
 
         $updatedCustomer = $this->customerRepository->update($data, $customer->id);
 
-        return response()->json([
+        return response([
             'data'    => new CustomerResource($updatedCustomer),
             'message' => 'Your account has been updated successfully.',
         ]);
@@ -165,7 +165,7 @@ class CustomerAuthController extends Controller
 
         $customer->tokens()->delete();
 
-        return response()->json([
+        return response([
             'message' => 'Logged out successfully.',
         ]);
     }
@@ -183,7 +183,7 @@ class CustomerAuthController extends Controller
 
         $response = Password::broker('customers')->sendResetLink($request->only(['email']));
 
-        return response()->json(
+        return response(
             ['message' => __($response)],
             $response == Password::RESET_LINK_SENT ? 200 : 400
         );
