@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop;
 use Illuminate\Http\Request;
 use Webkul\Customer\Http\Requests\CustomerAddressRequest;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
-use Webkul\RestApi\Http\Resources\V1\Customer\CustomerAddress;
+use Webkul\RestApi\Http\Resources\V1\Customer\CustomerAddressResource;
 
 class CustomerAddressController extends Controller
 {
@@ -40,7 +40,7 @@ class CustomerAddressController extends Controller
         $addresses = $customer->addresses()->get();
 
         return response([
-            'data' => CustomerAddress::collection($addresses),
+            'data' => CustomerAddressResource::collection($addresses),
         ]);
     }
 
@@ -59,7 +59,7 @@ class CustomerAddressController extends Controller
         $customerAddress = $this->customerAddressRepository->create($data);
 
         return response([
-            'data'    => new CustomerAddress($customerAddress),
+            'data'    => new CustomerAddressResource($customerAddress),
             'message' => 'Your address has been created successfully.',
         ]);
     }
@@ -76,7 +76,7 @@ class CustomerAddressController extends Controller
         $customerAddress = $request->user()->addresses()->find($id);
 
         return response([
-            'data' => new CustomerAddress($customerAddress),
+            'data' => new CustomerAddressResource($customerAddress),
         ]);
     }
 
@@ -94,7 +94,7 @@ class CustomerAddressController extends Controller
         $customerAddress = $this->customerAddressRepository->update($data, $id);
 
         return response([
-            'data'    => new CustomerAddress($customerAddress),
+            'data'    => new CustomerAddressResource($customerAddress),
             'message' => 'Your address has been updated successfully.',
         ]);
     }

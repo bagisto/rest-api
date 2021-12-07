@@ -1,22 +1,25 @@
 <?php
 
-namespace Webkul\RestApi\Http\Resources\V1\Customer;
+namespace Webkul\RestApi\Http\Resources\V1\Catalog;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CustomerGroup extends JsonResource
+class AttributeFamilyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function toArray($request)
     {
         return [
             'id'         => $this->id,
+            'code'       => $this->code,
             'name'       => $this->name,
+            'status'     => $this->status,
+            'groups'     => AttributeGroupResource::collection($this->attribute_groups),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -5,10 +5,10 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\API\Http\Resources\Checkout\Cart as CartResource;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Checkout\Repositories\CartItemRepository;
 use Webkul\Customer\Repositories\WishlistRepository;
+use Webkul\RestApi\Http\Resources\V1\Checkout\CartResource;
 
 class CustomerCartController extends Controller
 {

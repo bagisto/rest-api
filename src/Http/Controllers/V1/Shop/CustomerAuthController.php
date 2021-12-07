@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
-use Webkul\RestApi\Http\Resources\V1\Customer\Customer as CustomerResource;
+use Webkul\RestApi\Http\Resources\V1\Customer\CustomerResource;
 
 class CustomerAuthController extends Controller
 {

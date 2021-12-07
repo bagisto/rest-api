@@ -2,79 +2,28 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop;
 
-use Cart;
-use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Webkul\API\Http\Resources\Checkout\Cart as CartResource;
-use Webkul\API\Http\Resources\Checkout\CartShippingRate as CartShippingRateResource;
-use Webkul\API\Http\Resources\Sales\Order as OrderResource;
+use Webkul\Checkout\Facades\Cart;
 use Webkul\Checkout\Http\Requests\CustomerAddressForm;
-use Webkul\Checkout\Repositories\CartItemRepository;
-use Webkul\Checkout\Repositories\CartRepository;
 use Webkul\Payment\Facades\Payment;
+use Webkul\RestApi\Http\Resources\V1\Checkout\CartResource;
+use Webkul\RestApi\Http\Resources\V1\Checkout\CartShippingRateResource;
+use Webkul\RestApi\Http\Resources\V1\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shipping\Facades\Shipping;
-use Webkul\Shop\Http\Controllers\OnepageController;
 
 class CustomerCheckoutController extends Controller
 {
     /**
-     * Contains current guard
+     * Save customer address.
      *
-     * @var array
-     */
-    protected $guard;
-
-    /**
-     * CartRepository object
-     *
-     * @var \Webkul\Checkout\Repositories\CartRepository
-     */
-    protected $cartRepository;
-
-    /**
-     * CartItemRepository object
-     *
-     * @var \Webkul\Checkout\Repositories\CartItemRepository
-     */
-    protected $cartItemRepository;
-
-    /**
-     * Controller instance
-     *
-     * @param  \Webkul\Checkout\Repositories\CartRepository  $cartRepository
-     * @param  \Webkul\Checkout\Repositories\CartItemRepository  $cartItemRepository
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     */
-    public function __construct(
-        CartRepository $cartRepository,
-        CartItemRepository $cartItemRepository,
-        OrderRepository $orderRepository
-    ) {
-        $this->guard = request()->has('token') ? 'api' : 'customer';
-
-        auth()->setDefaultDriver($this->guard);
-
-        // $this->middleware('auth:' . $this->guard);
-
-        $this->_config = request('_config');
-
-        $this->cartRepository = $cartRepository;
-
-        $this->cartItemRepository = $cartItemRepository;
-
-        $this->orderRepository = $orderRepository;
-    }
-
-    /**
-     * Saves customer address.
-     *
-     * @param  \Webkul\Checkout\Http\Requests\CustomerAddressForm $request
+     * @param  \Webkul\Checkout\Http\Requests\CustomerAddressForm  $request
      * @return \Illuminate\Http\Response
      */
     public function saveAddress(CustomerAddressForm $request)
     {
-        $data = request()->all();
+        $data = $request->validated();
 
         $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
 
@@ -114,13 +63,13 @@ class CustomerCheckoutController extends Controller
     }
 
     /**
-     * Saves shipping method.
+     * Save shipping method.
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveShipping()
+    public function saveShipping(Request $request)
     {
-        $shippingMethod = request()->get('shipping_method');
+        $shippingMethod = $request->get('shipping_method');
 
         if (Cart::hasError()
             || ! $shippingMethod
@@ -140,13 +89,13 @@ class CustomerCheckoutController extends Controller
     }
 
     /**
-     * Saves payment method.
+     * Save payment method.
      *
      * @return \Illuminate\Http\Response
      */
-    public function savePayment()
+    public function savePayment(Request $request)
     {
-        $payment = request()->get('payment');
+        $payment = $request->get('payment');
 
         if (Cart::hasError() || ! $payment || ! Cart::savePaymentMethod($payment)) {
             abort(400);
@@ -171,20 +120,21 @@ class CustomerCheckoutController extends Controller
         $status = Cart::checkMinimumOrder();
 
         return response([
-            'status'  => ! $status ? false : true,
-            'message' => ! $status ? trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]) : 'Success',
             'data'    => [
-                'cart' => new CartResource(Cart::getCart()),
+                'cart'   => new CartResource(Cart::getCart()),
+                'status' => ! $status ? false : true,
             ],
+            'message' => ! $status ? trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]) : 'Success',
         ]);
     }
 
     /**
-     * Saves order.
+     * Save order.
      *
+     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @return \Illuminate\Http\Response
      */
-    public function saveOrder()
+    public function saveOrder(OrderRepository $orderRepository)
     {
         if (Cart::hasError()) {
             abort(400);
@@ -198,28 +148,48 @@ class CustomerCheckoutController extends Controller
 
         if ($redirectUrl = Payment::getRedirectUrl($cart)) {
             return response([
-                'success'      => true,
                 'redirect_url' => $redirectUrl,
             ]);
         }
 
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+        $order = $orderRepository->create(Cart::prepareDataForOrder());
 
         Cart::deActivateCart();
 
         return response([
-            'success' => true,
-            'order'   => new OrderResource($order),
+            'order' => new OrderResource($order),
         ]);
     }
 
     /**
-     * Validate order before creation
+     * Validate order before creation.
      *
-     * @throws Exception
+     * @return void|\Exception
      */
-    public function validateOrder(): void
+    protected function validateOrder()
     {
-        app(OnepageController::class)->validateOrder();
+        $cart = Cart::getCart();
+
+        $minimumOrderAmount = core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?? 0;
+
+        if (! $cart->checkMinimumOrder()) {
+            throw new \Exception(trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
+        }
+
+        if ($cart->haveStockableItems() && ! $cart->shipping_address) {
+            throw new \Exception(trans('Please check shipping address.'));
+        }
+
+        if (! $cart->billing_address) {
+            throw new \Exception(trans('Please check billing address.'));
+        }
+
+        if ($cart->haveStockableItems() && ! $cart->selected_shipping_rate) {
+            throw new \Exception(trans('Please specify shipping method.'));
+        }
+
+        if (! $cart->payment) {
+            throw new \Exception(trans('Please specify payment method.'));
+        }
     }
 }
