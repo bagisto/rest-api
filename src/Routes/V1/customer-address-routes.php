@@ -5,8 +5,8 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\CustomerAddressController;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('customer/addresses', [CustomerAddressController::class, 'index']);
-    
-    Route::post('customer/addresses/create', [CustomerAddressController::class, 'store']);
+
+    Route::post('customer/addresses', [CustomerAddressController::class, 'store']);
 
     Route::get('customer/addresses/{id}', [CustomerAddressController::class, 'show']);
 

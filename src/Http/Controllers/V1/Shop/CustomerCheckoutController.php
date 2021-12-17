@@ -23,7 +23,7 @@ class CustomerCheckoutController extends Controller
      */
     public function saveAddress(CustomerAddressForm $request)
     {
-        $data = $request->validated();
+        $data = $request->all();
 
         $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
 
@@ -124,7 +124,7 @@ class CustomerCheckoutController extends Controller
                 'cart'   => new CartResource(Cart::getCart()),
                 'status' => ! $status ? false : true,
             ],
-            'message' => ! $status ? trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]) : 'Success',
+            'message' => ! $status ? __('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]) : 'Success',
         ]);
     }
 
@@ -173,23 +173,23 @@ class CustomerCheckoutController extends Controller
         $minimumOrderAmount = core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?? 0;
 
         if (! $cart->checkMinimumOrder()) {
-            throw new \Exception(trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
+            throw new \Exception(__('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
         }
 
         if ($cart->haveStockableItems() && ! $cart->shipping_address) {
-            throw new \Exception(trans('Please check shipping address.'));
+            throw new \Exception(__('Please check shipping address.'));
         }
 
         if (! $cart->billing_address) {
-            throw new \Exception(trans('Please check billing address.'));
+            throw new \Exception(__('Please check billing address.'));
         }
 
         if ($cart->haveStockableItems() && ! $cart->selected_shipping_rate) {
-            throw new \Exception(trans('Please specify shipping method.'));
+            throw new \Exception(__('Please specify shipping method.'));
         }
 
         if (! $cart->payment) {
-            throw new \Exception(trans('Please specify payment method.'));
+            throw new \Exception(__('Please specify payment method.'));
         }
     }
 }

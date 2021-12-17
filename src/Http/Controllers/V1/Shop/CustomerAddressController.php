@@ -52,7 +52,7 @@ class CustomerAddressController extends Controller
      */
     public function store(CustomerAddressRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->all();
         $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
         $data['customer_id'] = $request->user()->id;
 
@@ -88,7 +88,7 @@ class CustomerAddressController extends Controller
      */
     public function update(CustomerAddressRequest $request, int $id)
     {
-        $data = $request->validated();
+        $data = $request->all();
         $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
 
         $customerAddress = $this->customerAddressRepository->update($data, $id);
