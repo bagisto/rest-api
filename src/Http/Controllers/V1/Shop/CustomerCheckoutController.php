@@ -13,7 +13,7 @@ use Webkul\RestApi\Http\Resources\V1\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shipping\Facades\Shipping;
 
-class CustomerCheckoutController extends Controller
+class CustomerCheckoutController extends ResourceController
 {
     /**
      * Save customer address.

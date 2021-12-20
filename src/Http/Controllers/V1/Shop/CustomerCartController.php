@@ -10,7 +10,7 @@ use Webkul\Checkout\Repositories\CartItemRepository;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\RestApi\Http\Resources\V1\Checkout\CartResource;
 
-class CustomerCartController extends Controller
+class CustomerCartController extends ResourceController
 {
     /**
      * Get the customer cart.
@@ -32,7 +32,7 @@ class CustomerCartController extends Controller
      * @param  int  $productId
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request, WishlistRepository $wishlistRepository, $productId)
+    public function add(Request $request, WishlistRepository $wishlistRepository, int $productId)
     {
         $customer = $request->user();
 

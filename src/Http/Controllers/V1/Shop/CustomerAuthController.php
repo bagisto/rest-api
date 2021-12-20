@@ -11,7 +11,7 @@ use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Customer\CustomerResource;
 
-class CustomerAuthController extends Controller
+class CustomerAuthController extends ResourceController
 {
     use SendsPasswordResetEmails;
 

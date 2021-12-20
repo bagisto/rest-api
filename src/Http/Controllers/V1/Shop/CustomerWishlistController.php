@@ -9,7 +9,7 @@ use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Checkout\CartResource;
 use Webkul\RestApi\Http\Resources\V1\Customer\CustomerWishlistResource;
 
-class CustomerWishlistController extends Controller
+class CustomerWishlistController extends ResourceController
 {
     /**
      * Wishlist repository instance.

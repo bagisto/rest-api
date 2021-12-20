@@ -27,4 +27,14 @@ Route::group(['prefix' => 'v1'], function () {
      * Customer checkout routes.
      */
     require ('customer-checkout-routes.php');
+
+    /**
+     * Customer checkout routes.
+     */
+    require ('customer-sale-routes.php');
+
+    /**
+     * Product review routes.
+     */
+    require ('product-review-routes.php');
 });

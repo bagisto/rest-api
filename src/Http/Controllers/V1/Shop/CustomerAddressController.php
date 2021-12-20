@@ -7,7 +7,7 @@ use Webkul\Customer\Http\Requests\CustomerAddressRequest;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\RestApi\Http\Resources\V1\Customer\CustomerAddressResource;
 
-class CustomerAddressController extends Controller
+class CustomerAddressController extends ResourceController
 {
     /**
      * Customer address repository instance.
