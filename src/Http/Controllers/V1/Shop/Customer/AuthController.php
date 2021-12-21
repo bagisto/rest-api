@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Shop;
+namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Customer\CustomerResource;
 
-class CustomerAuthController extends ResourceController
+class AuthController extends CustomerController
 {
     use SendsPasswordResetEmails;
 

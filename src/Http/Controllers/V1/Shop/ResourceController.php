@@ -3,59 +3,13 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop;
 
 use Illuminate\Http\Request;
+use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\RestApiController;
+use Webkul\RestApi\Traits\ProvideResource;
 
-class ResourceController extends RestApiController
+class ResourceController extends RestApiController implements ResourceContract
 {
-    /**
-     * Is resource authorized.
-     *
-     * @return bool
-     */
-    public function isAuthorized()
-    {
-        return true;
-    }
-
-    /**
-     * Repository class name.
-     *
-     * @return string
-     */
-    public function repository()
-    {
-        return '';
-    }
-
-    /**
-     * Resource class name.
-     *
-     * @return string
-     */
-    public function resource()
-    {
-        return '';
-    }
-
-    /**
-     * Get repository instance.
-     *
-     * @return object
-     */
-    public function getRepositoryInstance()
-    {
-        return app($this->repository());
-    }
-
-    /**
-     * Get resource collection.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function getResourceCollection($results)
-    {
-        return ($this->resource())::collection($results);
-    }
+    use ProvideResource;
 
     /**
      * Returns a listing of the resource.

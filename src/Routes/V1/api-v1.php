@@ -14,32 +14,7 @@ Route::group(['prefix' => 'v1'], function () {
     require ('catalog-routes.php');
 
     /**
-     * Customer authentication routes.
+     * Customer routes.
      */
-    require ('customer-auth-routes.php');
-
-    /**
-     * Customer wishlist routes.
-     */
-    require ('customer-wishlist-routes.php');
-
-    /**
-     * Customer address routes.
-     */
-    require ('customer-address-routes.php');
-
-    /**
-     * Customer cart routes.
-     */
-    require ('customer-cart-routes.php');
-
-    /**
-     * Customer checkout routes.
-     */
-    require ('customer-checkout-routes.php');
-
-    /**
-     * Customer checkout routes.
-     */
-    require ('customer-sale-routes.php');
+    require ('customer-routes.php');
 });

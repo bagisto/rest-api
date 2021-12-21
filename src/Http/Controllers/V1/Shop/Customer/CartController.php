@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Shop;
+namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Webkul\Checkout\Repositories\CartItemRepository;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\RestApi\Http\Resources\V1\Checkout\CartResource;
 
-class CustomerCartController extends ResourceController
+class CartController extends CustomerController
 {
     /**
      * Get the customer cart.

@@ -1,12 +1,12 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Shop;
+namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Request;
 use Webkul\RestApi\Http\Resources\V1\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 
-class CustomerOrderController extends ResourceController
+class OrderController extends CustomerController
 {
     /**
      * Repository class name.
