@@ -4,10 +4,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\RestApi\Http\Controllers\V1\Shop\ResourceController;
 use Webkul\RestApi\Http\Resources\V1\Catalog\CategoryResource;
 
-class CategoryController extends ResourceController
+class CategoryController extends CatalogController
 {
     /**
      * Is resource authorized.

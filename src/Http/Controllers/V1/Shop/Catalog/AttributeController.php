@@ -3,10 +3,9 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\RestApi\Http\Controllers\V1\Shop\ResourceController;
 use Webkul\RestApi\Http\Resources\V1\Catalog\AttributeResource;
 
-class AttributeController extends ResourceController
+class AttributeController extends CatalogController
 {
     /**
      * Is resource authorized.
