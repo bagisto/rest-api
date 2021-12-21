@@ -1,0 +1,40 @@
+<?php
+
+namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
+
+use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\RestApi\Http\Controllers\V1\Shop\ResourceController;
+use Webkul\RestApi\Http\Resources\V1\Catalog\AttributeFamilyResource;
+
+class AttributeFamilyController extends ResourceController
+{
+    /**
+     * Is resource authorized.
+     *
+     * @return bool
+     */
+    public function isAuthorized()
+    {
+        return false;
+    }
+
+    /**
+     * Repository class name.
+     *
+     * @return string
+     */
+    public function repository()
+    {
+        return AttributeFamilyRepository::class;
+    }
+
+    /**
+     * Resource class name.
+     *
+     * @return string
+     */
+    public function resource()
+    {
+        return AttributeFamilyResource::class;
+    }
+}

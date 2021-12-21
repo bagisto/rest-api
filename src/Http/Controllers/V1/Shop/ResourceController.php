@@ -60,6 +60,7 @@ class ResourceController extends RestApiController
     /**
      * Returns a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function allResources(Request $request)
@@ -94,6 +95,7 @@ class ResourceController extends RestApiController
     /**
      * Returns an individual resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -111,6 +113,7 @@ class ResourceController extends RestApiController
     /**
      * Delete's an individual resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

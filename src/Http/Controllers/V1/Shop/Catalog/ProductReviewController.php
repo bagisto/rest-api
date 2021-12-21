@@ -1,9 +1,10 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Shop;
+namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Product\Repositories\ProductReviewRepository;
+use Webkul\RestApi\Http\Controllers\V1\Shop\ResourceController;
 use Webkul\RestApi\Http\Resources\V1\Catalog\ProductReviewResource;
 
 class ProductReviewController extends ResourceController
