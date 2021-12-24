@@ -55,10 +55,11 @@ class CheckoutController extends CustomerController
         Cart::collectTotals();
 
         return response([
-            'data' => [
+            'data'    => [
                 'rates' => $rates,
                 'cart'  => new CartResource(Cart::getCart()),
             ],
+            'message' => 'Address saved successfully.',
         ]);
     }
 
@@ -81,10 +82,11 @@ class CheckoutController extends CustomerController
         Cart::collectTotals();
 
         return response([
-            'data' => [
+            'data'    => [
                 'methods' => Payment::getPaymentMethods(),
                 'cart'    => new CartResource(Cart::getCart()),
             ],
+            'message' => 'Shipping method saved successfully.',
         ]);
     }
 
@@ -102,9 +104,10 @@ class CheckoutController extends CustomerController
         }
 
         return response([
-            'data' => [
+            'data'    => [
                 'cart' => new CartResource(Cart::getCart()),
             ],
+            'message' => 'Payment method saved successfully.',
         ]);
     }
 
@@ -157,7 +160,10 @@ class CheckoutController extends CustomerController
         Cart::deActivateCart();
 
         return response([
-            'order' => new OrderResource($order),
+            'data'    => [
+                'order' => new OrderResource($order),
+            ],
+            'message' => 'Order saved successfully.',
         ]);
     }
 
