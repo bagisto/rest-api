@@ -3,9 +3,9 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Controllers\V1\Shop\ResourceController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\ShopController;
 
-class CoreController extends ResourceController
+class CoreController extends ShopController
 {
     /**
      * Get core configs.

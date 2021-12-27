@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
-use Webkul\RestApi\Http\Controllers\V1\Shop\ResourceController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\ShopController;
 
-class CustomerController extends ResourceController
+class CustomerController extends ShopController
 {
 }

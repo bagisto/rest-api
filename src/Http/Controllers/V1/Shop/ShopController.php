@@ -7,7 +7,7 @@ use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\RestApiController;
 use Webkul\RestApi\Traits\ProvideResource;
 
-class ResourceController extends RestApiController implements ResourceContract
+class ShopController extends RestApiController implements ResourceContract
 {
     use ProvideResource;
 
