@@ -16,4 +16,9 @@ Route::group(['prefix' => 'v1/admin'], function () {
 
         Route::put('update', [AccountController::class, 'update']);
     });
+
+    /**
+     * Catalog routes.
+     */
+    require 'catalog-routes.php';
 });
