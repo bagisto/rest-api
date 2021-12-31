@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Core\Models\Channel;
@@ -47,9 +46,11 @@ class CategoryController extends CatalogController
      */
     public function index()
     {
-        return [
-            'data' => $this->categoryRepository->all(),
-        ];
+        $categories = $this->categoryRepository->all();
+
+        return response([
+            'data' => $categories,
+        ]);
     }
 
     /**
@@ -142,11 +143,7 @@ class CategoryController extends CatalogController
         }
 
         try {
-            Event::dispatch('catalog.category.delete.before', $category);
-
-            $category->delete();
-
-            Event::dispatch('catalog.category.delete.after', $category);
+            $this->categoryRepository->delete($id);
 
             return response([
                 'message' => __('admin::app.response.delete-success', ['name' => 'Category']),
@@ -176,13 +173,11 @@ class CategoryController extends CatalogController
             ], 400);
         }
 
-        $categories->each(function ($category) {
-            Event::dispatch('catalog.category.delete.before', $category->id);
-
-            $category->delete();
-
-            Event::dispatch('catalog.category.delete.after', $category->id);
-        });
+        try {
+            $categories->each(function ($category) {
+                $this->categoryRepository->delete($category->id);
+            });
+        } catch (\Exception $e) {}
 
         return response([
             'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'Category']),

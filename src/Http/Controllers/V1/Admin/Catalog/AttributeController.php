@@ -93,7 +93,7 @@ class AttributeController extends CatalogController
         $attribute = $this->attributeRepository->findOrFail($id);
 
         return response([
-            'data' => $attribute,
+            'data' => $attribute->options,
         ]);
     }
 
@@ -139,15 +139,15 @@ class AttributeController extends CatalogController
 
         try {
             $this->attributeRepository->delete($id);
-
-            return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Attribute']),
-            ]);
         } catch (\Exception $e) {
             return response([
                 'message' => __('admin::app.response.delete-failed', ['name' => 'Attribute']),
             ], 500);
         }
+
+        return response([
+            'message' => __('admin::app.response.delete-success', ['name' => 'Attribute']),
+        ]);
     }
 
     /**
@@ -158,30 +158,26 @@ class AttributeController extends CatalogController
      */
     public function massDestroy(Request $request)
     {
-        if (request()->isMethod('post')) {
-            $indexes = explode(',', request()->input('indexes'));
+        $indexes = explode(',', request()->input('indexes'));
 
-            foreach ($indexes as $index) {
-                $attribute = $this->attributeRepository->find($index);
+        foreach ($indexes as $index) {
+            $attribute = $this->attributeRepository->find($index);
 
-                if (! $attribute->is_user_defined) {
-                    return response([
-                        'message' => __('admin::app.response.user-define-error', ['name' => 'Attribute']),
-                    ], 400);
-                }
+            if (! $attribute->is_user_defined) {
+                return response([
+                    'message' => __('admin::app.response.user-define-error', ['name' => 'Attribute']),
+                ], 400);
             }
+        }
 
+        try {
             foreach ($indexes as $index) {
                 $this->attributeRepository->delete($index);
             }
+        } catch (\Exception $e) {}
 
-            return response([
-                'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'attributes']),
-            ]);
-        } else {
-            return response([
-                'message' => __('admin::app.datagrid.mass-ops.method-error'),
-            ], 500);
-        }
+        return response([
+            'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'attributes']),
+        ]);
     }
 }

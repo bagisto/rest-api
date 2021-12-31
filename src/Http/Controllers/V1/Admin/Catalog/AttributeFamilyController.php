@@ -128,62 +128,24 @@ class AttributeFamilyController extends CatalogController
             return response([
                 'message' => __('admin::app.response.last-delete-error', ['name' => 'Family']),
             ], 400);
+        }
 
-        } elseif ($attributeFamily->products()->count()) {
+        if ($attributeFamily->products()->count()) {
             return response([
                 'message' => __('admin::app.response.attribute-product-error', ['name' => 'Attribute family']),
             ], 400);
-        } else {
-            try {
-                $this->attributeFamilyRepository->delete($id);
-
-                return response([
-                    'message' => __('admin::app.response.delete-success', ['name' => 'Family']),
-                ]);
-            } catch (\Exception $e) {
-                return response([
-                    'message' => __('admin::app.response.delete-failed', ['name' => 'Family']),
-                ], 500);
-            }
         }
-    }
 
-    /**
-     * Remove the specified resources from database
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function massDestroy(Request $request)
-    {
-        $suppressFlash = false;
-
-        if (request()->isMethod('delete')) {
-            $indexes = explode(',', request()->input('indexes'));
-
-            foreach ($indexes as $key => $value) {
-                try {
-                    $this->attributeFamilyRepository->delete($value);
-                } catch (\Exception $e) {
-                    $suppressFlash = true;
-
-                    continue;
-                }
-            }
-
-            if (! $suppressFlash) {
-                return response([
-                    'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'Attribute Family']),
-                ]);
-            }
-
+        try {
+            $this->attributeFamilyRepository->delete($id);
+        } catch (\Exception $e) {
             return response([
-                'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'Attribute Family']),
-            ]);
-        } else {
-            return response([
-                'message' => __('admin::app.datagrid.mass-ops.method-error'),
-            ]);
+                'message' => __('admin::app.response.delete-failed', ['name' => 'Family']),
+            ], 500);
         }
+
+        return response([
+            'message' => __('admin::app.response.delete-success', ['name' => 'Family']),
+        ]);
     }
 }

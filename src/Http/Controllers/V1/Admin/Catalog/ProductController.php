@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
-use Exception;
 use Illuminate\Http\Request;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Category\Repositories\CategoryRepository;
@@ -15,6 +14,7 @@ use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
 use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductResource;
 
 class ProductController extends CatalogController
 {
@@ -122,9 +122,9 @@ class ProductController extends CatalogController
     {
         $products = $this->productRepository->all();
 
-        return [
-            'data' => $products,
-        ];
+        return response([
+            'data' => ProductResource::collection($products),
+        ]);
     }
 
     /**
@@ -154,7 +154,7 @@ class ProductController extends CatalogController
         $product = $this->productRepository->create($request->all());
 
         return response([
-            'data'    => $product,
+            'data'    => new ProductResource($product),
             'message' => __('admin::app.response.create-success', ['name' => 'Product']),
         ]);
     }
@@ -170,9 +170,9 @@ class ProductController extends CatalogController
     {
         $product = $this->productRepository->with(['variants', 'variants.inventories'])->findOrFail($id);
 
-        return [
-            'data' => $product,
-        ];
+        return response([
+            'data' => new ProductResource($product),
+        ]);
     }
 
     /**
@@ -213,7 +213,7 @@ class ProductController extends CatalogController
         $product = $this->productRepository->update($data, $id);
 
         return response([
-            'data'    => $product,
+            'data'    => new ProductResource($product),
             'message' => __('admin::app.response.update-success', ['name' => 'Product']),
         ]);
     }
@@ -248,13 +248,15 @@ class ProductController extends CatalogController
      */
     public function destroy(Request $request, $id)
     {
+        $this->productRepository->findOrFail($id);
+
         try {
             $this->productRepository->delete($id);
 
             return response([
                 'message' => __('admin::app.response.delete-success', ['name' => 'Product']),
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return response([
                 'message' => __('admin::app.response.delete-failed', ['name' => 'Product']),
             ]);
@@ -271,13 +273,15 @@ class ProductController extends CatalogController
     {
         $productIds = explode(',', $request->input('indexes'));
 
-        foreach ($productIds as $productId) {
-            $product = $this->productRepository->find($productId);
+        try {
+            foreach ($productIds as $productId) {
+                $product = $this->productRepository->find($productId);
 
-            if ($product) {
-                $product->delete();
+                if ($product) {
+                    $this->productRepository->delete($productId);
+                }
             }
-        }
+        } catch (\Exception $e) {}
 
         return response([
             'message' => __('admin::app.catalog.products.mass-delete-success'),
@@ -296,13 +300,19 @@ class ProductController extends CatalogController
 
         $productIds = explode(',', $data['indexes']);
 
-        foreach ($productIds as $productId) {
-            $this->productRepository->update([
-                'channel' => null,
-                'locale'  => null,
-                'status'  => $data['update-options'],
-            ], $productId);
-        }
+        try {
+            foreach ($productIds as $productId) {
+                $product = $this->productRepository->find($productId);
+
+                if ($product) {
+                    $this->productRepository->update([
+                        'channel' => null,
+                        'locale'  => null,
+                        'status'  => $data['update-options'],
+                    ], $productId);
+                }
+            }
+        } catch (\Exception $e) {}
 
         return response([
             'message' => __('admin::app.catalog.products.mass-update-success'),
