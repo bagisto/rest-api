@@ -66,6 +66,7 @@ class CheckoutController extends CustomerController
     /**
      * Save shipping method.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function saveShipping(Request $request)
@@ -93,6 +94,7 @@ class CheckoutController extends CustomerController
     /**
      * Save payment method.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function savePayment(Request $request)

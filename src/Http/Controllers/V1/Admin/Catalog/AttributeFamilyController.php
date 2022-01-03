@@ -60,12 +60,12 @@ class AttributeFamilyController extends CatalogController
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
+        $request->validate([
             'code' => ['required', 'unique:attribute_families,code', new \Webkul\Core\Contracts\Validations\Code],
             'name' => 'required',
         ]);
 
-        $attributeFamily = $this->attributeFamilyRepository->create(request()->all());
+        $attributeFamily = $this->attributeFamilyRepository->create($request->all());
 
         return response([
             'data'    => $attributeFamily,
@@ -74,7 +74,7 @@ class AttributeFamilyController extends CatalogController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -100,12 +100,12 @@ class AttributeFamilyController extends CatalogController
      */
     public function update(Request $request, $id)
     {
-        $this->validate(request(), [
+        $request->validate([
             'code' => ['required', 'unique:attribute_families,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
             'name' => 'required',
         ]);
 
-        $attributeFamily = $this->attributeFamilyRepository->update(request()->all(), $id);
+        $attributeFamily = $this->attributeFamilyRepository->update($request->all(), $id);
 
         return response([
             'data'    => $attributeFamily,

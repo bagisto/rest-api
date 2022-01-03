@@ -122,6 +122,7 @@ class AuthController extends CustomerController
     /**
      * Update the customer.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -137,7 +138,7 @@ class AuthController extends CustomerController
             'password'      => 'confirmed|min:6',
         ]);
 
-        $data = request()->only('first_name', 'last_name', 'gender', 'date_of_birth', 'email', 'password');
+        $data = $request->only('first_name', 'last_name', 'gender', 'date_of_birth', 'email', 'password');
 
         if (! isset($data['password']) || ! $data['password']) {
             unset($data['password']);
@@ -173,6 +174,7 @@ class AuthController extends CustomerController
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function forgotPassword(Request $request)

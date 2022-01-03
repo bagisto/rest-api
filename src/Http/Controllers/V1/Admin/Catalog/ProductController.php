@@ -160,7 +160,7 @@ class ProductController extends CatalogController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

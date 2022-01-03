@@ -29,6 +29,8 @@ class CartController extends CustomerController
     /**
      * Add item to the cart.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Customer\Repositories\WishlistRepository $wishlistRepository
      * @param  int  $productId
      * @return \Illuminate\Http\Response
      */
@@ -69,6 +71,8 @@ class CartController extends CustomerController
     /**
      * Update the cart.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Checkout\Repositories\CartItemRepository  $cartItemRepository
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, CartItemRepository $cartItemRepository)
@@ -152,6 +156,7 @@ class CartController extends CustomerController
     /**
      * Apply the coupon code.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function applyCoupon(Request $request)

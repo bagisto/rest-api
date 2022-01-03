@@ -18,6 +18,11 @@ Route::group(['prefix' => 'v1/admin'], function () {
     });
 
     /**
+     * Sales routes.
+     */
+    require 'sale-routes.php';
+
+    /**
      * Catalog routes.
      */
     require 'catalog-routes.php';

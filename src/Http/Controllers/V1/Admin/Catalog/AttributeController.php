@@ -47,13 +47,13 @@ class AttributeController extends CatalogController
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
+        $request->validate([
             'code'       => ['required', 'unique:attributes,code', new \Webkul\Core\Contracts\Validations\Code],
             'admin_name' => 'required',
             'type'       => 'required',
         ]);
 
-        $data = request()->all();
+        $data = $request->all();
 
         $data['is_user_defined'] = 1;
 
@@ -66,7 +66,7 @@ class AttributeController extends CatalogController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -106,13 +106,13 @@ class AttributeController extends CatalogController
      */
     public function update(Request $request, $id)
     {
-        $this->validate(request(), [
+        $request->validate([
             'code'       => ['required', 'unique:attributes,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
             'admin_name' => 'required',
             'type'       => 'required',
         ]);
 
-        $attribute = $this->attributeRepository->update(request()->all(), $id);
+        $attribute = $this->attributeRepository->update($request->all(), $id);
 
         return response([
             'data'    => $attribute,
@@ -158,7 +158,7 @@ class AttributeController extends CatalogController
      */
     public function massDestroy(Request $request)
     {
-        $indexes = explode(',', request()->input('indexes'));
+        $indexes = explode(',', $request->input('indexes'));
 
         foreach ($indexes as $index) {
             $attribute = $this->attributeRepository->find($index);

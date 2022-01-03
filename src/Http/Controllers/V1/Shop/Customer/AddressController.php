@@ -83,6 +83,7 @@ class AddressController extends CustomerController
     /**
      * Update address.
      *
+     * @param  \Webkul\Customer\Http\Requests\CustomerAddressRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */

@@ -31,6 +31,7 @@ class InvoiceController extends CustomerController
     /**
      * Returns a listing of the invoices.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function allResources(Request $request)
@@ -66,6 +67,7 @@ class InvoiceController extends CustomerController
     /**
      * Returns an individual invoice.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
