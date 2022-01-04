@@ -26,4 +26,19 @@ Route::group(['prefix' => 'v1/admin'], function () {
      * Catalog routes.
      */
     require 'catalog-routes.php';
+
+    /**
+     * Velocity routes.
+     */
+    require 'velocity-routes.php';
+
+    /**
+     * Marketing routes.
+     */
+    require 'marketing-routes.php';
+
+    /**
+     * CMS routes.
+     */
+    require 'cms-routes.php';
 });

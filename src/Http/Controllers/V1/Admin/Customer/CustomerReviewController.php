@@ -29,7 +29,7 @@ class CustomerReviewController extends CustomerBaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -44,7 +44,7 @@ class CustomerReviewController extends CustomerBaseController
      * Show the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {

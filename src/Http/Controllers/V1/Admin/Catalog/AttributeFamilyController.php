@@ -41,7 +41,7 @@ class AttributeFamilyController extends CatalogController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -78,7 +78,7 @@ class AttributeFamilyController extends CatalogController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
     {
