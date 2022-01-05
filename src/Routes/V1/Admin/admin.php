@@ -18,7 +18,7 @@ Route::group(['prefix' => 'v1/admin'], function () {
     });
 
     /**
-     * Sales routes.
+     * Sale routes.
      */
     require 'sale-routes.php';
 
@@ -26,6 +26,11 @@ Route::group(['prefix' => 'v1/admin'], function () {
      * Catalog routes.
      */
     require 'catalog-routes.php';
+
+    /**
+     * Customer routes.
+     */
+    require 'customer-routes.php';
 
     /**
      * Velocity routes.
@@ -41,4 +46,14 @@ Route::group(['prefix' => 'v1/admin'], function () {
      * CMS routes.
      */
     require 'cms-routes.php';
+
+    /**
+     * Setting routes.
+     */
+    require 'setting-routes.php';
+
+    /**
+     * Configuration routes.
+     */
+    require 'configuration-routes.php';
 });

@@ -4,10 +4,10 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop;
 
 use Illuminate\Http\Request;
 use Webkul\RestApi\Contracts\ResourceContract;
-use Webkul\RestApi\Http\Controllers\RestApiController;
+use Webkul\RestApi\Http\Controllers\V1\V1Controller;
 use Webkul\RestApi\Traits\ProvideResource;
 
-class ShopController extends RestApiController implements ResourceContract
+class ShopController extends V1Controller implements ResourceContract
 {
     use ProvideResource;
 
