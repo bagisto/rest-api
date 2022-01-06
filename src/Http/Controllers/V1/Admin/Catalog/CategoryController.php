@@ -3,54 +3,31 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
-use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Category\Repositories\CategoryRepository;
+use Webkul\Core\Http\Requests\MassOperationRequest;
 use Webkul\Core\Models\Channel;
+use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
 
 class CategoryController extends CatalogController
 {
     /**
-     * Category repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Category\Repositories\CategoryRepository
+     * @return string
      */
-    protected $categoryRepository;
-
-    /**
-     * Attribute repository instance.
-     *
-     * @var \Webkul\Attribute\Repositories\AttributeRepository
-     */
-    protected $attributeRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Category\Repositories\CategoryRepository  $categoryRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @return void
-     */
-    public function __construct(
-        CategoryRepository $categoryRepository,
-        AttributeRepository $attributeRepository
-    ) {
-        $this->categoryRepository = $categoryRepository;
-
-        $this->attributeRepository = $attributeRepository;
+    public function repository()
+    {
+        return CategoryRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $categories = $this->categoryRepository->all();
-
-        return response([
-            'data' => $categories,
-        ]);
+        return CategoryResource::class;
     }
 
     /**
@@ -68,31 +45,11 @@ class CategoryController extends CatalogController
             'description' => 'required_if:display_mode,==,description_only,products_and_description',
         ]);
 
-        $category = $this->categoryRepository->create($request->all());
+        $category = $this->getRepositoryInstance()->create($request->all());
 
         return response([
-            'data'    => $category,
-            'message' => __('admin::app.response.create-success', ['name' => 'Category']),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $id)
-    {
-        $category = $this->categoryRepository->findOrFail($id);
-
-        $categories = $this->categoryRepository->getCategoryTreeWithoutDescendant($id);
-
-        $attributes = $this->attributeRepository->findWhere(['is_filterable' => 1]);
-
-        return response([
-            'data' => compact('category', 'categories', 'attributes'),
+            'data'    => new CategoryResource($category),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Category']),
         ]);
     }
 
@@ -109,19 +66,21 @@ class CategoryController extends CatalogController
 
         $request->validate([
             $locale . '.slug' => ['required', function ($attribute, $value, $fail) use ($id) {
-                if (! $this->categoryRepository->isSlugUnique($id, $value)) {
-                    $fail(__('admin::app.response.already-taken', ['name' => 'Category']));
+                if (! $this->getRepositoryInstance()->isSlugUnique($id, $value)) {
+                    $fail(__('rest-api::app.response.error.already-taken', ['name' => 'Category']));
                 }
             }],
             $locale . '.name' => 'required',
             'image.*'         => 'mimes:bmp,jpeg,jpg,png,webp',
         ]);
 
-        $category = $this->categoryRepository->update($request->all(), $id);
+        $this->getRepositoryInstance()->findOrFail($id);
+
+        $category = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
-            'data'    => $category,
-            'message' => __('admin::app.response.update-success', ['name' => 'Category']),
+            'data'    => new CategoryResource($category),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Category']),
         ]);
     }
 
@@ -134,53 +93,43 @@ class CategoryController extends CatalogController
      */
     public function destroy(Request $request, $id)
     {
-        $category = $this->categoryRepository->findOrFail($id);
+        $category = $this->getRepositoryInstance()->findOrFail($id);
 
         if (! $this->isCategoryDeletable($category)) {
             return response([
-                'message' => __('admin::app.response.delete-category-root', ['name' => 'Category']),
+                'message' => __('rest-api::app.response.error.root-category-delete', ['name' => 'Category']),
             ], 400);
         }
 
-        try {
-            $this->categoryRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Category']),
-            ]);
-        } catch (\Exception $e) {
-            return response([
-                'message' => __('admin::app.response.delete-failed', ['name' => 'Category']),
-            ], 500);
-        }
+        return response([
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Category']),
+        ]);
     }
 
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassOperationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(MassOperationRequest $request)
     {
-        $categoryIds = explode(',', $request->input('indexes'));
-
-        $categories = $this->categoryRepository->findWhereIn('id', $categoryIds);
+        $categories = $this->getRepositoryInstance()->findWhereIn('id', $request->indexes);
 
         if ($this->containsNonDeletableCategory($categories)) {
             return response([
-                'message' => __('admin::app.response.delete-category-root', ['name' => 'Category']),
+                'message' => __('rest-api::app.response.error.root-category-delete', ['name' => 'Category']),
             ], 400);
         }
 
-        try {
-            $categories->each(function ($category) {
-                $this->categoryRepository->delete($category->id);
-            });
-        } catch (\Exception $e) {}
+        $categories->each(function ($category) {
+            $this->getRepositoryInstance()->delete($category->id);
+        });
 
         return response([
-            'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'Category']),
+            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'categories']),
         ]);
     }
 

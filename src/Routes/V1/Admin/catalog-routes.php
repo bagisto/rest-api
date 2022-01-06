@@ -32,11 +32,11 @@ Route::group([
     /**
      * Category routes.
      */
-    Route::get('categories', [CategoryController::class, 'index']);
+    Route::get('categories', [CategoryController::class, 'allResources']);
 
     Route::post('categories', [CategoryController::class, 'store']);
 
-    Route::get('categories/{id}', [CategoryController::class, 'show']);
+    Route::get('categories/{id}', [CategoryController::class, 'getResource']);
 
     Route::put('categories/{id}', [CategoryController::class, 'update']);
 
