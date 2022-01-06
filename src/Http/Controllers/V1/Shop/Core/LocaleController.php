@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Webkul\Core\Repositories\LocaleRepository;
-use Webkul\RestApi\Http\Resources\V1\Core\LocaleResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Core\LocaleResource;
 
 class LocaleController extends CoreController
 {

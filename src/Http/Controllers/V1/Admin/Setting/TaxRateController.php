@@ -43,6 +43,7 @@ class TaxRateController extends SettingController
     /**
      * Create the tax rate.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -73,7 +74,7 @@ class TaxRateController extends SettingController
 
         return response([
             'data'    => $taxRate,
-            'message' => trans('admin::app.settings.tax-rates.create-success'),
+            'message' => __('admin::app.settings.tax-rates.create-success'),
         ]);
     }
 
@@ -95,6 +96,7 @@ class TaxRateController extends SettingController
     /**
      * Edit the previous tax rate.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -117,7 +119,7 @@ class TaxRateController extends SettingController
 
         return response([
             'data'    => $taxRate,
-            'message' => trans('admin::app.settings.tax-rates.update-success'),
+            'message' => __('admin::app.settings.tax-rates.update-success'),
         ]);
     }
 
@@ -139,12 +141,12 @@ class TaxRateController extends SettingController
             Event::dispatch('tax.tax_rate.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.response.delete-success', ['name' => 'Tax Rate']),
+                'message' => __('admin::app.response.delete-success', ['name' => 'Tax Rate']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Tax Rate']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Tax Rate']),
         ], 400);
     }
 }

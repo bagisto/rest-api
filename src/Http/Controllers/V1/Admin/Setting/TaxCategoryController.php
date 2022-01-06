@@ -56,6 +56,7 @@ class TaxCategoryController extends SettingController
     /**
      * Store tax category.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -78,7 +79,7 @@ class TaxCategoryController extends SettingController
         Event::dispatch('tax.tax_category.create.after', $taxCategory);
 
         return response([
-            'message' => trans('admin::app.settings.tax-categories.create-success'),
+            'message' => __('admin::app.settings.tax-categories.create-success'),
         ]);
     }
 
@@ -100,19 +101,20 @@ class TaxCategoryController extends SettingController
     /**
      * To update the tax category
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $this->validate(request(), [
+        $request->validate([
             'code'        => 'required|string|unique:tax_categories,code,' . $id,
             'name'        => 'required|string',
             'description' => 'required|string',
             'taxrates'    => 'array|required',
         ]);
 
-        $data = request()->input();
+        $data = $request->input();
 
         Event::dispatch('tax.tax_category.update.before', $id);
 
@@ -122,7 +124,7 @@ class TaxCategoryController extends SettingController
 
         if (! $taxCategory) {
             return response([
-                'message' => trans('admin::app.settings.tax-categories.update-error'),
+                'message' => __('admin::app.settings.tax-categories.update-error'),
             ], 400);
         }
 
@@ -132,7 +134,7 @@ class TaxCategoryController extends SettingController
 
         return response([
             'data'    => $taxCategory,
-            'message' => trans('admin::app.settings.tax-categories.update-success'),
+            'message' => __('admin::app.settings.tax-categories.update-success'),
         ]);
     }
 
@@ -154,12 +156,12 @@ class TaxCategoryController extends SettingController
             Event::dispatch('tax.tax_category.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.response.delete-success', ['name' => 'Tax Category']),
+                'message' => __('admin::app.response.delete-success', ['name' => 'Tax Category']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Tax Category']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Tax Category']),
         ], 400);
     }
 }

@@ -58,7 +58,7 @@ class PageController extends CMSController
 
         return response([
             'data'    => $page,
-            'message' => trans('admin::app.response.create-success', ['name' => 'page']),
+            'message' => __('admin::app.response.create-success', ['name' => 'page']),
         ]);
     }
 
@@ -91,7 +91,7 @@ class PageController extends CMSController
         $request->validate([
             $locale . '.url_key'      => ['required', new \Webkul\Core\Contracts\Validations\Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->cmsRepository->isUrlKeyUnique($id, $value)) {
-                    $fail(trans('admin::app.response.already-taken', ['name' => 'Page']));
+                    $fail(__('admin::app.response.already-taken', ['name' => 'Page']));
                 }
             }],
             $locale . '.page_title'   => 'required',
@@ -103,7 +103,7 @@ class PageController extends CMSController
 
         return response([
             'data'    => $page,
-            'message' => trans('admin::app.response.update-success', ['name' => 'Page']),
+            'message' => __('admin::app.response.update-success', ['name' => 'Page']),
         ]);
     }
 
@@ -119,12 +119,12 @@ class PageController extends CMSController
 
         if ($page->delete()) {
             return response([
-                'message' => trans('admin::app.cms.pages.delete-success'),
+                'message' => __('admin::app.cms.pages.delete-success'),
             ]);
         }
 
         return response([
-            'message' => trans('admin::app.cms.pages.delete-failure'),
+            'message' => __('admin::app.cms.pages.delete-failure'),
         ], 400);
     }
 
@@ -155,17 +155,17 @@ class PageController extends CMSController
 
             if (count($pageIDs) == $count) {
                 return response([
-                    'message' => trans('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'CMS Pages']),
+                    'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'CMS Pages']),
                 ]);
             }
 
             return response([
-                'message' => trans('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'CMS Pages']),
+                'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'CMS Pages']),
             ]);
         }
 
         return response([
-            'message' => trans('admin::app.datagrid.mass-ops.no-resource'),
+            'message' => __('admin::app.datagrid.mass-ops.no-resource'),
         ]);
     }
 }

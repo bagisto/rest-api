@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\Product\Repositories\ProductRepository;
-use Webkul\RestApi\Http\Resources\V1\Checkout\CartResource;
-use Webkul\RestApi\Http\Resources\V1\Customer\CustomerWishlistResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerWishlistResource;
 
 class WishlistController extends CustomerController
 {

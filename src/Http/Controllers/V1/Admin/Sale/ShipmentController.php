@@ -92,7 +92,7 @@ class ShipmentController extends SaleController
 
         if (! $order->canShip()) {
             return response([
-                'message' => trans('admin::app.sales.shipments.order-error'),
+                'message' => __('admin::app.sales.shipments.order-error'),
             ], 400);
         }
 
@@ -105,14 +105,14 @@ class ShipmentController extends SaleController
 
         if (! $this->isInventoryValidate($data)) {
             return response([
-                'message' => trans('admin::app.sales.shipments.quantity-invalid'),
+                'message' => __('admin::app.sales.shipments.quantity-invalid'),
             ], 400);
         }
 
         $this->shipmentRepository->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
-            'message' => trans('admin::app.response.create-success', ['name' => 'Shipment']),
+            'message' => __('admin::app.response.create-success', ['name' => 'Shipment']),
         ]);
     }
 

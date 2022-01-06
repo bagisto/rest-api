@@ -81,7 +81,7 @@ class CustomerController extends CustomerBaseController
 
         return response([
             'data'    => $customer,
-            'message' => trans('admin::app.response.create-success', ['name' => 'Customer']),
+            'message' => __('admin::app.response.create-success', ['name' => 'Customer']),
         ]);
     }
 
@@ -129,7 +129,7 @@ class CustomerController extends CustomerBaseController
 
         return response([
             'data'    => $customer,
-            'message' => trans('admin::app.response.update-success', ['name' => 'Customer']),
+            'message' => __('admin::app.response.update-success', ['name' => 'Customer']),
         ]);
     }
 
@@ -147,13 +147,13 @@ class CustomerController extends CustomerBaseController
             if (! $this->customerRepository->checkIfCustomerHasOrderPendingOrProcessing($customer)) {
                 $this->customerRepository->delete($id);
 
-                return response(['message' => trans('admin::app.response.delete-success', ['name' => 'Customer'])], 200);
+                return response(['message' => __('admin::app.response.delete-success', ['name' => 'Customer'])], 200);
             }
 
-            return response(['message' => trans('admin::app.response.order-pending', ['name' => 'Customer'])], 400);
+            return response(['message' => __('admin::app.response.order-pending', ['name' => 'Customer'])], 400);
         } catch (\Exception $e) {}
 
-        return response(['message' => trans('admin::app.response.delete-failed', ['name' => 'Customer'])], 400);
+        return response(['message' => __('admin::app.response.delete-failed', ['name' => 'Customer'])], 400);
     }
 
     /**
@@ -175,7 +175,7 @@ class CustomerController extends CustomerBaseController
         }
 
         return response([
-            'message' => trans('admin::app.customers.customers.mass-update-success'),
+            'message' => __('admin::app.customers.customers.mass-update-success'),
         ]);
     }
 
@@ -196,11 +196,11 @@ class CustomerController extends CustomerBaseController
             }
 
             return response([
-                'message' => trans('admin::app.customers.customers.mass-destroy-success'),
+                'message' => __('admin::app.customers.customers.mass-destroy-success'),
             ]);
         }
 
-        return response(['message' => trans('admin::app.response.order-pending', ['name' => 'Customers'])], 400);
+        return response(['message' => __('admin::app.response.order-pending', ['name' => 'Customers'])], 400);
     }
 
     /**

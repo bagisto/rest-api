@@ -82,12 +82,12 @@ class CustomerAddressController extends CustomerBaseController
 
         if ($this->customerAddressRepository->create($data)) {
             return response([
-                'message' => trans('admin::app.customers.addresses.success-create'),
+                'message' => __('admin::app.customers.addresses.success-create'),
             ]);
         }
 
         return response([
-            'message' => trans('admin::app.customers.addresses.error-create'),
+            'message' => __('admin::app.customers.addresses.error-create'),
         ]);
     }
 
@@ -138,7 +138,7 @@ class CustomerAddressController extends CustomerBaseController
             $this->customerAddressRepository->update($data, $id);
 
             return response([
-                'message' => trans('admin::app.customers.addresses.success-update'),
+                'message' => __('admin::app.customers.addresses.success-update'),
             ]);
         }
 
@@ -159,7 +159,7 @@ class CustomerAddressController extends CustomerBaseController
         $this->customerAddressRepository->delete($id);
 
         return response([
-            'message' => trans('admin::app.customers.addresses.success-delete'),
+            'message' => __('admin::app.customers.addresses.success-delete'),
         ]);
     }
 
@@ -179,7 +179,7 @@ class CustomerAddressController extends CustomerBaseController
         }
 
         return response([
-            'message' => trans('admin::app.customers.addresses.success-mass-delete'),
+            'message' => __('admin::app.customers.addresses.success-mass-delete'),
         ]);
     }
 }

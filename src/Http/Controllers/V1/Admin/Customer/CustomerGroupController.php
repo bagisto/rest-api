@@ -65,7 +65,7 @@ class CustomerGroupController extends CustomerBaseController
 
         return response([
             'data'    => $customerGroup,
-            'message' => trans('admin::app.response.create-success', ['name' => 'Customer Group']),
+            'message' => __('admin::app.response.create-success', ['name' => 'Customer Group']),
         ]);
     }
 
@@ -105,7 +105,7 @@ class CustomerGroupController extends CustomerBaseController
         Event::dispatch('customer.customer_group.update.after', $customerGroup);
 
         return response([
-            'message' => trans('admin::app.response.update-success', ['name' => 'Customer Group']),
+            'message' => __('admin::app.response.update-success', ['name' => 'Customer Group']),
         ]);
     }
 
@@ -121,13 +121,13 @@ class CustomerGroupController extends CustomerBaseController
 
         if ($customerGroup->is_user_defined == 0) {
             return response([
-                'message' => trans('admin::app.customers.customers.group-default'),
+                'message' => __('admin::app.customers.customers.group-default'),
             ], 400);
         }
 
         if (count($customerGroup->customers) > 0) {
             return response([
-                'message' => trans('admin::app.response.customer-associate', ['name' => 'Customer Group']),
+                'message' => __('admin::app.response.customer-associate', ['name' => 'Customer Group']),
             ], 400);
         }
 
@@ -139,12 +139,12 @@ class CustomerGroupController extends CustomerBaseController
             Event::dispatch('customer.customer_group.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.response.delete-success', ['name' => 'Customer Group']),
+                'message' => __('admin::app.response.delete-success', ['name' => 'Customer Group']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Customer Group']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Customer Group']),
         ], 400);
     }
 }

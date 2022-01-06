@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Configuration;
 
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Storage;
 use Webkul\Admin\Http\Requests\ConfigurationForm;
 use Webkul\Core\Repositories\CoreConfigRepository;
 use Webkul\Core\Tree;
@@ -83,44 +82,7 @@ class ConfigurationController extends AdminController
         Event::dispatch('core.configuration.save.after');
 
         return response([
-            'message' => trans('admin::app.configuration.save-message'),
+            'message' => __('admin::app.configuration.save-message'),
         ]);
-    }
-
-    /**
-     * Returns slugs.
-     *
-     * @return array
-     */
-    private function getDefaultConfigSlugs()
-    {
-        if (! request()->route('slug')) {
-            $firstItem = current($this->configTree->items);
-
-            $secondItem = current($firstItem['children']);
-
-            return $this->getSlugs($secondItem);
-        }
-
-        if (! request()->route('slug2')) {
-            $secondItem = current($this->configTree->items[request()->route('slug')]['children']);
-
-            return $this->getSlugs($secondItem);
-        }
-
-        return [];
-    }
-
-    /**
-     * Get slugs.
-     *
-     * @param  string  $secondItem
-     * @return array
-     */
-    private function getSlugs($secondItem): array
-    {
-        $temp = explode('.', $secondItem['key']);
-
-        return ['slug' => current($temp), 'slug2' => end($temp)];
     }
 }

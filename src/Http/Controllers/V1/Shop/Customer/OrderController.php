@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Resources\V1\Sales\OrderResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 
 class OrderController extends CustomerController

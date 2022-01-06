@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Event;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Checkout\Repositories\CartItemRepository;
 use Webkul\Customer\Repositories\WishlistRepository;
-use Webkul\RestApi\Http\Resources\V1\Checkout\CartResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 
 class CartController extends CustomerController
 {

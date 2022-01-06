@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Webkul\Core\Repositories\SliderRepository;
-use Webkul\RestApi\Http\Resources\V1\Core\SliderResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Core\SliderResource;
 
 class SliderController extends CoreController
 {

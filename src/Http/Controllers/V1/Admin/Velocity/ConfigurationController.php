@@ -128,7 +128,7 @@ class ConfigurationController extends VelocityController
 
         return response([
             'data'    => $velocityMetaData,
-            'message' => trans('admin::app.response.update-success', ['name' => trans('velocity::app.admin.meta-data.title')]),
+            'message' => __('admin::app.response.update-success', ['name' => __('velocity::app.admin.meta-data.title')]),
         ]);
     }
 

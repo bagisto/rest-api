@@ -7,9 +7,9 @@ use Illuminate\Support\Str;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Checkout\Http\Requests\CustomerAddressForm;
 use Webkul\Payment\Facades\Payment;
-use Webkul\RestApi\Http\Resources\V1\Checkout\CartResource;
-use Webkul\RestApi\Http\Resources\V1\Checkout\CartShippingRateResource;
-use Webkul\RestApi\Http\Resources\V1\Sales\OrderResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shipping\Facades\Shipping;
 

@@ -77,7 +77,7 @@ class UserController extends SettingController
 
         return response([
             'user'    => $admin,
-            'message' => trans('admin::app.response.create-success', ['name' => 'User']),
+            'message' => __('admin::app.response.create-success', ['name' => 'User']),
         ]);
     }
 
@@ -123,7 +123,7 @@ class UserController extends SettingController
 
         return response([
             'user'    => $admin,
-            'message' => trans('admin::app.response.update-success', ['name' => 'User']),
+            'message' => __('admin::app.response.update-success', ['name' => 'User']),
         ]);
     }
 
@@ -139,7 +139,7 @@ class UserController extends SettingController
 
         if ($this->adminRepository->count() == 1) {
             return response([
-                'message' => trans('admin::app.response.last-delete-error', ['name' => 'Admin']),
+                'message' => __('admin::app.response.last-delete-error', ['name' => 'Admin']),
             ], 400);
         }
 
@@ -151,12 +151,12 @@ class UserController extends SettingController
             Event::dispatch('user.admin.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.response.delete-success', ['name' => 'Admin']),
+                'message' => __('admin::app.response.delete-success', ['name' => 'Admin']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Admin']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Admin']),
         ], 400);
     }
 
@@ -216,7 +216,7 @@ class UserController extends SettingController
     private function cannotChangeRedirectResponse(string $columnName)
     {
         return response([
-            'message' => trans('admin::app.response.cannot-change', ['name' => $columnName]),
+            'message' => __('admin::app.response.cannot-change', ['name' => $columnName]),
         ]);
     }
 }

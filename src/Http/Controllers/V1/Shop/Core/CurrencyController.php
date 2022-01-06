@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Webkul\Core\Repositories\CurrencyRepository;
-use Webkul\RestApi\Http\Resources\V1\Core\CurrencyResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Core\CurrencyResource;
 
 class CurrencyController extends CoreController
 {

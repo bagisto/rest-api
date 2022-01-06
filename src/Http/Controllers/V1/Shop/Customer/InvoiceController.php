@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Resources\V1\Sales\InvoiceResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Sales\InvoiceResource;
 use Webkul\Sales\Repositories\InvoiceRepository;
 
 class InvoiceController extends CustomerController

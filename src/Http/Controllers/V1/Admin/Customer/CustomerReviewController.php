@@ -71,7 +71,7 @@ class CustomerReviewController extends CustomerBaseController
         Event::dispatch('customer.review.update.after', $id);
 
         return response([
-            'message' => trans('admin::app.response.update-success', ['name' => 'Review']),
+            'message' => __('admin::app.response.update-success', ['name' => 'Review']),
         ]);
     }
 
@@ -93,12 +93,12 @@ class CustomerReviewController extends CustomerBaseController
             Event::dispatch('customer.review.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.response.delete-success', ['name' => 'Review']),
+                'message' => __('admin::app.response.delete-success', ['name' => 'Review']),
             ], 200);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Review']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Review']),
         ], 400);
     }
 
@@ -122,12 +122,12 @@ class CustomerReviewController extends CustomerBaseController
             }
 
             return response([
-                'message' => trans('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'Reviews']),
+                'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'Reviews']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'Reviews']),
+            'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'Reviews']),
         ]);
     }
 
@@ -165,12 +165,12 @@ class CustomerReviewController extends CustomerBaseController
             }
 
             return response([
-                'message' => trans('admin::app.datagrid.mass-ops.update-success', ['resource' => 'Reviews']),
+                'message' => __('admin::app.datagrid.mass-ops.update-success', ['resource' => 'Reviews']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'Reviews']),
+            'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'Reviews']),
         ]);
     }
 }

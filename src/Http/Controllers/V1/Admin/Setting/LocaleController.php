@@ -43,6 +43,7 @@ class LocaleController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +62,7 @@ class LocaleController extends SettingController
 
         return response([
             'data'    => $locale,
-            'message' => trans('admin::app.settings.locales.create-success'),
+            'message' => __('admin::app.settings.locales.create-success'),
         ]);
     }
 
@@ -83,12 +84,13 @@ class LocaleController extends SettingController
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $request->validate(request(), [
+        $request->validate([
             'code'      => ['required', 'unique:locales,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
             'name'      => 'required',
             'direction' => 'in:ltr,rtl',
@@ -102,7 +104,7 @@ class LocaleController extends SettingController
 
         return response([
             'data'    => $locale,
-            'message' => trans('admin::app.settings.locales.update-success'),
+            'message' => __('admin::app.settings.locales.update-success'),
         ]);
     }
 
@@ -118,7 +120,7 @@ class LocaleController extends SettingController
 
         if ($this->localeRepository->count() == 1) {
             return response([
-                'message' => trans('admin::app.settings.locales.last-delete-error'),
+                'message' => __('admin::app.settings.locales.last-delete-error'),
             ]);
         }
 
@@ -130,12 +132,12 @@ class LocaleController extends SettingController
             Event::dispatch('core.locale.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.settings.locales.delete-success'),
+                'message' => __('admin::app.settings.locales.delete-success'),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Locale']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Locale']),
         ], 400);
     }
 }

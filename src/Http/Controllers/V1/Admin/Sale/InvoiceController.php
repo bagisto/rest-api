@@ -65,7 +65,7 @@ class InvoiceController extends SaleController
 
         if (! $order->canInvoice()) {
             return response([
-                'message' => trans('admin::app.sales.invoices.creation-error'),
+                'message' => __('admin::app.sales.invoices.creation-error'),
             ], 400);
         }
 
@@ -77,20 +77,20 @@ class InvoiceController extends SaleController
 
         if (! $this->invoiceRepository->haveProductToInvoice($data)) {
             return response([
-                'message' => trans('admin::app.sales.invoices.product-error'),
+                'message' => __('admin::app.sales.invoices.product-error'),
             ], 400);
         }
 
         if (! $this->invoiceRepository->isValidQuantity($data)) {
             return response([
-                'message' => trans('admin::app.sales.invoices.invalid-qty'),
+                'message' => __('admin::app.sales.invoices.invalid-qty'),
             ], 400);
         }
 
         $this->invoiceRepository->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
-            'message' => trans('admin::app.response.create-success', ['name' => 'Invoice']),
+            'message' => __('admin::app.response.create-success', ['name' => 'Invoice']),
         ]);
     }
 

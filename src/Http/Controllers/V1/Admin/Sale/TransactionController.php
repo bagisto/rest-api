@@ -99,7 +99,7 @@ class TransactionController extends SaleController
 
             if ($invoice->state == 'paid') {
                 return response([
-                    'message' => trans('admin::app.sales.transactions.response.already-paid'),
+                    'message' => __('admin::app.sales.transactions.response.already-paid'),
                 ], 400);
             }
 
@@ -138,12 +138,12 @@ class TransactionController extends SaleController
             }
 
             return response([
-                'message' => trans('admin::app.sales.transactions.response.transaction-saved'),
+                'message' => __('admin::app.sales.transactions.response.transaction-saved'),
             ]);
 
         } else {
             return response([
-                'message' => trans('admin::app.sales.transactions.response.invoice-missing'),
+                'message' => __('admin::app.sales.transactions.response.invoice-missing'),
             ], 400);
         }
     }

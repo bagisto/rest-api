@@ -68,8 +68,8 @@ class OrderController extends SaleController
         $result = $this->orderRepository->cancel($id);
 
         return $result
-            ? response(['message' => trans('admin::app.response.cancel-success', ['name' => 'Order'])])
-            : response(['message' => trans('admin::app.response.cancel-error', ['name' => 'Order'])], 500);
+            ? response(['message' => __('admin::app.response.cancel-success', ['name' => 'Order'])])
+            : response(['message' => __('admin::app.response.cancel-error', ['name' => 'Order'])], 500);
     }
 
     /**
@@ -94,7 +94,7 @@ class OrderController extends SaleController
 
         return response([
             'data'    => $comment,
-            'message' => trans('admin::app.sales.orders.comment-added-success'),
+            'message' => __('admin::app.sales.orders.comment-added-success'),
         ]);
     }
 }

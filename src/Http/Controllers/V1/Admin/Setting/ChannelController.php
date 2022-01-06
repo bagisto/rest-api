@@ -43,6 +43,7 @@ class ChannelController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -90,7 +91,7 @@ class ChannelController extends SettingController
 
         return response([
             'data'    => $channel,
-            'message' => trans('admin::app.settings.channels.create-success'),
+            'message' => __('admin::app.settings.channels.create-success'),
         ]);
     }
 
@@ -112,6 +113,7 @@ class ChannelController extends SettingController
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -166,7 +168,7 @@ class ChannelController extends SettingController
 
         return response([
             'data'    => $channel,
-            'message' => trans('admin::app.settings.channels.update-success'),
+            'message' => __('admin::app.settings.channels.update-success'),
         ]);
     }
 
@@ -182,7 +184,7 @@ class ChannelController extends SettingController
 
         if ($channel->code == config('app.channel')) {
             return response([
-                'message' => trans('admin::app.settings.channels.last-delete-error'),
+                'message' => __('admin::app.settings.channels.last-delete-error'),
             ], 400);
         }
 
@@ -194,12 +196,12 @@ class ChannelController extends SettingController
             Event::dispatch('core.channel.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.settings.channels.delete-success'),
+                'message' => __('admin::app.settings.channels.delete-success'),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Channel']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Channel']),
         ], 400);
     }
 

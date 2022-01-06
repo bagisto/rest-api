@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CountryRepository;
-use Webkul\RestApi\Http\Resources\V1\Core\CountryResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Core\CountryResource;
 
 class CountryController extends CoreController
 {

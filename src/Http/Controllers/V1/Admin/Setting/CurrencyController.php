@@ -43,6 +43,7 @@ class CurrencyController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,7 +61,7 @@ class CurrencyController extends SettingController
 
         return response([
             'data'    => $currency,
-            'message' => trans('admin::app.settings.currencies.create-success'),
+            'message' => __('admin::app.settings.currencies.create-success'),
         ]);
     }
 
@@ -82,6 +83,7 @@ class CurrencyController extends SettingController
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -100,7 +102,7 @@ class CurrencyController extends SettingController
 
         return response([
             'data'    => $currency,
-            'message' => trans('admin::app.settings.currencies.update-success'),
+            'message' => __('admin::app.settings.currencies.update-success'),
         ]);
     }
 
@@ -116,7 +118,7 @@ class CurrencyController extends SettingController
 
         if ($this->currencyRepository->count() == 1) {
             return response([
-                'message' => trans('admin::app.settings.currencies.last-delete-error'),
+                'message' => __('admin::app.settings.currencies.last-delete-error'),
             ], 400);
         }
 
@@ -128,18 +130,19 @@ class CurrencyController extends SettingController
             Event::dispatch('core.currency.delete.after', $id);
 
             return response()->json([
-                'message' => trans('admin::app.settings.currencies.delete-success'),
+                'message' => __('admin::app.settings.currencies.delete-success'),
             ], 200);
         } catch (\Exception $e) {}
 
         return response()->json([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Currency']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Currency']),
         ], 400);
     }
 
     /**
      * Remove the specified resources from database
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function massDestroy(Request $request)
@@ -156,12 +159,12 @@ class CurrencyController extends SettingController
             }
 
             return response([
-                'message' => trans('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'currencies']),
+                'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'currencies']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'currencies']),
+            'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'currencies']),
         ], 400);
     }
 }

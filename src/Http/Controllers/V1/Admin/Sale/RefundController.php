@@ -92,7 +92,7 @@ class RefundController extends SaleController
 
         if (! $order->canRefund()) {
             return response([
-                'message' => trans('admin::app.sales.refunds.creation-error'),
+                'message' => __('admin::app.sales.refunds.creation-error'),
             ], 400);
         }
 
@@ -110,7 +110,7 @@ class RefundController extends SaleController
 
         if (! $totals) {
             return response([
-                'message' => trans('admin::app.sales.refunds.invalid-qty'),
+                'message' => __('admin::app.sales.refunds.invalid-qty'),
             ], 400);
         }
 
@@ -120,20 +120,20 @@ class RefundController extends SaleController
 
         if (! $refundAmount) {
             return response([
-                'message' => trans('admin::app.sales.refunds.invalid-refund-amount-error'),
+                'message' => __('admin::app.sales.refunds.invalid-refund-amount-error'),
             ], 400);
         }
 
         if ($refundAmount > $maxRefundAmount) {
             return response([
-                'message' => trans('admin::app.sales.refunds.refund-limit-error', ['amount' => core()->formatBasePrice($maxRefundAmount)]),
+                'message' => __('admin::app.sales.refunds.refund-limit-error', ['amount' => core()->formatBasePrice($maxRefundAmount)]),
             ], 400);
         }
 
         $this->refundRepository->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
-            'message' => trans('admin::app.response.create-success', ['name' => 'Refund']),
+            'message' => __('admin::app.response.create-success', ['name' => 'Refund']),
         ]);
     }
 

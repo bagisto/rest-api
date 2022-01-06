@@ -56,6 +56,7 @@ class RoleController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -73,7 +74,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => $role,
-            'message' => trans('admin::app.response.create-success', ['name' => 'Role']),
+            'message' => __('admin::app.response.create-success', ['name' => 'Role']),
         ]);
     }
 
@@ -95,6 +96,7 @@ class RoleController extends SettingController
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -114,7 +116,7 @@ class RoleController extends SettingController
 
         if ($isChangedFromAll && $this->adminRepository->countAdminsWithAllAccess() === 1) {
             return response([
-                'message' => trans('admin::app.response.being-used', ['name' => 'Role', 'source' => 'Admin User']),
+                'message' => __('admin::app.response.being-used', ['name' => 'Role', 'source' => 'Admin User']),
             ], 400);
         }
 
@@ -126,7 +128,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => $role,
-            'message' => trans('admin::app.response.update-success', ['name' => 'Role']),
+            'message' => __('admin::app.response.update-success', ['name' => 'Role']),
         ]);
     }
 
@@ -142,13 +144,13 @@ class RoleController extends SettingController
 
         if ($role->admins->count() >= 1) {
             return response([
-                'message' => trans('admin::app.response.being-used', ['name' => 'Role', 'source' => 'Admin User']),
+                'message' => __('admin::app.response.being-used', ['name' => 'Role', 'source' => 'Admin User']),
             ], 400);
         }
 
         if ($this->roleRepository->count() == 1) {
             return response([
-                'message' => trans('admin::app.response.last-delete-error', ['name' => 'Role']),
+                'message' => __('admin::app.response.last-delete-error', ['name' => 'Role']),
             ], 400);
         }
 
@@ -160,12 +162,12 @@ class RoleController extends SettingController
             Event::dispatch('user.role.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.response.delete-success', ['name' => 'Role']),
+                'message' => __('admin::app.response.delete-success', ['name' => 'Role']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Role']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Role']),
         ], 400);
     }
 }

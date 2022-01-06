@@ -59,7 +59,7 @@ class InventorySourceController extends SettingController
 
         return response([
             'data'    => $inventorySource,
-            'message' => trans('admin::app.settings.inventory_sources.create-success'),
+            'message' => __('admin::app.settings.inventory_sources.create-success'),
         ]);
     }
 
@@ -98,7 +98,7 @@ class InventorySourceController extends SettingController
 
         return response([
             'data'    => $inventorySource,
-            'message' => trans('admin::app.settings.inventory_sources.update-success'),
+            'message' => __('admin::app.settings.inventory_sources.update-success'),
         ]);
     }
 
@@ -114,7 +114,7 @@ class InventorySourceController extends SettingController
 
         if ($this->inventorySourceRepository->count() == 1) {
             return response([
-                'message' => trans('admin::app.settings.inventory_sources.last-delete-error'),
+                'message' => __('admin::app.settings.inventory_sources.last-delete-error'),
             ], 400);
         }
 
@@ -126,12 +126,12 @@ class InventorySourceController extends SettingController
             Event::dispatch('inventory.inventory_source.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.settings.inventory_sources.delete-success'),
+                'message' => __('admin::app.settings.inventory_sources.delete-success'),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Inventory source']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Inventory source']),
         ], 400);
     }
 }

@@ -49,6 +49,7 @@ class SliderController extends SettingController
     /**
      * Creates the new slider item.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -73,12 +74,12 @@ class SliderController extends SettingController
         if ($result) {
             return response([
                 'data'    => $result,
-                'message' => trans('admin::app.settings.sliders.created-success'),
+                'message' => __('admin::app.settings.sliders.created-success'),
             ]);
         }
 
         return response([
-            'message' => trans('admin::app.settings.sliders.created-fault'),
+            'message' => __('admin::app.settings.sliders.created-fault'),
         ], 400);
     }
 
@@ -99,6 +100,7 @@ class SliderController extends SettingController
     /**
      * Edit the previously created slider item.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -121,7 +123,7 @@ class SliderController extends SettingController
 
         if (null === $request->image) {
             return response([
-                'message' => trans('admin::app.settings.sliders.update-fail'),
+                'message' => __('admin::app.settings.sliders.update-fail'),
             ], 400);
         }
 
@@ -130,12 +132,12 @@ class SliderController extends SettingController
         if ($result) {
             return response([
                 'data'    => $result,
-                'message' => trans('admin::app.settings.sliders.update-success'),
+                'message' => __('admin::app.settings.sliders.update-success'),
             ]);
         }
 
         return response([
-            'message' => trans('admin::app.settings.sliders.update-fail'),
+            'message' => __('admin::app.settings.sliders.update-fail'),
         ], 400);
     }
 
@@ -153,12 +155,12 @@ class SliderController extends SettingController
             $this->sliderRepository->delete($id);
 
             return response([
-                'message' => trans('admin::app.response.delete-success', ['name' => 'Slider']),
+                'message' => __('admin::app.response.delete-success', ['name' => 'Slider']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Slider']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Slider']),
         ], 400);
     }
 }

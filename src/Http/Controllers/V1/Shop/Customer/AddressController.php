@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 use Illuminate\Http\Request;
 use Webkul\Customer\Http\Requests\CustomerAddressRequest;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
-use Webkul\RestApi\Http\Resources\V1\Customer\CustomerAddressResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerAddressResource;
 
 class AddressController extends CustomerController
 {

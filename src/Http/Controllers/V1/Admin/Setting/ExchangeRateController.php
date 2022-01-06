@@ -56,6 +56,7 @@ class ExchangeRateController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -73,7 +74,7 @@ class ExchangeRateController extends SettingController
 
         return response([
             'data'    => $exchangeRate,
-            'message' => trans('admin::app.settings.exchange_rates.create-success'),
+            'message' => __('admin::app.settings.exchange_rates.create-success'),
         ]);
     }
 
@@ -95,6 +96,7 @@ class ExchangeRateController extends SettingController
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -113,7 +115,7 @@ class ExchangeRateController extends SettingController
 
         return response([
             'data'    => $exchangeRate,
-            'message' => trans('admin::app.settings.exchange_rates.update-success'),
+            'message' => __('admin::app.settings.exchange_rates.update-success'),
         ]);
     }
 
@@ -128,7 +130,7 @@ class ExchangeRateController extends SettingController
             app(config('services.exchange-api.' . config('services.exchange-api.default') . '.class'))->updateRates();
 
             return response([
-                'message' => trans('admin::app.settings.exchange_rates.update-success'),
+                'message' => __('admin::app.settings.exchange_rates.update-success'),
             ]);
         } catch (\Exception $e) {
             return response([
@@ -155,12 +157,12 @@ class ExchangeRateController extends SettingController
             Event::dispatch('core.exchange_rate.delete.after', $id);
 
             return response([
-                'message' => trans('admin::app.settings.exchange_rates.delete-success'),
+                'message' => __('admin::app.settings.exchange_rates.delete-success'),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-error', ['name' => 'Exchange rate']),
+            'message' => __('admin::app.response.delete-error', ['name' => 'Exchange rate']),
         ], 400);
     }
 }

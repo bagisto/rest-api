@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Webkul\Core\Repositories\ChannelRepository;
-use Webkul\RestApi\Http\Resources\V1\Core\ChannelResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Core\ChannelResource;
 
 class ChannelController extends CoreController
 {

@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\RestApi\Http\Resources\V1\Catalog\CategoryResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\CategoryResource;
 
 class CategoryController extends CatalogController
 {

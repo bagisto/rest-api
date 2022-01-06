@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\RestApi\Http\Resources\V1\Catalog\AttributeResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\AttributeResource;
 
 class AttributeController extends CatalogController
 {

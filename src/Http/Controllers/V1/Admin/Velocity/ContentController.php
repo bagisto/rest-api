@@ -69,7 +69,7 @@ class ContentController extends VelocityController
 
         return response([
             'data'    => $content,
-            'message' => trans('admin::app.response.create-success', ['name' => trans('velocity::app.admin.layouts.header-content')]),
+            'message' => __('admin::app.response.create-success', ['name' => __('velocity::app.admin.layouts.header-content')]),
         ]);
     }
 
@@ -107,7 +107,7 @@ class ContentController extends VelocityController
 
         return response([
             'data'    => $content,
-            'message' => trans('admin::app.response.update-success', ['name' => trans('velocity::app.admin.layouts.header-content')]),
+            'message' => __('admin::app.response.update-success', ['name' => __('velocity::app.admin.layouts.header-content')]),
         ]);
     }
 
@@ -125,17 +125,17 @@ class ContentController extends VelocityController
             $this->contentRepository->delete($id);
 
             return response([
-                'message' => trans('admin::app.response.delete-success', ['name' => 'Content']),
+                'message' => __('admin::app.response.delete-success', ['name' => 'Content']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => trans('admin::app.response.delete-failed', ['name' => 'Content']),
+            'message' => __('admin::app.response.delete-failed', ['name' => 'Content']),
         ], 400);
     }
 
     /**
-     * Mass delete the products
+     * Mass delete the contents.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -154,12 +154,12 @@ class ContentController extends VelocityController
         }
 
         return response([
-            'message' => trans('velocity::app.admin.contents.mass-delete-success'),
+            'message' => __('velocity::app.admin.contents.mass-delete-success'),
         ]);
     }
 
     /**
-     * To mass update the content
+     * To mass update the contents.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -177,7 +177,7 @@ class ContentController extends VelocityController
         }
 
         return response([
-            'message' => trans('velocity::app.admin.contents.mass-update-success'),
+            'message' => __('velocity::app.admin.contents.mass-update-success'),
         ]);
     }
 }
