@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Resources\V1\Shop\Catalog;
+namespace Webkul\RestApi\Http\Resources\V1\Admin\Catalog;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +19,6 @@ class AttributeOptionResource extends JsonResource
             'admin_name'   => $this->admin_name,
             'label'        => $this->label,
             'swatch_value' => $this->swatch_value,
-            'sort_order'   => $this->sort_order,
         ];
     }
 }

@@ -4,52 +4,28 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
-use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeFamilyResource;
 
 class AttributeFamilyController extends CatalogController
 {
     /**
-     * Attribute family repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Attribute\Repositories\AttributeFamilyRepository
+     * @return string
      */
-    protected $attributeFamilyRepository;
-
-    /**
-     * Attribute repository instance.
-     *
-     * @var \Webkul\Attribute\Repositories\AttributeRepository
-     */
-    protected $attributeRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Attribute\Repositories\AttributeFamilyRepository  $attributeFamilyRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @return void
-     */
-    public function __construct(
-        AttributeFamilyRepository $attributeFamilyRepository,
-        AttributeRepository $attributeRepository
-    ) {
-        $this->attributeFamilyRepository = $attributeFamilyRepository;
-
-        $this->attributeRepository = $attributeRepository;
+    public function repository()
+    {
+        return AttributeFamilyRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $attributeFamilies = $this->attributeFamilyRepository->all();
-
-        return response([
-            'data' => $attributeFamilies,
-        ]);
+        return AttributeFamilyResource::class;
     }
 
     /**
@@ -65,29 +41,11 @@ class AttributeFamilyController extends CatalogController
             'name' => 'required',
         ]);
 
-        $attributeFamily = $this->attributeFamilyRepository->create($request->all());
+        $attributeFamily = $this->getRepositoryInstance()->create($request->all());
 
         return response([
-            'data'    => $attributeFamily,
-            'message' => __('admin::app.response.create-success', ['name' => 'Family']),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $id)
-    {
-        $attributeFamily = $this->attributeFamilyRepository->with(['attribute_groups.custom_attributes'])->findOrFail($id, ['*']);
-
-        $custom_attributes = $this->attributeRepository->all(['id', 'code', 'admin_name', 'type']);
-
-        return response([
-            'data' => compact('attributeFamily', 'custom_attributes'),
+            'data'    => new AttributeFamilyResource($attributeFamily),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Family']),
         ]);
     }
 
@@ -105,11 +63,11 @@ class AttributeFamilyController extends CatalogController
             'name' => 'required',
         ]);
 
-        $attributeFamily = $this->attributeFamilyRepository->update($request->all(), $id);
+        $attributeFamily = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
-            'data'    => $attributeFamily,
-            'message' => __('admin::app.response.update-success', ['name' => 'Family']),
+            'data'    => new AttributeFamilyResource($attributeFamily),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Family']),
         ]);
     }
 
@@ -122,30 +80,24 @@ class AttributeFamilyController extends CatalogController
      */
     public function destroy(Request $request, $id)
     {
-        $attributeFamily = $this->attributeFamilyRepository->findOrFail($id);
+        $attributeFamily = $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->attributeFamilyRepository->count() == 1) {
+        if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('admin::app.response.last-delete-error', ['name' => 'Family']),
+                'message' => __('rest-api::app.response.error.last-item-delete', ['name' => 'Family']),
             ], 400);
         }
 
         if ($attributeFamily->products()->count()) {
             return response([
-                'message' => __('admin::app.response.attribute-product-error', ['name' => 'Attribute family']),
+                'message' => __('rest-api::app.response.error.being-used', ['name' => 'Family', 'source' => 'Product']),
             ], 400);
         }
 
-        try {
-            $this->attributeFamilyRepository->delete($id);
-        } catch (\Exception $e) {
-            return response([
-                'message' => __('admin::app.response.delete-failed', ['name' => 'Family']),
-            ], 500);
-        }
+        $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('admin::app.response.delete-success', ['name' => 'Family']),
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Family']),
         ]);
     }
 }

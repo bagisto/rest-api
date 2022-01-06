@@ -4,39 +4,29 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Core\Http\Requests\MassOperationRequest;
+use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeResource;
 
 class AttributeController extends CatalogController
 {
     /**
-     * Attribute repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Attribute\Repositories\AttributeRepository
+     * @return string
      */
-    protected $attributeRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Attribute\Repositories\AttributeRepository  $attributeRepository
-     * @return void
-     */
-    public function __construct(AttributeRepository $attributeRepository)
+    public function repository()
     {
-        $this->attributeRepository = $attributeRepository;
+        return AttributeRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $attributes = $this->attributeRepository->all();
-
-        return response([
-            'data' => $attributes,
-        ]);
+        return AttributeResource::class;
     }
 
     /**
@@ -57,43 +47,11 @@ class AttributeController extends CatalogController
 
         $data['is_user_defined'] = 1;
 
-        $attribute = $this->attributeRepository->create($data);
+        $attribute = $this->getRepositoryInstance()->create($data);
 
         return response([
-            'data'    => $attribute,
-            'message' => __('admin::app.response.create-success', ['name' => 'Attribute']),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $id)
-    {
-        $attribute = $this->attributeRepository->findOrFail($id);
-
-        return response([
-            'data' => $attribute,
-        ]);
-    }
-
-    /**
-     * Get attribute options associated with attribute.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function getAttributeOptions(Request $request, $id)
-    {
-        $attribute = $this->attributeRepository->findOrFail($id);
-
-        return response([
-            'data' => $attribute->options,
+            'data'    => new AttributeResource($attribute),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Attribute']),
         ]);
     }
 
@@ -112,11 +70,13 @@ class AttributeController extends CatalogController
             'type'       => 'required',
         ]);
 
-        $attribute = $this->attributeRepository->update($request->all(), $id);
+        $this->getRepositoryInstance()->findOrFail($id);
+
+        $attribute = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
-            'data'    => $attribute,
-            'message' => __('admin::app.response.update-success', ['name' => 'Attribute']),
+            'data'    => new AttributeResource($attribute),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Attribute']),
         ]);
     }
 
@@ -129,55 +89,47 @@ class AttributeController extends CatalogController
      */
     public function destroy(Request $request, $id)
     {
-        $attribute = $this->attributeRepository->findOrFail($id);
+        $attribute = $this->getRepositoryInstance()->findOrFail($id);
 
         if (! $attribute->is_user_defined) {
             return response([
-                'message' => __('admin::app.response.user-define-error', ['name' => 'Attribute']),
+                'message' => __('rest-api::app.response.error.system-attribute-delete'),
             ], 400);
         }
 
-        try {
-            $this->attributeRepository->delete($id);
-        } catch (\Exception $e) {
-            return response([
-                'message' => __('admin::app.response.delete-failed', ['name' => 'Attribute']),
-            ], 500);
-        }
+        $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('admin::app.response.delete-success', ['name' => 'Attribute']),
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Attribute']),
         ]);
     }
 
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassOperationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(MassOperationRequest $request)
     {
-        $indexes = explode(',', $request->input('indexes'));
+        $indexes = $request->indexes;
 
         foreach ($indexes as $index) {
-            $attribute = $this->attributeRepository->find($index);
+            $attribute = $this->getRepositoryInstance()->findOrFail($index);
 
             if (! $attribute->is_user_defined) {
                 return response([
-                    'message' => __('admin::app.response.user-define-error', ['name' => 'Attribute']),
+                    'message' => __('rest-api::app.response.error.system-attribute-delete'),
                 ], 400);
             }
         }
 
-        try {
-            foreach ($indexes as $index) {
-                $this->attributeRepository->delete($index);
-            }
-        } catch (\Exception $e) {}
+        foreach ($indexes as $index) {
+            $this->getRepositoryInstance()->delete($index);
+        }
 
         return response([
-            'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'attributes']),
+            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'attributes']),
         ]);
     }
 }

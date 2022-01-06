@@ -47,13 +47,11 @@ Route::group([
     /**
      * Attributes routes.
      */
-    Route::get('attributes', [AttributeController::class, 'index']);
-
-    Route::get('attributes/{id}/options', [AttributeController::class, 'getAttributeOptions']);
+    Route::get('attributes', [AttributeController::class, 'allResources']);
 
     Route::post('attributes', [AttributeController::class, 'store']);
 
-    Route::get('attributes/{id}', [AttributeController::class, 'show']);
+    Route::get('attributes/{id}', [AttributeController::class, 'getResource']);
 
     Route::put('attributes/{id}', [AttributeController::class, 'update']);
 
@@ -64,11 +62,11 @@ Route::group([
     /**
      * Attribute families routes.
      */
-    Route::get('attribute-families', [AttributeFamilyController::class, 'index']);
+    Route::get('attribute-families', [AttributeFamilyController::class, 'allResources']);
 
     Route::post('attribute-families', [AttributeFamilyController::class, 'store']);
 
-    Route::get('attribute-families/{id}', [AttributeFamilyController::class, 'show']);
+    Route::get('attribute-families/{id}', [AttributeFamilyController::class, 'getResource']);
 
     Route::put('attribute-families/{id}', [AttributeFamilyController::class, 'update']);
 
