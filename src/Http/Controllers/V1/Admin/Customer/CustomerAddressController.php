@@ -3,9 +3,11 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Rules\VatIdRule;
+use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerAddressResource;
 
 class CustomerAddressController extends CustomerBaseController
 {
@@ -17,26 +19,34 @@ class CustomerAddressController extends CustomerBaseController
     protected $customerRepository;
 
     /**
-     * Customer address repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerAddressRepository
-     */
-    protected $customerAddressRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Webkul\Customer\Repositories\CustomerRepository         $customerRepository
-     * @param  \Webkul\Customer\Repositories\CustomerAddressRepository  $customerAddressRepository
      * @return void
      */
-    public function __construct(
-        CustomerRepository $customerRepository,
-        CustomerAddressRepository $customerAddressRepository
-    ) {
+    public function __construct(CustomerRepository $customerRepository)
+    {
         $this->customerRepository = $customerRepository;
+    }
 
-        $this->customerAddressRepository = $customerAddressRepository;
+    /**
+     * Repository class name.
+     *
+     * @return string
+     */
+    public function repository()
+    {
+        return CustomerAddressRepository::class;
+    }
+
+    /**
+     * Resource class name.
+     *
+     * @return string
+     */
+    public function resource()
+    {
+        return CustomerAddressResource::class;
     }
 
     /**
@@ -47,10 +57,10 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function index($customerId)
     {
-        $customer = $this->customerRepository->find($customerId);
+        $customer = $this->customerRepository->findOrFail($customerId);
 
         return response([
-            'data' => $customer->addresses,
+            'data' => $this->getResourceCollection($customer->addresses),
         ]);
     }
 
@@ -64,7 +74,8 @@ class CustomerAddressController extends CustomerBaseController
     public function store(Request $request, $customerId)
     {
         $request->merge([
-            'address1' => implode(PHP_EOL, array_filter($request->input('address1'))),
+            'customer_id' => $customerId,
+            'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),
         ]);
 
         $request->validate([
@@ -78,16 +89,11 @@ class CustomerAddressController extends CustomerBaseController
             'vat_id'       => new VatIdRule(),
         ]);
 
-        $data = $request->collect()->except('_token')->toArray();
-
-        if ($this->customerAddressRepository->create($data)) {
-            return response([
-                'message' => __('admin::app.customers.addresses.success-create'),
-            ]);
-        }
+        $customerAddress = $this->getRepositoryInstance()->create($request->all());
 
         return response([
-            'message' => __('admin::app.customers.addresses.error-create'),
+            'data'    => new CustomerAddressResource($customerAddress),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Customer address']),
         ]);
     }
 
@@ -100,10 +106,12 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function show($customerId, $id)
     {
-        $address = $this->customerAddressRepository->find($id);
+        $customer = $this->customerRepository->findOrFail($customerId);
+
+        $address = $customer->addresses()->findOrFail($id);
 
         return response([
-            'data' => $address,
+            'data' => new CustomerAddressResource($address),
         ]);
     }
 
@@ -117,7 +125,10 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function update(Request $request, $customerId, $id)
     {
-        $request->merge(['address1' => implode(PHP_EOL, array_filter($request->input('address1')))]);
+        $request->merge([
+            'customer_id' => $customerId,
+            'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),
+        ]);
 
         $request->validate([
             'company_name' => 'string',
@@ -130,21 +141,14 @@ class CustomerAddressController extends CustomerBaseController
             'vat_id'       => new VatIdRule(),
         ]);
 
-        $data = $request->collect()->except('_token')->toArray();
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        $address = $this->customerAddressRepository->find($id);
-
-        if ($address) {
-            $this->customerAddressRepository->update($data, $id);
-
-            return response([
-                'message' => __('admin::app.customers.addresses.success-update'),
-            ]);
-        }
+        $customerAddress = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
-            'message' => 'Address not found.',
-        ], 404);
+            'data'    => new CustomerAddressResource($customerAddress),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Customer address']),
+        ]);
     }
 
     /**
@@ -156,30 +160,36 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function destroy($customerId, $id)
     {
-        $this->customerAddressRepository->delete($id);
+        $customer = $this->customerRepository->findOrFail($customerId);
+
+        $customer->addresses()->findOrFail($id);
+
+        $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('admin::app.customers.addresses.success-delete'),
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Customer address']),
         ]);
     }
 
     /**
      * Mass delete the customer's addresses.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @param  int  $customerId
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request, $customerId)
+    public function massDestroy(MassDestroyRequest $request, $customerId)
     {
-        $addressIds = explode(',', $request->input('indexes'));
+        foreach ($request->indexes as $addressId) {
+            $customer = $this->customerRepository->findOrFail($customerId);
 
-        foreach ($addressIds as $addressId) {
-            $this->customerAddressRepository->delete($addressId);
+            $customer->addresses()->findOrFail($addressId);
+
+            $this->getRepositoryInstance()->delete($addressId);
         }
 
         return response([
-            'message' => __('admin::app.customers.addresses.success-mass-delete'),
+            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'customer addresses']),
         ]);
     }
 }

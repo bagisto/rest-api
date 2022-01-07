@@ -86,7 +86,7 @@ class CartRuleController extends MarketingController
 
         return response([
             'data'    => $cartRule,
-            'message' => __('admin::app.response.create-success', ['name' => 'Cart Rule']),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Cart Rule']),
         ]);
     }
 
@@ -148,7 +148,7 @@ class CartRuleController extends MarketingController
 
         return response([
             'data'    => $cartRule,
-            'message' => __('admin::app.response.update-success', ['name' => 'Cart Rule']),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Cart Rule']),
         ]);
     }
 
@@ -170,7 +170,7 @@ class CartRuleController extends MarketingController
             Event::dispatch('promotions.cart_rule.delete.after', $id);
 
             return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Cart Rule']),
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Cart Rule']),
             ]);
         } catch (Exception $e) {}
 
@@ -197,7 +197,7 @@ class CartRuleController extends MarketingController
 
         $this->cartRuleCouponRepository->generateCoupons($request->all(), $id);
 
-        return response(['message' => __('admin::app.response.create-success', ['name' => 'Cart rule coupons'])]);
+        return response(['message' => __('rest-api::app.response.success.create', ['name' => 'Cart rule coupons'])]);
     }
 
     /**

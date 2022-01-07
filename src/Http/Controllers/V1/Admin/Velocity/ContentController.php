@@ -69,7 +69,7 @@ class ContentController extends VelocityController
 
         return response([
             'data'    => $content,
-            'message' => __('admin::app.response.create-success', ['name' => __('velocity::app.admin.layouts.header-content')]),
+            'message' => __('rest-api::app.response.success.create', ['name' => __('velocity::app.admin.layouts.header-content')]),
         ]);
     }
 
@@ -107,7 +107,7 @@ class ContentController extends VelocityController
 
         return response([
             'data'    => $content,
-            'message' => __('admin::app.response.update-success', ['name' => __('velocity::app.admin.layouts.header-content')]),
+            'message' => __('rest-api::app.response.success.update', ['name' => __('velocity::app.admin.layouts.header-content')]),
         ]);
     }
 
@@ -125,7 +125,7 @@ class ContentController extends VelocityController
             $this->contentRepository->delete($id);
 
             return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Content']),
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Content']),
             ]);
         } catch (\Exception $e) {}
 

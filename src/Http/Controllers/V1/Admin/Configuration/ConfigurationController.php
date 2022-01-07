@@ -38,24 +38,6 @@ class ConfigurationController extends AdminController
     }
 
     /**
-     * Prepares config tree.
-     *
-     * @return void
-     */
-    public function prepareConfigTree()
-    {
-        $tree = Tree::create();
-
-        foreach (config('core') as $item) {
-            $tree->add($item);
-        }
-
-        $tree->items = core()->sortItems($tree->items);
-
-        $this->configTree = $tree;
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -84,5 +66,23 @@ class ConfigurationController extends AdminController
         return response([
             'message' => __('admin::app.configuration.save-message'),
         ]);
+    }
+
+    /**
+     * Prepares config tree.
+     *
+     * @return void
+     */
+    private function prepareConfigTree()
+    {
+        $tree = Tree::create();
+
+        foreach (config('core') as $item) {
+            $tree->add($item);
+        }
+
+        $tree->items = core()->sortItems($tree->items);
+
+        $this->configTree = $tree;
     }
 }

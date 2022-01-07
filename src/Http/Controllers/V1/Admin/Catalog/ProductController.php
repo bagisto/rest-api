@@ -155,7 +155,7 @@ class ProductController extends CatalogController
 
         return response([
             'data'    => new ProductResource($product),
-            'message' => __('admin::app.response.create-success', ['name' => 'Product']),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Product']),
         ]);
     }
 
@@ -214,7 +214,7 @@ class ProductController extends CatalogController
 
         return response([
             'data'    => new ProductResource($product),
-            'message' => __('admin::app.response.update-success', ['name' => 'Product']),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Product']),
         ]);
     }
 
@@ -254,7 +254,7 @@ class ProductController extends CatalogController
             $this->productRepository->delete($id);
 
             return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Product']),
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Product']),
             ]);
         } catch (\Exception $e) {
             return response([

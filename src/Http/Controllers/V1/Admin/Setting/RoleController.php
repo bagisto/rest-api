@@ -74,7 +74,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => $role,
-            'message' => __('admin::app.response.create-success', ['name' => 'Role']),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Role']),
         ]);
     }
 
@@ -128,7 +128,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => $role,
-            'message' => __('admin::app.response.update-success', ['name' => 'Role']),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Role']),
         ]);
     }
 
@@ -162,7 +162,7 @@ class RoleController extends SettingController
             Event::dispatch('user.role.delete.after', $id);
 
             return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Role']),
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Role']),
             ]);
         } catch (\Exception $e) {}
 

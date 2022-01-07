@@ -159,12 +159,12 @@ class CurrencyController extends SettingController
             }
 
             return response([
-                'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'currencies']),
+                'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'currencies']),
             ]);
         } catch (\Exception $e) {}
 
         return response([
-            'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'currencies']),
+            'message' => __('admin::app.datagrid.mass-ops.partial-action', ['name' => 'currencies']),
         ], 400);
     }
 }

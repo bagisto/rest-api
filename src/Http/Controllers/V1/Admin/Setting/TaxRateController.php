@@ -141,7 +141,7 @@ class TaxRateController extends SettingController
             Event::dispatch('tax.tax_rate.delete.after', $id);
 
             return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Tax Rate']),
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Tax Rate']),
             ]);
         } catch (\Exception $e) {}
 

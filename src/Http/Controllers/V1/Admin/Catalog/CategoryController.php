@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\Core\Http\Requests\MassOperationRequest;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Models\Channel;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
 
@@ -111,10 +111,10 @@ class CategoryController extends CatalogController
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Webkul\Core\Http\Requests\MassOperationRequest  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassOperationRequest $request)
+    public function massDestroy(MassDestroyRequest $request)
     {
         $categories = $this->getRepositoryInstance()->findWhereIn('id', $request->indexes);
 

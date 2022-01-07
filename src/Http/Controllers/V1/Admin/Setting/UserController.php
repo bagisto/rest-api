@@ -77,7 +77,7 @@ class UserController extends SettingController
 
         return response([
             'user'    => $admin,
-            'message' => __('admin::app.response.create-success', ['name' => 'User']),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'User']),
         ]);
     }
 
@@ -123,7 +123,7 @@ class UserController extends SettingController
 
         return response([
             'user'    => $admin,
-            'message' => __('admin::app.response.update-success', ['name' => 'User']),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'User']),
         ]);
     }
 
@@ -151,7 +151,7 @@ class UserController extends SettingController
             Event::dispatch('user.admin.delete.after', $id);
 
             return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Admin']),
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Admin']),
             ]);
         } catch (\Exception $e) {}
 

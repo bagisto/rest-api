@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Core\Http\Requests\MassOperationRequest;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeResource;
 
 class AttributeController extends CatalogController
@@ -107,10 +107,10 @@ class AttributeController extends CatalogController
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Webkul\Core\Http\Requests\MassOperationRequest  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassOperationRequest $request)
+    public function massDestroy(MassDestroyRequest $request)
     {
         $indexes = $request->indexes;
 

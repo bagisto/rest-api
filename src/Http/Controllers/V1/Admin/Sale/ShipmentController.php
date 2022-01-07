@@ -112,7 +112,7 @@ class ShipmentController extends SaleController
         $this->shipmentRepository->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
-            'message' => __('admin::app.response.create-success', ['name' => 'Shipment']),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Shipment']),
         ]);
     }
 

@@ -156,7 +156,7 @@ class TaxCategoryController extends SettingController
             Event::dispatch('tax.tax_category.delete.after', $id);
 
             return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Tax Category']),
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Tax Category']),
             ]);
         } catch (\Exception $e) {}
 

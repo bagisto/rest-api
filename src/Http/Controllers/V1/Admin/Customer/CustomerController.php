@@ -4,43 +4,33 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use Webkul\Admin\Mail\NewCustomerNotification;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
 
 class CustomerController extends CustomerBaseController
 {
     /**
-     * Customer repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Customer\Repositories\CustomerRepository
+     * @return string
      */
-    protected $customerRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
-     * @return void
-     */
-    public function __construct(
-        CustomerRepository $customerRepository
-    ) {
-        $this->customerRepository = $customerRepository;
+    public function repository()
+    {
+        return CustomerRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $customers = $this->customerRepository->all();
-
-        return response([
-            'data' => $customers,
-        ]);
+        return CustomerResource::class;
     }
 
     /**
@@ -69,7 +59,7 @@ class CustomerController extends CustomerBaseController
 
         Event::dispatch('customer.registration.before');
 
-        $customer = $this->customerRepository->create($data);
+        $customer = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('customer.registration.after', $customer);
 
@@ -80,23 +70,8 @@ class CustomerController extends CustomerBaseController
         } catch (\Exception $e) {}
 
         return response([
-            'data'    => $customer,
-            'message' => __('admin::app.response.create-success', ['name' => 'Customer']),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $customer = $this->customerRepository->findOrFail($id);
-
-        return response([
-            'data' => $customer,
+            'data'    => new CustomerResource($customer),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Customer']),
         ]);
     }
 
@@ -123,13 +98,13 @@ class CustomerController extends CustomerBaseController
 
         Event::dispatch('customer.update.before');
 
-        $customer = $this->customerRepository->update($data, $id);
+        $customer = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('customer.update.after', $customer);
 
         return response([
-            'data'    => $customer,
-            'message' => __('admin::app.response.update-success', ['name' => 'Customer']),
+            'data'    => new CustomerResource($customer),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Customer']),
         ]);
     }
 
@@ -141,66 +116,63 @@ class CustomerController extends CustomerBaseController
      */
     public function destroy($id)
     {
-        $customer = $this->customerRepository->findorFail($id);
+        $customer = $this->getRepositoryInstance()->findorFail($id);
 
-        try {
-            if (! $this->customerRepository->checkIfCustomerHasOrderPendingOrProcessing($customer)) {
-                $this->customerRepository->delete($id);
+        if (! $this->getRepositoryInstance()->checkIfCustomerHasOrderPendingOrProcessing($customer)) {
+            $this->getRepositoryInstance()->delete($id);
 
-                return response(['message' => __('admin::app.response.delete-success', ['name' => 'Customer'])], 200);
-            }
+            return response([
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Customer']),
+            ]);
+        }
 
-            return response(['message' => __('admin::app.response.order-pending', ['name' => 'Customer'])], 400);
-        } catch (\Exception $e) {}
-
-        return response(['message' => __('admin::app.response.delete-failed', ['name' => 'Customer'])], 400);
+        return response([
+            'message' => __('rest-api::app.response.error.order-pending-account-delete', ['name' => 'Customer']),
+        ], 400);
     }
 
     /**
      * To mass update the customer.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massUpdate(Request $request)
+    public function massUpdate(MassUpdateRequest $request)
     {
-        $customerIds = explode(',', $request->input('indexes'));
+        foreach ($request->indexes as $index) {
+            $this->getRepositoryInstance()->findorFail($index);
 
-        $updateOption = $request->input('update-options');
-
-        foreach ($customerIds as $customerId) {
-            $customer = $this->customerRepository->find($customerId);
-
-            $customer->update(['status' => $updateOption]);
+            $this->getRepositoryInstance()->update(['status' => $request->update_value], $index);
         }
 
         return response([
-            'message' => __('admin::app.customers.customers.mass-update-success'),
+            'message' => __('rest-api::app.response.success.mass-operations.update', ['name' => 'customers']),
         ]);
     }
 
     /**
      * To mass delete the customer.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(MassDestroyRequest $request)
     {
-        $customerIds = explode(',', $request->input('indexes'));
+        $customerIds = $request->indexes;
 
-        if (! $this->customerRepository->checkBulkCustomerIfTheyHaveOrderPendingOrProcessing($customerIds)) {
-
+        if (! $this->getRepositoryInstance()->checkBulkCustomerIfTheyHaveOrderPendingOrProcessing($customerIds)) {
             foreach ($customerIds as $customerId) {
-                $this->customerRepository->deleteWhere(['id' => $customerId]);
+                $this->getRepositoryInstance()->findOrFail($customerId);
+
+                $this->getRepositoryInstance()->delete($customerId);
             }
 
             return response([
-                'message' => __('admin::app.customers.customers.mass-destroy-success'),
+                'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'customers']),
             ]);
         }
 
-        return response(['message' => __('admin::app.response.order-pending', ['name' => 'Customers'])], 400);
+        return response(['message' => __('rest-api::app.response.error.order-pending-account-delete', ['name' => 'Customers'])], 400);
     }
 
     /**
@@ -211,7 +183,7 @@ class CustomerController extends CustomerBaseController
      */
     public function orders($id)
     {
-        $customer = $this->customerRepository->find($id);
+        $customer = $this->getRepositoryInstance()->findorFail($id);
 
         return response([
             'data' => $customer->all_orders,
@@ -226,7 +198,7 @@ class CustomerController extends CustomerBaseController
      */
     public function invoices($id)
     {
-        $customer = $this->customerRepository->find($id);
+        $customer = $this->getRepositoryInstance()->findorFail($id);
 
         return response([
             'data' => $customer->all_orders,
@@ -246,16 +218,17 @@ class CustomerController extends CustomerBaseController
             'notes' => 'string|nullable',
         ]);
 
-        $customer = $this->customerRepository->find($id);
+        $customer = $this->getRepositoryInstance()->findorFail($id);
 
-        if ($customer && $customer->update(['notes' => $request->input('notes')])) {
+        if ($customer->update(['notes' => $request->input('notes')])) {
             return response([
-                'message' => 'Note taken',
+                'data'    => new CustomerResource($customer),
+                'message' => __('rest-api::app.customer.note-taken'),
             ]);
         }
 
         return response([
-            'message' => 'Note cannot be taken',
+            'message' => __('rest-api::app.customer.note-cannot-taken'),
         ]);
     }
 }

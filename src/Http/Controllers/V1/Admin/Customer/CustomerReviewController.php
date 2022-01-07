@@ -4,55 +4,31 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Repositories\ProductReviewRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductReviewResource;
 
 class CustomerReviewController extends CustomerBaseController
 {
     /**
-     * ProductReviewRepository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Product\Repositories\ProductReviewRepository
+     * @return string
      */
-    protected $productReviewRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Product\Repositories\ProductReviewRepository  $productReview
-     * @return void
-     */
-    public function __construct(ProductReviewRepository $productReviewRepository)
+    public function repository()
     {
-        $this->productReviewRepository = $productReviewRepository;
+        return ProductReviewRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $reviews = $this->productReviewRepository->all();
-
-        return response([
-            'data' => $reviews,
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $review = $this->productReviewRepository->findOrFail($id);
-
-        return response([
-            'data' => $review,
-        ]);
+        return ProductReviewResource::class;
     }
 
     /**
@@ -66,12 +42,14 @@ class CustomerReviewController extends CustomerBaseController
     {
         Event::dispatch('customer.review.update.before', $id);
 
-        $this->productReviewRepository->update($request->all(), $id);
+        $this->getRepositoryInstance()->findOrFail($id);
+
+        $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('customer.review.update.after', $id);
 
         return response([
-            'message' => __('admin::app.response.update-success', ['name' => 'Review']),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Review']),
         ]);
     }
 
@@ -83,94 +61,72 @@ class CustomerReviewController extends CustomerBaseController
      */
     public function destroy($id)
     {
-        $this->productReviewRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            Event::dispatch('customer.review.delete.before', $id);
+        Event::dispatch('customer.review.delete.before', $id);
 
-            $this->productReviewRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('customer.review.delete.after', $id);
-
-            return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Review']),
-            ], 200);
-        } catch (\Exception $e) {}
+        Event::dispatch('customer.review.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Review']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Review']),
+        ]);
     }
 
     /**
      * Mass delete the reviews.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(MassDestroyRequest $request)
     {
-        $indexes = explode(',', $request->input('indexes'));
+        foreach ($request->indexes as $index) {
+            Event::dispatch('customer.review.delete.before', $index);
 
-        try {
-            foreach ($indexes as $index) {
-                Event::dispatch('customer.review.delete.before', $index);
+            $this->getRepositoryInstance()->findOrFail($index);
 
-                $this->productReviewRepository->delete($index);
+            $this->getRepositoryInstance()->delete($index);
 
-                Event::dispatch('customer.review.delete.after', $index);
-            }
-
-            return response([
-                'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'Reviews']),
-            ]);
-        } catch (\Exception $e) {}
+            Event::dispatch('customer.review.delete.after', $index);
+        }
 
         return response([
-            'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'Reviews']),
+            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'Reviews']),
         ]);
     }
 
     /**
      * Mass approve the reviews.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massUpdate(Request $request)
+    public function massUpdate(MassUpdateRequest $request)
     {
-        $data = $request->all();
+        foreach ($request->indexes as $index) {
+            $review = $this->getRepositoryInstance()->findOrFail($index);
 
-        $indexes = explode(',', $request->input('indexes'));
+            Event::dispatch('customer.review.update.before', $index);
 
-        try {
-            foreach ($indexes as $index) {
-                $review = $this->productReviewRepository->findOneByField('id', $index);
-
-                if ($data['massaction-type'] == 'update') {
-                    if ($data['update-options'] == 1) {
-                        Event::dispatch('customer.review.update.before', $index);
-
-                        $review->update(['status' => 'approved']);
-
-                        Event::dispatch('customer.review.update.after', $review);
-                    } elseif ($data['update-options'] == 0) {
-                        $review->update(['status' => 'pending']);
-                    } elseif ($data['update-options'] == 2) {
-                        $review->update(['status' => 'disapproved']);
-                    } else {
-                        continue;
-                    }
-                }
+            if ($request->update_value == 0) {
+                $review->update(['status' => 'pending']);
             }
 
-            return response([
-                'message' => __('admin::app.datagrid.mass-ops.update-success', ['resource' => 'Reviews']),
-            ]);
-        } catch (\Exception $e) {}
+            if ($request->update_value == 1) {
+                $review->update(['status' => 'approved']);
+            }
+
+            if ($request->update_value == 2) {
+                $review->update(['status' => 'disapproved']);
+            }
+
+            Event::dispatch('customer.review.update.after', $review);
+        }
 
         return response([
-            'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'Reviews']),
+            'message' => __('rest-api::app.response.success.mass-operations.update', ['name' => 'reviews']),
         ]);
     }
 }

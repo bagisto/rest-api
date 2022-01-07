@@ -155,7 +155,7 @@ class SliderController extends SettingController
             $this->sliderRepository->delete($id);
 
             return response([
-                'message' => __('admin::app.response.delete-success', ['name' => 'Slider']),
+                'message' => __('rest-api::app.response.success.delete', ['name' => 'Slider']),
             ]);
         } catch (\Exception $e) {}
 

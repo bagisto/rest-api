@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 
 use Illuminate\Http\Request;
 use Webkul\CMS\Repositories\CmsRepository;
-use Webkul\Core\Http\Requests\MassOperationRequest;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
 
 class PageController extends CMSController
@@ -85,10 +85,10 @@ class PageController extends CMSController
     /**
      * To mass delete the resource from storage.
      *
-     * @param  \Webkul\Core\Http\Requests\MassOperationRequest  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassOperationRequest $request)
+    public function massDestroy(MassDestroyRequest $request)
     {
         foreach ($request->indexes as $index) {
             $this->getRepositoryInstance()->findOrFail($index);

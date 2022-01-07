@@ -90,7 +90,7 @@ class InvoiceController extends SaleController
         $this->invoiceRepository->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
-            'message' => __('admin::app.response.create-success', ['name' => 'Invoice']),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Invoice']),
         ]);
     }
 

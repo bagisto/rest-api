@@ -133,7 +133,7 @@ class RefundController extends SaleController
         $this->refundRepository->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
-            'message' => __('admin::app.response.create-success', ['name' => 'Refund']),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Refund']),
         ]);
     }
 
