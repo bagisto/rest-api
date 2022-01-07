@@ -4,39 +4,29 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 
 use Illuminate\Http\Request;
 use Webkul\CMS\Repositories\CmsRepository;
+use Webkul\Core\Http\Requests\MassOperationRequest;
+use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
 
 class PageController extends CMSController
 {
     /**
-     * CMS repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\CMS\Repositories\CmsRepository
+     * @return string
      */
-    protected $cmsRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\CMS\Repositories\CmsRepository  $cmsRepository
-     * @return void
-     */
-    public function __construct(CmsRepository $cmsRepository)
+    public function repository()
     {
-        $this->cmsRepository = $cmsRepository;
+        return CmsRepository::class;
     }
 
     /**
-     * Loads the index page showing the static pages resources.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $pages = $this->cmsRepository->all();
-
-        return response([
-            'data' => $pages,
-        ]);
+        return CMSResource::class;
     }
 
     /**
@@ -54,26 +44,11 @@ class PageController extends CMSController
             'html_content' => 'required',
         ]);
 
-        $page = $this->cmsRepository->create($request->all());
+        $page = $this->getRepositoryInstance()->create($request->all());
 
         return response([
-            'data'    => $page,
-            'message' => __('admin::app.response.create-success', ['name' => 'page']),
-        ]);
-    }
-
-    /**
-     * Show page.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $page = $this->cmsRepository->findOrFail($id);
-
-        return response([
-            'data' => $page,
+            'data'    => new CMSResource($page),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Page']),
         ]);
     }
 
@@ -90,8 +65,8 @@ class PageController extends CMSController
 
         $request->validate([
             $locale . '.url_key'      => ['required', new \Webkul\Core\Contracts\Validations\Slug, function ($attribute, $value, $fail) use ($id) {
-                if (! $this->cmsRepository->isUrlKeyUnique($id, $value)) {
-                    $fail(__('admin::app.response.already-taken', ['name' => 'Page']));
+                if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
+                    $fail(__('rest-api::app.response.error.already-taken', ['name' => 'Page']));
                 }
             }],
             $locale . '.page_title'   => 'required',
@@ -99,73 +74,30 @@ class PageController extends CMSController
             'channels'                => 'required',
         ]);
 
-        $page = $this->cmsRepository->update($request->all(), $id);
+        $page = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
-            'data'    => $page,
-            'message' => __('admin::app.response.update-success', ['name' => 'Page']),
+            'data'    => new CMSResource($page),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Page']),
         ]);
-    }
-
-    /**
-     * To delete the previously created page.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $page = $this->cmsRepository->findOrFail($id);
-
-        if ($page->delete()) {
-            return response([
-                'message' => __('admin::app.cms.pages.delete-success'),
-            ]);
-        }
-
-        return response([
-            'message' => __('admin::app.cms.pages.delete-failure'),
-        ], 400);
     }
 
     /**
      * To mass delete the resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassOperationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(MassOperationRequest $request)
     {
-        $data = $request->all();
+        foreach ($request->indexes as $index) {
+            $this->getRepositoryInstance()->findOrFail($index);
 
-        if ($data['indexes']) {
-            $pageIDs = explode(',', $data['indexes']);
-
-            $count = 0;
-
-            foreach ($pageIDs as $pageId) {
-                $page = $this->cmsRepository->find($pageId);
-
-                if ($page) {
-                    $page->delete();
-
-                    $count++;
-                }
-            }
-
-            if (count($pageIDs) == $count) {
-                return response([
-                    'message' => __('admin::app.datagrid.mass-ops.delete-success', ['resource' => 'CMS Pages']),
-                ]);
-            }
-
-            return response([
-                'message' => __('admin::app.datagrid.mass-ops.partial-action', ['resource' => 'CMS Pages']),
-            ]);
+            $this->getRepositoryInstance()->delete($index);
         }
 
         return response([
-            'message' => __('admin::app.datagrid.mass-ops.no-resource'),
+            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'CMS Pages']),
         ]);
     }
 }
