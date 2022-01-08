@@ -20,7 +20,7 @@ Route::group([
     'prefix'     => 'settings',
 ], function () {
     /**
-     * Locales routes.
+     * Locale routes.
      */
     Route::get('locales', [LocaleController::class, 'allResources']);
 
@@ -33,7 +33,7 @@ Route::group([
     Route::delete('locales/{id}', [LocaleController::class, 'destroy']);
 
     /**
-     * Currencies routes.
+     * Currency routes.
      */
     Route::get('currencies', [CurrencyController::class, 'allResources']);
 
@@ -48,7 +48,7 @@ Route::group([
     Route::post('currencies/mass-delete', [CurrencyController::class, 'massDestroy']);
 
     /**
-     * Exchange rates routes.
+     * Exchange rate routes.
      */
     Route::get('exchange-rates', [ExchangeRateController::class, 'allResources']);
 
@@ -63,7 +63,7 @@ Route::group([
     Route::post('exchange-rates/update-rates', [ExchangeRateController::class, 'updateRates']);
 
     /**
-     * Inventory sources routes.
+     * Inventory source routes.
      */
     Route::get('inventory-sources', [InventorySourceController::class, 'allResources']);
 
@@ -76,7 +76,7 @@ Route::group([
     Route::delete('inventory-sources/{id}', [InventorySourceController::class, 'destroy']);
 
     /**
-     * Channels routes.
+     * Channel routes.
      */
     Route::get('channels', [ChannelController::class, 'allResources']);
 
@@ -89,7 +89,7 @@ Route::group([
     Route::delete('channels/{id}', [ChannelController::class, 'destroy']);
 
     /**
-     * Users routes.
+     * User routes.
      */
     Route::get('users', [UserController::class, 'allResources']);
 
@@ -102,7 +102,7 @@ Route::group([
     Route::delete('users/{id}', [UserController::class, 'destroy']);
 
     /**
-     * Roles routes.
+     * Role routes.
      */
     Route::get('roles', [RoleController::class, 'allResources']);
 
@@ -128,7 +128,7 @@ Route::group([
     Route::delete('slider/{id}', [SliderController::class, 'destroy']);
 
     /**
-     * Tax categories routes.
+     * Tax category routes.
      */
     Route::get('tax-categories', [TaxCategoryController::class, 'allResources']);
 
@@ -141,7 +141,7 @@ Route::group([
     Route::delete('tax-categories/{id}', [TaxCategoryController::class, 'destroy']);
 
     /**
-     * Tax rates routes.
+     * Tax rate routes.
      */
     Route::get('tax-rates', [TaxRateController::class, 'allResources']);
 

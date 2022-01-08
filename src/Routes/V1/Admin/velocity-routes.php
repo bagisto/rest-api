@@ -14,7 +14,7 @@ Route::group([
     Route::post('meta-data/{id}', [ConfigurationController::class, 'storeMetaData']);
 
     /**
-     * Header content.
+     * Header content routes.
      */
     Route::get('content', [ContentController::class, 'index']);
 

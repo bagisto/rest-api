@@ -2,22 +2,8 @@
 
 namespace Webkul\RestApi\Http\Resources\V1\Shop\Core;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CountryResource as AdminCountryResource;
 
-class CountryResource extends JsonResource
+class CountryResource extends AdminCountryResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function toArray($request)
-    {
-        return [
-            'id'   => $this->id,
-            'code' => $this->code,
-            'name' => $this->name,
-        ];
-    }
 }

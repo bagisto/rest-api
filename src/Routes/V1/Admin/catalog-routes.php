@@ -45,7 +45,7 @@ Route::group([
     Route::post('categories/mass-destroy', [CategoryController::class, 'massDestroy']);
 
     /**
-     * Attributes routes.
+     * Attribute routes.
      */
     Route::get('attributes', [AttributeController::class, 'allResources']);
 
@@ -60,7 +60,7 @@ Route::group([
     Route::post('attributes/mass-delete', [AttributeController::class, 'massDestroy']);
 
     /**
-     * Attribute families routes.
+     * Attribute family routes.
      */
     Route::get('attribute-families', [AttributeFamilyController::class, 'allResources']);
 

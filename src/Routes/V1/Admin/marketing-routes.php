@@ -13,7 +13,7 @@ Route::group([
     'prefix'     => 'promotions',
 ], function () {
     /**
-     * Catalog rules routes.
+     * Catalog rule routes.
      */
     Route::get('catalog-rules', [CatalogRuleController::class, 'allResources']);
 
@@ -26,7 +26,7 @@ Route::group([
     Route::delete('catalog-rules/{id}', [CatalogRuleController::class, 'destroy']);
 
     /**
-     * Cart rules routes.
+     * Cart rule routes.
      */
     Route::get('cart-rules', [CartRuleController::class, 'allResources']);
 
@@ -39,7 +39,7 @@ Route::group([
     Route::delete('cart-rules/{id}', [CartRuleController::class, 'destroy']);
 
     /**
-     * Cart rule coupons routes.
+     * Cart rule coupon routes.
      */
     Route::get('cart-rules/{cart_rule_id}/coupons', [CartRuleCouponController::class, 'index']);
 
@@ -52,7 +52,7 @@ Route::group([
     Route::post('cart-rules/{cart_rule_id}/coupons/mass-delete', [CartRuleCouponController::class, 'massDestroy']);
 
     /**
-     * Emails templates routes.
+     * Email template routes.
      */
     Route::get('email-templates', [TemplateController::class, 'allResources']);
 
@@ -65,7 +65,7 @@ Route::group([
     Route::delete('email-templates/{id}', [TemplateController::class, 'destroy']);
 
     /**
-     * Events routes.
+     * Event routes.
      */
     Route::get('events', [EventController::class, 'allResources']);
 
@@ -78,7 +78,7 @@ Route::group([
     Route::delete('events/{id}', [EventController::class, 'destroy']);
 
     /**
-     * Campaigns routes.
+     * Campaign routes.
      */
     Route::get('campaigns', [CampaignController::class, 'allResources']);
 

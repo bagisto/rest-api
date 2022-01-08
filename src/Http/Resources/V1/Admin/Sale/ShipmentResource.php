@@ -3,8 +3,8 @@
 namespace Webkul\RestApi\Http\Resources\V1\Admin\Sale;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
-use Webkul\RestApi\Http\Resources\V1\Shop\Inventory\InventorySourceResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Inventory\InventorySourceResource;
 
 class ShipmentResource extends JsonResource
 {

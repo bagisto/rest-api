@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\TaxCategoryResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxCategoryResource;
 use Webkul\Tax\Repositories\TaxCategoryRepository;
 
 class TaxCategoryController extends SettingController

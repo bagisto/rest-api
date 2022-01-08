@@ -2,23 +2,8 @@
 
 namespace Webkul\RestApi\Http\Resources\V1\Shop\Core;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\SliderResource as AdminSliderResource;
 
-class SliderResource extends JsonResource
+class SliderResource extends AdminSliderResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function toArray($request)
-    {
-        return [
-            'id'        => $this->id,
-            'title'     => $this->title,
-            'image_url' => $this->image_url,
-            'content'   => $this->content,
-        ];
-    }
 }

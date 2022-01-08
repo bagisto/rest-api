@@ -8,7 +8,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerReviewController;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     /**
-     * Customer's groups routes.
+     * Customer's group routes.
      */
     Route::get('customers/groups', [CustomerGroupController::class, 'allResources']);
 
@@ -21,7 +21,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('customers/groups/{id}', [CustomerGroupController::class, 'destroy']);
 
     /**
-     * Customer's reviews routes.
+     * Customer's review routes.
      */
     Route::get('customers/reviews', [CustomerReviewController::class, 'allResources']);
 
@@ -55,19 +55,19 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('customers/mass-update', [CustomerController::class, 'massUpdate']);
 
     /**
-     * Customer's orders routes.
+     * Customer's order routes.
      */
     Route::get('customers/{id}/orders', [CustomerController::class, 'orders']);
 
     Route::get('customers/{id}/invoices', [CustomerController::class, 'invoices']);
 
     /**
-     * Customer's notes routes.
+     * Customer's note routes.
      */
     Route::post('customers/{id}/notes', [CustomerController::class, 'storeNote']);
 
     /**
-     * Customer's addresses routes.
+     * Customer's address routes.
      */
     Route::get('customers/{customer_id}/addresses', [CustomerAddressController::class, 'index']);
 

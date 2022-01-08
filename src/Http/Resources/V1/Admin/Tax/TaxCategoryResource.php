@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Resources\V1\Admin\Setting;
+namespace Webkul\RestApi\Http\Resources\V1\Admin\Tax;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

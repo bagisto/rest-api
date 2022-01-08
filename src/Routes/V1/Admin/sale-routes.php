@@ -12,7 +12,7 @@ Route::group([
     'prefix'     => 'sales',
 ], function () {
     /**
-     * Orders routes.
+     * Order routes.
      */
     Route::get('orders', [OrderController::class, 'allResources']);
 
@@ -23,7 +23,7 @@ Route::group([
     Route::post('orders/{id}/comments', [OrderController::class, 'comment']);
 
     /**
-     * Shipments routes.
+     * Shipment routes.
      */
     Route::get('shipments', [ShipmentController::class, 'allResources']);
 
@@ -32,7 +32,7 @@ Route::group([
     Route::post('shipments/{order_id}', [ShipmentController::class, 'store']);
 
     /**
-     * Invoices routes.
+     * Invoice routes.
      */
     Route::get('invoices', [InvoiceController::class, 'allResources']);
 
@@ -41,7 +41,7 @@ Route::group([
     Route::post('invoices/{order_id}', [InvoiceController::class, 'store']);
 
     /**
-     * Refunds routes.
+     * Refund routes.
      */
     Route::get('refunds', [RefundController::class, 'allResources']);
 
@@ -50,7 +50,7 @@ Route::group([
     Route::post('refunds/{order_id}', [RefundController::class, 'store']);
 
     /**
-     * Transactions routes.
+     * Transaction routes.
      */
     Route::get('transactions', [TransactionController::class, 'allResources']);
 
