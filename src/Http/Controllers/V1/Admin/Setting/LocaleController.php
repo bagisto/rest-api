@@ -5,39 +5,28 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\LocaleRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\LocaleResource;
 
 class LocaleController extends SettingController
 {
     /**
-     * Locale repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Core\Repositories\LocaleRepository
+     * @return string
      */
-    protected $localeRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Core\Repositories\LocaleRepository  $localeRepository
-     * @return void
-     */
-    public function __construct(LocaleRepository $localeRepository)
+    public function repository()
     {
-        $this->localeRepository = $localeRepository;
+        return LocaleRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $locales = $this->localeRepository->all();
-
-        return response([
-            'data' => $locales,
-        ]);
+        return LocaleResource::class;
     }
 
     /**
@@ -56,28 +45,13 @@ class LocaleController extends SettingController
 
         Event::dispatch('core.locale.create.before');
 
-        $locale = $this->localeRepository->create($request->all());
+        $locale = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('core.locale.create.after', $locale);
 
         return response([
-            'data'    => $locale,
+            'data'    => new LocaleResource($locale),
             'message' => __('admin::app.settings.locales.create-success'),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $locale = $this->localeRepository->findOrFail($id);
-
-        return response([
-            'data' => $locale,
         ]);
     }
 
@@ -98,12 +72,12 @@ class LocaleController extends SettingController
 
         Event::dispatch('core.locale.update.before', $id);
 
-        $locale = $this->localeRepository->update($request->all(), $id);
+        $locale = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('core.locale.update.after', $locale);
 
         return response([
-            'data'    => $locale,
+            'data'    => new LocaleResource($locale),
             'message' => __('admin::app.settings.locales.update-success'),
         ]);
     }
@@ -116,28 +90,22 @@ class LocaleController extends SettingController
      */
     public function destroy($id)
     {
-        $locale = $this->localeRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->localeRepository->count() == 1) {
+        if ($this->getRepositoryInstance()->count() == 1) {
             return response([
                 'message' => __('admin::app.settings.locales.last-delete-error'),
             ]);
         }
 
-        try {
-            Event::dispatch('core.locale.delete.before', $id);
+        Event::dispatch('core.locale.delete.before', $id);
 
-            $this->localeRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('core.locale.delete.after', $id);
-
-            return response([
-                'message' => __('admin::app.settings.locales.delete-success'),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('core.locale.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Locale']),
-        ], 400);
+            'message' => __('admin::app.settings.locales.delete-success'),
+        ]);
     }
 }

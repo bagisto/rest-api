@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\RefundResource;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\RefundRepository;
@@ -24,59 +25,39 @@ class RefundController extends SaleController
     protected $orderItemRepository;
 
     /**
-     * Refund repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\RefundRepository
-     */
-    protected $refundRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @param  \Webkul\Sales\Repositories\OrderItemRepository  $orderItemRepository
-     * @param  \Webkul\Sales\Repositories\RefundRepository  $refundRepository
      * @return void
      */
     public function __construct(
         OrderRepository $orderRepository,
-        OrderItemRepository $orderItemRepository,
-        RefundRepository $refundRepository
+        OrderItemRepository $orderItemRepository
     ) {
         $this->orderRepository = $orderRepository;
 
         $this->orderItemRepository = $orderItemRepository;
-
-        $this->refundRepository = $refundRepository;
     }
 
     /**
-     * Display a listing of the resource.
+     * Repository class name.
      *
-     * @return \Illuminate\Http\View
+     * @return string
      */
-    public function index()
+    public function repository()
     {
-        $refunds = $this->refundRepository->all();
-
-        return response([
-            'data' => $refunds,
-        ]);
+        return RefundRepository::class;
     }
 
     /**
-     * Show the view for the specified resource.
+     * Resource class name.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\View
+     * @return string
      */
-    public function show($id)
+    public function resource()
     {
-        $refund = $this->refundRepository->findOrFail($id);
-
-        return response([
-            'data' => $refund,
-        ]);
+        return RefundResource::class;
     }
 
     /**
@@ -106,7 +87,7 @@ class RefundController extends SaleController
             $data['refund']['shipping'] = 0;
         }
 
-        $totals = $this->refundRepository->getOrderItemsRefundSummary($data['refund']['items'], $orderId);
+        $totals = $this->getRepositoryInstance()->getOrderItemsRefundSummary($data['refund']['items'], $orderId);
 
         if (! $totals) {
             return response([
@@ -130,9 +111,10 @@ class RefundController extends SaleController
             ], 400);
         }
 
-        $this->refundRepository->create(array_merge($data, ['order_id' => $orderId]));
+        $refund = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
+            'data'    => new RefundResource($refund),
             'message' => __('rest-api::app.response.success.create', ['name' => 'Refund']),
         ]);
     }
@@ -146,7 +128,7 @@ class RefundController extends SaleController
      */
     public function updateQty(Request $request, $orderId)
     {
-        $data = $this->refundRepository->getOrderItemsRefundSummary($request->all(), $orderId);
+        $data = $this->getRepositoryInstance()->getOrderItemsRefundSummary($request->all(), $orderId);
 
         if (! $data) {
             return response('Not found!', 400);

@@ -5,39 +5,28 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 use Illuminate\Support\Facades\Event;
 use Webkul\Inventory\Http\Requests\InventorySourceRequest;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
+use Webkul\RestApi\Http\Resources\V1\Shop\Inventory\InventorySourceResource;
 
 class InventorySourceController extends SettingController
 {
     /**
-     * Inventory source repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Inventory\Repositories\InventorySourceRepository
+     * @return string
      */
-    protected $inventorySourceRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Inventory\Repositories\InventorySourceRepository  $inventorySourceRepository
-     * @return void
-     */
-    public function __construct(InventorySourceRepository $inventorySourceRepository)
+    public function repository()
     {
-        $this->inventorySourceRepository = $inventorySourceRepository;
+        return InventorySourceRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $inventorySources = $this->inventorySourceRepository->all();
-
-        return response([
-            'data' => $inventorySources,
-        ]);
+        return InventorySourceResource::class;
     }
 
     /**
@@ -53,28 +42,13 @@ class InventorySourceController extends SettingController
 
         Event::dispatch('inventory.inventory_source.create.before');
 
-        $inventorySource = $this->inventorySourceRepository->create($data);
+        $inventorySource = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('inventory.inventory_source.create.after', $inventorySource);
 
         return response([
-            'data'    => $inventorySource,
+            'data'    => new InventorySourceResource($inventorySource),
             'message' => __('admin::app.settings.inventory_sources.create-success'),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $inventorySource = $this->inventorySourceRepository->findOrFail($id);
-
-        return response([
-            'data' => $inventorySource,
         ]);
     }
 
@@ -92,12 +66,12 @@ class InventorySourceController extends SettingController
 
         Event::dispatch('inventory.inventory_source.update.before', $id);
 
-        $inventorySource = $this->inventorySourceRepository->update($data, $id);
+        $inventorySource = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('inventory.inventory_source.update.after', $inventorySource);
 
         return response([
-            'data'    => $inventorySource,
+            'data'    => new InventorySourceResource($inventorySource),
             'message' => __('admin::app.settings.inventory_sources.update-success'),
         ]);
     }
@@ -110,28 +84,22 @@ class InventorySourceController extends SettingController
      */
     public function destroy($id)
     {
-        $inventorySource = $this->inventorySourceRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->inventorySourceRepository->count() == 1) {
+        if ($this->getRepositoryInstance()->count() == 1) {
             return response([
                 'message' => __('admin::app.settings.inventory_sources.last-delete-error'),
             ], 400);
         }
 
-        try {
-            Event::dispatch('inventory.inventory_source.delete.before', $id);
+        Event::dispatch('inventory.inventory_source.delete.before', $id);
 
-            $this->inventorySourceRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('inventory.inventory_source.delete.after', $id);
-
-            return response([
-                'message' => __('admin::app.settings.inventory_sources.delete-success'),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('inventory.inventory_source.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Inventory source']),
-        ], 400);
+            'message' => __('admin::app.settings.inventory_sources.delete-success'),
+        ]);
     }
 }

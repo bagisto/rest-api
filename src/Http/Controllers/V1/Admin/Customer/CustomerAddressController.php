@@ -21,7 +21,7 @@ class CustomerAddressController extends CustomerBaseController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository         $customerRepository
+     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
      * @return void
      */
     public function __construct(CustomerRepository $customerRepository)

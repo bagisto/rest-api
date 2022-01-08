@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderTransactionResource;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
@@ -17,13 +18,6 @@ class TransactionController extends SaleController
     protected $orderRepository;
 
     /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderTransactionRepository
-     */
-    protected $orderTransactionRepository;
-
-    /**
      * Invoice repository instance.
      *
      * @var \Webkul\Sales\Repositories\InvoiceRepository
@@ -34,49 +28,36 @@ class TransactionController extends SaleController
      * Create a new controller instance.
      *
      * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     * @param  \Webkul\Sales\Repositories\OrderTransactionRepository  $orderTransactionRepository
      * @param  \Webkul\Sales\Repositories\InvoiceRepository  $invoiceRepository
      * @return void
      */
     public function __construct(
         OrderRepository $orderRepository,
-        OrderTransactionRepository $orderTransactionRepository,
         InvoiceRepository $invoiceRepository
     ) {
         $this->orderRepository = $orderRepository;
-
-        $this->orderTransactionRepository = $orderTransactionRepository;
 
         $this->invoiceRepository = $invoiceRepository;
     }
 
     /**
-     * Display a listing of the resource.
+     * Repository class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function repository()
     {
-        $transactions = $this->orderTransactionRepository->all();
-
-        return response([
-            'data' => $transactions,
-        ]);
+        return OrderTransactionRepository::class;
     }
 
     /**
-     * Show the view for the specified resource.
+     * Resource class name.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function show($id)
+    public function resource()
     {
-        $transaction = $this->orderTransactionRepository->findOrFail($id);
-
-        return response([
-            'data' => $transaction,
-        ]);
+        return OrderTransactionResource::class;
     }
 
     /**
@@ -121,9 +102,9 @@ class TransactionController extends SaleController
             $transactionData['status'] = 'paid';
             $transactionData['data'] = json_encode($data);
 
-            $this->orderTransactionRepository->create($transactionData);
+            $this->getRepositoryInstance()->create($transactionData);
 
-            $transactionTotal = $this->orderTransactionRepository->where('invoice_id', $invoice->id)->sum('amount');
+            $transactionTotal = $this->getRepositoryInstance()->where('invoice_id', $invoice->id)->sum('amount');
 
             if ($transactionTotal >= $invoice->base_grand_total) {
                 $shipments = $this->shipmentRepository->where('order_id', $invoice->order_id)->first();

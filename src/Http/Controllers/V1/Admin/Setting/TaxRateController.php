@@ -4,40 +4,29 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\TaxRateResource;
 use Webkul\Tax\Repositories\TaxRateRepository;
 
 class TaxRateController extends SettingController
 {
     /**
-     * Tax rate repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Tax\Repositories\TaxRateRepository
+     * @return string
      */
-    protected $taxRateRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Tax\Repositories\TaxRateRepository  $taxRateRepository
-     * @return void
-     */
-    public function __construct(TaxRateRepository $taxRateRepository)
+    public function repository()
     {
-        $this->taxRateRepository = $taxRateRepository;
+        return TaxRateRepository::class;
     }
 
     /**
-     * Display a listing resource for the available tax rates.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $taxRates = $this->taxRateRepository->all();
-
-        return response([
-            'data' => $taxRates,
-        ]);
+        return TaxRateResource::class;
     }
 
     /**
@@ -68,28 +57,13 @@ class TaxRateController extends SettingController
 
         Event::dispatch('tax.tax_rate.create.before');
 
-        $taxRate = $this->taxRateRepository->create($data);
+        $taxRate = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('tax.tax_rate.create.after', $taxRate);
 
         return response([
-            'data'    => $taxRate,
-            'message' => __('admin::app.settings.tax-rates.create-success'),
-        ]);
-    }
-
-    /**
-     * Show the edit form for the previously created tax rates.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $taxRate = $this->taxRateRepository->findOrFail($id);
-
-        return response([
-            'data' => $taxRate,
+            'data'    => new TaxRateResource($taxRate),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Tax rate']),
         ]);
     }
 
@@ -113,13 +87,13 @@ class TaxRateController extends SettingController
 
         Event::dispatch('tax.tax_rate.update.before', $id);
 
-        $taxRate = $this->taxRateRepository->update($request->input(), $id);
+        $taxRate = $this->getRepositoryInstance()->update($request->input(), $id);
 
         Event::dispatch('tax.tax_rate.update.after', $taxRate);
 
         return response([
-            'data'    => $taxRate,
-            'message' => __('admin::app.settings.tax-rates.update-success'),
+            'data'    => new TaxRateResource($taxRate),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Tax rate']),
         ]);
     }
 
@@ -131,22 +105,16 @@ class TaxRateController extends SettingController
      */
     public function destroy($id)
     {
-        $this->taxRateRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            Event::dispatch('tax.tax_rate.delete.before', $id);
+        Event::dispatch('tax.tax_rate.delete.before', $id);
 
-            $this->taxRateRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('tax.tax_rate.delete.after', $id);
-
-            return response([
-                'message' => __('rest-api::app.response.success.delete', ['name' => 'Tax Rate']),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('tax.tax_rate.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Tax Rate']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Tax rate']),
+        ]);
     }
 }

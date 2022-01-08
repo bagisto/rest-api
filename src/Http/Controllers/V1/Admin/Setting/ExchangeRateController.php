@@ -4,53 +4,29 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Repositories\CurrencyRepository;
 use Webkul\Core\Repositories\ExchangeRateRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ExchangeRateResource;
 
 class ExchangeRateController extends SettingController
 {
     /**
-     * Exchange rate repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Core\Repositories\ExchangeRateRepository
+     * @return string
      */
-    protected $exchangeRateRepository;
-
-    /**
-     * Currency repository instance.
-     *
-     * @var \Webkul\Core\Repositories\CurrencyRepository
-     */
-    protected $currencyRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Core\Repositories\ExchangeRateRepository  $exchangeRateRepository
-     * @param  \Webkul\Core\Repositories\CurrencyRepository  $currencyRepository
-     * @return void
-     */
-    public function __construct(
-        ExchangeRateRepository $exchangeRateRepository,
-        CurrencyRepository $currencyRepository
-    ) {
-        $this->exchangeRateRepository = $exchangeRateRepository;
-
-        $this->currencyRepository = $currencyRepository;
+    public function repository()
+    {
+        return ExchangeRateRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $exchangeRates = $this->exchangeRateRepository->all();
-
-        return response([
-            'data' => $exchangeRates,
-        ]);
+        return ExchangeRateResource::class;
     }
 
     /**
@@ -68,28 +44,13 @@ class ExchangeRateController extends SettingController
 
         Event::dispatch('core.exchange_rate.create.before');
 
-        $exchangeRate = $this->exchangeRateRepository->create($request->all());
+        $exchangeRate = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('core.exchange_rate.create.after', $exchangeRate);
 
         return response([
-            'data'    => $exchangeRate,
+            'data'    => new ExchangeRateResource($exchangeRate),
             'message' => __('admin::app.settings.exchange_rates.create-success'),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $exchangeRate = $this->exchangeRateRepository->findOrFail($id);
-
-        return response([
-            'data' => $exchangeRate,
         ]);
     }
 
@@ -109,18 +70,18 @@ class ExchangeRateController extends SettingController
 
         Event::dispatch('core.exchange_rate.update.before', $id);
 
-        $exchangeRate = $this->exchangeRateRepository->update($request->all(), $id);
+        $exchangeRate = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('core.exchange_rate.update.after', $exchangeRate);
 
         return response([
-            'data'    => $exchangeRate,
+            'data'    => new ExchangeRateResource($exchangeRate),
             'message' => __('admin::app.settings.exchange_rates.update-success'),
         ]);
     }
 
     /**
-     * Update Rates Using Exchange Rates API
+     * Update rates using exchange rates API.
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -147,22 +108,16 @@ class ExchangeRateController extends SettingController
      */
     public function destroy($id)
     {
-        $exchangeRate = $this->exchangeRateRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            Event::dispatch('core.exchange_rate.delete.before', $id);
+        Event::dispatch('core.exchange_rate.delete.before', $id);
 
-            $this->exchangeRateRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('core.exchange_rate.delete.after', $id);
-
-            return response([
-                'message' => __('admin::app.settings.exchange_rates.delete-success'),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('core.exchange_rate.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-error', ['name' => 'Exchange rate']),
-        ], 400);
+            'message' => __('admin::app.settings.exchange_rates.delete-success'),
+        ]);
     }
 }

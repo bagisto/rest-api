@@ -14,9 +14,9 @@ Route::group([
     /**
      * Orders routes.
      */
-    Route::get('orders', [OrderController::class, 'index']);
+    Route::get('orders', [OrderController::class, 'allResources']);
 
-    Route::get('orders/{id}', [OrderController::class, 'show']);
+    Route::get('orders/{id}', [OrderController::class, 'getResource']);
 
     Route::post('orders/{id}/cancel', [OrderController::class, 'cancel']);
 
@@ -25,27 +25,27 @@ Route::group([
     /**
      * Shipments routes.
      */
-    Route::get('shipments', [ShipmentController::class, 'index']);
+    Route::get('shipments', [ShipmentController::class, 'allResources']);
 
-    Route::get('shipments/{id}', [ShipmentController::class, 'show']);
+    Route::get('shipments/{id}', [ShipmentController::class, 'getResource']);
 
     Route::post('shipments/{order_id}', [ShipmentController::class, 'store']);
 
     /**
      * Invoices routes.
      */
-    Route::get('invoices', [InvoiceController::class, 'index']);
+    Route::get('invoices', [InvoiceController::class, 'allResources']);
 
-    Route::get('invoices/{id}', [InvoiceController::class, 'show']);
+    Route::get('invoices/{id}', [InvoiceController::class, 'getResource']);
 
     Route::post('invoices/{order_id}', [InvoiceController::class, 'store']);
 
     /**
      * Refunds routes.
      */
-    Route::get('refunds', [RefundController::class, 'index']);
+    Route::get('refunds', [RefundController::class, 'allResources']);
 
-    Route::get('refunds/{id}', [RefundController::class, 'show']);
+    Route::get('refunds/{id}', [RefundController::class, 'getResource']);
 
     Route::post('refunds/{order_id}', [RefundController::class, 'store']);
 
@@ -54,9 +54,9 @@ Route::group([
     /**
      * Transactions routes.
      */
-    Route::get('transactions', [TransactionController::class, 'index']);
+    Route::get('transactions', [TransactionController::class, 'allResources']);
 
-    Route::get('transactions/{id}', [TransactionController::class, 'show']);
+    Route::get('transactions/{id}', [TransactionController::class, 'getResource']);
 
     Route::post('transactions', [TransactionController::class, 'store']);
 });

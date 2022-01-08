@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
 use Webkul\User\Repositories\AdminRepository;
 
 class AuthController extends UserController
@@ -37,7 +38,7 @@ class AuthController extends UserController
         }
 
         return response([
-            'data'    => $admin,
+            'data'    => new UserResource($admin),
             'message' => 'Logged in successfully.',
             'token'   => $admin->createToken($request->device_name)->plainTextToken,
         ]);

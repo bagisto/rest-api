@@ -5,6 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
 
 class AccountController extends UserController
 {
@@ -18,7 +19,7 @@ class AccountController extends UserController
     {
         $admin = $request->user();
 
-        return $admin;
+        return new UserResource($admin);
     }
 
     /**
@@ -59,7 +60,7 @@ class AccountController extends UserController
         }
 
         return response([
-            'data'    => $user,
+            'data'    => new UserResource($user),
             'message' => __('admin::app.users.users.account-save'),
         ]);
     }

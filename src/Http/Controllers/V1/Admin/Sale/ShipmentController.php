@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\ShipmentResource;
 use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\ShipmentRepository;
@@ -24,59 +25,39 @@ class ShipmentController extends SaleController
     protected $orderItemRepository;
 
     /**
-     * Shipment repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\ShipmentRepository
-     */
-    protected $shipmentRepository;
-
-    /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Sales\Repositories\ShipmentRepository   $shipmentRepository
      * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @param  \Webkul\Sales\Repositories\OrderitemRepository  $orderItemRepository
      * @return void
      */
     public function __construct(
-        ShipmentRepository $shipmentRepository,
         OrderRepository $orderRepository,
         OrderItemRepository $orderItemRepository
     ) {
         $this->orderRepository = $orderRepository;
 
         $this->orderItemRepository = $orderItemRepository;
-
-        $this->shipmentRepository = $shipmentRepository;
     }
 
     /**
-     * Display a listing of the resource.
+     * Repository class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function repository()
     {
-        $shipments = $this->shipmentRepository->all();
-
-        return response([
-            'data' => $shipments,
-        ]);
+        return ShipmentRepository::class;
     }
 
     /**
-     * Show the view for the specified resource.
+     * Resource class name.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function show($id)
+    public function resource()
     {
-        $shipment = $this->shipmentRepository->findOrFail($id);
-
-        return response([
-            'data' => $shipment,
-        ]);
+        return ShipmentResource::class;
     }
 
     /**
@@ -109,9 +90,10 @@ class ShipmentController extends SaleController
             ], 400);
         }
 
-        $this->shipmentRepository->create(array_merge($data, ['order_id' => $orderId]));
+        $shipment = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
+            'data'    => new ShipmentResource($shipment),
             'message' => __('rest-api::app.response.success.create', ['name' => 'Shipment']),
         ]);
     }

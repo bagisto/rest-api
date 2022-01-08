@@ -4,54 +4,30 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
 use Webkul\User\Http\Requests\UserForm;
 use Webkul\User\Repositories\AdminRepository;
-use Webkul\User\Repositories\RoleRepository;
 
 class UserController extends SettingController
 {
     /**
-     * Admin repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\User\Repositories\AdminRepository
+     * @return string
      */
-    protected $adminRepository;
-
-    /**
-     * Role repository instance.
-     *
-     * @var \Webkul\User\Repositories\RoleRepository
-     */
-    protected $roleRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\User\Repositories\AdminRepository  $adminRepository
-     * @param  \Webkul\User\Repositories\RoleRepository  $roleRepository
-     * @return void
-     */
-    public function __construct(
-        AdminRepository $adminRepository,
-        RoleRepository $roleRepository
-    ) {
-        $this->adminRepository = $adminRepository;
-
-        $this->roleRepository = $roleRepository;
+    public function repository()
+    {
+        return AdminRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $admins = $this->adminRepository->all();
-
-        return response([
-            'data' => $admins,
-        ]);
+        return UserResource::class;
     }
 
     /**
@@ -71,28 +47,13 @@ class UserController extends SettingController
 
         Event::dispatch('user.admin.create.before');
 
-        $admin = $this->adminRepository->create($data);
+        $admin = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('user.admin.create.after', $admin);
 
         return response([
-            'user'    => $admin,
+            'user'    => new UserResource($admin),
             'message' => __('rest-api::app.response.success.create', ['name' => 'User']),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $admin = $this->adminRepository->findOrFail($id);
-
-        return response([
-            'data' => $admin,
         ]);
     }
 
@@ -113,7 +74,7 @@ class UserController extends SettingController
 
         Event::dispatch('user.admin.update.before', $id);
 
-        $admin = $this->adminRepository->update($data, $id);
+        $admin = $this->getRepositoryInstance()->update($data, $id);
 
         if (isset($data['password']) && $data['password']) {
             Event::dispatch('user.admin.update-password', $admin);
@@ -122,7 +83,7 @@ class UserController extends SettingController
         Event::dispatch('user.admin.update.after', $admin);
 
         return response([
-            'user'    => $admin,
+            'user'    => new UserResource($admin),
             'message' => __('rest-api::app.response.success.update', ['name' => 'User']),
         ]);
     }
@@ -135,29 +96,23 @@ class UserController extends SettingController
      */
     public function destroy($id)
     {
-        $this->adminRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->adminRepository->count() == 1) {
+        if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('admin::app.response.last-delete-error', ['name' => 'Admin']),
+                'message' => __('rest-api::app.response.error.last-item-delete', ['name' => 'admin']),
             ], 400);
         }
 
-        try {
-            Event::dispatch('user.admin.delete.before', $id);
+        Event::dispatch('user.admin.delete.before', $id);
 
-            $this->adminRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('user.admin.delete.after', $id);
-
-            return response([
-                'message' => __('rest-api::app.response.success.delete', ['name' => 'Admin']),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('user.admin.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Admin']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Admin']),
+        ]);
     }
 
     /**
@@ -171,7 +126,7 @@ class UserController extends SettingController
     {
         $data = $request->validated();
 
-        $user = $this->adminRepository->find($id);
+        $user = $this->getRepositoryInstance()->find($id);
 
         /**
          * Password check.
@@ -189,7 +144,7 @@ class UserController extends SettingController
 
         $isStatusChangedToInactive = (int) $data['status'] === 0 && (int) $user->status === 1;
 
-        if ($isStatusChangedToInactive && $this->adminRepository->countAdminsWithAllAccessAndActiveStatus() === 1) {
+        if ($isStatusChangedToInactive && $this->getRepositoryInstance()->countAdminsWithAllAccessAndActiveStatus() === 1) {
             return $this->cannotChangeRedirectResponse('status');
         }
 
@@ -200,7 +155,7 @@ class UserController extends SettingController
         && isset($data['role_id'])
         && (int) $data['role_id'] !== $user->role_id;
 
-        if ($isRoleChanged && $this->adminRepository->countAdminsWithAllAccess() === 1) {
+        if ($isRoleChanged && $this->getRepositoryInstance()->countAdminsWithAllAccess() === 1) {
             return $this->cannotChangeRedirectResponse('role');
         }
 

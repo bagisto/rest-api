@@ -5,39 +5,28 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ChannelRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
 
 class ChannelController extends SettingController
 {
     /**
-     * Channel repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Core\Repositories\ChannelRepository
+     * @return string
      */
-    protected $channelRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Core\Repositories\ChannelRepository  $channelRepository
-     * @return void
-     */
-    public function __construct(ChannelRepository $channelRepository)
+    public function repository()
     {
-        $this->channelRepository = $channelRepository;
+        return ChannelRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $channels = $this->channelRepository->all();
-
-        return response([
-            'data' => $channels,
-        ]);
+        return ChannelResource::class;
     }
 
     /**
@@ -85,28 +74,13 @@ class ChannelController extends SettingController
 
         Event::dispatch('core.channel.create.before');
 
-        $channel = $this->channelRepository->create($data);
+        $channel = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('core.channel.create.after', $channel);
 
         return response([
-            'data'    => $channel,
+            'data'    => new ChannelResource($channel),
             'message' => __('admin::app.settings.channels.create-success'),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $channel = $this->channelRepository->with(['locales', 'currencies'])->findOrFail($id);
-
-        return response([
-            'data' => $channel,
         ]);
     }
 
@@ -158,7 +132,7 @@ class ChannelController extends SettingController
 
         Event::dispatch('core.channel.update.before', $id);
 
-        $channel = $this->channelRepository->update($data, $id);
+        $channel = $this->getRepositoryInstance()->update($data, $id);
 
         if ($channel->base_currency->code !== session()->get('currency')) {
             session()->put('currency', $channel->base_currency->code);
@@ -167,7 +141,7 @@ class ChannelController extends SettingController
         Event::dispatch('core.channel.update.after', $channel);
 
         return response([
-            'data'    => $channel,
+            'data'    => new ChannelResource($channel),
             'message' => __('admin::app.settings.channels.update-success'),
         ]);
     }
@@ -180,7 +154,7 @@ class ChannelController extends SettingController
      */
     public function destroy($id)
     {
-        $channel = $this->channelRepository->findOrFail($id);
+        $channel = $this->getRepositoryInstance()->findOrFail($id);
 
         if ($channel->code == config('app.channel')) {
             return response([
@@ -188,21 +162,15 @@ class ChannelController extends SettingController
             ], 400);
         }
 
-        try {
-            Event::dispatch('core.channel.delete.before', $id);
+        Event::dispatch('core.channel.delete.before', $id);
 
-            $this->channelRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('core.channel.delete.after', $id);
-
-            return response([
-                'message' => __('admin::app.settings.channels.delete-success'),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('core.channel.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Channel']),
-        ], 400);
+            'message' => __('admin::app.settings.channels.delete-success'),
+        ]);
     }
 
     /**

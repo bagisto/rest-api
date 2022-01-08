@@ -22,11 +22,11 @@ Route::group([
     /**
      * Locales routes.
      */
-    Route::get('locales', [LocaleController::class, 'index']);
+    Route::get('locales', [LocaleController::class, 'allResources']);
 
     Route::post('locales', [LocaleController::class, 'store']);
 
-    Route::get('locales/{id}', [LocaleController::class, 'show']);
+    Route::get('locales/{id}', [LocaleController::class, 'getResource']);
 
     Route::put('locales/{id}', [LocaleController::class, 'update']);
 
@@ -35,11 +35,11 @@ Route::group([
     /**
      * Currencies routes.
      */
-    Route::get('currencies', [CurrencyController::class, 'index']);
+    Route::get('currencies', [CurrencyController::class, 'allResources']);
 
     Route::post('currencies', [CurrencyController::class, 'store']);
 
-    Route::get('currencies/{id}', [CurrencyController::class, 'show']);
+    Route::get('currencies/{id}', [CurrencyController::class, 'getResource']);
 
     Route::put('currencies/{id}', [CurrencyController::class, 'update']);
 
@@ -50,11 +50,11 @@ Route::group([
     /**
      * Exchange rates routes.
      */
-    Route::get('exchange-rates', [ExchangeRateController::class, 'index']);
+    Route::get('exchange-rates', [ExchangeRateController::class, 'allResources']);
 
     Route::post('exchange-rates', [ExchangeRateController::class, 'store']);
 
-    Route::get('exchange-rates/{id}', [ExchangeRateController::class, 'show']);
+    Route::get('exchange-rates/{id}', [ExchangeRateController::class, 'getResource']);
 
     Route::put('exchange-rates/{id}', [ExchangeRateController::class, 'update']);
 
@@ -65,11 +65,11 @@ Route::group([
     /**
      * Inventory sources routes.
      */
-    Route::get('inventory-sources', [InventorySourceController::class, 'index']);
+    Route::get('inventory-sources', [InventorySourceController::class, 'allResources']);
 
     Route::post('inventory-sources', [InventorySourceController::class, 'store']);
 
-    Route::get('inventory-sources/{id}', [InventorySourceController::class, 'show']);
+    Route::get('inventory-sources/{id}', [InventorySourceController::class, 'getResource']);
 
     Route::put('inventory-sources/{id}', [InventorySourceController::class, 'update']);
 
@@ -78,11 +78,11 @@ Route::group([
     /**
      * Channels routes.
      */
-    Route::get('channels', [ChannelController::class, 'index']);
+    Route::get('channels', [ChannelController::class, 'allResources']);
 
     Route::post('channels', [ChannelController::class, 'store']);
 
-    Route::get('channels/{id}', [ChannelController::class, 'show']);
+    Route::get('channels/{id}', [ChannelController::class, 'getResource']);
 
     Route::put('channels/{id}', [ChannelController::class, 'update']);
 
@@ -91,11 +91,11 @@ Route::group([
     /**
      * Users routes.
      */
-    Route::get('users', [UserController::class, 'index']);
+    Route::get('users', [UserController::class, 'allResources']);
 
     Route::post('users', [UserController::class, 'store']);
 
-    Route::get('users/{id}', [UserController::class, 'show']);
+    Route::get('users/{id}', [UserController::class, 'getResource']);
 
     Route::put('users/{id}', [UserController::class, 'update']);
 
@@ -104,11 +104,11 @@ Route::group([
     /**
      * Roles routes.
      */
-    Route::get('roles', [RoleController::class, 'index']);
+    Route::get('roles', [RoleController::class, 'allResources']);
 
     Route::post('roles', [RoleController::class, 'store']);
 
-    Route::get('roles/{id}', [RoleController::class, 'show']);
+    Route::get('roles/{id}', [RoleController::class, 'getResource']);
 
     Route::put('roles/{id}', [RoleController::class, 'update']);
 
@@ -117,11 +117,11 @@ Route::group([
     /**
      * Slider routes.
      */
-    Route::get('slider', [SliderController::class, 'index']);
+    Route::get('slider', [SliderController::class, 'allResources']);
 
     Route::post('slider', [SliderController::class, 'store']);
 
-    Route::get('slider/{id}', [SliderController::class, 'show']);
+    Route::get('slider/{id}', [SliderController::class, 'getResource']);
 
     Route::put('slider/{id}', [SliderController::class, 'update']);
 
@@ -130,11 +130,11 @@ Route::group([
     /**
      * Tax categories routes.
      */
-    Route::get('tax-categories', [TaxCategoryController::class, 'index']);
+    Route::get('tax-categories', [TaxCategoryController::class, 'allResources']);
 
     Route::post('tax-categories', [TaxCategoryController::class, 'store']);
 
-    Route::get('tax-categories/{id}', [TaxCategoryController::class, 'show']);
+    Route::get('tax-categories/{id}', [TaxCategoryController::class, 'getResource']);
 
     Route::put('tax-categories/{id}', [TaxCategoryController::class, 'update']);
 
@@ -143,11 +143,11 @@ Route::group([
     /**
      * Tax rates routes.
      */
-    Route::get('tax-rates', [TaxRateController::class, 'index']);
+    Route::get('tax-rates', [TaxRateController::class, 'allResources']);
 
     Route::post('tax-rates', [TaxRateController::class, 'store']);
 
-    Route::get('tax-rates/{id}', [TaxRateController::class, 'show']);
+    Route::get('tax-rates/{id}', [TaxRateController::class, 'getResource']);
 
     Route::put('tax-rates/{id}', [TaxRateController::class, 'update']);
 

@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 
@@ -16,40 +17,35 @@ class InvoiceController extends SaleController
     protected $orderRepository;
 
     /**
-     * Invoice repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\InvoiceRepository
-     */
-    protected $invoiceRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     * @param  \Webkul\Sales\Repositories\InvoiceRepository  $invoiceRepository
      * @return void
      */
     public function __construct(
-        OrderRepository $orderRepository,
-        InvoiceRepository $invoiceRepository
+        OrderRepository $orderRepository
     ) {
         $this->orderRepository = $orderRepository;
-
-        $this->invoiceRepository = $invoiceRepository;
     }
 
     /**
-     * Display a listing of the resource.
+     * Repository class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function repository()
     {
-        $invoices = $this->invoiceRepository->all();
+        return InvoiceRepository::class;
+    }
 
-        return response([
-            'data' => $invoices,
-        ]);
+    /**
+     * Resource class name.
+     *
+     * @return string
+     */
+    public function resource()
+    {
+        return InvoiceResource::class;
     }
 
     /**
@@ -75,37 +71,23 @@ class InvoiceController extends SaleController
 
         $data = $request->all();
 
-        if (! $this->invoiceRepository->haveProductToInvoice($data)) {
+        if (! $this->getRepositoryInstance()->haveProductToInvoice($data)) {
             return response([
                 'message' => __('admin::app.sales.invoices.product-error'),
             ], 400);
         }
 
-        if (! $this->invoiceRepository->isValidQuantity($data)) {
+        if (! $this->getRepositoryInstance()->isValidQuantity($data)) {
             return response([
                 'message' => __('admin::app.sales.invoices.invalid-qty'),
             ], 400);
         }
 
-        $this->invoiceRepository->create(array_merge($data, ['order_id' => $orderId]));
+        $invoice = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
+            'data'    => new InvoiceResource($invoice),
             'message' => __('rest-api::app.response.success.create', ['name' => 'Invoice']),
-        ]);
-    }
-
-    /**
-     * Show the view for the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $invoice = $this->invoiceRepository->findOrFail($id);
-
-        return response([
-            'data' => $invoice,
         ]);
     }
 }

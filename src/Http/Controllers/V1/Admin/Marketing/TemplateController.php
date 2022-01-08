@@ -5,39 +5,28 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\TemplateRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\TemplateResource;
 
 class TemplateController extends MarketingController
 {
     /**
-     * Template repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Core\Repositories\TemplateRepository
+     * @return string
      */
-    protected $templateRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Core\Repositories\TemplateRepository  $templateRepository
-     * @return void
-     */
-    public function __construct(TemplateRepository $templateRepository)
+    public function repository()
     {
-        $this->templateRepository = $templateRepository;
+        return TemplateRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $tempates = $this->templateRepository->all();
-
-        return response([
-            'data' => $tempates,
-        ]);
+        return TemplateResource::class;
     }
 
     /**
@@ -56,28 +45,13 @@ class TemplateController extends MarketingController
 
         Event::dispatch('marketing.templates.create.before');
 
-        $template = $this->templateRepository->create($request->all());
+        $template = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('marketing.templates.create.after', $template);
 
         return response([
-            'data'    => $template,
-            'message' => __('admin::app.marketing.templates.create-success'),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $template = $this->templateRepository->findOrFail($id);
-
-        return response([
-            'data' => $template,
+            'data'    => new TemplateResource($template),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Email template']),
         ]);
     }
 
@@ -98,13 +72,13 @@ class TemplateController extends MarketingController
 
         Event::dispatch('marketing.templates.update.before', $id);
 
-        $template = $this->templateRepository->update($request->all(), $id);
+        $template = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('marketing.templates.update.after', $template);
 
         return response([
-            'data'    => $template,
-            'message' => __('admin::app.marketing.templates.update-success'),
+            'data'    => new TemplateResource($template),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Email template']),
         ]);
     }
 
@@ -116,22 +90,16 @@ class TemplateController extends MarketingController
      */
     public function destroy($id)
     {
-        $this->templateRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            Event::dispatch('marketing.templates.delete.before', $id);
+        Event::dispatch('marketing.templates.delete.before', $id);
 
-            $this->templateRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('marketing.templates.delete.after', $id);
-
-            return response([
-                'message' => __('admin::app.marketing.templates.delete-success'),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('marketing.templates.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Email Template']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Email template']),
+        ]);
     }
 }

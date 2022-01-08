@@ -5,39 +5,28 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\CampaignRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CampaignResource;
 
 class CampaignController extends MarketingController
 {
     /**
-     * Campaign repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Core\Repositories\CampaignRepository
+     * @return string
      */
-    protected $campaignRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Core\Repositories\CampaignRepository  $campaignRepository
-     * @return void
-     */
-    public function __construct(CampaignRepository $campaignRepository)
+    public function repository()
     {
-        $this->campaignRepository = $campaignRepository;
+        return CampaignRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $campaigns = $this->campaignRepository->all();
-
-        return response([
-            'data' => $campaigns,
-        ]);
+        return CampaignResource::class;
     }
 
     /**
@@ -58,28 +47,13 @@ class CampaignController extends MarketingController
 
         Event::dispatch('marketing.campaigns.create.before');
 
-        $campaign = $this->campaignRepository->create($request->all());
+        $campaign = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('marketing.campaigns.create.after', $campaign);
 
         return response([
-            'message' => __('admin::app.marketing.campaigns.create-success'),
-            'data'    => $campaign,
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $campaign = $this->campaignRepository->findOrFail($id);
-
-        return response([
-            'data' => $campaign,
+            'data'    => new CampaignResource($campaign),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Campaign']),
         ]);
     }
 
@@ -102,13 +76,13 @@ class CampaignController extends MarketingController
 
         Event::dispatch('marketing.campaigns.update.before', $id);
 
-        $campaign = $this->campaignRepository->update($request->all(), $id);
+        $campaign = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('marketing.campaigns.update.after', $campaign);
 
         return response([
-            'message' => __('admin::app.marketing.campaigns.update-success'),
-            'data'    => $campaign,
+            'data'    => new CampaignResource($campaign),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Campaign']),
         ]);
     }
 
@@ -120,22 +94,16 @@ class CampaignController extends MarketingController
      */
     public function destroy($id)
     {
-        $this->campaignRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            Event::dispatch('marketing.campaigns.delete.before', $id);
+        Event::dispatch('marketing.campaigns.delete.before', $id);
 
-            $this->campaignRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('marketing.campaigns.delete.after', $id);
-
-            return response([
-                'message' => __('admin::app.marketing.campaigns.delete-success'),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('marketing.campaigns.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Email Campaign']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Campaign']),
+        ]);
     }
 }

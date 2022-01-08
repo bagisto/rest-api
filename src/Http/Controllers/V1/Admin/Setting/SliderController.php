@@ -4,46 +4,28 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\SliderRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\SliderResource;
 
 class SliderController extends SettingController
 {
     /**
-     * Slider repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Core\Repositories\SliderRepository
+     * @return string
      */
-    protected $sliderRepository;
-
-    /**
-     * Channels.
-     *
-     * @var array
-     */
-    protected $channels;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Core\Repositories\SliderRepository  $sliderRepository
-     * @return void
-     */
-    public function __construct(SliderRepository $sliderRepository)
+    public function repository()
     {
-        $this->sliderRepository = $sliderRepository;
+        return SliderRepository::class;
     }
 
     /**
-     * Loads the index for the sliders settings.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $sliders = $this->sliderRepository->all();
-
-        return response([
-            'data' => $sliders,
-        ]);
+        return SliderResource::class;
     }
 
     /**
@@ -69,11 +51,10 @@ class SliderController extends SettingController
             $data['locale'] = implode(',', $data['locale']);
         }
 
-        $result = $this->sliderRepository->save($data);
+        $result = $this->getRepositoryInstance()->save($data);
 
         if ($result) {
             return response([
-                'data'    => $result,
                 'message' => __('admin::app.settings.sliders.created-success'),
             ]);
         }
@@ -81,20 +62,6 @@ class SliderController extends SettingController
         return response([
             'message' => __('admin::app.settings.sliders.created-fault'),
         ], 400);
-    }
-
-    /**
-     * Edit the previously created slider item.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $slider = $this->sliderRepository->findOrFail($id);
-
-        return response([
-            'data' => $slider,
-        ]);
     }
 
     /**
@@ -127,11 +94,10 @@ class SliderController extends SettingController
             ], 400);
         }
 
-        $result = $this->sliderRepository->updateItem($data, $id);
+        $result = $this->getRepositoryInstance()->updateItem($data, $id);
 
         if ($result) {
             return response([
-                'data'    => $result,
                 'message' => __('admin::app.settings.sliders.update-success'),
             ]);
         }
@@ -149,18 +115,12 @@ class SliderController extends SettingController
      */
     public function destroy($id)
     {
-        $this->sliderRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            $this->sliderRepository->delete($id);
-
-            return response([
-                'message' => __('rest-api::app.response.success.delete', ['name' => 'Slider']),
-            ]);
-        } catch (\Exception $e) {}
+        $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Slider']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Slider']),
+        ]);
     }
 }

@@ -4,57 +4,30 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use \Webkul\Sales\Repositories\OrderCommentRepository;
 
 class OrderController extends SaleController
 {
     /**
-     * Order repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Sales\Repositories\OrderRepository
+     * @return string
      */
-    protected $orderRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     * @return void
-     */
-    public function __construct(
-        OrderRepository $orderRepository
-    ) {
-        $this->orderRepository = $orderRepository;
+    public function repository()
+    {
+        return OrderRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $orders = $this->orderRepository->all();
-
-        return response([
-            'data' => $orders,
-        ]);
-    }
-
-    /**
-     * Show the view for the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $order = $this->orderRepository->findOrFail($id);
-
-        return response([
-            'data' => $order,
-        ]);
+        return OrderResource::class;
     }
 
     /**
@@ -65,7 +38,7 @@ class OrderController extends SaleController
      */
     public function cancel($id)
     {
-        $result = $this->orderRepository->cancel($id);
+        $result = $this->getRepositoryInstance()->cancel($id);
 
         return $result
             ? response(['message' => __('admin::app.response.cancel-success', ['name' => 'Order'])])

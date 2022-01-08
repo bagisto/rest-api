@@ -6,16 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\CatalogRule\Helpers\CatalogRuleIndex;
 use Webkul\CatalogRule\Repositories\CatalogRuleRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CatalogRuleResource;
 
 class CatalogRuleController extends MarketingController
 {
-    /**
-     * Catalog repository instance.
-     *
-     * @var \Webkul\CatalogRule\Repositories\CatalogRuleRepository
-     */
-    protected $catalogRuleRepository;
-
     /**
      * Catalog rule index instance.
      *
@@ -26,31 +20,33 @@ class CatalogRuleController extends MarketingController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\CatalogRule\Repositories\CatalogRuleRepository  $catalogRuleRepository
      * @param  \Webkul\CatalogRule\Helpers\CatalogRuleIndex  $catalogRuleIndexHelper
      * @return void
      */
     public function __construct(
-        CatalogRuleRepository $catalogRuleRepository,
         CatalogRuleIndex $catalogRuleIndexHelper
     ) {
-        $this->catalogRuleRepository = $catalogRuleRepository;
-
         $this->catalogRuleIndexHelper = $catalogRuleIndexHelper;
     }
 
     /**
-     * Display a listing of the resource.
+     * Repository class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function repository()
     {
-        $catalogRules = $this->catalogRuleRepository->all();
+        return CatalogRuleRepository::class;
+    }
 
-        return response([
-            'data' => $catalogRules,
-        ]);
+    /**
+     * Resource class name.
+     *
+     * @return string
+     */
+    public function resource()
+    {
+        return CatalogRuleResource::class;
     }
 
     /**
@@ -71,34 +67,17 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
-        $data = $request->all();
-
         Event::dispatch('promotions.catalog_rule.create.before');
 
-        $catalogRule = $this->catalogRuleRepository->create($data);
+        $catalogRule = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('promotions.catalog_rule.create.after', $catalogRule);
 
         $this->catalogRuleIndexHelper->reindexComplete();
 
         return response([
-            'data'    => $catalogRule,
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Catalog Rule']),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $catalogRule = $this->catalogRuleRepository->findOrFail($id);
-
-        return response([
-            'data' => $catalogRule,
+            'data'    => new CatalogRuleResource($catalogRule),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Catalog rule']),
         ]);
     }
 
@@ -121,19 +100,19 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
-        $catalogRule = $this->catalogRuleRepository->findOrFail($id);
+        $catalogRule = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('promotions.catalog_rule.update.before', $catalogRule);
 
-        $catalogRule = $this->catalogRuleRepository->update($request->all(), $id);
+        $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('promotions.catalog_rule.update.after', $catalogRule);
 
         $this->catalogRuleIndexHelper->reindexComplete();
 
         return response([
-            'data'    => $catalogRule,
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Catalog Rule']),
+            'data'    => new CatalogRuleResource($catalogRule),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Catalog rule']),
         ]);
     }
 
@@ -145,22 +124,16 @@ class CatalogRuleController extends MarketingController
      */
     public function destroy($id)
     {
-        $catalogRule = $this->catalogRuleRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            Event::dispatch('promotions.catalog_rule.delete.before', $id);
+        Event::dispatch('promotions.catalog_rule.delete.before', $id);
 
-            $this->catalogRuleRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('promotions.catalog_rule.delete.after', $id);
-
-            return response([
-                'message' => __('rest-api::app.response.success.delete', ['name' => 'Catalog Rule']),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('promotions.catalog_rule.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Catalog Rule']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Catalog rule']),
+        ]);
     }
 }

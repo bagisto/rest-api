@@ -4,40 +4,30 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Repositories\CurrencyRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CurrencyResource;
 
 class CurrencyController extends SettingController
 {
     /**
-     * Currency repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Core\Repositories\CurrencyRepository
+     * @return string
      */
-    protected $currencyRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Core\Repositories\CurrencyRepository  $currencyRepository
-     * @return void
-     */
-    public function __construct(CurrencyRepository $currencyRepository)
+    public function repository()
     {
-        $this->currencyRepository = $currencyRepository;
+        return CurrencyRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $currencies = $this->currencyRepository->all();
-
-        return response([
-            'data' => $currencies,
-        ]);
+        return CurrencyResource::class;
     }
 
     /**
@@ -55,28 +45,13 @@ class CurrencyController extends SettingController
 
         Event::dispatch('core.currency.create.before');
 
-        $currency = $this->currencyRepository->create($request->all());
+        $currency = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('core.currency.create.after', $currency);
 
         return response([
-            'data'    => $currency,
-            'message' => __('admin::app.settings.currencies.create-success'),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $currency = $this->currencyRepository->findOrFail($id);
-
-        return response([
-            'data' => $currency,
+            'data'    => new CurrencyResource($currency),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Currency']),
         ]);
     }
 
@@ -96,13 +71,13 @@ class CurrencyController extends SettingController
 
         Event::dispatch('core.currency.update.before', $id);
 
-        $currency = $this->currencyRepository->update($request->all(), $id);
+        $currency = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('core.currency.update.after', $currency);
 
         return response([
-            'data'    => $currency,
-            'message' => __('admin::app.settings.currencies.update-success'),
+            'data'    => new CurrencyResource($currency),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Currency']),
         ]);
     }
 
@@ -114,57 +89,45 @@ class CurrencyController extends SettingController
      */
     public function destroy($id)
     {
-        $this->currencyRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->currencyRepository->count() == 1) {
+        if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('admin::app.settings.currencies.last-delete-error'),
+                'message' => __('rest-api::app.response.error.last-item-delete'),
             ], 400);
         }
 
-        try {
-            Event::dispatch('core.currency.delete.before', $id);
+        Event::dispatch('core.currency.delete.before', $id);
 
-            $this->currencyRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('core.currency.delete.after', $id);
-
-            return response()->json([
-                'message' => __('admin::app.settings.currencies.delete-success'),
-            ], 200);
-        } catch (\Exception $e) {}
+        Event::dispatch('core.currency.delete.after', $id);
 
         return response()->json([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Currency']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Currency']),
+        ]);
     }
 
     /**
      * Remove the specified resources from database
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(MassDestroyRequest $request)
     {
-        $indexes = explode(',', $request->input('indexes'));
+        foreach ($request->indexes as $index) {
+            $this->getRepositoryInstance()->findOrFail($index);
 
-        try {
-            foreach ($indexes as $index) {
-                Event::dispatch('core.currency.delete.before', $index);
+            Event::dispatch('core.currency.delete.before', $index);
 
-                $this->currencyRepository->delete($index);
+            $this->getRepositoryInstance()->delete($index);
 
-                Event::dispatch('core.currency.delete.after', $index);
-            }
-
-            return response([
-                'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'currencies']),
-            ]);
-        } catch (\Exception $e) {}
+            Event::dispatch('core.currency.delete.after', $index);
+        }
 
         return response([
-            'message' => __('admin::app.datagrid.mass-ops.partial-action', ['name' => 'currencies']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'currencies']),
+        ]);
     }
 }

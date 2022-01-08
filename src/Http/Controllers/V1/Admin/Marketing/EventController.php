@@ -5,39 +5,28 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\EventRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\EventResource;
 
 class EventController extends MarketingController
 {
     /**
-     * Event repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Marketing\Repositories\EventRepository
+     * @return string
      */
-    protected $eventRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Marketing\Repositories\EventRepository  $eventRepository
-     * @return void
-     */
-    public function __construct(EventRepository $eventRepository)
+    public function repository()
     {
-        $this->eventRepository = $eventRepository;
+        return EventRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $events = $this->eventRepository->all();
-
-        return response([
-            'data' => $events,
-        ]);
+        return EventResource::class;
     }
 
     /**
@@ -56,34 +45,13 @@ class EventController extends MarketingController
 
         Event::dispatch('marketing.events.create.before');
 
-        $event = $this->eventRepository->create($request->all());
+        $event = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('marketing.events.create.after', $event);
 
         return response([
-            'data'    => $event,
-            'message' => __('admin::app.marketing.events.create-success'),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        if ($id == 1) {
-            return response([
-                'message' => __('admin::app.marketing.events.edit-error'),
-            ], 400);
-        }
-
-        $event = $this->eventRepository->findOrFail($id);
-
-        return response([
-            'data' => $event,
+            'data'    => new EventResource($event),
+            'message' => __('rest-api::app.response.success.create', ['name' => 'Event']),
         ]);
     }
 
@@ -104,13 +72,13 @@ class EventController extends MarketingController
 
         Event::dispatch('marketing.events.update.before', $id);
 
-        $event = $this->eventRepository->update($request->all(), $id);
+        $event = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('marketing.events.update.after', $event);
 
         return response([
-            'data'    => $event,
-            'message' => __('admin::app.marketing.events.update-success'),
+            'data'    => new EventResource($event),
+            'message' => __('rest-api::app.response.success.update', ['name' => 'Event']),
         ]);
     }
 
@@ -122,22 +90,16 @@ class EventController extends MarketingController
      */
     public function destroy($id)
     {
-        $event = $this->eventRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            Event::dispatch('marketing.events.delete.before', $id);
+        Event::dispatch('marketing.events.delete.before', $id);
 
-            $this->eventRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            Event::dispatch('marketing.events.delete.after', $id);
-
-            return response([
-                'message' => __('admin::app.marketing.events.delete-success'),
-            ]);
-        } catch (\Exception $e) {}
+        Event::dispatch('marketing.events.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Event']),
-        ], 400);
+            'message' => __('rest-api::app.response.success.delete', ['name' => 'Event']),
+        ]);
     }
 }
