@@ -80,7 +80,7 @@ class ChannelController extends SettingController
 
         return response([
             'data'    => new ChannelResource($channel),
-            'message' => __('admin::app.settings.channels.create-success'),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Channel']),
         ]);
     }
 
@@ -142,7 +142,7 @@ class ChannelController extends SettingController
 
         return response([
             'data'    => new ChannelResource($channel),
-            'message' => __('admin::app.settings.channels.update-success'),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Channel']),
         ]);
     }
 
@@ -158,7 +158,7 @@ class ChannelController extends SettingController
 
         if ($channel->code == config('app.channel')) {
             return response([
-                'message' => __('admin::app.settings.channels.last-delete-error'),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'channel']),
             ], 400);
         }
 
@@ -169,7 +169,7 @@ class ChannelController extends SettingController
         Event::dispatch('core.channel.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.settings.channels.delete-success'),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Channel']),
         ]);
     }
 

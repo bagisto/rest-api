@@ -51,7 +51,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Role']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Role']),
         ]);
     }
 
@@ -78,7 +78,7 @@ class RoleController extends SettingController
 
         if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
             return response([
-                'message' => __('rest-api::app.response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
             ], 400);
         }
 
@@ -90,7 +90,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Role']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Role']),
         ]);
     }
 
@@ -106,13 +106,13 @@ class RoleController extends SettingController
 
         if ($role->admins->count() >= 1) {
             return response([
-                'message' => __('rest-api::app.response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
             ], 400);
         }
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.response.error.last-item-delete', ['name' => 'role']),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'role']),
             ], 400);
         }
 
@@ -123,7 +123,7 @@ class RoleController extends SettingController
         Event::dispatch('user.role.delete.after', $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Role']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Role']),
         ]);
     }
 }

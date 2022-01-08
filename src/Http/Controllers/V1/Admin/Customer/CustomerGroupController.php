@@ -54,7 +54,7 @@ class CustomerGroupController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerGroupResource($customerGroup),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Customer group']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Customer group']),
         ]);
     }
 
@@ -82,7 +82,7 @@ class CustomerGroupController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerGroupResource($customerGroup),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Customer group']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Customer group']),
         ]);
     }
 
@@ -98,13 +98,13 @@ class CustomerGroupController extends CustomerBaseController
 
         if ($customerGroup->is_user_defined == 0) {
             return response([
-                'message' => __('rest-api::app.response.error.default-group-delete'),
+                'message' => __('rest-api::app.common-response.error.default-group-delete'),
             ], 400);
         }
 
         if (count($customerGroup->customers) > 0) {
             return response([
-                'message' => __('rest-api::app.response.error.being-used', ['name' => 'Customer group', 'source' => 'customer']),
+                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'Customer group', 'source' => 'customer']),
             ], 400);
         }
 
@@ -115,7 +115,7 @@ class CustomerGroupController extends CustomerBaseController
         Event::dispatch('customer.customer_group.delete.after', $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Customer group']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Customer group']),
         ]);
     }
 }

@@ -51,7 +51,7 @@ class LocaleController extends SettingController
 
         return response([
             'data'    => new LocaleResource($locale),
-            'message' => __('admin::app.settings.locales.create-success'),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Locale']),
         ]);
     }
 
@@ -78,7 +78,7 @@ class LocaleController extends SettingController
 
         return response([
             'data'    => new LocaleResource($locale),
-            'message' => __('admin::app.settings.locales.update-success'),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Locale']),
         ]);
     }
 
@@ -94,7 +94,7 @@ class LocaleController extends SettingController
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('admin::app.settings.locales.last-delete-error'),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'locale']),
             ]);
         }
 
@@ -105,7 +105,7 @@ class LocaleController extends SettingController
         Event::dispatch('core.locale.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.settings.locales.delete-success'),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Locale']),
         ]);
     }
 }

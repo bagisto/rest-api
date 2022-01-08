@@ -10,25 +10,6 @@ use Webkul\Sales\Repositories\OrderRepository;
 class InvoiceController extends SaleController
 {
     /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     * @return void
-     */
-    public function __construct(
-        OrderRepository $orderRepository
-    ) {
-        $this->orderRepository = $orderRepository;
-    }
-
-    /**
      * Repository class name.
      *
      * @return string
@@ -55,13 +36,13 @@ class InvoiceController extends SaleController
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $orderId)
+    public function store(Request $request, OrderRepository $orderRepository, $orderId)
     {
-        $order = $this->orderRepository->findOrFail($orderId);
+        $order = $orderRepository->findOrFail($orderId);
 
         if (! $order->canInvoice()) {
             return response([
-                'message' => __('admin::app.sales.invoices.creation-error'),
+                'message' => __('rest-api::app.sales.invoices.creation-error'),
             ], 400);
         }
 
@@ -73,13 +54,13 @@ class InvoiceController extends SaleController
 
         if (! $this->getRepositoryInstance()->haveProductToInvoice($data)) {
             return response([
-                'message' => __('admin::app.sales.invoices.product-error'),
+                'message' => __('rest-api::app.sales.invoices.product-error'),
             ], 400);
         }
 
         if (! $this->getRepositoryInstance()->isValidQuantity($data)) {
             return response([
-                'message' => __('admin::app.sales.invoices.invalid-qty'),
+                'message' => __('rest-api::app.sales.invoices.invalid-qty-error'),
             ], 400);
         }
 
@@ -87,7 +68,7 @@ class InvoiceController extends SaleController
 
         return response([
             'data'    => new InvoiceResource($invoice),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Invoice']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Invoice']),
         ]);
     }
 }

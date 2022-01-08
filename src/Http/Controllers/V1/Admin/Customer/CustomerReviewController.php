@@ -49,7 +49,7 @@ class CustomerReviewController extends CustomerBaseController
         Event::dispatch('customer.review.update.after', $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Review']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Review']),
         ]);
     }
 
@@ -70,7 +70,7 @@ class CustomerReviewController extends CustomerBaseController
         Event::dispatch('customer.review.delete.after', $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Review']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Review']),
         ]);
     }
 
@@ -93,7 +93,7 @@ class CustomerReviewController extends CustomerBaseController
         }
 
         return response([
-            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'Reviews']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'Reviews']),
         ]);
     }
 
@@ -126,7 +126,7 @@ class CustomerReviewController extends CustomerBaseController
         }
 
         return response([
-            'message' => __('rest-api::app.response.success.mass-operations.update', ['name' => 'reviews']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'reviews']),
         ]);
     }
 }

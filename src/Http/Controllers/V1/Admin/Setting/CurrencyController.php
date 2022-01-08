@@ -51,7 +51,7 @@ class CurrencyController extends SettingController
 
         return response([
             'data'    => new CurrencyResource($currency),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Currency']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Currency']),
         ]);
     }
 
@@ -77,7 +77,7 @@ class CurrencyController extends SettingController
 
         return response([
             'data'    => new CurrencyResource($currency),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Currency']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Currency']),
         ]);
     }
 
@@ -93,7 +93,7 @@ class CurrencyController extends SettingController
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.response.error.last-item-delete'),
+                'message' => __('rest-api::app.common-response.error.last-item-delete'),
             ], 400);
         }
 
@@ -104,7 +104,7 @@ class CurrencyController extends SettingController
         Event::dispatch('core.currency.delete.after', $id);
 
         return response()->json([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Currency']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Currency']),
         ]);
     }
 
@@ -127,7 +127,7 @@ class CurrencyController extends SettingController
         }
 
         return response([
-            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'currencies']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'currencies']),
         ]);
     }
 }

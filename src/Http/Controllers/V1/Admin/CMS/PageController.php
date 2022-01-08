@@ -48,7 +48,7 @@ class PageController extends CMSController
 
         return response([
             'data'    => new CMSResource($page),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Page']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Page']),
         ]);
     }
 
@@ -66,7 +66,7 @@ class PageController extends CMSController
         $request->validate([
             $locale . '.url_key'      => ['required', new \Webkul\Core\Contracts\Validations\Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
-                    $fail(__('rest-api::app.response.error.already-taken', ['name' => 'Page']));
+                    $fail(__('rest-api::app.common-response.error.already-taken', ['name' => 'Page']));
                 }
             }],
             $locale . '.page_title'   => 'required',
@@ -78,7 +78,7 @@ class PageController extends CMSController
 
         return response([
             'data'    => new CMSResource($page),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Page']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Page']),
         ]);
     }
 
@@ -97,7 +97,7 @@ class PageController extends CMSController
         }
 
         return response([
-            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'CMS Pages']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'CMS Pages']),
         ]);
     }
 }

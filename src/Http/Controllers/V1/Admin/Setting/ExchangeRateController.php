@@ -50,7 +50,7 @@ class ExchangeRateController extends SettingController
 
         return response([
             'data'    => new ExchangeRateResource($exchangeRate),
-            'message' => __('admin::app.settings.exchange_rates.create-success'),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Exchange rate']),
         ]);
     }
 
@@ -76,7 +76,7 @@ class ExchangeRateController extends SettingController
 
         return response([
             'data'    => new ExchangeRateResource($exchangeRate),
-            'message' => __('admin::app.settings.exchange_rates.update-success'),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Exchange rate']),
         ]);
     }
 
@@ -91,7 +91,7 @@ class ExchangeRateController extends SettingController
             app(config('services.exchange-api.' . config('services.exchange-api.default') . '.class'))->updateRates();
 
             return response([
-                'message' => __('admin::app.settings.exchange_rates.update-success'),
+                'message' => __('rest-api::app.common-response.success.update', ['name' => 'Rate']),
             ]);
         } catch (\Exception $e) {
             return response([
@@ -117,7 +117,7 @@ class ExchangeRateController extends SettingController
         Event::dispatch('core.exchange_rate.delete.after', $id);
 
         return response([
-            'message' => __('admin::app.settings.exchange_rates.delete-success'),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Exchange rate']),
         ]);
     }
 }

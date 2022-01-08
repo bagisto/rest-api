@@ -51,7 +51,7 @@ class EventController extends MarketingController
 
         return response([
             'data'    => new EventResource($event),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Event']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Event']),
         ]);
     }
 
@@ -78,7 +78,7 @@ class EventController extends MarketingController
 
         return response([
             'data'    => new EventResource($event),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Event']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Event']),
         ]);
     }
 
@@ -99,7 +99,7 @@ class EventController extends MarketingController
         Event::dispatch('marketing.events.delete.after', $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Event']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Event']),
         ]);
     }
 }

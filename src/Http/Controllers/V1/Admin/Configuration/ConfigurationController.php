@@ -64,7 +64,7 @@ class ConfigurationController extends AdminController
         Event::dispatch('core.configuration.save.after');
 
         return response([
-            'message' => __('admin::app.configuration.save-message'),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Configuration']),
         ]);
     }
 

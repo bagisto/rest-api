@@ -4,42 +4,11 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\RefundResource;
-use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\RefundRepository;
 
 class RefundController extends SaleController
 {
-    /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Order item repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderItemRepository
-     */
-    protected $orderItemRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     * @param  \Webkul\Sales\Repositories\OrderItemRepository  $orderItemRepository
-     * @return void
-     */
-    public function __construct(
-        OrderRepository $orderRepository,
-        OrderItemRepository $orderItemRepository
-    ) {
-        $this->orderRepository = $orderRepository;
-
-        $this->orderItemRepository = $orderItemRepository;
-    }
-
     /**
      * Repository class name.
      *
@@ -67,13 +36,13 @@ class RefundController extends SaleController
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $orderId)
+    public function store(Request $request, OrderRepository $orderRepository, $orderId)
     {
-        $order = $this->orderRepository->findOrFail($orderId);
+        $order = $orderRepository->findOrFail($orderId);
 
         if (! $order->canRefund()) {
             return response([
-                'message' => __('admin::app.sales.refunds.creation-error'),
+                'message' => __('rest-api::app.sales.refunds.creation-error'),
             ], 400);
         }
 
@@ -91,7 +60,7 @@ class RefundController extends SaleController
 
         if (! $totals) {
             return response([
-                'message' => __('admin::app.sales.refunds.invalid-qty'),
+                'message' => __('rest-api::app.sales.refunds.invalid-qty-error'),
             ], 400);
         }
 
@@ -101,13 +70,13 @@ class RefundController extends SaleController
 
         if (! $refundAmount) {
             return response([
-                'message' => __('admin::app.sales.refunds.invalid-refund-amount-error'),
+                'message' => __('rest-api::app.sales.refunds.invalid-amount-error'),
             ], 400);
         }
 
         if ($refundAmount > $maxRefundAmount) {
             return response([
-                'message' => __('admin::app.sales.refunds.refund-limit-error', ['amount' => core()->formatBasePrice($maxRefundAmount)]),
+                'message' => __('rest-api::app.sales.refunds.limit-error', ['amount' => core()->formatBasePrice($maxRefundAmount)]),
             ], 400);
         }
 
@@ -115,7 +84,7 @@ class RefundController extends SaleController
 
         return response([
             'data'    => new RefundResource($refund),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Refund']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Refund']),
         ]);
     }
 

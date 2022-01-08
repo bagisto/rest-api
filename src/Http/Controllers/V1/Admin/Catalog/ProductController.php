@@ -3,15 +3,11 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
-use Webkul\Attribute\Repositories\AttributeFamilyRepository;
-use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Core\Contracts\Validations\Slug;
-use Webkul\Inventory\Repositories\InventorySourceRepository;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Http\Requests\ProductForm;
-use Webkul\Product\Repositories\ProductAttributeValueRepository;
-use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
-use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductResource;
@@ -19,112 +15,23 @@ use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductResource;
 class ProductController extends CatalogController
 {
     /**
-     * Category repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Category\Repositories\CategoryRepository
+     * @return string
      */
-    protected $categoryRepository;
-
-    /**
-     * Product repository instance.
-     *
-     * @var \Webkul\Product\Repositories\ProductRepository
-     */
-    protected $productRepository;
-
-    /**
-     * Product downloadable link repository instance.
-     *
-     * @var \Webkul\Product\Repositories\ProductDownloadableLinkRepository
-     */
-    protected $productDownloadableLinkRepository;
-
-    /**
-     * Product downloadable sample repository instance.
-     *
-     * @var \Webkul\Product\Repositories\ProductDownloadableSampleRepository
-     */
-    protected $productDownloadableSampleRepository;
-
-    /**
-     * Attribute family repository instance.
-     *
-     * @var \Webkul\Attribute\Repositories\AttributeFamilyRepository
-     */
-    protected $attributeFamilyRepository;
-
-    /**
-     * Inventory source repository instance.
-     *
-     * @var \Webkul\Inventory\Repositories\InventorySourceRepository
-     */
-    protected $inventorySourceRepository;
-
-    /**
-     * Product attribute value repository instance.
-     *
-     * @var \Webkul\Product\Repositories\ProductAttributeValueRepository
-     */
-    protected $productAttributeValueRepository;
-
-    /**
-     * Product inventory repository instance.
-     *
-     * @var \Webkul\Product\Repositories\ProductInventoryRepository
-     */
-    protected $productInventoryRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Category\Repositories\CategoryRepository                  $categoryRepository
-     * @param  \Webkul\Product\Repositories\ProductRepository                    $productRepository
-     * @param  \Webkul\Product\Repositories\ProductDownloadableLinkRepository    $productDownloadableLinkRepository
-     * @param  \Webkul\Product\Repositories\ProductDownloadableSampleRepository  $productDownloadableSampleRepository
-     * @param  \Webkul\Attribute\Repositories\AttributeFamilyRepository          $attributeFamilyRepository
-     * @param  \Webkul\Inventory\Repositories\InventorySourceRepository          $inventorySourceRepository
-     * @param  \Webkul\Product\Repositories\ProductAttributeValueRepository      $productAttributeValueRepository
-     * @return void
-     */
-    public function __construct(
-        CategoryRepository $categoryRepository,
-        ProductRepository $productRepository,
-        ProductDownloadableLinkRepository $productDownloadableLinkRepository,
-        ProductDownloadableSampleRepository $productDownloadableSampleRepository,
-        AttributeFamilyRepository $attributeFamilyRepository,
-        InventorySourceRepository $inventorySourceRepository,
-        ProductAttributeValueRepository $productAttributeValueRepository,
-        ProductInventoryRepository $productInventoryRepository
-    ) {
-        $this->categoryRepository = $categoryRepository;
-
-        $this->productRepository = $productRepository;
-
-        $this->productDownloadableLinkRepository = $productDownloadableLinkRepository;
-
-        $this->productDownloadableSampleRepository = $productDownloadableSampleRepository;
-
-        $this->attributeFamilyRepository = $attributeFamilyRepository;
-
-        $this->inventorySourceRepository = $inventorySourceRepository;
-
-        $this->productAttributeValueRepository = $productAttributeValueRepository;
-
-        $this->productInventoryRepository = $productInventoryRepository;
+    public function repository()
+    {
+        return ProductRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        $products = $this->productRepository->all();
-
-        return response([
-            'data' => ProductResource::collection($products),
-        ]);
+        return ProductResource::class;
     }
 
     /**
@@ -141,7 +48,7 @@ class ProductController extends CatalogController
                 || ! count($request->get('super_attributes')))
         ) {
             return response([
-                'message' => __('admin::app.catalog.products.configurable-error'),
+                'message' => __('rest-api::app.catalog.products.configurable-error'),
             ], 400);
         }
 
@@ -151,27 +58,11 @@ class ProductController extends CatalogController
             'sku'                 => ['required', 'unique:products,sku', new Slug],
         ]);
 
-        $product = $this->productRepository->create($request->all());
+        $product = $this->getRepositoryInstance()->create($request->all());
 
         return response([
             'data'    => new ProductResource($product),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Product']),
-        ]);
-    }
-
-    /**
-     * Show the specified resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $id)
-    {
-        $product = $this->productRepository->with(['variants', 'variants.inventories'])->findOrFail($id);
-
-        return response([
-            'data' => new ProductResource($product),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Product']),
         ]);
     }
 
@@ -188,7 +79,7 @@ class ProductController extends CatalogController
 
         $multiselectAttributeCodes = [];
 
-        $productAttributes = $this->productRepository->findOrFail($id);
+        $productAttributes = $this->getRepositoryInstance()->findOrFail($id);
 
         foreach ($productAttributes->attribute_family->attribute_groups as $attributeGroup) {
             $customAttributes = $productAttributes->getEditableAttributes($attributeGroup);
@@ -210,11 +101,11 @@ class ProductController extends CatalogController
             }
         }
 
-        $product = $this->productRepository->update($data, $id);
+        $product = $this->getRepositoryInstance()->update($data, $id);
 
         return response([
             'data'    => new ProductResource($product),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Product']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Product']),
         ]);
     }
 
@@ -225,17 +116,17 @@ class ProductController extends CatalogController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateInventories(Request $request, $id)
+    public function updateInventories(Request $request, ProductInventoryRepository $productInventoryRepository, $id)
     {
-        $product = $this->productRepository->findOrFail($id);
+        $product = $this->getRepositoryInstance()->findOrFail($id);
 
-        $this->productInventoryRepository->saveInventories($request->all(), $product);
+        $productInventoryRepository->saveInventories($request->all(), $product);
 
         return response()->json([
             'data'    => [
-                'total' => $this->productInventoryRepository->where('product_id', $product->id)->sum('qty'),
+                'total' => $productInventoryRepository->where('product_id', $product->id)->sum('qty'),
             ],
-            'message' => __('admin::app.catalog.products.saved-inventory-message'),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Inventory']),
         ]);
     }
 
@@ -248,74 +139,54 @@ class ProductController extends CatalogController
      */
     public function destroy(Request $request, $id)
     {
-        $this->productRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            $this->productRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
-            return response([
-                'message' => __('rest-api::app.response.success.delete', ['name' => 'Product']),
-            ]);
-        } catch (\Exception $e) {
-            return response([
-                'message' => __('admin::app.response.delete-failed', ['name' => 'Product']),
-            ]);
-        }
+        return response([
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Product']),
+        ]);
     }
 
     /**
      * Mass delete the products.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(MassDestroyRequest $request)
     {
-        $productIds = explode(',', $request->input('indexes'));
+        foreach ($request->indexes as $id) {
+            $this->getRepositoryInstance()->findOrFail($id);
 
-        try {
-            foreach ($productIds as $productId) {
-                $product = $this->productRepository->find($productId);
-
-                if ($product) {
-                    $this->productRepository->delete($productId);
-                }
-            }
-        } catch (\Exception $e) {}
+            $this->getRepositoryInstance()->delete($id);
+        }
 
         return response([
-            'message' => __('admin::app.catalog.products.mass-delete-success'),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', 'products'),
         ]);
     }
 
     /**
      * Mass update the products.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massUpdate(Request $request)
+    public function massUpdate(MassUpdateRequest $request)
     {
-        $data = $request->all();
+        foreach ($request->indexes as $id) {
+            $this->getRepositoryInstance()->find($id);
 
-        $productIds = explode(',', $data['indexes']);
-
-        try {
-            foreach ($productIds as $productId) {
-                $product = $this->productRepository->find($productId);
-
-                if ($product) {
-                    $this->productRepository->update([
-                        'channel' => null,
-                        'locale'  => null,
-                        'status'  => $data['update-options'],
-                    ], $productId);
-                }
-            }
-        } catch (\Exception $e) {}
+            $this->getRepositoryInstance()->update([
+                'channel' => null,
+                'locale'  => null,
+                'status'  => $request->update_value,
+            ], $id);
+        }
 
         return response([
-            'message' => __('admin::app.catalog.products.mass-update-success'),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', 'products'),
         ]);
     }
 }

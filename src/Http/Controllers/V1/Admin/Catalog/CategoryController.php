@@ -49,7 +49,7 @@ class CategoryController extends CatalogController
 
         return response([
             'data'    => new CategoryResource($category),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Category']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Category']),
         ]);
     }
 
@@ -67,7 +67,7 @@ class CategoryController extends CatalogController
         $request->validate([
             $locale . '.slug' => ['required', function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isSlugUnique($id, $value)) {
-                    $fail(__('rest-api::app.response.error.already-taken', ['name' => 'Category']));
+                    $fail(__('rest-api::app.common-response.error.already-taken', ['name' => 'Category']));
                 }
             }],
             $locale . '.name' => 'required',
@@ -80,7 +80,7 @@ class CategoryController extends CatalogController
 
         return response([
             'data'    => new CategoryResource($category),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Category']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Category']),
         ]);
     }
 
@@ -97,14 +97,14 @@ class CategoryController extends CatalogController
 
         if (! $this->isCategoryDeletable($category)) {
             return response([
-                'message' => __('rest-api::app.response.error.root-category-delete', ['name' => 'Category']),
+                'message' => __('rest-api::app.common-response.error.root-category-delete', ['name' => 'Category']),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Category']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Category']),
         ]);
     }
 
@@ -120,7 +120,7 @@ class CategoryController extends CatalogController
 
         if ($this->containsNonDeletableCategory($categories)) {
             return response([
-                'message' => __('rest-api::app.response.error.root-category-delete', ['name' => 'Category']),
+                'message' => __('rest-api::app.common-response.error.root-category-delete', ['name' => 'Category']),
             ], 400);
         }
 
@@ -129,7 +129,7 @@ class CategoryController extends CatalogController
         });
 
         return response([
-            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'categories']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'categories']),
         ]);
     }
 

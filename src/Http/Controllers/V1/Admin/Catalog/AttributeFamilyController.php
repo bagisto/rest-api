@@ -45,7 +45,7 @@ class AttributeFamilyController extends CatalogController
 
         return response([
             'data'    => new AttributeFamilyResource($attributeFamily),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Family']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Family']),
         ]);
     }
 
@@ -67,7 +67,7 @@ class AttributeFamilyController extends CatalogController
 
         return response([
             'data'    => new AttributeFamilyResource($attributeFamily),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Family']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Family']),
         ]);
     }
 
@@ -84,20 +84,20 @@ class AttributeFamilyController extends CatalogController
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.response.error.last-item-delete', ['name' => 'Family']),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'Family']),
             ], 400);
         }
 
         if ($attributeFamily->products()->count()) {
             return response([
-                'message' => __('rest-api::app.response.error.being-used', ['name' => 'Family', 'source' => 'Product']),
+                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'Family', 'source' => 'Product']),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Family']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Family']),
         ]);
     }
 }

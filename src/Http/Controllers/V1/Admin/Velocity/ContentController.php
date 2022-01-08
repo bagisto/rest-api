@@ -3,18 +3,12 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Velocity;
 
 use Illuminate\Http\Request;
-use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Velocity\Repositories\ContentRepository;
 
 class ContentController extends VelocityController
 {
-    /**
-     * Product repository instance.
-     *
-     * @var \Webkul\Product\Repositories\ProductRepository
-     */
-    protected $productRepository;
-
     /**
      * Content repository instance.
      *
@@ -25,18 +19,14 @@ class ContentController extends VelocityController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
      * @param  \Webkul\Velocity\Repositories\ContentRepository  $contentRepository
      * @return void
      */
-    public function __construct(
-        ProductRepository $productRepository,
-        ContentRepository $contentRepository
-    ) {
-        $this->productRepository = $productRepository;
-
+    public function __construct(ContentRepository $contentRepository)
+    {
         $this->contentRepository = $contentRepository;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,10 +34,8 @@ class ContentController extends VelocityController
      */
     public function index()
     {
-        $contents = $this->contentRepository->all();
-
         return response([
-            'data' => $contents,
+            'data' => $this->contentRepository->all(),
         ]);
     }
 
@@ -69,7 +57,7 @@ class ContentController extends VelocityController
 
         return response([
             'data'    => $content,
-            'message' => __('rest-api::app.response.success.create', ['name' => __('velocity::app.admin.layouts.header-content')]),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Content']),
         ]);
     }
 
@@ -107,7 +95,7 @@ class ContentController extends VelocityController
 
         return response([
             'data'    => $content,
-            'message' => __('rest-api::app.response.success.update', ['name' => __('velocity::app.admin.layouts.header-content')]),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Content']),
         ]);
     }
 
@@ -121,63 +109,48 @@ class ContentController extends VelocityController
     {
         $this->contentRepository->findOrFail($id);
 
-        try {
-            $this->contentRepository->delete($id);
-
-            return response([
-                'message' => __('rest-api::app.response.success.delete', ['name' => 'Content']),
-            ]);
-        } catch (\Exception $e) {}
+        $this->contentRepository->delete($id);
 
         return response([
-            'message' => __('admin::app.response.delete-failed', ['name' => 'Content']),
-        ], 400);
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Content']),
+        ]);
     }
 
     /**
      * Mass delete the contents.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(MassDestroyRequest $request)
     {
-        $contentIds = explode(',', $request->input('indexes'));
+        foreach ($request->indexes as $id) {
+            $this->contentRepository->findOrFail($id);
 
-        foreach ($contentIds as $contentId) {
-
-            $content = $this->contentRepository->find($contentId);
-
-            if (isset($content)) {
-                $this->contentRepository->delete($contentId);
-            }
+            $this->contentRepository->delete($id);
         }
 
         return response([
-            'message' => __('velocity::app.admin.contents.mass-delete-success'),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'content']),
         ]);
     }
 
     /**
      * To mass update the contents.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massUpdate(Request $request)
+    public function massUpdate(MassUpdateRequest $request)
     {
-        $contentIds = explode(',', $request->input('indexes'));
+        foreach ($request->indexes as $id) {
+            $this->contentRepository->findOrFail($id);
 
-        $updateOption = $request->input('update-options');
-
-        foreach ($contentIds as $contentId) {
-            $content = $this->contentRepository->find($contentId);
-
-            $content->update(['status' => $updateOption]);
+            $this->contentRepository->update(['status' => $request->update_value], $id);
         }
 
         return response([
-            'message' => __('velocity::app.admin.contents.mass-update-success'),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'content']),
         ]);
     }
 }

@@ -93,7 +93,7 @@ class CustomerAddressController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Customer address']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Customer address']),
         ]);
     }
 
@@ -147,7 +147,7 @@ class CustomerAddressController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Customer address']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Customer address']),
         ]);
     }
 
@@ -167,7 +167,7 @@ class CustomerAddressController extends CustomerBaseController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Customer address']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Customer address']),
         ]);
     }
 
@@ -189,7 +189,7 @@ class CustomerAddressController extends CustomerBaseController
         }
 
         return response([
-            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'customer addresses']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'customer addresses']),
         ]);
     }
 }

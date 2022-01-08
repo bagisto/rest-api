@@ -72,7 +72,7 @@ class AdminController extends V1Controller implements ResourceContract
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Item']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Item']),
         ]);
     }
 }

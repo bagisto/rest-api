@@ -51,7 +51,7 @@ class AttributeController extends CatalogController
 
         return response([
             'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Attribute']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Attribute']),
         ]);
     }
 
@@ -76,7 +76,7 @@ class AttributeController extends CatalogController
 
         return response([
             'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Attribute']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Attribute']),
         ]);
     }
 
@@ -93,14 +93,14 @@ class AttributeController extends CatalogController
 
         if (! $attribute->is_user_defined) {
             return response([
-                'message' => __('rest-api::app.response.error.system-attribute-delete'),
+                'message' => __('rest-api::app.common-response.error.system-attribute-delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Attribute']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Attribute']),
         ]);
     }
 
@@ -119,7 +119,7 @@ class AttributeController extends CatalogController
 
             if (! $attribute->is_user_defined) {
                 return response([
-                    'message' => __('rest-api::app.response.error.system-attribute-delete'),
+                    'message' => __('rest-api::app.common-response.error.system-attribute-delete'),
                 ], 400);
             }
         }
@@ -129,7 +129,7 @@ class AttributeController extends CatalogController
         }
 
         return response([
-            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'attributes']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'attributes']),
         ]);
     }
 }

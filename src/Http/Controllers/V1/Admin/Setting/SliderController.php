@@ -55,13 +55,13 @@ class SliderController extends SettingController
 
         if ($result) {
             return response([
-                'message' => __('admin::app.settings.sliders.created-success'),
+                'message' => __('rest-api::app.common-response.success.create', ['name' => 'Slider']),
             ]);
         }
 
         return response([
-            'message' => __('admin::app.settings.sliders.created-fault'),
-        ], 400);
+            'message' => __('rest-api::app.common-response.error.something-went-wrong'),
+        ], 500);
     }
 
     /**
@@ -90,21 +90,21 @@ class SliderController extends SettingController
 
         if (null === $request->image) {
             return response([
-                'message' => __('admin::app.settings.sliders.update-fail'),
-            ], 400);
+                'message' => __('rest-api::app.common-response.error.something-went-wrong'),
+            ], 500);
         }
 
         $result = $this->getRepositoryInstance()->updateItem($data, $id);
 
         if ($result) {
             return response([
-                'message' => __('admin::app.settings.sliders.update-success'),
+                'message' => __('rest-api::app.common-response.success.update', ['name' => 'Slider']),
             ]);
         }
 
         return response([
-            'message' => __('admin::app.settings.sliders.update-fail'),
-        ], 400);
+            'message' => __('rest-api::app.common-response.error.something-went-wrong'),
+        ], 500);
     }
 
     /**
@@ -120,7 +120,7 @@ class SliderController extends SettingController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Slider']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Slider']),
         ]);
     }
 }

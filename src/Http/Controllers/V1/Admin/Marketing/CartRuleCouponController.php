@@ -46,7 +46,7 @@ class CartRuleCouponController extends MarketingController
         $this->getRepositoryInstance()->generateCoupons($request->all(), $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Cart rule coupons']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Cart rule coupons']),
         ]);
     }
 
@@ -66,7 +66,7 @@ class CartRuleCouponController extends MarketingController
         }
 
         return response([
-            'message' => __('rest-api::app.response.success.mass-operations.delete', ['name' => 'cart rule coupons']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'cart rule coupons']),
         ]);
     }
 }

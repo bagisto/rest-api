@@ -56,7 +56,7 @@ class TaxCategoryController extends SettingController
 
         return response([
             'data'    => new TaxCategoryResource($taxCategory),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Tax category']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Tax category']),
         ]);
     }
 
@@ -84,19 +84,13 @@ class TaxCategoryController extends SettingController
 
         Event::dispatch('tax.tax_category.update.after', $taxCategory);
 
-        if (! $taxCategory) {
-            return response([
-                'message' => __('admin::app.settings.tax-categories.update-error'),
-            ], 400);
-        }
-
         $taxRates = $data['taxrates'];
 
         $this->getRepositoryInstance()->attachOrDetach($taxCategory, $taxRates);
 
         return response([
             'data'    => new TaxCategoryResource($taxCategory),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Tax category']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Tax category']),
         ]);
     }
 
@@ -117,7 +111,7 @@ class TaxCategoryController extends SettingController
         Event::dispatch('tax.tax_category.delete.after', $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Tax category']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Tax category']),
         ]);
     }
 }

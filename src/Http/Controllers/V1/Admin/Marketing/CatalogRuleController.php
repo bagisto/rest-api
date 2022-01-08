@@ -77,7 +77,7 @@ class CatalogRuleController extends MarketingController
 
         return response([
             'data'    => new CatalogRuleResource($catalogRule),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Catalog rule']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Catalog rule']),
         ]);
     }
 
@@ -112,7 +112,7 @@ class CatalogRuleController extends MarketingController
 
         return response([
             'data'    => new CatalogRuleResource($catalogRule),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Catalog rule']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Catalog rule']),
         ]);
     }
 
@@ -133,7 +133,7 @@ class CatalogRuleController extends MarketingController
         Event::dispatch('promotions.catalog_rule.delete.after', $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Catalog rule']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Catalog rule']),
         ]);
     }
 }

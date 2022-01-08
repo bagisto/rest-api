@@ -51,7 +51,7 @@ class TemplateController extends MarketingController
 
         return response([
             'data'    => new TemplateResource($template),
-            'message' => __('rest-api::app.response.success.create', ['name' => 'Email template']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Email template']),
         ]);
     }
 
@@ -78,7 +78,7 @@ class TemplateController extends MarketingController
 
         return response([
             'data'    => new TemplateResource($template),
-            'message' => __('rest-api::app.response.success.update', ['name' => 'Email template']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Email template']),
         ]);
     }
 
@@ -99,7 +99,7 @@ class TemplateController extends MarketingController
         Event::dispatch('marketing.templates.delete.after', $id);
 
         return response([
-            'message' => __('rest-api::app.response.success.delete', ['name' => 'Email template']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Email template']),
         ]);
     }
 }
