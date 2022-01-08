@@ -59,6 +59,7 @@ class RoleController extends SettingController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\User\Repositories\AdminRepository  $adminRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

@@ -113,6 +113,7 @@ class ProductController extends CatalogController
      * Update inventories.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Product\Repositories\ProductInventoryRepository  $productInventoryRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

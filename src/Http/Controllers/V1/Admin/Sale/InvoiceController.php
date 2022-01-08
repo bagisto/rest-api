@@ -33,6 +33,7 @@ class InvoiceController extends SaleController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */

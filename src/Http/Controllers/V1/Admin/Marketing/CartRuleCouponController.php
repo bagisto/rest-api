@@ -30,12 +30,28 @@ class CartRuleCouponController extends MarketingController
     }
 
     /**
+     * Get all cart rule coupons.
+     *
+     * @param  int  $cartRuleId
+     * @return \Illuminate\Http\Response
+     */
+    public function index(int $cartRuleId)
+    {
+        $coupons = $this->getRepositoryInstance()->where('cart_rule_id', $cartRuleId)->get();
+
+        return response([
+            'data' => $this->getResourceCollection($coupons),
+        ]);
+    }
+
+    /**
      * Generate coupon code for cart rule.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $cartRuleId
      * @return \Illuminate\Http\Response
      */
-    public function generateCoupons(Request $request, $id)
+    public function store(Request $request, $cartRuleId)
     {
         $request->validate([
             'coupon_qty'  => 'required|integer|min:1',
@@ -43,7 +59,7 @@ class CartRuleCouponController extends MarketingController
             'code_format' => 'required',
         ]);
 
-        $this->getRepositoryInstance()->generateCoupons($request->all(), $id);
+        $this->getRepositoryInstance()->generateCoupons($request->all(), $cartRuleId);
 
         return response([
             'message' => __('rest-api::app.common-response.success.create', ['name' => 'Cart rule coupons']),
@@ -51,16 +67,59 @@ class CartRuleCouponController extends MarketingController
     }
 
     /**
-     * Mass delete the coupons.
+     * Show specific cart rule coupon.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
+     * @param  int  $cartRuleId
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $request)
+    public function show(int $cartRuleId, int $id)
+    {
+        $coupon = $this->getRepositoryInstance()
+            ->where('cart_rule_id', $cartRuleId)
+            ->where('id', $id)
+            ->firstOrFail();
+
+        return response([
+            'data' => new CartRuleCouponResource($coupon),
+        ]);
+    }
+
+    /**
+     * Show specific cart rule coupon.
+     *
+     * @param  int  $cartRuleId
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(int $cartRuleId, int $id)
+    {
+        $this->getRepositoryInstance()
+            ->where('cart_rule_id', $cartRuleId)
+            ->where('id', $id)
+            ->firstOrFail();
+
+        $this->getRepositoryInstance()->delete($id);
+
+        return response([
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Cart rule coupon']),
+        ]);
+    }
+
+    /**
+     * Mass delete the coupons.
+     *
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
+     * @param  int  $cartRuleId
+     * @return \Illuminate\Http\Response
+     */
+    public function massDestroy(MassDestroyRequest $request, int $cartRuleId)
     {
         foreach ($request->indexes as $couponId) {
-            $this->getRepositoryInstance()->findOrFail($couponId);
+            $this->getRepositoryInstance()
+                ->where('cart_rule_id', $cartRuleId)
+                ->where('id', $couponId)
+                ->firstOrFail();
 
             $this->getRepositoryInstance()->delete($couponId);
         }

@@ -49,8 +49,6 @@ Route::group([
 
     Route::post('refunds/{order_id}', [RefundController::class, 'store']);
 
-    Route::post('refunds/{order_id}/update-qty', [RefundController::class, 'updateQty']);
-
     /**
      * Transactions routes.
      */

@@ -33,6 +33,7 @@ class RefundController extends SaleController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
@@ -85,26 +86,6 @@ class RefundController extends SaleController
         return response([
             'data'    => new RefundResource($refund),
             'message' => __('rest-api::app.common-response.success.create', ['name' => 'Refund']),
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $orderId
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function updateQty(Request $request, $orderId)
-    {
-        $data = $this->getRepositoryInstance()->getOrderItemsRefundSummary($request->all(), $orderId);
-
-        if (! $data) {
-            return response('Not found!', 400);
-        }
-
-        return response([
-            'data' => $data,
         ]);
     }
 }

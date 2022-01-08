@@ -14,6 +14,12 @@ class ExchangeRateResource extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->resource->toArray();
+        return [
+            'id'              => $this->id,
+            'rate'            => $this->rate,
+            'target_currency' => $this->target_currency,
+            'created_at'      => $this->created_at,
+            'updated_at'      => $this->updated_at,
+        ];
     }
 }

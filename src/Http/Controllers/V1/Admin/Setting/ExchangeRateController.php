@@ -96,7 +96,7 @@ class ExchangeRateController extends SettingController
         } catch (\Exception $e) {
             return response([
                 'message' => $e->getMessage(),
-            ]);
+            ], 500);
         }
     }
 

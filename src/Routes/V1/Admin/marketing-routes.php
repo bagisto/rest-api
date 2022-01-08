@@ -41,9 +41,15 @@ Route::group([
     /**
      * Cart rule coupons routes.
      */
-    Route::post('cart-rules/{id}/generate-coupons', [CartRuleCouponController::class, 'generateCoupons']);
+    Route::get('cart-rules/{cart_rule_id}/coupons', [CartRuleCouponController::class, 'index']);
 
-    Route::post('cart-rules/{id}/mass-delete', [CartRuleCouponController::class, 'massDestroy']);
+    Route::post('cart-rules/{cart_rule_id}/coupons', [CartRuleCouponController::class, 'store']);
+
+    Route::get('cart-rules/{cart_rule_id}/coupons/{id}', [CartRuleCouponController::class, 'show']);
+
+    Route::delete('cart-rules/{cart_rule_id}/coupons/{id}', [CartRuleCouponController::class, 'destroy']);
+
+    Route::post('cart-rules/{cart_rule_id}/coupons/mass-delete', [CartRuleCouponController::class, 'massDestroy']);
 
     /**
      * Emails templates routes.
