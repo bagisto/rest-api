@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Velocity\ConfigurationController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Velocity\ContentController;
 
 Route::group([
     'middleware' => 'auth:sanctum',
@@ -16,17 +18,17 @@ Route::group([
     /**
      * Header content routes.
      */
-    Route::get('content', [ContentController::class, 'index']);
+    Route::get('contents', [ContentController::class, 'allResources']);
 
-    Route::post('content', [ContentController::class, 'store']);
+    Route::post('contents', [ContentController::class, 'store']);
 
-    Route::get('content/{id}', [ContentController::class, 'show']);
+    Route::get('contents/{id}', [ContentController::class, 'getResource']);
 
-    Route::put('content/{id}', [ContentController::class, 'update']);
+    Route::put('contents/{id}', [ContentController::class, 'update']);
 
-    Route::delete('content/{id}', [ContentController::class, 'destroy']);
+    Route::delete('contents/{id}', [ContentController::class, 'destroy']);
 
-    Route::post('content/mass-delete', [ContentController::class, 'massDestroy']);
+    Route::post('contents/mass-destroy', [ContentController::class, 'massDestroy']);
 
-    Route::post('content/mass-update', [ContentController::class, 'massUpdate']);
+    Route::post('contents/mass-update', [ContentController::class, 'massUpdate']);
 });

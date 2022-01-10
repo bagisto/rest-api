@@ -14,5 +14,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::delete('cms/{id}', [PageController::class, 'destroyResource']);
 
-    Route::post('cms/mass-delete', [PageController::class, 'massDestroy']);
+    Route::post('cms/mass-destroy', [PageController::class, 'massDestroy']);
 });

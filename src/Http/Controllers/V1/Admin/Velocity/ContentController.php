@@ -5,38 +5,29 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Velocity;
 use Illuminate\Http\Request;
 use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Http\Requests\MassUpdateRequest;
+use Webkul\RestApi\Http\Resources\V1\Admin\Velocity\ContentResource;
 use Webkul\Velocity\Repositories\ContentRepository;
 
 class ContentController extends VelocityController
 {
     /**
-     * Content repository instance.
+     * Repository class name.
      *
-     * @var \Webkul\Velocity\Repositories\ContentRepository
+     * @return string
      */
-    protected $contentRepository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Webkul\Velocity\Repositories\ContentRepository  $contentRepository
-     * @return void
-     */
-    public function __construct(ContentRepository $contentRepository)
+    public function repository()
     {
-        $this->contentRepository = $contentRepository;
+        return ContentRepository::class;
     }
 
     /**
-     * Display a listing of the resource.
+     * Resource class name.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index()
+    public function resource()
     {
-        return response([
-            'data' => $this->contentRepository->all(),
-        ]);
+        return ContentResource::class;
     }
 
     /**
@@ -53,26 +44,11 @@ class ContentController extends VelocityController
             $params['products'] = json_encode($params['products']);
         }
 
-        $content = $this->contentRepository->create($params);
+        $content = $this->getRepositoryInstance()->create($params);
 
         return response([
-            'data'    => $content,
+            'data'    => new ContentResource($content),
             'message' => __('rest-api::app.common-response.success.create', ['name' => 'Content']),
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $content = $this->contentRepository->findOrFail($id);
-
-        return response([
-            'data' => $content,
         ]);
     }
 
@@ -91,10 +67,10 @@ class ContentController extends VelocityController
             $params[$params['locale']]['products'] = json_encode($params[$params['locale']]['products']);
         }
 
-        $content = $this->contentRepository->update($params, $id);
+        $content = $this->getRepositoryInstance()->update($params, $id);
 
         return response([
-            'data'    => $content,
+            'data'    => new ContentResource($content),
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Content']),
         ]);
     }
@@ -107,9 +83,9 @@ class ContentController extends VelocityController
      */
     public function destroy($id)
     {
-        $this->contentRepository->findOrFail($id);
+        $this->getRepositoryInstance()->findOrFail($id);
 
-        $this->contentRepository->delete($id);
+        $this->getRepositoryInstance()->delete($id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Content']),
@@ -125,9 +101,9 @@ class ContentController extends VelocityController
     public function massDestroy(MassDestroyRequest $request)
     {
         foreach ($request->indexes as $id) {
-            $this->contentRepository->findOrFail($id);
+            $this->getRepositoryInstance()->findOrFail($id);
 
-            $this->contentRepository->delete($id);
+            $this->getRepositoryInstance()->delete($id);
         }
 
         return response([
@@ -144,9 +120,9 @@ class ContentController extends VelocityController
     public function massUpdate(MassUpdateRequest $request)
     {
         foreach ($request->indexes as $id) {
-            $this->contentRepository->findOrFail($id);
+            $this->getRepositoryInstance()->findOrFail($id);
 
-            $this->contentRepository->update(['status' => $request->update_value], $id);
+            $this->getRepositoryInstance()->update(['status' => $request->update_value], $id);
         }
 
         return response([

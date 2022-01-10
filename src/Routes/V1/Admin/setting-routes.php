@@ -45,7 +45,7 @@ Route::group([
 
     Route::delete('currencies/{id}', [CurrencyController::class, 'destroy']);
 
-    Route::post('currencies/mass-delete', [CurrencyController::class, 'massDestroy']);
+    Route::post('currencies/mass-destroy', [CurrencyController::class, 'massDestroy']);
 
     /**
      * Exchange rate routes.
@@ -117,15 +117,15 @@ Route::group([
     /**
      * Slider routes.
      */
-    Route::get('slider', [SliderController::class, 'allResources']);
+    Route::get('sliders', [SliderController::class, 'allResources']);
 
-    Route::post('slider', [SliderController::class, 'store']);
+    Route::post('sliders', [SliderController::class, 'store']);
 
-    Route::get('slider/{id}', [SliderController::class, 'getResource']);
+    Route::get('sliders/{id}', [SliderController::class, 'getResource']);
 
-    Route::put('slider/{id}', [SliderController::class, 'update']);
+    Route::put('sliders/{id}', [SliderController::class, 'update']);
 
-    Route::delete('slider/{id}', [SliderController::class, 'destroy']);
+    Route::delete('sliders/{id}', [SliderController::class, 'destroy']);
 
     /**
      * Tax category routes.

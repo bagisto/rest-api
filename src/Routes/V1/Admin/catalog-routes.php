@@ -27,7 +27,7 @@ Route::group([
 
     Route::post('products/mass-update', [ProductController::class, 'massUpdate']);
 
-    Route::post('products/mass-delete', [ProductController::class, 'massDestroy']);
+    Route::post('products/mass-destroy', [ProductController::class, 'massDestroy']);
 
     /**
      * Category routes.
@@ -57,7 +57,7 @@ Route::group([
 
     Route::delete('attributes/{id}', [AttributeController::class, 'destroy']);
 
-    Route::post('attributes/mass-delete', [AttributeController::class, 'massDestroy']);
+    Route::post('attributes/mass-destroy', [AttributeController::class, 'massDestroy']);
 
     /**
      * Attribute family routes.

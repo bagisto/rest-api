@@ -49,7 +49,7 @@ Route::group([
 
     Route::delete('cart-rules/{cart_rule_id}/coupons/{id}', [CartRuleCouponController::class, 'destroy']);
 
-    Route::post('cart-rules/{cart_rule_id}/coupons/mass-delete', [CartRuleCouponController::class, 'massDestroy']);
+    Route::post('cart-rules/{cart_rule_id}/coupons/mass-destroy', [CartRuleCouponController::class, 'massDestroy']);
 
     /**
      * Email template routes.
