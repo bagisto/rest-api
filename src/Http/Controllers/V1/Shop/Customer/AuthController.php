@@ -97,6 +97,11 @@ class AuthController extends CustomerController
             ]);
         }
 
+        /**
+         * Preventing multiple token creation.
+         */
+        $customer->tokens()->delete();
+
         return response([
             'data'    => new CustomerResource($customer),
             'message' => 'Logged in successfully.',
