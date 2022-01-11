@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
 use Webkul\User\Http\Requests\UserForm;
@@ -45,11 +44,7 @@ class UserController extends SettingController
             $data['api_token'] = Str::random(80);
         }
 
-        Event::dispatch('user.admin.create.before');
-
         $admin = $this->getRepositoryInstance()->create($data);
-
-        Event::dispatch('user.admin.create.after', $admin);
 
         return response([
             'user'    => new UserResource($admin),
@@ -72,15 +67,7 @@ class UserController extends SettingController
             return $data;
         }
 
-        Event::dispatch('user.admin.update.before', $id);
-
         $admin = $this->getRepositoryInstance()->update($data, $id);
-
-        if (isset($data['password']) && $data['password']) {
-            Event::dispatch('user.admin.update-password', $admin);
-        }
-
-        Event::dispatch('user.admin.update.after', $admin);
 
         return response([
             'user'    => new UserResource($admin),
@@ -104,11 +91,7 @@ class UserController extends SettingController
             ], 400);
         }
 
-        Event::dispatch('user.admin.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('user.admin.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Admin']),

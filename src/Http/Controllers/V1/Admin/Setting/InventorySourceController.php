@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
-use Illuminate\Support\Facades\Event;
 use Webkul\Inventory\Http\Requests\InventorySourceRequest;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Inventory\InventorySourceResource;
@@ -40,11 +39,7 @@ class InventorySourceController extends SettingController
 
         $data['status'] = ! isset($data['status']) ? 0 : 1;
 
-        Event::dispatch('inventory.inventory_source.create.before');
-
         $inventorySource = $this->getRepositoryInstance()->create($data);
-
-        Event::dispatch('inventory.inventory_source.create.after', $inventorySource);
 
         return response([
             'data'    => new InventorySourceResource($inventorySource),
@@ -64,11 +59,7 @@ class InventorySourceController extends SettingController
 
         $data['status'] = ! isset($data['status']) ? 0 : 1;
 
-        Event::dispatch('inventory.inventory_source.update.before', $id);
-
         $inventorySource = $this->getRepositoryInstance()->update($data, $id);
-
-        Event::dispatch('inventory.inventory_source.update.after', $inventorySource);
 
         return response([
             'data'    => new InventorySourceResource($inventorySource),
@@ -92,11 +83,7 @@ class InventorySourceController extends SettingController
             ], 400);
         }
 
-        Event::dispatch('inventory.inventory_source.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('inventory.inventory_source.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Inventory source']),

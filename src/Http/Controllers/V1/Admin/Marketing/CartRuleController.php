@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\CartRule\Repositories\CartRuleRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleResource;
 
@@ -52,11 +51,7 @@ class CartRuleController extends MarketingController
 
         $data = $request->all();
 
-        Event::dispatch('promotions.cart_rule.create.before');
-
         $cartRule = $this->getRepositoryInstance()->create($data);
-
-        Event::dispatch('promotions.cart_rule.create.after', $cartRule);
 
         return response([
             'data'    => new CartRuleResource($cartRule),
@@ -99,11 +94,7 @@ class CartRuleController extends MarketingController
             }
         }
 
-        Event::dispatch('promotions.cart_rule.update.before', $cartRule);
-
         $cartRule = $this->getRepositoryInstance()->update($request->all(), $id);
-
-        Event::dispatch('promotions.cart_rule.update.after', $cartRule);
 
         return response([
             'data'    => new CartRuleResource($cartRule),
@@ -121,11 +112,7 @@ class CartRuleController extends MarketingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        Event::dispatch('promotions.cart_rule.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('promotions.cart_rule.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Cart rule']),

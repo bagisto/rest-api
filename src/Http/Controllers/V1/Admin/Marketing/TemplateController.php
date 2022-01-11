@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\TemplateRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\TemplateResource;
 
@@ -43,11 +42,7 @@ class TemplateController extends MarketingController
             'content' => 'required',
         ]);
 
-        Event::dispatch('marketing.templates.create.before');
-
         $template = $this->getRepositoryInstance()->create($request->all());
-
-        Event::dispatch('marketing.templates.create.after', $template);
 
         return response([
             'data'    => new TemplateResource($template),
@@ -70,11 +65,7 @@ class TemplateController extends MarketingController
             'content' => 'required',
         ]);
 
-        Event::dispatch('marketing.templates.update.before', $id);
-
         $template = $this->getRepositoryInstance()->update($request->all(), $id);
-
-        Event::dispatch('marketing.templates.update.after', $template);
 
         return response([
             'data'    => new TemplateResource($template),
@@ -92,11 +83,7 @@ class TemplateController extends MarketingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        Event::dispatch('marketing.templates.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('marketing.templates.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Email template']),

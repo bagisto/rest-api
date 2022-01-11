@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Repositories\CurrencyRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CurrencyResource;
@@ -43,11 +42,7 @@ class CurrencyController extends SettingController
             'name' => 'required',
         ]);
 
-        Event::dispatch('core.currency.create.before');
-
         $currency = $this->getRepositoryInstance()->create($request->all());
-
-        Event::dispatch('core.currency.create.after', $currency);
 
         return response([
             'data'    => new CurrencyResource($currency),
@@ -69,11 +64,7 @@ class CurrencyController extends SettingController
             'name' => 'required',
         ]);
 
-        Event::dispatch('core.currency.update.before', $id);
-
         $currency = $this->getRepositoryInstance()->update($request->all(), $id);
-
-        Event::dispatch('core.currency.update.after', $currency);
 
         return response([
             'data'    => new CurrencyResource($currency),
@@ -97,11 +88,7 @@ class CurrencyController extends SettingController
             ], 400);
         }
 
-        Event::dispatch('core.currency.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('core.currency.delete.after', $id);
 
         return response()->json([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Currency']),
@@ -119,11 +106,7 @@ class CurrencyController extends SettingController
         foreach ($request->indexes as $index) {
             $this->getRepositoryInstance()->findOrFail($index);
 
-            Event::dispatch('core.currency.delete.before', $index);
-
             $this->getRepositoryInstance()->delete($index);
-
-            Event::dispatch('core.currency.delete.after', $index);
         }
 
         return response([

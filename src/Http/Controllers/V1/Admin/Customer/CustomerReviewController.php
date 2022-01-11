@@ -40,13 +40,9 @@ class CustomerReviewController extends CustomerBaseController
      */
     public function update(Request $request, $id)
     {
-        Event::dispatch('customer.review.update.before', $id);
-
         $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->update($request->all(), $id);
-
-        Event::dispatch('customer.review.update.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Review']),
@@ -63,11 +59,7 @@ class CustomerReviewController extends CustomerBaseController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        Event::dispatch('customer.review.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('customer.review.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Review']),
@@ -83,13 +75,9 @@ class CustomerReviewController extends CustomerBaseController
     public function massDestroy(MassDestroyRequest $request)
     {
         foreach ($request->indexes as $index) {
-            Event::dispatch('customer.review.delete.before', $index);
-
             $this->getRepositoryInstance()->findOrFail($index);
 
             $this->getRepositoryInstance()->delete($index);
-
-            Event::dispatch('customer.review.delete.after', $index);
         }
 
         return response([

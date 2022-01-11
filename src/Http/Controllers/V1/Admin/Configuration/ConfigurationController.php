@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Configuration;
 
-use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\ConfigurationForm;
 use Webkul\Core\Repositories\CoreConfigRepository;
 use Webkul\Core\Tree;
@@ -57,11 +56,7 @@ class ConfigurationController extends AdminController
      */
     public function store(ConfigurationForm $request)
     {
-        Event::dispatch('core.configuration.save.before');
-
         $this->coreConfigRepository->create($request->except(['_token', 'admin_locale']));
-
-        Event::dispatch('core.configuration.save.after');
 
         return response([
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Configuration']),

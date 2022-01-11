@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxCategoryResource;
 use Webkul\Tax\Repositories\TaxCategoryRepository;
 
@@ -46,13 +45,9 @@ class TaxCategoryController extends SettingController
 
         $data = $request->all();
 
-        Event::dispatch('tax.tax_category.create.before');
-
         $taxCategory = $this->getRepositoryInstance()->create($data);
 
         $this->getRepositoryInstance()->attachOrDetach($taxCategory, $data['taxrates']);
-
-        Event::dispatch('tax.tax_category.create.after', $taxCategory);
 
         return response([
             'data'    => new TaxCategoryResource($taxCategory),
@@ -61,7 +56,7 @@ class TaxCategoryController extends SettingController
     }
 
     /**
-     * To update the tax category
+     * To update the tax category.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -78,11 +73,7 @@ class TaxCategoryController extends SettingController
 
         $data = $request->input();
 
-        Event::dispatch('tax.tax_category.update.before', $id);
-
         $taxCategory = $this->getRepositoryInstance()->update($data, $id);
-
-        Event::dispatch('tax.tax_category.update.after', $taxCategory);
 
         $taxRates = $data['taxrates'];
 
@@ -104,11 +95,7 @@ class TaxCategoryController extends SettingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        Event::dispatch('tax.tax_category.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('tax.tax_category.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Tax category']),

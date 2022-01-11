@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\LocaleRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\LocaleResource;
 
@@ -43,11 +42,7 @@ class LocaleController extends SettingController
             'direction' => 'in:ltr,rtl',
         ]);
 
-        Event::dispatch('core.locale.create.before');
-
         $locale = $this->getRepositoryInstance()->create($request->all());
-
-        Event::dispatch('core.locale.create.after', $locale);
 
         return response([
             'data'    => new LocaleResource($locale),
@@ -70,11 +65,7 @@ class LocaleController extends SettingController
             'direction' => 'in:ltr,rtl',
         ]);
 
-        Event::dispatch('core.locale.update.before', $id);
-
         $locale = $this->getRepositoryInstance()->update($request->all(), $id);
-
-        Event::dispatch('core.locale.update.after', $locale);
 
         return response([
             'data'    => new LocaleResource($locale),
@@ -98,11 +89,7 @@ class LocaleController extends SettingController
             ]);
         }
 
-        Event::dispatch('core.locale.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('core.locale.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Locale']),

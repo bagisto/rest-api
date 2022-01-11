@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\CatalogRule\Helpers\CatalogRuleIndex;
 use Webkul\CatalogRule\Repositories\CatalogRuleRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CatalogRuleResource;
@@ -67,11 +66,7 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
-        Event::dispatch('promotions.catalog_rule.create.before');
-
         $catalogRule = $this->getRepositoryInstance()->create($request->all());
-
-        Event::dispatch('promotions.catalog_rule.create.after', $catalogRule);
 
         $this->catalogRuleIndexHelper->reindexComplete();
 
@@ -100,13 +95,9 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
-        $catalogRule = $this->getRepositoryInstance()->findOrFail($id);
-
-        Event::dispatch('promotions.catalog_rule.update.before', $catalogRule);
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
-
-        Event::dispatch('promotions.catalog_rule.update.after', $catalogRule);
 
         $this->catalogRuleIndexHelper->reindexComplete();
 
@@ -126,11 +117,7 @@ class CatalogRuleController extends MarketingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        Event::dispatch('promotions.catalog_rule.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('promotions.catalog_rule.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Catalog rule']),

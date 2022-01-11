@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\RoleResource;
 use Webkul\User\Repositories\AdminRepository;
 use Webkul\User\Repositories\RoleRepository;
@@ -43,11 +42,7 @@ class RoleController extends SettingController
             'permission_type' => 'required',
         ]);
 
-        Event::dispatch('user.role.create.before');
-
         $role = $this->getRepositoryInstance()->create($request->all());
-
-        Event::dispatch('user.role.create.after', $role);
 
         return response([
             'data'    => new RoleResource($role),
@@ -83,11 +78,7 @@ class RoleController extends SettingController
             ], 400);
         }
 
-        Event::dispatch('user.role.update.before', $id);
-
         $role = $this->getRepositoryInstance()->update($params, $id);
-
-        Event::dispatch('user.role.update.after', $role);
 
         return response([
             'data'    => new RoleResource($role),
@@ -117,11 +108,7 @@ class RoleController extends SettingController
             ], 400);
         }
 
-        Event::dispatch('user.role.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('user.role.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Role']),

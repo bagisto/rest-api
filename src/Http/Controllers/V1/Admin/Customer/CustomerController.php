@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Webkul\Admin\Mail\NewCustomerNotification;
 use Webkul\Core\Http\Requests\MassDestroyRequest;
@@ -57,11 +56,7 @@ class CustomerController extends CustomerBaseController
 
         $data['is_verified'] = 1;
 
-        Event::dispatch('customer.registration.before');
-
         $customer = $this->getRepositoryInstance()->create($data);
-
-        Event::dispatch('customer.registration.after', $customer);
 
         try {
             if (core()->getConfigData('emails.general.notifications.emails.general.notifications.customer')) {
@@ -96,11 +91,7 @@ class CustomerController extends CustomerBaseController
 
         $data['status'] = ! isset($data['status']) ? 0 : 1;
 
-        Event::dispatch('customer.update.before');
-
         $customer = $this->getRepositoryInstance()->update($data, $id);
-
-        Event::dispatch('customer.update.after', $customer);
 
         return response([
             'data'    => new CustomerResource($customer),

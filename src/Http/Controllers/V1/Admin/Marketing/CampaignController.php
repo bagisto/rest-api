@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\CampaignRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CampaignResource;
 
@@ -45,11 +44,7 @@ class CampaignController extends MarketingController
             'marketing_event_id'    => 'required_if:schedule_type,event',
         ]);
 
-        Event::dispatch('marketing.campaigns.create.before');
-
         $campaign = $this->getRepositoryInstance()->create($request->all());
-
-        Event::dispatch('marketing.campaigns.create.after', $campaign);
 
         return response([
             'data'    => new CampaignResource($campaign),
@@ -74,11 +69,7 @@ class CampaignController extends MarketingController
             'marketing_event_id'    => 'required_if:schedule_type,event',
         ]);
 
-        Event::dispatch('marketing.campaigns.update.before', $id);
-
         $campaign = $this->getRepositoryInstance()->update($request->all(), $id);
-
-        Event::dispatch('marketing.campaigns.update.after', $campaign);
 
         return response([
             'data'    => new CampaignResource($campaign),
@@ -96,11 +87,7 @@ class CampaignController extends MarketingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        Event::dispatch('marketing.campaigns.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('marketing.campaigns.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Campaign']),

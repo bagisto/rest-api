@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ChannelRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
 
@@ -72,11 +71,7 @@ class ChannelController extends SettingController
 
         $data = $this->setSEOContent($data);
 
-        Event::dispatch('core.channel.create.before');
-
         $channel = $this->getRepositoryInstance()->create($data);
-
-        Event::dispatch('core.channel.create.after', $channel);
 
         return response([
             'data'    => new ChannelResource($channel),
@@ -130,15 +125,11 @@ class ChannelController extends SettingController
 
         $data = $this->setSEOContent($data, $locale);
 
-        Event::dispatch('core.channel.update.before', $id);
-
         $channel = $this->getRepositoryInstance()->update($data, $id);
 
         if ($channel->base_currency->code !== session()->get('currency')) {
             session()->put('currency', $channel->base_currency->code);
         }
-
-        Event::dispatch('core.channel.update.after', $channel);
 
         return response([
             'data'    => new ChannelResource($channel),
@@ -162,11 +153,7 @@ class ChannelController extends SettingController
             ], 400);
         }
 
-        Event::dispatch('core.channel.delete.before', $id);
-
         $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('core.channel.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Channel']),
