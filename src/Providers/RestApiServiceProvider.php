@@ -14,6 +14,8 @@ class RestApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->activateMiddleware();
+
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'rest-api');
     }
 
@@ -37,5 +39,19 @@ class RestApiServiceProvider extends ServiceProvider
         Route::prefix('api')
             ->middleware('api')
             ->group(__DIR__ . '/../Routes/api.php');
+    }
+
+    /**
+     * Activate middleware.
+     *
+     * @return void
+     */
+    protected function activateMiddleware()
+    {
+        $router = $this->app['router'];
+
+        $router->aliasMiddleware('sanctum.admin', \Webkul\RestApi\Http\Middleware\AdminMiddleware::class);
+
+        $router->aliasMiddleware('sanctum.customer', \Webkul\RestApi\Http\Middleware\CustomerMiddleware::class);
     }
 }

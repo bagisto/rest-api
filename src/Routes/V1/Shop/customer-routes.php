@@ -20,7 +20,7 @@ Route::post('customer/register', [AuthController::class, 'register']);
 
 Route::post('customer/forgot-password', [AuthController::class, 'forgotPassword']);
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
     /**
      * Customer auth routes.
      */

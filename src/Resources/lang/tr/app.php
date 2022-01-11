@@ -66,6 +66,7 @@ return [
             'default-group-delete'         => 'Varsayılan grup silinemez.',
             'delete-failed'                => ':name silinirken hatayla karşılaşıldı.',
             'last-item-delete'             => 'En az bir :name gerekli.',
+            'not-authorized'               => 'Yetkili değil',
             'order-pending-account-delete' => 'Bazı siparişler beklemede veya işlemde olduğundan :name hesabı silinemiyor.',
             'password-mismatch'            => 'Mevcut şifre eşleşmiyor.',
             'root-category-delete'         => 'Kök kategorisi silinemez.',

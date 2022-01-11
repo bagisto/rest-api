@@ -21,7 +21,7 @@ Route::get('products/{id}/configurable-config', [ProductController::class, 'conf
 /**
  * Product review routes.
  */
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
     Route::post('products/{product_id}/reviews', [ProductReviewController::class, 'store']);
 });
 

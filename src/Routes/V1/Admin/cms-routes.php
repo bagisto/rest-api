@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Webkul\RestApi\Http\Controllers\V1\Admin\CMS\PageController;
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
     Route::get('cms', [PageController::class, 'allResources']);
 
     Route::post('cms', [PageController::class, 'store']);

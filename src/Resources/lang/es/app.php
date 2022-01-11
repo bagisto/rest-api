@@ -66,6 +66,7 @@ return [
             'default-group-delete'         => 'No se puede eliminar el grupo predeterminado.',
             'delete-failed'                => 'Error encontrado al eliminar :name.',
             'last-item-delete'             => 'Se requiere al menos un :name.',
+            'not-authorized'               => 'No autorizada',
             'order-pending-account-delete' => 'No se puede eliminar la cuenta :name porque algunos pedidos están pendientes o en estado de procesamiento.',
             'password-mismatch'            => 'La contraseña actual no coincide.',
             'root-category-delete'         => 'No se puede eliminar la categoría raíz.',

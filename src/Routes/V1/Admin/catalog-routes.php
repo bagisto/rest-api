@@ -7,7 +7,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Catalog\CategoryController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Catalog\ProductController;
 
 Route::group([
-    'middleware' => 'auth:sanctum',
+    'middleware' => ['auth:sanctum', 'sanctum.admin'],
     'prefix'     => 'catalog',
 ], function () {
     /**

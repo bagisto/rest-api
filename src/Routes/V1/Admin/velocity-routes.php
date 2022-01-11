@@ -5,7 +5,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Velocity\ConfigurationController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Velocity\ContentController;
 
 Route::group([
-    'middleware' => 'auth:sanctum',
+    'middleware' => ['auth:sanctum', 'sanctum.admin'],
     'prefix'     => 'velocity',
 ], function () {
     /**

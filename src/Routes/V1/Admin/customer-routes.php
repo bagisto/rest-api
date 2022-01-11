@@ -6,7 +6,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerGroupController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerReviewController;
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
     /**
      * Customer's group routes.
      */

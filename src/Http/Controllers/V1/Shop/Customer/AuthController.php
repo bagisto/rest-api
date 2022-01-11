@@ -100,7 +100,7 @@ class AuthController extends CustomerController
         return response([
             'data'    => new CustomerResource($customer),
             'message' => 'Logged in successfully.',
-            'token'   => $customer->createToken($request->device_name)->plainTextToken,
+            'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
         ]);
     }
 

@@ -66,6 +66,7 @@ return [
             'default-group-delete'         => 'Kan de standaardgroep niet verwijderen.',
             'delete-failed'                => 'Fout opgetreden bij het verwijderen van :name.',
             'last-item-delete'             => 'Minstens één :name is vereist.',
+            'not-authorized'               => 'Geen bevoegdheid',
             'order-pending-account-delete' => 'Kan :name account niet verwijderen omdat sommige bestellingen in behandeling zijn of in verwerking zijn.',
             'password-mismatch'            => 'Huidig ​​wachtwoord komt niet overeen.',
             'root-category-delete'         => 'Kan de root-categorie niet verwijderen.',

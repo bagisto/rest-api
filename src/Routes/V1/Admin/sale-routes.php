@@ -8,7 +8,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Sale\ShipmentController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sale\TransactionController;
 
 Route::group([
-    'middleware' => 'auth:sanctum',
+    'middleware' => ['auth:sanctum', 'sanctum.admin'],
     'prefix'     => 'sales',
 ], function () {
     /**

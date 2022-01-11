@@ -66,6 +66,7 @@ return [
             'default-group-delete'         => 'Impossible de supprimer le groupe par défaut.',
             'delete-failed'                => 'Erreur rencontrée lors de la suppression de :name.',
             'last-item-delete'             => 'Au moins un :name est requis.',
+            'not-authorized'               => 'Pas autorisé',
             'order-pending-account-delete' => 'Impossible de supprimer :name account car certaines commandes sont en attente ou en cours de traitement.',
             'password-mismatch'            => 'Le mot de passe actuel ne correspond pas.',
             'root-category-delete'         => 'Impossible de supprimer la catégorie racine.',

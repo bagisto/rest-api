@@ -9,7 +9,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\EventController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\TemplateController;
 
 Route::group([
-    'middleware' => 'auth:sanctum',
+    'middleware' => ['auth:sanctum', 'sanctum.admin'],
     'prefix'     => 'promotions',
 ], function () {
     /**

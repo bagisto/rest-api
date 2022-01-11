@@ -66,6 +66,7 @@ return [
             'default-group-delete'         => 'Cannot delete the default group.',
             'delete-failed'                => 'Error encountered while deleting :name.',
             'last-item-delete'             => 'At least one :name is required.',
+            'not-authorized'               => 'Not Authorized',
             'order-pending-account-delete' => 'Cannot delete :name account because some orders are pending or in processing state.',
             'password-mismatch'            => 'Current password does not match.',
             'root-category-delete'         => 'Cannot delete the root category.',
