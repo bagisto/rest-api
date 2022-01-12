@@ -53,5 +53,9 @@ class RestApiServiceProvider extends ServiceProvider
         $router->aliasMiddleware('sanctum.admin', \Webkul\RestApi\Http\Middleware\AdminMiddleware::class);
 
         $router->aliasMiddleware('sanctum.customer', \Webkul\RestApi\Http\Middleware\CustomerMiddleware::class);
+
+        $router->aliasMiddleware('sanctum.locale', \Webkul\RestApi\Http\Middleware\LocaleMiddleware::class);
+
+        $router->aliasMiddleware('sanctum.currency', \Webkul\RestApi\Http\Middleware\CurrencyMiddleware::class);
     }
 }
