@@ -42,6 +42,50 @@ return [
         'note-taken'        => 'Not alındı.',
     ],
 
+    'wishlist' => [
+        'moved'          => 'Ürün başarıyla sepete taşındı.',
+        'option-missing' => 'Ürün seçenekleri eksik, bu nedenle ürün istek listesine taşınamıyor.',
+    ],
+
+    'checkout' => [
+        'cart' => [
+            'item' => [
+                'error-add'      => 'Ürün sepete eklenemiyor, lütfen daha sonra tekrar deneyin.',
+                'error-remove'   => 'Sepetten kaldırılacak ürün yok.',
+                'inactive'       => 'Ürün etkin değil ve sepetten kaldırıldı.',
+                'inactive-add'   => 'Etkin olmayan ürün sepete eklenemez.',
+                'success'        => 'Ürün sepete başarıyla eklendi.',
+                'success-remove' => 'Ürün sepetten başarıyla kaldırıldı.',
+            ],
+
+            'quantity' => [
+                'error'             => 'Öğe(ler) şu anda güncellenemiyor, lütfen daha sonra tekrar deneyin.',
+                'illegal'           => 'Miktar birden az olamaz.',
+                'inventory-warning' => 'İstenen miktar mevcut değil, lütfen daha sonra tekrar deneyin.',
+                'quantity'          => 'Miktar',
+                'success'           => 'Sepet Öğeleri başarıyla güncellendi.',
+            ],
+
+            'coupon' => [
+                'apply-issue'    => 'Kupon kodu uygulanamaz.',
+                'invalid'        => 'Kupon kodu geçersiz.',
+                'success'        => 'Kupon kodu başarıyla uygulandı.',
+                'success-remove' => 'Kupon başarıyla kaldırıldı.',
+            ],
+
+            'move-wishlist' => [
+                'error'   => 'Öğe istek listesine taşınamıyor, lütfen daha sonra tekrar deneyin.',
+                'success' => 'Öğe başarıyla istek listesine taşındı.',
+            ],
+        ],
+
+        'minimum-order-message'   => 'Minimum sipariş miktarı :amount.',
+        'check-shipping-address'  => 'Lütfen teslimat adresini kontrol edin.',
+        'check-billing-address'   => 'Lütfen fatura adresini kontrol edin.',
+        'specify-shipping-method' => 'Lütfen gönderim yöntemini belirtin.',
+        'specify-payment-method'  => 'Lütfen ödeme yöntemini belirtin.',
+    ],
+
     'common-response' => [
         'success' => [
             'add'    => ':name başarıyla eklendi.',
@@ -70,6 +114,7 @@ return [
             'order-pending-account-delete' => 'Bazı siparişler beklemede veya işlemde olduğundan :name hesabı silinemiyor.',
             'password-mismatch'            => 'Mevcut şifre eşleşmiyor.',
             'root-category-delete'         => 'Kök kategorisi silinemez.',
+            'security-warning'             => 'Şüpheli etkinlik bulundu!',
             'something-went-wrong'         => 'Bir şeyler ters gitti!',
             'system-attribute-delete'      => 'Sistem özniteliği silinemez.',
 

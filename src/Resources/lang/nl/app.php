@@ -42,6 +42,50 @@ return [
         'note-taken'        => 'Notitie gemaakt.',
     ],
 
+    'wishlist' => [
+        'moved'          => 'Artikel succesvol verplaatst naar winkelwagen.',
+        'option-missing' => 'Productopties ontbreken, dus artikel kan niet naar de verlanglijst worden verplaatst.',
+    ],
+
+    'checkout' => [
+        'cart' => [
+            'item' => [
+                'error-add'      => 'Artikel kan niet aan winkelwagen worden toegevoegd, probeer het later opnieuw.',
+                'error-remove'   => 'Geen items om uit de winkelwagen te verwijderen.',
+                'inactive'       => 'Artikel is inactief en is verwijderd uit winkelwagen.',
+                'inactive-add'   => 'Inactief artikel kan niet aan winkelwagen worden toegevoegd.',
+                'success'        => 'Artikel is succesvol toegevoegd aan winkelwagen.',
+                'success-remove' => 'Item is succesvol verwijderd uit de winkelwagen.',
+            ],
+
+            'quantity' => [
+                'error'             => 'Kan de item(s) momenteel niet bijwerken, probeer het later opnieuw.',
+                'illegal'           => 'Aantal kan niet kleiner zijn dan één.',
+                'inventory-warning' => 'De gevraagde hoeveelheid is niet beschikbaar, probeer het later opnieuw.',
+                'quantity'          => 'Aantal',
+                'success'           => 'Winkelwagenitem(s) succesvol bijgewerkt.',
+            ],
+
+            'coupon' => [
+                'apply-issue'    => 'Couponcode kan niet worden toegepast.',
+                'invalid'        => 'Couponcode is ongeldig.',
+                'success'        => 'Couponcode succesvol toegepast.',
+                'success-remove' => 'Coupon succesvol verwijderd.',
+            ],
+
+            'move-wishlist' => [
+                'error'   => 'Kan item niet naar verlanglijst verplaatsen, probeer het later opnieuw.',
+                'success' => 'Artikel succesvol naar verlanglijst verplaatst.',
+            ],
+        ],
+
+        'minimum-order-message'   => 'Minimum orderbedrag is :amount.',
+        'check-shipping-address'  => 'Controleer het verzendadres.',
+        'check-billing-address'   => 'Controleer het factuuradres.',
+        'specify-shipping-method' => 'Geef de verzendmethode op.',
+        'specify-payment-method'  => 'Geef de betalingsmethode op.',
+    ],
+
     'common-response' => [
         'success' => [
             'add'    => ':name succesvol toegevoegd.',
@@ -70,6 +114,7 @@ return [
             'order-pending-account-delete' => 'Kan :name account niet verwijderen omdat sommige bestellingen in behandeling zijn of in verwerking zijn.',
             'password-mismatch'            => 'Huidig ​​wachtwoord komt niet overeen.',
             'root-category-delete'         => 'Kan de root-categorie niet verwijderen.',
+            'security-warning'             => 'Verdachte activiteit gevonden!',
             'something-went-wrong'         => 'Er ging iets mis!',
             'system-attribute-delete'      => 'Kan het systeemkenmerk niet verwijderen.',
 

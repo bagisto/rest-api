@@ -59,7 +59,7 @@ class CartController extends CustomerController
 
             return response([
                 'data'    => $cart ? new CartResource($cart) : null,
-                'message' => __('shop::app.checkout.cart.item.success'),
+                'message' => __('rest-api::app.checkout.cart.item.success'),
             ]);
         } catch (Exception $e) {
             return response([
@@ -84,7 +84,7 @@ class CartController extends CustomerController
         foreach ($request->qty as $qty) {
             if ($qty <= 0) {
                 return response([
-                    'message' => __('shop::app.checkout.cart.quantity.illegal'),
+                    'message' => __('rest-api::app.checkout.cart.quantity.illegal'),
                 ], 400);
             }
         }
@@ -105,7 +105,7 @@ class CartController extends CustomerController
 
         return response([
             'data'    => $cart ? new CartResource($cart) : null,
-            'message' => __('shop::app.checkout.cart.quantity.success'),
+            'message' => __('rest-api::app.checkout.cart.quantity.success'),
         ]);
     }
 
@@ -129,7 +129,7 @@ class CartController extends CustomerController
 
         return response([
             'data'    => $cart ? new CartResource($cart) : null,
-            'message' => __('shop::app.checkout.cart.item.success-remove'),
+            'message' => __('rest-api::app.checkout.cart.item.success'),
         ]);
     }
 
@@ -149,7 +149,7 @@ class CartController extends CustomerController
 
         return response([
             'data'    => $cart ? new CartResource($cart) : null,
-            'message' => __('shop::app.checkout.cart.item.success-remove'),
+            'message' => __('rest-api::app.checkout.cart.item.success-remove'),
         ]);
     }
 
@@ -169,19 +169,19 @@ class CartController extends CustomerController
 
                 if (Cart::getCart()->coupon_code == $couponCode) {
                     return response([
-                        'message' => __('shop::app.checkout.total.success-coupon'),
+                        'message' => __('rest-api::app.checkout.cart.coupon.success'),
                     ]);
                 }
             }
 
             return response([
-                'message' => __('shop::app.checkout.total.invalid-coupon'),
+                'message' => __('rest-api::app.checkout.cart.coupon.invalid'),
             ], 400);
         } catch (\Exception $e) {
             report($e);
 
             return response([
-                'message' => __('shop::app.checkout.total.coupon-apply-issue'),
+                'message' => __('rest-api::app.checkout.cart.coupon.apply-issue'),
             ], 400);
         }
     }
@@ -196,7 +196,7 @@ class CartController extends CustomerController
         Cart::removeCouponCode()->collectTotals();
 
         return response([
-            'message' => __('shop::app.checkout.total.remove-coupon'),
+            'message' => __('rest-api::app.checkout.cart.coupon.remove'),
         ]);
     }
 
@@ -220,7 +220,7 @@ class CartController extends CustomerController
 
         return response([
             'data'    => $cart ? new CartResource($cart) : null,
-            'message' => __('shop::app.checkout.cart.move-to-wishlist-success'),
+            'message' => __('rest-api::app.checkout.cart.move-wishlist.success'),
         ]);
     }
 }

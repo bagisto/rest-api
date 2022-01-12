@@ -89,7 +89,7 @@ class WishlistController extends CustomerController
 
         return response([
             'data'    => new CustomerWishlistResource($wishlistItem),
-            'message' => __('customer::app.wishlist.success'),
+            'message' => __('rest-api::app.common-response.success.add', ['name' => 'Wishlist']),
         ]);
     }
 
@@ -112,7 +112,7 @@ class WishlistController extends CustomerController
 
         if ($wishlistItem->customer_id != $customer->user()->id) {
             return response([
-                'message' => __('shop::app.security-warning'),
+                'message' => __('rest-api::app.common-response.error.security-warning'),
             ], 400);
         }
 
@@ -125,13 +125,12 @@ class WishlistController extends CustomerController
 
             return response([
                 'data'    => $cart ? new CartResource($cart) : null,
-                'message' => __('shop::app.wishlist.moved'),
+                'message' => __('rest-api::app.wishlist.moved'),
             ]);
         }
 
         return response([
-            'data'    => -1,
-            'message' => __('shop::app.wishlist.option-missing'),
+            'message' => __('rest-api::app.wishlist.option-missing'),
         ], 400);
     }
 }

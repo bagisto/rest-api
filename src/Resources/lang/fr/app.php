@@ -42,6 +42,50 @@ return [
         'note-taken'        => 'Note prise.',
     ],
 
+    'wishlist' => [
+        'moved'          => 'Article déplacé avec succès vers le panier.',
+        'option-missing' => 'Les options du produit sont manquantes, l\'article ne peut donc pas être déplacé vers la liste de souhaits.',
+    ],
+
+    'checkout' => [
+        'cart' => [
+            'item' => [
+                'error-add'      => 'L\'article ne peut pas être ajouté au panier, veuillez réessayer plus tard.',
+                'error-remove'   => 'Aucun article à retirer du panier.',
+                'inactive'       => 'Un article est inactif et a été supprimé du panier.',
+                'inactive-add'   => 'L\'article inactif ne peut pas être ajouté au panier.',
+                'success'        => 'L\'article a été ajouté au panier avec succès.',
+                'success-remove' => 'L\'article a été supprimé avec succès du panier.',
+            ],
+
+            'quantity' => [
+                'error'             => 'Impossible de mettre à jour le ou les éléments pour le moment, veuillez réessayer plus tard.',
+                'illegal'           => 'La quantité ne peut pas être inférieure à un.',
+                'inventory-warning' => 'La quantité demandée n\'est pas disponible, veuillez réessayer plus tard.',
+                'success'           => 'Article(s) du panier mis à jour avec succès.',
+                'quantity'          => 'Quantité',
+            ],
+
+            'coupon' => [
+                'apply-issue'    => 'Le code promo ne peut pas être appliqué.',
+                'invalid'        => 'Le code promo n\'est pas valide.',
+                'success'        => 'Code promo appliqué avec succès.',
+                'success-remove' => 'Coupon supprimé avec succès.',
+            ],
+
+            'move-wishlist' => [
+                'error'   => 'Impossible de déplacer l\'élément vers la liste de souhaits, veuillez réessayer plus tard.',
+                'success' => 'L\'article a été déplacé vers la liste de souhaits avec succès.',
+            ],
+        ],
+
+        'minimum-order-message'   => 'Le montant minimum de commande est de :amount.',
+        'check-shipping-address'  => 'Veuillez vérifier l\'adresse de livraison.',
+        'check-billing-address'   => 'Veuillez vérifier l\'adresse de facturation.',
+        'specify-shipping-method' => 'Veuillez spécifier le mode d\'expédition.',
+        'specify-payment-method'  => 'Veuillez préciser le mode de paiement.',
+    ],
+
     'common-response' => [
         'success' => [
             'add'    => ':name ajouté avec succès.',
@@ -70,6 +114,7 @@ return [
             'order-pending-account-delete' => 'Impossible de supprimer :name account car certaines commandes sont en attente ou en cours de traitement.',
             'password-mismatch'            => 'Le mot de passe actuel ne correspond pas.',
             'root-category-delete'         => 'Impossible de supprimer la catégorie racine.',
+            'security-warning'             => 'Activité suspecte détectée !',
             'something-went-wrong'         => 'Quelque chose s\'est mal passé !',
             'system-attribute-delete'      => 'Impossible de supprimer l\'attribut système.',
 

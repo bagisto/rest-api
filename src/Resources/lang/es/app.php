@@ -42,6 +42,50 @@ return [
         'note-taken'        => 'Nota tomada.',
     ],
 
+    'wishlist' => [
+        'moved'          => 'Artículo movido con éxito al carrito.',
+        'option-missing' => 'Faltan opciones de productos, por lo que el artículo no se puede mover a la lista de deseos.',
+    ],
+
+    'checkout' => [
+        'cart' => [
+            'item' => [
+                'error-add'      => 'El artículo no se puede agregar al carrito, inténtalo de nuevo más tarde.',
+                'error-remove'   => 'No hay elementos para eliminar del carrito.',
+                'inactive'       => 'El artículo está inactivo y fue eliminado del carrito.',
+                'inactive-add'   => 'El artículo inactivo no se puede agregar al carrito.',
+                'success'        => 'El artículo se agregó correctamente al carrito.',
+                'success-remove' => 'El artículo se eliminó correctamente del carrito.',
+            ],
+
+            'quantity' => [
+                'error'             => 'No se pueden actualizar los artículos en este momento, inténtalo de nuevo más tarde.',
+                'illegal'           => 'La cantidad no puede ser menor que uno.',
+                'inventory-warning' => 'La cantidad solicitada no está disponible, inténtelo de nuevo más tarde.',
+                'quantity'          => 'Cantidad',
+                'success'           => 'Artículo(s) del carrito actualizado(s) con éxito.',
+            ],
+
+            'coupon' => [
+                'apply-issue'    => 'No se puede aplicar el código de cupón.',
+                'invalid'        => 'El código de cupón no es válido.',
+                'success'        => 'Código de cupón aplicado con éxito.',
+                'success-remove' => 'Cupón eliminado con éxito.',
+            ],
+
+            'move-wishlist' => [
+                'error'   => 'No se puede mover el artículo a la lista de deseos, inténtalo de nuevo más tarde.',
+                'success' => 'Artículo movido a la lista de deseos con éxito.',
+            ],
+        ],
+
+        'minimum-order-message'   => 'El monto mínimo del pedido es :amount.',
+        'check-shipping-address'  => 'Verifique la dirección de envío.',
+        'check-billing-address'   => 'Verifique la dirección de facturación.',
+        'specify-shipping-method' => 'Por favor, especifique el método de envío.',
+        'specify-payment-method'  => 'Por favor, especifique el método de pago.',
+    ],
+
     'common-response' => [
         'success' => [
             'add'    => ':name agregado exitosamente.',
@@ -70,6 +114,7 @@ return [
             'order-pending-account-delete' => 'No se puede eliminar la cuenta :name porque algunos pedidos están pendientes o en estado de procesamiento.',
             'password-mismatch'            => 'La contraseña actual no coincide.',
             'root-category-delete'         => 'No se puede eliminar la categoría raíz.',
+            'security-warning'             => 'Actividad sospechosa encontrada!',
             'something-went-wrong'         => '¡Algo salió mal!',
             'system-attribute-delete'      => 'No se puede eliminar el atributo del sistema.',
 
