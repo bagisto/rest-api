@@ -72,6 +72,10 @@ return [
             'root-category-delete'         => 'Cannot delete the root category.',
             'something-went-wrong'         => 'Something went wrong!',
             'system-attribute-delete'      => 'Cannot delete the system attribute.',
+
+            'mass-operations' => [
+                'resource-not-found' => 'Selected :name not found.',
+            ],
         ],
     ],
 ];

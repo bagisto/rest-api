@@ -109,7 +109,7 @@ class UserController extends SettingController
     {
         $data = $request->validated();
 
-        $user = $this->getRepositoryInstance()->find($id);
+        $user = $this->getRepositoryInstance()->findOrFail($id);
 
         /**
          * Password check.

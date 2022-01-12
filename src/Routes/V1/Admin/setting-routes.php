@@ -45,7 +45,7 @@ Route::group([
 
     Route::delete('currencies/{id}', [CurrencyController::class, 'destroy']);
 
-    Route::post('currencies/mass-destroy', [CurrencyController::class, 'massDestroy']);
+    Route::post('currencies/mass-destroy', [CurrencyController::class, 'massDestroyResources']);
 
     /**
      * Exchange rate routes.

@@ -4,7 +4,6 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductReviewResource;
@@ -63,25 +62,6 @@ class CustomerReviewController extends CustomerBaseController
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Review']),
-        ]);
-    }
-
-    /**
-     * Mass delete the reviews.
-     *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function massDestroy(MassDestroyRequest $request)
-    {
-        foreach ($request->indexes as $index) {
-            $this->getRepositoryInstance()->findOrFail($index);
-
-            $this->getRepositoryInstance()->delete($index);
-        }
-
-        return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'Reviews']),
         ]);
     }
 

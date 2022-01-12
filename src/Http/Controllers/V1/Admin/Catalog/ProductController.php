@@ -150,25 +150,6 @@ class ProductController extends CatalogController
     }
 
     /**
-     * Mass delete the products.
-     *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function massDestroy(MassDestroyRequest $request)
-    {
-        foreach ($request->indexes as $id) {
-            $this->getRepositoryInstance()->findOrFail($id);
-
-            $this->getRepositoryInstance()->delete($id);
-        }
-
-        return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', 'products'),
-        ]);
-    }
-
-    /**
      * Mass update the products.
      *
      * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
@@ -177,7 +158,7 @@ class ProductController extends CatalogController
     public function massUpdate(MassUpdateRequest $request)
     {
         foreach ($request->indexes as $id) {
-            $this->getRepositoryInstance()->find($id);
+            $this->getRepositoryInstance()->findOrFail($id);
 
             $this->getRepositoryInstance()->update([
                 'channel' => null,

@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Velocity;
 
 use Illuminate\Http\Request;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Velocity\ContentResource;
 use Webkul\Velocity\Repositories\ContentRepository;
@@ -89,25 +88,6 @@ class ContentController extends VelocityController
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Content']),
-        ]);
-    }
-
-    /**
-     * Mass delete the contents.
-     *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function massDestroy(MassDestroyRequest $request)
-    {
-        foreach ($request->indexes as $id) {
-            $this->getRepositoryInstance()->findOrFail($id);
-
-            $this->getRepositoryInstance()->delete($id);
-        }
-
-        return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'content']),
         ]);
     }
 

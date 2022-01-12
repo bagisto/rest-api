@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Repositories\CurrencyRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CurrencyResource;
 
@@ -92,25 +91,6 @@ class CurrencyController extends SettingController
 
         return response()->json([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Currency']),
-        ]);
-    }
-
-    /**
-     * Remove the specified resources from database
-     *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function massDestroy(MassDestroyRequest $request)
-    {
-        foreach ($request->indexes as $index) {
-            $this->getRepositoryInstance()->findOrFail($index);
-
-            $this->getRepositoryInstance()->delete($index);
-        }
-
-        return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'currencies']),
         ]);
     }
 }

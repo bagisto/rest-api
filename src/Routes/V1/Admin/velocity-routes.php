@@ -28,7 +28,7 @@ Route::group([
 
     Route::delete('contents/{id}', [ContentController::class, 'destroy']);
 
-    Route::post('contents/mass-destroy', [ContentController::class, 'massDestroy']);
+    Route::post('contents/mass-destroy', [ContentController::class, 'massDestroyResources']);
 
     Route::post('contents/mass-update', [ContentController::class, 'massUpdate']);
 });
