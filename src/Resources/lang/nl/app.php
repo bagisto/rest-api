@@ -72,6 +72,10 @@ return [
             'root-category-delete'         => 'Kan de root-categorie niet verwijderen.',
             'something-went-wrong'         => 'Er ging iets mis!',
             'system-attribute-delete'      => 'Kan het systeemkenmerk niet verwijderen.',
+
+            'mass-operations' => [
+                'resource-not-found' => 'Geselecteerd :name niet gevonden.',
+            ],
         ],
     ],
 ];

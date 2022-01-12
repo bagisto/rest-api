@@ -72,6 +72,10 @@ return [
             'root-category-delete'         => 'No se puede eliminar la categoría raíz.',
             'something-went-wrong'         => '¡Algo salió mal!',
             'system-attribute-delete'      => 'No se puede eliminar el atributo del sistema.',
+
+            'mass-operations' => [
+                'resource-not-found' => 'Seleccionada :name no encontrado.',
+            ],
         ],
     ],
 ];

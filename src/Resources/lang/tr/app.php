@@ -72,6 +72,10 @@ return [
             'root-category-delete'         => 'Kök kategorisi silinemez.',
             'something-went-wrong'         => 'Bir şeyler ters gitti!',
             'system-attribute-delete'      => 'Sistem özniteliği silinemez.',
+
+            'mass-operations' => [
+                'resource-not-found' => 'Seçildi :name bulunamadı.',
+            ],
         ],
     ],
 ];

@@ -72,6 +72,10 @@ return [
             'root-category-delete'         => 'Impossible de supprimer la catégorie racine.',
             'something-went-wrong'         => 'Quelque chose s\'est mal passé !',
             'system-attribute-delete'      => 'Impossible de supprimer l\'attribut système.',
+
+            'mass-operations' => [
+                'resource-not-found' => 'Sélectionné :name introuvable.',
+            ],
         ],
     ],
 ];

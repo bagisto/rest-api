@@ -19,7 +19,7 @@ class ResourceController extends V1Controller implements ResourceContract
      *
      * @var string
      */
-    protected $resourceName = 'Resource';
+    protected $resourceName = 'Resource(s)';
 
     /**
      * These are ignored during request.

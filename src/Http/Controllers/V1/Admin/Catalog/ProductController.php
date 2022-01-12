@@ -4,7 +4,6 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Contracts\Validations\Slug;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Http\Requests\ProductForm;
