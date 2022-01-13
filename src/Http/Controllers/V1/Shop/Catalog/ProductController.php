@@ -52,22 +52,6 @@ class ProductController extends CatalogController
     }
 
     /**
-     * Returns a individual resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function getResource(Request $request, int $id)
-    {
-        $resourceClassName = $this->resource();
-
-        $resource = $this->getRepositoryInstance()->findOrFail($id);
-
-        return new $resourceClassName($resource);
-    }
-
-    /**
      * Returns product's additional information.
      *
      * @param  \Illuminate\Http\Request  $request
