@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'v1/admin'], function () {
+Route::group([
+    'prefix'     => 'v1/admin',
+    'middleware' => ['sanctum.locale'],
+], function () {
     /**
      * Authentication routes.
      */
