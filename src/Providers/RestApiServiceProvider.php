@@ -8,11 +8,11 @@ use Illuminate\Support\ServiceProvider;
 class RestApiServiceProvider extends ServiceProvider
 {
     /**
-     * Register your middleware here.
+     * Register your middleware aliases here.
      *
      * @var array
      */
-    protected $middlewares = [
+    protected $middlewareAliases = [
         'sanctum.admin'    => \Webkul\RestApi\Http\Middleware\AdminMiddleware::class,
         'sanctum.customer' => \Webkul\RestApi\Http\Middleware\CustomerMiddleware::class,
         'sanctum.locale'   => \Webkul\RestApi\Http\Middleware\LocaleMiddleware::class,
@@ -26,7 +26,7 @@ class RestApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->activateMiddlewares();
+        $this->activateMiddlewareAliases();
 
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'rest-api');
     }
@@ -42,16 +42,14 @@ class RestApiServiceProvider extends ServiceProvider
     }
 
     /**
-     * Activate middleware.
+     * Activate middleware aliases.
      *
      * @return void
      */
-    protected function activateMiddlewares()
+    protected function activateMiddlewareAliases()
     {
-        $router = $this->app['router'];
-
-        collect($this->middlewares)->each(function ($className, $alias) use ($router) {
-            $router->aliasMiddleware($alias, $className);
+        collect($this->middlewareAliases)->each(function ($className, $alias) {
+            $this->app['router']->aliasMiddleware($alias, $className);
         });
     }
 
