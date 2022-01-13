@@ -37,18 +37,12 @@ class CurrencyMiddleware
         $currencyCode = $request->header('x-currency');
 
         if ($currencyCode && $this->currencyRepository->findOneByField('code', $currencyCode)) {
-            /**
-             * For now adding session here till implementation of some tweaking currency.
-             */
-            session()->put('currency', $currencyCode);
+            core()->setCurrency($currencyCode);
 
             return $next($request);
         }
 
-        /**
-         * For now adding session here till implementation of some tweaking currency.
-         */
-        session()->put('currency', core()->getChannelBaseCurrencyCode());
+        core()->setCurrency(core()->getChannelBaseCurrencyCode());
 
         return $next($request);
     }
