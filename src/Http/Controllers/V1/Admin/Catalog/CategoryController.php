@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
+use Webkul\Category\Http\Requests\CategoryRequest;
 use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Models\Channel;
@@ -33,10 +34,10 @@ class CategoryController extends CatalogController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Category\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $request->validate([
             'slug'        => ['required', 'unique:category_translations,slug'],
@@ -56,24 +57,12 @@ class CategoryController extends CatalogController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Webkul\Category\Http\Requests\CategoryRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $locale = core()->getRequestedLocaleCode();
-
-        $request->validate([
-            $locale . '.slug' => ['required', function ($attribute, $value, $fail) use ($id) {
-                if (! $this->getRepositoryInstance()->isSlugUnique($id, $value)) {
-                    $fail(__('rest-api::app.common-response.error.already-taken', ['name' => 'Category']));
-                }
-            }],
-            $locale . '.name' => 'required',
-            'image.*'         => 'mimes:bmp,jpeg,jpg,png,webp',
-        ]);
-
         $this->getRepositoryInstance()->findOrFail($id);
 
         $category = $this->getRepositoryInstance()->update($request->all(), $id);
