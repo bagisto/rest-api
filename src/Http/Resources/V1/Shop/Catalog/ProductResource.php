@@ -9,6 +9,13 @@ use Webkul\Product\Facades\ProductImage;
 class ProductResource extends JsonResource
 {
     /**
+     * Product review helper.
+     *
+     * @var \Webkul\Product\Helpers\Review
+     */
+    protected $productReviewHelper;
+
+    /**
      * Create a new resource instance.
      *
      * @return void
@@ -16,8 +23,6 @@ class ProductResource extends JsonResource
     public function __construct($resource)
     {
         $this->productReviewHelper = app(\Webkul\Product\Helpers\Review::class);
-
-        $this->wishlistHelper = app(\Webkul\Customer\Helpers\Wishlist::class);
 
         parent::__construct($resource);
     }
@@ -65,7 +70,6 @@ class ProductResource extends JsonResource
             /* product's checks */
             'in_stock'              => $product->haveSufficientQuantity(1),
             'is_saved'              => false,
-            'is_wishlisted'         => $this->wishlistHelper->getWishlistProduct($product) ? true : false,
             'is_item_in_cart'       => Cart::hasProduct($product),
             'show_quantity_changer' => $this->when(
                 $product->type !== 'grouped',

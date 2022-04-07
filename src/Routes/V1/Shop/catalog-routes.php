@@ -19,9 +19,17 @@ Route::get('products/{id}/additional-information', [ProductController::class, 'a
 Route::get('products/{id}/configurable-config', [ProductController::class, 'configurableConfig']);
 
 /**
- * Product review routes.
+ * Product authenticated routes.
  */
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
+    /**
+     * Wishlist routes.
+     */
+    Route::get('products/{product_id}/is-wishlisted', [ProductController::class, 'isWishlisted']);
+
+    /**
+     * Review routes.
+     */
     Route::post('products/{product_id}/reviews', [ProductReviewController::class, 'store']);
 });
 
