@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
@@ -113,12 +114,16 @@ class AuthController extends CustomerController
             ]);
         }
 
-        $request->session()->regenerate();
+        if (Auth::attempt($request->only(['email', 'password']))) {
+            $request->session()->regenerate();
 
-        return response([
-            'data'    => new CustomerResource($request->user()),
-            'message' => 'Logged in successfully.',
-        ]);
+            return response([
+                'data'    => new CustomerResource($request->user()),
+                'message' => 'Logged in successfully.',
+            ]);
+        }
+
+        abort(500);
     }
 
     /**
@@ -181,7 +186,9 @@ class AuthController extends CustomerController
     {
         $customer = $request->user();
 
-        $customer->tokens()->delete();
+        $request->has('accept_token') && $request->accept_token == 'true'
+            ? $customer->tokens()->delete()
+            : auth()->guard('customer')->logout();
 
         return response([
             'message' => 'Logged out successfully.',
