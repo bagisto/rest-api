@@ -84,28 +84,40 @@ class AuthController extends CustomerController
     public function login(Request $request)
     {
         $request->validate([
-            'email'       => 'required|email',
-            'password'    => 'required',
-            'device_name' => 'required',
+            'email'    => 'required|email',
+            'password' => 'required',
         ]);
 
-        $customer = $this->customerRepository->where('email', $request->email)->first();
+        if ($request->has('accept_token') && $request->accept_token == 'true') {
+            $request->validate([
+                'device_name' => 'required',
+            ]);
 
-        if (! $customer || ! Hash::check($request->password, $customer->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+            $customer = $this->customerRepository->where('email', $request->email)->first();
+
+            if (! $customer || ! Hash::check($request->password, $customer->password)) {
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.'],
+                ]);
+            }
+
+            /**
+             * Preventing multiple token creation.
+             */
+            $customer->tokens()->delete();
+
+            return response([
+                'data'    => new CustomerResource($customer),
+                'message' => 'Logged in successfully.',
+                'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
             ]);
         }
 
-        /**
-         * Preventing multiple token creation.
-         */
-        $customer->tokens()->delete();
+        $request->session()->regenerate();
 
         return response([
-            'data'    => new CustomerResource($customer),
+            'data'    => new CustomerResource($request->user()),
             'message' => 'Logged in successfully.',
-            'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
         ]);
     }
 
