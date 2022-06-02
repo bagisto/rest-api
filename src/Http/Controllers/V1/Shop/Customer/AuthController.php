@@ -123,7 +123,9 @@ class AuthController extends CustomerController
             ]);
         }
 
-        abort(500);
+        return response([
+            'message' => 'Invalid Email or Password',
+        ], 401);
     }
 
     /**
