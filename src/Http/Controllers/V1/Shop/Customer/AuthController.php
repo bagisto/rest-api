@@ -162,7 +162,7 @@ class AuthController extends CustomerController
             'password'      => 'confirmed|min:6',
         ]);
 
-        $data = $request->only('first_name', 'last_name', 'gender', 'date_of_birth', 'email', 'password');
+        $data = $request->all();
 
         if (! isset($data['password']) || ! $data['password']) {
             unset($data['password']);
