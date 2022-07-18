@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\User;
 
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
@@ -24,29 +25,47 @@ class AuthController extends UserController
     public function login(Request $request, AdminRepository $adminRepository)
     {
         $request->validate([
-            'email'       => 'required|email',
-            'password'    => 'required',
-            'device_name' => 'required',
+            'email'    => 'required|email',
+            'password' => 'required',
         ]);
 
-        $admin = $adminRepository->where('email', $request->email)->first();
+        if ($request->has('accept_token') && $request->accept_token == 'true') {
+            $request->validate([
+                'device_name' => 'required',
+            ]);
 
-        if (! $admin || ! Hash::check($request->password, $admin->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+            $admin = $adminRepository->where('email', $request->email)->first();
+
+            if (! $admin || ! Hash::check($request->password, $admin->password)) {
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.'],
+                ]);
+            }
+
+            /**
+             * Preventing multiple token creation.
+             */
+            $admin->tokens()->delete();
+
+            return response([
+                'data'    => new UserResource($admin),
+                'message' => 'Logged in successfully.',
+                'token'   => $admin->createToken($request->device_name, ['role:admin'])->plainTextToken,
             ]);
         }
 
-        /**
-         * Preventing multiple token creation.
-         */
-        $admin->tokens()->delete();
+        if (Auth::attempt($request->only(['email', 'password']))) {
+            $request->session()->regenerate();
+
+            return response([
+                'data'    => new UserResource($request->user()),
+                'message' => 'Logged in successfully.',
+            ]);
+        }
 
         return response([
-            'data'    => new UserResource($admin),
-            'message' => 'Logged in successfully.',
-            'token'   => $admin->createToken($request->device_name, ['role:admin'])->plainTextToken,
-        ]);
+            'message' => 'Invalid Email or Password',
+        ], 401);
     }
 
     /**
@@ -59,7 +78,9 @@ class AuthController extends UserController
     {
         $admin = $request->user();
 
-        $admin->tokens()->delete();
+        $request->has('accept_token') && $request->accept_token == 'true'
+            ? $admin->tokens()->delete()
+            : auth()->guard('admin')->logout();
 
         return response([
             'message' => 'Logged out successfully.',
