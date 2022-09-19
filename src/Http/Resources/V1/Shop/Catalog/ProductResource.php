@@ -264,6 +264,7 @@ class ProductResource extends JsonResource
     {
         $bookingProduct = app('\Webkul\BookingProduct\Repositories\BookingProductRepository')->findOneByField('product_id', $product->id);
 
+        $data['booking'] = $bookingProduct;
         $data['slot_index_route'] = route('booking_product.slots.index', $bookingProduct->id);
 
         if ($bookingProduct->type == 'appointment') {
@@ -282,7 +283,7 @@ class ProductResource extends JsonResource
         }
 
         if ($bookingProduct->type == 'rental') {
-            $data['renting_type'] = $bookingProduct->rental_slot->renting_type;
+            $data['renting_slot'] = $bookingProduct->rental_slot;
         }
 
         if ($bookingProduct->type == 'table') {
