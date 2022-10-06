@@ -44,20 +44,20 @@ class ProductResource extends JsonResource
         /* generating resource */
         return [
             /* product's information */
-            'id'                => $product->id,
-            'sku'               => $product->sku,
-            'type'              => $product->type,
-            'name'              => $product->name,
-            'url_key'           => $product->url_key,
-            'price'             => $productTypeInstance->getMinimalPrice(),
-            'formated_price'    => core()->currency($productTypeInstance->getMinimalPrice()),
-            'short_description' => $product->short_description,
-            'description'       => $product->description,
-            'images'            => ProductImageResource::collection($product->images),
-            'videos'            => ProductVideoResource::collection($product->videos),
-            'base_image'        => ProductImage::getProductBaseImage($product),
-            'created_at'        => $product->created_at,
-            'updated_at'        => $product->updated_at,
+            'id'                 => $product->id,
+            'sku'                => $product->sku,
+            'type'               => $product->type,
+            'name'               => $product->name,
+            'url_key'            => $product->url_key,
+            'price'              => $productTypeInstance->getMinimalPrice(),
+            'formatted_price'    => core()->currency($productTypeInstance->getMinimalPrice()),
+            'short_description'  => $product->short_description,
+            'description'        => $product->description,
+            'images'             => ProductImageResource::collection($product->images),
+            'videos'             => ProductVideoResource::collection($product->videos),
+            'base_image'         => ProductImage::getProductBaseImage($product),
+            'created_at'         => $product->created_at,
+            'updated_at'         => $product->updated_at,
 
             /* product's reviews */
             'reviews' => [
@@ -101,21 +101,21 @@ class ProductResource extends JsonResource
         $productTypeInstance = $product->getTypeInstance();
 
         return [
-            'special_price'          => $this->when(
-                $productTypeInstance->haveSpecialPrice(),
-                $productTypeInstance->getSpecialPrice()
+            'special_price'           => $this->when(
+                $productTypeInstance ->haveDiscount(),
+                $productTypeInstance->getMinimalPrice()
             ),
-            'formated_special_price' => $this->when(
-                $productTypeInstance->haveSpecialPrice(),
-                core()->currency($productTypeInstance->getSpecialPrice())
+            'formatted_special_price' => $this->when(
+                $productTypeInstance->haveDiscount(),
+                core()->currency($productTypeInstance->getMinimalPrice())
             ),
-            'regular_price'          => $this->when(
-                $productTypeInstance->haveSpecialPrice(),
+            'regular_price'           => $this->when(
+                $productTypeInstance->haveDiscount(),
                 data_get($productTypeInstance->getProductPrices(), 'regular_price.price')
             ),
-            'formated_regular_price' => $this->when(
-                $productTypeInstance->haveSpecialPrice(),
-                data_get($productTypeInstance->getProductPrices(), 'regular_price.formated_price')
+            'formatted_regular_price' => $this->when(
+                $productTypeInstance->haveDiscount(),
+                data_get($productTypeInstance->getProductPrices(), 'regular_price.formatted_price')
             ),
         ];
     }
@@ -191,7 +191,7 @@ class ProductResource extends JsonResource
                 return array_merge($data, [
                     'qty'                   => $groupedProduct->qty,
                     'isSaleable'            => $associatedProduct->getTypeInstance()->isSaleable(),
-                    'formated_price'        => $associatedProduct->getTypeInstance()->getPriceHtml(),
+                    'formatted_price'       => $associatedProduct->getTypeInstance()->getPriceHtml(),
                     'show_quantity_changer' => $associatedProduct->getTypeInstance()->showQuantityBox(),
                 ]);
             }),
