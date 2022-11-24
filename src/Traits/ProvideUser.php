@@ -8,8 +8,7 @@ use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 trait ProvideUser
 {
     /**
-     * Set default auth driver for admin. This is for session based authentication.
-     * Activated to all the controllers which are inherit from this.
+     * Set default auth driver for admin.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return void
@@ -22,8 +21,7 @@ trait ProvideUser
     }
 
     /**
-     * Set default auth driver for shop. This is for session based authentication.
-     * Activated to all the controllers which are inherit from this.
+     * Set default auth driver for shop.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return void
