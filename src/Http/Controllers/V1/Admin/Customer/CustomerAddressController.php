@@ -26,6 +26,8 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function __construct(CustomerRepository $customerRepository)
     {
+        parent::__construct();
+        
         $this->customerRepository = $customerRepository;
     }
 

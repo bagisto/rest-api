@@ -37,7 +37,7 @@ class OrderController extends CustomerController
      */
     public function cancel(Request $request, $id)
     {
-        $order = $request->user()->all_orders()->find($id);
+        $order = $this->resolveShopUser($request)->all_orders()->find($id);
 
         if ($order && $this->getRepositoryInstance()->cancel($order)) {
             return response([

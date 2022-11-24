@@ -17,7 +17,7 @@ class AccountController extends UserController
      */
     public function get(Request $request)
     {
-        $admin = $request->user();
+        $admin = $this->resolveAdminUser($request);
 
         return new UserResource($admin);
     }
@@ -30,7 +30,7 @@ class AccountController extends UserController
      */
     public function update(Request $request)
     {
-        $user = $request->user();
+        $user = $this->resolveAdminUser($request);
 
         $isPasswordChanged = false;
 

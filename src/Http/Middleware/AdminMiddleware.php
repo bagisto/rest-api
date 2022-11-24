@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Middleware;
 
 use Closure;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 class AdminMiddleware
 {
@@ -17,13 +18,22 @@ class AdminMiddleware
     public function handle($request, Closure $next, $guard = null)
     {
         /**
-         * Admin model.
-         *
-         * @var \Webkul\User\Models\Admin
+         * This is for session based authentication.
          */
-        $admin = auth()->user();
+        if (EnsureFrontendRequestsAreStateful::fromFrontend($request)) {
+            if (! auth('admin')->user()) {
+                return response([
+                    'message' => __('rest-api::app.common-response.error.not-authorized'),
+                ], 401);
+            }
 
-        if ($admin && $admin->tokenCan('role:admin')) {
+            return $next($request);
+        }
+
+        /**
+         * This is for token based authentication.
+         */
+        if ($request->user()?->tokenCan('role:admin')) {
             return $next($request);
         }
 

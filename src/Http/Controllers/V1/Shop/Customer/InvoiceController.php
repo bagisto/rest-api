@@ -40,7 +40,7 @@ class InvoiceController extends CustomerController
             $query = $query
                 ->leftJoin('orders', 'invoices.order_id', '=', 'orders.id')
                 ->select('invoices.*', 'orders.customer_id')
-                ->where('customer_id', $request->user()->id);
+                ->where('customer_id', $this->resolveShopUser($request)->id);
 
             foreach ($request->except(['page', 'limit', 'pagination', 'sort', 'order', 'token']) as $input => $value) {
                 $query = $query->whereIn($input, array_map('trim', explode(',', $value)));
@@ -77,7 +77,7 @@ class InvoiceController extends CustomerController
 
         $query = $this->getRepositoryInstance()->leftJoin('orders', 'invoices.order_id', '=', 'orders.id')
             ->select('invoices.*', 'orders.customer_id')
-            ->where('customer_id', $request->user()->id)
+            ->where('customer_id', $this->resolveShopUser($request)->id)
             ->findOrFail($id);
 
         return new $resourceClassName($query);

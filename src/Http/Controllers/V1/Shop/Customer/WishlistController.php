@@ -35,6 +35,8 @@ class WishlistController extends CustomerController
         WishlistRepository $wishlistRepository,
         ProductRepository $productRepository
     ) {
+        parent::__construct();
+        
         $this->wishlistRepository = $wishlistRepository;
 
         $this->productRepository = $productRepository;
@@ -48,7 +50,7 @@ class WishlistController extends CustomerController
      */
     public function index(Request $request)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         return response([
             'data' => CustomerWishlistResource::collection($customer->wishlist_items()->get()),
@@ -64,7 +66,7 @@ class WishlistController extends CustomerController
      */
     public function addOrRemove(Request $request, $id)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         $wishlistItem = $this->wishlistRepository->findOneWhere([
             'channel_id'  => core()->getCurrentChannel()->id,
@@ -102,7 +104,7 @@ class WishlistController extends CustomerController
      */
     public function moveToCart(Request $request, $id)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         $wishlistItem = $this->wishlistRepository->findOneWhere([
             'channel_id'  => core()->getCurrentChannel()->id,
@@ -110,7 +112,7 @@ class WishlistController extends CustomerController
             'customer_id' => $customer->id,
         ]);
 
-        if ($wishlistItem->customer_id != $customer->user()->id) {
+        if ($wishlistItem->customer_id != $customer->id) {
             return response([
                 'message' => __('rest-api::app.common-response.error.security-warning'),
             ], 400);

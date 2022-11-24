@@ -24,6 +24,8 @@ class AddressController extends CustomerController
      */
     public function __construct(CustomerAddressRepository $customerAddressRepository)
     {
+        parent::__construct();
+        
         $this->customerAddressRepository = $customerAddressRepository;
     }
 
@@ -35,7 +37,7 @@ class AddressController extends CustomerController
      */
     public function index(Request $request)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         $addresses = $customer->addresses()->get();
 
@@ -54,7 +56,7 @@ class AddressController extends CustomerController
     {
         $data = $request->all();
         $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
-        $data['customer_id'] = $request->user()->id;
+        $data['customer_id'] = $this->resolveShopUser($request)->id;
 
         $customerAddress = $this->customerAddressRepository->create($data);
 
@@ -73,7 +75,7 @@ class AddressController extends CustomerController
      */
     public function show(Request $request, int $id)
     {
-        $customerAddress = $request->user()->addresses()->find($id);
+        $customerAddress = $this->resolveShopUser($request)->addresses()->find($id);
 
         return response([
             'data' => new CustomerAddressResource($customerAddress),
@@ -109,7 +111,7 @@ class AddressController extends CustomerController
      */
     public function destroy(Request $request, int $id)
     {
-        $customerAddress = $request->user()->addresses()->find($id);
+        $customerAddress = $this->resolveShopUser($request)->addresses()->find($id);
 
         $customerAddress->delete();
 
