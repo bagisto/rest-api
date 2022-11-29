@@ -31,6 +31,8 @@ class ConfigurationController extends AdminController
      */
     public function __construct(CoreConfigRepository $coreConfigRepository)
     {
+        parent::__construct();
+        
         $this->coreConfigRepository = $coreConfigRepository;
 
         $this->prepareConfigTree();

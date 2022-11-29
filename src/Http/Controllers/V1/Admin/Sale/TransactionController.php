@@ -35,6 +35,8 @@ class TransactionController extends SaleController
         OrderRepository $orderRepository,
         InvoiceRepository $invoiceRepository
     ) {
+        parent::__construct();
+        
         $this->orderRepository = $orderRepository;
 
         $this->invoiceRepository = $invoiceRepository;

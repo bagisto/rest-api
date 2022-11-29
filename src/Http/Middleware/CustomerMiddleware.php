@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Middleware;
 
 use Closure;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 class CustomerMiddleware
 {
@@ -17,13 +18,22 @@ class CustomerMiddleware
     public function handle($request, Closure $next, $guard = null)
     {
         /**
-         * Customer model.
-         *
-         * @var \Webkul\Customer\Models\Customer
+         * This is for session based authentication.
          */
-        $customer = auth()->user();
+        if (EnsureFrontendRequestsAreStateful::fromFrontend($request)) {
+            if (! auth('customer')->user()) {
+                return response([
+                    'message' => __('rest-api::app.common-response.error.not-authorized'),
+                ], 401);
+            }
 
-        if ($customer && $customer->tokenCan('role:customer')) {
+            return $next($request);
+        }
+
+        /**
+         * This is for token based authentication.
+         */
+        if ($request->user()?->tokenCan('role:customer')) {
             return $next($request);
         }
 

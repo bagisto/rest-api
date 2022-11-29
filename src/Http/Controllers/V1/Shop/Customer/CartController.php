@@ -36,7 +36,7 @@ class CartController extends CustomerController
      */
     public function add(Request $request, WishlistRepository $wishlistRepository, int $productId)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         try {
             Event::dispatch('checkout.cart.item.add.before', $productId);

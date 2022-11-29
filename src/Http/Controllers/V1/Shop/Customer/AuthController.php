@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
@@ -41,6 +42,8 @@ class AuthController extends CustomerController
         CustomerRepository $customerRepository,
         CustomerGroupRepository $customerGroupRepository
     ) {
+        parent::__construct();
+
         $this->customerRepository = $customerRepository;
 
         $this->customerGroupRepository = $customerGroupRepository;
@@ -89,7 +92,7 @@ class AuthController extends CustomerController
             'password' => 'required',
         ]);
 
-        if ($request->has('accept_token') && $request->accept_token == 'true') {
+        if (! EnsureFrontendRequestsAreStateful::fromFrontend($request)) {
             $request->validate([
                 'device_name' => 'required',
             ]);
@@ -118,7 +121,7 @@ class AuthController extends CustomerController
             $request->session()->regenerate();
 
             return response([
-                'data'    => new CustomerResource($request->user()),
+                'data'    => new CustomerResource($this->resolveShopUser($request)),
                 'message' => 'Logged in successfully.',
             ]);
         }
@@ -136,7 +139,7 @@ class AuthController extends CustomerController
      */
     public function get(Request $request)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         return response([
             'data' => new CustomerResource($customer),
@@ -151,7 +154,7 @@ class AuthController extends CustomerController
      */
     public function update(Request $request)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         $request->validate([
             'first_name'    => 'required',
@@ -186,9 +189,9 @@ class AuthController extends CustomerController
      */
     public function logout(Request $request)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
-        $request->has('accept_token') && $request->accept_token == 'true'
+        ! EnsureFrontendRequestsAreStateful::fromFrontend($request)
             ? $customer->tokens()->delete()
             : auth()->guard('customer')->logout();
 

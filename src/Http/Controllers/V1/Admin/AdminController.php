@@ -12,11 +12,9 @@ class AdminController extends ResourceController
     public function __construct()
     {
         /**
-         * This is for session based authentication. Activated to
-         * all the controllers which are inherit from this.
+         * This is for session based authentication.
+         * Activated to all the controllers which are inherited from this.
          */
-        if (! request()->has('accept_token')) {
-            auth()->setDefaultDriver('admin');
-        }
+        $this->setAdminAuthDriver(request());
     }
 }

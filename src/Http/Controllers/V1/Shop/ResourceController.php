@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\V1\V1Controller;
 use Webkul\RestApi\Traits\ProvideResource;
+use Webkul\RestApi\Traits\ProvideUser;
 
 class ResourceController extends V1Controller implements ResourceContract
 {
-    use ProvideResource;
+    use ProvideResource, ProvideUser;
 
     /**
      * Resource name.
@@ -35,7 +36,7 @@ class ResourceController extends V1Controller implements ResourceContract
     {
         $query = $this->getRepositoryInstance()->scopeQuery(function ($query) use ($request) {
             if ($this->isAuthorized()) {
-                $query = $query->where('customer_id', $request->user()->id);
+                $query = $query->where('customer_id', $this->resolveShopUser($request)->id);
             }
 
             foreach ($request->except($this->requestException) as $input => $value) {
@@ -72,7 +73,7 @@ class ResourceController extends V1Controller implements ResourceContract
         $resourceClassName = $this->resource();
 
         $resource = $this->isAuthorized()
-            ? $this->getRepositoryInstance()->where('customer_id', $request->user()->id)->findOrFail($id)
+            ? $this->getRepositoryInstance()->where('customer_id', $this->resolveShopUser($request)->id)->findOrFail($id)
             : $this->getRepositoryInstance()->findOrFail($id);
 
         return new $resourceClassName($resource);
@@ -88,7 +89,7 @@ class ResourceController extends V1Controller implements ResourceContract
     public function destroyResource(Request $request, int $id)
     {
         $resource = $this->isAuthorized()
-            ? $this->getRepositoryInstance()->where('customer_id', $request->user()->id)->findOrFail($id)
+            ? $this->getRepositoryInstance()->where('customer_id', $this->resolveShopUser($request)->id)->findOrFail($id)
             : $this->getRepositoryInstance()->findOrFail($id);
 
         $resource->delete();

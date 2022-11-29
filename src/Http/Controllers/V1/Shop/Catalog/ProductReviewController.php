@@ -43,7 +43,7 @@ class ProductReviewController extends CatalogController
             'title'   => 'required',
         ]);
 
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         $productReview = $this->getRepositoryInstance()->create([
             'customer_id' => $customer->id,

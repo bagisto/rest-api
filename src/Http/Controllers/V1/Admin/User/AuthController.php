@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
 use Webkul\User\Repositories\AdminRepository;
 
@@ -29,7 +30,7 @@ class AuthController extends UserController
             'password' => 'required',
         ]);
 
-        if ($request->has('accept_token') && $request->accept_token == 'true') {
+        if (! EnsureFrontendRequestsAreStateful::fromFrontend($request)) {
             $request->validate([
                 'device_name' => 'required',
             ]);
@@ -58,7 +59,7 @@ class AuthController extends UserController
             $request->session()->regenerate();
 
             return response([
-                'data'    => new UserResource($request->user()),
+                'data'    => new UserResource($this->resolveAdminUser($request)),
                 'message' => 'Logged in successfully.',
             ]);
         }
@@ -76,9 +77,9 @@ class AuthController extends UserController
      */
     public function logout(Request $request)
     {
-        $admin = $request->user();
+        $admin = $this->resolveAdminUser($request);
 
-        $request->has('accept_token') && $request->accept_token == 'true'
+        ! EnsureFrontendRequestsAreStateful::fromFrontend($request)
             ? $admin->tokens()->delete()
             : auth()->guard('admin')->logout();
 

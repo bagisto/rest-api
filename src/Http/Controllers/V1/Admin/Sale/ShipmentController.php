@@ -35,6 +35,8 @@ class ShipmentController extends SaleController
         OrderRepository $orderRepository,
         OrderItemRepository $orderItemRepository
     ) {
+        parent::__construct();
+        
         $this->orderRepository = $orderRepository;
 
         $this->orderItemRepository = $orderItemRepository;

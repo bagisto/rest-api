@@ -7,10 +7,11 @@ use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\V1\V1Controller;
 use Webkul\RestApi\Traits\ProvideResource;
+use Webkul\RestApi\Traits\ProvideUser;
 
 class ResourceController extends V1Controller implements ResourceContract
 {
-    use ProvideResource;
+    use ProvideResource, ProvideUser;
 
     /**
      * Resource name.

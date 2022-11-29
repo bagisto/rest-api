@@ -38,6 +38,8 @@ class ConfigurationController extends VelocityController
         Helper $velocityHelper,
         VelocityMetadataRepository $velocityMetadataRepository
     ) {
+        parent::__construct();
+        
         $this->velocityHelper = $velocityHelper;
 
         $this->velocityMetaDataRepository = $velocityMetadataRepository;

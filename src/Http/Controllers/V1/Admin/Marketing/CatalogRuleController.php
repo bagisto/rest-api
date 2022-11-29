@@ -25,6 +25,8 @@ class CatalogRuleController extends MarketingController
     public function __construct(
         CatalogRuleIndex $catalogRuleIndexHelper
     ) {
+        parent::__construct();
+        
         $this->catalogRuleIndexHelper = $catalogRuleIndexHelper;
     }
 
