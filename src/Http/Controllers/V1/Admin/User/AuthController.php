@@ -31,9 +31,10 @@ class AuthController extends UserController
         ]);
 
         if (! EnsureFrontendRequestsAreStateful::fromFrontend($request)) {
-            $request->validate([
-                'device_name' => 'required',
-            ]);
+            
+            if(!$request->device_name) {
+                $request->device_name = 'desktop';
+            }
 
             $admin = $adminRepository->where('email', $request->email)->first();
 
