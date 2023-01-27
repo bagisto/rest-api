@@ -196,7 +196,7 @@ class CartController extends CustomerController
         Cart::removeCouponCode()->collectTotals();
 
         return response([
-            'message' => __('rest-api::app.checkout.cart.coupon.remove'),
+            'message' => __('rest-api::app.checkout.cart.coupon.success-remove'),
         ]);
     }
 
