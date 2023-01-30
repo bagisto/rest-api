@@ -22,7 +22,7 @@ class CartController extends CustomerController
         $cart = Cart::getCart();
 
         return response([
-            'data' => $cart ? new CartResource($cart) : null,
+            'data' => $cart ? new CartResource($cart) : __('rest-api::app.checkout.cart.item.no-item'),
         ]);
     }
 

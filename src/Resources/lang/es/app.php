@@ -56,6 +56,7 @@ return [
                 'inactive-add'   => 'El artículo inactivo no se puede agregar al carrito.',
                 'success'        => 'El artículo se agregó correctamente al carrito.',
                 'success-remove' => 'El artículo se eliminó correctamente del carrito.',
+                'no-item'        => 'No se encontraron artículos.',
             ],
 
             'quantity' => [

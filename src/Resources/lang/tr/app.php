@@ -56,6 +56,7 @@ return [
                 'inactive-add'   => 'Etkin olmayan ürün sepete eklenemez.',
                 'success'        => 'Ürün sepete başarıyla eklendi.',
                 'success-remove' => 'Ürün sepetten başarıyla kaldırıldı.',
+                'no-item'        => 'Hiç bir öğe bulunamadı.',
             ],
 
             'quantity' => [

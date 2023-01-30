@@ -56,6 +56,7 @@ return [
                 'inactive-add'   => 'L\'article inactif ne peut pas être ajouté au panier.',
                 'success'        => 'L\'article a été ajouté au panier avec succès.',
                 'success-remove' => 'L\'article a été supprimé avec succès du panier.',
+                'no-item'        => 'Aucun élément trouvé.',
             ],
 
             'quantity' => [

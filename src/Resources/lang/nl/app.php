@@ -56,6 +56,7 @@ return [
                 'inactive-add'   => 'Inactief artikel kan niet aan winkelwagen worden toegevoegd.',
                 'success'        => 'Artikel is succesvol toegevoegd aan winkelwagen.',
                 'success-remove' => 'Item is succesvol verwijderd uit de winkelwagen.',
+                'no-item'        => 'Geen items gevonden.',
             ],
 
             'quantity' => [
