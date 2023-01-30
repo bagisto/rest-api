@@ -40,6 +40,7 @@ return [
     'customers' => [
         'note-cannot-taken' => 'Not alınamaz.',
         'note-taken'        => 'Not alındı.',
+        'address-deleted'   => 'Adres Başarıyla Silindi.',
     ],
 
     'wishlist' => [

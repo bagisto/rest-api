@@ -116,7 +116,7 @@ class AddressController extends CustomerController
         $customerAddress->delete();
 
         return response([
-            'message' => 'Item removed successfully.',
+            'message' => __('rest-api::app.customers.address-deleted'),
         ]);
     }
 }
