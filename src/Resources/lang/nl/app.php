@@ -40,6 +40,7 @@ return [
     'customers' => [
         'note-cannot-taken' => 'Notitie kan niet worden gemaakt.',
         'note-taken'        => 'Notitie gemaakt.',
+        'no-address'        => 'Geen adres gevonden.',
     ],
 
     'wishlist' => [

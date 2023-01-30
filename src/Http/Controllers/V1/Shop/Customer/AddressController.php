@@ -42,7 +42,7 @@ class AddressController extends CustomerController
         $addresses = $customer->addresses()->get();
 
         return response([
-            'data' => CustomerAddressResource::collection($addresses),
+            'data' => !$addresses->isEmpty() ? CustomerAddressResource::collection($addresses) : __('rest-api::app.customers.no-address'),
         ]);
     }
 
