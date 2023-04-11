@@ -40,6 +40,7 @@ return [
     'customers' => [
         'note-cannot-taken' => 'Note cannot be taken.',
         'note-taken'        => 'Note taken.',
+        'address-deleted'   => 'Address Deleted Successfully.',
     ],
 
     'wishlist' => [
