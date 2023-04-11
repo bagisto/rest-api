@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
 use Webkul\Core\Contracts\Validations\Slug;
 use Webkul\Core\Http\Requests\MassUpdateRequest;
@@ -57,7 +58,11 @@ class ProductController extends CatalogController
             'sku'                 => ['required', 'unique:products,sku', new Slug],
         ]);
 
+        Event::dispatch('catalog.product.create.before');
+
         $product = $this->getRepositoryInstance()->create($request->all());
+
+        Event::dispatch('catalog.product.create.after', $product);
 
         return response([
             'data'    => new ProductResource($product),
@@ -100,7 +105,11 @@ class ProductController extends CatalogController
             }
         }
 
+        Event::dispatch('catalog.product.update.before', $id);
+
         $product = $this->getRepositoryInstance()->update($data, $id);
+
+        Event::dispatch('catalog.product.update.after', $product);
 
         return response([
             'data'    => new ProductResource($product),
