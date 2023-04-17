@@ -25,6 +25,11 @@ class CheckoutController extends CustomerController
     {
         $data = $request->all();
 
+        if(! isset($data['shipping'])) {
+            return response()->json([
+                'message' => 'Please Enter the Shipping method.',
+            ],401);
+        }
         $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
 
         $data['shipping']['address1'] = implode(PHP_EOL, array_filter($data['shipping']['address1']));
