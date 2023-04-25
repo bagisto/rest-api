@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
     /**
      * Customer sale routes.
      */
-    Route::get('customer/orders', [OrderController::class, 'allResources']);
+    Route::get('customer/orders', [OrderController::class, 'getResources']);
 
     Route::get('customer/orders/{id}', [OrderController::class, 'getResource']);
 

@@ -3,7 +3,8 @@
 return [
     'sales' => [
         'orders' => [
-            'cancel-error' => 'Order can not be canceled.',
+            'cancel-error'    => 'Order can not be canceled.',
+            'order-not-found' => 'Order not found',
         ],
 
         'invoices' => [

@@ -3,7 +3,8 @@
 return [
     'sales' => [
         'orders' => [
-            'cancel-error' => 'Sipariş iptal edilemez.',
+            'cancel-error'    => 'Sipariş iptal edilemez.',
+            'order-not-found' => 'sipariş bulunamadı',
         ],
 
         'invoices' => [

@@ -45,7 +45,9 @@ class CheckoutController extends CustomerController
         }
 
         if (Cart::hasError() || ! Cart::saveCustomerAddress($data) || ! Shipping::collectRates()) {
-            abort(400);
+            return response()->json([
+                'message' => 'Cart is empty.',
+            ],401);
         }
 
         $rates = [];
@@ -82,7 +84,9 @@ class CheckoutController extends CustomerController
             || ! $shippingMethod
             || ! Cart::saveShippingMethod($shippingMethod)
         ) {
-            abort(400);
+            return response()->json([
+                'message' => 'Shipping method is not available.',
+            ],401);
         }
 
         Cart::collectTotals();
@@ -107,7 +111,9 @@ class CheckoutController extends CustomerController
         $payment = $request->get('payment');
 
         if (Cart::hasError() || ! $payment || ! Cart::savePaymentMethod($payment)) {
-            abort(400);
+            return response()->json([
+                'message' => 'Something went wrong.',
+            ],401);
         }
 
         return response([
@@ -147,7 +153,9 @@ class CheckoutController extends CustomerController
     public function saveOrder(OrderRepository $orderRepository)
     {
         if (Cart::hasError()) {
-            abort(400);
+            return response()->json([
+                'message' => 'cart is empty.',
+            ],401);
         }
 
         Cart::collectTotals();

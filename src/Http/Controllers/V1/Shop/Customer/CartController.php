@@ -22,7 +22,7 @@ class CartController extends CustomerController
         $cart = Cart::getCart();
 
         return response([
-            'data' => $cart ? new CartResource($cart) : null,
+            'data' => $cart ? new CartResource($cart) : "Cart is enpty",
         ]);
     }
 
@@ -196,7 +196,7 @@ class CartController extends CustomerController
         Cart::removeCouponCode()->collectTotals();
 
         return response([
-            'message' => __('rest-api::app.checkout.cart.coupon.remove'),
+            'message' => __('rest-api::app.checkout.cart.coupon.success-remove'),
         ]);
     }
 

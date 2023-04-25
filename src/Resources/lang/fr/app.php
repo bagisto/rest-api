@@ -3,7 +3,8 @@
 return [
     'sales' => [
         'orders' => [
-            'cancel-error' => 'La commande ne peut pas être annulée.',
+            'cancel-error'    => 'La commande ne peut pas être annulée.',
+            'order-not-found' => 'Commande introuvable',
         ],
 
         'invoices' => [

@@ -3,7 +3,8 @@
 return [
     'sales' => [
         'orders' => [
-            'cancel-error' => 'لا يمكن إلغاء الطلب.',
+            'cancel-error'    => 'لا يمكن إلغاء الطلب.',
+            'order-not-found' => 'الطلب غير موجود',
         ],
 
         'invoices' => [

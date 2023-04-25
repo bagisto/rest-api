@@ -3,7 +3,8 @@
 return [
     'sales' => [
         'orders' => [
-            'cancel-error' => 'Bestelling kan niet worden geannuleerd.',
+            'cancel-error'    => 'Bestelling kan niet worden geannuleerd.',
+            'order-not-found' => 'Bestelling niet gevonden',
         ],
 
         'invoices' => [

@@ -61,6 +61,12 @@ class TransactionController extends CustomerController
             $results = $query->get();
         }
 
+        if (! sizeof($results)) {
+            return response([
+                'messege' => 'No Transactions found',
+            ], 200);
+        }
+
         return $this->getResourceCollection($results);
     }
 
@@ -78,7 +84,13 @@ class TransactionController extends CustomerController
         $query = $this->getRepositoryInstance()->leftJoin('orders', 'order_transactions.order_id', '=', 'orders.id')
             ->select('order_transactions.*', 'orders.customer_id')
             ->where('customer_id', $this->resolveShopUser($request)->id)
-            ->findOrFail($id);
+            ->find($id);
+
+        if (! $query) {
+            return response([
+                'messege' => 'Data Not Found'
+            ]);
+        }
 
         return new $resourceClassName($query);
     }

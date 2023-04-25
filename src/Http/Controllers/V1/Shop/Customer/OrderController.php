@@ -46,7 +46,31 @@ class OrderController extends CustomerController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.error.something-went-wrong'),
+            'message' => __('rest-api::app.sales.orders.order-not-found'),
         ]);
+    }
+
+    public function getResources(Request $request) {
+        $order = $request->user()->all_orders()->get();
+
+        if (! sizeof($order)) {
+            return response([
+                'message' => "No orders found",
+            ]);
+        }
+
+        return $this->getResourceCollection($order);
+    }
+
+    public function getResource(Request $request, $id) {
+        $order = $request->user()->all_orders()->find($id)->get();
+
+        if (is_null($order)) {
+            return response([
+                'message' => "No orders found",
+            ]);
+        }
+
+        return $this->getResourceCollection($order);
     }
 }

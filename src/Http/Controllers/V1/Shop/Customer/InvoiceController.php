@@ -61,6 +61,12 @@ class InvoiceController extends CustomerController
             $results = $query->get();
         }
 
+        if (! sizeof($results)) {
+            return response([
+                'messege' => 'No Invoices found',
+            ], 200);
+        }
+
         return $this->getResourceCollection($results);
     }
 
