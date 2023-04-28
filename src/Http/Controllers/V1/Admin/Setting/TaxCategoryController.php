@@ -43,11 +43,7 @@ class TaxCategoryController extends SettingController
             'taxrates'    => 'array|required',
         ]);
 
-        $data = $request->all();
-
-        $taxCategory = $this->getRepositoryInstance()->create($data);
-
-        $this->getRepositoryInstance()->attachOrDetach($taxCategory, $data['taxrates']);
+        $taxCategory = $this->getRepositoryInstance()->create($request->all());
 
         return response([
             'data'    => new TaxCategoryResource($taxCategory),
@@ -71,13 +67,7 @@ class TaxCategoryController extends SettingController
             'taxrates'    => 'array|required',
         ]);
 
-        $data = $request->input();
-
-        $taxCategory = $this->getRepositoryInstance()->update($data, $id);
-
-        $taxRates = $data['taxrates'];
-
-        $this->getRepositoryInstance()->attachOrDetach($taxCategory, $taxRates);
+        $taxCategory = $this->getRepositoryInstance()->update($request->input(), $id);
 
         return response([
             'data'    => new TaxCategoryResource($taxCategory),
