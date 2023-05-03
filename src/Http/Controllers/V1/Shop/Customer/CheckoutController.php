@@ -27,9 +27,10 @@ class CheckoutController extends CustomerController
 
         if(! isset($data['shipping'])) {
             return response()->json([
-                'message' => 'Please Enter the Shipping method.',
-            ],401);
+                'message' => __('rest-api::app.checkout.enter-shipping-method'),
+            ], 401);
         }
+
         $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
 
         $data['shipping']['address1'] = implode(PHP_EOL, array_filter($data['shipping']['address1']));
@@ -46,8 +47,8 @@ class CheckoutController extends CustomerController
 
         if (Cart::hasError() || ! Cart::saveCustomerAddress($data) || ! Shipping::collectRates()) {
             return response()->json([
-                'message' => 'Cart is empty.',
-            ],401);
+                'message' => __('rest-api::app.checkout.cart.empty'),
+            ], 401);
         }
 
         $rates = [];
@@ -66,7 +67,7 @@ class CheckoutController extends CustomerController
                 'rates' => $rates,
                 'cart'  => new CartResource(Cart::getCart()),
             ],
-            'message' => 'Address saved successfully.',
+            'message' => __('rest-api::app.common-response.success.save-method', ['name' => 'Address']),
         ]);
     }
 
@@ -85,8 +86,8 @@ class CheckoutController extends CustomerController
             || ! Cart::saveShippingMethod($shippingMethod)
         ) {
             return response()->json([
-                'message' => 'Shipping method is not available.',
-            ],401);
+                'message' => __('rest-api::app.checkout.shipping-method-not-available'),
+            ], 401);
         }
 
         Cart::collectTotals();
@@ -96,7 +97,7 @@ class CheckoutController extends CustomerController
                 'methods' => Payment::getPaymentMethods(),
                 'cart'    => new CartResource(Cart::getCart()),
             ],
-            'message' => 'Shipping method saved successfully.',
+            'message' => __('rest-api::app.common-response.success.save-method', ['name' => 'Shipping method']),
         ]);
     }
 
@@ -112,7 +113,7 @@ class CheckoutController extends CustomerController
 
         if (Cart::hasError() || ! $payment || ! Cart::savePaymentMethod($payment)) {
             return response()->json([
-                'message' => 'Something went wrong.',
+                'message' => __('rest-api::app.common-response.error.something-went-wrong'),
             ],401);
         }
 
@@ -120,7 +121,7 @@ class CheckoutController extends CustomerController
             'data'    => [
                 'cart' => new CartResource(Cart::getCart()),
             ],
-            'message' => 'Payment method saved successfully.',
+            'message' => __('rest-api::app.common-response.success.save-method', ['name' => 'Payment method']),
         ]);
     }
 
@@ -154,8 +155,8 @@ class CheckoutController extends CustomerController
     {
         if (Cart::hasError()) {
             return response()->json([
-                'message' => 'cart is empty.',
-            ],401);
+                'message' => __('rest-api::app.checkout.cart.empty'),
+            ], 401);
         }
 
         Cart::collectTotals();
@@ -163,7 +164,6 @@ class CheckoutController extends CustomerController
         $this->validateOrder();
 
         $cart = Cart::getCart();
-
         if ($redirectUrl = Payment::getRedirectUrl($cart)) {
             return response([
                 'redirect_url' => $redirectUrl,
@@ -178,7 +178,7 @@ class CheckoutController extends CustomerController
             'data'    => [
                 'order' => new OrderResource($order),
             ],
-            'message' => 'Order saved successfully.',
+            'message' => __('rest-api::app.checkout.cart.save'),
         ]);
     }
 

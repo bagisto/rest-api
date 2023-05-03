@@ -35,18 +35,30 @@ return [
     'catalog' => [
         'products' => [
             'configurable-error' => 'Please select atleast one configurable attribute.',
+            'review'             => 'Your review submitted successfully.'
         ],
     ],
 
     'customers' => [
         'note-cannot-taken' => 'Note cannot be taken.',
         'note-taken'        => 'Note taken.',
-        'address-deleted'   => 'Address Deleted Successfully.',
+    ],
+
+    'account'  => [
+        'create'             => 'Your account has been updated successfully.',
+        'login'              => 'Logged in successfully.',
+        'logout'             => 'Logged out successfully.',
+        'invalid-credential' => 'The provided credentials are incorrect.',
     ],
 
     'wishlist' => [
         'moved'          => 'Item successfully moved To cart.',
         'option-missing' => 'Product options are missing, so item can not be moved to the wishlist.',
+    ],
+
+    'address' => [
+        'created' => 'Your address has been created successfully.',
+        'removed' => 'Address remove successfully',
     ],
 
     'checkout' => [
@@ -79,23 +91,31 @@ return [
                 'error'   => 'Cannot move item to wishlist, please try again later.',
                 'success' => 'Item moved to wishlist successfully.',
             ],
+
+            'empty'               => 'Cart is empty.',
+            'save'                => 'Order saved successfully.',
         ],
 
-        'minimum-order-message'   => 'Minimum order amount is :amount.',
-        'check-shipping-address'  => 'Please check shipping address.',
-        'check-billing-address'   => 'Please check billing address.',
-        'specify-shipping-method' => 'Please specify shipping method.',
-        'specify-payment-method'  => 'Please specify payment method.',
+        'minimum-order-message'         => 'Minimum order amount is :amount.',
+        'check-shipping-address'        => 'Please check shipping address.',
+        'check-billing-address'         => 'Please check billing address.',
+        'specify-shipping-method'       => 'Please specify shipping method.',
+        'specify-payment-method'        => 'Please specify payment method.',
+        'enter-shipping-method'         => 'Please Enter the shipping method',
+        'shipping-method-not-available' => 'Shipping method is not available',
     ],
 
     'common-response' => [
         'success' => [
-            'add'    => ':name added successfully.',
-            'cancel' => ':name canceled successfully.',
-            'create' => ':name created successfully.',
-            'delete' => ':name deleted successfully.',
-            'update' => ':name updated successfully.',
-            'upload' => ':name uploaded successfully.',
+            'add'         => ':name added successfully.',
+            'cancel'      => ':name canceled successfully.',
+            'create'      => ':name created successfully.',
+            'delete'      => ':name deleted successfully.',
+            'update'      => ':name updated successfully.',
+            'upload'      => ':name uploaded successfully.',
+            'remove'      => ':name removed from :place successfully.',
+            'not-found'   => ':name not found',
+            'save-method' => ':name saved successfully',
 
             'mass-operations' => [
                 'delete'  => 'Selected :name successfully deleted.',

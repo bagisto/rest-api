@@ -176,7 +176,7 @@ class ProductController extends CatalogController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.update', 'products'),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', [ 'name' => 'products']),
         ]);
     }
 }

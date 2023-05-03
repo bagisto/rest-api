@@ -21,8 +21,14 @@ class CartController extends CustomerController
     {
         $cart = Cart::getCart();
 
+        if(! count($cart)) {
+            return response([
+                'messege' => __('rest-api::app.checkout.cart.empty'),
+            ]);
+        }
+
         return response([
-            'data' => $cart ? new CartResource($cart) : "Cart is enpty",
+            'data' => $cart ? new CartResource($cart) : "null",
         ]);
     }
 

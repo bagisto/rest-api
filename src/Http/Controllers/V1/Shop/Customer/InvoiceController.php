@@ -61,9 +61,9 @@ class InvoiceController extends CustomerController
             $results = $query->get();
         }
 
-        if (! sizeof($results)) {
+        if (! count($results)) {
             return response([
-                'messege' => 'No Invoices found',
+                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Invoice']),
             ], 200);
         }
 
@@ -81,11 +81,17 @@ class InvoiceController extends CustomerController
     {
         $resourceClassName = $this->resource();
 
-        $query = $this->getRepositoryInstance()->leftJoin('orders', 'invoices.order_id', '=', 'orders.id')
+        $invoice = $this->getRepositoryInstance()->leftJoin('orders', 'invoices.order_id', '=', 'orders.id')
             ->select('invoices.*', 'orders.customer_id')
             ->where('customer_id', $this->resolveShopUser($request)->id)
-            ->findOrFail($id);
+            ->find($id);
 
-        return new $resourceClassName($query);
+        if(is_null($invoice)) {
+            return response([
+                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Invoice']),
+            ]);
+        }
+
+        return new $resourceClassName($invoice);
     }
 }

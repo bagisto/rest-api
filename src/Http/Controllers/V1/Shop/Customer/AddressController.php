@@ -10,23 +10,14 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerAddressResource;
 class AddressController extends CustomerController
 {
     /**
-     * Customer address repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerAddressRepository
-     */
-    protected $customerAddressRepository;
-
-    /**
      * Controller instance.
      *
-     * @param  CustomerAddressRepository  $customerAddressRepository
+     * @var \Webkul\Customer\Repositories\CustomerAddressRepository $customerAddressRepository
      * @return void
      */
-    public function __construct(CustomerAddressRepository $customerAddressRepository)
+    public function __construct(protected CustomerAddressRepository $customerAddressRepository) 
     {
         parent::__construct();
-        
-        $this->customerAddressRepository = $customerAddressRepository;
     }
 
     /**
@@ -62,7 +53,7 @@ class AddressController extends CustomerController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => 'Your address has been created successfully.',
+            'message' => __('rest-api::app.address.created'),
         ]);
     }
 
@@ -98,7 +89,7 @@ class AddressController extends CustomerController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => 'Your address has been updated successfully.',
+            'message' => __('rest-api::app.address.created'),
         ]);
     }
 
@@ -116,7 +107,7 @@ class AddressController extends CustomerController
         $customerAddress->delete();
 
         return response([
-            'message' => 'Item removed successfully.',
+            'message' => __('rest-api::app.address.removed'),
         ]);
     }
 }

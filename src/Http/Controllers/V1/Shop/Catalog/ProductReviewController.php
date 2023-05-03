@@ -57,7 +57,7 @@ class ProductReviewController extends CatalogController
 
         return response([
             'data'    => new ProductReviewResource($productReview),
-            'message' => 'Your review submitted successfully.',
+            'message' => __('rest-api::app.catalog.products.review'),
         ]);
     }
 }

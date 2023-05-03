@@ -53,9 +53,9 @@ class OrderController extends CustomerController
     public function getResources(Request $request) {
         $order = $request->user()->all_orders()->get();
 
-        if (! sizeof($order)) {
+        if (! count($order)) {
             return response([
-                'message' => "No orders found",
+                'message' => __('rest-api::app.sales.orders.order-not-found'),
             ]);
         }
 
@@ -63,14 +63,14 @@ class OrderController extends CustomerController
     }
 
     public function getResource(Request $request, $id) {
-        $order = $request->user()->all_orders()->find($id)->get();
+        $order = $request->user()->all_orders()->find($id);
 
         if (is_null($order)) {
             return response([
-                'message' => "No orders found",
+                'message' => __('rest-api::app.sales.orders.order-not-found'),
             ]);
         }
 
-        return $this->getResourceCollection($order);
+        return $this->getResourceCollection($order->get());
     }
 }

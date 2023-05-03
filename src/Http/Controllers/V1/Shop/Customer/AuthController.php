@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
@@ -18,20 +19,6 @@ class AuthController extends CustomerController
     use SendsPasswordResetEmails;
 
     /**
-     * Customer respository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerRepository
-     */
-    protected $customerRepository;
-
-    /**
-     * Customer group repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerGroupRepository
-     */
-    protected $customerGroupRepository;
-
-    /**
      * Controller instance.
      *
      * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
@@ -39,15 +26,11 @@ class AuthController extends CustomerController
      * @return void
      */
     public function __construct(
-        CustomerRepository $customerRepository,
-        CustomerGroupRepository $customerGroupRepository
+        protected CustomerRepository $customerRepository,
+        protected CustomerGroupRepository $customerGroupRepository
     ) {
         parent::__construct();
-
-        $this->customerRepository = $customerRepository;
-
-        $this->customerGroupRepository = $customerGroupRepository;
-    }
+     }
 
     /**
      * Register the customer.
@@ -73,9 +56,13 @@ class AuthController extends CustomerController
             'channel_id'        => core()->getCurrentChannel()->id,
             'customer_group_id' => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
         ]);
+        
+        if (core()->getConfigData('emails.general.notifications.emails.general.notifications.registration')) {
+            Mail::queue(new RegistrationEmail(request()->all(), 'customer'));
+        }
 
         return response([
-            'message' => 'Your account has been created successfully.',
+            'message' => __('rest-api::app.account.create'),
         ]);
     }
 
@@ -112,7 +99,7 @@ class AuthController extends CustomerController
 
             return response([
                 'data'    => new CustomerResource($customer),
-                'message' => 'Logged in successfully.',
+                'message' => __('rest-api::app.account.login'),
                 'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
             ]);
         }
@@ -122,12 +109,12 @@ class AuthController extends CustomerController
 
             return response([
                 'data'    => new CustomerResource($this->resolveShopUser($request)),
-                'message' => 'Logged in successfully.',
+                'message' => __('rest-api::app.customers.account.login'),
             ]);
         }
 
         return response([
-            'message' => 'Invalid Email or Password',
+            'message' => __('rest-api::app.account.invalid-credential'),
         ], 401);
     }
 
@@ -177,7 +164,7 @@ class AuthController extends CustomerController
 
         return response([
             'data'    => new CustomerResource($updatedCustomer),
-            'message' => 'Your account has been updated successfully.',
+            'message' => __('rest-api::app.account.create'),
         ]);
     }
 
@@ -196,7 +183,7 @@ class AuthController extends CustomerController
             : auth()->guard('customer')->logout();
 
         return response([
-            'message' => 'Logged out successfully.',
+            'message' => __('rest-api::app.account.logout'),
         ]);
     }
 

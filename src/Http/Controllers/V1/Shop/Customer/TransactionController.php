@@ -61,9 +61,9 @@ class TransactionController extends CustomerController
             $results = $query->get();
         }
 
-        if (! sizeof($results)) {
+        if (! count($results)) {
             return response([
-                'messege' => 'No Transactions found',
+                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Transactions'])
             ], 200);
         }
 
@@ -81,17 +81,17 @@ class TransactionController extends CustomerController
     {
         $resourceClassName = $this->resource();
 
-        $query = $this->getRepositoryInstance()->leftJoin('orders', 'order_transactions.order_id', '=', 'orders.id')
+        $transaction = $this->getRepositoryInstance()->leftJoin('orders', 'order_transactions.order_id', '=', 'orders.id')
             ->select('order_transactions.*', 'orders.customer_id')
             ->where('customer_id', $this->resolveShopUser($request)->id)
             ->find($id);
 
-        if (! $query) {
+        if (! $transaction) {
             return response([
-                'messege' => 'Data Not Found'
+                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Data'])
             ]);
         }
 
-        return new $resourceClassName($query);
+        return new $resourceClassName($transaction);
     }
 }

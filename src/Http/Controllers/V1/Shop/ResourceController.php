@@ -79,7 +79,7 @@ class ResourceController extends V1Controller implements ResourceContract
 
         if (! $resource) {
             return response([
-                'messege' => 'Data Not Found',
+                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Data']),
             ]);
         }
 
