@@ -17,7 +17,7 @@ class ExchangeRateResource extends JsonResource
         return [
             'id'              => $this->id,
             'rate'            => $this->rate,
-            'target_currency' => $this->target_currency,
+            'currency name'   => $this->currency()->first()->name,
             'created_at'      => $this->created_at,
             'updated_at'      => $this->updated_at,
         ];

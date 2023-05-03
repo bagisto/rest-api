@@ -18,7 +18,9 @@ class SliderResource extends JsonResource
             'id'        => $this->id,
             'title'     => $this->title,
             'image_url' => $this->image_url,
+            'channel'=> $this->channel()->first()->code,
             'content'   => $this->content,
+            'locale'    => $this->locale
         ];
     }
 }
