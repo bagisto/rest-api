@@ -23,7 +23,7 @@ class CartController extends CustomerController
 
         if(! count($cart)) {
             return response([
-                'messege' => __('rest-api::app.checkout.cart.empty'),
+                'message' => __('rest-api::app.checkout.cart.empty'),
             ]);
         }
 
