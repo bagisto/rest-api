@@ -10,41 +10,31 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerAddressResource;
 class AddressController extends CustomerController
 {
     /**
+     * Repository class name.
+     *
+     * @return string
+     */
+    public function repository()
+    {
+        return CustomerAddressRepository::class;
+    }
+
+    /**
+     * Resource class name.
+     *
+     * @return string
+     */
+    public function resource()
+    {
+        return CustomerAddressResource::class;
+    }
+
+    /**
      * Customer address repository instance.
      *
      * @var \Webkul\Customer\Repositories\CustomerAddressRepository
      */
     protected $customerAddressRepository;
-
-    /**
-     * Controller instance.
-     *
-     * @param  CustomerAddressRepository  $customerAddressRepository
-     * @return void
-     */
-    public function __construct(CustomerAddressRepository $customerAddressRepository)
-    {
-        parent::__construct();
-        
-        $this->customerAddressRepository = $customerAddressRepository;
-    }
-
-    /**
-     * Get customer addresses.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $customer = $this->resolveShopUser($request);
-
-        $addresses = $customer->addresses()->get();
-
-        return response([
-            'data' => CustomerAddressResource::collection($addresses),
-        ]);
-    }
 
     /**
      * Store address.
@@ -58,27 +48,11 @@ class AddressController extends CustomerController
         $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
         $data['customer_id'] = $this->resolveShopUser($request)->id;
 
-        $customerAddress = $this->customerAddressRepository->create($data);
+        $customerAddress = $this->getRepositoryInstance()->create($data);
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
             'message' => 'Your address has been created successfully.',
-        ]);
-    }
-
-    /**
-     * Show the specific adress.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show(Request $request, int $id)
-    {
-        $customerAddress = $this->resolveShopUser($request)->addresses()->find($id);
-
-        return response([
-            'data' => new CustomerAddressResource($customerAddress),
         ]);
     }
 
@@ -92,9 +66,10 @@ class AddressController extends CustomerController
     public function update(CustomerAddressRequest $request, int $id)
     {
         $data = $request->all();
+        
         $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
 
-        $customerAddress = $this->customerAddressRepository->update($data, $id);
+        $customerAddress = $this->getRepositoryInstance()->update($data, $id);
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),

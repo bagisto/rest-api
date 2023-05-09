@@ -49,7 +49,7 @@ class ProductResource extends JsonResource
             'type'               => $product->type,
             'name'               => $product->name,
             'url_key'            => $product->url_key,
-            'price'              => $productTypeInstance->getMinimalPrice(),
+            'price'              => core()->convertPrice($productTypeInstance->getMinimalPrice()),
             'formatted_price'    => core()->currency($productTypeInstance->getMinimalPrice()),
             'short_description'  => $product->short_description,
             'description'        => $product->description,
@@ -102,20 +102,20 @@ class ProductResource extends JsonResource
 
         return [
             'special_price'           => $this->when(
-                $productTypeInstance ->haveDiscount(),
-                $productTypeInstance->getMinimalPrice()
+                $productTypeInstance ->haveSpecialPrice(),
+                core()->convertPrice($productTypeInstance->getMinimalPrice())
             ),
             'formatted_special_price' => $this->when(
-                $productTypeInstance->haveDiscount(),
+                $productTypeInstance->haveSpecialPrice(),
                 core()->currency($productTypeInstance->getMinimalPrice())
             ),
             'regular_price'           => $this->when(
-                $productTypeInstance->haveDiscount(),
+                $productTypeInstance->haveSpecialPrice(),
                 data_get($productTypeInstance->getProductPrices(), 'regular_price.price')
             ),
             'formatted_regular_price' => $this->when(
-                $productTypeInstance->haveDiscount(),
-                data_get($productTypeInstance->getProductPrices(), 'regular_price.formatted_price')
+                $productTypeInstance->haveSpecialPrice(),
+                data_get($productTypeInstance->getProductPrices(), 'regular_price.formated_price')
             ),
         ];
     }
