@@ -63,7 +63,7 @@ class InvoiceController extends CustomerController
 
         if (! count($results)) {
             return response([
-                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Invoice']),
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => 'Invoice']),
             ], 200);
         }
 
@@ -86,9 +86,9 @@ class InvoiceController extends CustomerController
             ->where('customer_id', $this->resolveShopUser($request)->id)
             ->find($id);
 
-        if(is_null($invoice)) {
+        if (! $invoice) {
             return response([
-                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Invoice']),
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => 'Invoice']),
             ]);
         }
 
