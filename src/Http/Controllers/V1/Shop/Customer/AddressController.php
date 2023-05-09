@@ -12,10 +12,12 @@ class AddressController extends CustomerController
     /**
      * Controller instance.
      *
-     * @var \Webkul\Customer\Repositories\CustomerAddressRepository $customerAddressRepository
+     * @param  \Webkul\Customer\Repositories\CustomerAddressRepository  $customerAddressRepository
      * @return void
      */
-    public function __construct(protected CustomerAddressRepository $customerAddressRepository) 
+    public function __construct(
+        protected CustomerAddressRepository $customerAddressRepository
+    ) 
     {
         parent::__construct();
     }
