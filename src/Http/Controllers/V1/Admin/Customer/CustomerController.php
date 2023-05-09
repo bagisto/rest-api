@@ -66,7 +66,7 @@ class CustomerController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerResource($customer),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Customer']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.customer')]),
         ]);
     }
 
@@ -95,7 +95,7 @@ class CustomerController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerResource($customer),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Customer']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.customer')]),
         ]);
     }
 
@@ -107,18 +107,24 @@ class CustomerController extends CustomerBaseController
      */
     public function destroy($id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->find($id);
+
+        if (! $customer) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
+            ]);
+        }
 
         if (! $this->getRepositoryInstance()->checkIfCustomerHasOrderPendingOrProcessing($customer)) {
             $this->getRepositoryInstance()->delete($id);
 
             return response([
-                'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Customer']),
+                'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.customer')]),
             ]);
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.error.order-pending-account-delete', ['name' => 'Customer']),
+            'message' => __('rest-api::app.common-response.error.order-pending-account-delete', ['name' => __('rest-api::app.common-response.general.customer')]),
         ], 400);
     }
 
@@ -137,7 +143,7 @@ class CustomerController extends CustomerBaseController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'customers']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => __('rest-api::app.common-response.general.customers')]),
         ]);
     }
 
@@ -159,11 +165,11 @@ class CustomerController extends CustomerBaseController
             }
 
             return response([
-                'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'customers']),
+                'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => __('rest-api::app.common-response.general.customers')]),
             ]);
         }
 
-        return response(['message' => __('rest-api::app.common-response.error.order-pending-account-delete', ['name' => 'Customers'])], 400);
+        return response(['message' => __('rest-api::app.common-response.error.order-pending-account-delete', ['name' => __('rest-api::app.common-response.general.customers')])], 400);
     }
 
     /**
@@ -174,7 +180,21 @@ class CustomerController extends CustomerBaseController
      */
     public function orders($id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->find($id);
+
+        // Need to improve to add messege No customer found
+        if (! $customer) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
+            ]);
+        }
+
+        // the data is comming in blank array so i am using sizeof method for getting the length of the array
+        if (! sizeof($customer->all_orders)) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.data')])
+            ]);
+        }
 
         return response([
             'data' => $customer->all_orders,
@@ -189,7 +209,20 @@ class CustomerController extends CustomerBaseController
      */
     public function invoices($id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->find($id);
+
+        if (! $customer) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
+            ]);
+        }
+
+        // Receive data in blank array so I am using sizeof method for getting the length of the array
+        if (! sizeof($customer->all_orders)) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.data')])
+            ]);
+        }
 
         return response([
             'data' => $customer->all_orders,
@@ -209,7 +242,13 @@ class CustomerController extends CustomerBaseController
             'notes' => 'string|nullable',
         ]);
 
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->find($id);
+
+        if (! $customer) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
+            ]);
+        }
 
         if ($customer->update(['notes' => $request->input('notes')])) {
             return response([

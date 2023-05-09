@@ -33,7 +33,7 @@ class CustomerMiddleware
         /**
          * This is for token based authentication.
          */
-        if ($request->user()?->tokenCan('role:customer')) {
+        if ($request->user()?->tokenCan('role:customer') && $request->header('accept') == 'application/json') {
             return $next($request);
         }
 

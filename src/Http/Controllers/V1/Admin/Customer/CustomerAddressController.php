@@ -59,7 +59,13 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function index($customerId)
     {
-        $customer = $this->customerRepository->findOrFail($customerId);
+        $customer = $this->customerRepository->find($customerId);
+
+        if (! $customer) {
+            return response([
+                'message'  => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')]),
+            ]);
+        }
 
         return response([
             'data' => $this->getResourceCollection($customer->addresses),
@@ -95,7 +101,7 @@ class CustomerAddressController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Customer address']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.customer-address')]),
         ]);
     }
 
@@ -108,9 +114,21 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function show($customerId, $id)
     {
-        $customer = $this->customerRepository->findOrFail($customerId);
+        $customer = $this->customerRepository->find($customerId);
 
-        $address = $customer->addresses()->findOrFail($id);
+        if (! $customer) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')]),
+            ]);
+        }
+
+        $address = $customer->addresses()->find($id);
+
+        if (! $address) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-address')]),
+            ]);
+        }
 
         return response([
             'data' => new CustomerAddressResource($address),
@@ -143,13 +161,19 @@ class CustomerAddressController extends CustomerBaseController
             'vat_id'       => new VatIdRule(),
         ]);
 
-        $this->getRepositoryInstance()->findOrFail($id);
+        $customer = $this->getRepositoryInstance()->find($id);
+
+        if (! $customer) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-address')])
+            ]);
+        }
 
         $customerAddress = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Customer address']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.customer-address')]),
         ]);
     }
 
@@ -164,12 +188,24 @@ class CustomerAddressController extends CustomerBaseController
     {
         $customer = $this->customerRepository->findOrFail($customerId);
 
-        $customer->addresses()->findOrFail($id);
+        if (! $customer) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
+            ]);
+        }
+
+        $customer_address = $customer->addresses()->find($id);
+
+        if (! $customer_address) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-address')])
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Customer address']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.customer-address')]),
         ]);
     }
 
@@ -191,7 +227,7 @@ class CustomerAddressController extends CustomerBaseController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'customer addresses']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => __('rest-api::app.common-response.general.customer-address')]),
         ]);
     }
 }

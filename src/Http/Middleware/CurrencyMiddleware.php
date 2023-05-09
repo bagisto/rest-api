@@ -36,6 +36,12 @@ class CurrencyMiddleware
     {
         $currencyCode = $request->header('x-currency');
 
+        if ($request->header('accept') != 'application/json') {
+            return response([
+                'message' => 'Not Authorized',
+            ]);
+        }
+
         if ($currencyCode && $this->currencyRepository->findOneByField('code', $currencyCode)) {
             core()->setCurrency($currencyCode);
 

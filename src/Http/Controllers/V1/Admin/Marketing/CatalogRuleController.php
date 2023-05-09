@@ -74,7 +74,7 @@ class CatalogRuleController extends MarketingController
 
         return response([
             'data'    => new CatalogRuleResource($catalogRule),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Catalog rule']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.catalog-rule')]),
         ]);
     }
 
@@ -97,7 +97,13 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
-        $this->getRepositoryInstance()->findOrFail($id);
+        $catalogRule = $this->getRepositoryInstance()->find($id);
+
+        if (! $catalogRule) {
+             return response([
+                'message' => __('rest-api::app.common-response.success.not-found',['name' => __('rest-api::app.common-response.general.catalog-rule')]),
+             ]);
+        }
 
         $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
 
@@ -105,7 +111,7 @@ class CatalogRuleController extends MarketingController
 
         return response([
             'data'    => new CatalogRuleResource($catalogRule),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Catalog rule']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.catalog-rule')]),
         ]);
     }
 
@@ -117,12 +123,18 @@ class CatalogRuleController extends MarketingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $catalogRule = $this->getRepositoryInstance()->find($id);
+
+        if (! $catalogRule) {
+            return response([
+               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.catalog-rule')]),
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Catalog rule']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.catalog-rule')]),
         ]);
     }
 }

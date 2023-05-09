@@ -124,5 +124,21 @@ return [
                 'resource-not-found' => 'Seleccionada :name no encontrado.',
             ],
         ],
+
+        'general' => [
+            'customer'          => 'Cliente',
+            'customers'         => 'Clientes',
+            'data'              => 'Datos',
+            'customer-review'   => 'Opinión del cliente',
+            'review'            => 'Opinión',
+            'reviews'           => 'Opiniones',
+            'customer-group'    => 'Grupo de clientes',
+            'customer-address'  => 'Dirección del cliente',
+            'campaign'          => 'Campaña',
+            'cart-rule'         => 'Regla del carrito',
+            'cart-rule-coupon'  => 'Cupón de regla del carrito',
+            'cart-rule-coupons' => 'Cupones de regla del carrito',
+            'catalog-rule'      => 'Regla del catálogo',
+            ]
     ],
 ];

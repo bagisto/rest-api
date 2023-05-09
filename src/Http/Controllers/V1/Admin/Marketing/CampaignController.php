@@ -48,7 +48,7 @@ class CampaignController extends MarketingController
 
         return response([
             'data'    => new CampaignResource($campaign),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Campaign']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.campaign')]),
         ]);
     }
 
@@ -73,7 +73,7 @@ class CampaignController extends MarketingController
 
         return response([
             'data'    => new CampaignResource($campaign),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Campaign']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.campaign')]),
         ]);
     }
 
@@ -85,12 +85,18 @@ class CampaignController extends MarketingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $campaign = $this->getRepositoryInstance()->find($id);
+
+        if (! $campaign) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.campaign')]),
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Campaign']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.campaign')]),
         ]);
     }
 }

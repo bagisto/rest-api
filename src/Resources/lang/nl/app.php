@@ -124,5 +124,21 @@ return [
                 'resource-not-found' => 'Geselecteerd :name niet gevonden.',
             ],
         ],
+
+        'general' => [
+            'customer'          => 'Klant',
+            'customers'         => 'Klanten',
+            'data'              => 'Gegevens',
+            'customer-review'   => 'Klantbeoordeling',
+            'review'            => 'Beoordeling',
+            'reviews'           => 'Beoordelingen',
+            'customer-group'    => 'Klantengroep',
+            'customer-address'  => 'Klantadres',
+            'campaign'          => 'Campagne',
+            'cart-rule'         => 'Winkelwagenregel',
+            'cart-rule-coupon'  => 'Winkelwagenregel coupon',
+            'cart-rule-coupons' => 'Winkelwagenregel coupons',
+            'catalog-rule'      => 'Catalogusregel',
+        ]
     ],
 ];

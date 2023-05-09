@@ -123,6 +123,22 @@ return [
             'mass-operations' => [
                 'resource-not-found' => 'Seçildi :name bulunamadı.',
             ],
+
+            'general' => [
+                'customer'          => 'Müşteri',
+                'customers'         => 'Müşteriler',
+                'data'              => 'Veri',
+                'customer-review'   => 'Müşteri İncelemesi',
+                'review'            => 'İnceleme',
+                'reviews'           => 'İncelemeler',
+                'customer-group'    => 'Müşteri Grubu',
+                'customer-address'  => 'Müşteri Adresi',
+                'campaign'          => 'Kampanya',
+                'cart-rule'         => 'Sepet Kuralı',
+                'cart-rule-coupon'  => 'Sepet Kuralı Kuponu',
+                'cart-rule-coupons' => 'Sepet Kuralı Kuponları',
+                'catalog-rule'      => 'Katalog Kuralı',
+            ]
         ],
     ],
 ];

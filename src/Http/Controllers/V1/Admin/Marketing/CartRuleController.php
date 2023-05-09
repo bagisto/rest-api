@@ -55,7 +55,7 @@ class CartRuleController extends MarketingController
 
         return response([
             'data'    => new CartRuleResource($cartRule),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Cart rule']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.cart-rule')]),
         ]);
     }
 
@@ -80,7 +80,14 @@ class CartRuleController extends MarketingController
             'discount_amount'     => 'required|numeric',
         ]);
 
-        $cartRule = $this->getRepositoryInstance()->findOrFail($id);
+        $cartRule = $this->getRepositoryInstance()->find($id);
+
+        if (! $cartRule) {
+            return response([
+                'data'    => new CartRuleResource($cartRule),
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.cart-rule')]),
+            ]);
+        }
 
         if ($cartRule->coupon_type) {
             if ($cartRule->cart_rule_coupon) {
@@ -98,7 +105,7 @@ class CartRuleController extends MarketingController
 
         return response([
             'data'    => new CartRuleResource($cartRule),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Cart rule']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.cart-rule')]),
         ]);
     }
 
@@ -110,12 +117,18 @@ class CartRuleController extends MarketingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $cart_rule = $this->getRepositoryInstance()->find($id);
+
+        if (! $cart_rule) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.cart-rule')]),
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Cart rule']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.cart-rule')]),
         ]);
     }
 }

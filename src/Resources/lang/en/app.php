@@ -144,5 +144,21 @@ return [
                 'resource-not-found' => 'Selected :name not found.',
             ],
         ],
+
+        'general' => [
+            'customer'          => 'Customer',
+            'customers'         => 'Customers',
+            'data'              => 'Data', 
+            'customer-review'   => 'Customer Review',
+            'review'            => 'Review',
+            'reviews'           => 'Reviews',
+            'customer-group'    => 'Customer group',   
+            'customer-address'  => 'Customer address',
+            'campaign'          => 'Campaign',
+            'cart-rule'         => 'Cart rule',
+            'cart-rule-coupon'  => 'Cart rule coupon',
+            'cart-rule-coupons' => 'Cart rule coupons',
+            'catalog-rule'      => 'Catalog rule',
+        ]
     ],
 ];

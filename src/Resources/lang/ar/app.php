@@ -124,5 +124,21 @@ return [
                 'resource-not-found' => ':name الاسم غير موجود.',
             ],
         ],
+
+        'general' => [
+            'customer'          => 'العميل',
+            'customers'         => 'العملاء',
+            'data'              => 'البيانات',
+            'customer-review'   => 'تقييم العملاء',
+            'review'            => 'تقييم',
+            'reviews'           => 'تقييمات',
+            'customer-group'    => 'مجموعة العملاء',
+            'customer-address'  => 'عنوان العميل',
+            'campaign'          => 'حملة إعلانية',
+            'cart-rule'         => 'قاعدة السلة',
+            'cart-rule-coupon'  => 'كوبون قاعدة السلة',
+            'cart-rule-coupons' => 'كوبونات قاعدة السلة',
+            'catalog-rule'      => 'قاعدة الكتالوج',
+            ]
     ],
 ];

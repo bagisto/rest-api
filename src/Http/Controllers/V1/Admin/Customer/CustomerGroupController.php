@@ -49,7 +49,7 @@ class CustomerGroupController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerGroupResource($customerGroup),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Customer group']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest::api.common-response.general.customer-group')]),
         ]);
     }
 
@@ -67,13 +67,19 @@ class CustomerGroupController extends CustomerBaseController
             'name' => 'required',
         ]);
 
-        $this->getRepositoryInstance()->findOrFail($id);
+        $customer_group = $this->getRepositoryInstance()->find($id);
+
+        if (! $customer_group) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-group')]),
+            ]);
+        }
 
         $customerGroup = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
             'data'    => new CustomerGroupResource($customerGroup),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Customer group']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.customer-group')]),
         ]);
     }
 
@@ -95,14 +101,14 @@ class CustomerGroupController extends CustomerBaseController
 
         if (count($customerGroup->customers) > 0) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'Customer group', 'source' => 'customer']),
+                'message' => __('rest-api::app.common-response.error.being-used', ['name' => __('rest-api::app.common-response.general.customer-group'), 'source' => __('rest-api::app.common-response.general.customer')]),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Customer group']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.customer-group')]),
         ]);
     }
 }
