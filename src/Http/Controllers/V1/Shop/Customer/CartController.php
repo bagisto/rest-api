@@ -21,14 +21,14 @@ class CartController extends CustomerController
     {
         $cart = Cart::getCart();
 
-        if(! count($cart)) {
+        if($cart) {
             return response([
                 'message' => __('rest-api::app.checkout.cart.empty'),
             ]);
         }
 
         return response([
-            'data' => $cart ? new CartResource($cart) : "null",
+            'data' => $cart ? new CartResource($cart) : null,
         ]);
     }
 

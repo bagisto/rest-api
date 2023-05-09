@@ -26,8 +26,8 @@ class CategoryResource extends JsonResource
             'meta_title'         => $this->meta_title,
             'meta_description'   => $this->meta_description,
             'meta_keywords'      => $this->meta_keywords,
-            'visible in menu'    => $this->status,
-            'Number of product'  => $this->products()->count(),
+            'visible_in_menu'    => $this->status,
+            'number_of_product'  => $this->products()->count(),
             'image_url'          => $this->image_url,
             'category_icon_path' => $this->category_icon_path
                 ? Storage::url($this->category_icon_path)

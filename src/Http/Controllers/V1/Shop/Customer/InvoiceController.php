@@ -61,7 +61,7 @@ class InvoiceController extends CustomerController
             $results = $query->get();
         }
 
-        if (! count($results)) {
+        if (! $results) {
             return response([
                 'message' => __('rest-api::app.common-response.success.not-found', ['name' => 'Invoice']),
             ], 200);

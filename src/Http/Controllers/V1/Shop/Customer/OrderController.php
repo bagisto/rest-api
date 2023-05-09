@@ -50,10 +50,16 @@ class OrderController extends CustomerController
         ]);
     }
 
+     /**
+     * get all customer's order.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function getResources(Request $request) {
         $order = $request->user()->all_orders()->get();
 
-        if (! count($order)) {
+        if (! $order) {
             return response([
                 'message' => __('rest-api::app.sales.orders.order-not-found'),
             ]);
@@ -62,10 +68,18 @@ class OrderController extends CustomerController
         return $this->getResourceCollection($order);
     }
 
+
+    /**
+     * get customer's order by id.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function getResource(Request $request, $id) {
         $order = $request->user()->all_orders()->find($id);
 
-        if (is_null($order)) {
+        if (! $order) {
             return response([
                 'message' => __('rest-api::app.sales.orders.order-not-found'),
             ]);

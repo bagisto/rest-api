@@ -61,9 +61,9 @@ class TransactionController extends CustomerController
             $results = $query->get();
         }
 
-        if (! count($results)) {
+        if (! $results) {
             return response([
-                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Transactions'])
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => 'Transactions'])
             ], 200);
         }
 
@@ -88,7 +88,7 @@ class TransactionController extends CustomerController
 
         if (! $transaction) {
             return response([
-                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => 'Data'])
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => 'Data'])
             ]);
         }
 
