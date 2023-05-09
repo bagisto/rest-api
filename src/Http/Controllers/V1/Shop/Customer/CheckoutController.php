@@ -25,7 +25,7 @@ class CheckoutController extends CustomerController
     {
         $data = $request->all();
 
-        if(! isset($data['shipping'])) {
+        if (! isset($data['shipping'])) {
             return response()->json([
                 'message' => __('rest-api::app.checkout.enter-shipping-method'),
             ], 401);
