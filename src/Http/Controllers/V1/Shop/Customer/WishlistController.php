@@ -87,6 +87,7 @@ class WishlistController extends CustomerController
             'channel_id'  => core()->getCurrentChannel()->id,
             'product_id'  => $id,
             'customer_id' => $customer->id,
+            'additional'  => $request->input('additional') ?? null
         ]);
 
         return response([
@@ -111,6 +112,14 @@ class WishlistController extends CustomerController
             'product_id'  => $id,
             'customer_id' => $customer->id,
         ]);
+
+        if (! $wishlistItem) {
+            return response([
+                'message' => __('rest-api::app.common-response.error.mass-operations.resource-not-found', [
+                    'name' => 'Wishlist product'
+                ]),
+            ], 400);
+        }
 
         if ($wishlistItem->customer_id != $customer->id) {
             return response([
