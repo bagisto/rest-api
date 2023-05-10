@@ -55,7 +55,7 @@ class SliderController extends SettingController
 
         if ($result) {
             return response([
-                'message' => __('rest-api::app.common-response.success.create', ['name' => 'Slider']),
+                'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.slider')]),
             ]);
         }
 
@@ -93,12 +93,20 @@ class SliderController extends SettingController
                 'message' => __('rest-api::app.common-response.error.something-went-wrong'),
             ], 500);
         }
+        
+        $slider = $this->getRepositoryInstance()->find($id);
+
+        if (! $slider) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.slider')]),
+            ]);
+        }
 
         $result = $this->getRepositoryInstance()->updateItem($data, $id);
 
         if ($result) {
             return response([
-                'message' => __('rest-api::app.common-response.success.update', ['name' => 'Slider']),
+                'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.slider')]),
             ]);
         }
 
@@ -115,12 +123,18 @@ class SliderController extends SettingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $slider = $this->getRepositoryInstance()->find($id);
+
+        if (! $slider) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.slider')]),
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Slider']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.slider')]),
         ]);
     }
 }

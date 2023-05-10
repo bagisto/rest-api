@@ -46,7 +46,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Role']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.role')]),
         ]);
     }
 
@@ -70,11 +70,20 @@ class RoleController extends SettingController
         /**
          * Check for other admins if the role has been changed from all to custom.
          */
-        $isChangedFromAll = $params['permission_type'] == 'custom' && $this->getRepositoryInstance()->find($id)->permission_type == 'all';
+
+        $role = $this->getRepositoryInstance()->find($id);
+
+        if (! $role) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.role')]),
+            ]);
+        }
+
+        $isChangedFromAll = $params['permission_type'] == 'custom' && $role->permission_type == 'all';
 
         if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                'message' => __('rest-api::app.common-response.error.being-used', ['name' => __('rest-api::app.common-response.general.role'), 'source' => __('rest-api::app.common-response.general.admin-user')]),
             ], 400);
         }
 
@@ -82,7 +91,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Role']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.role')]),
         ]);
     }
 
@@ -94,24 +103,30 @@ class RoleController extends SettingController
      */
     public function destroy($id)
     {
-        $role = $this->getRepositoryInstance()->findOrFail($id);
+        $role = $this->getRepositoryInstance()->find($id);
+
+        if (! $role) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.role')]),
+            ]);
+        }
 
         if ($role->admins->count() >= 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                'message' => __('rest-api::app.common-response.error.being-used', ['name' => __('rest-api::app.common-response.general.role'), 'source' => __('rest-api::app.common-response.general.admin-user')]),
             ], 400);
         }
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'role']),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => __('rest-api::app.common-response.general.role')]),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Role']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.role')]),
         ]);
     }
 }

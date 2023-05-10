@@ -47,7 +47,7 @@ class TaxCategoryController extends SettingController
 
         return response([
             'data'    => new TaxCategoryResource($taxCategory),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Tax category']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.tax-category')]),
         ]);
     }
 
@@ -67,11 +67,19 @@ class TaxCategoryController extends SettingController
             'taxrates'    => 'array|required',
         ]);
 
+        $taxCategory = $this->getRepositoryInstance()->find($id);
+
+        if (! $taxCategory) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.tax-category')]),
+            ]);
+        }
+
         $taxCategory = $this->getRepositoryInstance()->update($request->input(), $id);
 
         return response([
             'data'    => new TaxCategoryResource($taxCategory),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Tax category']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.tax-category')]),
         ]);
     }
 
@@ -83,12 +91,18 @@ class TaxCategoryController extends SettingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $taxCategory = $this->getRepositoryInstance()->find($id);
+
+        if (! $taxCategory) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.tax-category')]),
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Tax category']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.tax-category')]),
         ]);
     }
 }

@@ -15,9 +15,9 @@ class TaxRateResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'         => $this->id,
+            'id'         => "$this->id",
             'identifier' => $this->identifier,
-            'is_zip'     => $this->is_zip,
+            'is_zip'     => "$this->is_zip",
             'zip_code'   => $this->zip_code,
             'zip_from'   => $this->zip_from,
             'zip_to'     => $this->zip_to,

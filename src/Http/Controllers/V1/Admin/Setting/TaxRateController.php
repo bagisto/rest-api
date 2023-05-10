@@ -58,7 +58,7 @@ class TaxRateController extends SettingController
 
         return response([
             'data'    => new TaxRateResource($taxRate),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Tax rate']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.tax-rate')]),
         ]);
     }
 
@@ -80,11 +80,19 @@ class TaxRateController extends SettingController
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
 
+        $taxRate = $this->getRepositoryInstance()->find($id);
+
+        if (! $taxRate) {
+            return response([
+               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.tax-rate')]),
+            ]);
+        }
+
         $taxRate = $this->getRepositoryInstance()->update($request->input(), $id);
 
         return response([
             'data'    => new TaxRateResource($taxRate),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Tax rate']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.tax-rate')]),
         ]);
     }
 
@@ -96,12 +104,18 @@ class TaxRateController extends SettingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $taxRate = $this->getRepositoryInstance()->find($id);
+
+        if (! $taxRate) {
+            return response([
+               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.tax-rate')]),
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Tax rate']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.tax-rate')]),
         ]);
     }
 }

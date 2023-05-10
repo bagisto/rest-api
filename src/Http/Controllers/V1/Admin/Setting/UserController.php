@@ -48,7 +48,7 @@ class UserController extends SettingController
 
         return response([
             'user'    => new UserResource($admin),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'User']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.user')]),
         ]);
     }
 
@@ -71,7 +71,7 @@ class UserController extends SettingController
 
         return response([
             'user'    => new UserResource($admin),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'User']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.user')]),
         ]);
     }
 
@@ -83,18 +83,24 @@ class UserController extends SettingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $user = $this->getRepositoryInstance()->find($id);
+
+        if (! $user) {
+            return response([
+               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.user')]),
+            ]);
+        }
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'admin']),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => __('rest-api::app.common-response.general.admin')]),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Admin']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.admin')]),
         ]);
     }
 
@@ -109,7 +115,13 @@ class UserController extends SettingController
     {
         $data = $request->validated();
 
-        $user = $this->getRepositoryInstance()->findOrFail($id);
+        $user = $this->getRepositoryInstance()->find($id);
+
+        if (! $user) {
+            return response([
+               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.user')]),
+            ]);
+        }
 
         /**
          * Password check.

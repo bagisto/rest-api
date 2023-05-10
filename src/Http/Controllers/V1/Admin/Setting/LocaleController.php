@@ -46,7 +46,7 @@ class LocaleController extends SettingController
 
         return response([
             'data'    => new LocaleResource($locale),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Locale']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.locale')]),
         ]);
     }
 
@@ -65,11 +65,19 @@ class LocaleController extends SettingController
             'direction' => 'in:ltr,rtl',
         ]);
 
+        $locale = $this->getRepositoryInstance()->find($id);
+
+        if (! $locale) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.locale')]),
+            ]);
+        }
+
         $locale = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
             'data'    => new LocaleResource($locale),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Locale']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.locale')]),
         ]);
     }
 
@@ -81,18 +89,24 @@ class LocaleController extends SettingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $locale = $this->getRepositoryInstance()->find($id);
+
+        if (! $locale) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.locale')]),
+            ]);
+        }
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'locale']),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => __('rest-api::app.common-response.general.locale')]),
             ]);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Locale']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.locale')]),
         ]);
     }
 }
