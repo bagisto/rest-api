@@ -75,7 +75,7 @@ class ChannelController extends SettingController
 
         return response([
             'data'    => new ChannelResource($channel),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Channel']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.channel')]),
         ]);
     }
 
@@ -125,6 +125,14 @@ class ChannelController extends SettingController
 
         $data = $this->setSEOContent($data, $locale);
 
+        $channel = $this->getRepositoryInstance()->find($id);
+
+        if (! $channel) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.channel')])
+            ]);
+        }
+
         $channel = $this->getRepositoryInstance()->update($data, $id);
 
         if ($channel->base_currency->code !== session()->get('currency')) {
@@ -133,7 +141,7 @@ class ChannelController extends SettingController
 
         return response([
             'data'    => new ChannelResource($channel),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Channel']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => ['name' => __('rest-api::app.common-response.general.channel')]]),
         ]);
     }
 
@@ -145,18 +153,24 @@ class ChannelController extends SettingController
      */
     public function destroy($id)
     {
-        $channel = $this->getRepositoryInstance()->findOrFail($id);
+        $channel = $this->getRepositoryInstance()->find($id);
+
+        if (! $channel) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.channel')])
+            ]);
+        }
 
         if ($channel->code == config('app.channel')) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'channel']),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => __('rest-api::app.common-response.general.channel')]),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Channel']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.channel')]),
         ]);
     }
 

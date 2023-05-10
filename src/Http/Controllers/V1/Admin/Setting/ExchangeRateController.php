@@ -45,7 +45,7 @@ class ExchangeRateController extends SettingController
 
         return response([
             'data'    => new ExchangeRateResource($exchangeRate),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Exchange rate']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.exchange-rate')]),
         ]);
     }
 
@@ -62,6 +62,14 @@ class ExchangeRateController extends SettingController
             'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,' . $id],
             'rate'            => 'required|numeric',
         ]);
+
+        $exchangeRate = $this->getRepositoryInstance()->find($id);
+
+        if (! $exchangeRate) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.exchange-rate')])
+            ]);
+        }
 
         $exchangeRate = $this->getRepositoryInstance()->update($request->all(), $id);
 
@@ -82,7 +90,7 @@ class ExchangeRateController extends SettingController
             app(config('services.exchange-api.' . config('services.exchange-api.default') . '.class'))->updateRates();
 
             return response([
-                'message' => __('rest-api::app.common-response.success.update', ['name' => 'Rate']),
+                'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.rate')]),
             ]);
         } catch (\Exception $e) {
             return response([
@@ -99,12 +107,18 @@ class ExchangeRateController extends SettingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $exchangeRate = $this->getRepositoryInstance()->find($id);
+
+        if (! $exchangeRate) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.exchange-rate')])
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Exchange rate']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.exchange-rate')]),
         ]);
     }
 }

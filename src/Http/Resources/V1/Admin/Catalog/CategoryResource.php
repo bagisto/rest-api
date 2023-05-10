@@ -16,18 +16,18 @@ class CategoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                 => $this->id,
+            'id'                 => "$this->id",
             'name'               => $this->name,
             'parent_id'          => $this->parent_id,
             'slug'               => $this->slug,
-            'position'           => $this->position,
+            'position'           => "$this->position",
             'display_mode'       => $this->display_mode,
             'description'        => $this->description,
             'meta_title'         => $this->meta_title,
             'meta_description'   => $this->meta_description,
             'meta_keywords'      => $this->meta_keywords,
-            'visible_in_menu'    => $this->status,
-            'number_of_product'  => $this->products()->count(),
+            'visible_in_menu'    => "$this->status",
+            'number_of_product'  => "$this->products()->count()",
             'image_url'          => $this->image_url,
             'category_icon_path' => $this->category_icon_path
                 ? Storage::url($this->category_icon_path)

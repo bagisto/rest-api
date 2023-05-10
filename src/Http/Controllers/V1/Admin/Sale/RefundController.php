@@ -4,8 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\RefundResource;
-use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Sales\Repositories\RefundRepository;
+use Webkul\Sales\Repositories\{OrderRepository, RefundRepository};
 
 class RefundController extends SaleController
 {
@@ -39,7 +38,13 @@ class RefundController extends SaleController
      */
     public function store(Request $request, OrderRepository $orderRepository, $orderId)
     {
-        $order = $orderRepository->findOrFail($orderId);
+        $order = $orderRepository->find($orderId);
+
+        if (! $order) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')]),
+            ], 400);
+        }
 
         if (! $order->canRefund()) {
             return response([
@@ -85,7 +90,7 @@ class RefundController extends SaleController
 
         return response([
             'data'    => new RefundResource($refund),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Refund']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.refund')]),
         ]);
     }
 }

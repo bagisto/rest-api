@@ -15,12 +15,12 @@ class ShipmentItemResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                   => $this->id,
+            'id'                   => "$this->id",
             'name'                 => $this->name,
             'description'          => $this->description,
             'sku'                  => $this->sku,
-            'qty'                  => $this->qty,
-            'weight'               => $this->weight,
+            'qty'                  => "$this->qty",
+            'weight'               => "$this->weight",
             'price'                => $this->price,
             'formatted_price'      => core()->formatPrice($this->price, $this->shipment->order->order_currency_code),
             'base_price'           => $this->base_price,

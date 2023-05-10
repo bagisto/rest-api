@@ -159,6 +159,7 @@ return [
             'cart-rule-coupon'  => 'Cart rule coupon',
             'cart-rule-coupons' => 'Cart rule coupons',
             'catalog-rule'      => 'Catalog rule',
+            'event'
         ]
     ],
 ];

@@ -45,7 +45,7 @@ class CurrencyController extends SettingController
 
         return response([
             'data'    => new CurrencyResource($currency),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Currency']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.currency')]),
         ]);
     }
 
@@ -63,11 +63,19 @@ class CurrencyController extends SettingController
             'name' => 'required',
         ]);
 
+        $currency = $this->getRepositoryInstance()->find($id);
+
+        if (! $currency) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.currency')])
+            ]);
+        }
+
         $currency = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
             'data'    => new CurrencyResource($currency),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Currency']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.currency')]),
         ]);
     }
 
@@ -79,7 +87,13 @@ class CurrencyController extends SettingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $currency = $this->getRepositoryInstance()->find($id);
+
+        if (! $currency) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.currency')])
+            ]);
+        }
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
@@ -90,7 +104,7 @@ class CurrencyController extends SettingController
         $this->getRepositoryInstance()->delete($id);
 
         return response()->json([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Currency']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.currency')]),
         ]);
     }
 }

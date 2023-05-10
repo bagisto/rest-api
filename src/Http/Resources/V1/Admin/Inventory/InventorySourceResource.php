@@ -15,7 +15,7 @@ class InventorySourceResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'             => $this->id,
+            'id'             => "$this->id",
             'code'           => $this->code,
             'name'           => $this->name,
             'description'    => $this->description,
@@ -28,10 +28,10 @@ class InventorySourceResource extends JsonResource
             'city'           => $this->city,
             'street'         => $this->street,
             'postcode'       => $this->postcode,
-            'priority'       => $this->priority,
+            'priority'       => "$this->priority",
             'latitude'       => $this->latitude,
             'longitude'      => $this->collongitudeongitudeuntry,
-            'status'         => $this->status,
+            'status'         => "$this->status",
             'created_at'     => $this->created_at,
             'updated_at'     => $this->updated_at,
         ];

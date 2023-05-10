@@ -46,7 +46,7 @@ class EventController extends MarketingController
 
         return response([
             'data'    => new EventResource($event),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Event']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.event')]),
         ]);
     }
 
@@ -65,11 +65,20 @@ class EventController extends MarketingController
             'date'        => 'date|required',
         ]);
 
+        $event = $this->getRepositoryInstance()->find($id);
+
+        if (! $event) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.event')]),    
+            ]);
+        }
+
         $event = $this->getRepositoryInstance()->update($request->all(), $id);
+
 
         return response([
             'data'    => new EventResource($event),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Event']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.event')]),
         ]);
     }
 
@@ -81,12 +90,18 @@ class EventController extends MarketingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $event = $this->getRepositoryInstance()->find($id);
+
+        if (! $event) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.event')]),    
+            ]);
+        }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Event']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.event')]),
         ]);
     }
 }

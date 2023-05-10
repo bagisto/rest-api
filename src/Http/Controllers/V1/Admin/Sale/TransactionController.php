@@ -4,25 +4,10 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderTransactionResource;
-use Webkul\Sales\Repositories\InvoiceRepository;
-use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Sales\Repositories\OrderTransactionRepository;
+use Webkul\Sales\Repositories\{InvoiceRepository, OrderRepository, ShipmentRepository, OrderTransactionRepository};
 
 class TransactionController extends SaleController
 {
-    /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Invoice repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\InvoiceRepository
-     */
-    protected $invoiceRepository;
 
     /**
      * Create a new controller instance.
@@ -32,14 +17,12 @@ class TransactionController extends SaleController
      * @return void
      */
     public function __construct(
-        OrderRepository $orderRepository,
-        InvoiceRepository $invoiceRepository
+        protected OrderRepository $orderRepository,
+        protected InvoiceRepository $invoiceRepository,
+        protected ShipmentRepository $shipmentRepository
     ) {
         parent::__construct();
         
-        $this->orderRepository = $orderRepository;
-
-        $this->invoiceRepository = $invoiceRepository;
     }
 
     /**
@@ -77,6 +60,12 @@ class TransactionController extends SaleController
         ]);
 
         $invoice = $this->invoiceRepository->where('increment_id', $request->invoice_id)->first();
+
+        if (! $invoice) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.invoice')])
+            ]);
+        }
 
         if ($invoice) {
 

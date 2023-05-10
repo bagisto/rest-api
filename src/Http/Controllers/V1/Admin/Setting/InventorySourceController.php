@@ -43,7 +43,7 @@ class InventorySourceController extends SettingController
 
         return response([
             'data'    => new InventorySourceResource($inventorySource),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Inventory source']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.inventory-source')]),
         ]);
     }
 
@@ -57,13 +57,21 @@ class InventorySourceController extends SettingController
     {
         $data = $inventorySourceRequest->all();
 
-        $data['status'] = ! isset($data['status']) ? 0 : 1;
+        $data['status'] = !isset($data['status']) ? 0 : 1;
+
+        $inventorySource = $this->getRepositoryInstance()->find($id);
+
+        if (! $inventorySource) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.inventory-source')]),
+            ]);
+        }
 
         $inventorySource = $this->getRepositoryInstance()->update($data, $id);
 
         return response([
             'data'    => new InventorySourceResource($inventorySource),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Inventory source']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.inventory-source')]),
         ]);
     }
 
@@ -75,18 +83,24 @@ class InventorySourceController extends SettingController
      */
     public function destroy($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $inventorySource = $this->getRepositoryInstance()->find($id);
+
+        if (!$inventorySource) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.inventory-source')]),
+            ]);
+        }
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'inventory source']),
+                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => __('rest-api::app.common-response.general.inventory-source')]),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Inventory source']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.inventory-source')]),
         ]);
     }
 }

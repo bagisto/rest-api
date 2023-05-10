@@ -4,8 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
-use Webkul\Sales\Repositories\InvoiceRepository;
-use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Repositories\{InvoiceRepository, OrderRepository};
 
 class InvoiceController extends SaleController
 {
@@ -39,7 +38,13 @@ class InvoiceController extends SaleController
      */
     public function store(Request $request, OrderRepository $orderRepository, $orderId)
     {
-        $order = $orderRepository->findOrFail($orderId);
+        $order = $orderRepository->find($orderId);
+
+        if (! $order) {
+            return response([
+               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')])
+            ]);
+        }
 
         if (! $order->canInvoice()) {
             return response([
@@ -69,7 +74,7 @@ class InvoiceController extends SaleController
 
         return response([
             'data'    => new InvoiceResource($invoice),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Invoice']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.invoice')]),
         ]);
     }
 }

@@ -4,25 +4,10 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\ShipmentResource;
-use Webkul\Sales\Repositories\OrderItemRepository;
-use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Sales\Repositories\ShipmentRepository;
+use Webkul\Sales\Repositories\{OrderItemRepository, OrderRepository, ShipmentRepository};
 
 class ShipmentController extends SaleController
 {
-    /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Order item repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderItemRepository
-     */
-    protected $orderItemRepository;
 
     /**
      * Create a new controller instance.
@@ -32,14 +17,10 @@ class ShipmentController extends SaleController
      * @return void
      */
     public function __construct(
-        OrderRepository $orderRepository,
-        OrderItemRepository $orderItemRepository
+        protected OrderRepository $orderRepository,
+        protected OrderItemRepository $orderItemRepository
     ) {
         parent::__construct();
-        
-        $this->orderRepository = $orderRepository;
-
-        $this->orderItemRepository = $orderItemRepository;
     }
 
     /**
@@ -71,7 +52,13 @@ class ShipmentController extends SaleController
      */
     public function store(Request $request, $orderId)
     {
-        $order = $this->orderRepository->findOrFail($orderId);
+        $order = $this->orderRepository->find($orderId);
+
+        if (! $order) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')]),
+            ]);
+        }
 
         if (! $order->canShip()) {
             return response([
@@ -96,7 +83,7 @@ class ShipmentController extends SaleController
 
         return response([
             'data'    => new ShipmentResource($shipment),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Shipment']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => ['name' => __('rest-api::app.common-response.general.shipment')]]),
         ]);
     }
 

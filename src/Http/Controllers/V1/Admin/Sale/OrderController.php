@@ -5,8 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
-use Webkul\Sales\Repositories\OrderRepository;
-use \Webkul\Sales\Repositories\OrderCommentRepository;
+use Webkul\Sales\Repositories\{OrderRepository, OrderCommentRepository};
 
 class OrderController extends SaleController
 {
@@ -38,10 +37,18 @@ class OrderController extends SaleController
      */
     public function cancel($id)
     {
+        $order = $this->getRepositoryInstance()->find($id);
+
+        if (! $order) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')])
+            ]);
+        }
+
         $result = $this->getRepositoryInstance()->cancel($id);
 
         return $result
-            ? response(['message' => __('rest-api::app.common-response.success.cancel', ['name' => 'Order'])])
+            ? response(['message' => __('rest-api::app.common-response.success.cancel', ['name' => __('rest-api::app.common-response.general.order')])])
             : response(['message' => __('rest-api::app.sales.orders.cancel-error')], 500);
     }
 
@@ -61,13 +68,21 @@ class OrderController extends SaleController
 
         Event::dispatch('sales.order.comment.create.before', $data);
 
+        $order = $this->getRepositoryInstance()->find($id);
+
+        if (! $order) {
+            return response([
+                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')])
+            ]);
+        }
+
         $comment = $orderCommentRepository->create($data);
 
         Event::dispatch('sales.order.comment.create.after', $comment);
 
         return response([
             'data'    => $comment,
-            'message' => __('rest-api::app.common-response.success.add', ['name' => 'Comment']),
+            'message' => __('rest-api::app.common-response.success.add', ['name' => __('rest-api::app.common-response.general.comment')]),
         ]);
     }
 }
