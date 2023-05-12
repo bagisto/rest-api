@@ -107,6 +107,8 @@ class CatalogRuleController extends MarketingController
 
         $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
 
+        $catalogRule = $this->getRepositoryInstance()->find($id);
+
         $this->catalogRuleIndexHelper->reindexComplete();
 
         return response([
