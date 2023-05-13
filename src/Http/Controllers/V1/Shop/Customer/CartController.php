@@ -129,7 +129,7 @@ class CartController extends CustomerController
 
         return response([
             'data'    => $cart ? new CartResource($cart) : null,
-            'message' => __('rest-api::app.checkout.cart.item.success'),
+            'message' => __('rest-api::app.checkout.cart.item.success-remove'),
         ]);
     }
 
@@ -168,7 +168,11 @@ class CartController extends CustomerController
                 Cart::setCouponCode($couponCode)->collectTotals();
 
                 if (Cart::getCart()->coupon_code == $couponCode) {
+                    
+                    $cart = Cart::getCart();
+
                     return response([
+                        'data'    => $cart ? new CartResource($cart) : null,
                         'message' => __('rest-api::app.checkout.cart.coupon.success'),
                     ]);
                 }
@@ -194,9 +198,12 @@ class CartController extends CustomerController
     public function removeCoupon()
     {
         Cart::removeCouponCode()->collectTotals();
+                    
+        $cart = Cart::getCart();
 
         return response([
-            'message' => __('rest-api::app.checkout.cart.coupon.remove'),
+            'data'    => $cart ? new CartResource($cart) : null,
+            'message' => __('rest-api::app.checkout.cart.coupon.success-remove'),
         ]);
     }
 
