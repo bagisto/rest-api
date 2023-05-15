@@ -22,6 +22,7 @@ class CartRuleResource extends JsonResource
             'ends_till'                 => $this->ends_till,
             'status'                    => $this->status,
             'coupon_type'               => $this->coupon_type,
+            'coupon_code'               => $this->coupon_code,
             'use_auto_generation'       => $this->use_auto_generation,
             'usage_per_customer'        => $this->usage_per_customer,
             'uses_per_coupon'           => $this->uses_per_coupon,
