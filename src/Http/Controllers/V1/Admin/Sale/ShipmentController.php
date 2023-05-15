@@ -52,13 +52,7 @@ class ShipmentController extends SaleController
      */
     public function store(Request $request, $orderId)
     {
-        $order = $this->orderRepository->find($orderId);
-
-        if (! $order) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')]),
-            ]);
-        }
+        $order = $this->orderRepository->findOrFail($orderId);
 
         if (! $order->canShip()) {
             return response([

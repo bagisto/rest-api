@@ -125,14 +125,6 @@ class ChannelController extends SettingController
 
         $data = $this->setSEOContent($data, $locale);
 
-        $channel = $this->getRepositoryInstance()->find($id);
-
-        if (! $channel) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.channel')])
-            ]);
-        }
-
         $channel = $this->getRepositoryInstance()->update($data, $id);
 
         if ($channel->base_currency->code !== session()->get('currency')) {
@@ -153,13 +145,7 @@ class ChannelController extends SettingController
      */
     public function destroy($id)
     {
-        $channel = $this->getRepositoryInstance()->find($id);
-
-        if (! $channel) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.channel')])
-            ]);
-        }
+        $channel = $this->getRepositoryInstance()->findOrFail($id);
 
         if ($channel->code == config('app.channel')) {
             return response([

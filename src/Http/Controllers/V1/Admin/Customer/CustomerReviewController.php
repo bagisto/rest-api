@@ -39,13 +39,7 @@ class CustomerReviewController extends CustomerBaseController
      */
     public function update(Request $request, $id)
     {
-        $customer_review = $this->getRepositoryInstance()->find($id);
-
-        if (! $customer_review) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-review')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->update($request->all(), $id);
 
@@ -62,13 +56,7 @@ class CustomerReviewController extends CustomerBaseController
      */
     public function destroy($id)
     {
-        $customer_review = $this->getRepositoryInstance()->find($id);
-
-        if (! $customer_review) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-review')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 
@@ -86,13 +74,7 @@ class CustomerReviewController extends CustomerBaseController
     public function massUpdate(MassUpdateRequest $request)
     {
         foreach ($request->indexes as $index) {
-            $review = $this->getRepositoryInstance()->find($index);
-
-            if (! $review) {
-                return response([
-                    'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-review')]),
-                ]);
-            }
+            $review = $this->getRepositoryInstance()->findOrFail($index);
 
             Event::dispatch('customer.review.update.before', $index);
 

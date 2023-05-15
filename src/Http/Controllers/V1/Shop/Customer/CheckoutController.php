@@ -33,7 +33,9 @@ class CheckoutController extends CustomerController
 
         $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
 
-        $data['shipping']['address1'] = implode(PHP_EOL, array_filter($data['shipping']['address1']));
+        if(isset($data['shipping'])) {
+            $data['shipping']['address1'] = implode(PHP_EOL, array_filter($data['shipping']['address1']));
+        }
 
         if (isset($data['billing']['id']) && str_contains($data['billing']['id'], 'address_')) {
             unset($data['billing']['id']);

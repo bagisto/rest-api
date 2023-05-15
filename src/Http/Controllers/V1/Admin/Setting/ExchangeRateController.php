@@ -63,14 +63,6 @@ class ExchangeRateController extends SettingController
             'rate'            => 'required|numeric',
         ]);
 
-        $exchangeRate = $this->getRepositoryInstance()->find($id);
-
-        if (! $exchangeRate) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.exchange-rate')])
-            ]);
-        }
-
         $exchangeRate = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
@@ -107,13 +99,7 @@ class ExchangeRateController extends SettingController
      */
     public function destroy($id)
     {
-        $exchangeRate = $this->getRepositoryInstance()->find($id);
-
-        if (! $exchangeRate) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.exchange-rate')])
-            ]);
-        }
+        $exchangeRate = $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 

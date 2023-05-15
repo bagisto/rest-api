@@ -80,14 +80,6 @@ class TaxRateController extends SettingController
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
 
-        $taxRate = $this->getRepositoryInstance()->find($id);
-
-        if (! $taxRate) {
-            return response([
-               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.tax-rate')]),
-            ]);
-        }
-
         $taxRate = $this->getRepositoryInstance()->update($request->input(), $id);
 
         return response([
@@ -104,13 +96,7 @@ class TaxRateController extends SettingController
      */
     public function destroy($id)
     {
-        $taxRate = $this->getRepositoryInstance()->find($id);
-
-        if (! $taxRate) {
-            return response([
-               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.tax-rate')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 

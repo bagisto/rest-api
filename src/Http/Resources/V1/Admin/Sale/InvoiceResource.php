@@ -15,10 +15,10 @@ class InvoiceResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                             => "$this->id",
+            'id'                             => $this->id,
             'state'                          => $this->state,
-            'email_sent'                     => "$this->email_sent",
-            'total_qty'                      => "$this->total_qty",
+            'email_sent'                     => $this->email_sent,
+            'total_qty'                      => $this->total_qty,
             'base_currency_code'             => $this->base_currency_code,
             'channel_currency_code'          => $this->channel_currency_code,
             'order_currency_code'            => $this->order_currency_code,

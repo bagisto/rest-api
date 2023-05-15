@@ -38,13 +38,7 @@ class RefundController extends SaleController
      */
     public function store(Request $request, OrderRepository $orderRepository, $orderId)
     {
-        $order = $orderRepository->find($orderId);
-
-        if (! $order) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')]),
-            ], 400);
-        }
+        $order = $orderRepository->findOrFail($orderId);
 
         if (! $order->canRefund()) {
             return response([

@@ -78,13 +78,7 @@ class CartRuleCouponController extends MarketingController
         $coupon = $this->getRepositoryInstance()
             ->where('cart_rule_id', $cartRuleId)
             ->where('id', $id)
-            ->first();
-
-        if (! $coupon) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.cart-rule-coupon')]),
-            ]);
-        }
+            ->firstOrFail();
 
         return response([
             'data' => new CartRuleCouponResource($coupon),
@@ -100,16 +94,10 @@ class CartRuleCouponController extends MarketingController
      */
     public function destroy(int $cartRuleId, int $id)
     {
-        $coupon = $this->getRepositoryInstance()
+        $this->getRepositoryInstance()
             ->where('cart_rule_id', $cartRuleId)
             ->where('id', $id)
-            ->first();
-
-        if (! $coupon) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.cart-rule-coupon')]),
-            ]);
-        }
+            ->firstOrFail();
 
         $this->getRepositoryInstance()->delete($id);
 

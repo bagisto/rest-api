@@ -67,14 +67,6 @@ class TaxCategoryController extends SettingController
             'taxrates'    => 'array|required',
         ]);
 
-        $taxCategory = $this->getRepositoryInstance()->find($id);
-
-        if (! $taxCategory) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.tax-category')]),
-            ]);
-        }
-
         $taxCategory = $this->getRepositoryInstance()->update($request->input(), $id);
 
         return response([
@@ -91,13 +83,7 @@ class TaxCategoryController extends SettingController
      */
     public function destroy($id)
     {
-        $taxCategory = $this->getRepositoryInstance()->find($id);
-
-        if (! $taxCategory) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.tax-category')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 

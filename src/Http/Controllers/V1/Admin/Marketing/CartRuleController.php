@@ -80,14 +80,7 @@ class CartRuleController extends MarketingController
             'discount_amount'     => 'required|numeric',
         ]);
 
-        $cartRule = $this->getRepositoryInstance()->find($id);
-
-        if (! $cartRule) {
-            return response([
-                'data'    => new CartRuleResource($cartRule),
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.cart-rule')]),
-            ]);
-        }
+        $cartRule = $this->getRepositoryInstance()->findOrFail($id);
 
         if ($cartRule->coupon_type) {
             if ($cartRule->cart_rule_coupon) {
@@ -117,13 +110,7 @@ class CartRuleController extends MarketingController
      */
     public function destroy($id)
     {
-        $cart_rule = $this->getRepositoryInstance()->find($id);
-
-        if (! $cart_rule) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.cart-rule')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 

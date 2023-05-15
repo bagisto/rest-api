@@ -67,13 +67,7 @@ class CustomerGroupController extends CustomerBaseController
             'name' => 'required',
         ]);
 
-        $customer_group = $this->getRepositoryInstance()->find($id);
-
-        if (! $customer_group) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-group')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $customerGroup = $this->getRepositoryInstance()->update($request->all(), $id);
 

@@ -83,13 +83,7 @@ class UserController extends SettingController
      */
     public function destroy($id)
     {
-        $user = $this->getRepositoryInstance()->find($id);
-
-        if (! $user) {
-            return response([
-               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.user')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
@@ -115,13 +109,7 @@ class UserController extends SettingController
     {
         $data = $request->validated();
 
-        $user = $this->getRepositoryInstance()->find($id);
-
-        if (! $user) {
-            return response([
-               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.user')]),
-            ]);
-        }
+        $user = $this->getRepositoryInstance()->findOrFail($id);
 
         /**
          * Password check.

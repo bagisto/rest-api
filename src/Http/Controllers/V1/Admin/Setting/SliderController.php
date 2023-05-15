@@ -93,15 +93,6 @@ class SliderController extends SettingController
                 'message' => __('rest-api::app.common-response.error.something-went-wrong'),
             ], 500);
         }
-        
-        $slider = $this->getRepositoryInstance()->find($id);
-
-        if (! $slider) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.slider')]),
-            ]);
-        }
-
         $result = $this->getRepositoryInstance()->updateItem($data, $id);
 
         if ($result) {
@@ -123,13 +114,7 @@ class SliderController extends SettingController
      */
     public function destroy($id)
     {
-        $slider = $this->getRepositoryInstance()->find($id);
-
-        if (! $slider) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.slider')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 

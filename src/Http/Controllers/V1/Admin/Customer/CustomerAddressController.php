@@ -59,13 +59,7 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function index($customerId)
     {
-        $customer = $this->customerRepository->find($customerId);
-
-        if (! $customer) {
-            return response([
-                'message'  => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')]),
-            ]);
-        }
+        $customer = $this->customerRepository->findOrFail($customerId);
 
         return response([
             'data' => $this->getResourceCollection($customer->addresses),
@@ -114,21 +108,9 @@ class CustomerAddressController extends CustomerBaseController
      */
     public function show($customerId, $id)
     {
-        $customer = $this->customerRepository->find($customerId);
+        $customer = $this->customerRepository->findOrFail($customerId);
 
-        if (! $customer) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')]),
-            ]);
-        }
-
-        $address = $customer->addresses()->find($id);
-
-        if (! $address) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-address')]),
-            ]);
-        }
+        $address = $customer->addresses()->findOrFail($id);
 
         return response([
             'data' => new CustomerAddressResource($address),
@@ -161,13 +143,7 @@ class CustomerAddressController extends CustomerBaseController
             'vat_id'       => new VatIdRule(),
         ]);
 
-        $customer = $this->getRepositoryInstance()->find($id);
-
-        if (! $customer) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-address')])
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $customerAddress = $this->getRepositoryInstance()->update($request->all(), $id);
 
@@ -188,19 +164,7 @@ class CustomerAddressController extends CustomerBaseController
     {
         $customer = $this->customerRepository->findOrFail($customerId);
 
-        if (! $customer) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
-            ]);
-        }
-
-        $customer_address = $customer->addresses()->find($id);
-
-        if (! $customer_address) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer-address')])
-            ]);
-        }
+        $customer->addresses()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 

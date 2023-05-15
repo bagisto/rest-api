@@ -63,14 +63,6 @@ class CurrencyController extends SettingController
             'name' => 'required',
         ]);
 
-        $currency = $this->getRepositoryInstance()->find($id);
-
-        if (! $currency) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.currency')])
-            ]);
-        }
-
         $currency = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
@@ -87,13 +79,7 @@ class CurrencyController extends SettingController
      */
     public function destroy($id)
     {
-        $currency = $this->getRepositoryInstance()->find($id);
-
-        if (! $currency) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.currency')])
-            ]);
-        }
+       $this->getRepositoryInstance()->findOrFail($id);
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([

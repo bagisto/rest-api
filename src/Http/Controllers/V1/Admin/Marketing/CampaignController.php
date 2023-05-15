@@ -85,13 +85,7 @@ class CampaignController extends MarketingController
      */
     public function destroy($id)
     {
-        $campaign = $this->getRepositoryInstance()->find($id);
-
-        if (! $campaign) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.campaign')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 

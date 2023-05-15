@@ -37,14 +37,6 @@ class OrderController extends SaleController
      */
     public function cancel($id)
     {
-        $order = $this->getRepositoryInstance()->find($id);
-
-        if (! $order) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')])
-            ]);
-        }
-
         $result = $this->getRepositoryInstance()->cancel($id);
 
         return $result
@@ -67,14 +59,6 @@ class OrderController extends SaleController
         $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;
 
         Event::dispatch('sales.order.comment.create.before', $data);
-
-        $order = $this->getRepositoryInstance()->find($id);
-
-        if (! $order) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')])
-            ]);
-        }
 
         $comment = $orderCommentRepository->create($data);
 

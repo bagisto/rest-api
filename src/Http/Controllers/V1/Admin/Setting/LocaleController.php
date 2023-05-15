@@ -65,14 +65,6 @@ class LocaleController extends SettingController
             'direction' => 'in:ltr,rtl',
         ]);
 
-        $locale = $this->getRepositoryInstance()->find($id);
-
-        if (! $locale) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.locale')]),
-            ]);
-        }
-
         $locale = $this->getRepositoryInstance()->update($request->all(), $id);
 
         return response([
@@ -89,13 +81,7 @@ class LocaleController extends SettingController
      */
     public function destroy($id)
     {
-        $locale = $this->getRepositoryInstance()->find($id);
-
-        if (! $locale) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.locale')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([

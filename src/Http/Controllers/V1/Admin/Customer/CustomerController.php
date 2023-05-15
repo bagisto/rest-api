@@ -107,13 +107,7 @@ class CustomerController extends CustomerBaseController
      */
     public function destroy($id)
     {
-        $customer = $this->getRepositoryInstance()->find($id);
-
-        if (! $customer) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
-            ]);
-        }
+        $customer = $this->getRepositoryInstance()->findorFail($id);
 
         if (! $this->getRepositoryInstance()->checkIfCustomerHasOrderPendingOrProcessing($customer)) {
             $this->getRepositoryInstance()->delete($id);
@@ -180,21 +174,7 @@ class CustomerController extends CustomerBaseController
      */
     public function orders($id)
     {
-        $customer = $this->getRepositoryInstance()->find($id);
-
-        // Need to improve to add messege No customer found
-        if (! $customer) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
-            ]);
-        }
-
-        // the data is comming in blank array so i am using sizeof method for getting the length of the array
-        if (! sizeof($customer->all_orders)) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.data')])
-            ]);
-        }
+        $customer = $this->getRepositoryInstance()->findorFail($id);
 
         return response([
             'data' => $customer->all_orders,
@@ -209,20 +189,7 @@ class CustomerController extends CustomerBaseController
      */
     public function invoices($id)
     {
-        $customer = $this->getRepositoryInstance()->find($id);
-
-        if (! $customer) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
-            ]);
-        }
-
-        // Receive data in blank array so I am using sizeof method for getting the length of the array
-        if (! sizeof($customer->all_orders)) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.data')])
-            ]);
-        }
+        $customer = $this->getRepositoryInstance()->findorFail($id);
 
         return response([
             'data' => $customer->all_orders,
@@ -242,13 +209,7 @@ class CustomerController extends CustomerBaseController
             'notes' => 'string|nullable',
         ]);
 
-        $customer = $this->getRepositoryInstance()->find($id);
-
-        if (! $customer) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.customer')])
-            ]);
-        }
+        $customer = $this->getRepositoryInstance()->findorFail($id);
 
         if ($customer->update(['notes' => $request->input('notes')])) {
             return response([

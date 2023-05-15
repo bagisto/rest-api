@@ -38,13 +38,7 @@ class InvoiceController extends SaleController
      */
     public function store(Request $request, OrderRepository $orderRepository, $orderId)
     {
-        $order = $orderRepository->find($orderId);
-
-        if (! $order) {
-            return response([
-               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.order')])
-            ]);
-        }
+        $order = $orderRepository->findOrFail($orderId);
 
         if (! $order->canInvoice()) {
             return response([

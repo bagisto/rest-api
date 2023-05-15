@@ -70,15 +70,6 @@ class RoleController extends SettingController
         /**
          * Check for other admins if the role has been changed from all to custom.
          */
-
-        $role = $this->getRepositoryInstance()->find($id);
-
-        if (! $role) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.role')]),
-            ]);
-        }
-
         $isChangedFromAll = $params['permission_type'] == 'custom' && $role->permission_type == 'all';
 
         if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
@@ -103,13 +94,7 @@ class RoleController extends SettingController
      */
     public function destroy($id)
     {
-        $role = $this->getRepositoryInstance()->find($id);
-
-        if (! $role) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.role')]),
-            ]);
-        }
+        $role = $this->getRepositoryInstance()->findOrFail($id);
 
         if ($role->admins->count() >= 1) {
             return response([

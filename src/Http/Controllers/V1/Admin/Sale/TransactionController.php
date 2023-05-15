@@ -61,12 +61,6 @@ class TransactionController extends SaleController
 
         $invoice = $this->invoiceRepository->where('increment_id', $request->invoice_id)->first();
 
-        if (! $invoice) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.invoice')])
-            ]);
-        }
-
         if ($invoice) {
 
             if ($invoice->state == 'paid') {

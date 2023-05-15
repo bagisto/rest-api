@@ -33,7 +33,7 @@ class AdminMiddleware
         /**
          * This is for token based authentication.
          */
-        if ($request->user()?->tokenCan('role:admin') && $request->header('accept') == 'application/json') {
+        if ($request->user()?->tokenCan('role:admin')) {
             return $next($request);
         }
 

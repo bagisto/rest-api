@@ -37,12 +37,6 @@ class LocaleMiddleware
     {
         $localeCode = $request->header('x-locale');
 
-        if ($request->header('accept') != 'application/json') {
-            return response([
-                'message' => 'Not Authorized',
-            ]);
-        }
-
         if ($localeCode && $this->localeRepository->findOneByField('code', $localeCode)) {
             app()->setLocale($localeCode);
 

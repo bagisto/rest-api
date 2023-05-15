@@ -17,12 +17,12 @@ class OrderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                                  => "$this->id",
+            'id'                                  => $this->id,
             'increment_id'                        => $this->increment_id,
             'status'                              => $this->status,
             'status_label'                        => $this->status_label,
             'channel_name'                        => $this->channel_name,
-            'is_guest'                            => "$this->is_guest",
+            'is_guest'                            => $this->is_guest,
             'customer_email'                      => $this->customer_email,
             'customer_first_name'                 => $this->customer_first_name,
             'customer_last_name'                  => $this->customer_last_name,
@@ -31,9 +31,9 @@ class OrderResource extends JsonResource
             'payment_title'                       => core()->getConfigData('sales.paymentmethods.' . $this->payment->method . '.title'),
             'shipping_description'                => $this->shipping_description,
             'coupon_code'                         => $this->coupon_code,
-            'is_gift'                             => "$this->is_gift",
-            'total_item_count'                    => "$this->total_item_count",
-            'total_qty_ordered'                   => "$this->total_qty_ordered",
+            'is_gift'                             => $this->is_gift,
+            'total_item_count'                    => $this->total_item_count,
+            'total_qty_ordered'                   => $this->total_qty_ordered,
             'base_currency_code'                  => $this->base_currency_code,
             'channel_currency_code'               => $this->channel_currency_code,
             'order_currency_code'                 => $this->order_currency_code,

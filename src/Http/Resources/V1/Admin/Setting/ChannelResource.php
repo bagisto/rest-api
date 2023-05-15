@@ -18,7 +18,7 @@ class ChannelResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                => "$this->id",
+            'id'                => $this->id,
             'code'              => $this->code,
             'name'              => $this->name,
             'description'       => $this->description,
@@ -33,7 +33,7 @@ class ChannelResource extends JsonResource
             'favicon_url'       => $this->favicon_url,
             'default_locale'    => $this->when($this->default_locale_id, new LocaleResource($this->default_locale)),
             'base_currency'     => $this->when($this->default_currency_id, new CurrencyResource($this->default_currency)),
-            'root_category_id'  => "$this->root_category_id",
+            'root_category_id'  => $this->root_category_id,
             'root_category'     => $this->when($this->root_category_id, new CategoryResource($this->root_category)),
             'created_at'        => $this->created_at,
             'updated_at'        => $this->updated_at,

@@ -10,34 +10,31 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerAddressResource;
 class AddressController extends CustomerController
 {
     /**
-     * Controller instance.
+     * Repository class name.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerAddressRepository  $customerAddressRepository
-     * @return void
+     * @return string
      */
-    public function __construct(
-        protected CustomerAddressRepository $customerAddressRepository
-    ) 
+    public function repository()
     {
-        parent::__construct();
+        return CustomerAddressRepository::class;
     }
 
     /**
-     * Get customer addresses.
+     * Resource class name.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function index(Request $request)
+    public function resource()
     {
-        $customer = $this->resolveShopUser($request);
-
-        $addresses = $customer->addresses()->get();
-
-        return response([
-            'data' => CustomerAddressResource::collection($addresses),
-        ]);
+        return CustomerAddressResource::class;
     }
+
+    /**
+     * Customer address repository instance.
+     *
+     * @var \Webkul\Customer\Repositories\CustomerAddressRepository
+     */
+    protected $customerAddressRepository;
 
     /**
      * Store address.

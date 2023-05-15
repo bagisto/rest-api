@@ -97,13 +97,7 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
-        $catalogRule = $this->getRepositoryInstance()->find($id);
-
-        if (! $catalogRule) {
-             return response([
-                'message' => __('rest-api::app.common-response.success.not-found',['name' => __('rest-api::app.common-response.general.catalog-rule')]),
-             ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
 
@@ -125,13 +119,7 @@ class CatalogRuleController extends MarketingController
      */
     public function destroy($id)
     {
-        $catalogRule = $this->getRepositoryInstance()->find($id);
-
-        if (! $catalogRule) {
-            return response([
-               'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.catalog-rule')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 

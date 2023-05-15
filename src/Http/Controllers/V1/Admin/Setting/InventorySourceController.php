@@ -57,15 +57,9 @@ class InventorySourceController extends SettingController
     {
         $data = $inventorySourceRequest->all();
 
-        $data['status'] = !isset($data['status']) ? 0 : 1;
+        $data['status'] = ! isset($data['status']) ? 0 : 1;
 
         $inventorySource = $this->getRepositoryInstance()->find($id);
-
-        if (! $inventorySource) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.inventory-source')]),
-            ]);
-        }
 
         $inventorySource = $this->getRepositoryInstance()->update($data, $id);
 
@@ -83,13 +77,7 @@ class InventorySourceController extends SettingController
      */
     public function destroy($id)
     {
-        $inventorySource = $this->getRepositoryInstance()->find($id);
-
-        if (!$inventorySource) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.inventory-source')]),
-            ]);
-        }
+        $this->getRepositoryInstance()->findOrFail($id);
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
