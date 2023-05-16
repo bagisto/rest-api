@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Webkul\Product\Providers\EventServiceProvider;
 
 class RestApiServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,8 @@ class RestApiServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mapApiRoutes();
+
+        $this->app->register(EventServiceProvider::class);
     }
 
     /**
