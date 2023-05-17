@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
 
     Route::post('customer/cart/add/{productId}', [CartController::class, 'add']);
 
-    Route::put('customer/cart/update', [CartController::class, 'update']);
+    Route::post('customer/cart/update', [CartController::class, 'update']);
 
     Route::delete('customer/cart/remove/{cartItemId}', [CartController::class, 'removeItem']);
 
