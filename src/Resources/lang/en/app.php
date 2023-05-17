@@ -52,7 +52,7 @@ return [
     ],
 
     'wishlist' => [
-        'moved'          => 'Item successfully moved To cart.',
+        'moved'          => 'Product Added to the Cart Successfully.',
         'option-missing' => 'Product options are missing, so item can not be moved to the wishlist.',
     ],
 

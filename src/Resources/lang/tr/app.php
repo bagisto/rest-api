@@ -45,7 +45,7 @@ return [
     ],
 
     'wishlist' => [
-        'moved'          => 'Ürün başarıyla sepete taşındı.',
+        'moved'          => 'Ürün Başarıyla Sepete Eklendi.',
         'option-missing' => 'Ürün seçenekleri eksik, bu nedenle ürün istek listesine taşınamıyor.',
     ],
 

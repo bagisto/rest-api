@@ -45,7 +45,7 @@ return [
     ],
 
     'wishlist' => [
-        'moved'          => 'Artículo movido con éxito al carrito.',
+        'moved'          => 'Producto agregado al carrito con éxito.',
         'option-missing' => 'Faltan opciones de productos, por lo que el artículo no se puede mover a la lista de deseos.',
     ],
 

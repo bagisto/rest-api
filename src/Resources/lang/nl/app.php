@@ -45,7 +45,7 @@ return [
     ],
 
     'wishlist' => [
-        'moved'          => 'Artikel succesvol verplaatst naar winkelwagen.',
+        'moved'          => 'Product is met succes aan de winkelwagen toegevoegd.',
         'option-missing' => 'Productopties ontbreken, dus artikel kan niet naar de verlanglijst worden verplaatst.',
     ],
 
