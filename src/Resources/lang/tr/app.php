@@ -158,6 +158,8 @@ return [
                 'tax-rate'          => 'Vergi oranı',
                 'user'              => 'Kullanıcı',
                 'admin'             => 'Yönetici',
+                'item'              => 'Öğe',
+                'wishlist'          => 'İstek Listesi',
             ]
         ],
     ],

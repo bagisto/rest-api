@@ -179,6 +179,8 @@ return [
             'tax-rate'          => 'Tax rate',
             'user'              => 'User',
             'admin'             => 'Admin',
+            'item'              => 'Item',
+            'wishlist'          => 'Wishlist',
         ]
     ],
 ];

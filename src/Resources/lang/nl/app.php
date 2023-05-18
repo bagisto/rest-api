@@ -159,6 +159,8 @@ return [
             'tax-rate'          => 'Belastingtarief',
             'user'              => 'Gebruiker',
             'admin'             => 'Beheerder',
+            'item'              => 'Item',
+            'wishlist'          => 'Verlanglijst',
         ]
     ],
 ];

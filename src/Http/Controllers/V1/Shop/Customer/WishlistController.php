@@ -60,8 +60,8 @@ class WishlistController extends CustomerController
             $this->wishlistRepository->delete($wishlistItem->id);
 
             return response([
-                'data'    => null,
-                'message' => __('rest-api::app.common-response.success.remove', ['name' => 'Item', 'place' => 'wishlist']),
+                'data'    => CustomerWishlistResource::collection($customer->wishlist_items()->get()),
+                'message' => __('rest-api::app.common-response.success.remove', ['name' => __('rest-api::app.common-response.general.item'), 'place' => __('rest-api::app.common-response.general.wishlist')]),
             ]);
         }
 

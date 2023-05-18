@@ -159,6 +159,8 @@ return [
             'tax-rate'          => 'Tasa de impuesto',
             'user'              => 'Usuario',
             'admin'             => 'Administrador',
+            'item'              => 'Artículo',
+            'wishlist'          => 'Lista de deseos',
         ]
     ],
 ];
