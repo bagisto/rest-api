@@ -78,7 +78,7 @@ class WishlistController extends CustomerController
             $this->wishlistRepository->delete($wishlistItem->id);
 
             return response([
-                'data'    => null,
+                'data'    => CustomerWishlistResource::collection($customer->wishlist_items()->get()),
                 'message' => 'Item removed from wishlist successfully.',
             ]);
         }
