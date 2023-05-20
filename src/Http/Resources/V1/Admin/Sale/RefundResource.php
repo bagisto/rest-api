@@ -39,6 +39,7 @@ class RefundResource extends JsonResource
             'discount_amount'        => $this->discount_amount,
             'base_discount_amount'   => $this->base_discount_amount,
             'order_id'               => $this->order_id,
+            'items'                  => RefundItemResource::collection($this->items),
             'created_at'             => $this->created_at,
             'updated_at'             => $this->updated_at,
         ];
