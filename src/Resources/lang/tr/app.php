@@ -28,6 +28,7 @@ return [
             'already-paid'      => 'Bu fatura zaten ödendi.',
             'invoice-missing'   => 'Bu fatura kimliği mevcut değil.',
             'transaction-saved' => 'İşlem kaydedildi.',
+            'transaction-amount-exceeds' => 'Bu işlemin belirtilen tutarı, faturanın toplam tutarını aşıyor.',
         ],
     ],
 

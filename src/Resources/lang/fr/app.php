@@ -28,6 +28,7 @@ return [
             'already-paid'      => 'Cette facture a déjà été payée.',
             'invoice-missing'   => 'Cet identifiant de facture n\'existe pas.',
             'transaction-saved' => 'La transaction a été enregistrée.',
+            'transaction-amount-exceeds' => 'Le montant spécifié de cette transaction dépasse le montant total de la facture.',
         ],
     ],
 
