@@ -28,6 +28,7 @@ return [
             'already-paid'      => 'Esta factura ya ha sido pagada.',
             'invoice-missing'   => 'Este ID de factura no existe.',
             'transaction-saved' => 'La transacción ha sido guardada.',
+            'transaction-amount-exceeds' => 'El monto especificado de esta transacción excede el monto total de la factura.',
         ],
     ],
 
