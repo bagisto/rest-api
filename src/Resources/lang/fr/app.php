@@ -119,6 +119,7 @@ return [
             'security-warning'             => 'Activité suspecte détectée !',
             'something-went-wrong'         => 'Quelque chose s\'est mal passé !',
             'system-attribute-delete'      => 'Impossible de supprimer l\'attribut système.',
+            'cannot-update-product'        => 'Impossible de mettre à jour le :nom.',
 
             'mass-operations' => [
                 'resource-not-found' => 'Sélectionné :name introuvable.',
@@ -161,6 +162,7 @@ return [
             'admin'             => 'Administrateur',
             'item'              => 'Article',
             'wishlist'          => 'Liste de souhaits',
+            'product-quantity'  => 'la quantité de produit',
         ]            
     ],
 ];

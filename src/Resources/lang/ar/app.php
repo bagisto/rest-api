@@ -119,6 +119,7 @@ return [
             'security-warning'             => 'تم العثور على نشاط مريب!',
             'something-went-wrong'         => 'هناك خطأ ما!',
             'system-attribute-delete'      => 'لا يمكن حذف سمة النظام.',
+            'cannot-update-product'        => 'لا يمكن تحديث: الاسم.',
 
             'mass-operations' => [
                 'resource-not-found' => ':name الاسم غير موجود.',
@@ -161,6 +162,7 @@ return [
             'admin'             => 'مشرف',
             'item'              => 'العنصر',
             'wishlist'          => 'قائمة الرغبات',
+            'product-quantity' => 'كمية المنتج',
         ]
     ],
 ];

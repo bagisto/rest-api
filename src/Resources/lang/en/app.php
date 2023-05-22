@@ -139,6 +139,7 @@ return [
             'security-warning'             => 'Suspicious activity found!',
             'something-went-wrong'         => 'Something went wrong!',
             'system-attribute-delete'      => 'Cannot delete the system attribute.',
+            'cannot-update-product'        => 'Cannot update the :name.',
 
             'mass-operations' => [
                 'resource-not-found' => 'Selected :name not found.',
@@ -181,6 +182,7 @@ return [
             'admin'             => 'Admin',
             'item'              => 'Item',
             'wishlist'          => 'Wishlist',
+            'product-quantity'  => 'product quantity',
         ]
     ],
 ];

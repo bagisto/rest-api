@@ -119,6 +119,7 @@ return [
             'security-warning'             => 'Verdachte activiteit gevonden!',
             'something-went-wrong'         => 'Er ging iets mis!',
             'system-attribute-delete'      => 'Kan het systeemkenmerk niet verwijderen.',
+            'cannot-update-product'        => 'Kan de :name.',
 
             'mass-operations' => [
                 'resource-not-found' => 'Geselecteerd :name niet gevonden.',
@@ -161,6 +162,7 @@ return [
             'admin'             => 'Beheerder',
             'item'              => 'Item',
             'wishlist'          => 'Verlanglijst',
+            'product-quantity'  => 'product kwantiteit',
         ]
     ],
 ];

@@ -119,6 +119,7 @@ return [
             'security-warning'             => 'Şüpheli etkinlik bulundu!',
             'something-went-wrong'         => 'Bir şeyler ters gitti!',
             'system-attribute-delete'      => 'Sistem özniteliği silinemez.',
+            'cannot-update-product'        => ':name güncellenemiyor.',
 
             'mass-operations' => [
                 'resource-not-found' => 'Seçildi :name bulunamadı.',
@@ -160,6 +161,7 @@ return [
                 'admin'             => 'Yönetici',
                 'item'              => 'Öğe',
                 'wishlist'          => 'İstek Listesi',
+                'product-quantity'  => 'Ürün miktarı',
             ]
         ],
     ],

@@ -119,6 +119,7 @@ return [
             'security-warning'             => 'Actividad sospechosa encontrada!',
             'something-went-wrong'         => '¡Algo salió mal!',
             'system-attribute-delete'      => 'No se puede eliminar el atributo del sistema.',
+            'cannot-update-product'        => 'No se puede actualizar el :nombre.',
 
             'mass-operations' => [
                 'resource-not-found' => 'Seleccionada :name no encontrado.',
@@ -161,6 +162,7 @@ return [
             'admin'             => 'Administrador',
             'item'              => 'Artículo',
             'wishlist'          => 'Lista de deseos',
+            'product-quantity'  => 'cantidad de producto',
         ]
     ],
 ];

@@ -6,8 +6,10 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Checkout\Facades\Cart;
-use Webkul\Checkout\Repositories\CartItemRepository;
-use Webkul\Customer\Repositories\WishlistRepository;
+use Webkul\Checkout\Repositories\{
+    CartItemRepository,
+    WishlistRepository
+};
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 
 class CartController extends CustomerController
@@ -97,6 +99,16 @@ class CartController extends CustomerController
 
         foreach ($request->qty as $itemId => $qty) {
             $item = $cartItemRepository->findOneByField('id', $itemId);
+
+            if (
+                $item->type == 'downloadable' 
+                || $item->type ==  'bundle' 
+                || $item->type == 'grouped'
+            ) {
+                return response([
+                    'message' => __('rest-api::app.common-response.error.cannot-update-product', ['name' =>  $item->type . ' ' .  __('rest-api::app.common-response.general.product-quantity')]),
+                ]);
+            }
 
             Event::dispatch('checkout.cart.item.update.before', $itemId);
 
