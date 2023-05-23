@@ -29,6 +29,7 @@ return [
             'already-paid'      => 'Deze factuur is al betaald.',
             'invoice-missing'   => 'Deze factuur-ID bestaat niet.',
             'transaction-saved' => 'De transactie is opgeslagen.',
+            'transaction-amount-exceeds' => 'Het opgegeven bedrag van deze transactie overschrijdt het totaalbedrag van de factuur.',
         ],
     ],
 

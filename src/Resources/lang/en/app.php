@@ -29,6 +29,7 @@ return [
             'already-paid'      => 'This invoice has already been paid.',
             'invoice-missing'   => 'This invoice id does not exist.',
             'transaction-saved' => 'The transaction has been saved.',
+            'transaction-amount-exceeds' => 'The specified amount of this transaction exceeds the total amount of the invoice.',
         ],
     ],
 

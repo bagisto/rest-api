@@ -54,13 +54,17 @@ class SliderController extends SettingController
         $result = $this->getRepositoryInstance()->save($data);
 
         if ($result) {
+            $slider = $this->getRepositoryInstance()->latest('id')->first();
+
             return response([
+                'data'      => $slider,
                 'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.slider')]),
             ]);
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.error.something-went-wrong'),
+            'data'      => null,
+            'message'   => __('rest-api::app.common-response.error.something-went-wrong'),
         ], 500);
     }
 
@@ -97,12 +101,14 @@ class SliderController extends SettingController
 
         if ($result) {
             return response([
+                'data'      => $this->getRepositoryInstance()->find($id),
                 'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.slider')]),
             ]);
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.error.something-went-wrong'),
+            'data'      => null,
+            'message'   => __('rest-api::app.common-response.error.something-went-wrong'),
         ], 500);
     }
 
