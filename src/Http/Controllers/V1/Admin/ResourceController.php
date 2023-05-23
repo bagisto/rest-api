@@ -71,13 +71,7 @@ class ResourceController extends V1Controller implements ResourceContract
     {
         $resourceClassName = $this->resource();
 
-        $resource = $this->getRepositoryInstance()->find($id);
-
-        if (! $resource) {
-            return response([
-                'messege' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.data')]),
-            ]);
-        }
+        $resource = $this->getRepositoryInstance()->findOrFail($id);
         
         return new $resourceClassName($resource);
     }

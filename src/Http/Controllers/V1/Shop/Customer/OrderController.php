@@ -56,7 +56,7 @@ class OrderController extends CustomerController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getResources(Request $request) {
+    public function allResources(Request $request) {
         $order = $request->user()->all_orders()->get();
 
         if (! $order) {

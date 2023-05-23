@@ -22,7 +22,7 @@ class SliderResource extends JsonResource
             'content'       => $this->content,
             'slider_path'   => $this->slider_path,
             'channel_id'    => $this->channel_id,
-            'channels'       => new ChannelResource($this->channel),
+            'channel'       => new ChannelResource($this->channel),
             'locale'        => $this->locale,
             'sort_order'    => $this->sort_order,
             'expired_at'    => $this->expired_at,
