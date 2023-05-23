@@ -50,7 +50,7 @@ class TaxCategoryController extends SettingController
         $this->getRepositoryInstance()->attachOrDetach($taxCategory, $data['taxrates']);
 
         return response([
-            'data'    => new TaxCategoryResource($taxCategory),
+            'data'    => new TaxCategoryResource($this->getRepositoryInstance()->find($taxCategory->id)),
             'message' => __('rest-api::app.common-response.success.create', ['name' => 'Tax category']),
         ]);
     }
@@ -80,7 +80,7 @@ class TaxCategoryController extends SettingController
         $this->getRepositoryInstance()->attachOrDetach($taxCategory, $taxRates);
 
         return response([
-            'data'    => new TaxCategoryResource($taxCategory),
+            'data'    => new TaxCategoryResource($this->getRepositoryInstance()->find($taxCategory->id)),
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Tax category']),
         ]);
     }

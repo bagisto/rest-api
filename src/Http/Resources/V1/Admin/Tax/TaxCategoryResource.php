@@ -19,6 +19,7 @@ class TaxCategoryResource extends JsonResource
             'code'        => $this->code,
             'name'        => $this->name,
             'description' => $this->description,
+            'rates'       => TaxRateResource::collection($this->tax_rates),
             'created_at'  => $this->created_at,
             'updated_at'  => $this->updated_at,
         ];
