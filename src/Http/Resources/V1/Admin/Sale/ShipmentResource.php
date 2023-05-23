@@ -19,7 +19,7 @@ class ShipmentResource extends JsonResource
     {
         return [
             'id'               => $this->id,
-            'order_status'     => $this->when($this->order_id, new OrderResource($this->order))->status,
+            'order'            => new OrderResource($this->order),
             'total_qty'        => $this->total_qty,
             'total_weight'     => $this->total_weight,
             'carrier_code'     => $this->carrier_code,

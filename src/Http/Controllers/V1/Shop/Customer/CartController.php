@@ -42,14 +42,14 @@ class CartController extends CustomerController
      * @param  int  $productId
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request, WishlistRepository $wishlistRepository)
+    public function add(Request $request, WishlistRepository $wishlistRepository, int $productId)
     {
-        $customer = $request->user();
+        $customer = $this->resolveShopUser($request);
 
         try {
-            Event::dispatch('checkout.cart.item.add.before', $request['product_id']);
+            Event::dispatch('checkout.cart.item.add.before', $productId);
 
-            $result = Cart::addProduct($request['product_id'], $request->all());
+            $result = Cart::addProduct($productId, $request->all());
 
             if (is_array($result) && isset($result['warning'])) {
                 return response([
@@ -57,7 +57,7 @@ class CartController extends CustomerController
                 ], 400);
             }
 
-            $wishlistRepository->deleteWhere(['product_id' => $request['product_id'], 'customer_id' => $customer->id]);
+            $wishlistRepository->deleteWhere(['product_id' => $productId, 'customer_id' => $customer->id]);
 
             Event::dispatch('checkout.cart.item.add.after', $result);
 

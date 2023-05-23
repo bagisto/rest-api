@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Resources\V1\Admin\Marketing;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerGroupResource;
 
 class CatalogRuleResource extends JsonResource
@@ -22,9 +23,8 @@ class CatalogRuleResource extends JsonResource
             'starts_from'     => $this->starts_from,
             'ends_till'       => $this->ends_till,
             'status'          => $this->status,
-            'channel'         => $this->channels()->first()->code,
-            'customer_group'  => CustomerGroupResource::collection($this->customer_groups()->get()),
-            'condition_type'  => $this->condition_type,
+            'channel'         => ChannelResource::collection($this->channels),
+            'customer_group'  => CustomerGroupResource::collection($this->customer_groups),
             'condition_type'  => $this->condition_type,
             'conditions'      => $this->conditions,
             'end_other_rules' => $this->end_other_rules,

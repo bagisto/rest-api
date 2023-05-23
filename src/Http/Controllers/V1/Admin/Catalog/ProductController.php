@@ -66,7 +66,7 @@ class ProductController extends CatalogController
 
         return response([
             'data'    => new ProductResource($product),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Product']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.product')]),
         ]);
     }
 
@@ -113,7 +113,7 @@ class ProductController extends CatalogController
 
         return response([
             'data'    => new ProductResource($product),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Product']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.product')]),
         ]);
     }
 
@@ -135,7 +135,7 @@ class ProductController extends CatalogController
             'data'    => [
                 'total' => $productInventoryRepository->where('product_id', $product->id)->sum('qty'),
             ],
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Inventory']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.inventory')]),
         ]);
     }
 
@@ -153,7 +153,7 @@ class ProductController extends CatalogController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Product']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.product')]),
         ]);
     }
 
@@ -178,7 +178,7 @@ class ProductController extends CatalogController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'products']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => __('rest-api::app.common-response.general.products')]),
         ]);
     }
 }

@@ -25,15 +25,9 @@ class CheckoutController extends CustomerController
     {
         $data = $request->all();
 
-        if (! isset($data['shipping'])) {
-            return response()->json([
-                'message' => __('rest-api::app.checkout.enter-shipping-method'),
-            ], 401);
-        }
-
         $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
 
-        if(isset($data['shipping'])) {
+        if (isset($data['shipping'])) {
             $data['shipping']['address1'] = implode(PHP_EOL, array_filter($data['shipping']['address1']));
         }
 
@@ -50,7 +44,7 @@ class CheckoutController extends CustomerController
         if (Cart::hasError() || ! Cart::saveCustomerAddress($data) || ! Shipping::collectRates()) {
             return response()->json([
                 'message' => __('rest-api::app.checkout.cart.empty'),
-            ], 401);
+            ], 422);
         }
 
         $rates = [];
@@ -69,7 +63,7 @@ class CheckoutController extends CustomerController
                 'rates' => $rates,
                 'cart'  => new CartResource(Cart::getCart()),
             ],
-            'message' => __('rest-api::app.common-response.success.save-method', ['name' => 'Address']),
+            'message' => __('rest-api::app.common-response.success.save-method', ['name' => __('rest-api::app.common-response.general.address')]),
         ]);
     }
 
@@ -89,7 +83,7 @@ class CheckoutController extends CustomerController
         ) {
             return response()->json([
                 'message' => __('rest-api::app.checkout.shipping-method-not-available'),
-            ], 401);
+            ], 422);
         }
 
         Cart::collectTotals();
@@ -99,7 +93,7 @@ class CheckoutController extends CustomerController
                 'methods' => Payment::getPaymentMethods(),
                 'cart'    => new CartResource(Cart::getCart()),
             ],
-            'message' => __('rest-api::app.common-response.success.save-method', ['name' => 'Shipping method']),
+            'message' => __('rest-api::app.common-response.success.save-method', ['name' => __('rest-api::app.common-response.general.shipping-method')]),
         ]);
     }
 
@@ -116,14 +110,14 @@ class CheckoutController extends CustomerController
         if (Cart::hasError() || ! $payment || ! Cart::savePaymentMethod($payment)) {
             return response()->json([
                 'message' => __('rest-api::app.common-response.error.something-went-wrong'),
-            ],401);
+            ], 500);
         }
 
         return response([
             'data'    => [
                 'cart' => new CartResource(Cart::getCart()),
             ],
-            'message' => __('rest-api::app.common-response.success.save-method', ['name' => 'Payment method']),
+            'message' => __('rest-api::app.common-response.success.save-method', ['name' => __('rest-api::app.common-response.general.payment-method')]),
         ]);
     }
 
@@ -158,7 +152,7 @@ class CheckoutController extends CustomerController
         if (Cart::hasError()) {
             return response()->json([
                 'message' => __('rest-api::app.checkout.cart.empty'),
-            ], 401);
+            ], 422);
         }
 
         Cart::collectTotals();

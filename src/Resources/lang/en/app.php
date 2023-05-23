@@ -183,6 +183,14 @@ return [
             'item'              => 'Item',
             'wishlist'          => 'Wishlist',
             'product-quantity'  => 'product quantity',
+            'product'           => 'product',
+            'address'           => 'Address',
+            'inventory'         => 'Inventory',
+            'products'          => 'products',
+            'translations'      => 'translations',
+            'transactions'      => 'Transactions',
+            'payment-method'    => 'Payment Method',
+            'shipping-method'   => 'Shipping Method',
         ]
     ],
 ];
