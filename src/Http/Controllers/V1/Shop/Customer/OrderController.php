@@ -51,7 +51,7 @@ class OrderController extends CustomerController
     }
 
      /**
-     * get all customer's order.
+     * Get all customer's order.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -70,7 +70,7 @@ class OrderController extends CustomerController
 
 
     /**
-     * get customer's order by id.
+     * Get customer's order by id.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
