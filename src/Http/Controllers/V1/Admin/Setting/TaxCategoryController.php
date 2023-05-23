@@ -46,7 +46,7 @@ class TaxCategoryController extends SettingController
         $taxCategory = $this->getRepositoryInstance()->create($request->all());
 
         return response([
-            'data'    => new TaxCategoryResource($taxCategory),
+            'data'    => new TaxCategoryResource($this->getRepositoryInstance()->find($taxCategory->id)),
             'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.tax-category')]),
         ]);
     }
@@ -70,7 +70,7 @@ class TaxCategoryController extends SettingController
         $taxCategory = $this->getRepositoryInstance()->update($request->input(), $id);
 
         return response([
-            'data'    => new TaxCategoryResource($taxCategory),
+            'data'    => new TaxCategoryResource($this->getRepositoryInstance()->find($taxCategory->id)),
             'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.tax-category')]),
         ]);
     }
