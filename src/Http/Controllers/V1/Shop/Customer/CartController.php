@@ -103,7 +103,7 @@ class CartController extends CustomerController
             if (
                 $item->type == 'downloadable' 
                 || $item->type ==  'bundle' 
-                || $item->type == 'grouped'
+                || $item->type == 'booking'
             ) {
                 return response([
                     'message' => __('rest-api::app.common-response.error.cannot-update-product', ['name' =>  $item->type . ' ' .  __('rest-api::app.common-response.general.product-quantity')]),
