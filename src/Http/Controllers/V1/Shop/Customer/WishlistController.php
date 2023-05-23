@@ -73,7 +73,7 @@ class WishlistController extends CustomerController
 
         return response([
             'data'    => new CustomerWishlistResource($wishlistItem),
-            'message' => __('rest-api::app.common-response.success.add', ['name' => 'Wishlist']),
+            'message' => __('rest-api::app.common-response.success.add', ['name' => __('rest-api::app.common-response.general.wishlist')]),
         ]);
     }
 

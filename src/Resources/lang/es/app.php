@@ -163,6 +163,23 @@ return [
             'item'              => 'Artículo',
             'wishlist'          => 'Lista de deseos',
             'product-quantity'  => 'cantidad de producto',
+            'product'           => 'producto',
+            'address'           => 'dirección',
+            'inventory'         => 'inventario',
+            'category'          => 'categoría',
+            'categories'        => 'categorías',
+            'attribute'         => 'atributo',
+            'attributes'        => 'atributos',
+            'family'            => 'familia',
+            'page'              => 'página',
+            'account'           => 'cuenta',
+            'content'           => 'contenido',
+            'products'          => 'productos',
+            'configuration'     => 'configuración',
+            'translations'      => 'traducciones',
+            'transactions'      => 'transacciones',
+            'payment-method'    => 'método de pago',
+            'shipping-method'   => 'método de envío'
         ]
     ],
 ];

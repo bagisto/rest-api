@@ -74,14 +74,7 @@ class ResourceController extends V1Controller implements ResourceContract
 
         $resource = $this->isAuthorized()
             ? $this->getRepositoryInstance()->where('customer_id', $this->resolveShopUser($request)->id)->findOrFail($id)
-            : $this->getRepositoryInstance()->find($id);
-
-
-        if (! $resource) {
-            return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => 'Data']),
-            ]);
-        }
+            : $this->getRepositoryInstance()->findOrFail($id);
 
         return new $resourceClassName($resource);
     }
@@ -96,7 +89,7 @@ class ResourceController extends V1Controller implements ResourceContract
     public function destroyResource(Request $request, int $id)
     {
         $resource = $this->isAuthorized()
-            ? $this->getRepositoryInstance()->where('customer_id', $request->user()->id)->findOrFail($id)
+            ? $this->getRepositoryInstance()->where('customer_id', $this->resolveShopUser($request)->id)->findOrFail($id)
             : $this->getRepositoryInstance()->findOrFail($id);
 
         $resource->delete();

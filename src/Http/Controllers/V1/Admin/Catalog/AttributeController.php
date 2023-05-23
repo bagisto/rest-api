@@ -51,7 +51,7 @@ class AttributeController extends CatalogController
 
         return response([
             'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Attribute']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.attribute')]),
         ]);
     }
 
@@ -76,7 +76,7 @@ class AttributeController extends CatalogController
 
         return response([
             'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Attribute']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.attribute')]),
         ]);
     }
 
@@ -100,7 +100,7 @@ class AttributeController extends CatalogController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Attribute']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.attribute')]),
         ]);
     }
 
@@ -129,7 +129,7 @@ class AttributeController extends CatalogController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'attributes']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => __('rest-api::app.common-response.general.attributes')]),
         ]);
     }
 }

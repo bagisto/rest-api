@@ -61,7 +61,7 @@ class AccountController extends UserController
 
         return response([
             'data'    => new UserResource($user),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Account']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.account')]),
         ]);
     }
 }

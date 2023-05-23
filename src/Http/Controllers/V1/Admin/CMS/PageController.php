@@ -47,7 +47,7 @@ class PageController extends CMSController
 
         return response([
             'data'    => new CMSResource($page),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Page']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.page')]),
         ]);
     }
 
@@ -65,7 +65,7 @@ class PageController extends CMSController
         $request->validate([
             $locale . '.url_key'      => ['required', new \Webkul\Core\Contracts\Validations\Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
-                    $fail(__('rest-api::app.common-response.error.already-taken', ['name' => 'Page']));
+                    $fail(__('rest-api::app.common-response.error.already-taken', ['name' => __('rest-api::app.common-response.general.page')]));
                 }
             }],
             $locale . '.page_title'   => 'required',
@@ -77,7 +77,7 @@ class PageController extends CMSController
 
         return response([
             'data'    => new CMSResource($page),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Page']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.page')]),
         ]);
     }
 }

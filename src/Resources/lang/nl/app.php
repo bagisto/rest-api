@@ -163,6 +163,23 @@ return [
             'item'              => 'Item',
             'wishlist'          => 'Verlanglijst',
             'product-quantity'  => 'product kwantiteit',
+            'product'           => 'product',
+            'address'           => 'adres',
+            'inventory'         => 'voorraad',
+            'category'          => 'categorie',
+            'categories'        => 'categorieën',
+            'attribute'         => 'kenmerk',
+            'attributes'        => 'kenmerken',
+            'family'            => 'familie',
+            'page'              => 'pagina',
+            'account'           => 'account',
+            'content'           => 'inhoud',
+            'products'          => 'producten',
+            'configuration'     => 'configuratie',
+            'translations'      => 'vertalingen',
+            'transactions'      => 'transacties',
+            'payment-method'    => 'betaalmethode',
+            'shipping-method'   => 'verzendmethode'
         ]
     ],
 ];

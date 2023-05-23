@@ -47,7 +47,7 @@ class ContentController extends VelocityController
 
         return response([
             'data'    => new ContentResource($content),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Content']),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => __('rest-api::app.common-response.general.content')]),
         ]);
     }
 
@@ -70,7 +70,7 @@ class ContentController extends VelocityController
 
         return response([
             'data'    => new ContentResource($content),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Content']),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => __('rest-api::app.common-response.general.content')]),
         ]);
     }
 
@@ -87,7 +87,7 @@ class ContentController extends VelocityController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Content']),
+            'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.content')]),
         ]);
     }
 
@@ -106,7 +106,7 @@ class ContentController extends VelocityController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'content']),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => __('rest-api::app.common-response.general.content')]),
         ]);
     }
 }
