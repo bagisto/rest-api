@@ -66,6 +66,6 @@ class OrderController extends CustomerController
             ]);
         }
 
-        return $this->getResourceCollection($order->get());
+        return new OrderResource($order);
     }
 }

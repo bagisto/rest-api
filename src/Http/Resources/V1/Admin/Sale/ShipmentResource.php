@@ -21,7 +21,6 @@ class ShipmentResource extends JsonResource
             'id'               => $this->id,
             'status'           => $this->status,
             'order_id'         => $this->order_id,
-            'order_status'     => $this->when($this->order_id, new OrderResource($this->order))->status,
             'total_qty'        => $this->total_qty,
             'total_weight'     => $this->total_weight,
             'carrier_code'     => $this->carrier_code,
