@@ -100,16 +100,6 @@ class CartController extends CustomerController
         foreach ($request->qty as $itemId => $qty) {
             $item = $cartItemRepository->findOneByField('id', $itemId);
 
-            if (
-                $item->type == 'downloadable' 
-                || $item->type ==  'bundle' 
-                || $item->type == 'booking'
-            ) {
-                return response([
-                    'message' => __('rest-api::app.common-response.error.cannot-update-product', ['name' =>  $item->type . ' ' .  __('rest-api::app.common-response.general.product-quantity')]),
-                ]);
-            }
-
             Event::dispatch('checkout.cart.item.update.before', $itemId);
 
             Cart::updateItems(['qty' => $request->qty]);

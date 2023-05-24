@@ -50,25 +50,6 @@ class OrderController extends CustomerController
         ]);
     }
 
-     /**
-     * Get all customer's order.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function allResources(Request $request) {
-        $order = $request->user()->all_orders()->get();
-
-        if (! $order) {
-            return response([
-                'message' => __('rest-api::app.sales.orders.order-not-found'),
-            ]);
-        }
-
-        return $this->getResourceCollection($order);
-    }
-
-
     /**
      * Get customer's order by id.
      *

@@ -72,7 +72,7 @@ class ResourceController extends V1Controller implements ResourceContract
         $resourceClassName = $this->resource();
 
         $resource = $this->getRepositoryInstance()->findOrFail($id);
-        
+
         return new $resourceClassName($resource);
     }
 
@@ -104,9 +104,9 @@ class ResourceController extends V1Controller implements ResourceContract
     {
         $resources = $this->getRepositoryInstance()->findWhereIn('id', $request->indexes);
 
-        if ($resources->count() != count($request->indexes)) {
+        if ($resources->empty()) {
             return response([
-                'message' => __('rest-api::app.common-response.success.not-found', ['name' => __('rest-api::app.common-response.general.data')]),
+                'message' => __('rest-api::app.common-response.error.mass-operations.resource-not-found', ['name' => $this->resourceName]),
             ], 404);
         }
 
