@@ -8,10 +8,23 @@ use Webkul\Admin\Mail\NewCustomerNotification;
 use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
 
 class CustomerController extends CustomerBaseController
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @param  \Webkul\Sales\Repositories\InvoiceRepository  $invoiceRepository
+     * @return void
+     */
+    public function __construct(protected InvoiceRepository $invoiceRepository)
+    {
+    }
+    
     /**
      * Repository class name.
      *
@@ -177,7 +190,7 @@ class CustomerController extends CustomerBaseController
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
         return response([
-            'data' => $customer->all_orders,
+            'data' => OrderResource::collection($customer->all_orders),
         ]);
     }
 
@@ -191,8 +204,10 @@ class CustomerController extends CustomerBaseController
     {
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
+        $orderIds = $customer->all_orders->pluck('id')->toArray();
+        
         return response([
-            'data' => $customer->all_orders,
+            'data' => InvoiceResource::collection($this->invoiceRepository->findWhereIn('order_id', $orderIds)),
         ]);
     }
 
