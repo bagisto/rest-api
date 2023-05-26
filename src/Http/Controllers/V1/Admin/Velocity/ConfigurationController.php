@@ -318,7 +318,7 @@ class ConfigurationController extends VelocityController
 
         foreach ($addImages as $id => $images) {
             foreach ($images as $key => $image) {
-                if ($image) {
+                if (! $image) {
                     continue;
                 }
 
