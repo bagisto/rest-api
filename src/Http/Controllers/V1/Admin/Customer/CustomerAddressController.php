@@ -54,16 +54,33 @@ class CustomerAddressController extends CustomerBaseController
     /**
      * Fetch address by customer id.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $customerId
      * @return \Illuminate\Http\Response
      */
-    public function index($customerId)
+    public function index(Request $request, $customerId)
     {
         $customer = $this->customerRepository->findOrFail($customerId);
 
-        return response([
-            'data' => $this->getResourceCollection($customer->addresses),
-        ]);
+        $query = $customer->addresses();
+
+        foreach ($request->except($this->requestException) as $input => $value) {
+            $query = $query->whereIn($input, array_map('trim', explode(',', $value)));
+        }
+
+        if ($sort = $request->input('sort')) {
+            $query = $query->orderBy($sort, $request->input('order') ?? 'desc');
+        } else {
+            $query = $query->orderBy('id', 'desc');
+        }
+        
+        if (is_null($request->input('pagination')) || $request->input('pagination')) {
+            $results = $query->paginate($request->input('limit') ?? 10);
+        } else {
+            $results = $query->get();
+        }
+
+        return $this->getResourceCollection($results);
     }
 
     /**
