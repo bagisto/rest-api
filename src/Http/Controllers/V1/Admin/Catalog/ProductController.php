@@ -168,15 +168,19 @@ class ProductController extends CatalogController
         foreach ($request->indexes as $id) {
             $this->getRepositoryInstance()->findOrFail($id);
 
-            $this->getRepositoryInstance()->update([
+            Event::dispatch('catalog.product.update.before', $id);
+
+            $product = $this->getRepositoryInstance()->update([
                 'channel' => null,
                 'locale'  => null,
                 'status'  => $request->update_value,
             ], $id);
-        }
 
+            Event::dispatch('catalog.product.update.after', $product);
+        }
+        
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.update', 'products'),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'products']),
         ]);
     }
 }
