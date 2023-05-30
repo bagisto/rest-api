@@ -178,9 +178,9 @@ class ProductController extends CatalogController
 
             Event::dispatch('catalog.product.update.after', $product);
         }
-
+        
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.update', 'products'),
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'products']),
         ]);
     }
 }
