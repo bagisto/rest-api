@@ -150,7 +150,11 @@ class ProductController extends CatalogController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('catalog.product.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('catalog.product.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Product']),
