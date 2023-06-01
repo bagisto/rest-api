@@ -31,6 +31,8 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish --provider L5Swagger\\L5SwaggerServiceProvider",
+            "@php artisan l5-swagger:generate",
             "@php artisan vendor:publish --tag=bagistoRESTAPISwaggerDoc --force"
         ]
     }
