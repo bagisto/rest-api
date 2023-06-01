@@ -31,7 +31,7 @@ class RestApiServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'rest-api');
 
         $this->publishes([
-            __DIR__.'/Config/l5-swagger.php' => config_path('l5-swagger.php'),
+            __DIR__.'/../Config/l5-swagger.php' => config_path('l5-swagger.php'),
         ], 'bagistoRESTAPISwaggerDoc');
     }
 
