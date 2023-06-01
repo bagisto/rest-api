@@ -11,7 +11,7 @@ class Install extends Command
      *
      * @var string
      */
-    protected $signature = 'bagisto-rest-api-docs:install';
+    protected $signature = 'bagisto-rest-api:install';
 
     /**
      * The console command description.
