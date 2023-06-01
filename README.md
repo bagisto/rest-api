@@ -14,10 +14,16 @@
 composer require bagisto/rest-api dev-master
 ~~~
 
+##### Add below options in the .env file (i.e. http://localhost/public your domain):
+
+~~~
+SANCTUM_STATEFUL_DOMAINS=http://localhost/public
+~~~
+
 ##### To configure the REST API L5-Swagger Documentation run below command:
 
 ~~~
-php artisan bagisto-rest-api-docs:install
+php artisan bagisto-rest-api:install
 ~~~
 
 #### To check the Admin end API documentation:

@@ -13,7 +13,7 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  * )
  *
  * @OA\Server(
- *      url=L5_SWAGGER_CONST_HOST,
+ *      url=APP_URL,
  *      description="Bagisto Admin End Rest API"
  * )
  *
