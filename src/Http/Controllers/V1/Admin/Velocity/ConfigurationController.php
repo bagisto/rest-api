@@ -165,6 +165,13 @@ class ConfigurationController extends VelocityController
 
                         $this->sanitizeSVG($path, $image->getMimeType());
                     }
+
+                    if (
+                        gettype($image) == "string" 
+                        && in_array(exif_imagetype($image), [2, 3, 18])
+                    ) {
+                        $saveImage[substr($imageId, 6, 1)] = $this->copyAdvertiseImages($image, $dir);
+                    }
                 } else {
                     if (isset($advertisement[$index][$imageId]) && $advertisement[$index][$imageId] && ! request()->hasFile($file)) {
                         $saveImage[$imageId] = $advertisement[$index][$imageId];
@@ -295,7 +302,7 @@ class ConfigurationController extends VelocityController
         $result = null;
         $path = explode('/', $resourceImagePath);
 
-        $image = $copiedPath . '/' . end($path);
+        $image = $copiedPath . '/' . Str::random(5) . end($path);
 
         Storage::makeDirectory($copiedPath);
 
@@ -318,7 +325,7 @@ class ConfigurationController extends VelocityController
 
         foreach ($addImages as $id => $images) {
             foreach ($images as $key => $image) {
-                if ($image) {
+                if (! $image) {
                     continue;
                 }
 

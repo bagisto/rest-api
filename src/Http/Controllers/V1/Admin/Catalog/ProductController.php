@@ -150,7 +150,11 @@ class ProductController extends CatalogController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('catalog.product.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('catalog.product.delete.after', $id);
 
         return response([
             'message' => __('rest-api::app.common-response.success.delete', ['name' => __('rest-api::app.common-response.general.product')]),
@@ -168,6 +172,8 @@ class ProductController extends CatalogController
         foreach ($request->indexes as $id) {
             $this->getRepositoryInstance()->findOrFail($id);
 
+            Event::dispatch('catalog.product.update.before', $id);
+
             $product = $this->getRepositoryInstance()->update([
                 'channel' => null,
                 'locale'  => null,
@@ -176,7 +182,7 @@ class ProductController extends CatalogController
 
             Event::dispatch('catalog.product.update.after', $product);
         }
-
+        
         return response([
             'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => __('rest-api::app.common-response.general.products')]),
         ]);
