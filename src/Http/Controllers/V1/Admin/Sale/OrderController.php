@@ -55,6 +55,10 @@ class OrderController extends SaleController
      */
     public function comment(Request $request, OrderCommentRepository $orderCommentRepository, int $id)
     {
+        $request->validate([
+            'comment' => 'required',
+        ]);
+        
         $data = array_merge($request->all(), ['order_id' => $id]);
 
         $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;

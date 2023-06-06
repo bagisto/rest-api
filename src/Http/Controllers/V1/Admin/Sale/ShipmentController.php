@@ -80,7 +80,9 @@ class ShipmentController extends SaleController
         }
 
         $request->validate([
-            'shipment.source'    => 'required',
+            'shipment.carrier_title'    => 'required',
+            'shipment.track_number' => 'required',
+            'shipment.source'   => 'required',
             'shipment.items.*.*' => 'required|numeric|min:0',
         ]);
 

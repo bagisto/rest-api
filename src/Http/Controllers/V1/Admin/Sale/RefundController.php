@@ -49,6 +49,9 @@ class RefundController extends SaleController
 
         $request->validate([
             'refund.items.*' => 'required|numeric|min:0',
+            'refund.shipping' => 'required',
+            'refund.adjustment_refund' => 'required',
+            'refund.adjustment_fee' => 'required',
         ]);
 
         $data = $request->all();
