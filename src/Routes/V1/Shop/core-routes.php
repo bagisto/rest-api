@@ -12,7 +12,7 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Core\SliderController;
 /**
  * Core configs.
  */
-Route::get('core-configs', [CoreController::class, 'getCoreConfigs']);
+Route::post('core-configs', [CoreController::class, 'getCoreConfigs']);
 
 Route::get('core-config-fields', [CoreController::class, 'allResources']);
 
