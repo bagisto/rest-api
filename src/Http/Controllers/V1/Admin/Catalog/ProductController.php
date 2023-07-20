@@ -178,6 +178,7 @@ class ProductController extends CatalogController
                 'channel' => null,
                 'locale'  => null,
                 'status'  => $request->update_value,
+                'booking' => $request->booking
             ], $id);
 
             Event::dispatch('catalog.product.update.after', $product);

@@ -51,7 +51,7 @@ class SliderController extends SettingController
             $data['locale'] = implode(',', $data['locale']);
         }
 
-        $result = $this->getRepositoryInstance()->save($data);
+        $result = $this->getRepositoryInstance()->create($data);
 
         if ($result) {
             $slider = $this->getRepositoryInstance()->latest('id')->first();
@@ -96,10 +96,9 @@ class SliderController extends SettingController
             return response([
                 'message' => __('rest-api::app.common-response.error.something-went-wrong'),
             ], 500);
-        }
-
-        $result = $this->getRepositoryInstance()->updateItem($data, $id);
-
+        }  
+         
+        $result = $this->getRepositoryInstance()->update($data, $id);
         if ($result) {
             return response([
                 'data'      => $this->getRepositoryInstance()->find($id),

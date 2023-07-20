@@ -37,14 +37,7 @@ class UserController extends SettingController
      */
     public function store(UserForm $request)
     {
-        $request->validate([
-            'name'    => 'required',
-            'email'   => 'required|email',
-            'role_id' => 'required|integer',
-        ]);
-
         $data = $request->all();
-
         if (isset($data['password']) && $data['password']) {
             $data['password'] = bcrypt($data['password']);
             $data['api_token'] = Str::random(80);
@@ -113,10 +106,6 @@ class UserController extends SettingController
      */
     private function prepareUserData(UserForm $request, $id)
     {
-        $request->validate([
-            'role_id'  => 'integer',
-        ]);
-
         $data = $request->validated();
 
         $user = $this->getRepositoryInstance()->findOrFail($id);

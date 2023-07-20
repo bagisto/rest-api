@@ -47,7 +47,7 @@ class TaxCategoryController extends SettingController
 
         $taxCategory = $this->getRepositoryInstance()->create($data);
 
-        $this->getRepositoryInstance()->attachOrDetach($taxCategory, $data['taxrates']);
+        $taxCategory->tax_rates()->sync($data['taxrates']);
 
         return response([
             'data'    => new TaxCategoryResource($this->getRepositoryInstance()->find($taxCategory->id)),
@@ -75,9 +75,7 @@ class TaxCategoryController extends SettingController
 
         $taxCategory = $this->getRepositoryInstance()->update($data, $id);
 
-        $taxRates = $data['taxrates'];
-
-        $this->getRepositoryInstance()->attachOrDetach($taxCategory, $taxRates);
+        $taxCategory->tax_rates()->sync($data['taxrates']);
 
         return response([
             'data'    => new TaxCategoryResource($this->getRepositoryInstance()->find($taxCategory->id)),
