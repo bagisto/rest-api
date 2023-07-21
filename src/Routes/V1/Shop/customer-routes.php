@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
     Route::get('customer/addresses/{id}', [AddressController::class, 'getResource']);
 
     Route::post('customer/addresses', [AddressController::class, 'store']);
-    
+
     Route::put('customer/addresses/{id}', [AddressController::class, 'update']);
 
     Route::delete('customer/addresses/{id}', [AddressController::class, 'destroy']);
