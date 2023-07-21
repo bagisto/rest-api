@@ -38,7 +38,6 @@ class UserController extends SettingController
     public function store(UserForm $request)
     {
         $data = $request->all();
-
         if (isset($data['password']) && $data['password']) {
             $data['password'] = bcrypt($data['password']);
             $data['api_token'] = Str::random(80);
