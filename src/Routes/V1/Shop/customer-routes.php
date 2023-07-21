@@ -33,12 +33,12 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
     /**
      * Customer address routes.
      */
-    Route::get('customer/addresses', [AddressController::class, 'index']);
+    Route::get('customer/addresses', [AddressController::class, 'allResources']);
+
+    Route::get('customer/addresses/{id}', [AddressController::class, 'getResource']);
 
     Route::post('customer/addresses', [AddressController::class, 'store']);
-
-    Route::get('customer/addresses/{id}', [AddressController::class, 'show']);
-
+    
     Route::put('customer/addresses/{id}', [AddressController::class, 'update']);
 
     Route::delete('customer/addresses/{id}', [AddressController::class, 'destroy']);
