@@ -1,6 +1,7 @@
 <?php
 
 namespace Webkul\RestApi\Http\Resources\V1\Admin\Sale;
+use Webkul\Product\Facades\ProductImage;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,6 +20,7 @@ class OrderItemResource extends JsonResource
             'sku'                                => $this->sku,
             'type'                               => $this->type,
             'name'                               => $this->name,
+            'base_image'                         => ProductImage::getProductBaseImage($this->product),
             'product_id'                         => $this->product_id,
             'coupon_code'                        => $this->coupon_code,
             'weight'                             => $this->weight,

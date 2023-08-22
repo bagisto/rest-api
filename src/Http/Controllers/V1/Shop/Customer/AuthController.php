@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use Webkul\Customer\Models\Customer;
+use Webkul\Customer\Models\MarketingReseller;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
@@ -64,7 +66,9 @@ class AuthController extends CustomerController
             'password'   => 'required|confirmed|min:6',
         ]);
 
-        $this->customerRepository->create([
+        $referral_code = $this->generateReferralCode();
+
+        $customer = $this->customerRepository->create([
             'first_name'        => $request->first_name,
             'last_name'         => $request->last_name,
             'email'             => $request->email,
@@ -72,7 +76,17 @@ class AuthController extends CustomerController
             'is_verified'       => 1,
             'channel_id'        => core()->getCurrentChannel()->id,
             'customer_group_id' => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
+            'referral_code'     => $referral_code
         ]);
+
+        if ($customer) {
+            $marketing = Customer::where('referral_code', $request->referral_code)->first();
+
+            MarketingReseller::create([
+                'customer_id' => $customer->id,
+                'marketing_id' => $marketing->id
+            ]);
+        }
 
         return response([
             'message' => 'Your account has been created successfully.',
@@ -92,14 +106,14 @@ class AuthController extends CustomerController
             'password' => 'required',
         ]);
 
-        if (! EnsureFrontendRequestsAreStateful::fromFrontend($request)) {
+        if (!EnsureFrontendRequestsAreStateful::fromFrontend($request)) {
             $request->validate([
                 'device_name' => 'required',
             ]);
 
             $customer = $this->customerRepository->where('email', $request->email)->first();
 
-            if (! $customer || ! Hash::check($request->password, $customer->password)) {
+            if (!$customer || !Hash::check($request->password, $customer->password)) {
                 throw ValidationException::withMessages([
                     'email' => ['The provided credentials are incorrect.'],
                 ]);
@@ -167,7 +181,7 @@ class AuthController extends CustomerController
 
         $data = $request->all();
 
-        if (! isset($data['password']) || ! $data['password']) {
+        if (!isset($data['password']) || !$data['password']) {
             unset($data['password']);
         } else {
             $data['password'] = bcrypt($data['password']);
@@ -191,7 +205,7 @@ class AuthController extends CustomerController
     {
         $customer = $this->resolveShopUser($request);
 
-        ! EnsureFrontendRequestsAreStateful::fromFrontend($request)
+        !EnsureFrontendRequestsAreStateful::fromFrontend($request)
             ? $customer->tokens()->delete()
             : auth()->guard('customer')->logout();
 
@@ -218,5 +232,26 @@ class AuthController extends CustomerController
             ['message' => __($response)],
             $response == Password::RESET_LINK_SENT ? 200 : 400
         );
+    }
+
+    public function generateReferralCode($length = 6)
+    {
+        // Set the chars
+        $chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Count the total chars
+        $totalChars = strlen($chars);
+
+        // Get the total repeat
+        $totalRepeat = ceil($length / $totalChars);
+
+        // Repeat the string
+        $repeatString = str_repeat($chars, $totalRepeat);
+
+        // Shuffle the string result
+        $shuffleString = str_shuffle($repeatString);
+
+        // get the result random string
+        return substr($shuffleString, 1, $length);
     }
 }

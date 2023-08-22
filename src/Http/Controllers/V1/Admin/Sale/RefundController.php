@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\RefundResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\RefundRepository;
+use Illuminate\Support\Facades\Event;
 
 class RefundController extends SaleController
 {
@@ -41,7 +42,7 @@ class RefundController extends SaleController
     {
         $order = $orderRepository->findOrFail($orderId);
 
-        if (! $order->canRefund()) {
+        if (!$order->canRefund()) {
             return response([
                 'message' => __('rest-api::app.sales.refunds.creation-error'),
             ], 400);
@@ -85,6 +86,8 @@ class RefundController extends SaleController
         }
 
         $refund = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
+
+        Event::dispatch('order.refund.after', $orderId);
 
         return response([
             'data'    => new RefundResource($refund),

@@ -16,7 +16,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\UserController;
  * Settings routes.
  */
 Route::group([
-    'middleware' => ['auth:sanctum', 'sanctum.admin'],
+    'middleware' => ['auth:sanctum', 'sanctum.customer'],
     'prefix'     => 'settings',
 ], function () {
     /**

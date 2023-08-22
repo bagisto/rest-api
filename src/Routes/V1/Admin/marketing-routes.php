@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Webkul\Marketing\Http\Controllers\MarketingController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\CampaignController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\CartRuleController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\CartRuleCouponController;
@@ -9,7 +10,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\EventController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\TemplateController;
 
 Route::group([
-    'middleware' => ['auth:sanctum', 'sanctum.admin'],
+    'middleware' => ['auth:sanctum', 'sanctum.customer'],
     'prefix'     => 'promotions',
 ], function () {
     /**

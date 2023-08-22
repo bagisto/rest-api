@@ -5,6 +5,7 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\AddressController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\AuthController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\CartController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\CheckoutController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\CustomerController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\InvoiceController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\OrderController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\ShipmentController;
@@ -19,6 +20,8 @@ Route::post('customer/login', [AuthController::class, 'login']);
 Route::post('customer/register', [AuthController::class, 'register']);
 
 Route::post('customer/forgot-password', [AuthController::class, 'forgotPassword']);
+
+Route::get('customer/referral-code/{code}', [CustomerController::class, 'checkReferralCode']);
 
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
     /**

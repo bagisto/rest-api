@@ -7,6 +7,7 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CountryController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CountryStateController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CurrencyController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\LocaleController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\SearchController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\SliderController;
 
 /**
@@ -45,6 +46,11 @@ Route::get('channels/{id}', [ChannelController::class, 'getResource']);
 Route::get('sliders', [SliderController::class, 'allResources']);
 
 Route::get('sliders/{id}', [SliderController::class, 'getResource']);
+
+/**
+ * Search routes.
+ */
+ Route::get('search', [SearchController::class, 'index']);
 
 /**
  * Country routes.

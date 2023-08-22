@@ -29,6 +29,7 @@ class OrderResource extends JsonResource
             'shipping_method'                     => $this->shipping_method,
             'shipping_title'                      => $this->shipping_title,
             'payment_title'                       => core()->getConfigData('sales.paymentmethods.' . $this->payment->method . '.title'),
+            'payment_redirect_url'                => $this->payment->redirect_url,
             'shipping_description'                => $this->shipping_description,
             'coupon_code'                         => $this->coupon_code,
             'is_gift'                             => $this->is_gift,
