@@ -17,6 +17,7 @@ class CategoryResource extends JsonResource
     {
         return [
             'id'                 => $this->id,
+            'parent_id'          => $this->parent_id,
             'name'               => $this->name,
             'slug'               => $this->slug,
             'display_mode'       => $this->display_mode,
@@ -25,7 +26,7 @@ class CategoryResource extends JsonResource
             'meta_description'   => $this->meta_description,
             'meta_keywords'      => $this->meta_keywords,
             'status'             => $this->status,
-            'image_url'          => $this->image_url,
+            'image_url'          => $this->image_url ?? asset("vendor/webkul/ui/assets/images/product/small-product-placeholder.png"),
             'category_icon_path' => $this->category_icon_path
                 ? Storage::url($this->category_icon_path)
                 : null,
