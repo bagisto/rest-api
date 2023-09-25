@@ -5,13 +5,26 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\CartRule\Repositories\CartRuleRepository;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Checkout\Repositories\CartItemRepository;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
+use Webkul\CartRule\Helpers\CartRule;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleResource;
 
 class CartController extends CustomerController
 {
+    /**
+     * Create a new listener instance.
+     *
+     * @param  \Webkul\CartRule\Repositories\CartRule  $cartRuleHepler
+     * @return void
+     */
+    public function __construct(protected CartRule $cartRuleHepler)
+    {
+    }
+
     /**
      * Get the customer cart.
      *
@@ -150,6 +163,16 @@ class CartController extends CustomerController
         return response([
             'data'    => $cart ? new CartResource($cart) : null,
             'message' => __('rest-api::app.checkout.cart.item.success-remove'),
+        ]);
+    }
+
+    public function getListCoupon()
+    {
+        $ts = $this->cartRuleHepler->getCartRules(Cart::getCart());
+
+        return response([
+            'data'    => CartRuleResource::collection($ts),
+            'message' => __('rest-api::app.checkout.cart.coupon.success'),
         ]);
     }
 

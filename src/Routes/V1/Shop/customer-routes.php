@@ -91,6 +91,8 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
 
     Route::post('customer/cart/move-to-wishlist/{cartItemId}', [CartController::class, 'moveToWishlist']);
 
+    Route::get('customer/cart/list-coupons', [CartController::class, 'getListCoupon']);
+
     Route::post('customer/cart/coupon', [CartController::class, 'applyCoupon']);
 
     Route::delete('customer/cart/coupon', [CartController::class, 'removeCoupon']);

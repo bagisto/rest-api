@@ -17,6 +17,7 @@ class CartRuleResource extends JsonResource
         return [
             'id'                        => $this->id,
             'name'                      => $this->name,
+            'coupon_code'                      => $this->coupon_code,
             'description'               => $this->description,
             'starts_from'               => $this->starts_from,
             'ends_till'                 => $this->ends_till,
@@ -37,6 +38,7 @@ class CartRuleResource extends JsonResource
             'apply_to_shipping'         => $this->apply_to_shipping,
             'free_shipping'             => $this->free_shipping,
             'sort_order'                => $this->sort_order,
+            'image_url'                 => asset("vendor/webkul/ui/assets/images/eleven_logo.png"),
             'created_at'                => $this->created_at,
             'updated_at'                => $this->updated_at,
         ];
