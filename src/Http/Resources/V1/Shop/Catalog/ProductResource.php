@@ -70,6 +70,7 @@ class ProductResource extends JsonResource
             /* product's checks */
             'in_stock'              => $product->haveSufficientQuantity(1),
             'is_saved'              => false,
+            'is_featured'           => $product->featured ? true : false,
             'is_item_in_cart'       => Cart::hasProduct($product),
             'show_quantity_changer' => $this->when(
                 $product->type !== 'grouped',
@@ -102,7 +103,7 @@ class ProductResource extends JsonResource
 
         return [
             'special_price'           => $this->when(
-                $productTypeInstance ->haveSpecialPrice(),
+                $productTypeInstance->haveSpecialPrice(),
                 core()->convertPrice($productTypeInstance->getMinimalPrice())
             ),
             'formatted_special_price' => $this->when(
