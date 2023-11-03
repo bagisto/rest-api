@@ -15,9 +15,15 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {
+        $parent_category_name = null;
+        if ($this->parent) {
+            $parent_category_name = $this->parent->translations->first() ? $this->translations->first()->name : 'Category';
+        }
+
         return [
             'id'                 => $this->id,
             'parent_id'          => $this->parent_id,
+            'parent_category_name' => $parent_category_name,
             'name'               => $this->name,
             'slug'               => $this->slug,
             'display_mode'       => $this->display_mode,

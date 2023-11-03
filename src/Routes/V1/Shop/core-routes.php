@@ -52,6 +52,11 @@ Route::get('sliders/{id}', [SliderController::class, 'getResource']);
  */
  Route::get('search', [SearchController::class, 'index']);
 
+ /**
+  * Search Category routes.
+  */
+  Route::get('search-category/{id}', [SearchController::class, 'searchByCategory']);
+
 /**
  * Country routes.
  */

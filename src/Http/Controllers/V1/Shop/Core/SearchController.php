@@ -33,4 +33,13 @@ class SearchController extends CoreController
             'data' => ProductResource::collection($results),
         ]);
     }
+
+    public function searchByCategory($id)
+    {
+        $results = $this->searchRepository->searchByCategory($id);
+
+        return response([
+            'data' => ProductResource::collection($results),
+        ]);
+    }
 }
