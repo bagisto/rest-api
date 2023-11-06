@@ -73,11 +73,11 @@ class RefundController extends SaleController
 
         $refundAmount = $totals['grand_total']['price'] - $totals['shipping']['price'] + $data['refund']['shipping'] + $data['refund']['adjustment_refund'] - $data['refund']['adjustment_fee'];
 
-        if (! $refundAmount) {
-            return response([
-                'message' => __('rest-api::app.sales.refunds.invalid-amount-error'),
-            ], 400);
-        }
+        // if (! $refundAmount) {
+        //     return response([
+        //         'message' => __('rest-api::app.sales.refunds.invalid-amount-error'),
+        //     ], 400);
+        // }
 
         if ($refundAmount > $maxRefundAmount) {
             return response([
