@@ -37,7 +37,7 @@ class LocaleController extends SettingController
     public function store(Request $request)
     {
         $request->validate([
-            'code'      => ['required', 'unique:locales,code', new \Webkul\Core\Contracts\Validations\Code],
+            'code'      => ['required', 'unique:locales,code', new \Webkul\Core\Rules\Code],
             'name'      => 'required',
             'direction' => 'in:ltr,rtl',
         ]);
@@ -60,7 +60,7 @@ class LocaleController extends SettingController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code'      => ['required', 'unique:locales,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
+            'code'      => ['required', 'unique:locales,code,' . $id, new \Webkul\Core\Rules\Code],
             'name'      => 'required',
             'direction' => 'in:ltr,rtl',
         ]);

@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Support\Str;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
-use Webkul\User\Http\Requests\UserForm;
+use Webkul\Admin\Http\Requests\UserForm;
 use Webkul\User\Repositories\AdminRepository;
 
 class UserController extends SettingController
@@ -32,7 +32,7 @@ class UserController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Webkul\User\Http\Requests\UserForm  $request
+     * @param  \Webkul\Admin\Http\Requests\UserForm  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserForm $request)
@@ -54,7 +54,7 @@ class UserController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Webkul\User\Http\Requests\UserForm  $request
+     * @param  \Webkul\Admin\Http\Requests\UserForm  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -100,7 +100,7 @@ class UserController extends SettingController
     /**
      * Prepare user data.
      *
-     * @param  \Webkul\User\Http\Requests\UserForm  $request
+     * @param  \Webkul\Admin\Http\Requests\UserForm  $request
      * @param  int  $id
      * @return array|\Illuminate\Http\RedirectResponse
      */
