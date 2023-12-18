@@ -16,6 +16,12 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
+        $paymentAdditional = null;
+
+        if ($this->payment->method == 'moneytransfer') {
+            $paymentAdditional = json_decode($this->payment->additional);
+        }
+
         return [
             'id'                                  => $this->id,
             'increment_id'                        => $this->increment_id,
@@ -30,6 +36,10 @@ class OrderResource extends JsonResource
             'shipping_title'                      => $this->shipping_title,
             'payment_title'                       => core()->getConfigData('sales.paymentmethods.' . $this->payment->method . '.title'),
             'payment_redirect_url'                => $this->payment->redirect_url,
+            'payment_method'                      => $this->payment->method ?? '',
+            'payment_bank'                        => $paymentAdditional->bank ?? '',
+            'payment_no_bank'                     => $paymentAdditional->bank_no ?? '',
+            'payment_bank_name'                   => $paymentAdditional->bank_name ?? '',
             'shipping_description'                => $this->shipping_description,
             'coupon_code'                         => $this->coupon_code,
             'is_gift'                             => $this->is_gift,
