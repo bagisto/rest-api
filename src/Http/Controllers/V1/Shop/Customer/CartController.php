@@ -20,7 +20,7 @@ class CartController extends CustomerController
     public function get()
     {
         $cart = Cart::getCart();
-
+       
         return response([
             'data' => $cart ? new CartResource($cart) : null,
         ]);
@@ -42,21 +42,23 @@ class CartController extends CustomerController
             Event::dispatch('checkout.cart.item.add.before', $productId);
 
             $result = Cart::addProduct($productId, $request->all());
-
+           
             if (is_array($result) && isset($result['warning'])) {
                 return response([
                     'message' => $result['warning'],
                 ], 400);
             }
-
-            $wishlistRepository->deleteWhere(['product_id' => $productId, 'customer_id' => $customer->id]);
-
+            
+            if(auth()->user()) {
+              $wishlistRepository->deleteWhere(['product_id' => $productId, 'customer_id' => $customer->id]);
+            }
+           
             Event::dispatch('checkout.cart.item.add.after', $result);
-
+        
             Cart::collectTotals();
-
+        
             $cart = Cart::getCart();
-
+        
             return response([
                 'data'    => $cart ? new CartResource($cart) : null,
                 'message' => __('rest-api::app.checkout.cart.item.success'),
@@ -102,7 +104,7 @@ class CartController extends CustomerController
         Cart::collectTotals();
 
         $cart = Cart::getCart();
-
+         
         return response([
             'data'    => $cart ? new CartResource($cart) : null,
             'message' => __('rest-api::app.checkout.cart.quantity.success'),
@@ -214,9 +216,9 @@ class CartController extends CustomerController
      * @return \Illuminate\Http\Response
      */
     public function moveToWishlist($cartItemId)
-    {
+    {      
         Event::dispatch('checkout.cart.item.move-to-wishlist.before', $cartItemId);
-
+    
         Cart::moveToWishlist($cartItemId);
 
         Event::dispatch('checkout.cart.item.move-to-wishlist.after', $cartItemId);

@@ -50,14 +50,12 @@ class AuthController extends UserController
 
             return response([
                 'data'    => new UserResource($admin),
-                'message' => 'Logged in successfully.',
-                'token'   => $admin->createToken($request->device_name, ['role:admin'])->plainTextToken,
-            ]);
+                'message' => 'Logged in successfully.',            ]);
         }
 
         if (Auth::attempt($request->only(['email', 'password']))) {
             $request->session()->regenerate();
-
+            
             return response([
                 'data'    => new UserResource($this->resolveAdminUser($request)),
                 'message' => 'Logged in successfully.',
