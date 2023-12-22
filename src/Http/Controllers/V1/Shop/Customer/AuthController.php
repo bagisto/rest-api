@@ -45,7 +45,7 @@ class AuthController extends CustomerController
             'email'      => 'required|email|unique:customers,email',
             'password'   => 'required|confirmed|min:6',
         ]);
-
+     
         $this->customerRepository->create([
             'first_name'        => $request->first_name,
             'last_name'         => $request->last_name,
@@ -89,7 +89,9 @@ class AuthController extends CustomerController
 
             /**
              * Preventing multiple token creation.
-             */  
+             */
+           
+
             return response([
                 'data'    => new CustomerResource($customer),
                 'message' => 'Logged in successfully.',
@@ -117,7 +119,7 @@ class AuthController extends CustomerController
      * @return \Illuminate\Http\Response
      */
     public function get(Request $request)
-    {
+    {        
         $customer = $this->resolveShopUser($request);
 
         return response([

@@ -42,15 +42,11 @@ class AuthController extends UserController
                     'email' => ['The provided credentials are incorrect.'],
                 ]);
             }
-
-            /**
-             * Preventing multiple token creation.
-             */
-            $admin->tokens()->delete();
-
+            
             return response([
                 'data'    => new UserResource($admin),
-                'message' => 'Logged in successfully.',            ]);
+                'message' => 'Logged in successfully.',
+            ]);
         }
 
         if (Auth::attempt($request->only(['email', 'password']))) {

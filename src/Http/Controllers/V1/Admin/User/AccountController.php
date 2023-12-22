@@ -16,7 +16,7 @@ class AccountController extends UserController
      * @return \Illuminate\Http\Response
      */
     public function get(Request $request)
-    {
+    {       
         $admin = $this->resolveAdminUser($request);
        
         return new UserResource($admin);

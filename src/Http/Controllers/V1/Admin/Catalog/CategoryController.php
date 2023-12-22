@@ -3,10 +3,10 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
-use Webkul\Category\Http\Requests\CategoryRequest;
+use Webkul\Admin\Http\Requests\CategoryRequest;
 use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Models\Channel;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
 
 class CategoryController extends CatalogController
@@ -34,7 +34,7 @@ class CategoryController extends CatalogController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Webkul\Category\Http\Requests\CategoryRequest  $request
+     * @param  \Webkul\Admin\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryRequest $request)

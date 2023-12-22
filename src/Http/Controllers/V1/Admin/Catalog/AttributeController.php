@@ -4,7 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Rules\Code;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeResource;
 
 class AttributeController extends CatalogController
@@ -38,7 +39,7 @@ class AttributeController extends CatalogController
     public function store(Request $request)
     {
         $request->validate([
-            'code'       => ['required', 'unique:attributes,code', new \Webkul\Core\Contracts\Validations\Code],
+            'code'       => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
             'admin_name' => 'required',
             'type'       => 'required',
         ]);
@@ -65,7 +66,6 @@ class AttributeController extends CatalogController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code'       => ['required', 'unique:attributes,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
             'admin_name' => 'required',
             'type'       => 'required',
         ]);
@@ -107,7 +107,7 @@ class AttributeController extends CatalogController
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
+     * @param  Webkul\Admin\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function massDestroy(MassDestroyRequest $request)

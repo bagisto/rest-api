@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
+use Webkul\Core\Rules\Code;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeFamilyResource;
 
@@ -37,7 +38,7 @@ class AttributeFamilyController extends CatalogController
     public function store(Request $request)
     {
         $request->validate([
-            'code' => ['required', 'unique:attribute_families,code', new \Webkul\Core\Contracts\Validations\Code],
+            'code' => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
             'name' => 'required',
         ]);
 
@@ -59,7 +60,6 @@ class AttributeFamilyController extends CatalogController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code' => ['required', 'unique:attribute_families,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
             'name' => 'required',
         ]);
 

@@ -4,10 +4,10 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
-use Webkul\Core\Contracts\Validations\Slug;
-use Webkul\Core\Http\Requests\MassUpdateRequest;
+use Webkul\Core\Rules\Slug;
+use Webkul\Admin\Http\Requests\ProductForm;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Helpers\ProductType;
-use Webkul\Product\Http\Requests\ProductForm;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductResource;
@@ -42,8 +42,7 @@ class ProductController extends CatalogController
      */
     public function store(Request $request)
     {
-        if (
-            ProductType::hasVariants($request->input('type'))
+        if (! $request->has('type')
             && (! $request->has('super_attributes')
                 || ! count($request->get('super_attributes')))
         ) {
@@ -73,7 +72,7 @@ class ProductController extends CatalogController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Webkul\Product\Http\Requests\ProductForm  $request
+     * @param  \Webkul\Admin\Http\Requests\ProductForm  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -164,16 +163,15 @@ class ProductController extends CatalogController
     /**
      * Mass update the products.
      *
-     * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
+     * @param  \Webkul\Admin\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function massUpdate(MassUpdateRequest $request)
     {
-        foreach ($request->indexes as $id) {
+        foreach ($request->indexes as $id) {          
             $this->getRepositoryInstance()->findOrFail($id);
 
             Event::dispatch('catalog.product.update.before', $id);
-
             $product = $this->getRepositoryInstance()->update([
                 'channel' => null,
                 'locale'  => null,

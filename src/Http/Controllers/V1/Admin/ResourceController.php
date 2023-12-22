@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin;
 
 use Illuminate\Http\Request;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\V1\V1Controller;
 use Webkul\RestApi\Traits\ProvideResource;
@@ -50,13 +50,13 @@ class ResourceController extends V1Controller implements ResourceContract
 
             return $query;
         });
-
+        
         if (is_null($request->input('pagination')) || $request->input('pagination')) {
             $results = $query->paginate($request->input('limit') ?? 10);
         } else {
             $results = $query->get();
         }
-
+    
         return $this->getResourceCollection($results);
     }
 

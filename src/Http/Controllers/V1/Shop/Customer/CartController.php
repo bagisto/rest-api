@@ -19,8 +19,11 @@ class CartController extends CustomerController
      */
     public function get()
     {
+
         $cart = Cart::getCart();
-       
+
+        return $cart;
+         
         return response([
             'data' => $cart ? new CartResource($cart) : null,
         ]);
