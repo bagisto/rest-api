@@ -117,15 +117,15 @@ Route::group([
     /**
      * Slider routes.
      */
-    Route::get('sliders', [SliderController::class, 'allResources']);
+    // Route::get('sliders', [SliderController::class, 'allResources']);
 
-    Route::post('sliders', [SliderController::class, 'store']);
+    // Route::post('sliders', [SliderController::class, 'store']);
 
-    Route::get('sliders/{id}', [SliderController::class, 'getResource']);
+    // Route::get('sliders/{id}', [SliderController::class, 'getResource']);
 
-    Route::put('sliders/{id}', [SliderController::class, 'update']);
+    // Route::put('sliders/{id}', [SliderController::class, 'update']);
 
-    Route::delete('sliders/{id}', [SliderController::class, 'destroy']);
+    // Route::delete('sliders/{id}', [SliderController::class, 'destroy']);
 
     /**
      * Tax category routes.
