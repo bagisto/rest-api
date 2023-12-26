@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CurrencyRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CurrencyResource;
@@ -36,17 +37,23 @@ class CurrencyController extends SettingController
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'code' => 'required|min:3|max:3|unique:currencies,code',
-            'name' => 'required',
-        ]);
+        try{
+            $request->validate([
+                'code' => 'required|min:3|max:3|unique:currencies,code',
+                'name' => 'required',
+            ]);
 
-        $currency = $this->getRepositoryInstance()->create($request->all());
+            $currency = $this->getRepositoryInstance()->create($request->all());
 
-        return response([
-            'data'    => new CurrencyResource($currency),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Currency']),
-        ]);
+            return response([
+                'data'    => new CurrencyResource($currency),
+                'message' => __('rest-api::app.common-response.success.create', ['name' => 'Currency']),
+            ]);
+        } catch(ValidationException $e){
+            return response([
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**
@@ -58,17 +65,23 @@ class CurrencyController extends SettingController
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'code' => ['required', 'unique:currencies,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
-            'name' => 'required',
-        ]);
+        try{
+            $request->validate([
+                'code' => ['required', 'unique:currencies,code,' . $id,  new \Webkul\Core\Rules\Code],
+                'name' => 'required',
+            ]);
 
-        $currency = $this->getRepositoryInstance()->update($request->all(), $id);
+            $currency = $this->getRepositoryInstance()->update($request->all(), $id);
 
-        return response([
-            'data'    => new CurrencyResource($currency),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Currency']),
-        ]);
+            return response([
+                'data'    => new CurrencyResource($currency),
+                'message' => __('rest-api::app.common-response.success.update', ['name' => 'Currency']),
+            ]);
+        } catch (ValidationException $e) {
+            return response([
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**

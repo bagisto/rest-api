@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Webkul\Core\Repositories\ExchangeRateRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ExchangeRateResource;
 
@@ -36,17 +37,23 @@ class ExchangeRateController extends SettingController
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency'],
-            'rate'            => 'required|numeric',
-        ]);
+        try{
+            $request->validate([
+                'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency'],
+                'rate'            => 'required|numeric',
+            ]);
 
-        $exchangeRate = $this->getRepositoryInstance()->create($request->all());
+            $exchangeRate = $this->getRepositoryInstance()->create($request->all());
 
-        return response([
-            'data'    => new ExchangeRateResource($exchangeRate),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Exchange rate']),
-        ]);
+            return response([
+                'data'    => new ExchangeRateResource($exchangeRate),
+                'message' => __('rest-api::app.common-response.success.create', ['name' => 'Exchange rate']),
+            ]);
+        } catch(ValidationException $e) {
+            return response([
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**

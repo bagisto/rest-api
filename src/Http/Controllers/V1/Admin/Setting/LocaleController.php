@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Webkul\Core\Repositories\LocaleRepository;
 use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\LocaleResource;
@@ -37,18 +38,25 @@ class LocaleController extends SettingController
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'code'      => ['required', 'unique:locales,code', new Code],
-            'name'      => 'required',
-            'direction' => 'in:ltr,rtl',
-        ]);
+        try{
+           $request->validate([
+              'code'      => ['required', 'unique:locales,code', new Code],
+              'name'      => 'required',
+              'direction' => 'required |in:ltr,rtl',
+           ]);
 
-        $locale = $this->getRepositoryInstance()->create($request->all());
-        
-        return response([
-            'data'    => new LocaleResource($locale),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Locale']),
-        ]);
+           $locale = $this->getRepositoryInstance()->create($request->all());
+           
+           return response([
+               'data'    => new LocaleResource($locale),
+               'message' => __('rest-api::app.common-response.success.create', ['name' => 'Locale']),
+           ]);
+        }
+        catch(ValidationException $e) {
+            return response([
+                'error' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**

@@ -22,7 +22,7 @@ Route::post('customer/login', [AuthController::class, 'login']);
 
 Route::post('customer/forgot-password', [AuthController::class, 'forgotPassword']);
 
-Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin','api']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer','api']], function () {
     /**
      * Customer auth routes.
      */
@@ -73,13 +73,16 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin','api']], function
 
    Route::post('customer/wishlist/{id}', [WishlistController::class, 'addOrRemove']);
 
-   Route::post('customer/wishlist/{id}/move-to-cart', [WishlistController::class, 'moveToCart']);   
+   Route::post('customer/wishlist/{id}/move-to-cart', [WishlistController::class, 'moveToCart']);
+
+    
 });
+
 
 Route::group(['middleware' => ['api']], function () {
   /**
   * Customer cart routes.
- */
+  */
    Route::get('customer/cart', [CartController::class, 'get']);
 
    Route::post('customer/cart/add/{productId}', [CartController::class, 'add']);

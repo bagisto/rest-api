@@ -87,14 +87,15 @@ class AuthController extends CustomerController
                 ]);
             }
 
-            /**
+             /**
              * Preventing multiple token creation.
              */
-           
+            $customer->tokens()->delete();
 
             return response([
                 'data'    => new CustomerResource($customer),
                 'message' => 'Logged in successfully.',
+                'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
             ]);
         }
 
@@ -119,7 +120,7 @@ class AuthController extends CustomerController
      * @return \Illuminate\Http\Response
      */
     public function get(Request $request)
-    {        
+    {  
         $customer = $this->resolveShopUser($request);
 
         return response([
@@ -195,18 +196,17 @@ class AuthController extends CustomerController
 
         try {
             $response = $this->broker()->sendResetLink($request->only(['email']));
-
+        
             if ($response == Password::RESET_LINK_SENT) {
                 session()->flash('success', trans('shop::app.customers.forgot-password.reset-link-sent'));
                 
                 return back();
             }
-
             return back()
-                ->withInput($request->only(['email']))
-                ->withErrors([
-                    'email' => trans('shop::app.customers.forgot-password.email-not-exist'),
-                ]);
+            ->withInput($request->only(['email']))
+            ->withErrors([
+                'email' => trans('shop::app.customers.forgot-password.email-not-exist'),
+            ]);
         } catch (\Swift_RfcComplianceException $e) {
             session()->flash('success', trans('shop::app.customers.forgot-password.reset-link-sent'));
 

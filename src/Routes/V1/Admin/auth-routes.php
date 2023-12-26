@@ -8,7 +8,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
 
-Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin','api']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
 
     Route::delete('logout', [AuthController::class, 'logout']);
 

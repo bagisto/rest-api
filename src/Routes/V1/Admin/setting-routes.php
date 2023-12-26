@@ -28,7 +28,7 @@ Route::group([
 
     Route::get('locales/{id}', [LocaleController::class, 'getResource']);
 
-    Route::put('locales/{id}', [LocaleController::class, 'update']);return 'ajsd';
+    Route::put('locales/{id}', [LocaleController::class, 'update']);
 
     Route::delete('locales/{id}', [LocaleController::class, 'destroy']);
 

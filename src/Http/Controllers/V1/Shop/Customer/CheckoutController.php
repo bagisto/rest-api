@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Webkul\Checkout\Facades\Cart;
-use Webkul\Checkout\Http\Requests\CustomerAddressForm;
+use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
 use Webkul\Payment\Facades\Payment;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
@@ -38,11 +38,11 @@ class CheckoutController extends CustomerController
             unset($data['shipping']['id']);
             unset($data['shipping']['address_id']);
         }
-
+       
         if (Cart::hasError() || ! Cart::saveCustomerAddress($data) || ! Shipping::collectRates()) {
             abort(400);
         }
-
+        
         $rates = [];
 
         foreach (Shipping::getGroupedAllShippingRates() as $code => $shippingMethod) {

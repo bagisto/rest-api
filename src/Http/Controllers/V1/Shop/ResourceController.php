@@ -33,7 +33,7 @@ class ResourceController extends V1Controller implements ResourceContract
      * @return \Illuminate\Http\Response
      */
     public function allResources(Request $request)
-    {
+    {   
         $query = $this->getRepositoryInstance()->scopeQuery(function ($query) use ($request) {
             if ($this->isAuthorized()) {
                 $query = $query->where('customer_id', $this->resolveShopUser($request)->id);
@@ -48,7 +48,6 @@ class ResourceController extends V1Controller implements ResourceContract
             } else {
                 $query = $query->orderBy('id', 'desc');
             }
-
             return $query;
         });
 

@@ -43,9 +43,15 @@ class AuthController extends UserController
                 ]);
             }
             
+             /**
+             * Preventing multiple token creation.
+             */
+            $admin->tokens()->delete();
+            
             return response([
                 'data'    => new UserResource($admin),
                 'message' => 'Logged in successfully.',
+                'token'   => $admin->createToken($request->device_name, ['role:admin'])->plainTextToken,
             ]);
         }
 

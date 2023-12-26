@@ -58,7 +58,7 @@ class InvoiceController extends SaleController
                 'message' => __('rest-api::app.sales.invoices.product-error'),
             ], 400);
         }
-
+        
         if (! $this->getRepositoryInstance()->isValidQuantity($data)) {
             return response([
                 'message' => __('rest-api::app.sales.invoices.invalid-qty-error'),

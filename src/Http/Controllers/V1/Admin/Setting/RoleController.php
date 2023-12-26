@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\RoleResource;
 use Webkul\User\Repositories\AdminRepository;
 use Webkul\User\Repositories\RoleRepository;
@@ -36,18 +37,25 @@ class RoleController extends SettingController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'name'            => 'required',
-            'permission_type' => 'required',
-        ]);
+    { 
+        try{
+            $request->validate([
+                'name'            => 'required',
+                'permission_type' => 'required',
+                'description'     => 'required',
+            ]);
 
-        $role = $this->getRepositoryInstance()->create($request->all());
+            $role = $this->getRepositoryInstance()->create($request->all());
 
-        return response([
-            'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Role']),
-        ]);
+            return response([
+                'data'    => new RoleResource($role),
+                'message' => __('rest-api::app.common-response.success.create', ['name' => 'Role']),
+            ]);
+        } catch(ValidationException $e) {
+            return response([
+               'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**
@@ -60,30 +68,36 @@ class RoleController extends SettingController
      */
     public function update(Request $request, AdminRepository $adminRepository, $id)
     {
-        $request->validate([
-            'name'            => 'required',
-            'permission_type' => 'required',
-        ]);
+        try{
+             $request->validate([
+                 'name'            => 'required',
+                 'permission_type' => 'required',
+             ]);
 
-        $params = $request->all();
+             $params = $request->all();
 
-        /**
-         * Check for other admins if the role has been changed from all to custom.
-         */
-        $isChangedFromAll = $params['permission_type'] == 'custom' && $this->getRepositoryInstance()->find($id)->permission_type == 'all';
+             /**
+              * Check for other admins if the role has been changed from all to custom.
+              */
+             $isChangedFromAll = $params['permission_type'] == 'custom' && $this->getRepositoryInstance()->find($id)->permission_type == 'all';
 
-        if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
+             if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
+                 return response([
+                          'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                 ], 400);
+             }
+
+             $role = $this->getRepositoryInstance()->update($params, $id);
+
+             return response([
+                 'data'    => new RoleResource($role),
+                 'message' => __('rest-api::app.common-response.success.update', ['name' => 'Role']),
+             ]);
+        } catch (ValidationException $e) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
-            ], 400);
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
         }
-
-        $role = $this->getRepositoryInstance()->update($params, $id);
-
-        return response([
-            'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Role']),
-        ]);
     }
 
     /**

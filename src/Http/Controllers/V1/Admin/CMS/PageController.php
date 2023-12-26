@@ -3,7 +3,8 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 
 use Illuminate\Http\Request;
-use Webkul\CMS\Repositories\CmsRepository;
+use Illuminate\Validation\ValidationException;
+use Webkul\CMS\Repositories\PageRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
 
 class PageController extends CMSController
@@ -15,7 +16,7 @@ class PageController extends CMSController
      */
     public function repository()
     {
-        return CmsRepository::class;
+        return PageRepository::class;
     }
 
     /**
@@ -36,19 +37,25 @@ class PageController extends CMSController
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'url_key'      => ['required', 'unique:cms_page_translations,url_key', new \Webkul\Core\Contracts\Validations\Slug],
-            'page_title'   => 'required',
-            'channels'     => 'required',
-            'html_content' => 'required',
-        ]);
+        try{
+            $request->validate([
+                'url_key'      => ['required', 'unique:cms_page_translations,url_key', new \Webkul\Core\Rules\Slug],
+                'page_title'   => 'required',
+                'channels'     => 'required',
+                'html_content' => 'required',
+            ]);
 
-        $page = $this->getRepositoryInstance()->create($request->all());
+            $page = $this->getRepositoryInstance()->create($request->all());
 
-        return response([
-            'data'    => new CMSResource($page),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Page']),
-        ]);
+            return response([
+                'data'    => new CMSResource($page),
+                'message' => __('rest-api::app.common-response.success.create', ['name' => 'Page']),
+            ]);
+        } catch( ValidationException $e) {
+            return response([
+                'erorors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**

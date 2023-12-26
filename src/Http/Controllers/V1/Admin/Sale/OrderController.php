@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Validation\ValidationException;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use \Webkul\Sales\Repositories\OrderCommentRepository;
@@ -55,23 +56,29 @@ class OrderController extends SaleController
      */
     public function comment(Request $request, OrderCommentRepository $orderCommentRepository, int $id)
     {
-        $request->validate([
-            'comment' => 'required',
-        ]);
-        
-        $data = array_merge($request->all(), ['order_id' => $id]);
+        try{
+            $request->validate([
+                'comment' => 'required',
+            ]);
+            
+            $data = array_merge($request->all(), ['order_id' => $id]);
 
-        $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;
+            $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;
 
-        Event::dispatch('sales.order.comment.create.before', $data);
+            Event::dispatch('sales.order.comment.create.before', $data);
 
-        $comment = $orderCommentRepository->create($data);
+            $comment = $orderCommentRepository->create($data);
 
-        Event::dispatch('sales.order.comment.create.after', $comment);
+            Event::dispatch('sales.order.comment.create.after', $comment);
 
-        return response([
-            'data'    => $comment,
-            'message' => __('rest-api::app.common-response.success.add', ['name' => 'Comment']),
-        ]);
+            return response([
+                'data'    => $comment,
+                'message' => __('rest-api::app.common-response.success.add', ['name' => 'Comment']),
+            ]);
+        } catch (ValidationException $e){
+            return response([
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 }

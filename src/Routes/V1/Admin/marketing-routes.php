@@ -16,8 +16,8 @@ Route::group([
      * Catalog rule routes.
      */
     Route::get('catalog-rules', [CatalogRuleController::class, 'allResources']);
-
-    Route::post('catalog-rules', [CatalogRuleController::class, 'store']);
+    
+    Route::post('catalog-rules', [CatalogRuleController::class, 'store']); 
 
     Route::get('catalog-rules/{id}', [CatalogRuleController::class, 'getResource']);
 
@@ -29,7 +29,7 @@ Route::group([
      * Cart rule routes.
      */
     Route::get('cart-rules', [CartRuleController::class, 'allResources']);
-
+   
     Route::post('cart-rules', [CartRuleController::class, 'store']);
 
     Route::get('cart-rules/{id}', [CartRuleController::class, 'getResource']);

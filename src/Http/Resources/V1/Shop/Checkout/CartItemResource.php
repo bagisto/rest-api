@@ -27,5 +27,6 @@ class CartItemResource extends JsonResource
             'options'         => array_values($this->resource->additional['attributes'] ?? []),
             'product_url_key' => $this->product->url_key,
         ];
-    }      
+    }
+       
 }

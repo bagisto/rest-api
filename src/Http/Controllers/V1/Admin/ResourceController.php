@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\V1\V1Controller;
@@ -70,10 +71,10 @@ class ResourceController extends V1Controller implements ResourceContract
     public function getResource(Request $request, int $id)
     {
         $resourceClassName = $this->resource();
-
+         
         $resource = $this->getRepositoryInstance()->findOrFail($id);
 
-        return new $resourceClassName($resource);
+        return new $resourceClassName($resource);  
     }
 
     /**

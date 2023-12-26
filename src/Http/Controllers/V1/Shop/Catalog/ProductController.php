@@ -5,6 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 use Illuminate\Http\Request;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductResource;
+use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
 
 class ProductController extends CatalogController
 {

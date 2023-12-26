@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Webkul\Core\Rules\Code;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeFamilyResource;
@@ -37,17 +38,23 @@ class AttributeFamilyController extends CatalogController
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'code' => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
-            'name' => 'required',
-        ]);
+        try{
+            $request->validate([
+                'code' => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
+                'name' => 'required',
+            ]);
 
-        $attributeFamily = $this->getRepositoryInstance()->create($request->all());
+            $attributeFamily = $this->getRepositoryInstance()->create($request->all());
 
-        return response([
-            'data'    => new AttributeFamilyResource($attributeFamily),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Family']),
-        ]);
+            return response([
+                'data'    => new AttributeFamilyResource($attributeFamily),
+                'message' => __('rest-api::app.common-response.success.create', ['name' => 'Family']),
+            ]);
+        } catch (ValidationException $e) {
+            return response([
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**
@@ -59,16 +66,22 @@ class AttributeFamilyController extends CatalogController
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        try{
+            $request->validate([
+                'name' => 'required',
+            ]);
 
-        $attributeFamily = $this->getRepositoryInstance()->update($request->all(), $id);
+            $attributeFamily = $this->getRepositoryInstance()->update($request->all(), $id);
 
-        return response([
-            'data'    => new AttributeFamilyResource($attributeFamily),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Family']),
-        ]);
+            return response([
+                'data'    => new AttributeFamilyResource($attributeFamily),
+                'message' => __('rest-api::app.common-response.success.update', ['name' => 'Family']),
+            ]);
+        } catch (ValidationException $e) {
+            return response([
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**

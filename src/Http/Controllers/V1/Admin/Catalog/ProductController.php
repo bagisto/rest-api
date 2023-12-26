@@ -168,7 +168,7 @@ class ProductController extends CatalogController
      */
     public function massUpdate(MassUpdateRequest $request)
     {
-        foreach ($request->indexes as $id) {          
+        foreach ($request->indexes as $id) {            
             $this->getRepositoryInstance()->findOrFail($id);
 
             Event::dispatch('catalog.product.update.before', $id);

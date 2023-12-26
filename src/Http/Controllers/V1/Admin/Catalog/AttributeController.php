@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Core\Rules\Code;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
@@ -65,19 +66,29 @@ class AttributeController extends CatalogController
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'admin_name' => 'required',
-            'type'       => 'required',
-        ]);
+        try{
+            $request->validate([
+                'admin_name' => 'required',
+                'type'       => 'required',
+            ]);
 
-        $this->getRepositoryInstance()->findOrFail($id);
+            $requestData = $request->all();
 
-        $attribute = $this->getRepositoryInstance()->update($request->all(), $id);
-
-        return response([
-            'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Attribute']),
-        ]);
+            unset($requestData['code']);
+            
+            $this->getRepositoryInstance()->findOrFail($id);
+       
+            $attribute = $this->getRepositoryInstance()->update($requestData, $id);
+        
+            return response([
+                'data'    => new AttributeResource($attribute),
+                'message' => __('rest-api::app.common-response.success.update', ['name' => 'Attribute']),
+            ]);
+        } catch (ValidationException $e) {
+            return response([
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
     }
 
     /**
