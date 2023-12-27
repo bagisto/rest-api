@@ -46,7 +46,6 @@ class PageController extends CMSController
                 'html_content' => 'required',
             ]);
 
-
             $page = $this->getRepositoryInstance()->create($request->all());
 
             return response([

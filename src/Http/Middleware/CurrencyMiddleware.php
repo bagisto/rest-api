@@ -50,6 +50,6 @@ class CurrencyMiddleware
 
         unset($request['currency']);
 
-        return $next($request);;
+        return $next($request);
     }
 }

@@ -88,11 +88,8 @@ class AddressController extends CustomerController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, int $id)
-<<<<<<< HEAD
     {       
-=======
-    { 
->>>>>>> 6e7842143e7feb2317e9a37658c8e2bd651bca29
+
         $customerAddress = $this->resolveShopUser($request)->addresses()->find($id);
        
         $customerAddress->delete();

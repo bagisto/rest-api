@@ -42,7 +42,7 @@ class AccountController extends UserController
              'email'                => 'email|unique:users,email,' . $user->id,
              'current_password'     => 'nullable|required|min:6',
              'password'             => 'nullable|min:6|confirmed',
-             'password_confirmatio' => 'nullable| same: password'
+             'password_confirmatio' => 'nullable| same: password',
             ]);
 
            if (! Hash::check($data['current_password'], $user->password)) {
