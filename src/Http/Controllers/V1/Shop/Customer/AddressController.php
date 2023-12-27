@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Webkul\Shop\Http\Requests\Customer\AddressRequest;
 use Webkul\Shop\Http\Resources\AddressResource;
 use Webkul\Customer\Http\Requests\CustomerAddressRequest;
-use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerAddressResource;
 
 class AddressController extends CustomerController
@@ -41,7 +40,7 @@ class AddressController extends CustomerController
     /**
      * Store address.
      *
-     * @param  \Webkul\Customer\Http\Requests\CustomerAddressRequest  $request
+     * @param  \Webkul\Shop\Http\Requests\Customer\AddressRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(AddressRequest $request)
@@ -63,7 +62,7 @@ class AddressController extends CustomerController
     /**
      * Update address.
      *
-     * @param  \Webkul\Customer\Http\Requests\CustomerAddressRequest  $request
+     * @param  \Webkul\Shop\Http\Requests\Customer\AddressRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
@@ -89,11 +88,15 @@ class AddressController extends CustomerController
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, int $id)
+<<<<<<< HEAD
     {       
+=======
+    { 
+>>>>>>> 6e7842143e7feb2317e9a37658c8e2bd651bca29
         $customerAddress = $this->resolveShopUser($request)->addresses()->find($id);
-
+       
         $customerAddress->delete();
-
+    
         return response([
             'message' => __('rest-api::app.customers.address-deleted'),
         ]);

@@ -24,7 +24,7 @@ class AuthController extends UserController
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request, AdminRepository $adminRepository)
-    {
+    { 
         $request->validate([
             'email'    => 'required|email',
             'password' => 'required',
@@ -36,13 +36,13 @@ class AuthController extends UserController
             ]);
 
             $admin = $adminRepository->where('email', $request->email)->first();
-
+            
             if (! $admin || ! Hash::check($request->password, $admin->password)) {
                 throw ValidationException::withMessages([
                     'email' => ['The provided credentials are incorrect.'],
                 ]);
             }
-            
+   
              /**
              * Preventing multiple token creation.
              */
@@ -76,7 +76,7 @@ class AuthController extends UserController
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
-    {
+    { 
         $admin = $this->resolveAdminUser($request);
 
         ! EnsureFrontendRequestsAreStateful::fromFrontend($request)
@@ -95,7 +95,7 @@ class AuthController extends UserController
      * @return \Illuminate\Http\Response
      */
     public function forgotPassword(Request $request)
-    {
+    { 
         $request->validate([
             'email' => 'required|email',
         ]);

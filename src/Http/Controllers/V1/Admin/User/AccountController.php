@@ -21,6 +21,7 @@ class AccountController extends UserController
           $admin = $this->resolveAdminUser($request);
        
            return new UserResource($admin);
+
     }
 
     /**

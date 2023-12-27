@@ -18,7 +18,7 @@ class CheckoutController extends CustomerController
     /**
      * Save customer address.
      *
-     * @param  \Webkul\Checkout\Http\Requests\CustomerAddressForm  $request
+     * @param  \Webkul\Shop\Http\Requests\Customer\CustomerAddressForm  $request
      * @return \Illuminate\Http\Response
      */
     public function saveAddress(CustomerAddressForm $request)

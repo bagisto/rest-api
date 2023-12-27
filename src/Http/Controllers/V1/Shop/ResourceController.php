@@ -67,7 +67,7 @@ class ResourceController extends V1Controller implements ResourceContract
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getResource(Request $request, int $id)
+    public function getResource(Request $request, $id)
     {
         $resourceClassName = $this->resource();
 

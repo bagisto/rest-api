@@ -5,6 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Webkul\CMS\Repositories\PageRepository;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
 
 class PageController extends CMSController
@@ -45,6 +46,7 @@ class PageController extends CMSController
                 'html_content' => 'required',
             ]);
 
+
             $page = $this->getRepositoryInstance()->create($request->all());
 
             return response([
@@ -70,7 +72,7 @@ class PageController extends CMSController
         $locale = core()->getRequestedLocaleCode();
 
         $request->validate([
-            $locale . '.url_key'      => ['required', new \Webkul\Core\Contracts\Validations\Slug, function ($attribute, $value, $fail) use ($id) {
+            $locale . '.url_key'      => ['required', new \Webkul\Core\Rules\Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
                     $fail(__('rest-api::app.common-response.error.already-taken', ['name' => 'Page']));
                 }
@@ -85,6 +87,26 @@ class PageController extends CMSController
         return response([
             'data'    => new CMSResource($page),
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Page']),
+        ]);
+    }
+
+    /**
+     * To mass delete the CMS resource from storage.
+     */
+    public function massDestroy(MassDestroyRequest $request, $id)
+    {
+        $indices = $massDestroyRequest->input('indices');
+
+        foreach ($indices as $index) {
+            Event::dispatch('cms.pages.delete.before', $index);
+
+            $this->cmsRepository->delete($index);
+
+            Event::dispatch('cms.pages.delete.after', $index);
+        }
+
+        return response([
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'cms']),
         ]);
     }
 }
