@@ -8,7 +8,6 @@ use Webkul\Admin\Contracts\Validations\Slug;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Admin\Http\Requests\ProductForm;
-
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductResource;
