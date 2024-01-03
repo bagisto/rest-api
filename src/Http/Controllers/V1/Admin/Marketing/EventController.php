@@ -35,7 +35,7 @@ class EventController extends MarketingController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
         $request->validate([
             'name'        => 'required',
             'description' => 'required',

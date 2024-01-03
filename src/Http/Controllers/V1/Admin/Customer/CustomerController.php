@@ -4,9 +4,10 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Webkul\Admin\Mail\NewCustomerNotification;
-use Webkul\Admin\Http\Requests\MassDestroyRequest;
-use Webkul\Admin\Http\Requests\MassUpdateRequest;
+use Illuminate\Validation\ValidationException;
+use Webkul\Admin\Mail\Customer\NewCustomerNotification;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
@@ -53,6 +54,7 @@ class CustomerController extends CustomerBaseController
      */
     public function store(Request $request)
     {
+        try{
         $request->validate([
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
@@ -70,12 +72,21 @@ class CustomerController extends CustomerBaseController
         $data['is_verified'] = 1;
 
         $customer = $this->getRepositoryInstance()->create($data);
+       } catch(ValidationException $e) {
+
+        return response([
+            'error' => $e->validator->errors()->toArray(),
+        ]);
+
+       }
 
         try {
             if (core()->getConfigData('emails.general.notifications.emails.general.notifications.customer')) {
                 Mail::queue(new NewCustomerNotification($customer, $password));
             }
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+            report($e);
+        }
 
         return response([
             'data'    => new CustomerResource($customer),
@@ -186,11 +197,11 @@ class CustomerController extends CustomerBaseController
      * @return \Illuminate\Http\Response
      */
     public function orders($id)
-    { 
-        
+    {
         $customer = $this->getRepositoryInstance()->findorFail($id);
+
         return response([
-            'data' => OrderResource::collection($customer->orders),
+            'data' => OrderResource::collection($customer->all_orders),
         ]);
     }
 
@@ -204,7 +215,7 @@ class CustomerController extends CustomerBaseController
     {
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
-        $orderIds = $customer->orders->pluck('id')->toArray();
+        $orderIds = $customer->all_orders->pluck('id')->toArray();
         
         return response([
             'data' => InvoiceResource::collection($this->invoiceRepository->findWhereIn('order_id', $orderIds)),

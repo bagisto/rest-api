@@ -91,7 +91,7 @@ class CustomerAddressController extends CustomerBaseController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $customerId)
-    {  
+    {
         $request->merge([
             'customer_id' => $customerId,
             'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),

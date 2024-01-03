@@ -126,6 +126,7 @@ class ShipmentController extends SaleController
         $inventorySourceId = $data['shipment']['source'];
         
         foreach ($data['shipment']['items'] as $itemId => $inventorySource) {
+
             $qty = $inventorySource[$inventorySourceId];
 
             if ((int) $qty) {

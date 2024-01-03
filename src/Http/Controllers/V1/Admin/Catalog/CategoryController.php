@@ -5,8 +5,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 use Illuminate\Http\Request;
 use Webkul\Admin\Http\Requests\CategoryRequest;
 use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Models\Channel;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
 
 class CategoryController extends CatalogController

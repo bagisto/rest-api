@@ -3,12 +3,12 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\V1\V1Controller;
 use Webkul\RestApi\Traits\ProvideResource;
 use Webkul\RestApi\Traits\ProvideUser;
+use Illuminate\Validation\ValidationException;
 
 class ResourceController extends V1Controller implements ResourceContract
 {
@@ -74,7 +74,8 @@ class ResourceController extends V1Controller implements ResourceContract
          
         $resource = $this->getRepositoryInstance()->findOrFail($id);
 
-        return new $resourceClassName($resource);  
+        return new $resourceClassName($resource);
+    
     }
 
     /**

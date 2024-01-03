@@ -4,10 +4,11 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
-use Webkul\Admin\Contracts\Validations\Slug;
+use Illuminate\Validation\ValidationException;
+use Webkul\Core\Rules\Slug;
+use Webkul\Admin\Http\Requests\ProductForm;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Helpers\ProductType;
-use Webkul\Admin\Http\Requests\ProductForm;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductResource;
@@ -42,6 +43,7 @@ class ProductController extends CatalogController
      */
     public function store(Request $request)
     {
+      try{
         if (! $request->has('type')
             && (! $request->has('super_attributes')
                 || ! count($request->get('super_attributes')))
@@ -62,11 +64,16 @@ class ProductController extends CatalogController
         $product = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('catalog.product.create.after', $product);
-
+        
         return response([
             'data'    => new ProductResource($product),
             'message' => __('rest-api::app.common-response.success.create', ['name' => 'Product']),
         ]);
+    } catch(ValidationException $e) {
+        return response([
+            'errors' => $e->validator->errors()->toArray(),
+        ]);
+    }
     }
 
     /**
@@ -80,10 +87,14 @@ class ProductController extends CatalogController
     {
         $data = $request->all();
 
+        $data["channel"] = 1;
+
+        $data["locale"] = 1;
+        
         $multiselectAttributeCodes = [];
 
         $productAttributes = $this->getRepositoryInstance()->findOrFail($id);
-       
+    
         foreach ($productAttributes->attribute_family->attribute_groups as $attributeGroup) {
             $customAttributes = $productAttributes->getEditableAttributes($attributeGroup);
 
@@ -107,9 +118,9 @@ class ProductController extends CatalogController
         Event::dispatch('catalog.product.update.before', $id);
 
         $product = $this->getRepositoryInstance()->update($data, $id);
-       
+
         Event::dispatch('catalog.product.update.after', $product);
-        
+
         return response([
             'data'    => new ProductResource($product),
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Product']),
@@ -161,28 +172,6 @@ class ProductController extends CatalogController
     }
 
     /**
-     * Remove the specified resources from database.
-     *
-     * @param  \Webkul\admin\Http\Requests\MassDestroyRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    public function massDestroy(MassDestroyRequest $request, $id)
-    { 
-        $this->getRepositoryInstance()->findOrFail($id);
-
-        Event::dispatch('catalog.product.delete.before', $id);
-
-        $this->getRepositoryInstance()->delete($id);
-
-        Event::dispatch('catalog.product.delete.after', $id);
-
-        return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'Product']),
-        ]);
-    }
-
-    /**
      * Mass update the products.
      *
      * @param  \Webkul\Admin\Http\Requests\MassUpdateRequest  $request
@@ -190,7 +179,8 @@ class ProductController extends CatalogController
      */
     public function massUpdate(MassUpdateRequest $request)
     {
-        foreach ($request->indexes as $id) {            
+        foreach ($request->indexes as $id) {
+            
             $this->getRepositoryInstance()->findOrFail($id);
 
             Event::dispatch('catalog.product.update.before', $id);

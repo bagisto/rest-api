@@ -4,9 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Admin\Http\Requests\MassUpdateRequest;
+use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Repositories\ProductReviewRepository;
-use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductReviewResource;
 
 class CustomerReviewController extends CustomerBaseController
@@ -39,7 +38,7 @@ class CustomerReviewController extends CustomerBaseController
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    { 
+    {
         $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->update($request->all(), $id);
@@ -98,25 +97,4 @@ class CustomerReviewController extends CustomerBaseController
             'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'reviews']),
         ]);
     }
-
-      /**
-     * Mass delete the reviews on the products.
-     */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest): JsonResponse
-    {
-        dd(request()->all(),"sdrfg");
-        $indices = $massDestroyRequest->input('indices');
-        
-            foreach ($indices as $index) {
-                Event::dispatch('customer.review.delete.before', $index);
-
-                $this->productReviewRepository->delete($index);
-
-                Event::dispatch('customer.review.delete.after', $index);
-            }
-
-            return response([
-                'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'customers']),
-            ]);
-        }
-    }
+}

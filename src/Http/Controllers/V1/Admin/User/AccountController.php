@@ -3,10 +3,10 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\User;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
+use Illuminate\Validation\ValidationException;
 
 class AccountController extends UserController
 {
@@ -21,7 +21,6 @@ class AccountController extends UserController
           $admin = $this->resolveAdminUser($request);
        
            return new UserResource($admin);
-
     }
 
     /**
@@ -42,7 +41,7 @@ class AccountController extends UserController
              'email'                => 'email|unique:users,email,' . $user->id,
              'current_password'     => 'nullable|required|min:6',
              'password'             => 'nullable|min:6|confirmed',
-             'password_confirmatio' => 'nullable| same: password',
+             'password_confirmatio' => 'nullable| same: password'
             ]);
 
            if (! Hash::check($data['current_password'], $user->password)) {

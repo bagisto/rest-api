@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Webkul\Core\Rules\Code;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
-use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeFamilyResource;
 
 class AttributeFamilyController extends CatalogController
