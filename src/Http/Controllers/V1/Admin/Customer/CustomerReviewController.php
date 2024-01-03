@@ -4,7 +4,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Http\Requests\MassUpdateRequest;
+use Illuminate\Validation\ValidationException;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductReviewResource;
 
@@ -42,7 +44,7 @@ class CustomerReviewController extends CustomerBaseController
         $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->update($request->all(), $id);
-
+        
         return response([
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Review']),
         ]);
@@ -71,22 +73,24 @@ class CustomerReviewController extends CustomerBaseController
      * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massUpdate(MassUpdateRequest $request)
+    public function massUpdate(MassUpdateRequest $massUpdateRequest)
     {
-        foreach ($request->indexes as $index) {
+        $indices = $massUpdateRequest->input('indices');
+
+        foreach ( $indices as $index) {
             $review = $this->getRepositoryInstance()->findOrFail($index);
 
             Event::dispatch('customer.review.update.before', $index);
 
-            if ($request->update_value == 0) {
+            if ($massUpdateRequest->value == 0) {
                 $review->update(['status' => 'pending']);
             }
 
-            if ($request->update_value == 1) {
+            if ($massUpdateRequest->value == 1) {
                 $review->update(['status' => 'approved']);
             }
 
-            if ($request->update_value == 2) {
+            if ($massUpdateRequest->value == 2) {
                 $review->update(['status' => 'disapproved']);
             }
 
