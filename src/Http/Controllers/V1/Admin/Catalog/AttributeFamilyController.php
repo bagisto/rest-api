@@ -70,8 +70,12 @@ class AttributeFamilyController extends CatalogController
             $request->validate([
                 'name' => 'required',
             ]);
+            
+            $requestData = $request->all();
 
-            $attributeFamily = $this->getRepositoryInstance()->update($request->all(), $id);
+            unset($requestData['code']);
+
+            $attributeFamily = $this->getRepositoryInstance()->update($requestData, $id);
 
             return response([
                 'data'    => new AttributeFamilyResource($attributeFamily),

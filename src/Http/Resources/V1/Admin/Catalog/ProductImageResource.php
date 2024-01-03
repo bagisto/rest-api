@@ -20,8 +20,8 @@ class ProductImageResource extends JsonResource
             'url'                => $this->url,
             'original_image_url' => $this->url,
             'small_image_url'    => url('cache/small/' . $this->path),
-            'medium_image_url'   => url('cache/medium/' . $this->path),
-            'large_image_url'    => url('cache/large/' . $this->path),
+            'medium_image_url'   => url('cache/medium/' .$this->path),
+            'large_image_url'    => url('cache/large/' .$this->path),
         ];
     }
 }

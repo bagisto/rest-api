@@ -40,10 +40,11 @@ class AuthController extends CustomerController
     public function register(Request $request)
     {
         $request->validate([
-            'first_name' => 'required|string',
-            'last_name'  => 'required|string',
-            'email'      => 'required|email|unique:customers,email',
-            'password'   => 'required|confirmed|min:6',
+            'first_name'            => 'required|string',
+            'last_name'             => 'required|string',
+            'email'                 => 'required|email|unique:customers,email',
+            'password'              => 'required|confirmed|min:6',
+            'password_confirmation' => 'required | same:password',
         ]);
      
         $this->customerRepository->create([
@@ -193,20 +194,21 @@ class AuthController extends CustomerController
         $request->validate([
             'email' => 'required|email',
         ]);
-
+  
         try {
             $response = $this->broker()->sendResetLink($request->only(['email']));
-        
+
             if ($response == Password::RESET_LINK_SENT) {
                 session()->flash('success', trans('shop::app.customers.forgot-password.reset-link-sent'));
-                
+
                 return back();
             }
+
             return back()
-            ->withInput($request->only(['email']))
-            ->withErrors([
-                'email' => trans('shop::app.customers.forgot-password.email-not-exist'),
-            ]);
+                ->withInput($request->only(['email']))
+                ->withErrors([
+                    'email' => trans('shop::app.customers.forgot-password.email-not-exist'),
+                ]);
         } catch (\Swift_RfcComplianceException $e) {
             session()->flash('success', trans('shop::app.customers.forgot-password.reset-link-sent'));
 

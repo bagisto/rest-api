@@ -40,7 +40,7 @@ class ProductResource extends JsonResource
 
         /* get type instance */
         $productTypeInstance = $product->getTypeInstance();
-
+    
         /* generating resource */
         return [
             /* product's information */
@@ -55,7 +55,6 @@ class ProductResource extends JsonResource
             'description'        => $product->description,
             'images'             => ProductImageResource::collection($product->images),
             'videos'             => ProductVideoResource::collection($product->videos),
-            'base_image'         => ProductImage::getProductBaseImage($product),
             'created_at'         => $product->created_at,
             'updated_at'         => $product->updated_at,
 

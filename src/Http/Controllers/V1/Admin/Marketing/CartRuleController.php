@@ -88,7 +88,8 @@ class CartRuleController extends MarketingController
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+    try{
+       $request->validate([
             'name'                => 'required',
             'channels'            => 'required|array|min:1',
             'customer_groups'     => 'required|array|min:1',
@@ -100,6 +101,21 @@ class CartRuleController extends MarketingController
             'discount_amount'     => 'required|numeric',
         ]);
 
+        $data= $request->all();
+
+        if(
+            array_key_exists('starts_from', $data) 
+            || array_key_exists('ends_till', $data)
+        ){
+                $data['starts_from'] = $data['starts_from'];
+
+                $data['ends_till'] =  $data['ends_till'];
+        } else {
+                $data['starts_from'] = null;
+
+                $data['ends_till'] = null;
+        }
+      
         $cartRule = $this->getRepositoryInstance()->findOrFail($id);
 
         if ($cartRule->coupon_type) {
@@ -114,12 +130,17 @@ class CartRuleController extends MarketingController
             }
         }
 
-        $cartRule = $this->getRepositoryInstance()->update($request->all(), $id);
+        $cartRule = $this->getRepositoryInstance()->update( $data, $id);
 
         return response([
             'data'    => new CartRuleResource($cartRule),
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Cart rule']),
         ]);
+    }catch(ValidationException $e) {
+        return response([
+            'errors' => $e->validator->errors()->toArray(),
+        ]);
+    }
     }
 
     /**
