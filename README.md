@@ -71,3 +71,13 @@ In sanctum.php add
 ~~~
 'token_prefix' => env('SANCTUM_TOKEN_PREFIX', ''),
 
+~~~
+on app/Http/Kernel.php
+     'api' => [
+            //           \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        add    \App\Http\Middleware\EncryptCookies::class,
+        add    \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
