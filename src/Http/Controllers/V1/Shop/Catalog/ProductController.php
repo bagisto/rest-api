@@ -44,6 +44,19 @@ class ProductController extends CatalogController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function newProducts(Request $request)
+    {
+        $results = $this->getRepositoryInstance()->getNewProductsApi();
+
+        return $this->getResourceCollection($results);
+    }
+
+    /**
+     * Returns a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function allResources(Request $request)
     {
         $results = $this->getRepositoryInstance()->getAll($request->input('category_id'));

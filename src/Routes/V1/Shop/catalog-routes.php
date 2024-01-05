@@ -12,6 +12,8 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Catalog\ProductReviewController;
  */
 Route::get('products', [ProductController::class, 'allResources']);
 
+Route::get('products/new', [ProductController::class, 'newProducts']);
+
 Route::get('products/{id}', [ProductController::class, 'getResource']);
 
 Route::get('products/{id}/additional-information', [ProductController::class, 'additionalInformation']);
