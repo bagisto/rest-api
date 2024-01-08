@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer','api']], funct
     Route::get('customer/transactions/{id}', [TransactionController::class, 'getResource']);
 
    /**
-    * Customer wishlist routes.
+   * Customer wishlist routes.
    */
    Route::get('customer/wishlist', [WishlistController::class, 'index']);
 
@@ -75,7 +75,10 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer','api']], funct
 
    Route::post('customer/wishlist/{id}/move-to-cart', [WishlistController::class, 'moveToCart']);
 
-    
+   /**
+   * Customer cart routes.
+   */
+   Route::post('customer/cart/move-to-wishlist/{cartItemId}', [CartController::class, 'moveToWishlist']);
 });
 
 
@@ -92,8 +95,6 @@ Route::group(['middleware' => ['api']], function () {
    Route::delete('customer/cart/remove/{cartItemId}', [CartController::class, 'removeItem']);
 
    Route::delete('customer/cart/empty', [CartController::class, 'empty']);
-
-   Route::post('customer/cart/move-to-wishlist/{cartItemId}', [CartController::class, 'moveToWishlist']);
 
    Route::post('customer/cart/coupon', [CartController::class, 'applyCoupon']);
 

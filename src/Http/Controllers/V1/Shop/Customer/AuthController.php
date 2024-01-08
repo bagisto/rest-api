@@ -140,8 +140,8 @@ class AuthController extends CustomerController
         $customer = $this->resolveShopUser($request);
 
         $request->validate([
-            'first_name'    => 'required',
-            'last_name'     => 'required',
+            'first_name'    => 'required|string',
+            'last_name'     => 'required|string',
             'gender'        => 'required',
             'date_of_birth' => 'nullable|date|before:today',
             'email'         => 'email|unique:customers,email,' . $customer->id,

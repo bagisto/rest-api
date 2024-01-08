@@ -2,16 +2,17 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Webkul\Checkout\Facades\Cart;
-use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
 use Webkul\Payment\Facades\Payment;
+use Webkul\Shipping\Facades\Shipping;
+use Webkul\Sales\Repositories\OrderRepository;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
+use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
-use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
-use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Shipping\Facades\Shipping;
 
 class CheckoutController extends CustomerController
 {
@@ -25,26 +26,29 @@ class CheckoutController extends CustomerController
     {
         $data = $request->all();
 
-        $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
-
-        $data['shipping']['address1'] = implode(PHP_EOL, array_filter($data['shipping']['address1']));
-
-        if (isset($data['billing']['id']) && str_contains($data['billing']['id'], 'address_')) {
-            unset($data['billing']['id']);
-            unset($data['billing']['address_id']);
-        }
-
-        if (isset($data['shipping']['id']) && Str::contains($data['shipping']['id'], 'address_')) {
-            unset($data['shipping']['id']);
-            unset($data['shipping']['address_id']);
+        if (
+            ! auth()->guard('customer')->check()
+            && ! Cart::getCart()->hasGuestCheckoutItems()
+        ) {
+            return new JsonResource([
+                'redirect' => true,
+                'data'     => route('shop.customer.session.index'),
+            ]);
         }
        
-        if (Cart::hasError() || ! Cart::saveCustomerAddress($data) || ! Shipping::collectRates()) {
+        $data['billing']['address1'] = implode(PHP_EOL, $data['billing']['address1']);
+
+        $data['shipping']['address1'] = implode(PHP_EOL, $data['shipping']['address1']);
+
+        if (
+          Cart::hasError() 
+         || ! Cart::saveCustomerAddress($data)
+        ) {
             abort(400);
         }
-        
+         
         $rates = [];
-
+         
         foreach (Shipping::getGroupedAllShippingRates() as $code => $shippingMethod) {
             $rates[] = [
                 'carrier_title' => $shippingMethod['carrier_title'],
