@@ -68,18 +68,24 @@ class LocaleController extends SettingController
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'code'      => ['required', 'unique:locales,code' . $id,  new \Webkul\Core\Rules\Code],
-            'name'      => 'required',
-            'direction' => 'in:ltr,rtl',
-        ]);
+        try{
+            $request->validate([
+               'code'      => ['required', 'unique:locales,code', new Code],
+               'name'      => 'required',
+               'direction' => 'in:ltr,rtl',
+            ]);
 
-        $locale = $this->getRepositoryInstance()->update($request->all(), $id);
+            $locale = $this->getRepositoryInstance()->update($request->all(), $id);
 
-        return response([
-            'data'    => new LocaleResource($locale),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Locale']),
-        ]);
+            return response([
+              'data'    => new LocaleResource($locale),
+              'message' => __('rest-api::app.common-response.success.update', ['name' => 'Locale']),
+            ]);
+       } catch(ValidationException $e) {
+            return response([
+              'error' => $e->validator->errors()->toArray(),
+            ]);
+       }
     }
 
     /**

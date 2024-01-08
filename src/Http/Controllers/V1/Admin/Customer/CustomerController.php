@@ -13,6 +13,7 @@ use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
+use Webkul\Customer\Repositories\CustomerNoteRepository;
 
 class CustomerController extends CustomerBaseController
 {
@@ -22,7 +23,10 @@ class CustomerController extends CustomerBaseController
      * @param  \Webkul\Sales\Repositories\InvoiceRepository  $invoiceRepository
      * @return void
      */
-    public function __construct(protected InvoiceRepository $invoiceRepository)
+    public function __construct(
+        protected InvoiceRepository $invoiceRepository,
+        protected CustomerNoteRepository $customerNoteRepository
+    )
     {
     }
     
@@ -235,11 +239,14 @@ class CustomerController extends CustomerBaseController
             'notes' => 'string|nullable',
         ]);
 
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customerNote = $this->customerNoteRepository->create([
+            'customer_id'       => $id,
+            'note'              => request()->input('note'),
+            'customer_notified' => request()->input('customer_notified', 0),
+        ]);
 
-        if ($customer->update(['notes' => $request->input('notes')])) {
+        if ($customerNote) {
             return response([
-                'data'    => new CustomerResource($customer),
                 'message' => __('rest-api::app.customers.note-taken'),
             ]);
         }

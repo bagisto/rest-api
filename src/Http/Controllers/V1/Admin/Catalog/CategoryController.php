@@ -64,9 +64,9 @@ class CategoryController extends CatalogController
     public function update(CategoryRequest $request, $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
-
+      
         $category = $this->getRepositoryInstance()->update($request->all(), $id);
-
+         
         return response([
             'data'    => new CategoryResource($category),
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Category']),

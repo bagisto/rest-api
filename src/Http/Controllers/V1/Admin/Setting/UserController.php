@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Support\Str;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
-use Webkul\User\Http\Requests\UserForm;
+use Webkul\Admin\Http\Requests\UserForm;
 use Webkul\User\Repositories\AdminRepository;
 
 class UserController extends SettingController
@@ -60,6 +60,7 @@ class UserController extends SettingController
      */
     public function update(UserForm $request, $id)
     {
+
         $data = $this->prepareUserData($request, $id);
 
         if ($data instanceof \Illuminate\Http\Response) {

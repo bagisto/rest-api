@@ -37,7 +37,7 @@ class ResourceController extends V1Controller implements ResourceContract
      * @return \Illuminate\Http\Response
      */
     public function allResources(Request $request)
-    {
+    {   
         $query = $this->getRepositoryInstance()->scopeQuery(function ($query) use ($request) {
             foreach ($request->except($this->requestException) as $input => $value) {
                 $query = $query->whereIn($input, array_map('trim', explode(',', $value)));

@@ -2,15 +2,16 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
-use Illuminate\Support\Facades\Event;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Webkul\Core\Rules\Slug;
-use Webkul\Admin\Http\Requests\ProductForm;
-use Webkul\Admin\Http\Requests\MassUpdateRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Webkul\Product\Helpers\ProductType;
-use Webkul\Product\Repositories\ProductInventoryRepository;
+use Webkul\Admin\Http\Requests\ProductForm;
+use Illuminate\Validation\ValidationException;
+use Webkul\Admin\Http\Requests\InventoryRequest;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductResource;
 
 class ProductController extends CatalogController
@@ -62,9 +63,9 @@ class ProductController extends CatalogController
         Event::dispatch('catalog.product.create.before');
 
         $product = $this->getRepositoryInstance()->create($request->all());
-
+ 
         Event::dispatch('catalog.product.create.after', $product);
-        
+     
         return response([
             'data'    => new ProductResource($product),
             'message' => __('rest-api::app.common-response.success.create', ['name' => 'Product']),
@@ -85,6 +86,7 @@ class ProductController extends CatalogController
      */
     public function update(ProductForm $request, $id)
     {
+        dd('ajsdj');
         $data = $request->all();
 
         $data["channel"] = 1;
@@ -135,12 +137,12 @@ class ProductController extends CatalogController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateInventories(Request $request, ProductInventoryRepository $productInventoryRepository, $id)
+    public function updateInventories(InventoryRequest $inventoryRequest, ProductInventoryRepository $productInventoryRepository, $id)
     {
         $product = $this->getRepositoryInstance()->findOrFail($id);
-
-        $productInventoryRepository->saveInventories($request->all(), $product);
-
+    
+        $productInventoryRepository->saveInventories(request()->all(), $product);
+    
         return response()->json([
             'data'    => [
                 'total' => $productInventoryRepository->where('product_id', $product->id)->sum('qty'),

@@ -46,7 +46,7 @@ class AttributeController extends CatalogController
         ]);
 
         $data = $request->all();
-
+        
         $data['is_user_defined'] = 1;
 
         $attribute = $this->getRepositoryInstance()->create($data);
@@ -69,13 +69,12 @@ class AttributeController extends CatalogController
         try{
             $request->validate([
                 'admin_name' => 'required',
-                'type'       => 'required',
             ]);
 
             $requestData = $request->all();
 
             unset($requestData['code']);
-            
+ 
             $this->getRepositoryInstance()->findOrFail($id);
        
             $attribute = $this->getRepositoryInstance()->update($requestData, $id);
