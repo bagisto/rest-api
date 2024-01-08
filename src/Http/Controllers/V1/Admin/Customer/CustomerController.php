@@ -65,6 +65,7 @@ class CustomerController extends CustomerBaseController
             'gender'        => 'required',
             'email'         => 'required|unique:customers,email',
             'date_of_birth' => 'date|before:today',
+            'phone'         => 'nullable|integer',
         ]);
 
         $data = $request->all();

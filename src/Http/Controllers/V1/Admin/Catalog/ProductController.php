@@ -86,7 +86,6 @@ class ProductController extends CatalogController
      */
     public function update(ProductForm $request, $id)
     {
-        dd('ajsdj');
         $data = $request->all();
 
         $data["channel"] = 1;
