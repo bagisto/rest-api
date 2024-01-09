@@ -35,6 +35,16 @@ trait ProvideResource
     }
 
     /**
+     * Resource class name.
+     *
+     * @return string
+     */
+    public function productDetailResource()
+    {
+        return '';
+    }
+
+    /**
      * Get repository instance.
      *
      * @return object

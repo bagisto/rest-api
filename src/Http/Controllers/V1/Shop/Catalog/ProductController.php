@@ -5,6 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 use Illuminate\Http\Request;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\SimpleProductResource;
 
 class ProductController extends CatalogController
 {
@@ -33,9 +34,19 @@ class ProductController extends CatalogController
      *
      * @return string
      */
-    public function resource()
+    public function productDetailResource()
     {
         return ProductResource::class;
+    }
+
+    /**
+     * Resource class name.
+     *
+     * @return string
+     */
+    public function resource()
+    {
+        return SimpleProductResource::class;
     }
 
     /**
