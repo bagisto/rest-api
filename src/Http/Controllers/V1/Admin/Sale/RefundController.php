@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\RefundResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\RefundRepository;

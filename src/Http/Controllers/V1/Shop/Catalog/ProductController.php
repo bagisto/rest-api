@@ -106,7 +106,7 @@ class ProductController extends CatalogController
          
         return response([
             'data' => [
-                'is_wishlisted' => $wishlistHelper->findorFail($product->id) ? true : false
+                'is_wishlisted' => $wishlistHelper->findorFail($product->id) ? true : false,
             ],
         ]);
     }

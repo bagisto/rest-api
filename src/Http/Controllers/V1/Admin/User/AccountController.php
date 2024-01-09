@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
-use Illuminate\Validation\ValidationException;
 
 class AccountController extends UserController
 {

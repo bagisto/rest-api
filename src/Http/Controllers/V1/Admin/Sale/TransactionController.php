@@ -3,11 +3,11 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderTransactionResource;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
 use Webkul\Sales\Repositories\ShipmentRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderTransactionResource;
 
 class TransactionController extends SaleController
 {

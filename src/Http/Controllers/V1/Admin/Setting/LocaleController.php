@@ -98,7 +98,7 @@ class LocaleController extends SettingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->getRepositoryInstance()->count() == 1) {
+        if ($this->getRepositoryInstance()->count()) {
             return response([
                 'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'locale']),
             ]);

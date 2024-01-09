@@ -8,7 +8,6 @@ use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\V1\V1Controller;
 use Webkul\RestApi\Traits\ProvideResource;
 use Webkul\RestApi\Traits\ProvideUser;
-use Illuminate\Validation\ValidationException;
 
 class ResourceController extends V1Controller implements ResourceContract
 {

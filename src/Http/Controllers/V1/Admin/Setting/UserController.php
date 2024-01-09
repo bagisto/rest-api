@@ -38,6 +38,7 @@ class UserController extends SettingController
     public function store(UserForm $request)
     {
         $data = $request->all();
+
         if (isset($data['password']) && $data['password']) {
             $data['password'] = bcrypt($data['password']);
             $data['api_token'] = Str::random(80);
@@ -127,7 +128,10 @@ class UserController extends SettingController
 
         $isStatusChangedToInactive = (int) $data['status'] === 0 && (int) $user->status === 1;
 
-        if ($isStatusChangedToInactive && $this->getRepositoryInstance()->countAdminsWithAllAccessAndActiveStatus() === 1) {
+        if (
+            $isStatusChangedToInactive 
+            && $this->getRepositoryInstance()->countAdminsWithAllAccessAndActiveStatus() === 1    
+        ) {
             return $this->cannotChangeRedirectResponse('status');
         }
 

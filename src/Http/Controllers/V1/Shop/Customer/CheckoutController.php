@@ -105,7 +105,11 @@ class CheckoutController extends CustomerController
     {
         $payment = $request->get('payment');
 
-        if (Cart::hasError() || ! $payment || ! Cart::savePaymentMethod($payment)) {
+        if (
+            Cart::hasError() 
+            || ! $payment 
+            || ! Cart::savePaymentMethod($payment)
+        ) {
             abort(400);
         }
 

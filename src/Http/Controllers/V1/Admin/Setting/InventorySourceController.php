@@ -36,8 +36,8 @@ class InventorySourceController extends SettingController
     public function store(InventorySourceRequest $inventorySourceRequest)
     {
         $data = $inventorySourceRequest->all();
-
-        $data['status'] = ! isset($data['status']) ? 0 : 1;
+       
+        $data['status'] = $data['status'] ?? 0;
 
         $inventorySource = $this->getRepositoryInstance()->create($data);
 
@@ -57,7 +57,7 @@ class InventorySourceController extends SettingController
     {
         $data = $inventorySourceRequest->all();
 
-        $data['status'] = ! isset($data['status']) ? 0 : 1;
+        $data['status'] = $data['status'] ?? 0;
 
         $inventorySource = $this->getRepositoryInstance()->update($data, $id);
 
@@ -77,7 +77,7 @@ class InventorySourceController extends SettingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->getRepositoryInstance()->count() == 1) {
+        if ($this->getRepositoryInstance()->count()) {
             return response([
                 'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'inventory source']),
             ], 400);

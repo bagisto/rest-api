@@ -3,8 +3,8 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxRateResource;
 use Webkul\Tax\Repositories\TaxRateRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxRateResource;
 
 class TaxRateController extends SettingController
 {

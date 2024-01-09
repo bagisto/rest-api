@@ -5,10 +5,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Validation\ValidationException;
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use \Webkul\Sales\Repositories\OrderCommentRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 
 class OrderController extends SaleController
 {
@@ -63,7 +62,7 @@ class OrderController extends SaleController
             
         $data = array_merge($request->all(), ['order_id' => $id]);
 
-        $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;
+        $data['customer_notified'] = $data['customer_notified'] ?? 1;
 
         Event::dispatch('sales.order.comment.create.before', $data);
 
