@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductResource;
 use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
 
@@ -101,11 +102,11 @@ class ProductController extends CatalogController
     {
         $product = $this->getRepositoryInstance()->findOrFail($productId);
 
-        $wishlistHelper = app(\Webkul\Customer\Helpers\Wishlist::class);
-
+        $wishlistHelper = app(\Webkul\Customer\Repositories\WishlistRepository::class);
+         
         return response([
             'data' => [
-                'is_wishlisted' => $wishlistHelper->getWishlistProduct($product) ? true : false
+                'is_wishlisted' => $wishlistHelper->findorFail($product->id) ? true : false
             ],
         ]);
     }

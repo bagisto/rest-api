@@ -73,40 +73,40 @@ class ShipmentController extends SaleController
     public function store(Request $request, $orderId)
     {
         try{
-             $order = $this->orderRepository->findOrFail($orderId);
+                $order = $this->orderRepository->findOrFail($orderId);
 
-             if (! $order->canShip()) {
-                 return response([
+                if (! $order->canShip()) {
+                    return response([
                           'message' => __('rest-api::app.sales.shipments.creation-error'),
-                 ], 400);
-             }
+                    ], 400);
+                }
     
-             $request->validate([
-                 'shipment.carrier_title'  => 'required',
-                 'shipment.track_number'   => 'required',
-                 'shipment.source'         => 'required|numeric',
-                 'shipment.items.*.*'      => 'required|numeric|min:0',
-             ]);
+                $request->validate([
+                   'shipment.carrier_title'  => 'required',
+                   'shipment.track_number'   => 'required',
+                   'shipment.source'         => 'required|numeric',
+                   'shipment.items.*.*'      => 'required|numeric|min:0',
+                ]);
 
-             $data = $request->all();
-
-             if (! $this->isInventoryValidate($data)) {
-                 return response([
+                 $data = $request->all();
+           
+               if (! $this->isInventoryValidate($data)) {
+                    return response([
                           'message' => __('rest-api::app.sales.shipments.invalid-qty-error'),
-                 ], 400);
-             }
+                    ], 400);
+               }
 
-             $shipment = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
-
-             return response([
-                 'data'    => new ShipmentResource($shipment),
-                 'message' => __('rest-api::app.common-response.success.create', ['name' => 'Shipment']),
-             ]);
-        } catch(ValidationException $e) {
-            return response([
-                'errors' => $e->validator->errors()->toArray(),
-            ]);
-        }
+                $shipment = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
+                
+                return response([
+                  'data'    => new ShipmentResource($shipment),
+                  'message' => __('rest-api::app.common-response.success.create', ['name' => 'Shipment']),
+                ]);
+           } catch(ValidationException $e) {
+              return response([
+                 'errors' => $e->validator->errors()->toArray(),
+              ]);
+            }
     }
 
     /**
@@ -120,18 +120,18 @@ class ShipmentController extends SaleController
         if (! isset($data['shipment']['items'])) {
             return;
         }
-
+        
         $valid = false;
 
         $inventorySourceId = $data['shipment']['source'];
         
         foreach ($data['shipment']['items'] as $itemId => $inventorySource) {
-
+            
             $qty = $inventorySource[$inventorySourceId];
-
+    
             if ((int) $qty) {
                 $orderItem = $this->orderItemRepository->find($itemId);
-                
+               
                 if ($orderItem->qty_to_ship > $qty) {
                     return false;
                 }
@@ -141,9 +141,9 @@ class ShipmentController extends SaleController
                         if (! $child->qty_ordered) {
                             continue;
                         }
-
+                        
                         $finalQty = ($child->qty_ordered / $orderItem->qty_ordered) * $qty;
-
+                    
                         $availableQty = $child->product->inventories()
                             ->where('inventory_source_id', $inventorySourceId)
                             ->sum('qty');
@@ -153,6 +153,7 @@ class ShipmentController extends SaleController
                         }
                     }
                 } else {
+                  
                     $availableQty = $orderItem->product->inventories()
                         ->where('inventory_source_id', $inventorySourceId)
                         ->sum('qty');
@@ -167,7 +168,7 @@ class ShipmentController extends SaleController
                 unset($data['shipment']['items'][$itemId]);
             }
         }
-
+        
         return $valid;
     }
 }

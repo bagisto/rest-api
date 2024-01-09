@@ -121,7 +121,7 @@ class ProductController extends CatalogController
         $product = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('catalog.product.update.after', $product);
-
+    
         return response([
             'data'    => new ProductResource($product),
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Product']),
