@@ -58,7 +58,6 @@ class CustomerController extends CustomerBaseController
      */
     public function store(Request $request)
     {
-        try{
         $request->validate([
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
@@ -77,21 +76,6 @@ class CustomerController extends CustomerBaseController
         $data['is_verified'] = 1;
 
         $customer = $this->getRepositoryInstance()->create($data);
-       } catch(ValidationException $e) {
-
-        return response([
-            'error' => $e->validator->errors()->toArray(),
-        ]);
-
-       }
-
-        try {
-            if (core()->getConfigData('emails.general.notifications.emails.general.notifications.customer')) {
-                Mail::queue(new NewCustomerNotification($customer, $password));
-            }
-        } catch (\Exception $e) {
-            report($e);
-        }
 
         return response([
             'data'    => new CustomerResource($customer),
