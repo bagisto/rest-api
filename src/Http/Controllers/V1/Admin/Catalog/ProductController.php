@@ -45,7 +45,8 @@ class ProductController extends CatalogController
     public function store(Request $request)
     {
       try {
-        if (! $request->has('type')
+        if (
+            ProductType::hasVariants($request->input('type'))
             && (! $request->has('super_attributes')
                 || ! count($request->get('super_attributes')))
         ) {
@@ -92,11 +93,11 @@ class ProductController extends CatalogController
         $data["channel"] = 1;
 
         $data["locale"] = 1;
-        
+    
         $multiselectAttributeCodes = [];
 
         $productAttributes = $this->getRepositoryInstance()->findOrFail($id);
-        
+       
         foreach ($productAttributes->attribute_family->attribute_groups as $attributeGroup) {
             $customAttributes = $productAttributes->getEditableAttributes($attributeGroup);
 
@@ -116,13 +117,12 @@ class ProductController extends CatalogController
                 }
             }
         }
-
         Event::dispatch('catalog.product.update.before', $id);
 
         $product = $this->getRepositoryInstance()->update($data, $id);
          
         Event::dispatch('catalog.product.update.after', $product);
-    
+      
         return response([
             'data'    => new ProductResource($product),
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Product']),

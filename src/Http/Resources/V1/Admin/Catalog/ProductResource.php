@@ -14,10 +14,19 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
+        /**
+         * Not able to use individual key in the resource because
+         * attributes are system defined and custom defined.
+         *
+         * @var array
+         */
+        $mainAttributes = $this->resource->toArray();
+
         return [
-            'type'                => $this->type,
-            'sku'                 => $this->sku,
-            'attribute_family_id' => $this->attribute_family_id,
+            /**
+            * Main attributes.
+            */
+            $this->merge($mainAttributes),
 
             /**
              * Additional attributes.
