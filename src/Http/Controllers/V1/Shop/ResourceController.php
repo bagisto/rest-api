@@ -58,6 +58,41 @@ class ResourceController extends V1Controller implements ResourceContract
             $results = $query->get();
         }
 
+        return $this->getResourceCollection($results);
+    }
+
+    /**
+     * Returns a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function allProductResources(Request $request)
+    {
+        $query = $this->getRepositoryInstance()->scopeQuery(function ($query) use ($request) {
+            if ($this->isAuthorized()) {
+                $query = $query->where('customer_id', $this->resolveShopUser($request)->id);
+            }
+
+            foreach ($request->except($this->requestException) as $input => $value) {
+                $query = $query->whereIn($input, array_map('trim', explode(',', $value)));
+            }
+
+            if ($sort = $request->input('sort')) {
+                $query = $query->orderBy($sort, $request->input('order') ?? 'desc');
+            } else {
+                $query = $query->orderBy('id', 'desc');
+            }
+
+            return $query;
+        });
+
+        if (is_null($request->input('pagination')) || $request->input('pagination')) {
+            $results = $query->paginate($request->input('limit') ?? 10);
+        } else {
+            $results = $query->get();
+        }
+
         return $this->getSimpleResourceCollection($results);
     }
 

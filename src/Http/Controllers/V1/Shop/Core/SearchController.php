@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Webkul\Product\Repositories\SearchRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\SimpleProductResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Core\SliderResource;
 
 class SearchController extends CoreController
@@ -30,7 +31,7 @@ class SearchController extends CoreController
         $results = $this->searchRepository->search(request()->all());
 
         return response([
-            'data' => ProductResource::collection($results),
+            'data' => SimpleProductResource::collection($results),
         ]);
     }
 

@@ -80,11 +80,6 @@ class SimpleProductResource extends JsonResource
 
             /* special price cases */
             $this->merge($this->specialPriceInfo()),
-
-            /* super attributes */
-            $this->mergeWhen($productTypeInstance->isComposite(), [
-                'super_attributes' => AttributeResource::collection($product->super_attributes),
-            ]),
         ];
     }
 
