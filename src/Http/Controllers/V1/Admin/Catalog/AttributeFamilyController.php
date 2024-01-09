@@ -40,7 +40,7 @@ class AttributeFamilyController extends CatalogController
     {
         try{
             $request->validate([
-                'code' => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
+                'code' => ['required', 'unique:attribute_families,code', new Code],
                 'name' => 'required',
             ]);
 
