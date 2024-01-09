@@ -58,7 +58,7 @@ class ResourceController extends V1Controller implements ResourceContract
             $results = $query->get();
         }
 
-        return $this->getResourceCollection($results);
+        return $this->getSimpleResourceCollection($results);
     }
 
     /**
@@ -70,7 +70,7 @@ class ResourceController extends V1Controller implements ResourceContract
      */
     public function getResource(Request $request, int $id)
     {
-        $resourceClassName = $this->productDetailResource();
+        $resourceClassName = $this->resource();
 
         $resource = $this->isAuthorized()
             ? $this->getRepositoryInstance()->where('customer_id', $this->resolveShopUser($request)->id)->findOrFail($id)

@@ -34,9 +34,9 @@ class ProductController extends CatalogController
      *
      * @return string
      */
-    public function productDetailResource()
+    public function lessProductResource()
     {
-        return ProductResource::class;
+        return SimpleProductResource::class;
     }
 
     /**
@@ -46,7 +46,7 @@ class ProductController extends CatalogController
      */
     public function resource()
     {
-        return SimpleProductResource::class;
+        return ProductResource::class;
     }
 
     /**
@@ -59,7 +59,7 @@ class ProductController extends CatalogController
     {
         $results = $this->getRepositoryInstance()->getNewProductsApi();
 
-        return $this->getResourceCollection($results);
+        return $this->getSimpleResourceCollection($results);
     }
 
     /**
@@ -72,7 +72,7 @@ class ProductController extends CatalogController
     {
         $results = $this->getRepositoryInstance()->getAll($request->input('category_id'));
 
-        return $this->getResourceCollection($results);
+        return $this->getSimpleResourceCollection($results);
     }
 
     /**

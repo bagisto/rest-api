@@ -39,7 +39,7 @@ trait ProvideResource
      *
      * @return string
      */
-    public function productDetailResource()
+    public function lessProductResource()
     {
         return '';
     }
@@ -62,5 +62,15 @@ trait ProvideResource
     public function getResourceCollection($results)
     {
         return ($this->resource())::collection($results);
+    }
+
+    /**
+     * Get resource simple collection.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getSimpleResourceCollection($results)
+    {
+        return ($this->lessProductResource())::collection($results);
     }
 }

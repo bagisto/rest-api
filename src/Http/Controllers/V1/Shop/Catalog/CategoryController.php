@@ -48,6 +48,6 @@ class CategoryController extends CatalogController
     {
         $results = $this->getRepositoryInstance()->getVisibleCategoryTree($request->input('parent_id'));
 
-        return $this->getResourceCollection($results);
+        return $this->getSimpleResourceCollection($results);
     }
 }

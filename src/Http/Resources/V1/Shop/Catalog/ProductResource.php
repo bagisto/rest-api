@@ -53,7 +53,7 @@ class ProductResource extends JsonResource
             'formatted_price'    => core()->currency($productTypeInstance->getMaximumPrice()),
             'short_description'  => $product->short_description,
             'description'        => $product->description,
-            'point'        => $product->point,
+            'point'              => $product->point,
             'images'             => ProductImageResource::collection($product->images),
             'videos'             => ProductVideoResource::collection($product->videos),
             'base_image'         => ProductImage::getProductBaseImage($product),
