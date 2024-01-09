@@ -12,20 +12,6 @@ use Webkul\Sales\Repositories\ShipmentRepository;
 class ShipmentController extends SaleController
 {
     /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Order item repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderItemRepository
-     */
-    protected $orderItemRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
@@ -33,14 +19,10 @@ class ShipmentController extends SaleController
      * @return void
      */
     public function __construct(
-        OrderRepository $orderRepository,
-        OrderItemRepository $orderItemRepository
+       protected OrderRepository $orderRepository,
+       protected OrderItemRepository $orderItemRepository
     ) {
         parent::__construct();
-        
-        $this->orderRepository = $orderRepository;
-
-        $this->orderItemRepository = $orderItemRepository;
     }
 
     /**
@@ -72,41 +54,36 @@ class ShipmentController extends SaleController
      */
     public function store(Request $request, $orderId)
     {
-        try{
-                $order = $this->orderRepository->findOrFail($orderId);
+        $order = $this->orderRepository->findOrFail($orderId);
 
-                if (! $order->canShip()) {
-                    return response([
-                          'message' => __('rest-api::app.sales.shipments.creation-error'),
-                    ], 400);
-                }
+        if (! $order->canShip()) {
+            return response([
+                'message' => __('rest-api::app.sales.shipments.creation-error'),
+            ], 400);
+        }
     
-                $request->validate([
-                   'shipment.carrier_title'  => 'required',
-                   'shipment.track_number'   => 'required',
-                   'shipment.source'         => 'required|numeric',
-                   'shipment.items.*.*'      => 'required|numeric|min:0',
-                ]);
+        $request->validate([
+            'shipment.carrier_title'  => 'required',
+            'shipment.track_number'   => 'required',
+            'shipment.source'         => 'required|numeric',
+            'shipment.items.*.*'      => 'required|numeric|min:0',
+        ]);
 
-                 $data = $request->all();
+        $data = $request->all();
            
-               if (! $this->isInventoryValidate($data)) {
-                    return response([
-                          'message' => __('rest-api::app.sales.shipments.invalid-qty-error'),
-                    ], 400);
-               }
+        if (! $this->isInventoryValidate($data)) {
+            return response([
+                'message' => __('rest-api::app.sales.shipments.invalid-qty-error'),
+            ], 400);
+        }
 
-                $shipment = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
+        $shipment = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
                 
-                return response([
-                  'data'    => new ShipmentResource($shipment),
-                  'message' => __('rest-api::app.common-response.success.create', ['name' => 'Shipment']),
-                ]);
-           } catch(ValidationException $e) {
-              return response([
-                 'errors' => $e->validator->errors()->toArray(),
-              ]);
-            }
+        return response([
+            'data'    => new ShipmentResource($shipment),
+            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Shipment']),
+        ]);
+    
     }
 
     /**
@@ -158,7 +135,9 @@ class ShipmentController extends SaleController
                         ->where('inventory_source_id', $inventorySourceId)
                         ->sum('qty');
 
-                    if ($orderItem->qty_to_ship > $qty || $availableQty < $qty) {
+                    if (
+                        $orderItem->qty_shipped > $qty 
+                        || $availableQty < $qty) {
                         return false;
                     }
                 }

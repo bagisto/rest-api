@@ -44,7 +44,7 @@ class ProductController extends CatalogController
      */
     public function store(Request $request)
     {
-      try{
+      try {
         if (! $request->has('type')
             && (! $request->has('super_attributes')
                 || ! count($request->get('super_attributes')))
@@ -62,6 +62,7 @@ class ProductController extends CatalogController
 
         Event::dispatch('catalog.product.create.before');
 
+        
         $product = $this->getRepositoryInstance()->create($request->all());
  
         Event::dispatch('catalog.product.create.after', $product);
@@ -87,7 +88,7 @@ class ProductController extends CatalogController
     public function update(ProductForm $request, $id)
     {
         $data = $request->all();
-
+    
         $data["channel"] = 1;
 
         $data["locale"] = 1;
@@ -95,7 +96,7 @@ class ProductController extends CatalogController
         $multiselectAttributeCodes = [];
 
         $productAttributes = $this->getRepositoryInstance()->findOrFail($id);
-    
+        
         foreach ($productAttributes->attribute_family->attribute_groups as $attributeGroup) {
             $customAttributes = $productAttributes->getEditableAttributes($attributeGroup);
 
@@ -119,7 +120,7 @@ class ProductController extends CatalogController
         Event::dispatch('catalog.product.update.before', $id);
 
         $product = $this->getRepositoryInstance()->update($data, $id);
-
+         
         Event::dispatch('catalog.product.update.after', $product);
     
         return response([

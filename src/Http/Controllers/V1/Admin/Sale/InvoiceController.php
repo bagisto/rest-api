@@ -3,9 +3,9 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
 
 class InvoiceController extends SaleController
 {
@@ -46,7 +46,7 @@ class InvoiceController extends SaleController
                 'message' => __('rest-api::app.sales.invoices.creation-error'),
             ], 400);
         }
-
+     
         $request->validate([
             'invoice.items.*' => 'required|numeric|min:0',
         ]);

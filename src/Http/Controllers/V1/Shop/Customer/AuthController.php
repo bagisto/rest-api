@@ -92,7 +92,7 @@ class AuthController extends CustomerController
              * Preventing multiple token creation.
              */
             $customer->tokens()->delete();
-
+            
             return response([
                 'data'    => new CustomerResource($customer),
                 'message' => 'Logged in successfully.',
@@ -140,8 +140,8 @@ class AuthController extends CustomerController
         $customer = $this->resolveShopUser($request);
 
         $request->validate([
-            'first_name'    => 'required|string',
-            'last_name'     => 'required|string',
+            'first_name'    => 'required|alpha_num|regex:/^[a-z\d\-_\s]+$/i',
+            'last_name'     => 'required|alpha_num|regex:/^[a-z\d\-_\s]+$/i',
             'gender'        => 'required',
             'date_of_birth' => 'nullable|date|before:today',
             'email'         => 'email|unique:customers,email,' . $customer->id,

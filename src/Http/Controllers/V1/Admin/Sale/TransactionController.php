@@ -12,27 +12,6 @@ use Webkul\Sales\Repositories\ShipmentRepository;
 class TransactionController extends SaleController
 {
     /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Invoice repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\InvoiceRepository
-     */
-    protected $invoiceRepository;
-
-    /**
-     * Invoice repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\ShipmentRepository
-     */
-    protected $shipmentRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
@@ -41,17 +20,11 @@ class TransactionController extends SaleController
      * @return void
      */
     public function __construct(
-        OrderRepository $orderRepository,
-        InvoiceRepository $invoiceRepository,
-        ShipmentRepository $shipmentRepository
+       protected OrderRepository $orderRepository,
+       protected InvoiceRepository $invoiceRepository,
+       protected ShipmentRepository $shipmentRepository
     ) {
         parent::__construct();
-        
-        $this->orderRepository = $orderRepository;
-
-        $this->invoiceRepository = $invoiceRepository;
-
-        $this->shipmentRepository = $shipmentRepository;
     }
 
     /**

@@ -12,30 +12,30 @@ return [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/shop/documentation',
-                'docs' => storage_path('api-docs/shop'),
+                'api'             => 'api/shop/documentation',
+                'docs'            => storage_path('api-docs/shop'),
                 'oauth2_callback' => 'api/shop/oauth2-callback',
             ],
             'paths' => [
                 /*
                  * Edit to include full URL in ui for assets
                 */
-                'use_absolute_path' => env('L5_SWAGGER_USE_ABSOLUTE_PATH', true),
+                'use_absolute_path'   => env('L5_SWAGGER_USE_ABSOLUTE_PATH', true),
 
                 /*
                  * File name of the generated json documentation file
                 */
-                'docs_json' => 'api-docs.json',
+                'docs_json'           => 'api-docs.json',
 
                 /*
                  * File name of the generated YAML documentation file
                 */
-                'docs_yaml' => 'api-docs.yaml',
+                'docs_yaml'            => 'api-docs.yaml',
 
                 /*
                 * Set this to `json` or `yaml` to determine which documentation file to use in UI
                 */
-                'format_to_use_for_docs' => env('L5_FORMAT_TO_USE_FOR_DOCS', 'json'),
+                'format_to_use_for_docs'=> env('L5_FORMAT_TO_USE_FOR_DOCS', 'json'),
 
                 /*
                  * Absolute paths to directory containing the swagger annotations are stored.
@@ -55,25 +55,25 @@ return [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/admin/documentation',
-                'docs' => storage_path('api-docs/admin'),
+                'api'             => 'api/admin/documentation',
+                'docs'            => storage_path('api-docs/admin'),
                 'oauth2_callback' => 'api/admin/oauth2-callback',
             ],
             'paths' => [
                 /*
                  * Edit to include full URL in ui for assets
                 */
-                'use_absolute_path' => env('L5_SWAGGER_USE_ABSOLUTE_PATH', true),
+                'use_absolute_path'      => env('L5_SWAGGER_USE_ABSOLUTE_PATH', true),
 
                 /*
                  * File name of the generated json documentation file
                 */
-                'docs_json' => 'admin-docs.json',
+                'docs_json'              => 'admin-docs.json',
 
                 /*
                  * File name of the generated YAML documentation file
                 */
-                'docs_yaml' => 'admin-docs.yaml',
+                'docs_yaml'              => 'admin-docs.yaml',
 
                 /*
                 * Set this to `json` or `yaml` to determine which documentation file to use in UI
@@ -83,7 +83,7 @@ return [
                 /*
                  * Absolute paths to directory containing the swagger annotations are stored.
                 */
-                'annotations' => [
+                'annotations'             => [
                     base_path('vendor/bagisto/rest-api/src/Docs/Admin'),
                 ],
 
@@ -95,7 +95,7 @@ return [
             /*
              * Route for accessing parsed swagger annotations.
             */
-            'docs' => 'docs',
+            'docs'            => 'docs',
 
             /*
              * Route for Oauth2 authentication callback.
@@ -105,17 +105,17 @@ return [
             /*
              * Middleware allows to prevent unexpected access to API documentation
             */
-            'middleware' => [
-                'api' => [],
-                'asset' => [],
-                'docs' => [],
+            'middleware'      => [
+                'api'             => [],
+                'asset'           => [],
+                'docs'            => [],
                 'oauth2_callback' => [],
             ],
 
             /*
              * Route Group options
             */
-            'group_options' => [],
+            'group_options'     => [],
         ],
 
         'paths' => [
@@ -238,16 +238,16 @@ return [
                 ],
                 */
                 'sanctum_admin' => [ // Unique name of security
-                    'type' => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
+                    'type'        => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
                     'description' => 'Enter token in format (Bearer <token>)',
-                    'name' => 'Authorization', // The name of the header or query parameter to be used.
-                    'in' => 'header', // The location of the API key. Valid values are "query" or "header".
+                    'name'        => 'Authorization', // The name of the header or query parameter to be used.
+                    'in'          => 'header', // The location of the API key. Valid values are "query" or "header".
                 ],
                 'sanctum' => [ // Unique name of security
-                    'type' => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
+                    'type'        => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
                     'description' => 'Enter token in format (Bearer <token>)',
-                    'name' => 'Authorization', // The name of the header or query parameter to be used.
-                    'in' => 'header', // The location of the API key. Valid values are "query" or "header".
+                    'name'        => 'Authorization', // The name of the header or query parameter to be used.
+                    'in'          => 'header', // The location of the API key. Valid values are "query" or "header".
                 ],
             ],
             'security' => [

@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\ChannelRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
 
 class ChannelController extends SettingController
@@ -38,30 +39,30 @@ class ChannelController extends SettingController
     {
         $data = $request->validate([
             /* general */
-            'code'              => ['required', 'unique:channels,code', new \Webkul\Core\Contracts\Validations\Code],
-            'name'              => 'required',
-            'description'       => 'nullable',
-            'inventory_sources' => 'required|array|min:1',
-            'root_category_id'  => 'required',
-            'hostname'          => 'unique:channels,hostname',
+            'code'                 => ['required', 'unique:channels,code', new Code],
+            'name'                 => 'required',
+            'description'          => 'nullable',
+            'inventory_sources'    => 'required|array|min:1',
+            'root_category_id'     => 'required',
+            'hostname'             => 'unique:channels,hostname',
 
             /* currencies and locales */
-            'locales'           => 'required|array|min:1',
-            'default_locale_id' => 'required|in_array:locales.*',
-            'currencies'        => 'required|array|min:1',
-            'base_currency_id'  => 'required|in_array:currencies.*',
+            'locales'              => 'required|array|min:1',
+            'default_locale_id'    => 'required|in_array:locales.*',
+            'currencies'           => 'required|array|min:1',
+            'base_currency_id'     => 'required|in_array:currencies.*',
 
             /* design */
-            'theme'             => 'nullable',
-            'home_page_content' => 'nullable',
-            'footer_content'    => 'nullable',
-            'logo.*'            => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
-            'favicon.*'         => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
+            'theme'                => 'nullable',
+            'home_page_content'    => 'nullable',
+            'footer_content'       => 'nullable',
+            'logo.*'               => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
+            'favicon.*'            => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
 
             /* seo */
-            'seo_title'       => 'required|string',
-            'seo_description' => 'required|string',
-            'seo_keywords'    => 'required|string',
+            'seo_title'             => 'required|string',
+            'seo_description'       => 'required|string',
+            'seo_keywords'          => 'required|string',
 
             /* maintenance mode */
             'is_maintenance_on'     => 'boolean',
@@ -92,30 +93,30 @@ class ChannelController extends SettingController
 
         $data = $request->validate([
             /* general */
-            'code'                   => ['required', 'unique:channels,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
-            $locale . '.name'        => 'required',
-            $locale . '.description' => 'nullable',
-            'inventory_sources'      => 'required|array|min:1',
-            'root_category_id'       => 'required',
-            'hostname'               => 'unique:channels,hostname,' . $id,
+            'code'                          => ['required', 'unique:channels,code,' . $id, new Code],
+            $locale . '.name'               => 'required',
+            $locale . '.description'        => 'nullable',
+            'inventory_sources'             => 'required|array|min:1',
+            'root_category_id'              => 'required',
+            'hostname'                      => 'unique:channels,hostname,' . $id,
 
             /* currencies and locales */
-            'locales'           => 'required|array|min:1',
-            'default_locale_id' => 'required|in_array:locales.*',
-            'currencies'        => 'required|array|min:1',
-            'base_currency_id'  => 'required|in_array:currencies.*',
+            'locales'                       => 'required|array|min:1',
+            'default_locale_id'             => 'required|in_array:locales.*',
+            'currencies'                    => 'required|array|min:1',
+            'base_currency_id'              => 'required|in_array:currencies.*',
 
             /* design */
-            'theme'                        => 'nullable',
-            $locale . '.home_page_content' => 'nullable',
-            $locale . '.footer_content'    => 'nullable',
-            'logo.*'                       => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
-            'favicon.*'                    => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
+            'theme'                          => 'nullable',
+            $locale . '.home_page_content'   => 'nullable',
+            $locale . '.footer_content'      => 'nullable',
+            'logo.*'                         => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
+            'favicon.*'                      => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
 
             /* seo */
-            $locale . '.seo_title'       => 'nullable',
-            $locale . '.seo_description' => 'nullable',
-            $locale . '.seo_keywords'    => 'nullable',
+            $locale . '.seo_title'            => 'nullable',
+            $locale . '.seo_description'      => 'nullable',
+            $locale . '.seo_keywords'         => 'nullable',
 
             /* maintenance mode */
             'is_maintenance_on'                => 'boolean',
@@ -176,14 +177,18 @@ class ChannelController extends SettingController
         }
 
         $editedData['home_seo']['meta_title'] = $editedData['seo_title'];
+
         $editedData['home_seo']['meta_description'] = $editedData['seo_description'];
+
         $editedData['home_seo']['meta_keywords'] = $editedData['seo_keywords'];
+
         $editedData['home_seo'] = json_encode($editedData['home_seo']);
 
         $editedData = $this->unsetKeys($editedData, ['seo_title', 'seo_description', 'seo_keywords']);
 
         if ($locale) {
             $data[$locale] = $editedData;
+            
             $editedData = $data;
         }
 

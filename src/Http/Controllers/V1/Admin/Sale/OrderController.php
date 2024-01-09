@@ -57,29 +57,24 @@ class OrderController extends SaleController
      */
     public function comment(Request $request, OrderCommentRepository $orderCommentRepository, int $id)
     {
-        try{
-            $request->validate([
-                'comment' => 'required',
-            ]);
+        $request->validate([
+            'comment' => 'required',
+        ]);
             
-            $data = array_merge($request->all(), ['order_id' => $id]);
+        $data = array_merge($request->all(), ['order_id' => $id]);
 
-            $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;
+        $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;
 
-            Event::dispatch('sales.order.comment.create.before', $data);
+        Event::dispatch('sales.order.comment.create.before', $data);
 
-            $comment = $orderCommentRepository->create($data);
+        $comment = $orderCommentRepository->create($data);
 
-            Event::dispatch('sales.order.comment.create.after', $comment);
+        Event::dispatch('sales.order.comment.create.after', $comment);
 
-            return response([
-                'data'    => $comment,
-                'message' => __('rest-api::app.common-response.success.add', ['name' => 'Comment']),
-            ]);
-        } catch (ValidationException $e){
-            return response([
-                'errors' => $e->validator->errors()->toArray(),
-            ]);
-        }
+        return response([
+            'data'    => $comment,
+            'message' => __('rest-api::app.common-response.success.add', ['name' => 'Comment']),
+        ]);
+      
     }
 }

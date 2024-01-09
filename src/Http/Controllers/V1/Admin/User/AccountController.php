@@ -18,9 +18,9 @@ class AccountController extends UserController
      */
     public function get(Request $request)
     {
-          $admin = $this->resolveAdminUser($request);
+        $admin = $this->resolveAdminUser($request);
        
-           return new UserResource($admin);
+        return new UserResource($admin);
     }
 
     /**
@@ -31,45 +31,39 @@ class AccountController extends UserController
      */
     public function update(Request $request)
     {
-        try{
-           $user = $this->resolveAdminUser($request);
+        $user = $this->resolveAdminUser($request);
 
-           $isPasswordChanged = false;
+        $isPasswordChanged = false;
 
-           $data = $request->validate([
-             'name'                 => 'required',
-             'email'                => 'email|unique:users,email,' . $user->id,
-             'current_password'     => 'nullable|required|min:6',
-             'password'             => 'nullable|min:6|confirmed',
-             'password_confirmatio' => 'nullable| same: password'
-            ]);
+        $data = $request->validate([
+            'name'                 => 'required',
+            'email'                => 'email|unique:users,email,' . $user->id,
+            'current_password'     => 'nullable|required|min:6',
+            'password'             => 'nullable|min:6|confirmed',
+            'password_confirmatio' => 'nullable| same: password',
+        ]);
 
-           if (! Hash::check($data['current_password'], $user->password)) {
-              return response([
-                 'message' => __('rest-api::app.common-response.error.password-mismatch'),
-               ], 400);
-           }
-
-           if (isset($data['password'])) {
-              $isPasswordChanged = true;
-
-               $data['password'] = bcrypt($data['password']);
-            }
-
-           $user->update($data);
-
-          if ($isPasswordChanged) {
-              Event::dispatch('user.admin.update-password', $user);
-           }
-
-           return response([
-              'data'    => new UserResource($user),
-              'message' => __('rest-api::app.common-response.success.update', ['name' => 'Account']),
-            ]);
-        } catch(ValidationException $e) {
+        if (! Hash::check($data['current_password'], $user->password)) {
             return response([
-                'error'  => $e->validator->errors()->toArray(),
-            ]);
+                'message' => __('rest-api::app.common-response.error.password-mismatch'),
+            ], 400);
         }
+
+        if (isset($data['password'])) {
+            $isPasswordChanged = true;
+
+            $data['password'] = bcrypt($data['password']);
+        }
+
+        $user->update($data);
+
+        if ($isPasswordChanged) {
+            Event::dispatch('user.admin.update-password', $user);
+        }
+
+        return response([
+            'data'    => new UserResource($user),
+            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Account']),
+        ]);
     }
 }

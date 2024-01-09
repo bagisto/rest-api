@@ -44,12 +44,14 @@ class AttributeController extends CatalogController
             'admin_name' => 'required',
             'type'       => 'required',
         ]);
-
-        $data = $request->all();
-        
+       
         $data['is_user_defined'] = 1;
 
-        $attribute = $this->getRepositoryInstance()->create($data);
+        $attribute = $this->getRepositoryInstance()->create([
+            'code' => $request->input('code'),
+            'admin_name' => $request->input('admin_name'),
+            'type' => $request->input('type'),
+        ]);
 
         return response([
             'data'    => new AttributeResource($attribute),
