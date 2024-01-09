@@ -70,22 +70,22 @@ class PageController extends CMSController
     {
         $locale = core()->getRequestedLocaleCode();
      
-    try{
-        $request->validate([
-            $locale . '.url_key'      => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
-                if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
-                    $fail(__('rest-api::app.common-response.error.already-taken', ['name' => 'Page']));
-                }
-            }],
-            $locale . '.page_title'   => 'required',
-            $locale . '.html_content' => 'required',
-            'channels'                => 'required',
-        ]);
-    } catch(ValidationException $e) {
-        return response([
-            'errors' => $e->validator->errors()->toArray(),
-        ]);
-    }
+        try{
+            $request->validate([
+                $locale . '.url_key'      => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
+                   if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
+                      $fail(__('rest-api::app.common-response.error.already-taken', ['name' => 'Page']));
+                    }
+                }],
+               $locale . '.page_title'   => 'required',
+               $locale . '.html_content' => 'required',
+               'channels'                => 'required',
+            ]);
+        } catch(ValidationException $e) {
+             return response([
+                'errors' => $e->validator->errors()->toArray(),
+            ]);
+        }
 
         $page = $this->getRepositoryInstance()->update($request->all(), $id);
      

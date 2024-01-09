@@ -2,12 +2,12 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
-use Webkul\Core\Rules\Slug;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Validation\ValidationException;
+use Webkul\Core\Rules\Slug;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Admin\Http\Requests\ProductForm;
-use Illuminate\Validation\ValidationException;
 use Webkul\Admin\Http\Requests\InventoryRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Repositories\ProductRepository;
@@ -90,10 +90,6 @@ class ProductController extends CatalogController
     {
         $data = $request->all();
     
-        $data["channel"] = 1;
-
-        $data["locale"] = 1;
-    
         $multiselectAttributeCodes = [];
 
         $productAttributes = $this->getRepositoryInstance()->findOrFail($id);
@@ -120,7 +116,7 @@ class ProductController extends CatalogController
         Event::dispatch('catalog.product.update.before', $id);
 
         $product = $this->getRepositoryInstance()->update($data, $id);
-         
+        
         Event::dispatch('catalog.product.update.after', $product);
       
         return response([
