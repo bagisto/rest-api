@@ -2,7 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
-use Webkul\Inventory\Http\Requests\InventorySourceRequest;
+use Webkul\Admin\Http\Requests\InventorySourceRequest;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Inventory\InventorySourceResource;
 
@@ -36,57 +36,55 @@ class InventorySourceController extends SettingController
     public function store(InventorySourceRequest $inventorySourceRequest)
     {
         $data = $inventorySourceRequest->all();
-
-        $data['status'] = ! isset($data['status']) ? 0 : 1;
+       
+        $data['status'] = $data['status'] ?? 0;
 
         $inventorySource = $this->getRepositoryInstance()->create($data);
 
         return response([
             'data'    => new InventorySourceResource($inventorySource),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Inventory source']),
+            'message' => trans('rest-api::app.common-response.setting-inventory.create'),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(InventorySourceRequest $inventorySourceRequest, $id)
+    public function update(InventorySourceRequest $inventorySourceRequest, int $id)
     {
         $data = $inventorySourceRequest->all();
 
-        $data['status'] = ! isset($data['status']) ? 0 : 1;
+        $data['status'] = $data['status'] ?? 0;
 
         $inventorySource = $this->getRepositoryInstance()->update($data, $id);
 
         return response([
             'data'    => new InventorySourceResource($inventorySource),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Inventory source']),
+            'message' => trans('rest-api::app.common-response.setting-inventory.update'),
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->getRepositoryInstance()->count() == 1) {
+        if ($this->getRepositoryInstance()->count()) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'inventory source']),
+                'message' => trans('rest-api::app.common-response.setting-inventory.error.last-item-delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Inventory source']),
+            'message' => trans('rest-api::app.common-response..setting-inventory.delete'),
         ]);
     }
 }

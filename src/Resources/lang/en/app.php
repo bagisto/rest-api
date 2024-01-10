@@ -89,6 +89,42 @@ return [
     ],
 
     'common-response' => [
+        ' setting-inventory' => [
+            'add'    => 'inventory-source added successfully.',
+            'cancel' => 'inventory-source canceled successfully.',
+            'create' => 'inventory-source created successfully.',
+            'delete' => 'inventory-source deleted successfully.',
+            'update' => 'inventory-source updated successfully.',
+            'upload' => 'inventory-source uploaded successfully.',
+
+            'mass-operations' => [
+                'delete'  => 'Selected inventory-source successfully deleted.',
+                'partial' => 'Some actions were not performed due to restricted system constraints on inventory-source.',
+                'update'  => 'Selected inventory-source successfully updated.',
+            ],
+
+            'error' => [
+                'already-taken'                => 'The inventory-source has already been taken.',
+                'base-currency-delete'         => 'This currency is set as channel base currency so it can not be deleted.',
+                'being-used'                   => 'This resource inventory-source is getting used in :source.',
+                'cannot-change-column'         => 'Cannot change the inventory-source.',
+                'default-group-delete'         => 'Cannot delete the default group.',
+                'delete-failed'                => 'Error encountered while deleting inventory-source.',
+                'last-item-delete'             => 'At least one inventory-source is required.',
+                'not-authorized'               => 'Not Authorized',
+                'order-pending-account-delete' => 'Cannot delete inventory-source account because some orders are pending or in processing state.',
+                'password-mismatch'            => 'Current password does not match.',
+                'root-category-delete'         => 'Cannot delete the root category.',
+                'security-warning'             => 'Suspicious activity found!',
+                'something-went-wrong'         => 'Something went wrong!',
+                'system-attribute-delete'      => 'Cannot delete the system attribute.',
+    
+                'mass-operations' => [
+                    'resource-not-found' => 'Selected inventory-source not found.',
+                ],
+            ],
+        ],
+        
         'success' => [
             'add'    => ':name added successfully.',
             'cancel' => ':name canceled successfully.',
