@@ -47,7 +47,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => trans('rest-api::app.common-response.success.create'),
+            'message' => trans('rest-api::app.common-response.setting-roles.create'),
         ]);
     }
 
@@ -74,7 +74,7 @@ class RoleController extends SettingController
 
         if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
             return response([
-                          'message' => trans('rest-api::app.common-response.error.being-used'),
+                          'message' => trans('rest-api::app.common-response.setting-roles.error.being-used'),
             ], 400);
         }
 
@@ -82,7 +82,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => trans('rest-api::app.common-response.success.update'),
+            'message' => trans('rest-api::app.common-response.setting-roles.update'),
         ]);
     }
 
@@ -98,20 +98,20 @@ class RoleController extends SettingController
 
         if ($role->admins->count() >= 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                'message' => __('rest-api::app.common-response.setting-roles.error.being-used', ['name' => 'role', 'source' => 'admin user']),
             ], 400);
         }
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'role']),
+                'message' => __('rest-api::app.common-response.setting-roles.error.last-item-delete', ['name' => 'role']),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Role']),
+            'message' => __('rest-api::app.common-response.setting-roles.delete', ['name' => 'Role']),
         ]);
     }
 }
