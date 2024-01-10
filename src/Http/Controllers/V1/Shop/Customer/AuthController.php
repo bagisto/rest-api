@@ -143,6 +143,7 @@ class AuthController extends CustomerController
             'first_name'    => 'required|alpha_num|regex:/^[a-z\d\-_\s]+$/i',
             'last_name'     => 'required|alpha_num|regex:/^[a-z\d\-_\s]+$/i',
             'gender'        => 'required',
+            "phone"         => 'required|integer',
             'date_of_birth' => 'nullable|date|before:today',
             'email'         => 'email|unique:customers,email,' . $customer->id,
             'password'      => 'confirmed|min:6',
