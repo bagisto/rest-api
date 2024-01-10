@@ -3,9 +3,9 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\RoleResource;
 use Webkul\User\Repositories\AdminRepository;
 use Webkul\User\Repositories\RoleRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\RoleResource;
 
 class RoleController extends SettingController
 {
@@ -36,17 +36,18 @@ class RoleController extends SettingController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         $request->validate([
             'name'            => 'required',
             'permission_type' => 'required',
+            'description'     => 'required',
         ]);
 
         $role = $this->getRepositoryInstance()->create($request->all());
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Role']),
+            'message' => trans('rest-api::app.common-response.success.create'),
         ]);
     }
 
@@ -55,10 +56,9 @@ class RoleController extends SettingController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Webkul\User\Repositories\AdminRepository  $adminRepository
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdminRepository $adminRepository, $id)
+    public function update(Request $request, AdminRepository $adminRepository, int $id)
     {
         $request->validate([
             'name'            => 'required',
@@ -74,7 +74,7 @@ class RoleController extends SettingController
 
         if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                          'message' => trans('rest-api::app.common-response.error.being-used'),
             ], 400);
         }
 
@@ -82,7 +82,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Role']),
+            'message' => trans('rest-api::app.common-response.success.update'),
         ]);
     }
 
