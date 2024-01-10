@@ -68,7 +68,22 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
-        $catalogRule = $this->getRepositoryInstance()->create($request->all());
+        $data = $request->all();           
+    
+        if(
+            array_key_exists('starts_from', $data) 
+           || array_key_exists('ends_till', $data)
+        ){
+            $data['starts_from'] = $data['starts_from'];
+
+            $data['ends_till'] =  $data['ends_till'];
+        } else {
+            $data['starts_from'] = null;
+
+            $data['ends_till'] = null;
+        }
+
+        $catalogRule = $this->getRepositoryInstance()->create($data);
 
         $this->catalogRuleIndexHelper->reindexComplete();
 
@@ -97,9 +112,24 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
+        $data = $request->all();           
+    
+        if(
+           array_key_exists('starts_from', $data) 
+           || array_key_exists('ends_till', $data)
+        ){
+            $data['starts_from'] = $data['starts_from'];
+
+            $data['ends_till'] =  $data['ends_till'];
+        } else {
+            $data['starts_from'] = null;
+
+            $data['ends_till'] = null;
+        }
+
         $this->getRepositoryInstance()->findOrFail($id);
 
-        $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
+        $catalogRule = $this->getRepositoryInstance()->update($data, $id);
 
         $this->catalogRuleIndexHelper->reindexComplete();
 
@@ -126,3 +156,4 @@ class CatalogRuleController extends MarketingController
         ]);
     }
 }
+
