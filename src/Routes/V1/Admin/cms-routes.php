@@ -17,4 +17,5 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
 
         Route::post('mass-destroy', 'massDestroy')->name('admin.cms.mass-destroy');
     });
+
 });

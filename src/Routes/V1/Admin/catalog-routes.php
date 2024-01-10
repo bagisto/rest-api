@@ -32,6 +32,7 @@ Route::group([
        Route::post('mass-destroy', 'massDestroy')->name('admin.catalog.product.mass-destroy');
     });
 
+
     /**
      * Category routes.
      * Route name: only for navigation
