@@ -27,7 +27,7 @@ Route::group([
 
     Route::post('products/mass-update', [ProductController::class, 'massUpdate']);
 
-    Route::post('products/mass-destroy', [ProductController::class, 'massDestroyResources']);
+    Route::post('products/mass-destroy', [ProductController::class, 'massDestroy']);
 
     /**
      * Category routes.

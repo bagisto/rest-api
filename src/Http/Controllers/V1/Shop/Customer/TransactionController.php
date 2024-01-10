@@ -71,7 +71,7 @@ class TransactionController extends CustomerController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getResource(Request $request, int $id)
+    public function getResource(Request $request, $id)
     {
         $resourceClassName = $this->resource();
 
