@@ -18,20 +18,6 @@ class AuthController extends CustomerController
     use SendsPasswordResetEmails;
 
     /**
-     * Customer respository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerRepository
-     */
-    protected $customerRepository;
-
-    /**
-     * Customer group repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerGroupRepository
-     */
-    protected $customerGroupRepository;
-
-    /**
      * Controller instance.
      *
      * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
@@ -39,14 +25,10 @@ class AuthController extends CustomerController
      * @return void
      */
     public function __construct(
-        CustomerRepository $customerRepository,
-        CustomerGroupRepository $customerGroupRepository
+        protected CustomerRepository $customerRepository,
+        protected CustomerGroupRepository $customerGroupRepository
     ) {
         parent::__construct();
-
-        $this->customerRepository = $customerRepository;
-
-        $this->customerGroupRepository = $customerGroupRepository;
     }
 
     /**
@@ -58,12 +40,13 @@ class AuthController extends CustomerController
     public function register(Request $request)
     {
         $request->validate([
-            'first_name' => 'required|string',
-            'last_name'  => 'required|string',
-            'email'      => 'required|email|unique:customers,email',
-            'password'   => 'required|confirmed|min:6',
+            'first_name'            => 'required|string',
+            'last_name'             => 'required|string',
+            'email'                 => 'required|email|unique:customers,email',
+            'password'              => 'required|confirmed|min:6',
+            'password_confirmation' => 'required | same:password',
         ]);
-
+     
         $this->customerRepository->create([
             'first_name'        => $request->first_name,
             'last_name'         => $request->last_name,
@@ -105,11 +88,11 @@ class AuthController extends CustomerController
                 ]);
             }
 
-            /**
+             /**
              * Preventing multiple token creation.
              */
             $customer->tokens()->delete();
-
+            
             return response([
                 'data'    => new CustomerResource($customer),
                 'message' => 'Logged in successfully.',
@@ -138,7 +121,7 @@ class AuthController extends CustomerController
      * @return \Illuminate\Http\Response
      */
     public function get(Request $request)
-    {
+    {  
         $customer = $this->resolveShopUser($request);
 
         return response([
@@ -157,9 +140,10 @@ class AuthController extends CustomerController
         $customer = $this->resolveShopUser($request);
 
         $request->validate([
-            'first_name'    => 'required',
-            'last_name'     => 'required',
+            'first_name'    => 'required|alpha_num|regex:/^[a-z\d\-_\s]+$/i',
+            'last_name'     => 'required|alpha_num|regex:/^[a-z\d\-_\s]+$/i',
             'gender'        => 'required',
+            'phone'         => 'required|integer',
             'date_of_birth' => 'nullable|date|before:today',
             'email'         => 'email|unique:customers,email,' . $customer->id,
             'password'      => 'confirmed|min:6',
@@ -211,12 +195,31 @@ class AuthController extends CustomerController
         $request->validate([
             'email' => 'required|email',
         ]);
+  
+        try {
+            $response = $this->broker()->sendResetLink($request->only(['email']));
 
-        $response = Password::broker('customers')->sendResetLink($request->only(['email']));
+            if ($response == Password::RESET_LINK_SENT) {
+                session()->flash('success', trans('shop::app.customers.forgot-password.reset-link-sent'));
 
-        return response(
-            ['message' => __($response)],
-            $response == Password::RESET_LINK_SENT ? 200 : 400
-        );
+                return back();
+            }
+
+            return back()
+                ->withInput($request->only(['email']))
+                ->withErrors([
+                    'email' => trans('shop::app.customers.forgot-password.email-not-exist'),
+                ]);
+        } catch (\Swift_RfcComplianceException $e) {
+            session()->flash('success', trans('shop::app.customers.forgot-password.reset-link-sent'));
+
+            return redirect()->back();
+        } catch (\Exception $e) {
+            report($e);
+
+            session()->flash('error', trans($e->getMessage()));
+
+            return redirect()->back();
+        }
     }
 }
