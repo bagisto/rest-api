@@ -12,63 +12,76 @@ Route::group([
 ], function () {
     /**
      * Product routes.
+     * Route name: only for navigation
      */
-    Route::get('products', [ProductController::class, 'allResources']);
+    Route::controller(ProductController::class)->prefix('products')->group(function () {
+       Route::get('', 'allResources')->name('admin.catalog.product.index.allresources');
 
-    Route::post('products', [ProductController::class, 'store']);
+       Route::post('', 'store')->name('admin.catalog.product.store');
 
-    Route::get('products/{id}', [ProductController::class, 'getResource']);
+       Route::get('{id}', 'getResource')->name('admin.catalog.product.get-resource');
 
-    Route::put('products/{id}', [ProductController::class, 'update']);
+       Route::put('{id}', 'update')->name('admin.catalog.product.update');
 
-    Route::post('products/{id}/inventories', [ProductController::class, 'updateInventories']);
+       Route::post('{id}/inventories', 'updateInventories')->name('admin.catalog.product.update-inventories');
 
-    Route::delete('products/{id}', [ProductController::class, 'destroy']);
+       Route::delete('{id}', 'destroy')->name('admin.catalog.product.destroy');
 
-    Route::post('products/mass-update', [ProductController::class, 'massUpdate']);
+       Route::post('mass-update', 'massUpdate')->name('admin.catalog.product.mass-update');
 
-    Route::post('products/mass-destroy', [ProductController::class, 'massDestroyResources']);
+       Route::post('mass-destroy', 'massDestroy')->name('admin.catalog.product.mass-destroy');
+    });
 
     /**
      * Category routes.
+     * Route name: only for navigation
      */
-    Route::get('categories', [CategoryController::class, 'allResources']);
+    Route::controller(CategoryController::class)->prefix('categories')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('categories', [CategoryController::class, 'store']);
-
-    Route::get('categories/{id}', [CategoryController::class, 'getResource']);
-
-    Route::put('categories/{id}', [CategoryController::class, 'update']);
-
-    Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
-
-    Route::post('categories/mass-destroy', [CategoryController::class, 'massDestroy']);
+        Route::post('', 'store')->name('admin.catalog.categories.store');
+    
+        Route::get('{id}', 'getResource')->name('admin.catalog.categories.get-resource');
+    
+        Route::put('{id}', 'update')->name('admin.catalog.categories.update');
+    
+        Route::delete('{id}', 'destroy')->name('admin.catalog.categories.destroy');
+    
+        Route::post('mass-destroy', 'massDestroy')->name('admin.catalog.categories.mass-destroy');    
+    });
 
     /**
      * Attribute routes.
+     * Route name: only for navigation
      */
-    Route::get('attributes', [AttributeController::class, 'allResources']);
+    Route::controller(AttributeController::class)->prefix('attributes')->group(function () {
+        Route::get('', 'allResources')->name('admin.catalog.attributes.all-resources');
 
-    Route::post('attributes', [AttributeController::class, 'store']);
-
-    Route::get('attributes/{id}', [AttributeController::class, 'getResource']);
-
-    Route::put('attributes/{id}', [AttributeController::class, 'update']);
-
-    Route::delete('attributes/{id}', [AttributeController::class, 'destroy']);
-
-    Route::post('attributes/mass-destroy', [AttributeController::class, 'massDestroy']);
-
+        Route::post('', 'store')->name('admin.catalog.attributes.store');
+    
+        Route::get('{id}', 'getResource')->name('admin.catalog.attributes.get-resource');
+    
+        Route::put('{id}', 'update')->name('admin.catalog.attributes.update');
+    
+        Route::delete('{id}', 'destroy')->name('admin.catalog.attributes.destroy');
+    
+        Route::post('mass-destroy', 'massDestroy')->name('admin.catalog.attributes.mass-destroy');
+    });
+   
     /**
      * Attribute family routes.
+     * Route name: only for navigation
      */
-    Route::get('attribute-families', [AttributeFamilyController::class, 'allResources']);
+    Route::controller(AttributeFamilyController::class)->prefix('attribute-families')->group(function () { 
+       Route::get('', 'allResources')->name('admin.catalog.attribute-families.all-resources');
 
-    Route::post('attribute-families', [AttributeFamilyController::class, 'store']);
+       Route::post('', 'store')->name('admin.catalog.attribute-families.store');
 
-    Route::get('attribute-families/{id}', [AttributeFamilyController::class, 'getResource']);
+       Route::get('{id}', 'getResource')->name('admin.catalog.attribute-families.get-resource');
 
-    Route::put('attribute-families/{id}', [AttributeFamilyController::class, 'update']);
+       Route::put('{id}', 'update')->name('admin.catalog.attribute-families.update');
 
-    Route::delete('attribute-families/{id}', [AttributeFamilyController::class, 'destroy']);
+       Route::delete('{id}', 'destroy')->name('admin.catalog.attribute-families.destroy');
+    });
+
 });

@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Configuration\ConfigurationController;
 
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
-    Route::get('configuration', [ConfigurationController::class, 'index']);
+    Route::controller(ConfigurationController::class)->prefix('configuration')->group(function () { 
+        Route::get('', 'index')->name('admin.dashboard.configuration.index');
 
-    Route::post('configuration', [ConfigurationController::class, 'store']);
+        Route::post('', 'store')->name('admin.dashboard.configuration.store');
+    });
 });

@@ -3,10 +3,10 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
-use Webkul\Category\Http\Requests\CategoryRequest;
+use Webkul\Admin\Http\Requests\CategoryRequest;
 use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Models\Channel;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
 
 class CategoryController extends CatalogController
@@ -34,7 +34,7 @@ class CategoryController extends CatalogController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Webkul\Category\Http\Requests\CategoryRequest  $request
+     * @param  \Webkul\Admin\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryRequest $request)
@@ -50,7 +50,7 @@ class CategoryController extends CatalogController
 
         return response([
             'data'    => new CategoryResource($category),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Category']),
+            'message' => trans('rest-api::app.common-response.category.create'),
         ]);
     }
 
@@ -64,12 +64,12 @@ class CategoryController extends CatalogController
     public function update(CategoryRequest $request, $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
-
+      
         $category = $this->getRepositoryInstance()->update($request->all(), $id);
-
+         
         return response([
             'data'    => new CategoryResource($category),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Category']),
+            'message' => trans('rest-api::app.common-response.category.update'),
         ]);
     }
 
@@ -86,14 +86,14 @@ class CategoryController extends CatalogController
 
         if (! $this->isCategoryDeletable($category)) {
             return response([
-                'message' => __('rest-api::app.common-response.error.root-category-delete', ['name' => 'Category']),
+                'message' => trans('rest-api::app.common-response.catgory.error.root-category-delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Category']),
+            'message' => trans('rest-api::app.common-response.category.delete'),
         ]);
     }
 
@@ -109,7 +109,7 @@ class CategoryController extends CatalogController
 
         if ($this->containsNonDeletableCategory($categories)) {
             return response([
-                'message' => __('rest-api::app.common-response.error.root-category-delete', ['name' => 'Category']),
+                'message' => trans('rest-api::app.common-response.category.error.root-category-delete'),
             ], 400);
         }
 
@@ -118,7 +118,7 @@ class CategoryController extends CatalogController
         });
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'categories']),
+            'message' => trans('rest-api::app.common-response.category.mass-operations.delete'),
         ]);
     }
 

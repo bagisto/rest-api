@@ -89,6 +89,42 @@ return [
     ],
 
     'common-response' => [
+        'category' => [
+            'add'    => 'category added successfully.',
+            'cancel' => 'category canceled successfully.',
+            'create' => 'category created successfully.',
+            'delete' => 'category deleted successfully.',
+            'update' => 'category updated successfully.',
+            'upload' => 'category uploaded successfully.',
+
+            'mass-operations' => [
+                'delete'  => 'Selected category successfully deleted.',
+                'partial' => 'Some actions were not performed due to restricted system constraints on category.',
+                'update'  => 'Selected category successfully updated.',
+            ],
+
+            'error' => [
+                'already-taken'                => 'The category has already been taken.',
+                'base-currency-delete'         => 'This currency is set as channel base currency so it can not be deleted.',
+                'being-used'                   => 'This resource category is getting used in :source.',
+                'cannot-change-column'         => 'Cannot change the category.',
+                'default-group-delete'         => 'Cannot delete the default group.',
+                'delete-failed'                => 'Error encountered while deleting category.',
+                'last-item-delete'             => 'At least one category is required.',
+                'not-authorized'               => 'Not Authorized',
+                'order-pending-account-delete' => 'Cannot delete category account because some orders are pending or in processing state.',
+                'password-mismatch'            => 'Current password does not match.',
+                'root-category-delete'         => 'Cannot delete the root category.',
+                'security-warning'             => 'Suspicious activity found!',
+                'something-went-wrong'         => 'Something went wrong!',
+                'system-attribute-delete'      => 'Cannot delete the system attribute.',
+    
+                'mass-operations' => [
+                    'resource-not-found' => 'Selected category not found.',
+                ],
+            ],
+        ],
+
         'success' => [
             'add'    => ':name added successfully.',
             'cancel' => ':name canceled successfully.',
