@@ -5,6 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 use Illuminate\Http\Request;
 use Webkul\Core\Rules\Code;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeFamilyResource;
 
 class AttributeFamilyController extends CatalogController
