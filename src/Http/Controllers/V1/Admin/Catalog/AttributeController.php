@@ -4,7 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Rules\Code;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeResource;
 
 class AttributeController extends CatalogController
@@ -38,20 +39,22 @@ class AttributeController extends CatalogController
     public function store(Request $request)
     {
         $request->validate([
-            'code'       => ['required', 'unique:attributes,code', new \Webkul\Core\Contracts\Validations\Code],
+            'code'       => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
             'admin_name' => 'required',
             'type'       => 'required',
         ]);
-
-        $data = $request->all();
-
+       
         $data['is_user_defined'] = 1;
 
-        $attribute = $this->getRepositoryInstance()->create($data);
+        $attribute = $this->getRepositoryInstance()->create([
+            'code'       => $request->input('code'),
+            'admin_name' => $request->input('admin_name'),
+            'type'       => $request->input('type'),
+        ]);
 
         return response([
             'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Attribute']),
+            'message' => trans('rest-api::app.common-response.attributes.create'),
         ]);
     }
 
@@ -65,18 +68,20 @@ class AttributeController extends CatalogController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code'       => ['required', 'unique:attributes,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
             'admin_name' => 'required',
-            'type'       => 'required',
         ]);
 
+        $requestData = $request->all();
+
+        unset($requestData['code']);
+ 
         $this->getRepositoryInstance()->findOrFail($id);
-
-        $attribute = $this->getRepositoryInstance()->update($request->all(), $id);
-
+       
+        $attribute = $this->getRepositoryInstance()->update($requestData, $id);
+        
         return response([
             'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Attribute']),
+            'message' => trans('rest-api::app.common-response.attributes.update'),
         ]);
     }
 
@@ -84,52 +89,51 @@ class AttributeController extends CatalogController
      * Remove the specified resource from storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, int $id)
     {
         $attribute = $this->getRepositoryInstance()->findOrFail($id);
 
         if (! $attribute->is_user_defined) {
             return response([
-                'message' => __('rest-api::app.common-response.error.system-attribute-delete'),
+                'message' => trans('rest-api::app.common-response.attributes.error.system-attribute-delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Attribute']),
+            'message' => trans('rest-api::app.common-response.attributes.delete'),
         ]);
     }
 
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
+     * @param  Webkul\Admin\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function massDestroy(MassDestroyRequest $request)
     {
-        $indexes = $request->indexes;
+        $indices = $request->indices;
 
-        foreach ($indexes as $index) {
+        foreach ($indices as $index) {
             $attribute = $this->getRepositoryInstance()->findOrFail($index);
 
             if (! $attribute->is_user_defined) {
                 return response([
-                    'message' => __('rest-api::app.common-response.error.system-attribute-delete'),
+                    'message' => trans('rest-api::app.common-response.attributes.error.system-attribute-delete'),
                 ], 400);
             }
         }
 
-        foreach ($indexes as $index) {
+        foreach ($indices as $index) {
             $this->getRepositoryInstance()->delete($index);
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'attributes']),
+            'message' => trans('rest-api::app.common-response.attributes.success.mass-operations.delete'),
         ]);
     }
 }

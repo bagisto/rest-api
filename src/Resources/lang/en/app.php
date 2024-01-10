@@ -89,6 +89,78 @@ return [
     ],
 
     'common-response' => [
+        'attributes' => [
+            'add'    => 'Attributes added successfully.',
+            'cancel' => 'Attributes canceled successfully.',
+            'create' => 'Attributes created successfully.',
+            'delete' => 'Attributes deleted successfully.',
+            'update' => 'Attributes updated successfully.',
+            'upload' => 'Attributes uploaded successfully.',
+
+            'mass-operations' => [
+                'delete'  => 'Selected Attributes successfully deleted.',
+                'partial' => 'Some actions were not performed due to restricted system constraints on Attributes.',
+                'update'  => 'Selected Attributes successfully updated.',
+            ],
+
+            'error' => [
+                'already-taken'                => 'The Attributes has already been taken.',
+                'base-currency-delete'         => 'This currency is set as channel base currency so it can not be deleted.',
+                'being-used'                   => 'This resource Attributes is getting used in product.',
+                'cannot-change-column'         => 'Cannot change the Attributes.',
+                'default-group-delete'         => 'Cannot delete the default group.',
+                'delete-failed'                => 'Error encountered while deleting Attributes.',
+                'last-item-delete'             => 'At least one Attributes is required.',
+                'not-authorized'               => 'Not Authorized',
+                'order-pending-account-delete' => 'Cannot delete Attributes account because some orders are pending or in processing state.',
+                'password-mismatch'            => 'Current password does not match.',
+                'root-category-delete'         => 'Cannot delete the root category.',
+                'security-warning'             => 'Suspicious activity found!',
+                'something-went-wrong'         => 'Something went wrong!',
+                'system-attribute-delete'      => 'Cannot delete the system attribute.',
+    
+                'mass-operations' => [
+                    'resource-not-found' => 'Selected Attributes not found.',
+                ],
+            ],
+        ],
+
+        'attribute-family' => [
+            'add'    => 'Family added successfully.',
+            'cancel' => 'Family canceled successfully.',
+            'create' => 'Family created successfully.',
+            'delete' => 'Family deleted successfully.',
+            'update' => 'Family updated successfully.',
+            'upload' => 'Family uploaded successfully.',
+
+            'mass-operations' => [
+                'delete'  => 'Selected Family successfully deleted.',
+                'partial' => 'Some actions were not performed due to restricted system constraints on Family.',
+                'update'  => 'Selected Family successfully updated.',
+            ],
+
+            'error' => [
+                'already-taken'                => 'The Family has already been taken.',
+                'base-currency-delete'         => 'This currency is set as channel base currency so it can not be deleted.',
+                'being-used'                   => 'This resource Family is getting used in product.',
+                'cannot-change-column'         => 'Cannot change the Family.',
+                'default-group-delete'         => 'Cannot delete the default group.',
+                'delete-failed'                => 'Error encountered while deleting Family.',
+                'last-item-delete'             => 'At least one Family is required.',
+                'not-authorized'               => 'Not Authorized',
+                'order-pending-account-delete' => 'Cannot delete Family account because some orders are pending or in processing state.',
+                'password-mismatch'            => 'Current password does not match.',
+                'root-category-delete'         => 'Cannot delete the root category.',
+                'security-warning'             => 'Suspicious activity found!',
+                'something-went-wrong'         => 'Something went wrong!',
+                'system-attribute-delete'      => 'Cannot delete the system attribute.',
+    
+                'mass-operations' => [
+                    'resource-not-found' => 'Selected Family not found.',
+                ],
+            ],
+        ],
+
         'success' => [
             'add'    => ':name added successfully.',
             'cancel' => ':name canceled successfully.',
