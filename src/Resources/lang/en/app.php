@@ -89,6 +89,42 @@ return [
     ],
 
     'common-response' => [
+        ' setting-exchange-rates ' => [
+            'add'    => 'Exchange Rates added successfully.',
+            'cancel' => 'Exchange Rates canceled successfully.',
+            'create' => 'Exchange Rates created successfully.',
+            'delete' => 'Exchange Rates deleted successfully.',
+            'update' => 'Exchange Rates updated successfully.',
+            'upload' => 'Exchange Rates uploaded successfully.',
+
+            'mass-operations' => [
+                'delete'  => 'Selected Exchange Rates successfully deleted.',
+                'partial' => 'Some actions were not performed due to restricted system constraints on Exchange Rates.',
+                'update'  => 'Selected Exchange Rates successfully updated.',
+            ],
+
+            'error' => [
+                'already-taken'                => 'The Exchange Rates has already been taken.',
+                'base-currency-delete'         => 'This currency is set as channel base currency so it can not be deleted.',
+                'being-used'                   => 'This resource Exchange Rates is getting used.',
+                'cannot-change-column'         => 'Cannot change the Exchange Rates.',
+                'default-group-delete'         => 'Cannot delete the default group.',
+                'delete-failed'                => 'Error encountered while deleting Exchange Rates.',
+                'last-item-delete'             => 'At least one Exchange Rates is required.',
+                'not-authorized'               => 'Not Authorized',
+                'order-pending-account-delete' => 'Cannot delete Exchange Rates account because some orders are pending or in processing state.',
+                'password-mismatch'            => 'Current password does not match.',
+                'root-category-delete'         => 'Cannot delete the root category.',
+                'security-warning'             => 'Suspicious activity found!',
+                'something-went-wrong'         => 'Something went wrong!',
+                'system-attribute-delete'      => 'Cannot delete the system attribute.',
+    
+                'mass-operations' => [
+                    'resource-not-found' => 'Selected Exchange Rates not found.',
+                ],
+            ],
+        ],
+
         'success' => [
             'add'    => ':name added successfully.',
             'cancel' => ':name canceled successfully.',

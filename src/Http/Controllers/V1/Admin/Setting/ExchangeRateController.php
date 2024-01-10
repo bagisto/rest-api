@@ -45,18 +45,18 @@ class ExchangeRateController extends SettingController
 
         return response([
             'data'    => new ExchangeRateResource($exchangeRate),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Exchange rate']),
+            'message' => trans('rest-api::app.common-response.setting-exchange-rates.create'),
         ]);
+    
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,' . $id],
@@ -67,7 +67,7 @@ class ExchangeRateController extends SettingController
 
         return response([
             'data'    => new ExchangeRateResource($exchangeRate),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Exchange rate']),
+            'message' => trans('rest-api::app.common-response.setting-exchange-rates.update'),
         ]);
     }
 
@@ -82,7 +82,7 @@ class ExchangeRateController extends SettingController
             app(config('services.exchange-api.' . config('services.exchange-api.default') . '.class'))->updateRates();
 
             return response([
-                'message' => __('rest-api::app.common-response.success.update', ['name' => 'Rate']),
+                'message' => trans('rest-api::app.common-response.setting-exchange-rates.update'),
             ]);
         } catch (\Exception $e) {
             return response([
@@ -94,17 +94,16 @@ class ExchangeRateController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Exchange rate']),
+            'message' => trans('rest-api::app.common-response.success.delete'),
         ]);
     }
 }
