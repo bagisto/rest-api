@@ -31,7 +31,7 @@ class SearchController extends CoreController
         $results = $this->searchRepository->search(request()->all());
 
         return response([
-            'data' => SimpleProductResource::collection($results),
+            'data' => ProductResource::collection($results),
         ]);
     }
 
