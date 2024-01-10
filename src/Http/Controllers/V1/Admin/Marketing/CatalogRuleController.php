@@ -10,24 +10,15 @@ use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CatalogRuleResource;
 class CatalogRuleController extends MarketingController
 {
     /**
-     * Catalog rule index instance.
-     *
-     * @var \Webkul\CatalogRule\Helpers\CatalogRuleIndex
-     */
-    protected $catalogRuleIndexHelper;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Webkul\CatalogRule\Helpers\CatalogRuleIndex  $catalogRuleIndexHelper
      * @return void
      */
     public function __construct(
-        CatalogRuleIndex $catalogRuleIndexHelper
+       protected CatalogRuleIndex $catalogRuleIndexHelper
     ) {
         parent::__construct();
-        
-        $this->catalogRuleIndexHelper = $catalogRuleIndexHelper;
     }
 
     /**
@@ -89,7 +80,7 @@ class CatalogRuleController extends MarketingController
 
         return response([
             'data'    => new CatalogRuleResource($catalogRule),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Catalog rule']),
+            'message' => trans('rest-api::app.common-response.success.create'),
         ]);
     }
 
@@ -135,7 +126,7 @@ class CatalogRuleController extends MarketingController
 
         return response([
             'data'    => new CatalogRuleResource($catalogRule),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Catalog rule']),
+            'message' => trans('rest-api::app.common-response.success.update'),
         ]);
     }
 
@@ -152,8 +143,7 @@ class CatalogRuleController extends MarketingController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Catalog rule']),
+            'message' => trans('rest-api::app.common-response.success.delete'),
         ]);
     }
 }
-
