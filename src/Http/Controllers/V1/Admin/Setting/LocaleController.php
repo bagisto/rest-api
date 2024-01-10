@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\LocaleRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\LocaleResource;
 
 class LocaleController extends SettingController
@@ -37,30 +38,29 @@ class LocaleController extends SettingController
     public function store(Request $request)
     {
         $request->validate([
-            'code'      => ['required', 'unique:locales,code', new \Webkul\Core\Contracts\Validations\Code],
+            'code'      => ['required', 'unique:locales,code', new Code],
             'name'      => 'required',
-            'direction' => 'in:ltr,rtl',
+            'direction' => 'required |in:ltr,rtl',
         ]);
 
         $locale = $this->getRepositoryInstance()->create($request->all());
-
+           
         return response([
             'data'    => new LocaleResource($locale),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Locale']),
+            'message' => trans('rest-api::app.common-response.success.create'),
         ]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
-            'code'      => ['required', 'unique:locales,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
+            'code'      => ['required', 'unique:locales,code', new Code],
             'name'      => 'required',
             'direction' => 'in:ltr,rtl',
         ]);
@@ -69,30 +69,29 @@ class LocaleController extends SettingController
 
         return response([
             'data'    => new LocaleResource($locale),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Locale']),
+            'message' => trans('rest-api::app.common-response.success.update', ['name' => 'Locale']),
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->getRepositoryInstance()->count() == 1) {
+        if ($this->getRepositoryInstance()->count()) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'locale']),
+                'message' => trans('rest-api::app.common-response.error.last-item-delete'),
             ]);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Locale']),
+            'message' => trans('rest-api::app.common-response.success.delete'),
         ]);
     }
 }
