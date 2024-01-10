@@ -143,7 +143,7 @@ class CustomerController extends CustomerBaseController
      */
     public function massUpdate(MassUpdateRequest $request)
     {
-        foreach ($request->indexes as $index) {
+        foreach ($request->indices as $index) {
             $this->getRepositoryInstance()->findorFail($index);
 
             $this->getRepositoryInstance()->update(['status' => $request->update_value], $index);
