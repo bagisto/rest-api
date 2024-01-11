@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Webkul\Checkout\Facades\Cart;
-use Webkul\Checkout\Http\Requests\CustomerAddressForm;
+use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
 use Webkul\Payment\Facades\Payment;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
@@ -18,7 +18,7 @@ class CheckoutController extends CustomerController
     /**
      * Save customer address.
      *
-     * @param  \Webkul\Checkout\Http\Requests\CustomerAddressForm  $request
+     * @param  \Webkul\Shop\Http\Requests\Customer\CustomerAddressForm  $request
      * @return \Illuminate\Http\Response
      */
     public function saveAddress(CustomerAddressForm $request)

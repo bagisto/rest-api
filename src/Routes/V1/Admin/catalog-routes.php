@@ -30,7 +30,6 @@ Route::group([
        Route::post('mass-update', 'massUpdate')->name('admin.catalog.product.mass-update');
 
        Route::post('mass-destroy', 'massDestroy')->name('admin.catalog.product.mass-destroy');
-    });
 
     /**
      * Category routes.

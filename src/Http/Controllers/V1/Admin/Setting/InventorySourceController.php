@@ -2,7 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
-use Webkul\Inventory\Http\Requests\InventorySourceRequest;
+use Webkul\Admin\Http\Requests\InventorySourceRequest;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Inventory\InventorySourceResource;
 

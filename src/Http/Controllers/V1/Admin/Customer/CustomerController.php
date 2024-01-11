@@ -183,9 +183,8 @@ class CustomerController extends CustomerBaseController
     public function orders(int $id)
     {
         $customer = $this->getRepositoryInstance()->findorFail($id);
-
         return response([
-            'data' => OrderResource::collection($customer->all_orders),
+            'data' => OrderResource::collection($customer->orders),
         ]);
     }
 
@@ -198,7 +197,7 @@ class CustomerController extends CustomerBaseController
     {
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
-        $orderIds = $customer->all_orders->pluck('id')->toArray();
+        $orderIds = $customer->orders->pluck('id')->toArray();
         
         return response([
             'data' => InvoiceResource::collection($this->invoiceRepository->findWhereIn('order_id', $orderIds)),
