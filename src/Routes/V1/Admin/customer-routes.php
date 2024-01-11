@@ -10,74 +10,83 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
     /**
      * Customer's group routes.
      */
-    Route::get('customers/groups', [CustomerGroupController::class, 'allResources']);
+    Route::controller(CustomerGroupController::class)->prefix('customers/groups')->group(function () { 
+        Route::get('', 'allResources')->name('admin.customer.groups.all-resources');
 
-    Route::post('customers/groups', [CustomerGroupController::class, 'store']);
-
-    Route::get('customers/groups/{id}', [CustomerGroupController::class, 'getResource']);
-
-    Route::put('customers/groups/{id}', [CustomerGroupController::class, 'update']);
-
-    Route::delete('customers/groups/{id}', [CustomerGroupController::class, 'destroy']);
+        Route::post('', 'store')->name('admin.customer.groups.store');
+    
+        Route::get('{id}', 'getResource')->name('admin.customer.groups.get-resource');
+    
+        Route::put('{id}', 'update')->name('admin.customer.groups.update');
+    
+        Route::delete('{id}', 'destroy')->name('admin.customer.groups.destroy');    
+    });
 
     /**
      * Customer's review routes.
      */
-    Route::get('customers/reviews', [CustomerReviewController::class, 'allResources']);
+    Route::controller(CustomerReviewController::class)->prefix('customers/reviews')->group(function () {
+        Route::get('', 'allResources')->name('admin.customer.reviews.all-resources');
 
-    Route::get('customers/reviews/{id}', [CustomerReviewController::class, 'getResource']);
-
-    Route::put('customers/reviews/{id}', [CustomerReviewController::class, 'update']);
-
-    Route::delete('customers/reviews/{id}', [CustomerReviewController::class, 'destroy']);
-
-    Route::post('customers/reviews/mass-destroy', [CustomerReviewController::class, 'massDestroyResources']);
-
-    Route::post('customers/reviews/mass-update', [CustomerReviewController::class, 'massUpdate']);
+        Route::get('{id}', 'getResource')->name('admin.customer.reviews.get-resource');
+    
+        Route::put('{id}', 'update')->name('admin.customer.reviews.update');
+    
+        Route::delete('{id}', 'destroy')->name('admin.customer.reviews.destroy');
+    
+        Route::post('mass-destroy', 'massDestroy')->name('admin.customer.reviews.mass-destroy');
+    
+        Route::post('mass-update', 'massUpdate')->name('admin.customer.reviews.mass-update');
+     });
 
     /**
      * Customer routes.
      *
      * Note: Main customer routes should be placed after all these routes i.e. `customers/<static-slug>`.
      */
-    Route::get('customers', [CustomerController::class, 'allResources']);
+    Route::controller(CustomerController::class)->prefix('customers')->group(function () {
+        Route::get('', 'allResources')->name('admin.customer.all-resources');
 
-    Route::post('customers', [CustomerController::class, 'store']);
+        Route::post('',  'store')->name('admin.customer..store');
 
-    Route::get('customers/{id}', [CustomerController::class, 'getResource']);
+        Route::get('{id}', 'getResource')->name('admin.customer.get-resource');
 
-    Route::put('customers/{id}', [CustomerController::class, 'update']);
+        Route::put('{id}', 'update')->name('admin.customer.update');
 
-    Route::delete('customers/{id}', [CustomerController::class, 'destroy']);
+        Route::delete('{id}',  'destroy')->name('admin.customer.destroy');
 
-    Route::post('customers/mass-destroy', [CustomerController::class, 'massDestroy']);
+        Route::post('mass-destroy', 'massDestroy')->name('admin.customer.mass-destroy');
 
-    Route::post('customers/mass-update', [CustomerController::class, 'massUpdate']);
+        Route::post('mass-update', 'massUpdate')->name('admin.customer.mass-update');
 
-    /**
-     * Customer's order routes.
-     */
-    Route::get('customers/{id}/orders', [CustomerController::class, 'orders']);
+        /**
+         * Customer's order routes.
+         */
+        Route::get('{id}/orders', 'orders')->name('admin.customer.orders');
 
-    Route::get('customers/{id}/invoices', [CustomerController::class, 'invoices']);
+        Route::get('{id}/invoices', 'invoices')->name('admin.customer.invoice');
 
-    /**
-     * Customer's note routes.
-     */
-    Route::post('customers/{id}/notes', [CustomerController::class, 'storeNote']);
+        /**
+         * Customer's note routes.
+         */
+        Route::post('{id}/notes', 'storeNote')->name('admin.customer.store-note');
+
+    });
 
     /**
      * Customer's address routes.
      */
-    Route::get('customers/{customer_id}/addresses', [CustomerAddressController::class, 'index']);
+    Route::controller(CustomerAddressController::class)->prefix('customers/{customer_id}/addresses')->group(function () {
+        Route::get('', 'index')->name('admin.customer.addresses.index');
 
-    Route::post('customers/{customer_id}/addresses', [CustomerAddressController::class, 'store']);
+        Route::post('', 'store')->name('admin.customer.addresses.store');
 
-    Route::get('customers/{customer_id}/addresses/{id}', [CustomerAddressController::class, 'show']);
+        Route::get('{id}', 'show')->name('admin.customer.addresses.show');
 
-    Route::put('customers/{customer_id}/addresses/{id}', [CustomerAddressController::class, 'update']);
+        Route::put('{id}', 'update')->name('admin.customer.addresses.update');
 
-    Route::delete('customers/{customer_id}/addresses/{id}', [CustomerAddressController::class, 'destroy']);
+        Route::delete('{id}', 'destroy')->name('admin.customer.addresses.destroy');
 
-    Route::post('customers/{customer_id}/addresses/mass-destroy', [CustomerAddressController::class, 'massDestroy']);
+        Route::post('mass-destroy', 'massDestroy')->name('admin.customer.addresses.mass-destroy');
+    });
 });

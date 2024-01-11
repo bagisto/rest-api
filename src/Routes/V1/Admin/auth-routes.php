@@ -4,14 +4,26 @@ use Illuminate\Support\Facades\Route;
 use Webkul\RestApi\Http\Controllers\V1\Admin\User\AccountController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\User\AuthController;
 
-Route::post('login', [AuthController::class, 'login']);
+/*
+ *Unauthorized admin routes
+ */
+Route::controller(AuthController::class)->group(function () { 
+    Route::post('login', 'login')->name('admin.login');
 
-Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+    Route::post('forgot-password', 'forgotPassword')->name('admin.forgot-password');
+});
 
+/*
+ *Authorized admin routes
+ */
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
-    Route::delete('logout', [AuthController::class, 'logout']);
+    Route::controller(AuthController::class)->group(function () {  
+        Route::delete('logout', 'logout')->name('admin.logout');
+    });
 
-    Route::get('get', [AccountController::class, 'get']);
-
-    Route::put('update', [AccountController::class, 'update']);
+    Route::controller(AccountController::class)->group(function () {  
+        Route::get('get', 'get')->name('admin.get');
+    
+        Route::put('update', 'update')->name('admin.update');
+    });
 });

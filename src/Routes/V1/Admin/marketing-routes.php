@@ -15,78 +15,90 @@ Route::group([
     /**
      * Catalog rule routes.
      */
-    Route::get('catalog-rules', [CatalogRuleController::class, 'allResources']);
+    Route::controller(CatalogRuleController::class)->prefix('catalog-rules')->group(function () {
+        Route::get('', 'allResources')->name('admin.promotions.catalog-rules.all-resources');
 
-    Route::post('catalog-rules', [CatalogRuleController::class, 'store']);
-
-    Route::get('catalog-rules/{id}', [CatalogRuleController::class, 'getResource']);
-
-    Route::put('catalog-rules/{id}', [CatalogRuleController::class, 'update']);
-
-    Route::delete('catalog-rules/{id}', [CatalogRuleController::class, 'destroy']);
+        Route::post('', 'store')->name('admin.promotions.catalog-rules.store');
+    
+        Route::get('{id}', 'getResource')->name('admin.promotions.catalog-rules.get-resource');
+    
+        Route::put('{id}', 'update')->name('admin.promotions.catalog-rules.update');
+    
+        Route::delete('{id}', 'destroy')->name('admin.promotions.catalog-rules.destroy');
+    });
 
     /**
      * Cart rule routes.
      */
-    Route::get('cart-rules', [CartRuleController::class, 'allResources']);
+    Route::controller(CartRuleController::class)->prefix('cart-rules')->group(function () { 
+        Route::get('', 'allResources')->name('admin.promotions.cart-rules.all-resources');
 
-    Route::post('cart-rules', [CartRuleController::class, 'store']);
-
-    Route::get('cart-rules/{id}', [CartRuleController::class, 'getResource']);
-
-    Route::put('cart-rules/{id}', [CartRuleController::class, 'update']);
-
-    Route::delete('cart-rules/{id}', [CartRuleController::class, 'destroy']);
+        Route::post('', 'store')->name('admin.promotions.cart-rules');
+    
+        Route::get('{id}', 'getResource')->name('admin.promotions.cart-rules.get-resource');
+    
+        Route::put('{id}', 'update')->name('admin.promotions.cart-rules.update');
+    
+        Route::delete('{id}', 'destroy')->name('admin.promotions.cart-rules.destroy');
+    });
 
     /**
      * Cart rule coupon routes.
      */
-    Route::get('cart-rules/{cart_rule_id}/coupons', [CartRuleCouponController::class, 'index']);
+    Route::controller(CartRuleCouponController::class)->prefix('cart-rules/{cart_rule_id}/coupons')->group(function () { 
+        Route::get('', 'index')->name('admin.promotions.cart-rules.coupons.index');
 
-    Route::post('cart-rules/{cart_rule_id}/coupons', [CartRuleCouponController::class, 'store']);
-
-    Route::get('cart-rules/{cart_rule_id}/coupons/{id}', [CartRuleCouponController::class, 'show']);
-
-    Route::delete('cart-rules/{cart_rule_id}/coupons/{id}', [CartRuleCouponController::class, 'destroy']);
-
-    Route::post('cart-rules/{cart_rule_id}/coupons/mass-destroy', [CartRuleCouponController::class, 'massDestroy']);
+        Route::post('', 'store')->name('admin.promotions.cart-rules.coupons.store');
+    
+        Route::get('{id}', 'show')->name('admin.promotions.cart-rules.coupons.show');
+    
+        Route::delete('{id}', 'destroy')->name('admin.promotions.cart-rules.coupons.destroy');
+    
+        Route::post('mass-destroy', 'massDestroy')->name('admin.promotions.cart-rules.coupons.mass-destroy');
+    });
 
     /**
      * Email template routes.
      */
-    Route::get('email-templates', [TemplateController::class, 'allResources']);
+    Route::controller(TemplateController::class)->prefix('email-templates')->group(function () { 
+        Route::get('', 'allResources')->name('admin.promotions.email-templates.all-resources');
 
-    Route::post('email-templates', [TemplateController::class, 'store']);
-
-    Route::get('email-templates/{id}', [TemplateController::class, 'getResource']);
-
-    Route::put('email-templates/{id}', [TemplateController::class, 'update']);
-
-    Route::delete('email-templates/{id}', [TemplateController::class, 'destroy']);
+        Route::post('', 'store')->name('admin.promotions.email-templates.store');
+    
+        Route::get('{id}', 'getResource')->name('admin.promotions.email-templates.get-resource');
+    
+        Route::put('{id}', 'update')->name('admin.promotions.email-templates.update');
+    
+        Route::delete('{id}', 'destroy')->name('admin.promotions.email-templates.mass-destroy');
+    });
 
     /**
      * Event routes.
      */
-    Route::get('events', [EventController::class, 'allResources']);
+    Route::controller(EventController::class)->prefix('events')->group(function () {
+        Route::get('', 'allResources')->name('admin.promotions.events.all-resources');
 
-    Route::post('events', [EventController::class, 'store']);
+        Route::post('', 'store')->name('admin.promotions.events.store');
 
-    Route::get('events/{id}', [EventController::class, 'getResource']);
+        Route::get('{id}', 'getResource')->name('admin.promotions.events.get-resource');
 
-    Route::put('events/{id}', [EventController::class, 'update']);
+        Route::put('{id}', 'update')->name('admin.promotions.events.update');
 
-    Route::delete('events/{id}', [EventController::class, 'destroy']);
+        Route::delete('{id}', 'destroy')->name('admin.promotions.events.destroy');
+     });
 
     /**
      * Campaign routes.
      */
-    Route::get('campaigns', [CampaignController::class, 'allResources']);
+    Route::controller(CampaignController::class)->prefix('campaigns')->group(function () {
+        Route::get('', 'allResources')->name('admin.promotions.campaigns.all-resources');
 
-    Route::post('campaigns', [CampaignController::class, 'store']);
+        Route::post('', 'store')->name('admin.promotions.campaigns.store');
 
-    Route::get('campaigns/{id}', [CampaignController::class, 'getResource']);
+        Route::get('{id}', 'getResource')->name('admin.promotions.campaigns.get-resource');
 
-    Route::put('campaigns/{id}', [CampaignController::class, 'update']);
+        Route::put('{id}', 'update')->name('admin.promotions.campaigns.update');
 
-    Route::delete('campaigns/{id}', [CampaignController::class, 'destroy']);
+        Route::delete('{id}', 'destroy')->name('admin.promotions.campaigns.destroy');
+    });
 });

@@ -4,15 +4,17 @@ use Illuminate\Support\Facades\Route;
 use Webkul\RestApi\Http\Controllers\V1\Admin\CMS\PageController;
 
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
-    Route::get('cms', [PageController::class, 'allResources']);
+    Route::controller(PageController::class)->prefix('cms')->group(function () {
+        Route::get('', 'allResources')->name('admin.cms.all-resources');
 
-    Route::post('cms', [PageController::class, 'store']);
+        Route::post('', 'store')->name('admin.cms.store');
 
-    Route::get('cms/{id}', [PageController::class, 'getResource']);
+        Route::get('{id}', 'getResource')->name('admin.cms.getResource');
 
-    Route::put('cms/{id}', [PageController::class, 'update']);
+        Route::put('{id}', 'update')->name('admin.cms.update');
 
-    Route::delete('cms/{id}', [PageController::class, 'destroyResource']);
+        Route::delete('{id}', 'destroy')->name('admin.cms.destroy');
 
-    Route::post('cms/mass-destroy', [PageController::class, 'massDestroyResources']);
+        Route::post('mass-destroy', 'massDestroy')->name('admin.cms.mass-destroy');
+    });
 });
