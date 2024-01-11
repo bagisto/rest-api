@@ -160,6 +160,28 @@ class ProductController extends CatalogController
     }
 
     /**
+     * Remove the specified resources from database.
+     *
+     * @param  \Webkul\admin\Http\Requests\MassDestroyRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function massDestroy(MassDestroyRequest $request, $id)
+    { 
+        $this->getRepositoryInstance()->findOrFail($id);
+
+        Event::dispatch('catalog.product.delete.before', $id);
+
+        $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('catalog.product.delete.after', $id);
+
+        return response([
+            'message' => __('rest-api::app.common-response.products.mass-operations.delete'),
+        ]);
+    }
+
+    /**
      * Mass update the products.
      *
      * @param  \Webkul\Admin\Http\Requests\MassUpdateRequest  $request

@@ -38,9 +38,9 @@ class InvoiceController extends SaleController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, OrderRepository $orderRepository, $orderId)
-    {
+    { 
         $order = $orderRepository->findOrFail($orderId);
-
+        
         if (! $order->canInvoice()) {
             return response([
                 'message' => __('rest-api::app.sales.invoices.creation-error'),
@@ -50,7 +50,7 @@ class InvoiceController extends SaleController
         $request->validate([
             'invoice.items.*' => 'required|numeric|min:0',
         ]);
-
+       
         $data = $request->all();
 
         if (! $this->getRepositoryInstance()->haveProductToInvoice($data)) {
@@ -58,7 +58,7 @@ class InvoiceController extends SaleController
                 'message' => __('rest-api::app.sales.invoices.product-error'),
             ], 400);
         }
-
+        
         if (! $this->getRepositoryInstance()->isValidQuantity($data)) {
             return response([
                 'message' => __('rest-api::app.sales.invoices.invalid-qty-error'),

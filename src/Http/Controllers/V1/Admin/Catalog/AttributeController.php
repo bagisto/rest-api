@@ -4,7 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeResource;
 
 class AttributeController extends CatalogController
@@ -38,7 +39,7 @@ class AttributeController extends CatalogController
     public function store(Request $request)
     {
         $request->validate([
-            'code'       => ['required', 'unique:attributes,code', new \Webkul\Core\Contracts\Validations\Code],
+            'code'       => ['required', 'unique:attributes,code', new \Webkul\Core\Rules\Code],
             'admin_name' => 'required',
             'type'       => 'required',
         ]);
@@ -65,7 +66,7 @@ class AttributeController extends CatalogController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code'       => ['required', 'unique:attributes,code,' . $id, new \Webkul\Core\Contracts\Validations\Code],
+            'code'       => ['required', 'unique:attributes,code,' . $id, new \Webkul\Core\Rules\Code],
             'admin_name' => 'required',
             'type'       => 'required',
         ]);

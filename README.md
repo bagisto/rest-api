@@ -4,7 +4,7 @@
 
 ### 1. Requirements:
 
-* **Bagisto**: v1.4.5
+* **Bagisto**: v2.0
 
 ### 2. Installation:
 
@@ -39,3 +39,35 @@ http://localhost/public/api/shop/documentation
 ~~~
 
 * You can check the <a href="https://github.com/DarkaOnLine/L5-Swagger"> L5-Swagger </a> guidelines too regarding the configuration the API documentation.
+
+~~~
+http://localhost/bagisto2.0beta/bagisto/public/api/v1/customer/login
+~~~
+
+* for login the customer add the HasApiTokens in the Webkul\Customer\Models\Customer
+use in namespace in admin model use Laravel\Sanctum\HasApiTokens;
+use Webkul\Product\Models\ProductReviewProxy;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Webkul\Sales\Models\InvoiceProxy;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
+use Webkul\Sales\Models\OrderProxy;
+
+~~~
+http://localhost/bagisto2.0beta/bagisto/public/api/v1/admin/login
+~~~
+
+* for login the admin add the HasApiTokens in the Webkul\User\Models\admin
+use in namespace in admin model use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
+use Webkul\User\Database\Factories\AdminFactory;
+use Webkul\User\Contracts\Admin as AdminContract;
+use Webkul\Admin\Mail\Admin\ResetPasswordNotification;
+
+~~~
+In sanctum.php add 
+~~~
+'token_prefix' => env('SANCTUM_TOKEN_PREFIX', ''),
+

@@ -57,10 +57,11 @@ class ConfigurationController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function store(ConfigurationForm $request)
-    {
+    {  
         $this->coreConfigRepository->create($request->except(['_token', 'admin_locale']));
 
         return response([
+
             'message' => __('rest-api::app.common-response.success.update', ['name' => 'Configuration']),
         ]);
     }

@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
 
 use Illuminate\Http\Request;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleCouponResource;
 
 class CartRuleCouponController extends MarketingController
@@ -109,7 +109,7 @@ class CartRuleCouponController extends MarketingController
     /**
      * Mass delete the coupons.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
+     * @param  \Webkul\Admin\Http\Requests\MassDestroyRequest $request
      * @param  int  $cartRuleId
      * @return \Illuminate\Http\Response
      */
