@@ -211,15 +211,16 @@ class AuthController extends CustomerController
                     'email' => trans('shop::app.customers.forgot-password.email-not-exist'),
                 ]);
         } catch (\Swift_RfcComplianceException $e) {
-            session()->flash('success', trans('shop::app.customers.forgot-password.reset-link-sent'));
+            $response = Password::broker('customers')->sendResetLink($request->only(['email']));$response = Password::broker('customers')->sendResetLink($request->only(['email']));
 
             return redirect()->back();
         } catch (\Exception $e) {
             report($e);
 
-            session()->flash('error', trans($e->getMessage()));
-
-            return redirect()->back();
+            return response(
+                ['message' => __($response)],
+                $response == Password::RESET_LINK_SENT ? 200 : 400
+            );
         }
     }
 }
