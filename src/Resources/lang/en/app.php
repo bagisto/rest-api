@@ -89,6 +89,42 @@ return [
     ],
 
     'common-response' => [
+        'products' => [
+            'add'    => 'products added successfully.',
+            'cancel' => 'products canceled successfully.',
+            'create' => 'products created successfully.',
+            'delete' => 'products deleted successfully.',
+            'update' => 'products updated successfully.',
+            'upload' => 'products uploaded successfully.',
+
+            'mass-operations' => [
+                'delete'  => 'Selected products successfully deleted.',
+                'partial' => 'Some actions were not performed due to restricted system constraints on products.',
+                'update'  => 'Selected products successfully updated.',
+            ],
+
+            'error' => [
+                'already-taken'                => 'The products has already been taken.',
+                'base-currency-delete'         => 'This currency is set as channel base currency so it can not be deleted.',
+                'being-used'                   => 'This resource products is getting used.',
+                'cannot-change-column'         => 'Cannot change the products.',
+                'default-group-delete'         => 'Cannot delete the default group.',
+                'delete-failed'                => 'Error encountered while deleting products.',
+                'last-item-delete'             => 'At least one products is required.',
+                'not-authorized'               => 'Not Authorized',
+                'order-pending-account-delete' => 'Cannot delete products account because some orders are pending or in processing state.',
+                'password-mismatch'            => 'Current password does not match.',
+                'root-category-delete'         => 'Cannot delete the root category.',
+                'security-warning'             => 'Suspicious activity found!',
+                'something-went-wrong'         => 'Something went wrong!',
+                'system-attribute-delete'      => 'Cannot delete the system attribute.',
+    
+                'mass-operations' => [
+                    'resource-not-found' => 'Selected products not found.',
+                ],
+            ],
+        ],
+
         'success' => [
             'add'    => ':name added successfully.',
             'cancel' => ':name canceled successfully.',
