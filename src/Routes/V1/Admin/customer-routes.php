@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
 
     Route::delete('customers/reviews/{id}', [CustomerReviewController::class, 'destroy']);
 
-    Route::post('customers/reviews/mass-destroy', [CustomerReviewController::class, 'massDestroyResources']);
+    Route::post('customers/reviews/mass-destroy', [CustomerReviewController::class, 'massDestroy']);
 
     Route::post('customers/reviews/mass-update', [CustomerReviewController::class, 'massUpdate']);
 
