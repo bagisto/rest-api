@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class Install extends Command
 {
     /**
-     * The name and signature of the console command.
+     * The name and signature of the console command
      *
      * @var string
      */
