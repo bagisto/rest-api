@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Webkul\Core\Rules\Slug;
 use Webkul\Core\Http\Requests\MassUpdateRequest;
 use Webkul\Product\Helpers\ProductType;
-use Webkul\Product\Http\Requests\ProductForm;
+use Webkul\Admin\Http\Requests\ProductForm;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductResource;
@@ -84,7 +85,7 @@ class ProductController extends CatalogController
         $multiselectAttributeCodes = [];
 
         $productAttributes = $this->getRepositoryInstance()->findOrFail($id);
-
+       
         foreach ($productAttributes->attribute_family->attribute_groups as $attributeGroup) {
             $customAttributes = $productAttributes->getEditableAttributes($attributeGroup);
 
@@ -108,9 +109,9 @@ class ProductController extends CatalogController
         Event::dispatch('catalog.product.update.before', $id);
 
         $product = $this->getRepositoryInstance()->update($data, $id);
-
+       
         Event::dispatch('catalog.product.update.after', $product);
-
+        dd($data);
         return response([
             'data'    => new ProductResource($product),
             'message' => __('rest-api::app.common-response.products.update'),
@@ -158,6 +159,28 @@ class ProductController extends CatalogController
 
         return response([
             'message' => trans('rest-api::app.common-response.products.delete'),
+        ]);
+    }
+
+    /**
+     * Remove the specified resources from database.
+     *
+     * @param  \Webkul\admin\Http\Requests\MassDestroyRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function massDestroy(MassDestroyRequest $request, $id)
+    { 
+        $this->getRepositoryInstance()->findOrFail($id);
+
+        Event::dispatch('catalog.product.delete.before', $id);
+
+        $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('catalog.product.delete.after', $id);
+
+        return response([
+            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'Product']),
         ]);
     }
 
