@@ -16,21 +16,7 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
 class AuthController extends CustomerController
 {
     use SendsPasswordResetEmails;
-
-    /**
-     * Customer respository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerRepository
-     */
-    protected $customerRepository;
-
-    /**
-     * Customer group repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerGroupRepository
-     */
-    protected $customerGroupRepository;
-
+    
     /**
      * Controller instance.
      *
@@ -39,14 +25,10 @@ class AuthController extends CustomerController
      * @return void
      */
     public function __construct(
-        CustomerRepository $customerRepository,
-        CustomerGroupRepository $customerGroupRepository
+        protected CustomerRepository $customerRepository,
+        protected CustomerGroupRepository $customerGroupRepository
     ) {
         parent::__construct();
-
-        $this->customerRepository = $customerRepository;
-
-        $this->customerGroupRepository = $customerGroupRepository;
     }
 
     /**
@@ -58,10 +40,11 @@ class AuthController extends CustomerController
     public function register(Request $request)
     {
         $request->validate([
-            'first_name' => 'required|string',
-            'last_name'  => 'required|string',
-            'email'      => 'required|email|unique:customers,email',
-            'password'   => 'required|confirmed|min:6',
+            'first_name'            => 'required|alpha_num|regex:/^[a-z\d\-_\s]+$/i',
+            'last_name'             => 'required|alpha_num|regex:/^[a-z\d\-_\s]+$/i',
+            'email'                 => 'required|email|unique:customers,email',
+            'password'              => 'required|confirmed|min:6',
+            'password_confirmation' => 'required|same:password',
         ]);
 
         $this->customerRepository->create([
@@ -163,6 +146,7 @@ class AuthController extends CustomerController
             'date_of_birth' => 'nullable|date|before:today',
             'email'         => 'email|unique:customers,email,' . $customer->id,
             'password'      => 'confirmed|min:6',
+            
         ]);
 
         $data = $request->all();
