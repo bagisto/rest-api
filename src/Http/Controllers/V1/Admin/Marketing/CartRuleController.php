@@ -51,11 +51,24 @@ class CartRuleController extends MarketingController
 
         $data = $request->all();
 
+        if(
+            array_key_exists('starts_from', $data) 
+            || array_key_exists('ends_till', $data)
+        ){
+            $data['starts_from'] = $data['starts_from'];
+
+            $data['ends_till'] =  $data['ends_till'];
+        } else {
+            $data['starts_from'] = null;
+
+            $data['ends_till'] = null;
+        }
+
         $cartRule = $this->getRepositoryInstance()->create($data);
 
         return response([
             'data'    => new CartRuleResource($cartRule),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Cart rule']),
+            'message' => trans('rest-api::app.common-response.cart-rule.create'),
         ]);
     }
 
@@ -98,7 +111,7 @@ class CartRuleController extends MarketingController
 
         return response([
             'data'    => new CartRuleResource($cartRule),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Cart rule']),
+            'message' => trans('rest-api::app.common-response.cart-rule.update'),
         ]);
     }
 
@@ -115,7 +128,7 @@ class CartRuleController extends MarketingController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Cart rule']),
+            'message' => trans('rest-api::app.common-response.cart-rule.delete'),
         ]);
     }
 }
