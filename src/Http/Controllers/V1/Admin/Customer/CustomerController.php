@@ -3,10 +3,8 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Webkul\Admin\Mail\NewCustomerNotification;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
-use Webkul\Core\Http\Requests\MassUpdateRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
@@ -59,6 +57,7 @@ class CustomerController extends CustomerBaseController
             'gender'        => 'required',
             'email'         => 'required|unique:customers,email',
             'date_of_birth' => 'date|before:today',
+            'phone'         => 'nullable|integer',
         ]);
 
         $data = $request->all();
@@ -71,15 +70,9 @@ class CustomerController extends CustomerBaseController
 
         $customer = $this->getRepositoryInstance()->create($data);
 
-        try {
-            if (core()->getConfigData('emails.general.notifications.emails.general.notifications.customer')) {
-                Mail::queue(new NewCustomerNotification($customer, $password));
-            }
-        } catch (\Exception $e) {}
-
         return response([
             'data'    => new CustomerResource($customer),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Customer']),
+            'message' => trans('rest-api::app.common-response.customers.create'),
         ]);
     }
 
@@ -108,7 +101,7 @@ class CustomerController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerResource($customer),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Customer']),
+            'message' => trans('rest-api::app.common-response.customers.update'),
         ]);
     }
 
@@ -126,12 +119,12 @@ class CustomerController extends CustomerBaseController
             $this->getRepositoryInstance()->delete($id);
 
             return response([
-                'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Customer']),
+                'message' => trans('rest-api::app.common-response.customers.delete'),
             ]);
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.error.order-pending-account-delete', ['name' => 'Customer']),
+            'message' => trans('rest-api::app.common-response.customers.error.order-pending-account-delete'),
         ], 400);
     }
 

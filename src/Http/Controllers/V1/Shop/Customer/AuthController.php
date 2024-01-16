@@ -43,7 +43,7 @@ class AuthController extends CustomerController
         CustomerGroupRepository $customerGroupRepository
     ) {
         parent::__construct();
-
+        
         $this->customerRepository = $customerRepository;
 
         $this->customerGroupRepository = $customerGroupRepository;
