@@ -69,25 +69,22 @@ class CustomerReviewController extends CustomerBaseController
     /**
      * Mass approve the reviews.
      *
-     * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massUpdate(MassUpdateRequest $request)
+    public function massUpdate(MassUpdateRequest $massUpdateRequest)
     {
-        foreach ($request->indexes as $index) {
+        $indices = $massUpdateRequest->input('indices');
+
+        foreach ($indices as $index) {
             $review = $this->getRepositoryInstance()->findOrFail($index);
 
             Event::dispatch('customer.review.update.before', $index);
 
-            if ($request->update_value == 0) {
+            if ($massUpdateRequest->value == 0) {
                 $review->update(['status' => 'pending']);
-            }
-
-            if ($request->update_value == 1) {
+            } elseif ($massUpdateRequest->value == 1) {
                 $review->update(['status' => 'approved']);
-            }
-
-            if ($request->update_value == 2) {
+            } else if ($massUpdateRequest->value == 2) {
                 $review->update(['status' => 'disapproved']);
             }
 
@@ -99,24 +96,25 @@ class CustomerReviewController extends CustomerBaseController
         ]);
     }
 
-      /**
+    /**
      * Mass delete the reviews on the products.
+     * 
+     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest): JsonResponse
+    public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {
-        dd(request()->all(),"sdrfg");
         $indices = $massDestroyRequest->input('indices');
         
-            foreach ($indices as $index) {
-                Event::dispatch('customer.review.delete.before', $index);
+        foreach ($indices as $index) {
+            Event::dispatch('customer.review.delete.before', $index);
 
-                $this->productReviewRepository->delete($index);
+            $this->getRepositoryInstance()->delete($index);
 
-                Event::dispatch('customer.review.delete.after', $index);
-            }
-
-            return response([
-                'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'customers']),
-            ]);
+            Event::dispatch('customer.review.delete.after', $index);
         }
+
+        return response([
+            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'customers']),
+        ]);
     }
+}
