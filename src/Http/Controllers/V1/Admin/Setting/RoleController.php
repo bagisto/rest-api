@@ -39,21 +39,21 @@ class RoleController extends SettingController
     {
         $request->validate([
             'name'            => 'required',
-            'permission_type' => 'required',
+            'permission_type' => ['required','in:all,custom'],
+            'description'     => 'required',
         ]);
 
         $role = $this->getRepositoryInstance()->create($request->all());
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Role']),
+            'message' => trans('rest-api::app.common-response.success.create', ['name' => 'Role']),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Webkul\User\Repositories\AdminRepository  $adminRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -62,7 +62,8 @@ class RoleController extends SettingController
     {
         $request->validate([
             'name'            => 'required',
-            'permission_type' => 'required',
+            'permission_type' => ['required','in:all,custom'],
+            'description'     =>  'required',
         ]);
 
         $params = $request->all();
@@ -74,7 +75,7 @@ class RoleController extends SettingController
 
         if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                'message' => trans('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
             ], 400);
         }
 
@@ -82,7 +83,7 @@ class RoleController extends SettingController
 
         return response([
             'data'    => new RoleResource($role),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Role']),
+            'message' => trans('rest-api::app.common-response.success.update', ['name' => 'Role']),
         ]);
     }
 
@@ -98,20 +99,20 @@ class RoleController extends SettingController
 
         if ($role->admins->count() >= 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
+                'message' => trans('rest-api::app.common-response.error.being-used', ['name' => 'role', 'source' => 'admin user']),
             ], 400);
         }
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'role']),
+                'message' => trans('rest-api::app.common-response.error.last-item-delete', ['name' => 'role']),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Role']),
+            'message' => trans('rest-api::app.common-response.success.delete', ['name' => 'Role']),
         ]);
     }
 }
