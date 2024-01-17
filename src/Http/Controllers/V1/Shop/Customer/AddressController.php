@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Webkul\Shop\Http\Requests\Customer\AddressRequest;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerAddressResource;
@@ -30,68 +31,104 @@ class AddressController extends CustomerController
     }
 
     /**
-     * Customer address repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerAddressRepository
-     */
-    protected $customerAddressRepository;
-
-    /**
      * Store address.
      *
-     * @param  \Webkul\Shop\Http\Requests\Customer\AddressRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(AddressRequest $request)
     {
-        $data = $request->all();
-        $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
-        $data['customer_id'] = $this->resolveShopUser($request)->id;
+        $customer = $this->resolveShopUser($request);
+        
+        Event::dispatch('customer.addresses.create.before');
+
+        $data = array_merge($request->only([
+            'company_name',
+            'first_name',
+            'last_name',
+            'vat_id',
+            'address1',
+            'country',
+            'state',
+            'city',
+            'postcode',
+            'phone',
+            'default_address',
+        ]), [
+            'customer_id' => $customer->id,
+            'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),
+            'address2'    => implode(PHP_EOL, array_filter($request->input('address2', []))),
+        ]);
 
         $customerAddress = $this->getRepositoryInstance()->create($data);
 
+        Event::dispatch('customer.addresses.create.after', $customerAddress);
+
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => 'Your address has been created successfully.',
+            'message' => trans('rest-api::app.customers.addresses.create-success'),
         ]);
     }
 
     /**
      * Update address.
      *
-     * @param  \Webkul\Shop\Http\Requests\Customer\AddressRequest  $request
-     * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(AddressRequest $request, int $id)
     {
-        $data = $request->all();
-        
-        $data['address1'] = implode(PHP_EOL, array_filter($data['address1']));
+        $customer = $this->resolveShopUser($request);
 
-        $customerAddress = $this->getRepositoryInstance()->update($data, $id);
+        $data = array_merge(request()->only([
+            'customer_id',
+            'company_name',
+            'vat_id',
+            'first_name',
+            'last_name',
+            'address1',
+            'city',
+            'country',
+            'state',
+            'postcode',
+            'phone',
+            'default_address',
+        ]), [
+            'address1' => implode(PHP_EOL, array_filter(request()->input('address1'))),
+            'address2' => implode(PHP_EOL, array_filter(request()->input('address2', []))),
+        ]);
+
+        Event::dispatch('customer.addresses.update.before', $id);
+
+        $customerAddress = $customer->addresses()->findOrFail($id);
+
+        $customerAddress->update($data);
+
+        Event::dispatch('customer.addresses.update.after', $customerAddress);
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => 'Your address has been updated successfully.',
+            'message' => trans('rest-api::app.customers.addresses.edit-success'),
         ]);
     }
 
     /**
      * Delete customer address.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, int $id)
-    { 
-        $customerAddress = $this->resolveShopUser($request)->addresses()->find($id);
+    {
+        $customer =  $this->resolveShopUser($request);
+
+        Event::dispatch('customer.addresses.delete.before', $id);
+
+        $customerAddress = $customer->addresses()->findOrFail($id);
        
         $customerAddress->delete();
+
+        Event::dispatch('customer.addresses.delete.after', $id);
     
         return response([
-            'message' => __('rest-api::app.customers.address-deleted'),
+            'message' => trans('rest-api::app.customers.addresses.delete-success'),
         ]);
     }
 }
