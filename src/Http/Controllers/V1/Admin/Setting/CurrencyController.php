@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CurrencyRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CurrencyResource;
 
 class CurrencyController extends SettingController
@@ -45,7 +46,7 @@ class CurrencyController extends SettingController
 
         return response([
             'data'    => new CurrencyResource($currency),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Currency']),
+            'message' => trans('rest-api::app.common-response.success.create', ['name' => 'Currency']),
         ]);
     }
 
@@ -59,7 +60,7 @@ class CurrencyController extends SettingController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code' => ['required', 'unique:currencies,code,' . $id, new \Webkul\Core\Rules\Code],
+            'code' => ['required', 'unique:currencies,code,' . $id, new Code],
             'name' => 'required',
         ]);
 
@@ -67,7 +68,7 @@ class CurrencyController extends SettingController
 
         return response([
             'data'    => new CurrencyResource($currency),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Currency']),
+            'message' => trans('rest-api::app.common-response.success.update', ['name' => 'Currency']),
         ]);
     }
 
@@ -83,14 +84,14 @@ class CurrencyController extends SettingController
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete'),
+                'message' => trans('rest-api::app.common-response.error.last-item-delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response()->json([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Currency']),
+            'message' => trans('rest-api::app.common-response.success.delete', ['name' => 'Currency']),
         ]);
     }
 }
