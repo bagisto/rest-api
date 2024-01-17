@@ -100,7 +100,7 @@ class ProductController extends CatalogController
     {
         $product = $this->getRepositoryInstance()->findOrFail($productId);
 
-        $wishlistHelper = app(\Webkul\Customer\Helpers\Wishlist::class);
+        $wishlistHelper = app(\Webkul\Customer\Repositories\WishlistRepository::class);
 
         return response([
             'data' => [
