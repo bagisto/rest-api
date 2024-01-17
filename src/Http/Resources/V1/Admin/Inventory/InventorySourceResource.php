@@ -30,7 +30,7 @@ class InventorySourceResource extends JsonResource
             'postcode'       => $this->postcode,
             'priority'       => $this->priority,
             'latitude'       => $this->latitude,
-            'longitude'      => $this->collongitudeongitudeuntry,
+            'longitude'      => $this->longitude,
             'status'         => $this->status,
             'created_at'     => $this->created_at,
             'updated_at'     => $this->updated_at,
