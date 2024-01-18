@@ -316,7 +316,7 @@ return [
                 'system-pages-delete'          => 'Cannot delete the system pages.',
             ],
         ],
-
+      
         'marketing' => [
             'campaigns' =>[
                 'create-success'   => 'Campaign have been successfully added.',

@@ -4,14 +4,15 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Mail\NewCustomerNotification;
-use Webkul\Admin\Http\Requests\MassDestroyRequest;
-use Webkul\Admin\Http\Requests\MassUpdateRequest;
-use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Sales\Repositories\InvoiceRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
 
 class CustomerController extends CustomerBaseController
 {
@@ -214,27 +215,30 @@ class CustomerController extends CustomerBaseController
     /**
      * To store the response of the note in storage
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function storeNote(Request $request, $id)
     {
         $request->validate([
-            'notes' => 'string|nullable',
+            'note' => 'string|nullable',
         ]);
 
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
-        if ($customer->update(['notes' => $request->input('notes')])) {
-            return response([
-                'data'    => new CustomerResource($customer),
-                'message' => trans('rest-api::app.customers.notes.note-taken'),
-            ]);
+        $customerNote = $this->getRepositoryInstance()->create([
+            'customer_id'       => $id,
+            'note'              => request()->input('note'),
+            'customer_notified' => request()->input('customer_notified', 0),
+        ]);
+
+        if (request()->has('customer_notified')) {
+            Event::dispatch('customer.note-created.after', $customerNote);
         }
 
         return response([
-            'message' => trans('rest-api::app.customers.notes.note-cannot-taken'),
+            'data'    => new CustomerResource($customer),
+            'message' => trans('rest-api::app.customers.note-taken'),
         ]);
     }
 }

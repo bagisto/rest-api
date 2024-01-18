@@ -32,7 +32,6 @@ class LocaleController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,7 +39,7 @@ class LocaleController extends SettingController
         $request->validate([
             'code'      => ['required', 'unique:locales,code', new Code],
             'name'      => 'required',
-            'direction' => 'in:ltr,rtl',
+            'direction' => ['required', 'in:ltr,rtl'],
         ]);
 
         $locale = $this->getRepositoryInstance()->create($request->all());
@@ -54,7 +53,6 @@ class LocaleController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -63,7 +61,7 @@ class LocaleController extends SettingController
         $request->validate([
             'code'      => ['required', 'unique:locales,code,' . $id, new Code],
             'name'      => 'required',
-            'direction' => 'in:ltr,rtl',
+            'direction' => ['required', 'in:ltr,rtl'],
         ]);
 
         $locale = $this->getRepositoryInstance()->update($request->all(), $id);

@@ -39,7 +39,8 @@ class RoleController extends SettingController
     {
         $request->validate([
             'name'            => 'required',
-            'permission_type' => 'required',
+            'permission_type' => ['required','in:all,custom'],
+            'description'     => 'required',
         ]);
 
         $role = $this->getRepositoryInstance()->create($request->all());
@@ -53,7 +54,6 @@ class RoleController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Webkul\User\Repositories\AdminRepository  $adminRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -62,7 +62,8 @@ class RoleController extends SettingController
     {
         $request->validate([
             'name'            => 'required',
-            'permission_type' => 'required',
+            'permission_type' => ['required','in:all,custom'],
+            'description'     =>  'required',
         ]);
 
         $params = $request->all();
@@ -112,6 +113,7 @@ class RoleController extends SettingController
 
         return response([
             'message' => trans('rest-api::app.admin.settings.roles.delete-success'),
+
         ]);
     }
 }
