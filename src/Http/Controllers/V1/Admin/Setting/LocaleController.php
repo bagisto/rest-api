@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\LocaleRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\LocaleResource;
 
 class LocaleController extends SettingController
@@ -37,7 +38,7 @@ class LocaleController extends SettingController
     public function store(Request $request)
     {
         $request->validate([
-            'code'      => ['required', 'unique:locales,code', new \Webkul\Core\Rules\Code],
+            'code'      => ['required', 'unique:locales,code', new Code],
             'name'      => 'required',
             'direction' => 'in:ltr,rtl',
         ]);
@@ -46,7 +47,7 @@ class LocaleController extends SettingController
 
         return response([
             'data'    => new LocaleResource($locale),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Locale']),
+            'message' => trans('rest-api::app.admin.settings.locales.create-success'),
         ]);
     }
 
@@ -60,7 +61,7 @@ class LocaleController extends SettingController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code'      => ['required', 'unique:locales,code,' . $id, new \Webkul\Core\Rules\Code],
+            'code'      => ['required', 'unique:locales,code,' . $id, new Code],
             'name'      => 'required',
             'direction' => 'in:ltr,rtl',
         ]);
@@ -69,7 +70,7 @@ class LocaleController extends SettingController
 
         return response([
             'data'    => new LocaleResource($locale),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Locale']),
+            'message' => trans('rest-api::app.admin.settings.locales.update-success'),
         ]);
     }
 
@@ -85,14 +86,14 @@ class LocaleController extends SettingController
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'locale']),
+                'message' => trans('rest-api::app.admin.settings.locales.error.last-item-delete'),
             ]);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Locale']),
+            'message' => trans('rest-api::app.admin.settings.locales.delete-success'),
         ]);
     }
 }

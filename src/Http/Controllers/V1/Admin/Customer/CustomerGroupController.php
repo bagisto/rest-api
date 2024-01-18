@@ -50,7 +50,7 @@ class CustomerGroupController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerGroupResource($customerGroup),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Customer group']),
+            'message' => trans('rest-api::app.admin.customers.groups.create-success'),
         ]);
     }
 
@@ -74,7 +74,7 @@ class CustomerGroupController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerGroupResource($customerGroup),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Customer group']),
+            'message' => trans('rest-api::app.admin.customers.groups.update-success'),
         ]);
     }
 
@@ -90,20 +90,20 @@ class CustomerGroupController extends CustomerBaseController
 
         if ($customerGroup->is_user_defined == 0) {
             return response([
-                'message' => __('rest-api::app.common-response.error.default-group-delete'),
+                'message' => trans('rest-api::app.admin.customers.groups.error.default-group-delete'),
             ], 400);
         }
 
         if (count($customerGroup->customers) > 0) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'Customer group', 'source' => 'customer']),
+                'message' => trans('rest-api::appadmin.customers.groups.error.being-used'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Customer group']),
+            'message' => trans('rest-api::app.admin.customers.groups.delete-success'),
         ]);
     }
 }

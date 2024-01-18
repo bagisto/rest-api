@@ -43,7 +43,7 @@ class InvoiceController extends SaleController
         
         if (! $order->canInvoice()) {
             return response([
-                'message' => __('rest-api::app.sales.invoices.creation-error'),
+                'message' => trans('rest-api::app.sales.invoices.error.creation-error'),
             ], 400);
         }
 
@@ -55,13 +55,13 @@ class InvoiceController extends SaleController
 
         if (! $this->getRepositoryInstance()->haveProductToInvoice($data)) {
             return response([
-                'message' => __('rest-api::app.sales.invoices.product-error'),
+                'message' => trans('rest-api::app.admin.sales.invoices.error.product-error'),
             ], 400);
         }
         
         if (! $this->getRepositoryInstance()->isValidQuantity($data)) {
             return response([
-                'message' => __('rest-api::app.sales.invoices.invalid-qty-error'),
+                'message' => trans('rest-api::app.admin.sales.invoices.error.invalid-qty-error'),
             ], 400);
         }
 
@@ -69,7 +69,7 @@ class InvoiceController extends SaleController
 
         return response([
             'data'    => new InvoiceResource($invoice),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Invoice']),
+            'message' => trans('rest-api::app.admin.sales.invoices.create-success'),
         ]);
     }
 }

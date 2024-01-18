@@ -38,7 +38,7 @@ class AttributeFamilyController extends CatalogController
     public function store(Request $request)
     {
         $request->validate([
-            'code' => ['required', 'unique:attribute_families,code', new \Webkul\Core\Rules\Code],
+            'code' => ['required', 'unique:attribute_families,code', new Code],
             'name' => 'required',
         ]);
 
@@ -46,7 +46,7 @@ class AttributeFamilyController extends CatalogController
 
         return response([
             'data'    => new AttributeFamilyResource($attributeFamily),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Family']),
+            'message' => trans('rest-api::app.admin.catalog.families.create-success'),
         ]);
     }
 
@@ -60,7 +60,7 @@ class AttributeFamilyController extends CatalogController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code' => ['required', 'unique:attribute_families,code,' . $id, new \Webkul\Core\Rules\Code],
+            'code' => ['required', 'unique:attribute_families,code,' . $id, new Code],
             'name' => 'required',
         ]);
 
@@ -68,7 +68,7 @@ class AttributeFamilyController extends CatalogController
 
         return response([
             'data'    => new AttributeFamilyResource($attributeFamily),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Family']),
+            'message' => trans('rest-api::app.admin.catalog.families.update-success'),
         ]);
     }
 
@@ -85,20 +85,20 @@ class AttributeFamilyController extends CatalogController
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'Family']),
+                'message' => trans('rest-api::app.admin.catalog.families.error.last-item-delete'),
             ], 400);
         }
 
         if ($attributeFamily->products()->count()) {
             return response([
-                'message' => __('rest-api::app.common-response.error.being-used', ['name' => 'Family', 'source' => 'Product']),
+                'message' => trans('rest-api::app.admin.catalog.families.error.being-used'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Family']),
+            'message' => trans('rest-api::app.admin.catalog.families.delete-success'),
         ]);
     }
 }

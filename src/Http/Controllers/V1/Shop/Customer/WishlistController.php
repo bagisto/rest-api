@@ -79,7 +79,7 @@ class WishlistController extends CustomerController
 
             return response([
                 'data'    => CustomerWishlistResource::collection($customer->wishlist_items()->get()),
-                'message' => 'Item removed from wishlist successfully.',
+                'message' => trans('rest-api::app.shop.wishlist.removed'),
             ]);
         }
 
@@ -92,7 +92,7 @@ class WishlistController extends CustomerController
 
         return response([
             'data'    => new CustomerWishlistResource($wishlistItem),
-            'message' => __('rest-api::app.common-response.success.add', ['name' => 'Wishlist']),
+            'message' => trans('rest-api::app.shop.wishlist.success'),
         ]);
     }
 
@@ -115,15 +115,13 @@ class WishlistController extends CustomerController
 
         if (! $wishlistItem) {
             return response([
-                'message' => __('rest-api::app.common-response.error.mass-operations.resource-not-found', [
-                    'name' => 'Wishlist product'
-                ]),
+                'message' => trans('rest-api::app.shop.wishlist.error.mass-operations.resource-not-found'),
             ], 400);
         }
 
         if ($wishlistItem->customer_id != $customer->id) {
             return response([
-                'message' => __('rest-api::app.common-response.error.security-warning'),
+                'message' => trans('rest-api::app.shop.wishlist.error.security-warning'),
             ], 400);
         }
 
@@ -136,12 +134,12 @@ class WishlistController extends CustomerController
 
             return response([
                 'data'    => $cart ? new CartResource($cart) : null,
-                'message' => __('rest-api::app.wishlist.moved'),
+                'message' => trans('rest-api::app.shop.wishlist.moved'),
             ]);
         }
 
         return response([
-            'message' => __('rest-api::app.wishlist.option-missing'),
+            'message' => trans('rest-api::app.shop.wishlist.option-missing'),
         ], 400);
     }
 }

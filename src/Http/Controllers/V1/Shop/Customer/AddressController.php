@@ -52,7 +52,7 @@ class AddressController extends CustomerController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => 'Your address has been created successfully.',
+            'message' => trans('rest-api::app.shop.customers.addresses.create-success'),
         ]);
     }
 
@@ -73,7 +73,7 @@ class AddressController extends CustomerController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => 'Your address has been updated successfully.',
+            'message' => trans('rest-api::app.shop.customers.addresses.upadte-success'),
         ]);
     }
 
@@ -91,7 +91,7 @@ class AddressController extends CustomerController
         $customerAddress->delete();
     
         return response([
-            'message' => __('rest-api::app.customers.address-deleted'),
+            'message' => trans('rest-api::app.shop.customers.addresses.delete-success'),
         ]);
     }
 }

@@ -79,7 +79,7 @@ class CustomerController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerResource($customer),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Customer']),
+            'message' => trans('rest-api::app.admin.customers.customers.create-success'),
         ]);
     }
 
@@ -108,7 +108,7 @@ class CustomerController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerResource($customer),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Customer']),
+            'message' => trans('rest-api::app.admin.customers.customers.update-success'),
         ]);
     }
 
@@ -126,12 +126,12 @@ class CustomerController extends CustomerBaseController
             $this->getRepositoryInstance()->delete($id);
 
             return response([
-                'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Customer']),
+                'message' => trans('rest-api::app.admin.customers.customers.delete-success'),
             ]);
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.error.order-pending-account-delete', ['name' => 'Customer']),
+            'message' => trans('rest-api::app.admin.customers.customers.error.order-pending-account-delete'),
         ], 400);
     }
 
@@ -150,7 +150,7 @@ class CustomerController extends CustomerBaseController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'customers']),
+            'message' => trans('rest-api::app.admin.customers.customers.mass-operations.update-success'),
         ]);
     }
 
@@ -172,11 +172,11 @@ class CustomerController extends CustomerBaseController
             }
 
             return response([
-                'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'customers']),
+                'message' => trans('rest-api::app.admin.customers.customers.mass-operations.delete-success'),
             ]);
         }
 
-        return response(['message' => __('rest-api::app.common-response.error.order-pending-account-delete', ['name' => 'Customers'])], 400);
+        return response(['message' => trans('rest-api::app.admin.customers.customers.error.order-pending-account-delete')], 400);
     }
 
     /**
@@ -229,12 +229,12 @@ class CustomerController extends CustomerBaseController
         if ($customer->update(['notes' => $request->input('notes')])) {
             return response([
                 'data'    => new CustomerResource($customer),
-                'message' => __('rest-api::app.customers.note-taken'),
+                'message' => trans('rest-api::app.customers.notes.note-taken'),
             ]);
         }
 
         return response([
-            'message' => __('rest-api::app.customers.note-cannot-taken'),
+            'message' => trans('rest-api::app.customers.notes.note-cannot-taken'),
         ]);
     }
 }

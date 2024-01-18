@@ -39,7 +39,7 @@ class AuthController extends UserController
             
             if (! $admin || ! Hash::check($request->password, $admin->password)) {
                 throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.'],
+                    'email' => trans('rest-api::app.admin.account.error.credential-error'),
                 ]);
             }
             /**
@@ -49,7 +49,7 @@ class AuthController extends UserController
 
             return response([
                 'data'    => new UserResource($admin),
-                'message' => 'Logged in successfully.',
+                'message' => trans('rest-api::app.admin.account.logged-in-success'),
                 'token'   => $admin->createToken($request->device_name, ['role:admin'])->plainTextToken,
             ]);
         }
@@ -59,12 +59,12 @@ class AuthController extends UserController
 
             return response([
                 'data'    => new UserResource($this->resolveAdminUser($request)),
-                'message' => 'Logged in successfully.',
+                'message' => trans('rest-api::app.admin.account.logged-in-success'),
             ]);
         }
 
         return response([
-            'message' => 'Invalid Email or Password',
+            'message' => trans('rest-api::app.admin.account.error.invalid'),
         ], 401);
     }
 
@@ -83,7 +83,7 @@ class AuthController extends UserController
             : auth()->guard('admin')->logout();
 
         return response([
-            'message' => 'Logged out successfully.',
+            'message' => trans('rest-api::app.admin.account.logged-out-success'),
         ]);
     }
 

@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\ChannelRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
 
 class ChannelController extends SettingController
@@ -38,7 +39,7 @@ class ChannelController extends SettingController
     {
         $data = $request->validate([
             /* general */
-            'code'              => ['required', 'unique:channels,code', new \Webkul\Core\Rules\Code],
+            'code'              => ['required', 'unique:channels,code', new Code],
             'name'              => 'required',
             'description'       => 'nullable',
             'inventory_sources' => 'required|array|min:1',
@@ -75,7 +76,7 @@ class ChannelController extends SettingController
 
         return response([
             'data'    => new ChannelResource($channel),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Channel']),
+            'message' => trans('rest-api::app.admin.settings.channels.create-success'),
         ]);
     }
 
@@ -133,7 +134,7 @@ class ChannelController extends SettingController
 
         return response([
             'data'    => new ChannelResource($channel),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Channel']),
+            'message' => trans('rest-api::app.admin.settings.channels.update-success'),
         ]);
     }
 
@@ -149,14 +150,14 @@ class ChannelController extends SettingController
 
         if ($channel->code == config('app.channel')) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'channel']),
+                'message' => trans('rest-api::app.admin.settings.channels.error.last-item-delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Channel']),
+            'message' => trans('rest-api::app.admin.settings.channels.delete-success'),
         ]);
     }
 

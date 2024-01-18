@@ -41,12 +41,12 @@ class OrderController extends CustomerController
 
         if ($order && $this->getRepositoryInstance()->cancel($order)) {
             return response([
-                'message' => __('rest-api::app.common-response.success.cancel', ['name' => 'Order']),
+                'message' => trans('rest-api::app.shop.sales.cancel'),
             ]);
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.error.something-went-wrong'),
+            'message' => trans('rest-api::app.shop.sales.error.cancel-error'),
         ]);
     }
 }

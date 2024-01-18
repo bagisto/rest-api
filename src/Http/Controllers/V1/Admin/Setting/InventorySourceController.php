@@ -43,7 +43,7 @@ class InventorySourceController extends SettingController
 
         return response([
             'data'    => new InventorySourceResource($inventorySource),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Inventory source']),
+            'message' => trans('rest-api::app.admin.settings.inventory-sources.create-success'),
         ]);
     }
 
@@ -63,7 +63,7 @@ class InventorySourceController extends SettingController
 
         return response([
             'data'    => new InventorySourceResource($inventorySource),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Inventory source']),
+            'message' => trans('rest-api::app.admin.settings.inventory-sources.update-success'),
         ]);
     }
 
@@ -79,14 +79,14 @@ class InventorySourceController extends SettingController
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'inventory source']),
+                'message' => trans('rest-api::app.admin.settings.inventory-sources.error.last-item-delete-success'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Inventory source']),
+            'message' => trans('rest-api::app.admin.settings.inventory-sources.delete-success'),
         ]);
     }
 }

@@ -75,7 +75,7 @@ class AuthController extends CustomerController
         ]);
 
         return response([
-            'message' => 'Your account has been created successfully.',
+            'message' =>  trans('rest-api::app.shop.customers.accounts.create-success'),
         ]);
     }
 
@@ -101,7 +101,7 @@ class AuthController extends CustomerController
 
             if (! $customer || ! Hash::check($request->password, $customer->password)) {
                 throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.'],
+                    'email' =>  trans('rest-api::app.shop.customers.accounts.error.credential-error'),
                 ]);
             }
 
@@ -112,7 +112,7 @@ class AuthController extends CustomerController
 
             return response([
                 'data'    => new CustomerResource($customer),
-                'message' => 'Logged in successfully.',
+                'message' =>  trans('rest-api::app.shop.customers.accounts.logged-in-success'),
                 'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
             ]);
         }
@@ -122,12 +122,12 @@ class AuthController extends CustomerController
 
             return response([
                 'data'    => new CustomerResource($this->resolveShopUser($request)),
-                'message' => 'Logged in successfully.',
+                'message' =>  trans('rest-api::app.shop.customers.accounts.logged-in-success'),
             ]);
         }
 
         return response([
-            'message' => 'Invalid Email or Password',
+            'message' =>  trans('rest-api::app.shop.customers.accounts.error.invalid'),
         ], 401);
     }
 
@@ -177,7 +177,7 @@ class AuthController extends CustomerController
 
         return response([
             'data'    => new CustomerResource($updatedCustomer),
-            'message' => 'Your account has been updated successfully.',
+            'message' =>  trans('rest-api::app.shop.customers.addresses.update-success'),
         ]);
     }
 
@@ -196,7 +196,7 @@ class AuthController extends CustomerController
             : auth()->guard('customer')->logout();
 
         return response([
-            'message' => 'Logged out successfully.',
+            'message' => trans('rest-api::app.shop.customers.accounts.logged-in-success'),
         ]);
     }
 
