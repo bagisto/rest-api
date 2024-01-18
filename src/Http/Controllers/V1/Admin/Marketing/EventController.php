@@ -46,7 +46,7 @@ class EventController extends MarketingController
 
         return response([
             'data'    => new EventResource($event),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Event']),
+            'message' => trans('rest-api::app.admin.marketing.events.create-success'),
         ]);
     }
 
@@ -69,7 +69,7 @@ class EventController extends MarketingController
 
         return response([
             'data'    => new EventResource($event),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Event']),
+            'message' => trans('rest-api::app.admin.marketing.events.update-success'),
         ]);
     }
 
@@ -86,7 +86,7 @@ class EventController extends MarketingController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Event']),
+            'message' => trans('rest-api::app.admin.marketing.events.delete-success'),
         ]);
     }
 }

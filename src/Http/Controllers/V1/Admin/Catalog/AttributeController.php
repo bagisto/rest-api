@@ -39,7 +39,7 @@ class AttributeController extends CatalogController
     public function store(Request $request)
     {
         $request->validate([
-            'code'       => ['required', 'unique:attributes,code', new \Webkul\Core\Rules\Code],
+            'code'       => ['required', 'unique:attributes,code', new Code],
             'admin_name' => 'required',
             'type'       => 'required',
         ]);
@@ -52,7 +52,7 @@ class AttributeController extends CatalogController
 
         return response([
             'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Attribute']),
+            'message' => trans('rest-api::app.admin.catalog.attribues.create-success'),
         ]);
     }
 
@@ -77,7 +77,7 @@ class AttributeController extends CatalogController
 
         return response([
             'data'    => new AttributeResource($attribute),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Attribute']),
+            'message' => trans('rest-api::app.admin.catalog.attribues.update-success'),
         ]);
     }
 
@@ -94,14 +94,14 @@ class AttributeController extends CatalogController
 
         if (! $attribute->is_user_defined) {
             return response([
-                'message' => __('rest-api::app.common-response.error.system-attribute-delete'),
+                'message' => trans('rest-api::app.admin.catalog.attribues.error.system-attributes.delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Attribute']),
+            'message' => trans('rest-api::app.admin.catalog.attribues.delete-success'),
         ]);
     }
 
@@ -120,7 +120,7 @@ class AttributeController extends CatalogController
 
             if (! $attribute->is_user_defined) {
                 return response([
-                    'message' => __('rest-api::app.common-response.error.system-attribute-delete'),
+                    'message' => trans('rest-api::app.common-response.error.system-attribute-delete'),
                 ], 400);
             }
         }
@@ -130,7 +130,7 @@ class AttributeController extends CatalogController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'attributes']),
+            'message' => trans('rest-api::app.admin.catalog.attribues.delete-success'),
         ]);
     }
 }

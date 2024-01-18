@@ -48,7 +48,7 @@ class CampaignController extends MarketingController
 
         return response([
             'data'    => new CampaignResource($campaign),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Campaign']),
+            'message' => trans('rest-api::app.admin.marketing.campaigns.create-success'),
         ]);
     }
 
@@ -73,7 +73,7 @@ class CampaignController extends MarketingController
 
         return response([
             'data'    => new CampaignResource($campaign),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Campaign']),
+            'message' => trans('rest-api::app.admin.marketing.campaigns.update-success'),
         ]);
     }
 
@@ -90,7 +90,7 @@ class CampaignController extends MarketingController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Campaign']),
+            'message' => trans('rest-api::app.admin.marketing.campaigns.delete-success'),
         ]);
     }
 }

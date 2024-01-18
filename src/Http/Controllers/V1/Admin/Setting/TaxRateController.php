@@ -58,7 +58,7 @@ class TaxRateController extends SettingController
 
         return response([
             'data'    => new TaxRateResource($taxRate),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Tax rate']),
+            'message' => trans('rest-api::app.admin.settings.taxes.tax-rates.create-success'),
         ]);
     }
 
@@ -84,7 +84,7 @@ class TaxRateController extends SettingController
 
         return response([
             'data'    => new TaxRateResource($taxRate),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Tax rate']),
+            'message' => trans('rest-api::app.admin.settings.taxes.tax-rates.update-success'),
         ]);
     }
 
@@ -101,7 +101,7 @@ class TaxRateController extends SettingController
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Tax rate']),
+            'message' => trans('rest-api::app.admin.settings.taxes.tax-rates.delete-success'),
         ]);
     }
 }

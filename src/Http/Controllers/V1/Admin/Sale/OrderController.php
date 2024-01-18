@@ -41,8 +41,8 @@ class OrderController extends SaleController
         $result = $this->getRepositoryInstance()->cancel($id);
 
         return $result
-            ? response(['message' => __('rest-api::app.common-response.success.cancel', ['name' => 'Order'])])
-            : response(['message' => __('rest-api::app.sales.orders.cancel-error')], 500);
+            ? response(['message' => trans('rest-api::app.admin.sales.orders.cancel-success')])
+            : response(['message' => trans('rest-api::app.admin.sales.orders.error.cancel-error')], 500);
     }
 
     /**
@@ -71,7 +71,7 @@ class OrderController extends SaleController
 
         return response([
             'data'    => $comment,
-            'message' => __('rest-api::app.common-response.success.add', ['name' => 'Comment']),
+            'message' => trans('rest-api::app.admin.sales.orders.comments.create-success'),
         ]);
     }
 }

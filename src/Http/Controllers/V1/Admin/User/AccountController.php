@@ -43,7 +43,7 @@ class AccountController extends UserController
 
         if (! Hash::check($data['current_password'], $user->password)) {
             return response([
-                'message' => __('rest-api::app.common-response.error.password-mismatch'),
+                'message' => trans('rest-api::app.admin.account.error.password-mismatch'),
             ], 400);
         }
 
@@ -61,7 +61,7 @@ class AccountController extends UserController
 
         return response([
             'data'    => new UserResource($user),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Account']),
+            'message' => trans('rest-api::app.admin.account.update-success'),
         ]);
     }
 }

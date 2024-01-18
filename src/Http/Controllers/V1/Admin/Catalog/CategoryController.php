@@ -50,7 +50,7 @@ class CategoryController extends CatalogController
 
         return response([
             'data'    => new CategoryResource($category),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Category']),
+            'message' => trans('rest-api::app.admin.catalog.categories.create-success'),
         ]);
     }
 
@@ -69,7 +69,7 @@ class CategoryController extends CatalogController
 
         return response([
             'data'    => new CategoryResource($category),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Category']),
+            'message' => trans('rest-api::app.admin.catalog.categories.update-success'),
         ]);
     }
 
@@ -86,14 +86,14 @@ class CategoryController extends CatalogController
 
         if (! $this->isCategoryDeletable($category)) {
             return response([
-                'message' => __('rest-api::app.common-response.error.root-category-delete', ['name' => 'Category']),
+                'message' => trans('rest-api::app.admin.catalog.categories.error.root-category-delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Category']),
+            'message' => trans('rest-api::app.admin.catalog.categories.delete-success'),
         ]);
     }
 
@@ -109,7 +109,7 @@ class CategoryController extends CatalogController
 
         if ($this->containsNonDeletableCategory($categories)) {
             return response([
-                'message' => __('rest-api::app.common-response.error.root-category-delete', ['name' => 'Category']),
+                'message' => trans('rest-api::app.admin.catalog.categories.error.root-category-delete'),
             ], 400);
         }
 
@@ -118,7 +118,7 @@ class CategoryController extends CatalogController
         });
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'categories']),
+            'message' => trans('rest-api::app.admin.catalog.categories.mass-operations.delete-success'),
         ]);
     }
 

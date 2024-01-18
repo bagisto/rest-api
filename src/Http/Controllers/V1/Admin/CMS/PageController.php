@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 
 use Illuminate\Http\Request;
 use Webkul\CMS\Repositories\CmsRepository;
+use Webkul\Core\Rules\Slug;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
 
@@ -48,7 +49,7 @@ class PageController extends CMSController
 
         return response([
             'data'    => new CMSResource($page),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'Page']),
+            'message' => trans('rest-api::app.admin.cms.create-success'),
         ]);
     }
 
@@ -64,9 +65,9 @@ class PageController extends CMSController
         $locale = core()->getRequestedLocaleCode();
 
         $request->validate([
-            $locale . '.url_key'      => ['required', new \Webkul\Core\Rules\Slug, function ($attribute, $value, $fail) use ($id) {
+            $locale . '.url_key'      => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
-                    $fail(__('rest-api::app.common-response.error.already-taken', ['name' => 'Page']));
+                    $fail(trans('rest-api::app.admin.cms.error.already-taken'));
                 }
             }],
             $locale . '.page_title'   => 'required',
@@ -78,7 +79,7 @@ class PageController extends CMSController
 
         return response([
             'data'    => new CMSResource($page),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'Page']),
+            'message' => trans('rest-api::app.admin.cms.update-success'),
         ]);
     }
 
@@ -98,7 +99,7 @@ class PageController extends CMSController
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => 'cms']),
+            'message' => trans('rest-api::app.admin.cms.mass-operations.delete-success'),
         ]);
     }
 }

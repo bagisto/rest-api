@@ -47,7 +47,7 @@ class UserController extends SettingController
 
         return response([
             'user'    => new UserResource($admin),
-            'message' => __('rest-api::app.common-response.success.create', ['name' => 'User']),
+            'message' => trans('rest-api::app.admin.settings.users.create-success'),
         ]);
     }
 
@@ -70,7 +70,7 @@ class UserController extends SettingController
 
         return response([
             'user'    => new UserResource($admin),
-            'message' => __('rest-api::app.common-response.success.update', ['name' => 'User']),
+            'message' => trans('rest-api::app.admin.settings.users.update-success'),
         ]);
     }
 
@@ -86,14 +86,14 @@ class UserController extends SettingController
 
         if ($this->getRepositoryInstance()->count() == 1) {
             return response([
-                'message' => __('rest-api::app.common-response.error.last-item-delete', ['name' => 'admin']),
+                'message' => trans('rest-api::app.admin.settings.users.error.last-item-delete'),
             ], 400);
         }
 
         $this->getRepositoryInstance()->delete($id);
 
         return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => 'Admin']),
+            'message' => trans('rest-api::app.admin.settings.users.delete-success'),
         ]);
     }
 
@@ -153,7 +153,7 @@ class UserController extends SettingController
     private function cannotChangeRedirectResponse(string $columnName)
     {
         return response([
-            'message' => __('rest-api::app.common-response.error.cannot-change-column', ['name' => $columnName]),
+            'message' => trans('rest-api::app.admin.settings.users.error.cannot-change-column', ['name' => $columnName]),
         ]);
     }
 }
