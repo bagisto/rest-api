@@ -70,6 +70,8 @@ class CustomerController extends CustomerBaseController
 
         $data['is_verified'] = 1;
 
+        Event::dispatch('customer.registration.before');
+
         $customer = $this->getRepositoryInstance()->create($data);
 
         try {
@@ -105,7 +107,11 @@ class CustomerController extends CustomerBaseController
 
         $data['status'] = ! isset($data['status']) ? 0 : 1;
 
+        Event::dispatch('customer.update.before', $id);
+
         $customer = $this->getRepositoryInstance()->update($data, $id);
+
+        Event::dispatch('customer.update.after', $customer);
 
         return response([
             'data'    => new CustomerResource($customer),
@@ -147,7 +153,11 @@ class CustomerController extends CustomerBaseController
         foreach ($request->indexes as $index) {
             $this->getRepositoryInstance()->findorFail($index);
 
+            Event::dispatch('customer.update.before', $index);
+
             $this->getRepositoryInstance()->update(['status' => $request->update_value], $index);
+
+            Event::dispatch('customer.update.after', $index);
         }
 
         return response([
@@ -169,7 +179,11 @@ class CustomerController extends CustomerBaseController
             foreach ($customerIds as $customerId) {
                 $this->getRepositoryInstance()->findOrFail($customerId);
 
+                Event::dispatch('customer.delete.before', $customerId);
+
                 $this->getRepositoryInstance()->delete($customerId);
+
+                Event::dispatch('customer.delete.after', $customerId);
             }
 
             return response([

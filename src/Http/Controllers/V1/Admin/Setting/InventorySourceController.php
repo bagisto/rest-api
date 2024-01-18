@@ -125,7 +125,11 @@ class InventorySourceController extends SettingController
             ], 400);
         }
 
+        Event::dispatch('inventory.inventory_source.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('inventory.inventory_source.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.settings.inventory-sources.delete-success'),

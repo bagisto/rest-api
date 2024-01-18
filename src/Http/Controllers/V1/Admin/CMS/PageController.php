@@ -3,8 +3,9 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 
 use Illuminate\Http\Request;
-use Webkul\CMS\Repositories\CmsRepository;
+use Illuminate\Support\Facades\Event;
 use Webkul\Core\Rules\Slug;
+use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
 
@@ -45,7 +46,11 @@ class PageController extends CMSController
             'html_content' => 'required',
         ]);
 
+        Event::dispatch('cms.pages.create.before');
+
         $page = $this->getRepositoryInstance()->create($request->all());
+
+        Event::dispatch('cms.pages.create.after', $page);
 
         return response([
             'data'    => new CMSResource($page),
@@ -75,7 +80,12 @@ class PageController extends CMSController
             'channels'                => 'required',
         ]);
 
+        Event::dispatch('cms.pages.update.before', $id);
+
         $page = $this->getRepositoryInstance()->update($request->all(), $id);
+        
+        Event::dispatch('cms.pages.update.after', $page);
+
 
         return response([
             'data'    => new CMSResource($page),

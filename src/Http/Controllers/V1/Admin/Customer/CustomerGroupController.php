@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Core\Rules\Code;
@@ -46,7 +47,11 @@ class CustomerGroupController extends CustomerBaseController
 
         $data['is_user_defined'] = 1;
 
+        Event::dispatch('customer.customer_group.create.before');
+
         $customerGroup = $this->getRepositoryInstance()->create($data);
+
+        Event::dispatch('customer.customer_group.create.after', $customerGroup);
 
         return response([
             'data'    => new CustomerGroupResource($customerGroup),
@@ -70,7 +75,11 @@ class CustomerGroupController extends CustomerBaseController
 
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('customer.customer_group.update.before', $id);
+
         $customerGroup = $this->getRepositoryInstance()->update($request->all(), $id);
+
+        Event::dispatch('customer.customer_group.update.after', $customerGroup);
 
         return response([
             'data'    => new CustomerGroupResource($customerGroup),
@@ -100,7 +109,11 @@ class CustomerGroupController extends CustomerBaseController
             ], 400);
         }
 
+        Event::dispatch('customer.customer_group.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('customer.customer_group.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.customers.groups.delete-success'),

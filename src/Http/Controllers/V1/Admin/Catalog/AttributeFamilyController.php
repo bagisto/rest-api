@@ -76,7 +76,11 @@ class AttributeFamilyController extends CatalogController
             'name' => 'required',
         ]);
 
+        Event::dispatch('catalog.attribute_family.update.before', $id);
+
         $attributeFamily = $this->getRepositoryInstance()->update($request->all(), $id);
+
+        Event::dispatch('catalog.attribute_family.update.after', $attributeFamily);
 
         return response([
             'data'    => new AttributeFamilyResource($attributeFamily),
@@ -106,7 +110,11 @@ class AttributeFamilyController extends CatalogController
             ], 400);
         }
 
+        Event::dispatch('catalog.attribute_family.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('catalog.attribute_family.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.catalog.families.delete-success'),

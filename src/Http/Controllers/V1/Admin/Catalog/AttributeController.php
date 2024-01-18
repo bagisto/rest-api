@@ -3,9 +3,9 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
-use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Rules\Code;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeResource;
 
 class AttributeController extends CatalogController
@@ -48,7 +48,11 @@ class AttributeController extends CatalogController
 
         $data['is_user_defined'] = 1;
 
+        Event::dispatch('catalog.attribute.create.before');
+
         $attribute = $this->getRepositoryInstance()->create($data);
+
+        Event::dispatch('catalog.attribute.create.after', $attribute);
 
         return response([
             'data'    => new AttributeResource($attribute),
@@ -73,7 +77,11 @@ class AttributeController extends CatalogController
 
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('catalog.attribute.update.before', $id);
+
         $attribute = $this->getRepositoryInstance()->update($request->all(), $id);
+
+        Event::dispatch('catalog.attribute.update.after', $attribute);
 
         return response([
             'data'    => new AttributeResource($attribute),
@@ -98,7 +106,11 @@ class AttributeController extends CatalogController
             ], 400);
         }
 
+        Event::dispatch('catalog.attribute.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('catalog.attribute.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.catalog.attribues.delete-success'),
@@ -126,7 +138,11 @@ class AttributeController extends CatalogController
         }
 
         foreach ($indexes as $index) {
+            Event::dispatch('catalog.attribute.delete.before', $index);
+
             $this->getRepositoryInstance()->delete($index);
+            
+            Event::dispatch('catalog.attribute.delete.after', $index);
         }
 
         return response([
