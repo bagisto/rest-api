@@ -3,10 +3,11 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
-use Webkul\Admin\Http\Requests\CategoryRequest;
-use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Illuminate\Support\Facades\Event;
 use Webkul\Core\Models\Channel;
+use Webkul\Admin\Http\Requests\CategoryRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
 
 class CategoryController extends CatalogController
@@ -39,6 +40,8 @@ class CategoryController extends CatalogController
      */
     public function store(CategoryRequest $request)
     {
+        Event::dispatch('catalog.category.create.before');
+
         $request->validate([
             'slug'        => ['required', 'unique:category_translations,slug'],
             'name'        => 'required',
@@ -47,6 +50,8 @@ class CategoryController extends CatalogController
         ]);
 
         $category = $this->getRepositoryInstance()->create($request->all());
+
+        Event::dispatch('catalog.category.create.after', $category);
 
         return response([
             'data'    => new CategoryResource($category),
@@ -65,7 +70,11 @@ class CategoryController extends CatalogController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('catalog.category.update.before', $id);
+
         $category = $this->getRepositoryInstance()->update($request->all(), $id);
+        
+        Event::dispatch('catalog.category.update.after', $category);
 
         return response([
             'data'    => new CategoryResource($category),
@@ -90,7 +99,11 @@ class CategoryController extends CatalogController
             ], 400);
         }
 
+        Event::dispatch('catalog.category.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('catalog.category.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.catalog.categories.delete-success'),
@@ -114,7 +127,11 @@ class CategoryController extends CatalogController
         }
 
         $categories->each(function ($category) {
+            Event::dispatch('catalog.category.delete.before', $category->id);
+
             $this->getRepositoryInstance()->delete($category->id);
+
+            Event::dispatch('catalog.category.delete.after', $category->id);
         });
 
         return response([

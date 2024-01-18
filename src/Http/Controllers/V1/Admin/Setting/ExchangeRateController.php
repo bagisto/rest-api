@@ -41,7 +41,11 @@ class ExchangeRateController extends SettingController
             'rate'            => 'required|numeric',
         ]);
 
+        Event::dispatch('core.exchange_rate.create.before');
+
         $exchangeRate = $this->getRepositoryInstance()->create($request->all());
+
+        Event::dispatch('core.exchange_rate.create.after', $exchangeRate);
 
         return response([
             'data'    => new ExchangeRateResource($exchangeRate),
@@ -63,7 +67,11 @@ class ExchangeRateController extends SettingController
             'rate'            => 'required|numeric',
         ]);
 
+        Event::dispatch('core.exchange_rate.update.before', request()->id);
+
         $exchangeRate = $this->getRepositoryInstance()->update($request->all(), $id);
+
+        Event::dispatch('core.exchange_rate.update.after', $exchangeRate);
 
         return response([
             'data'    => new ExchangeRateResource($exchangeRate),
@@ -101,7 +109,11 @@ class ExchangeRateController extends SettingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('core.exchange_rate.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('core.exchange_rate.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.settings.exchange-rates.delete-success'),

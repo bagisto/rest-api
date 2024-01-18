@@ -42,7 +42,11 @@ class CustomerReviewController extends CustomerBaseController
     { 
         $this->getRepositoryInstance()->findOrFail($id);
 
-        $this->getRepositoryInstance()->update($request->all(), $id);
+        Event::dispatch('customer.review.update.before', $id);
+
+        $review = $this->getRepositoryInstance()->update($request->all(), $id);
+
+        Event::dispatch('customer.review.update.after', $review);
 
         return response([
             'message' => trans('rest-api::app.dmin.customers.reviews.update-success'),
@@ -59,7 +63,11 @@ class CustomerReviewController extends CustomerBaseController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('customer.review.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('customer.review.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.customers.reviews.delete-success'),

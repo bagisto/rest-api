@@ -64,7 +64,9 @@ class AuthController extends CustomerController
             'password'   => 'required|confirmed|min:6',
         ]);
 
-        $this->customerRepository->create([
+        Event::dispatch('customer.registration.before');
+
+        $customer = $this->customerRepository->create([
             'first_name'        => $request->first_name,
             'last_name'         => $request->last_name,
             'email'             => $request->email,
@@ -73,6 +75,8 @@ class AuthController extends CustomerController
             'channel_id'        => core()->getCurrentChannel()->id,
             'customer_group_id' => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
         ]);
+
+        Event::dispatch('customer.registration.after', $customer);
 
         return response([
             'message' =>  trans('rest-api::app.shop.customers.accounts.create-success'),
@@ -110,11 +114,17 @@ class AuthController extends CustomerController
              */
             $customer->tokens()->delete();
 
+             /**
+              * Event passed to prepare cart after login.
+              */
+             Event::dispatch('customer.after.login', $loginRequest->get('email'));
+
             return response([
                 'data'    => new CustomerResource($customer),
                 'message' =>  trans('rest-api::app.shop.customers.accounts.logged-in-success'),
                 'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
             ]);
+
         }
 
         if (Auth::attempt($request->only(['email', 'password']))) {
@@ -194,6 +204,8 @@ class AuthController extends CustomerController
         ! EnsureFrontendRequestsAreStateful::fromFrontend($request)
             ? $customer->tokens()->delete()
             : auth()->guard('customer')->logout();
+
+        Event::dispatch('customer.after.logout', $id);    
 
         return response([
             'message' => trans('rest-api::app.shop.customers.accounts.logged-in-success'),

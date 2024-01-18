@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxRateResource;
 use Webkul\Tax\Repositories\TaxRateRepository;
 
@@ -54,7 +55,11 @@ class TaxRateController extends SettingController
             unset($data['zip_code']);
         }
 
+        Event::dispatch('tax.rate.create.before');
+
         $taxRate = $this->getRepositoryInstance()->create($data);
+
+        Event::dispatch('tax.rate.create.after', $taxRate);
 
         return response([
             'data'    => new TaxRateResource($taxRate),
@@ -80,7 +85,11 @@ class TaxRateController extends SettingController
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
 
+        Event::dispatch('tax.rate.update.before', $id);
+
         $taxRate = $this->getRepositoryInstance()->update($request->input(), $id);
+
+        Event::dispatch('tax.rate.update.after', $taxRate);
 
         return response([
             'data'    => new TaxRateResource($taxRate),
@@ -98,7 +107,11 @@ class TaxRateController extends SettingController
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('tax.rate.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('tax.rate.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.settings.taxes.tax-rates.delete-success'),

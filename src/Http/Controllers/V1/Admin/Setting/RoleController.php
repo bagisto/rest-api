@@ -43,7 +43,11 @@ class RoleController extends SettingController
             'description'     => 'required',
         ]);
 
+        Event::dispatch('user.role.create.before');
+
         $role = $this->getRepositoryInstance()->create($request->all());
+
+        Event::dispatch('user.role.create.after', $role);
 
         return response([
             'data'    => new RoleResource($role),
@@ -79,7 +83,11 @@ class RoleController extends SettingController
             ], 400);
         }
 
+        Event::dispatch('user.role.update.before', $id);
+
         $role = $this->getRepositoryInstance()->update($params, $id);
+
+        Event::dispatch('user.role.update.after', $role);
 
         return response([
             'data'    => new RoleResource($role),
@@ -109,7 +117,11 @@ class RoleController extends SettingController
             ], 400);
         }
 
+        Event::dispatch('user.role.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('user.role.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.settings.roles.delete-success'),

@@ -72,7 +72,11 @@ class ChannelController extends SettingController
 
         $data = $this->setSEOContent($data);
 
+        Event::dispatch('core.channel.create.before');
+
         $channel = $this->getRepositoryInstance()->create($data);
+
+        Event::dispatch('core.channel.create.after', $channel);
 
         return response([
             'data'    => new ChannelResource($channel),
@@ -126,7 +130,11 @@ class ChannelController extends SettingController
 
         $data = $this->setSEOContent($data, $locale);
 
+        Event::dispatch('core.channel.update.before', $id);
+
         $channel = $this->getRepositoryInstance()->update($data, $id);
+
+        Event::dispatch('core.channel.update.after', $channel);
 
         if ($channel->base_currency->code !== session()->get('currency')) {
             session()->put('currency', $channel->base_currency->code);
@@ -154,8 +162,12 @@ class ChannelController extends SettingController
             ], 400);
         }
 
+        Event::dispatch('core.channel.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
 
+        Event::dispatch('core.channel.delete.after', $id);
+        
         return response([
             'message' => trans('rest-api::app.admin.settings.channels.delete-success'),
         ]);

@@ -3,10 +3,10 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
-use Webkul\Customer\Repositories\CustomerAddressRepository;
-use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Rules\VatIdRule;
+use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerAddressResource;
 
 class CustomerAddressController extends CustomerBaseController
@@ -108,7 +108,11 @@ class CustomerAddressController extends CustomerBaseController
             'vat_id'       => new VatIdRule(),
         ]);
 
+        Event::dispatch('customer.addresses.create.before');
+
         $customerAddress = $this->getRepositoryInstance()->create($request->all());
+
+        Event::dispatch('customer.addresses.create.after', $customerAddress);
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
@@ -162,7 +166,11 @@ class CustomerAddressController extends CustomerBaseController
 
         $this->getRepositoryInstance()->findOrFail($id);
 
+        Event::dispatch('customer.addresses.update.before', $id);
+
         $customerAddress = $this->getRepositoryInstance()->update($request->all(), $id);
+
+        Event::dispatch('customer.addresses.update.after', $customerAddress);
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
@@ -183,7 +191,11 @@ class CustomerAddressController extends CustomerBaseController
 
         $customer->addresses()->findOrFail($id);
 
+        Event::dispatch('customer.addresses.delete.before', $id);
+
         $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('customer.addresses.delete.after', $id);
 
         return response([
             'message' => trans('rest-api::app.admin.customers.addresses.delete-success'),
