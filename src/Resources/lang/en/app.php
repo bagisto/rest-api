@@ -6,13 +6,13 @@ return [
             'orders' => [
                 'create-success'   => 'Order have been successfully added.',
                 'delete-success'   => 'Order successfully deleted',
-                'upadte-success'   => 'Order updated successfully.',
+                'update-success'   => 'Order updated successfully.',
                 'cancel-success'   => 'Order canceled successfully.',
 
                 'comment' => [
                     'create-success'   => 'Order have been successfully added.',
                     'delete-success'   => 'Order successfully deleted',
-                    'upadte-success'   => 'Order updated successfully.',
+                    'update-success'   => 'Order updated successfully.',
                 ],
 
                 'error' => [
@@ -23,7 +23,7 @@ return [
             'invoices' => [
                 'create-success'   => 'Order have been successfully added.',
                 'delete-success'   => 'Order successfully deleted',
-                'upadte-success'   => 'Order updated successfully.',
+                'update-success'   => 'Order updated successfully.',
 
                 'error' => [
                     'invalid-qty-error' => 'We found an invalid quantity to invoice items.',
@@ -35,7 +35,7 @@ return [
             'shipments' => [
                 'create-success'   => 'Order have been successfully added.',
                 'delete-success'   => 'Order successfully deleted',
-                'upadte-success'   => 'Order updated successfully.',
+                'update-success'   => 'Order updated successfully.',
 
                 'error' => [
                     'invalid-qty-error' => 'We found an invalid quantity for shipment items.',
@@ -46,7 +46,7 @@ return [
             'refunds' => [
                 'create-success'   => 'Order have been successfully added.',
                 'delete-success'   => 'Order successfully deleted',
-                'upadte-success'   => 'Order updated successfully.',
+                'update-success'   => 'Order updated successfully.',
 
                 'error' => [
                     'creation-error'       => 'Refund cannot be created for this order.',
@@ -59,7 +59,7 @@ return [
             'transactions' => [
                 'create-success'             => 'Order have been successfully added.',
                 'delete-success'             => 'Order successfully deleted',
-                'upadte-success'             => 'Order updated successfully.',
+                'update-success'             => 'Order updated successfully.',
                 'already-paid'               => 'This invoice has already been paid.',
                 'invoice-missing'            => 'This invoice id does not exist.',
                 'transaction-saved'          => 'The transaction has been saved.',
@@ -71,12 +71,12 @@ return [
             'products' => [
                 'create-success'   => 'Product have been successfully added.',
                 'delete-success'   => 'Product successfully deleted',
-                'upadte-success'   => 'Product updated successfully.',
+                'update-success'   => 'Product updated successfully.',
 
                 'inventories' => [
                     'create-success'   => 'Inventory have been successfully added.',
                     'delete-success'   => 'Inventory successfully deleted',
-                    'upadte-success'   => 'Inventory updated successfully.',
+                    'update-success'   => 'Inventory updated successfully.',
                 ],
 
                 'mass-operations' => [
@@ -110,7 +110,7 @@ return [
             'categories' => [
                 'create-success'   => 'Category have been successfully added.',
                 'delete-success'   => 'Category successfully deleted',
-                'upadte-success'   => 'Category updated successfully.',
+                'update-success'   => 'Category updated successfully.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected Categories successfully deleted.',
@@ -142,7 +142,7 @@ return [
             'attributes' => [
                 'create-success'   => 'Attribute have been successfully added.',
                 'delete-success'   => 'Attribute successfully deleted',
-                'upadte-success'   => 'Attribute updated successfully.',
+                'update-success'   => 'Attribute updated successfully.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected attributes successfully deleted.',
@@ -174,7 +174,7 @@ return [
             'families'   => [
                 'create-success'   => 'Family have been successfully added.',
                 'delete-success'   => 'Family successfully deleted',
-                'upadte-success'   => 'Family updated successfully.',
+                'update-success'   => 'Family updated successfully.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected families successfully deleted.',
@@ -208,7 +208,7 @@ return [
             'customers' => [
                 'create-success'   => 'Customer have been successfully added.',
                 'delete-success'   => 'Customer successfully deleted',
-                'upadte-success'   => 'Customer updated successfully.',
+                'update-success'   => 'Customer updated successfully.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected customers successfully deleted.',
@@ -236,7 +236,7 @@ return [
             'addresses' => [
                 'create-success'   => 'Address have been successfully added.',
                 'delete-success'   => 'Address successfully deleted',
-                'upadte-success'   => 'Address updated successfully.',
+                'update-success'   => 'Address updated successfully.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected addresses successfully deleted.',
@@ -253,7 +253,7 @@ return [
         'groups' => [
             'create-success'   => 'Customer group have been successfully added.',
             'delete-success'   => 'Customer group successfully deleted',
-            'upadte-success'   => 'Customer group updated successfully.',
+            'update-success'   => 'Customer group updated successfully.',
 
             'mass-operations' => [
                 'delete-success'  => 'Selected groups successfully deleted.',
@@ -281,7 +281,7 @@ return [
         'reviews' => [
             'create-success'   => 'Review have been successfully added.',
             'delete-success'   => 'Review successfully deleted',
-            'upadte-success'   => 'Review updated successfully.',
+            'update-success'   => 'Review updated successfully.',
 
             'mass-operations' => [
                 'delete-success'  => 'Selected reviews successfully deleted.',
@@ -292,7 +292,7 @@ return [
         'cms' => [
             'create-success'   => 'CMS have been successfully added.',
             'delete-success'   => 'CMS successfully deleted',
-            'upadte-success'   => 'CMS updated successfully.',
+            'update-success'   => 'CMS updated successfully.',
 
             'mass-operations' => [
                 'delete-success'  => 'Selected pages successfully deleted.',
@@ -321,19 +321,19 @@ return [
             'campaigns' =>[
                 'create-success'   => 'Campaign have been successfully added.',
                 'delete-success'   => 'Campaign successfully deleted',
-                'upadte-success'   => 'Campaign updated successfully.',
+                'update-success'   => 'Campaign updated successfully.',
             ],
 
             'events' =>[
                 'create-success'   => 'Event have been successfully added.',
                 'delete-success'   => 'Event successfully deleted',
-                'upadte-success'   => 'Event updated successfully.',
+                'update-success'   => 'Event updated successfully.',
             ],
 
             'templates' =>[
                 'create-success'   => 'Email Template have been successfully added.',
                 'delete-success'   => 'Email Template successfully deleted',
-                'upadte-success'   => 'Email Template updated successfully.',
+                'update-success'   => 'Email Template updated successfully.',
             ],
         ],
 
@@ -341,19 +341,19 @@ return [
             'cart-rules' => [
                 'create-success'   => 'Cart Rule have been successfully added.',
                 'delete-success'   => 'Cart Rule successfully deleted',
-                'upadte-success'   => 'Cart Rule updated successfully.',
+                'update-success'   => 'Cart Rule updated successfully.',
             ],
 
             'catalog-rules' => [
                 'create-success'   => 'Catalog Rule have been successfully added.',
                 'delete-success'   => 'Catalog Rule successfully deleted',
-                'upadte-success'   => 'Catalog Rule updated successfully.',
+                'update-success'   => 'Catalog Rule updated successfully.',
             ],
 
             'cart-rule-coupons' => [
                 'create-success'   => 'Cart Rule Coupon have been successfully added.',
                 'delete-success'   => 'Cart Rule Coupon successfully deleted',
-                'upadte-success'   => 'Cart Rule Coupon updated successfully.',
+                'update-success'   => 'Cart Rule Coupon updated successfully.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected Cart Rule Coupons successfully deleted.',
@@ -366,7 +366,7 @@ return [
             'locales' =>[
                 'create-success'   => 'Locale have been successfully added.',
                 'delete-success'   => 'Locale successfully deleted',
-                'upadte-success'   => 'Locale updated successfully.',
+                'update-success'   => 'Locale updated successfully.',
 
                 'error' => [
                     'already-taken'                => 'The locales has already been taken.',
@@ -389,7 +389,7 @@ return [
             'currencies' => [
                 'create-success'   => 'Currency have been successfully added.',
                 'delete-success'   => 'Currency successfully deleted',
-                'upadte-success'   => 'Currency updated successfully.',
+                'update-success'   => 'Currency updated successfully.',
 
                 'error' => [
                     'already-taken'                => 'The currencies has already been taken.',
@@ -412,7 +412,7 @@ return [
             'exchange-rates' => [
                 'create-success'   => 'Exchange Rate have been successfully added.',
                 'delete-success'   => 'Exchange Rate successfully deleted',
-                'upadte-success'   => 'Exchange Rate updated successfully.',
+                'update-success'   => 'Exchange Rate updated successfully.',
 
                 'error' => [
                     'already-taken'                => 'The exchange rates has already been taken.',
@@ -435,7 +435,7 @@ return [
             'inventory-sources' => [
                 'create-success'   => 'Inventory Source have been successfully added.',
                 'delete-success'   => 'Inventory Source successfully deleted',
-                'upadte-success'   => 'Inventory Source updated successfully.',
+                'update-success'   => 'Inventory Source updated successfully.',
 
                 'error' => [
                     'already-taken'                   => 'The inventory sources has already been taken.',
@@ -459,25 +459,25 @@ return [
                'tax-rates' => [
                 'create-success'   => 'Tax Rate have been successfully added.',
                 'delete-success'   => 'Tax Rate successfully deleted',
-                'upadte-success'   => 'Tax Rate updated successfully.',
+                'update-success'   => 'Tax Rate updated successfully.',
                ],
                'tax-categories' => [
                 'create-success'   => 'Tax Category have been successfully added.',
                 'delete-success'   => 'Tax Category successfully deleted',
-                'upadte-success'   => 'Tax Category updated successfully.',
+                'update-success'   => 'Tax Category updated successfully.',
                ],
             ],
 
             'rates'   => [
                 'create-success'   => 'Rate have been successfully added.',
                 'delete-success'   => 'Rate successfully deleted',
-                'upadte-success'   => 'Rate updated successfully.'
+                'update-success'   => 'Rate updated successfully.'
             ],
 
             'channels' => [
                 'create-success'   => 'Channel have been successfully added.',
                 'delete-success'   => 'Channel successfully deleted',
-                'upadte-success'   => 'Channel updated successfully.',
+                'update-success'   => 'Channel updated successfully.',
 
                 'error' => [
                     'already-taken'                => 'The channels has already been taken.',
@@ -500,7 +500,7 @@ return [
             'users' => [
                 'create-success'   => 'User have been successfully added.',
                 'delete-success'   => 'User successfully deleted',
-                'upadte-success'   => 'User updated successfully.',
+                'update-success'   => 'User updated successfully.',
 
                 'error' => [
                     'already-taken'                => 'The users has already been taken.',
@@ -523,7 +523,7 @@ return [
             'roles' => [
                 'create-success'   => 'Role have been successfully added.',
                 'delete-success'   => 'Role successfully deleted',
-                'upadte-success'   => 'Role updated successfully.',
+                'update-success'   => 'Role updated successfully.',
 
                 'error' => [
                     'already-taken'                => 'The roles has already been taken.',
@@ -546,14 +546,14 @@ return [
             'configuration' => [
                 'create-success'   => 'Configuration have been successfully added.',
                 'delete-success'   => 'Configuration successfully deleted',
-                'upadte-success'   => 'Configuration updated successfully.',
+                'update-success'   => 'Configuration updated successfully.',
             ],
         ],
 
         'account' => [
             'create-success'     => 'Account have been successfully added.',
             'delete-success'     => 'Account successfully deleted',
-            'upadte-success'     => 'Account updated successfully.',
+            'update-success'     => 'Account updated successfully.',
             'logged-in-success'  => 'Logged in successfully.',
             'logged-out-success' => 'Logged out successfully.',
 
@@ -583,13 +583,13 @@ return [
             'addresses' => [
                 'create-success'     => 'Your address has been created successfully.',
                 'delete-success'     => 'Your address has been deleted successfully.',
-                'upadte-success'     => 'Your address has been updated successfully.',
+                'update-success'     => 'Your address has been updated successfully.',
             ],
 
             'accounts' => [
                 'create-success'     => 'Your Account has been created successfully.',
                 'delete-success'     => 'Your Account has been deleted successfully.',
-                'upadte-success'     => 'Your Account has been updated successfully.',
+                'update-success'     => 'Your Account has been updated successfully.',
                 'logged-in-success'  => 'Logged in successfully.',
                 'logged-out-success' => 'Logged out successfully.',
 

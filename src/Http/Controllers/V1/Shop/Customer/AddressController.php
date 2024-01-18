@@ -106,7 +106,7 @@ class AddressController extends CustomerController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => trans('rest-api::app.shop.customers.addresses.upadte-success'),
+            'message' => trans('rest-api::app.shop.customers.addresses.update-success'),
         ]);
     }
 
