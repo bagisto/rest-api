@@ -27,11 +27,6 @@ Route::group([
     require 'customer-routes.php';
 
     /**
-     * Velocity routes.
-     */
-    require 'velocity-routes.php';
-
-    /**
      * Marketing routes.
      */
     require 'marketing-routes.php';

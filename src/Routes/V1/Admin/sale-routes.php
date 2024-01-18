@@ -14,47 +14,60 @@ Route::group([
     /**
      * Order routes.
      */
-    Route::get('orders', [OrderController::class, 'allResources']);
+    Route::controller(OrderController::class)->prefix('orders')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::get('orders/{id}', [OrderController::class, 'getResource']);
-
-    Route::post('orders/{id}/cancel', [OrderController::class, 'cancel']);
-
-    Route::post('orders/{id}/comments', [OrderController::class, 'comment']);
+        Route::get('{id}', 'getResource');
+    
+        Route::post('{id}/cancel', 'cancel');
+    
+        Route::post('{id}/comments', 'comment');
+    
+    });
 
     /**
      * Shipment routes.
      */
-    Route::get('shipments', [ShipmentController::class, 'allResources']);
+    Route::controller(ShipmentController::class)->prefix('shipments')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::get('shipments/{id}', [ShipmentController::class, 'getResource']);
-
-    Route::post('shipments/{order_id}', [ShipmentController::class, 'store']);
+        Route::get('{id}', 'getResource');
+    
+        Route::post('{order_id}', 'store');
+    
+    });
 
     /**
      * Invoice routes.
      */
-    Route::get('invoices', [InvoiceController::class, 'allResources']);
+    Route::controller(InvoiceController::class)->prefix('invoices')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::get('invoices/{id}', [InvoiceController::class, 'getResource']);
+        Route::get('{id}', 'getResource');
 
-    Route::post('invoices/{order_id}', [InvoiceController::class, 'store']);
+        Route::post('{order_id}', 'store');
+    });
 
     /**
      * Refund routes.
      */
-    Route::get('refunds', [RefundController::class, 'allResources']);
+    Route::controller(RefundController::class)->prefix('refunds')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::get('refunds/{id}', [RefundController::class, 'getResource']);
-
-    Route::post('refunds/{order_id}', [RefundController::class, 'store']);
+        Route::get('{id}', 'getResource');
+    
+        Route::post('{order_id}', 'store');
+    
+    });
 
     /**
      * Transaction routes.
      */
-    Route::get('transactions', [TransactionController::class, 'allResources']);
+    Route::controller(TransactionController::class)->prefix('transactions')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::get('transactions/{id}', [TransactionController::class, 'getResource']);
-
-    Route::post('transactions', [TransactionController::class, 'store']);
+        Route::get('{id}', 'getResource');
+    
+        Route::post('', 'store');
+    });
 });
