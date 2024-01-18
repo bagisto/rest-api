@@ -6,78 +6,90 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerGroupController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerReviewController;
 
-Route::group(['middleware' => ['auth:sanctum', 'sanctum.admin']], function () {
+Route::group([
+    'middleware' => ['auth:sanctum', 'sanctum.admin'],
+    'prefix'     => 'customers',
+], function () {
     /**
      * Customer's group routes.
      */
-    Route::get('customers/groups', [CustomerGroupController::class, 'allResources']);
+    Route::controller(CustomerGroupController::class)->prefix('groups')->group(function () { 
+        Route::get('', 'allResources');
 
-    Route::post('customers/groups', [CustomerGroupController::class, 'store']);
-
-    Route::get('customers/groups/{id}', [CustomerGroupController::class, 'getResource']);
-
-    Route::put('customers/groups/{id}', [CustomerGroupController::class, 'update']);
-
-    Route::delete('customers/groups/{id}', [CustomerGroupController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');    
+    });
 
     /**
      * Customer's review routes.
      */
-    Route::get('customers/reviews', [CustomerReviewController::class, 'allResources']);
+    Route::controller(CustomerReviewController::class)->prefix('reviews')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::get('customers/reviews/{id}', [CustomerReviewController::class, 'getResource']);
-
-    Route::put('customers/reviews/{id}', [CustomerReviewController::class, 'update']);
-
-    Route::delete('customers/reviews/{id}', [CustomerReviewController::class, 'destroy']);
-
-    Route::post('customers/reviews/mass-destroy', [CustomerReviewController::class, 'massDestroy']);
-
-    Route::post('customers/reviews/mass-update', [CustomerReviewController::class, 'massUpdate']);
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    
+        Route::post('mass-destroy', 'massDestroy');
+    
+        Route::post('mass-update', 'massUpdate');
+     });
 
     /**
      * Customer routes.
      *
      * Note: Main customer routes should be placed after all these routes i.e. `customers/<static-slug>`.
      */
-    Route::get('customers', [CustomerController::class, 'allResources']);
+    Route::controller(CustomerController::class)->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('customers', [CustomerController::class, 'store']);
+        Route::post('',  'store');
 
-    Route::get('customers/{id}', [CustomerController::class, 'getResource']);
+        Route::get('{id}', 'getResource');
 
-    Route::put('customers/{id}', [CustomerController::class, 'update']);
+        Route::put('{id}', 'update');
 
-    Route::delete('customers/{id}', [CustomerController::class, 'destroy']);
+        Route::delete('{id}',  'destroy');
 
-    Route::post('customers/mass-destroy', [CustomerController::class, 'massDestroy']);
+        Route::post('mass-destroy', 'massDestroy');
 
-    Route::post('customers/mass-update', [CustomerController::class, 'massUpdate']);
+        Route::post('mass-update', 'massUpdate');
 
-    /**
-     * Customer's order routes.
-     */
-    Route::get('customers/{id}/orders', [CustomerController::class, 'orders']);
+        /**
+         * Customer's order routes.
+         */
+        Route::get('{id}/orders', 'orders');
 
-    Route::get('customers/{id}/invoices', [CustomerController::class, 'invoices']);
+        Route::get('{id}/invoices', 'invoices');
 
-    /**
-     * Customer's note routes.
-     */
-    Route::post('customers/{id}/notes', [CustomerController::class, 'storeNote']);
+        /**
+         * Customer's note routes.
+         */
+        Route::post('{id}/notes', 'storeNote');
+
+    });
 
     /**
      * Customer's address routes.
      */
-    Route::get('customers/{customer_id}/addresses', [CustomerAddressController::class, 'index']);
+    Route::controller(CustomerAddressController::class)->prefix('{customer_id}/addresses')->group(function () {
+        Route::get('', 'index');
 
-    Route::post('customers/{customer_id}/addresses', [CustomerAddressController::class, 'store']);
+        Route::post('', 'store');
 
-    Route::get('customers/{customer_id}/addresses/{id}', [CustomerAddressController::class, 'show']);
+        Route::get('{id}', 'show');
 
-    Route::put('customers/{customer_id}/addresses/{id}', [CustomerAddressController::class, 'update']);
+        Route::put('{id}', 'update');
 
-    Route::delete('customers/{customer_id}/addresses/{id}', [CustomerAddressController::class, 'destroy']);
+        Route::delete('{id}', 'destroy');
 
-    Route::post('customers/{customer_id}/addresses/mass-destroy', [CustomerAddressController::class, 'massDestroy']);
+        Route::post('mass-destroy', 'massDestroy');
+    });
 });

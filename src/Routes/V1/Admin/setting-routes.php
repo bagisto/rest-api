@@ -22,134 +22,140 @@ Route::group([
     /**
      * Locale routes.
      */
-    Route::get('locales', [LocaleController::class, 'allResources']);
+    Route::controller(LocaleController::class)->prefix('locales')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('locales', [LocaleController::class, 'store']);
-
-    Route::get('locales/{id}', [LocaleController::class, 'getResource']);
-
-    Route::put('locales/{id}', [LocaleController::class, 'update']);
-
-    Route::delete('locales/{id}', [LocaleController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
 
     /**
      * Currency routes.
      */
-    Route::get('currencies', [CurrencyController::class, 'allResources']);
+    Route::controller(CurrencyController::class)->prefix('currencies')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('currencies', [CurrencyController::class, 'store']);
-
-    Route::get('currencies/{id}', [CurrencyController::class, 'getResource']);
-
-    Route::put('currencies/{id}', [CurrencyController::class, 'update']);
-
-    Route::delete('currencies/{id}', [CurrencyController::class, 'destroy']);
-
-    Route::post('currencies/mass-destroy', [CurrencyController::class, 'massDestroyResources']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    
+        Route::post('mass-destroy', 'massDestroy');
+    
+    });
 
     /**
      * Exchange rate routes.
      */
-    Route::get('exchange-rates', [ExchangeRateController::class, 'allResources']);
+    Route::controller(ExchangeRateController::class)->prefix('currencies')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('exchange-rates', [ExchangeRateController::class, 'store']);
-
-    Route::get('exchange-rates/{id}', [ExchangeRateController::class, 'getResource']);
-
-    Route::put('exchange-rates/{id}', [ExchangeRateController::class, 'update']);
-
-    Route::delete('exchange-rates/{id}', [ExchangeRateController::class, 'destroy']);
-
-    Route::post('exchange-rates/update-rates', [ExchangeRateController::class, 'updateRates']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    
+        Route::post('update-rates', 'updateRates');
+    });
 
     /**
      * Inventory source routes.
      */
-    Route::get('inventory-sources', [InventorySourceController::class, 'allResources']);
+    Route::controller(InventorySourceController::class)->prefix('inventory-sources')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('inventory-sources', [InventorySourceController::class, 'store']);
-
-    Route::get('inventory-sources/{id}', [InventorySourceController::class, 'getResource']);
-
-    Route::put('inventory-sources/{id}', [InventorySourceController::class, 'update']);
-
-    Route::delete('inventory-sources/{id}', [InventorySourceController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
 
     /**
      * Channel routes.
      */
-    Route::get('channels', [ChannelController::class, 'allResources']);
+    Route::controller(ChannelController::class)->prefix('channels')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('channels', [ChannelController::class, 'store']);
-
-    Route::get('channels/{id}', [ChannelController::class, 'getResource']);
-
-    Route::put('channels/{id}', [ChannelController::class, 'update']);
-
-    Route::delete('channels/{id}', [ChannelController::class, 'destroy']);
-
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
+  
     /**
      * User routes.
      */
-    Route::get('users', [UserController::class, 'allResources']);
+    Route::controller(UserController::class)->prefix('users')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('users', [UserController::class, 'store']);
-
-    Route::get('users/{id}', [UserController::class, 'getResource']);
-
-    Route::put('users/{id}', [UserController::class, 'update']);
-
-    Route::delete('users/{id}', [UserController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
 
     /**
      * Role routes.
      */
-    Route::get('roles', [RoleController::class, 'allResources']);
+    Route::controller(RoleController::class)->prefix('roles')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('roles', [RoleController::class, 'store']);
+        Route::post('', 'store');
 
-    Route::get('roles/{id}', [RoleController::class, 'getResource']);
-
-    Route::put('roles/{id}', [RoleController::class, 'update']);
-
-    Route::delete('roles/{id}', [RoleController::class, 'destroy']);
-
-    /**
-     * Slider routes.
-     */
-    // Route::get('sliders', [SliderController::class, 'allResources']);
-
-    // Route::post('sliders', [SliderController::class, 'store']);
-
-    // Route::get('sliders/{id}', [SliderController::class, 'getResource']);
-
-    // Route::put('sliders/{id}', [SliderController::class, 'update']);
-
-    // Route::delete('sliders/{id}', [SliderController::class, 'destroy']);
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
 
     /**
      * Tax category routes.
      */
-    Route::get('tax-categories', [TaxCategoryController::class, 'allResources']);
+    Route::controller(TaxCategoryController::class)->prefix('tax-categories')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('tax-categories', [TaxCategoryController::class, 'store']);
-
-    Route::get('tax-categories/{id}', [TaxCategoryController::class, 'getResource']);
-
-    Route::put('tax-categories/{id}', [TaxCategoryController::class, 'update']);
-
-    Route::delete('tax-categories/{id}', [TaxCategoryController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
 
     /**
      * Tax rate routes.
      */
-    Route::get('tax-rates', [TaxRateController::class, 'allResources']);
+    Route::controller(TaxRateController::class)->prefix('tax-rates')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('tax-rates', [TaxRateController::class, 'store']);
-
-    Route::get('tax-rates/{id}', [TaxRateController::class, 'getResource']);
-
-    Route::put('tax-rates/{id}', [TaxRateController::class, 'update']);
-
-    Route::delete('tax-rates/{id}', [TaxRateController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    }); 
 });

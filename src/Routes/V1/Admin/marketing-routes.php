@@ -15,78 +15,90 @@ Route::group([
     /**
      * Catalog rule routes.
      */
-    Route::get('catalog-rules', [CatalogRuleController::class, 'allResources']);
+    Route::controller(CatalogRuleController::class)->prefix('catalog-rules')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('catalog-rules', [CatalogRuleController::class, 'store']);
-
-    Route::get('catalog-rules/{id}', [CatalogRuleController::class, 'getResource']);
-
-    Route::put('catalog-rules/{id}', [CatalogRuleController::class, 'update']);
-
-    Route::delete('catalog-rules/{id}', [CatalogRuleController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
 
     /**
      * Cart rule routes.
      */
-    Route::get('cart-rules', [CartRuleController::class, 'allResources']);
+    Route::controller(CartRuleController::class)->prefix('cart-rules')->group(function () { 
+        Route::get('', 'allResources');
 
-    Route::post('cart-rules', [CartRuleController::class, 'store']);
-
-    Route::get('cart-rules/{id}', [CartRuleController::class, 'getResource']);
-
-    Route::put('cart-rules/{id}', [CartRuleController::class, 'update']);
-
-    Route::delete('cart-rules/{id}', [CartRuleController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
 
     /**
      * Cart rule coupon routes.
      */
-    Route::get('cart-rules/{cart_rule_id}/coupons', [CartRuleCouponController::class, 'index']);
+    Route::controller(CartRuleCouponController::class)->prefix('cart-rules/{cart_rule_id}/coupons')->group(function () { 
+        Route::get('', 'index');
 
-    Route::post('cart-rules/{cart_rule_id}/coupons', [CartRuleCouponController::class, 'store']);
-
-    Route::get('cart-rules/{cart_rule_id}/coupons/{id}', [CartRuleCouponController::class, 'show']);
-
-    Route::delete('cart-rules/{cart_rule_id}/coupons/{id}', [CartRuleCouponController::class, 'destroy']);
-
-    Route::post('cart-rules/{cart_rule_id}/coupons/mass-destroy', [CartRuleCouponController::class, 'massDestroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'show');
+    
+        Route::delete('{id}', 'destroy');
+    
+        Route::post('mass-destroy', 'massDestroy');
+    });
 
     /**
      * Email template routes.
      */
-    Route::get('email-templates', [TemplateController::class, 'allResources']);
+    Route::controller(TemplateController::class)->prefix('email-templates')->group(function () { 
+        Route::get('', 'allResources');
 
-    Route::post('email-templates', [TemplateController::class, 'store']);
-
-    Route::get('email-templates/{id}', [TemplateController::class, 'getResource']);
-
-    Route::put('email-templates/{id}', [TemplateController::class, 'update']);
-
-    Route::delete('email-templates/{id}', [TemplateController::class, 'destroy']);
+        Route::post('', 'store');
+    
+        Route::get('{id}', 'getResource');
+    
+        Route::put('{id}', 'update');
+    
+        Route::delete('{id}', 'destroy');
+    });
 
     /**
      * Event routes.
      */
-    Route::get('events', [EventController::class, 'allResources']);
+    Route::controller(EventController::class)->prefix('events')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('events', [EventController::class, 'store']);
+        Route::post('', 'store');
 
-    Route::get('events/{id}', [EventController::class, 'getResource']);
+        Route::get('{id}', 'getResource');
 
-    Route::put('events/{id}', [EventController::class, 'update']);
+        Route::put('{id}', 'update');
 
-    Route::delete('events/{id}', [EventController::class, 'destroy']);
+        Route::delete('{id}', 'destroy');
+     });
 
     /**
      * Campaign routes.
      */
-    Route::get('campaigns', [CampaignController::class, 'allResources']);
+    Route::controller(CampaignController::class)->prefix('campaigns')->group(function () {
+        Route::get('', 'allResources');
 
-    Route::post('campaigns', [CampaignController::class, 'store']);
+        Route::post('', 'store');
 
-    Route::get('campaigns/{id}', [CampaignController::class, 'getResource']);
+        Route::get('{id}', 'getResource');
 
-    Route::put('campaigns/{id}', [CampaignController::class, 'update']);
+        Route::put('{id}', 'update');
 
-    Route::delete('campaigns/{id}', [CampaignController::class, 'destroy']);
+        Route::delete('{id}', 'destroy');
+    });
 });
