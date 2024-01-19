@@ -31,8 +31,7 @@ class CurrencyController extends SettingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * 
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,14 +52,13 @@ class CurrencyController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code' => ['required', 'unique:currencies,code,' . $id, new Code],
+            'code' => 'required|min:3|max:3|unique:currencies,code',
             'name' => 'required',
         ]);
 
