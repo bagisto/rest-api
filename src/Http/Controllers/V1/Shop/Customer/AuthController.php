@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Webkul\Core\Rules\AlphaNumericSpace;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
@@ -58,8 +59,8 @@ class AuthController extends CustomerController
     public function register(Request $request)
     {
         $request->validate([
-            'first_name' => 'required|string',
-            'last_name'  => 'required|string',
+            'first_name' => ['required', new AlphaNumericSpace],
+            'last_name'  => ['required', new AlphaNumericSpace],
             'email'      => 'required|email|unique:customers,email',
             'password'   => 'required|confirmed|min:6',
         ]);
@@ -167,8 +168,8 @@ class AuthController extends CustomerController
         $customer = $this->resolveShopUser($request);
 
         $request->validate([
-            'first_name'    => 'required',
-            'last_name'     => 'required',
+            'first_name'    => ['required', new AlphaNumericSpace],
+            'last_name'     => ['required', new AlphaNumericSpace],
             'gender'        => 'required',
             'date_of_birth' => 'nullable|date|before:today',
             'email'         => 'email|unique:customers,email,' . $customer->id,
