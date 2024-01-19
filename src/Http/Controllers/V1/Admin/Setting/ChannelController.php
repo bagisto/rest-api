@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ChannelRepository;
 use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
