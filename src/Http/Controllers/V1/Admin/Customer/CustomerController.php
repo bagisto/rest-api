@@ -5,7 +5,6 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Event;
-use Webkul\Admin\Mail\NewCustomerNotification;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
@@ -74,11 +73,7 @@ class CustomerController extends CustomerBaseController
 
         $customer = $this->getRepositoryInstance()->create($data);
 
-        try {
-            if (core()->getConfigData('emails.general.notifications.emails.general.notifications.customer')) {
-                Mail::queue(new NewCustomerNotification($customer, $password));
-            }
-        } catch (\Exception $e) {}
+        Event::dispatch('customer.registration.after', $customer);
 
         return response([
             'data'    => new CustomerResource($customer),
