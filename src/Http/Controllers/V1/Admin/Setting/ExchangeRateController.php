@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ExchangeRateRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ExchangeRateResource;
 

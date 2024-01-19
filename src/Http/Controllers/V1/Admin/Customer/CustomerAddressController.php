@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Webkul\Customer\Rules\VatIdRule;
 use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Customer\Repositories\CustomerRepository;
