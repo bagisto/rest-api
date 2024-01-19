@@ -72,7 +72,17 @@ class CatalogRuleController extends MarketingController
 
         Event::dispatch('promotions.catalog_rule.create.before');
 
-        $catalogRule = $this->getRepositoryInstance()->create($request->all());
+        $data = $request->all();
+
+        /**
+         * These two keys needs to be removed in the next version compatibility.
+         * 
+         * @deprecated
+         */
+        $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
+        $data['ends_till'] = ! empty($data['ends_till']) ? $data['ends_till'] : null;
+
+        $catalogRule = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('promotions.catalog_rule.create.after', $catalogRule);
 
@@ -107,7 +117,17 @@ class CatalogRuleController extends MarketingController
 
         Event::dispatch('promotions.catalog_rule.update.before', $id);
 
-        $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
+        $data = $request->all();
+
+        /**
+         * These two keys needs to be removed in the next version compatibility.
+         * 
+         * @deprecated
+         */
+        $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
+        $data['ends_till'] = ! empty($data['ends_till']) ? $data['ends_till'] : null;
+
+        $catalogRule = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('promotions.catalog_rule.update.after', $catalogRule);
 
