@@ -55,7 +55,7 @@ Route::group([
     /**
      * Exchange rate routes.
      */
-    Route::controller(ExchangeRateController::class)->prefix('currencies')->group(function () {
+    Route::controller(ExchangeRateController::class)->prefix('exchange-rates')->group(function () {
         Route::get('', 'allResources');
 
         Route::post('', 'store');
