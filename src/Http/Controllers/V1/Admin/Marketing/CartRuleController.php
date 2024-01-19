@@ -54,6 +54,14 @@ class CartRuleController extends MarketingController
 
         Event::dispatch('promotions.cart_rule.create.before');
 
+        /**
+         * These two keys needs to be removed in the next version compatibility.
+         * 
+         * @deprecated
+         */
+        $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
+        $data['ends_till'] = ! empty($data['ends_till']) ? $data['ends_till'] : null;
+
         $cartRule = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('promotions.cart_rule.create.after', $cartRule);
@@ -101,7 +109,17 @@ class CartRuleController extends MarketingController
 
         Event::dispatch('promotions.cart_rule.update.before', $id);
 
-        $cartRule = $this->getRepositoryInstance()->update($request->all(), $id);
+        $data = $request->all();
+
+        /**
+         * These two keys needs to be removed in the next version compatibility.
+         * 
+         * @deprecated
+         */
+        $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
+        $data['ends_till'] = ! empty($data['ends_till']) ? $data['ends_till'] : null;
+
+        $cartRule = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('promotions.cart_rule.update.after', $cartRule);
 
