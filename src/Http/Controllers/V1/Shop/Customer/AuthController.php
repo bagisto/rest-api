@@ -79,7 +79,7 @@ class AuthController extends CustomerController
         Event::dispatch('customer.registration.after', $customer);
 
         return response([
-            'message' =>  trans('rest-api::app.shop.customers.accounts.create-success'),
+            'message' =>  trans('rest-api::app.shop.customer.accounts.create-success'),
         ]);
     }
 
@@ -105,7 +105,7 @@ class AuthController extends CustomerController
 
             if (! $customer || ! Hash::check($request->password, $customer->password)) {
                 throw ValidationException::withMessages([
-                    'email' =>  trans('rest-api::app.shop.customers.accounts.error.credential-error'),
+                    'email' =>  trans('rest-api::app.shop.customer.accounts.error.credential-error'),
                 ]);
             }
 
@@ -117,11 +117,11 @@ class AuthController extends CustomerController
              /**
               * Event passed to prepare cart after login.
               */
-             Event::dispatch('customer.after.login', $loginRequest->get('email'));
+             Event::dispatch('customer.after.login', $request->get('email'));
 
             return response([
                 'data'    => new CustomerResource($customer),
-                'message' =>  trans('rest-api::app.shop.customers.accounts.logged-in-success'),
+                'message' =>  trans('rest-api::app.shop.customer.accounts.logged-in-success'),
                 'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
             ]);
 
@@ -132,12 +132,12 @@ class AuthController extends CustomerController
 
             return response([
                 'data'    => new CustomerResource($this->resolveShopUser($request)),
-                'message' =>  trans('rest-api::app.shop.customers.accounts.logged-in-success'),
+                'message' =>  trans('rest-api::app.shop.customer.accounts.logged-in-success'),
             ]);
         }
 
         return response([
-            'message' =>  trans('rest-api::app.shop.customers.accounts.error.invalid'),
+            'message' =>  trans('rest-api::app.shop.customer.accounts.error.invalid'),
         ], 401);
     }
 
@@ -187,7 +187,7 @@ class AuthController extends CustomerController
 
         return response([
             'data'    => new CustomerResource($updatedCustomer),
-            'message' =>  trans('rest-api::app.shop.customers.addresses.update-success'),
+            'message' =>  trans('rest-api::app.shop.customer.addresses.update-success'),
         ]);
     }
 
@@ -208,7 +208,7 @@ class AuthController extends CustomerController
         Event::dispatch('customer.after.logout', $id);    
 
         return response([
-            'message' => trans('rest-api::app.shop.customers.accounts.logged-in-success'),
+            'message' => trans('rest-api::app.shop.customer.accounts.logged-in-success'),
         ]);
     }
 
