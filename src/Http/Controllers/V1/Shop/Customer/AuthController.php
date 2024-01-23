@@ -174,6 +174,7 @@ class AuthController extends CustomerController
             'gender'        => 'required',
             'date_of_birth' => 'nullable|date|before:today',
             'email'         => 'email|unique:customers,email,' . $customer->id,
+            'phone'         => 'required|integer',
             'password'      => 'confirmed|min:6',
         ]);
 
