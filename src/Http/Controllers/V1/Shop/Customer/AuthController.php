@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Event;
+use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Core\Rules\AlphaNumericSpace;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
@@ -174,7 +175,7 @@ class AuthController extends CustomerController
             'gender'        => 'required',
             'date_of_birth' => 'nullable|date|before:today',
             'email'         => 'email|unique:customers,email,' . $customer->id,
-            'phone'         => 'required|integer',
+            'phone'         => ['required', new PhoneNumber],
             'password'      => 'confirmed|min:6',
         ]);
 
