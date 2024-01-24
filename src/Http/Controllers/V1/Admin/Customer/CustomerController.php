@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Event;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
@@ -85,10 +84,9 @@ class CustomerController extends CustomerBaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'first_name'    => 'string|required',
@@ -117,10 +115,9 @@ class CustomerController extends CustomerBaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
@@ -192,10 +189,9 @@ class CustomerController extends CustomerBaseController
     /**
      * Retrieve all orders from customer.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function orders($id)
+    public function orders(int $id)
     { 
         
         $customer = $this->getRepositoryInstance()->findorFail($id);
@@ -207,10 +203,9 @@ class CustomerController extends CustomerBaseController
     /**
      * Retrieve all invoices from customer.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function invoices($id)
+    public function invoices(int $id)
     {
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
@@ -224,10 +219,9 @@ class CustomerController extends CustomerBaseController
     /**
      * To store the response of the note in storage
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function storeNote(Request $request, $id)
+    public function storeNote(Request $request, int $id)
     {
         $request->validate([
             'note' => 'string|nullable',
@@ -247,7 +241,7 @@ class CustomerController extends CustomerBaseController
 
         return response([
             'data'    => new CustomerResource($customer),
-            'message' => trans('rest-api::app.customers.note-taken'),
+            'message' => trans('rest-api::app.admin.customers.notes.note-taken'),
         ]);
     }
 }
