@@ -3,9 +3,10 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\RoleResource;
-use Webkul\User\Repositories\AdminRepository;
+use Illuminate\Support\Facades\Event;
 use Webkul\User\Repositories\RoleRepository;
+use Webkul\User\Repositories\AdminRepository;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\RoleResource;
 
 class RoleController extends SettingController
 {
