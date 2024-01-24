@@ -40,18 +40,21 @@ class AttributeController extends CatalogController
     public function store(Request $request)
     {
         $request->validate([
-            'code'       => ['required', 'unique:attributes,code', new Code],
-            'admin_name' => 'required',
-            'type'       => 'required',
+            'code'          => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
+            'admin_name'    => 'required',
+            'type'          => 'required',
+            'default_value' => 'integer',
         ]);
 
-        $data = $request->all();
+        $requestData = $request->all();
 
-        $data['is_user_defined'] = 1;
+        $requestData['is_user_defined'] = 1;
+
+        $requestData['default_value'] ??= Null; 
 
         Event::dispatch('catalog.attribute.create.before');
 
-        $attribute = $this->getRepositoryInstance()->create($data);
+        $attribute = $this->getRepositoryInstance()->create($requestData);
 
         Event::dispatch('catalog.attribute.create.after', $attribute);
 
@@ -64,23 +67,26 @@ class AttributeController extends CatalogController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(int $id)
     {
-        $request->validate([
-            'code'       => ['required', 'unique:attributes,code,' . $id, new \Webkul\Core\Rules\Code],
-            'admin_name' => 'required',
-            'type'       => 'required',
+        $this->validate(request(), [
+            'code'          => ['required', 'unique:attributes,code,' . $id, new Code],
+            'admin_name'    => 'required',
+            'type'          => 'required',
+            'default_value' => 'integer',
         ]);
+
+        $requestData = request()->all();
+
+        $requestData['default_value'] ??= Null; 
 
         $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('catalog.attribute.update.before', $id);
 
-        $attribute = $this->getRepositoryInstance()->update($request->all(), $id);
+        $attribute = $this->getRepositoryInstance()->update($requestData, $id);
 
         Event::dispatch('catalog.attribute.update.after', $attribute);
 
@@ -93,11 +99,9 @@ class AttributeController extends CatalogController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(int $id)
     {
         $attribute = $this->getRepositoryInstance()->findOrFail($id);
 
