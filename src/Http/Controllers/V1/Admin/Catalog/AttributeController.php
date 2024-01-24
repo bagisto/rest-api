@@ -34,27 +34,26 @@ class AttributeController extends CatalogController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
+        $this->validate(request(), [
             'code'          => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
             'admin_name'    => 'required',
             'type'          => 'required',
             'default_value' => 'integer',
         ]);
 
-        $requestData = $request->all();
+        $data =  request()->all();
 
-        $requestData['is_user_defined'] = 1;
+        $data['is_user_defined'] = 1;
 
-        $requestData['default_value'] ??= Null; 
+        $data['default_value'] ??= Null; 
 
         Event::dispatch('catalog.attribute.create.before');
 
-        $attribute = $this->getRepositoryInstance()->create($requestData);
+        $attribute = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('catalog.attribute.create.after', $attribute);
 
@@ -78,15 +77,15 @@ class AttributeController extends CatalogController
             'default_value' => 'integer',
         ]);
 
-        $requestData = request()->all();
+        $data = request()->all();
 
-        $requestData['default_value'] ??= Null; 
+        $data['default_value'] ??= Null; 
 
         $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('catalog.attribute.update.before', $id);
 
-        $attribute = $this->getRepositoryInstance()->update($requestData, $id);
+        $attribute = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('catalog.attribute.update.after', $attribute);
 
