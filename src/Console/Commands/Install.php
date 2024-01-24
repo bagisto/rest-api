@@ -26,14 +26,14 @@ class Install extends Command
     public function handle()
     {   
         $this->warn('Step: Publishing L5Swagger Provider File...');
-        $result = $this->call('vendor:publish --tag=bagisto-rest-api-swagger');
+        $result = shell_exec('php artisan vendor:publish --tag=bagisto-rest-api-swagger');
         $this->info($result);
 
-        $result = $this->call('vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"');
+        $result = shell_exec('php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"');
         $this->info($result);
 
         $this->warn('Step: Generate l5-swagger docs (Admin & Shop)...');
-        $result = $this->call('l5-swagger:generate --all');
+        $result = shell_exec('php artisan l5-swagger:generate --all');
         $this->info($result);
 
         $this->comment('-----------------------------');

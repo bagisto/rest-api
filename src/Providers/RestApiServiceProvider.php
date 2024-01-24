@@ -32,7 +32,7 @@ class RestApiServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../Config/l5-swagger.php' => config_path('l5-swagger.php'),
-        ], ['bagisto-rest-api-swagger']);
+        ], 'bagisto-rest-api-swagger');
     }
 
     /**
