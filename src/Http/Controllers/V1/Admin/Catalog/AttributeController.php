@@ -45,7 +45,7 @@ class AttributeController extends CatalogController
             'default_value' => 'integer',
         ]);
 
-        $data =  request()->all();
+        $data = request()->all();
 
         $data['is_user_defined'] = 1;
 
