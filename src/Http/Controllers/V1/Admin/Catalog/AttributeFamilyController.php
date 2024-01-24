@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Rules\Code;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
@@ -35,9 +34,8 @@ class AttributeFamilyController extends CatalogController
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-
         $this->validate(request(), [
             'code' => ['required', 'unique:attribute_families,code', new Code],
             'name' => 'required',
@@ -47,7 +45,6 @@ class AttributeFamilyController extends CatalogController
         ]);
 
         Event::dispatch('catalog.attribute_family.create.before');
-
 
         $attributeFamily = $this->getRepositoryInstance()->create([    
            'attribute_groups'=> request('attribute_groups'),
@@ -69,16 +66,24 @@ class AttributeFamilyController extends CatalogController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(int $id)
     {
-        $request->validate([
+        $this->validate(request(), [
             'code' => ['required', 'unique:attribute_families,code,' . $id, new Code],
             'name' => 'required',
+            'attribute_groups.*.code'   => 'required',
+            'attribute_groups.*.name'   => 'required',
+            'attribute_groups.*.column' => 'required|in:1,2',
+        ]);
+
+        $data = request()->only([
+            'attribute_groups',
+            'name',
         ]);
 
         Event::dispatch('catalog.attribute_family.update.before', $id);
 
-        $attributeFamily = $this->getRepositoryInstance()->update($request->all(), $id);
+        $attributeFamily = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('catalog.attribute_family.update.after', $attributeFamily);
 
@@ -91,10 +96,9 @@ class AttributeFamilyController extends CatalogController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(int $id)
     {
         $attributeFamily = $this->getRepositoryInstance()->findOrFail($id);
 

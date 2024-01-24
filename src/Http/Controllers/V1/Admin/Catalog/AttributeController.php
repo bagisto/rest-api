@@ -45,7 +45,22 @@ class AttributeController extends CatalogController
             'default_value' => 'integer',
         ]);
 
-        $data = request()->all();
+        $data = request()->only([
+            'admin_name',
+            'type',
+            'code',
+            'position',
+            'default_value',
+            'is_comparable',
+            'is_configurable',
+            'is_required',
+            'is_unique',
+            'is_filterable',
+            'is_user_defined',
+            'is_visible_on_front',
+            'value_per_locale',
+            'value_per_channel',
+        ]);
 
         $data['is_user_defined'] = 1;
 
@@ -71,15 +86,28 @@ class AttributeController extends CatalogController
     public function update(int $id)
     {
         $this->validate(request(), [
-            'code'          => ['required', 'unique:attributes,code,' . $id, new Code],
             'admin_name'    => 'required',
-            'type'          => 'required',
             'default_value' => 'integer',
+            'type'          => 'required',
         ]);
 
-        $data = request()->all();
-
-        $data['default_value'] ??= Null; 
+        $data = request()->only([
+            'admin_name',
+            'type',
+            'position',
+            'default_value',
+            'is_comparable',
+            'is_configurable',
+            'is_required',
+            'is_unique',
+            'is_filterable',
+            'is_user_defined',
+            'is_visible_on_front',
+            'value_per_locale',
+            'value_per_channel',
+        ]);
+        
+        $data['default_value'] ??= null;
 
         $this->getRepositoryInstance()->findOrFail($id);
 
