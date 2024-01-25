@@ -4,110 +4,132 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
+use Illuminate\Http\JsonResponse;
 use Webkul\Checkout\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
+use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Checkout\Repositories\CartItemRepository;
 use Webkul\Customer\Repositories\WishlistRepository;
+use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 
 class CartController extends CustomerController
 {
     /**
-     * Get the customer cart.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function get()
-    {
-        $cart = Cart::getCart();
+    public function __construct(
+        protected WishlistRepository $wishlistRepository,
+        protected ProductRepository $productRepository,
+        protected CartRuleCouponRepository $cartRuleCouponRepository
+    ) {
+    }
 
-        return response([
-            'data' => $cart ? new CartResource($cart) : null,
+    /**
+     * Get the customer cart.
+     */
+    public function index(): JsonResponse
+    {
+        Cart::collectTotals();
+
+        return response()->json([
+            'data' => ($cart = Cart::getCart()) ? new CartResource($cart) : null
         ]);
     }
 
     /**
-     * Add item to the cart.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Webkul\Customer\Repositories\WishlistRepository $wishlistRepository
-     * @param  int  $productId
-     * @return \Illuminate\Http\Response
+     * Store items to the cart.
      */
-    public function add(Request $request, WishlistRepository $wishlistRepository, int $productId)
+    public function store(): JsonResponse
     {
-        $customer = $this->resolveShopUser($request);
-
         try {
-            Event::dispatch('checkout.cart.item.add.before', $productId);
+            $product = $this->productRepository->with('parent')->find(request()->input('product_id'));
 
-            $result = Cart::addProduct($productId, $request->all());
+            Event::dispatch('checkout.cart.item.add.before', $product->id);
 
-            if (is_array($result) && isset($result['warning'])) {
-                return response([
-                    'message' => $result['warning'],
+            if (request()->get('is_buy_now')) {
+                Cart::deActivateCart();
+            } 
+
+            $cart = Cart::addProduct($product->id, request()->all());
+
+            if (
+                is_array($cart)
+                && isset($cart['warning'])
+            ) {
+                return response()->json([
+                    'message' => $cart['warning'],
                 ], 400);
             }
 
-            $wishlistRepository->deleteWhere(['product_id' => $productId, 'customer_id' => $customer->id]);
+            if ($cart) {
+                $customer = $this->resolveShopUser(request());
 
-            Event::dispatch('checkout.cart.item.add.after', $result);
+                if ($customer) {
+                    $this->wishlistRepository->deleteWhere([
+                        'product_id'  => $product->id,
+                        'customer_id' => $customer->id,
+                    ]);
+                }
 
-            Cart::collectTotals();
+                Event::dispatch('checkout.cart.item.add.after', $cart);
 
-            $cart = Cart::getCart();
+                if (request()->get('is_buy_now')) {
+                    Event::dispatch('shop.item.buy-now', request()->input('product_id'));
 
-            return response([
-                'data'    => $cart ? new CartResource($cart) : null,
+                    return response()->json([
+                        'data'     => new CartResource(Cart::getCart()),
+                        'message'  => trans('rest-api::app.shop.checkout.cart.item.success'),
+                    ]);
+                }
+
+                return response()->json([
+                    'data'    => new CartResource(Cart::getCart()),
+                    'message' => trans('rest-api::app.shop.checkout.cart.item.success'),
+                ]);
+            }
+
+            return response()->json([
+                'data'    => null,
                 'message' => trans('rest-api::app.shop.checkout.cart.item.success'),
             ]);
-        } catch (Exception $e) {
-            return response([
-                'message' => $e->getMessage(),
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message'      => $exception->getMessage(),
             ], 400);
         }
     }
 
     /**
-     * Update the cart.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Webkul\Checkout\Repositories\CartItemRepository  $cartItemRepository
-     * @return \Illuminate\Http\Response
+     * Updates the quantity of the items present in the cart.
      */
-    public function update(Request $request, CartItemRepository $cartItemRepository)
+    public function update(): JsonResponse
     {
-        $this->validate($request, [
-            'qty' => 'required|array',
-        ]);
-
-        foreach ($request->qty as $qty) {
-            if ($qty <= 0) {
-                return response([
+        foreach (request()->qty as $qty) {
+            if (! $qty) {
+                return response()->json([
                     'message' => trans('rest-api::app.shop.checkout.cart.quantity.illegal'),
                 ], 400);
             }
         }
 
-        foreach ($request->qty as $itemId => $qty) {
-            $item = $cartItemRepository->findOneByField('id', $itemId);
+        try {
+            Cart::updateItems(request()->input());
 
-            Event::dispatch('checkout.cart.item.update.before', $itemId);
-
-            Cart::updateItems(['qty' => $request->qty]);
-
-            Event::dispatch('checkout.cart.item.update.after', $item);
+            return response()->json([
+                'data'    => new CartResource(Cart::getCart()),
+                'message' => trans('rest-api::app.shop.checkout.cart.quantity.success'),
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json ([
+                'message' => $exception->getMessage(),
+            ]);
         }
-
-        Cart::collectTotals();
-
-        $cart = Cart::getCart();
-
-        return response([
-            'data'    => $cart ? new CartResource($cart) : null,
-            'message' => trans('rest-api::app.shop.checkout.cart.quantity.success'),
-        ]);
     }
+
 
     /**
      * Remove item from the cart.

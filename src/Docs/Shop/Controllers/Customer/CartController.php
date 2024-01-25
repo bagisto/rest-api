@@ -39,21 +39,12 @@ class CartController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/customer/cart/add/{productId}",
+     *      path="/api/v1/customer/cart/store",
      *      operationId="addCartItem",
      *      tags={"Cart"},
      *      summary="Add product to customer's cart",
      *      description="Add product to customer's cart",
      *      security={ {"sanctum": {} }},
-     *      @OA\Parameter(
-     *          name="productId",
-     *          description="Product id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
 	 *      @OA\RequestBody(
 	 *          @OA\MediaType(
 	 *              mediaType="application/json",
