@@ -130,7 +130,6 @@ class CartController extends CustomerController
         }
     }
 
-
     /**
      * Remove item from the cart.
      *
