@@ -43,10 +43,10 @@ class CartController extends CustomerController
     /**
      * Store items to the cart.
      */
-    public function store(): JsonResponse
+    public function store($productId): JsonResponse
     {
         try {
-            $product = $this->productRepository->with('parent')->find(request()->input('product_id'));
+            $product = $this->productRepository->with('parent')->find($productId);
 
             Event::dispatch('checkout.cart.item.add.before', $product->id);
 

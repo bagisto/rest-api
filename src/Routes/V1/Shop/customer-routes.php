@@ -107,7 +107,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
     Route::controller(CartController::class)->prefix('customer/cart')->group(function () {
         Route::get('', 'index');
 
-        Route::post('store', 'store');
+        Route::post('add/{productId}', 'store');
     
         Route::put('update', 'update');
     
