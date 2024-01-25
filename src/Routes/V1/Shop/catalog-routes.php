@@ -20,18 +20,6 @@ Route::controller(ProductController::class)->prefix('products')->group(function 
     Route::get('{id}/configurable-config', 'configurableConfig');
 });
 
-/**
- * Product authenticated routes.
- */
- Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
-    /**
-    * Wishlist routes.
-    */
-   Route::controller(ProductController::class)->prefix('products')->group(function () { 
-       Route::get('{product_id}/is-wishlisted', 'isWishlisted');
-   });
-});
-
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
     /**
      * Review routes.
