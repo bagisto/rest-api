@@ -88,24 +88,4 @@ class ProductController extends CatalogController
             'data' => $configurableConfig,
         ]);
     }
-
-    /**
-     * Is product wishlisted.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $productId
-     * @return \Illuminate\Http\Response
-     */
-    public function isWishlisted(Request $request, $productId)
-    {
-        $product = $this->getRepositoryInstance()->findOrFail($productId);
-
-        $wishlistHelper = app(\Webkul\Customer\Helpers\Wishlist::class);
-
-        return response([
-            'data' => [
-                'is_wishlisted' => $wishlistHelper->getWishlistProduct($product) ? true : false
-            ],
-        ]);
-    }
 }
