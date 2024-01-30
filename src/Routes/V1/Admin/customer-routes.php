@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerAddressController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerGroupController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Customer\CustomerReviewController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerAddressController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerGroupController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerReviewController;
 
 Route::group([
     'middleware' => ['auth:sanctum', 'sanctum.admin'],

@@ -1,11 +1,12 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
+namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
 use Illuminate\Http\Request;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleCouponResource;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
 
 class CartRuleCouponController extends MarketingController
 {

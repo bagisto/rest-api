@@ -1,11 +1,12 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
+namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\CartRule\Repositories\CartRuleRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleResource;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
 
 class CartRuleController extends MarketingController
 {

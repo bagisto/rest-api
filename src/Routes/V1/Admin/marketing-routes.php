@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\CampaignController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\CartRuleController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\CartRuleCouponController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\CatalogRuleController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\EventController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\TemplateController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\CampaignController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\EventController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\TemplateController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleCouponController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CatalogRuleController;
 
 Route::group([
     'middleware' => ['auth:sanctum', 'sanctum.admin'],
