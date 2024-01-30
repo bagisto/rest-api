@@ -44,7 +44,10 @@ class ExchangeRateController extends SettingController
 
         Event::dispatch('core.exchange_rate.create.before');
 
-        $exchangeRate = $this->getRepositoryInstance()->create($request->all());
+        $exchangeRate = $this->getRepositoryInstance()->create(request()->only([
+            'target_currency',
+            'rate',
+        ]));
 
         Event::dispatch('core.exchange_rate.create.after', $exchangeRate);
 
@@ -58,19 +61,21 @@ class ExchangeRateController extends SettingController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, int $id)
+    { 
         $request->validate([
             'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,' . $id],
             'rate'            => 'required|numeric',
         ]);
 
-        Event::dispatch('core.exchange_rate.update.before', request()->id);
+        Event::dispatch('core.exchange_rate.update.before', $id);
 
-        $exchangeRate = $this->getRepositoryInstance()->update($request->all(), $id);
+        $exchangeRate = $this->getRepositoryInstance()->create(request()->only([
+            'target_currency',
+            'rate',
+        ]), $id);
 
         Event::dispatch('core.exchange_rate.update.after', $exchangeRate);
 
@@ -103,10 +108,9 @@ class ExchangeRateController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 

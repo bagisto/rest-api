@@ -42,7 +42,15 @@ class LocaleController extends SettingController
             'direction' => ['required', 'in:ltr,rtl'],
         ]);
 
-        $locale = $this->getRepositoryInstance()->create($request->all());
+        $data = request()->only([
+            'code',
+            'name',
+            'direction',
+        ]);
+
+        $data['logo_path'] = request()->file('logo_path');
+
+        $locale = $this->getRepositoryInstance()->create($data);
 
         return response([
             'data'    => new LocaleResource($locale),
@@ -64,7 +72,15 @@ class LocaleController extends SettingController
             'direction' => ['required', 'in:ltr,rtl'],
         ]);
 
-        $locale = $this->getRepositoryInstance()->update($request->all(), $id);
+        $data = request()->only([
+            'code',
+            'name',
+            'direction',
+        ]);
+
+        $data['logo_path'] = request()->file('logo_path');
+
+        $locale = $this->getRepositoryInstance()->update($data, $id);
 
         return response([
             'data'    => new LocaleResource($locale),
