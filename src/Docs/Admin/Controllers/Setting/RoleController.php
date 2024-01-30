@@ -135,12 +135,12 @@ class RoleController
      *                      property="description",
      *                      type="string",
      *                      description="Role description",
-     *                      example=null
+     *                      example="Test Description"
      *                  ),
      *                  @OA\Property(
      *                      property="permission_type",
      *                      type="string",
-     *                      example="all",
+     *                      example="custom",
      *                      enum={"all", "custom"}
      *                  ),
      *                  @OA\Property(
