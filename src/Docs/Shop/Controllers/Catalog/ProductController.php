@@ -230,44 +230,6 @@ class ProductController
     }
 
     /**
-     * @OA\Get(
-	 *      path="/api/v1/products/{product_id}/is-wishlisted",
-	 *      operationId="getShopProductIsWishlistStatus",
-     *      tags={"Products"},
-     *      summary="Get product's wishlist status",
-     *      description="Get product's wishlist status",
-     *      security={ {"sanctum": {} }},
-     *      @OA\Parameter(
-     *          name="product_id",
-     *          description="Product id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *          @OA\JsonContent(
-     *              @OA\Property(
-     *                  property="data",
-     *                  type="object",
-     *                  @OA\Property(property="is_wishlisted", type="boolean", example="false", enum={"true", "false"})
-     *              )
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
-     *      )
-     * )
-     */
-    public function isWishlisted()
-    {
-    }
-
-    /**
      * @OA\Post(
 	 *      path="/api/v1/products/{product_id}/reviews",
 	 *      operationId="storeProductReview",

@@ -1,13 +1,15 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
+namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Customer\Repositories\CustomerNoteRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
@@ -17,11 +19,12 @@ class CustomerController extends CustomerBaseController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Sales\Repositories\InvoiceRepository  $invoiceRepository
      * @return void
      */
-    public function __construct(protected InvoiceRepository $invoiceRepository)
-    {
+    public function __construct(
+        protected InvoiceRepository $invoiceRepository,
+        protected CustomerNoteRepository $customerNoteRepository
+    ) {
     }
     
     /**
@@ -57,16 +60,24 @@ class CustomerController extends CustomerBaseController
             'last_name'     => 'string|required',
             'gender'        => 'required',
             'email'         => 'required|unique:customers,email',
-            'date_of_birth' => 'date|before:today',
+            'date_of_birth' => 'date|before_or_equal:today',
+            'phone'         => ['unique:customers,phone', new PhoneNumber],
         ]);
-
-        $data = $request->all();
 
         $password = rand(100000, 10000000);
 
-        $data['password'] = bcrypt($password);
-
-        $data['is_verified'] = 1;
+        $data = array_merge(request()->only([
+            'first_name',
+            'last_name',
+            'gender',
+            'email',
+            'date_of_birth',
+            'phone',
+            'customer_group_id',
+        ]), [
+            'password'    => bcrypt($password),
+            'is_verified' => 1,
+        ]);
 
         Event::dispatch('customer.registration.before');
 
@@ -93,12 +104,22 @@ class CustomerController extends CustomerBaseController
             'last_name'     => 'string|required',
             'gender'        => 'required',
             'email'         => 'required|unique:customers,email,' . $id,
-            'date_of_birth' => 'date|before:today',
+            'date_of_birth' => 'date|before_or_equal:today',
+            'phone'         => ['unique:customers,phone,'.$id, new PhoneNumber],
         ]);
 
-        $data = $request->all();
-
-        $data['status'] = ! isset($data['status']) ? 0 : 1;
+        $data = array_merge(request()->only([
+            'first_name',
+            'last_name',
+            'gender',
+            'email',
+            'date_of_birth',
+            'phone',
+            'customer_group_id',
+        ]), [
+            'status'       => request()->input('status', 0),
+            'is_suspended' => request()->input('is_suspended', 0),
+        ]);
 
         Event::dispatch('customer.update.before', $id);
 
@@ -193,7 +214,6 @@ class CustomerController extends CustomerBaseController
      */
     public function orders(int $id)
     { 
-        
         $customer = $this->getRepositoryInstance()->findorFail($id);
         return response([
             'data' => OrderResource::collection($customer->orders),
@@ -229,7 +249,7 @@ class CustomerController extends CustomerBaseController
 
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
-        $customerNote = $this->getRepositoryInstance()->create([
+        $customerNote = $this->customerNoteRepository->create([
             'customer_id'       => $id,
             'note'              => request()->input('note'),
             'customer_notified' => request()->input('customer_notified', 0),

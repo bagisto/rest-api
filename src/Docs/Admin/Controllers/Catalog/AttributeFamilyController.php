@@ -141,6 +141,8 @@ class AttributeFamilyController
      *                          property="group_0",
      *                          type="object",
      *                          @OA\Property(property="name", type="string", example="General"),
+     *                          @OA\Property(property="code", type="string", example="General"),
+     *                          @OA\Property(property="column", type="integer", example=1),
      *                          @OA\Property(property="position", type="integer", example=1),
      *                          @OA\Property(property="is_user_defined", type="integer", example=0),
      *                          @OA\Property(
@@ -153,6 +155,8 @@ class AttributeFamilyController
      *                          property="group_1",
      *                          type="object",
      *                          @OA\Property(property="name", type="string", example="Description"),
+     *                          @OA\Property(property="code", type="string", example="Description"),
+     *                          @OA\Property(property="column", type="integer", example=2),
      *                          @OA\Property(property="position", type="integer", example=2),
      *                          @OA\Property(property="is_user_defined", type="integer", example=0),
      *                          @OA\Property(

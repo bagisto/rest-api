@@ -1,11 +1,12 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
+namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\EventRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\EventResource;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
 
 class EventController extends MarketingController
 {

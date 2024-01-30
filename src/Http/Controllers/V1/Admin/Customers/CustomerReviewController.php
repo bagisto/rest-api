@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customer;
+namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;

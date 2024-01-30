@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\ChannelController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\CurrencyController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\ExchangeRateController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\InventorySourceController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\LocaleController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\RoleController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\SliderController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\TaxCategoryController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\TaxRateController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Setting\UserController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\ChannelController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\CurrencyController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\ExchangeRateController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\InventorySourceController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\LocaleController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\RoleController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SliderController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax\TaxCategoryController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax\TaxRateController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\UserController;
 
 /**
  * Settings routes.

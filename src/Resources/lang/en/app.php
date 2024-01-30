@@ -164,6 +164,7 @@ return [
                     'security-warning'             => 'Suspicious activity found!',
                     'something-went-wrong'         => 'Something went wrong!',
                     'system-attributes-delete'     => 'Cannot delete the system attributes.',
+                    'cannot-change-type'           => 'Cannot Change type field',
         
                     'mass-operations' => [
                         'resource-not-found' => 'Selected attributess not found.',

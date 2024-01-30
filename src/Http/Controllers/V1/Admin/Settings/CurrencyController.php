@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
+namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CurrencyRepository;
@@ -41,7 +41,12 @@ class CurrencyController extends SettingController
             'name' => 'required',
         ]);
 
-        $currency = $this->getRepositoryInstance()->create($request->all());
+        $currency = $this->getRepositoryInstance()->create(request()->only([
+            'code',
+            'name',
+            'symbol',
+            'decimal'
+        ]));
 
         return response([
             'data'    => new CurrencyResource($currency),
@@ -52,17 +57,21 @@ class CurrencyController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'code' => 'required|min:3|max:3|unique:currencies,code',
             'name' => 'required',
         ]);
 
-        $currency = $this->getRepositoryInstance()->update($request->all(), $id);
+        $currency = $this->getRepositoryInstance()->update(request()->only([
+            'code',
+            'name',
+            'symbol',
+            'decimal'
+        ]), $id);
 
         return response([
             'data'    => new CurrencyResource($currency),
@@ -73,10 +82,9 @@ class CurrencyController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
