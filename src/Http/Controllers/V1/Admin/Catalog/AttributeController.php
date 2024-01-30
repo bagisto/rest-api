@@ -109,7 +109,7 @@ class AttributeController extends CatalogController
         
         $attribute = $this->getRepositoryInstance()->findOrFail($id);
 
-        if($attribute->type !=request()->input('type')){
+        if ($attribute->type != request()->input('type')) {
             return response([
                 'message' => trans('rest-api::app.admin.catalog.attributes.error.cannot-change-type'),
             ], 400);
