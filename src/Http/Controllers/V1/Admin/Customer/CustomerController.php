@@ -9,6 +9,7 @@ use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Customer\Repositories\CustomerNoteRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
@@ -18,11 +19,12 @@ class CustomerController extends CustomerBaseController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Sales\Repositories\InvoiceRepository  $invoiceRepository
      * @return void
      */
-    public function __construct(protected InvoiceRepository $invoiceRepository)
-    {
+    public function __construct(
+        protected InvoiceRepository $invoiceRepository,
+        protected CustomerNoteRepository $customerNoteRepository
+    ) {
     }
     
     /**
@@ -247,7 +249,7 @@ class CustomerController extends CustomerBaseController
 
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
-        $customerNote = $this->getRepositoryInstance()->create([
+        $customerNote = $this->customerNoteRepository->create([
             'customer_id'       => $id,
             'note'              => request()->input('note'),
             'customer_notified' => request()->input('customer_notified', 0),
