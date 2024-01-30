@@ -44,8 +44,12 @@ class TaxCategoryController extends SettingController
             'taxrates'    => 'array|required',
         ]);
 
-        $data = $request->all();
-
+        $data = request()->only([
+            'code',
+            'name',
+            'description',
+            'taxrates'
+        ]);
 
         Event::dispatch('tax.category.create.before');
 
@@ -65,10 +69,9 @@ class TaxCategoryController extends SettingController
      * To update the tax category.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'code'        => 'required|string|unique:tax_categories,code,' . $id,
@@ -77,7 +80,12 @@ class TaxCategoryController extends SettingController
             'taxrates'    => 'array|required',
         ]);
 
-        $data = $request->input();
+        $data = request()->only([
+            'code',
+            'name',
+            'description',
+            'taxrates'
+        ]);
 
         Event::dispatch('tax.category.update.before', $id);
 
@@ -96,10 +104,9 @@ class TaxCategoryController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
