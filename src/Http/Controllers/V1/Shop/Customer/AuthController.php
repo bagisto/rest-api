@@ -61,10 +61,11 @@ class AuthController extends CustomerController
     public function register(Request $request)
     {
         $request->validate([
-            'first_name' => ['required', new AlphaNumericSpace],
-            'last_name'  => ['required', new AlphaNumericSpace],
-            'email'      => 'required|email|unique:customers,email',
-            'password'   => 'required|confirmed|min:6',
+            'first_name'            => ['required', new AlphaNumericSpace],
+            'last_name'             => ['required', new AlphaNumericSpace],
+            'email'                 => 'required|email|unique:customers,email',
+            'password'              => 'required|confirmed|min:6',
+            'password_confirmation' => 'required',
         ]);
 
         Event::dispatch('customer.registration.before');
