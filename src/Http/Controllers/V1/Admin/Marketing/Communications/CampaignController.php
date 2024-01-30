@@ -1,11 +1,12 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing;
+namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
 use Webkul\Marketing\Repositories\CampaignRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CampaignResource;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
 
 class CampaignController extends MarketingController
 {

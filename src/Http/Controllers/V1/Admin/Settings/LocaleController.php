@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Controllers\V1\Admin\Setting;
+namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\LocaleRepository;
