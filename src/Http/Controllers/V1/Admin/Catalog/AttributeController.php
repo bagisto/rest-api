@@ -107,6 +107,14 @@ class AttributeController extends CatalogController
             'value_per_channel',
         ]);
         
+        $attribute = $this->getRepositoryInstance()->findOrFail($id);
+
+        if ($attribute->type != request()->input('type')) {
+            return response([
+                'message' => trans('rest-api::app.admin.catalog.attributes.error.cannot-change-type'),
+            ], 400);
+        }
+
         $data['default_value'] ??= null;
 
         $this->getRepositoryInstance()->findOrFail($id);
