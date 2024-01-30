@@ -48,7 +48,16 @@ class TaxRateController extends SettingController
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
 
-        $data = $request->all();
+        $data = request()->only([
+            'identifier',
+            'country',
+            'state',
+            'tax_rate',
+            'zip_code',
+            'is_zip',
+            'zip_from',
+            'zip_to',
+        ]);
 
         if (isset($data['is_zip'])) {
             $data['is_zip'] = 1;
@@ -72,10 +81,9 @@ class TaxRateController extends SettingController
      * Edit the previous tax rate.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'identifier' => 'required|string|unique:tax_rates,identifier,' . $id,
@@ -85,10 +93,21 @@ class TaxRateController extends SettingController
             'country'    => 'required|string',
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
+        
+        $data = request()->only([
+            'identifier',
+            'country',
+            'state',
+            'tax_rate',
+            'zip_code',
+            'is_zip',
+            'zip_from',
+            'zip_to',
+        ]);
 
         Event::dispatch('tax.rate.update.before', $id);
 
-        $taxRate = $this->getRepositoryInstance()->update($request->input(), $id);
+        $taxRate = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('tax.rate.update.after', $taxRate);
 
@@ -101,10 +120,9 @@ class TaxRateController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
