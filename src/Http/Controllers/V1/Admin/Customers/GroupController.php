@@ -8,7 +8,7 @@ use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerGroupResource;
 
-class CustomerGroupController extends CustomerBaseController
+class GroupController extends BaseController
 {
     /**
      * Repository class name.

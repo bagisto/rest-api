@@ -10,7 +10,7 @@ use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerAddressResource;
 
-class CustomerAddressController extends CustomerBaseController
+class AddressController extends BaseController
 {
     /**
      * Customer repository instance.

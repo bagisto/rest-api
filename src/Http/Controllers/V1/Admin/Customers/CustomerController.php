@@ -14,7 +14,7 @@ use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
 
-class CustomerController extends CustomerBaseController
+class CustomerController extends BaseController
 {
     /**
      * Create a new controller instance.

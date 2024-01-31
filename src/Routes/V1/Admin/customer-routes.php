@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerAddressController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\AddressController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerGroupController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerReviewController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\GroupController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\ReviewController;
 
 Route::group([
     'middleware' => ['auth:sanctum', 'sanctum.admin'],
@@ -13,7 +13,7 @@ Route::group([
     /**
      * Customer's group routes.
      */
-    Route::controller(CustomerGroupController::class)->prefix('groups')->group(function () { 
+    Route::controller(GroupController::class)->prefix('groups')->group(function () { 
         Route::get('', 'allResources');
 
         Route::post('', 'store');
@@ -28,7 +28,7 @@ Route::group([
     /**
      * Customer's review routes.
      */
-    Route::controller(CustomerReviewController::class)->prefix('reviews')->group(function () {
+    Route::controller(ReviewController::class)->prefix('reviews')->group(function () {
         Route::get('', 'allResources');
 
         Route::get('{id}', 'getResource');
@@ -79,7 +79,7 @@ Route::group([
     /**
      * Customer's address routes.
      */
-    Route::controller(CustomerAddressController::class)->prefix('{customer_id}/addresses')->group(function () {
+    Route::controller(AddressController::class)->prefix('{customer_id}/addresses')->group(function () {
         Route::get('', 'index');
 
         Route::post('', 'store');

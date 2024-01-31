@@ -9,7 +9,7 @@ use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\ProductReviewResource;
 
-class CustomerReviewController extends CustomerBaseController
+class ReviewController extends BaseController
 {
     /**
      * Repository class name.
