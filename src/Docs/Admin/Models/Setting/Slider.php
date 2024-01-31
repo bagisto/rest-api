@@ -18,7 +18,7 @@ class Slider
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -74,7 +74,7 @@ class Slider
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $channel_id;
 
@@ -108,7 +108,7 @@ class Slider
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $sort_order;
 
@@ -124,7 +124,7 @@ class Slider
      * @var \Date
      */
     private $expired_at;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

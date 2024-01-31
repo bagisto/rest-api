@@ -4,9 +4,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SettingController;
 use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxRateResource;
 use Webkul\Tax\Repositories\TaxRateRepository;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SettingController;
 
 class TaxRateController extends SettingController
 {
@@ -33,7 +33,6 @@ class TaxRateController extends SettingController
     /**
      * Create the tax rate.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -80,20 +79,19 @@ class TaxRateController extends SettingController
     /**
      * Edit the previous tax rate.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
     {
         $request->validate([
-            'identifier' => 'required|string|unique:tax_rates,identifier,' . $id,
+            'identifier' => 'required|string|unique:tax_rates,identifier,'.$id,
             'is_zip'     => 'sometimes',
             'zip_from'   => 'nullable|required_with:is_zip',
             'zip_to'     => 'nullable|required_with:is_zip,zip_from',
             'country'    => 'required|string',
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
-        
+
         $data = request()->only([
             'identifier',
             'country',

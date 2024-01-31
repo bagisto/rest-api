@@ -31,8 +31,6 @@ class ProductReviewController extends CatalogController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $productId
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, int $productId)

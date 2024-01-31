@@ -12,10 +12,13 @@ class CartController
      *      summary="Get customer/guest's cart",
      *      description="Returns customer/guest's cart",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -23,6 +26,7 @@ class CartController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -45,19 +49,25 @@ class CartController
      *      summary="Add product to customer's cart",
      *      description="Add product to customer's cart",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\Parameter(
      *          name="productId",
      *          description="Product id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
-	 *      @OA\RequestBody(
-	 *          @OA\MediaType(
-	 *              mediaType="application/json",
-	 *              @OA\Schema(
+     *
+     *      @OA\RequestBody(
+     *
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *
+     *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="is_buy_now",
      *                      type="boolean",
@@ -90,7 +100,9 @@ class CartController
      *                          "23": 4,
      *                          "24": 9
      *                      },
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
@@ -102,7 +114,9 @@ class CartController
      *                          "1": 2,
      *                          "2": 3
      *                      },
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
@@ -114,7 +128,9 @@ class CartController
      *                          2,
      *                          3
      *                      },
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
@@ -128,10 +144,14 @@ class CartController
      *                          "4": {7},
      *                          "2": {3}
      *                      },
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(
      *                              type="array",
+     *
      *                              @OA\Items(
+     *
      *                                  @OA\Property(type="integer")
      *                              )
      *                          )
@@ -145,7 +165,9 @@ class CartController
      *                          "1": 1,
      *                          "2": 3
      *                      },
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
@@ -165,7 +187,9 @@ class CartController
      *                          "date_to": "2023-05-15",
      *                          "note": "This is a welcome note."
      *                      },
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(
      *                              property="date",
      *                              description="Use with default, appointment, table, & hourly - rental type booking only(Required)",
@@ -180,7 +204,9 @@ class CartController
      *                              property="qty",
      *                              description="Use with event type booking only(Required)",
      *                              type="array",
+     *
      *                              @OA\Items(
+     *
      *                                  @OA\Property(type="integer")
      *                              )
      *                          ),
@@ -207,13 +233,16 @@ class CartController
      *                      )
      *                  ),
      *                  required={"product_id", "quantity"}
-	 *              )
-	 *          )
-	 *      ),
+     *              )
+     *          )
+     *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -226,6 +255,7 @@ class CartController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Item cannot be added to cart, please try again later!"
@@ -248,10 +278,14 @@ class CartController
      *      summary="Update cart item",
      *      description="Update cart item",
      *      security={ {"sanctum": {} }},
-	 *      @OA\RequestBody(
-	 *          @OA\MediaType(
-	 *              mediaType="application/json",
-	 *              @OA\Schema(
+     *
+     *      @OA\RequestBody(
+     *
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *
+     *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="qty",
      *                      type="array",
@@ -260,18 +294,23 @@ class CartController
      *                          "1": 2,
      *                          "2": 3
      *                      },
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
      *                  required={"qty"}
-	 *              )
-	 *          )
-	 *      ),
+     *              )
+     *          )
+     *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -284,6 +323,7 @@ class CartController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Quantity cannot be lesser than one."
@@ -306,19 +346,24 @@ class CartController
      *      summary="Delete item from cart using cart item id",
      *      description="Delete item from cart using cart item id",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\Parameter(
      *          name="cartItemId",
      *          description="Cart item id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -345,10 +390,13 @@ class CartController
      *      summary="Delete all item from cart",
      *      description="Delete all item from cart",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -375,19 +423,24 @@ class CartController
      *      summary="Move cart item to customer's wishlist",
      *      description="Move cart item to customer's wishlist using cart item id",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\Parameter(
      *          name="cartItemId",
      *          description="Cart item id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -414,10 +467,14 @@ class CartController
      *      summary="Apply coupon to cart",
      *      description="Apply coupon to cart",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
-	 *              mediaType="multipart/form-data",
+     *              mediaType="multipart/form-data",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="code",
      *                      type="string",
@@ -426,10 +483,13 @@ class CartController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -456,10 +516,13 @@ class CartController
      *      summary="Remove cart coupon",
      *      description="Remove cart coupon",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",

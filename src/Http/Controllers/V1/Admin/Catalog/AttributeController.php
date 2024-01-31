@@ -2,11 +2,10 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Rules\Code;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Attribute\Repositories\AttributeRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeResource;
 
 class AttributeController extends CatalogController
@@ -64,7 +63,7 @@ class AttributeController extends CatalogController
 
         $data['is_user_defined'] = 1;
 
-        $data['default_value'] ??= Null; 
+        $data['default_value'] ??= null;
 
         Event::dispatch('catalog.attribute.create.before');
 
@@ -106,7 +105,7 @@ class AttributeController extends CatalogController
             'value_per_locale',
             'value_per_channel',
         ]);
-        
+
         $attribute = $this->getRepositoryInstance()->findOrFail($id);
 
         if ($attribute->type != request()->input('type')) {
@@ -181,7 +180,7 @@ class AttributeController extends CatalogController
             Event::dispatch('catalog.attribute.delete.before', $index);
 
             $this->getRepositoryInstance()->delete($index);
-            
+
             Event::dispatch('catalog.attribute.delete.after', $index);
         }
 

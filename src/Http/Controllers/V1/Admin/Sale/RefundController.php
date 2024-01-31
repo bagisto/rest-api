@@ -32,8 +32,6 @@ class RefundController extends SaleController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
@@ -43,15 +41,15 @@ class RefundController extends SaleController
 
         if (! $order->canRefund()) {
             return response([
-                'message' => trans('rest-api::app.sales.refunds.creation-error'),
+                'message' => trans('rest-api::app.sales.refunds.error.creation-error'),
             ], 400);
         }
 
         $request->validate([
-            'refund.items.*' => 'required|numeric|min:0',
-            'refund.shipping' => 'required',
+            'refund.items.*'           => 'required|numeric|min:0',
+            'refund.shipping'          => 'required',
             'refund.adjustment_refund' => 'required',
-            'refund.adjustment_fee' => 'required',
+            'refund.adjustment_fee'    => 'required',
         ]);
 
         $data = $request->all();
@@ -64,7 +62,7 @@ class RefundController extends SaleController
 
         if (! $totals) {
             return response([
-                'message' => trans('rest-api::app.sales.refunds.invalid-qty-error'),
+                'message' => trans('rest-api::app.sales.refunds.error.invalid-qty-error'),
             ], 400);
         }
 
@@ -74,7 +72,7 @@ class RefundController extends SaleController
 
         if (! $refundAmount) {
             return response([
-                'message' => trans('rest-api::app.sales.refunds.invalid-amount-error'),
+                'message' => trans('rest-api::app.sales.refunds.error.invalid-amount-error'),
             ], 400);
         }
 

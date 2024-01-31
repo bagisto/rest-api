@@ -18,10 +18,10 @@ class CmsPage
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
-    
+
     /**
      * @OA\Property(
      *     title="Layout",
@@ -33,7 +33,7 @@ class CmsPage
      * @var string
      */
     private $layout;
-    
+
     /**
      * @OA\Property(
      *     title="Content",
@@ -45,7 +45,7 @@ class CmsPage
      * @var string
      */
     private $content;
-    
+
     /**
      * @OA\Property(
      *     title="Url Key",
@@ -57,7 +57,7 @@ class CmsPage
      * @var string
      */
     private $url_key;
-    
+
     /**
      * @OA\Property(
      *     title="Page Title",
@@ -69,7 +69,7 @@ class CmsPage
      * @var string
      */
     private $page_title;
-    
+
     /**
      * @OA\Property(
      *     title="Html Content",
@@ -81,7 +81,7 @@ class CmsPage
      * @var string
      */
     private $html_content;
-    
+
     /**
      * @OA\Property(
      *     title="Meta Title",
@@ -93,7 +93,7 @@ class CmsPage
      * @var string
      */
     private $meta_title;
-    
+
     /**
      * @OA\Property(
      *     title="Meta Description",
@@ -105,7 +105,7 @@ class CmsPage
      * @var string
      */
     private $meta_description;
-    
+
     /**
      * @OA\Property(
      *     title="Meta Keywords",
@@ -117,7 +117,7 @@ class CmsPage
      * @var string
      */
     private $meta_keywords;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

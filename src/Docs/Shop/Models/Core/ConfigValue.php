@@ -21,6 +21,7 @@ class ConfigValue
      * @var string
      */
     public $code1;
+
     /**
      * @OA\Property(
      *     title="Value2",

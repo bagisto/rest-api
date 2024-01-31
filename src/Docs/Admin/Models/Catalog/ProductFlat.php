@@ -53,7 +53,7 @@ class ProductFlat
      * @var string
      */
     private $url_key;
-    
+
     /**
      * @OA\Property(
      *     title="Tax Category ID",
@@ -62,7 +62,7 @@ class ProductFlat
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $tax_category_id;
 
@@ -74,7 +74,7 @@ class ProductFlat
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $new;
 
@@ -86,7 +86,7 @@ class ProductFlat
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $featured;
 
@@ -98,7 +98,7 @@ class ProductFlat
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $visible_individually;
 
@@ -110,7 +110,7 @@ class ProductFlat
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $status;
 
@@ -122,7 +122,7 @@ class ProductFlat
      *     example=4
      * )
      *
-     * @var integer
+     * @var int
      */
     private $color;
 
@@ -134,7 +134,7 @@ class ProductFlat
      *     example=8
      * )
      *
-     * @var integer
+     * @var int
      */
     private $size;
 
@@ -146,7 +146,7 @@ class ProductFlat
      *     example=null
      * )
      *
-     * @var integer
+     * @var int
      */
     private $brand;
 
@@ -158,7 +158,7 @@ class ProductFlat
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $guest_checkout;
 
@@ -238,7 +238,7 @@ class ProductFlat
      * @var float
      */
     private $special_price;
-    
+
     /**
      * @OA\Property(
      *     title="Special Price From",
@@ -251,7 +251,7 @@ class ProductFlat
      * @var \Date
      */
     private $special_price_from;
-    
+
     /**
      * @OA\Property(
      *     title="Special Price To",

@@ -18,7 +18,7 @@ class Customer
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 

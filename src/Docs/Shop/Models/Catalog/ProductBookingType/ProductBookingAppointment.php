@@ -18,7 +18,7 @@ class ProductBookingAppointment
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -29,7 +29,7 @@ class ProductBookingAppointment
      *     example=50
      * )
      *
-     * @var integer
+     * @var int
      */
     public $duration;
 
@@ -40,7 +40,7 @@ class ProductBookingAppointment
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     public $break_time;
 
@@ -52,7 +52,7 @@ class ProductBookingAppointment
      *     enum={"null", "0"}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $same_slot_all_days;
 
@@ -64,10 +64,10 @@ class ProductBookingAppointment
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $booking_product_id;
-    
+
     /**
      * @OA\Property(
      *     title="Slots",
@@ -102,11 +102,15 @@ class ProductBookingAppointment
      *                  }
      *              }
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(
      *              property="0",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")
      *              )
@@ -114,7 +118,9 @@ class ProductBookingAppointment
      *          @OA\Property(
      *              property="1",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")
      *              )
@@ -122,7 +128,9 @@ class ProductBookingAppointment
      *          @OA\Property(
      *              property="2",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")
      *              )
@@ -130,7 +138,9 @@ class ProductBookingAppointment
      *          @OA\Property(
      *              property="3",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")
      *              )
@@ -138,7 +148,9 @@ class ProductBookingAppointment
      *          @OA\Property(
      *              property="4",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")
      *              )
@@ -146,7 +158,9 @@ class ProductBookingAppointment
      *          @OA\Property(
      *              property="5",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")
      *              )

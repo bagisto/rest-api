@@ -18,10 +18,10 @@ class OrderItem
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
-    
+
     /**
      * @OA\Property(
      *     title="SKU",
@@ -32,7 +32,7 @@ class OrderItem
      * @var string
      */
     private $sku;
-    
+
     /**
      * @OA\Property(
      *     title="Type",
@@ -43,7 +43,7 @@ class OrderItem
      * @var string
      */
     private $type;
-    
+
     /**
      * @OA\Property(
      *     title="Name",
@@ -54,7 +54,7 @@ class OrderItem
      * @var string
      */
     private $name;
-    
+
     /**
      * @OA\Property(
      *     title="Product ID",
@@ -63,7 +63,7 @@ class OrderItem
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $product_id;
 
@@ -97,7 +97,7 @@ class OrderItem
      *     example=6,
      * )
      *
-     * @var integer
+     * @var int
      */
     private $qty_ordered;
 
@@ -109,7 +109,7 @@ class OrderItem
      *     example=2,
      * )
      *
-     * @var integer
+     * @var int
      */
     private $qty_shipped;
 
@@ -121,7 +121,7 @@ class OrderItem
      *     example=4,
      * )
      *
-     * @var integer
+     * @var int
      */
     private $qty_invoiced;
 
@@ -133,7 +133,7 @@ class OrderItem
      *     example=2,
      * )
      *
-     * @var integer
+     * @var int
      */
     private $qty_canceled;
 
@@ -145,7 +145,7 @@ class OrderItem
      *     example=0,
      * )
      *
-     * @var integer
+     * @var int
      */
     private $qty_refunded;
 
@@ -724,19 +724,24 @@ class OrderItem
      *      @OA\Property(
      *          property="super_attribute",
      *          type="array",
+     *
      *          @OA\Items(type="integer")
      *      ),
+     *
      *      @OA\Property(
      *          property="bundle_options",
      *          type="array",
+     *
      *          @OA\Items(
      *              type="array",
      *              @OA\Items(type="integer")
      *          )
      *      ),
+     *
      *      @OA\Property(
      *          property="bundle_option_qty",
      *          type="array",
+     *
      *          @OA\Items(type="integer")
      *      )
      * )
@@ -744,8 +749,7 @@ class OrderItem
      * @var object
      */
     private $additional;
-    
-    
+
     /**
      * @OA\Property(
      *     title="Child",
@@ -757,19 +761,20 @@ class OrderItem
      * @var \Webkul\RestApi\Docs\Admin\Models\Sale\OrderItem
      */
     private $child;
-    
+
     /**
      * @OA\Property(
      *     title="Children",
      *     description="Variant item",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/OrderItem")
      * )
      *
      * @var \Webkul\RestApi\Docs\Admin\Models\Sale\OrderItem
      */
     private $children;
-    
+
     /**
      * @OA\Property(
      *     title="Downloadable Links",
@@ -779,7 +784,7 @@ class OrderItem
      * @var \Webkul\RestApi\Docs\Admin\Models\Sale\OrderDownloadableLink
      */
     private $downloadable_links;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

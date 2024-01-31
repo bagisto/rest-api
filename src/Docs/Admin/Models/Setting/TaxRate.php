@@ -18,7 +18,7 @@ class TaxRate
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -41,7 +41,7 @@ class TaxRate
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $is_zip;
 
@@ -111,7 +111,7 @@ class TaxRate
      * @var float
      */
     private $tax_rate;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

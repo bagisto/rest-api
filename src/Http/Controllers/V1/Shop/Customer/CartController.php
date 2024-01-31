@@ -2,16 +2,13 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
-use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Webkul\Checkout\Facades\Cart;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Product\Repositories\ProductRepository;
-use Webkul\Checkout\Repositories\CartItemRepository;
-use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
+use Webkul\Checkout\Facades\Cart;
+use Webkul\Customer\Repositories\WishlistRepository;
+use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 
 class CartController extends CustomerController
@@ -36,7 +33,7 @@ class CartController extends CustomerController
         Cart::collectTotals();
 
         return response()->json([
-            'data' => ($cart = Cart::getCart()) ? new CartResource($cart) : null
+            'data' => ($cart = Cart::getCart()) ? new CartResource($cart) : null,
         ]);
     }
 
@@ -52,7 +49,7 @@ class CartController extends CustomerController
 
             if (request()->get('is_buy_now')) {
                 Cart::deActivateCart();
-            } 
+            }
 
             $cart = Cart::addProduct($product->id, request()->all());
 
@@ -124,7 +121,7 @@ class CartController extends CustomerController
                 'message' => trans('rest-api::app.shop.checkout.cart.quantity.success'),
             ]);
         } catch (\Exception $exception) {
-            return response()->json ([
+            return response()->json([
                 'message' => $exception->getMessage(),
             ]);
         }
@@ -159,7 +156,8 @@ class CartController extends CustomerController
      *
      * @return \Illuminate\Http\Response
      */
-    function empty() {
+    public function empty()
+    {
         Event::dispatch('checkout.cart.delete.before');
 
         Cart::deActivateCart();
@@ -177,7 +175,6 @@ class CartController extends CustomerController
     /**
      * Apply the coupon code.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function applyCoupon(Request $request)
@@ -189,7 +186,7 @@ class CartController extends CustomerController
                 Cart::setCouponCode($couponCode)->collectTotals();
 
                 if (Cart::getCart()->coupon_code == $couponCode) {
-                    
+
                     $cart = Cart::getCart();
 
                     return response([
@@ -219,7 +216,7 @@ class CartController extends CustomerController
     public function removeCoupon()
     {
         Cart::removeCouponCode()->collectTotals();
-                    
+
         $cart = Cart::getCart();
 
         return response([

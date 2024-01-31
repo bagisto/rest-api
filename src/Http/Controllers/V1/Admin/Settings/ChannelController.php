@@ -33,7 +33,6 @@ class ChannelController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -88,7 +87,6 @@ class ChannelController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -98,12 +96,12 @@ class ChannelController extends SettingController
 
         $data = $request->validate([
             /* general */
-            'code'                   => ['required', 'unique:channels,code,' . $id, new \Webkul\Core\Rules\Code],
-            $locale . '.name'        => 'required',
-            $locale . '.description' => 'nullable',
+            'code'                   => ['required', 'unique:channels,code,'.$id, new \Webkul\Core\Rules\Code],
+            $locale.'.name'          => 'required',
+            $locale.'.description'   => 'nullable',
             'inventory_sources'      => 'required|array|min:1',
             'root_category_id'       => 'required',
-            'hostname'               => 'unique:channels,hostname,' . $id,
+            'hostname'               => 'unique:channels,hostname,'.$id,
 
             /* currencies and locales */
             'locales'           => 'required|array|min:1',
@@ -113,19 +111,19 @@ class ChannelController extends SettingController
 
             /* design */
             'theme'                        => 'nullable',
-            $locale . '.home_page_content' => 'nullable',
-            $locale . '.footer_content'    => 'nullable',
+            $locale.'.home_page_content'   => 'nullable',
+            $locale.'.footer_content'      => 'nullable',
             'logo.*'                       => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
             'favicon.*'                    => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
 
             /* seo */
-            $locale . '.seo_title'       => 'nullable',
-            $locale . '.seo_description' => 'nullable',
-            $locale . '.seo_keywords'    => 'nullable',
+            $locale.'.seo_title'       => 'nullable',
+            $locale.'.seo_description' => 'nullable',
+            $locale.'.seo_keywords'    => 'nullable',
 
             /* maintenance mode */
             'is_maintenance_on'                => 'boolean',
-            $locale . '.maintenance_mode_text' => 'nullable',
+            $locale.'.maintenance_mode_text'   => 'nullable',
             'allowed_ips'                      => 'nullable',
         ]);
 
@@ -168,7 +166,7 @@ class ChannelController extends SettingController
         $this->getRepositoryInstance()->delete($id);
 
         Event::dispatch('core.channel.delete.after', $id);
-        
+
         return response([
             'message' => trans('rest-api::app.admin.settings.channels.delete-success'),
         ]);
@@ -177,7 +175,6 @@ class ChannelController extends SettingController
     /**
      * Set the seo content and return back the updated array.
      *
-     * @param  array  $data
      * @param  string  $locale
      * @return array
      */

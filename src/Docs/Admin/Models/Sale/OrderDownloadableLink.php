@@ -18,10 +18,10 @@ class OrderDownloadableLink
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
-    
+
     /**
      * @OA\Property(
      *     title="Product Name",
@@ -32,7 +32,7 @@ class OrderDownloadableLink
      * @var string
      */
     private $product_name;
-    
+
     /**
      * @OA\Property(
      *     title="Name",
@@ -97,7 +97,7 @@ class OrderDownloadableLink
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     private $download_bought;
 
@@ -109,7 +109,7 @@ class OrderDownloadableLink
      *     example=2
      * )
      *
-     * @var integer
+     * @var int
      */
     private $download_used;
 
@@ -132,10 +132,10 @@ class OrderDownloadableLink
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $customer_id;
-    
+
     /**
      * @OA\Property(
      *     title="Order ID",
@@ -144,7 +144,7 @@ class OrderDownloadableLink
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $order_id;
 
@@ -156,10 +156,10 @@ class OrderDownloadableLink
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $order_item_id;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",
@@ -194,7 +194,7 @@ class OrderDownloadableLink
      *     example=2
      * )
      *
-     * @var integer
+     * @var int
      */
     private $download_canceled;
 }

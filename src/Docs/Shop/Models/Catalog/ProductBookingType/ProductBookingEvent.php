@@ -18,7 +18,7 @@ class ProductBookingEvent
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -40,7 +40,7 @@ class ProductBookingEvent
      *     example=100
      * )
      *
-     * @var integer
+     * @var int
      */
     public $qty;
 
@@ -54,7 +54,7 @@ class ProductBookingEvent
      * @var float
      */
     public $special_price;
-    
+
     /**
      * @OA\Property(
      *     title="Special Price From",
@@ -67,7 +67,7 @@ class ProductBookingEvent
      * @var \DateTime
      */
     public $special_price_from;
-    
+
     /**
      * @OA\Property(
      *     title="Special Price To",
@@ -89,7 +89,7 @@ class ProductBookingEvent
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $booking_product_id;
 
@@ -169,7 +169,7 @@ class ProductBookingEvent
      * @var string
      */
     public $description;
-    
+
     /**
      * @OA\Property(
      *     title="Translations",
@@ -182,7 +182,9 @@ class ProductBookingEvent
      *          "description": "Morning Show Morning Show",
      *          "booking_product_event_ticket_id": 1
      *     }},
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(property="id", type="integer"),
      *          @OA\Property(property="locale", type="string"),
      *          @OA\Property(property="name", type="string"),

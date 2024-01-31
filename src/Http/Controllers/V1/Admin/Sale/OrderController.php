@@ -5,8 +5,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
+use Webkul\Sales\Repositories\OrderCommentRepository;
 use Webkul\Sales\Repositories\OrderRepository;
-use \Webkul\Sales\Repositories\OrderCommentRepository;
 
 class OrderController extends SaleController
 {
@@ -48,9 +48,6 @@ class OrderController extends SaleController
     /**
      * Add comment to the order
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Webkul\Sales\Repositories\OrderCommentRepository  $orderCommentRepository
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function comment(Request $request, OrderCommentRepository $orderCommentRepository, int $id)
@@ -58,7 +55,7 @@ class OrderController extends SaleController
         $request->validate([
             'comment' => 'required',
         ]);
-        
+
         $data = array_merge($request->all(), ['order_id' => $id]);
 
         $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;

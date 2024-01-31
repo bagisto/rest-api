@@ -18,7 +18,7 @@ class ProductBookingRental
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -64,7 +64,7 @@ class ProductBookingRental
      *     enum={"null", "0"}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $same_slot_all_days;
 
@@ -76,10 +76,10 @@ class ProductBookingRental
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $booking_product_id;
-    
+
     /**
      * @OA\Property(
      *     title="Slots",
@@ -118,10 +118,14 @@ class ProductBookingRental
      *                  }
      *              }
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")
      *              )

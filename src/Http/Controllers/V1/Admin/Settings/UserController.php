@@ -2,10 +2,10 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Event;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
+use Illuminate\Support\Str;
 use Webkul\Admin\Http\Requests\UserForm;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
 use Webkul\User\Repositories\AdminRepository;
 
 class UserController extends SettingController
@@ -33,7 +33,6 @@ class UserController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Webkul\Admin\Http\Requests\UserForm  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserForm $request)
@@ -59,7 +58,6 @@ class UserController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Webkul\Admin\Http\Requests\UserForm  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -75,7 +73,7 @@ class UserController extends SettingController
 
         $admin = $this->getRepositoryInstance()->update($data, $id);
 
-        if (!empty($data['password'])) {
+        if (! empty($data['password'])) {
             Event::dispatch('admin.password.update.after', $admin);
         }
 
@@ -117,7 +115,6 @@ class UserController extends SettingController
     /**
      * Prepare user data.
      *
-     * @param  \Webkul\Admin\Http\Requests\UserForm  $request
      * @param  int  $id
      * @return array|\Illuminate\Http\RedirectResponse
      */
@@ -164,7 +161,6 @@ class UserController extends SettingController
     /**
      * Cannot change redirect response.
      *
-     * @param  string $columnName
      * @return \Illuminate\Http\Response
      */
     private function cannotChangeRedirectResponse(string $columnName)

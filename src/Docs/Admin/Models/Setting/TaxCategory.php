@@ -18,7 +18,7 @@ class TaxCategory
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -60,13 +60,14 @@ class TaxCategory
      *     title="Rates",
      *     description="Tax rates belongs to Tax category",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/TaxRate")
      * )
      *
      * @var array
      */
     private $rates;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

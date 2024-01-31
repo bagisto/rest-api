@@ -4,9 +4,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Rules\Slug;
-use Webkul\CMS\Repositories\CmsRepository;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\CMS\Repositories\CmsRepository;
+use Webkul\Core\Rules\Slug;
 use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
 
 class PageController extends CMSController
@@ -34,7 +34,6 @@ class PageController extends CMSController
     /**
      * To store a new page in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +60,6 @@ class PageController extends CMSController
     /**
      * To update the previously created page in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -70,22 +68,21 @@ class PageController extends CMSController
         $locale = core()->getRequestedLocaleCode();
 
         $request->validate([
-            $locale . '.url_key'      => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
+            $locale.'.url_key'      => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
                     $fail(trans('rest-api::app.admin.cms.error.already-taken'));
                 }
             }],
-            $locale . '.page_title'   => 'required',
-            $locale . '.html_content' => 'required',
+            $locale.'.page_title'     => 'required',
+            $locale.'.html_content'   => 'required',
             'channels'                => 'required',
         ]);
 
         Event::dispatch('cms.pages.update.before', $id);
 
         $page = $this->getRepositoryInstance()->update($request->all(), $id);
-        
-        Event::dispatch('cms.pages.update.after', $page);
 
+        Event::dispatch('cms.pages.update.after', $page);
 
         return response([
             'data'    => new CMSResource($page),

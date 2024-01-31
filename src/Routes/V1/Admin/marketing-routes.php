@@ -19,56 +19,56 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
 
     /**
      * Cart rule routes.
      */
-    Route::controller(CartRuleController::class)->prefix('cart-rules')->group(function () { 
+    Route::controller(CartRuleController::class)->prefix('cart-rules')->group(function () {
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
 
     /**
      * Cart rule coupon routes.
      */
-    Route::controller(CartRuleCouponController::class)->prefix('cart-rules/{cart_rule_id}/coupons')->group(function () { 
+    Route::controller(CartRuleCouponController::class)->prefix('cart-rules/{cart_rule_id}/coupons')->group(function () {
         Route::get('', 'index');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'show');
-    
+
         Route::delete('{id}', 'destroy');
-    
+
         Route::post('mass-destroy', 'massDestroy');
     });
 
     /**
      * Email template routes.
      */
-    Route::controller(TemplateController::class)->prefix('email-templates')->group(function () { 
+    Route::controller(TemplateController::class)->prefix('email-templates')->group(function () {
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
 
@@ -85,7 +85,7 @@ Route::group([
         Route::put('{id}', 'update');
 
         Route::delete('{id}', 'destroy');
-     });
+    });
 
     /**
      * Campaign routes.

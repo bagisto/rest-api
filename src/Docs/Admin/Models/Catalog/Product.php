@@ -18,7 +18,7 @@ class Product
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -43,7 +43,7 @@ class Product
      * @var string
      */
     private $type;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",
@@ -78,7 +78,7 @@ class Product
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $parent_id;
 
@@ -90,7 +90,7 @@ class Product
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $attribute_family_id;
 
@@ -112,7 +112,7 @@ class Product
      *     type="object",
      *     ref="#/components/schemas/AttributeFamily"
      * )
-     * 
+     *
      * @var object
      */
     private $attribute_family;
@@ -122,9 +122,10 @@ class Product
      *     title="Attribute Values",
      *     description="Product's attribute values",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/ProductAttributeValue")
      * )
-     * 
+     *
      * @var array
      */
     private $attribute_values;
@@ -134,9 +135,10 @@ class Product
      *     title="Customer Group Prices",
      *     description="Customer group price discount",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/ProductCustomerGroupPrice")
      * )
-     * 
+     *
      * @var array
      */
     private $customer_group_prices;
@@ -146,6 +148,7 @@ class Product
      *     title="Images",
      *     description="Product's images",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/ProductImage")
      * )
      *
@@ -158,6 +161,7 @@ class Product
      *     title="Videos",
      *     description="Product's videos",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/ProductVideo")
      * )
      *

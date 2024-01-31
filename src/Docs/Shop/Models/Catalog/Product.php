@@ -18,7 +18,7 @@ class Product
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -141,7 +141,9 @@ class Product
      *          "large_image_url": "http://localhost/public/vendor/webkul/ui/assets/images/product/large-product-placeholder.webp",
      *          "original_image_url": "http://localhost/public/vendor/webkul/ui/assets/images/product/original-product-placeholder.webp",
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(property="small_image_url", type="string"),
      *          @OA\Property(property="medium_image_url", type="string"),
      *          @OA\Property(property="large_image_url", type="string"),
@@ -152,7 +154,7 @@ class Product
      * @var string
      */
     public $base_image;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",
@@ -190,14 +192,18 @@ class Product
      *          "average_rating": "3.5",
      *          "percentage": {"5":0,"4":50,"3":50,"2":0,"1":0},
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(property="total", type="integer"),
      *          @OA\Property(property="total_rating", type="string"),
      *          @OA\Property(property="average_rating", type="string"),
      *          @OA\Property(
      *              property="percentage",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="5", type="float"),
      *                  @OA\Property(property="4", type="float"),
      *                  @OA\Property(property="3", type="float"),
@@ -217,7 +223,7 @@ class Product
      *     example=true
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $in_stock;
 
@@ -228,7 +234,7 @@ class Product
      *     example=false
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $is_saved;
 
@@ -239,7 +245,7 @@ class Product
      *     example=false
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $is_item_in_cart;
 
@@ -250,7 +256,7 @@ class Product
      *     example=true
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $show_quantity_changer;
 
@@ -264,7 +270,9 @@ class Product
      *         "decimal": ".",
      *         "format": "%s%v"
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(property="symbol", type="string"),
      *          @OA\Property(property="decimal", type="string"),
      *          @OA\Property(property="format", type="string")
@@ -324,7 +332,7 @@ class Product
      *     title="Variants",
      *     description="Product's variants, Info: this property will use with configurable type product only."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductFlat
      */
     public $variants;
@@ -334,7 +342,7 @@ class Product
      *     title="Super Attributes",
      *     description="Product's super attributes, Info: this property will use with configurable type product only."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\Attribute
      */
     public $super_attributes;
@@ -344,7 +352,7 @@ class Product
      *     title="Grouped Products",
      *     description="Info: this property will only use with grouped type product."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductFlat
      */
     public $grouped_products;
@@ -354,7 +362,7 @@ class Product
      *     title="Downloadable Links",
      *     description="Info: this property will only use with downloadable type product."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductDownloadableLink
      */
     public $downloadable_links;
@@ -364,7 +372,7 @@ class Product
      *     title="Downloadable Samples",
      *     description="Info: this property will only use with downloadable type product."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductDownloadableSample
      */
     public $downloadable_samples;
@@ -403,11 +411,15 @@ class Product
      *              }
      *          }
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(
      *              property="options",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="id", type="integer"),
      *                  @OA\Property(property="label", type="string"),
      *                  @OA\Property(property="type", type="string", enum={"select", "checkbox", "multiselect", "radio"}),
@@ -416,7 +428,9 @@ class Product
      *                  @OA\Property(
      *                      property="products",
      *                      type="array",
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(property="id", type="integer"),
      *                          @OA\Property(property="qty", type="integer"),
      *                          @OA\Property(property="name", type="string"),
@@ -427,11 +441,15 @@ class Product
      *                          @OA\Property(
      *                              property="price",
      *                              type="array",
+     *
      *                              @OA\Items(
+     *
      *                                  @OA\Property(
      *                                      property="regular_price",
      *                                      type="array",
+     *
      *                                      @OA\Items(
+     *
      *                                          @OA\Property(property="price", type="integer"),
      *                                          @OA\Property(property="formated_price", type="string")
      *                                      )
@@ -439,7 +457,9 @@ class Product
      *                                  @OA\Property(
      *                                      property="final_price",
      *                                      type="array",
+     *
      *                                      @OA\Items(
+     *
      *                                          @OA\Property(property="price", type="integer"),
      *                                          @OA\Property(property="formated_price", type="string")
      *                                      )
@@ -462,7 +482,7 @@ class Product
      *     title="Booking",
      *     description="Booking type product, Info: this property will use with booking type product only."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductBookingType\ProductBooking
      */
     public $booking;
@@ -488,7 +508,7 @@ class Product
      * @var string
      */
     public $today_slots_html;
-    
+
     /**
      * @OA\Property(
      *     title="Week Slot Durations",
@@ -552,12 +572,16 @@ class Product
      *                      "slots": {}
      *                  }
      *      },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(property="name", type="string"),
      *          @OA\Property(
      *              property="slots",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="id", type="string", example="{week_number}_slot_{week_time_slot_number} e.g. 0_slot_0, Info: only use this field with table type booking."),
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")

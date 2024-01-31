@@ -18,7 +18,7 @@ class Channel
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -172,7 +172,7 @@ class Channel
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $root_category_id;
 
@@ -185,7 +185,7 @@ class Channel
      * @var \Webkul\RestApi\Docs\Admin\Models\Catalog\Category
      */
     private $root_category;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

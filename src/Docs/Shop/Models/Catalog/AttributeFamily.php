@@ -18,7 +18,7 @@ class AttributeFamily
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -52,7 +52,7 @@ class AttributeFamily
      *     enum={"0", "1"}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $status;
 
@@ -61,11 +61,11 @@ class AttributeFamily
      *     title="Groups",
      *     description="Attribute's groups"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\AttributeGroup
      */
     public $groups;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

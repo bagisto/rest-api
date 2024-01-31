@@ -4,18 +4,21 @@ namespace Webkul\RestApi\Docs\Shop\Controllers\Customer;
 
 class AccountController
 {
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/customer/get",
-	 *      operationId="getCustomer",
-	 *      tags={"Customers"},
-	 *      summary="Get logged in customer details",
-	 *      description="Get logged in customer details",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/customer/get",
+     *      operationId="getCustomer",
+     *      tags={"Customers"},
+     *      summary="Get logged in customer details",
+     *      description="Get logged in customer details",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -23,6 +26,7 @@ class AccountController
      *              )
      *          )
      *       ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -31,11 +35,11 @@ class AccountController
      *          response=403,
      *          description="Forbidden"
      *      )
-	 * )
-	 */
-	public function get()
-	{
-	}
+     * )
+     */
+    public function get()
+    {
+    }
 
     /**
      * @OA\Put(
@@ -45,10 +49,14 @@ class AccountController
      *      summary="Update customer profile",
      *      description="Update customer profile",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="first_name",
      *                      type="string",
@@ -96,18 +104,24 @@ class AccountController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="Your account has been updated successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/Customer")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(example="result", value={"message":"The email has already been taken.","errors":{"email":{"The email has already been taken."}}}, summary="An result object."),
      *          )
      *      )
@@ -125,13 +139,17 @@ class AccountController
      *      summary="Logout customer",
      *      description="Logout customer",
      *      security={ {"sanctum": {} }},
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="Logged out successfully.")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",

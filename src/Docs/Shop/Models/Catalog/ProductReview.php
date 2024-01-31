@@ -18,7 +18,7 @@ class ProductReview
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -42,7 +42,7 @@ class ProductReview
      *     enum={"5", "4", "3", "2", "1"}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $rating;
 
@@ -78,7 +78,7 @@ class ProductReview
      * @var string
      */
     private $status;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",
@@ -113,7 +113,7 @@ class ProductReview
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $product_id;
 
@@ -122,7 +122,7 @@ class ProductReview
      *     title="Product",
      *     description="Reviewed Product"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\Product
      */
     private $product;
@@ -135,7 +135,7 @@ class ProductReview
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $customer_id;
 
@@ -144,7 +144,7 @@ class ProductReview
      *     title="Customer",
      *     description="Review's Customer"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Customer\Customer
      */
     private $customer;

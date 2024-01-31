@@ -17,7 +17,7 @@ class CartPaymentResource extends JsonResource
         return [
             'id'           => $this->id,
             'method'       => $this->method,
-            'method_title' => core()->getConfigData('sales.paymentmethods.' . $this->method . '.title'),
+            'method_title' => core()->getConfigData('sales.paymentmethods.'.$this->method.'.title'),
             'created_at'   => $this->created_at,
             'updated_at'   => $this->updated_at,
         ];

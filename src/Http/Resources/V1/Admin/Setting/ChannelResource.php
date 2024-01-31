@@ -4,8 +4,6 @@ namespace Webkul\RestApi\Http\Resources\V1\Admin\Setting;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CurrencyResource;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\LocaleResource;
 
 class ChannelResource extends JsonResource
 {

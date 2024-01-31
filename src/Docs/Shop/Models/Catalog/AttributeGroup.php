@@ -18,7 +18,7 @@ class AttributeGroup
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -51,7 +51,7 @@ class AttributeGroup
      *     example=null
      * )
      *
-     * @var integer
+     * @var int
      */
     public $swatch_type;
 
@@ -60,11 +60,11 @@ class AttributeGroup
      *     title="Attributes",
      *     description="Attributes"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\Attribute
      */
     public $attributes;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

@@ -18,7 +18,7 @@ class Category
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -108,7 +108,7 @@ class Category
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $status;
 
@@ -144,7 +144,7 @@ class Category
      * @var object
      */
     private $additional;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

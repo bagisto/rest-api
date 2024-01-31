@@ -18,10 +18,10 @@ class ProductBookingTable
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
-    
+
     /**
      * @OA\Property(
      *     title="Price Type",
@@ -33,7 +33,7 @@ class ProductBookingTable
      * @var string
      */
     public $price_type;
-    
+
     /**
      * @OA\Property(
      *     title="Guest Limit",
@@ -41,7 +41,7 @@ class ProductBookingTable
      *     example=4
      * )
      *
-     * @var integer
+     * @var int
      */
     public $guest_limit;
 
@@ -52,7 +52,7 @@ class ProductBookingTable
      *     example=50
      * )
      *
-     * @var integer
+     * @var int
      */
     public $duration;
 
@@ -63,7 +63,7 @@ class ProductBookingTable
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     public $break_time;
 
@@ -74,7 +74,7 @@ class ProductBookingTable
      *     example=5
      * )
      *
-     * @var integer
+     * @var int
      */
     public $prevent_scheduling_before;
 
@@ -86,7 +86,7 @@ class ProductBookingTable
      *     enum={"null", "0"}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $same_slot_all_days;
 
@@ -98,10 +98,10 @@ class ProductBookingTable
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $booking_product_id;
-    
+
     /**
      * @OA\Property(
      *     title="Slots",
@@ -140,10 +140,14 @@ class ProductBookingTable
      *                  }
      *              }
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="from", type="string"),
      *                  @OA\Property(property="to", type="string")
      *              )

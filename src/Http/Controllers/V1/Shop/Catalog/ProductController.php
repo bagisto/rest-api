@@ -41,7 +41,6 @@ class ProductController extends CatalogController
     /**
      * Returns a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function allResources(Request $request)
@@ -54,7 +53,6 @@ class ProductController extends CatalogController
     /**
      * Returns product's additional information.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -73,7 +71,6 @@ class ProductController extends CatalogController
     /**
      * Returns product's additional information.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

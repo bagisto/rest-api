@@ -67,7 +67,7 @@ class LocaleController extends SettingController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code'      => ['required', 'unique:locales,code,' . $id, new Code],
+            'code'      => ['required', 'unique:locales,code,'.$id, new Code],
             'name'      => 'required',
             'direction' => ['required', 'in:ltr,rtl'],
         ]);

@@ -18,7 +18,7 @@ class User
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -52,7 +52,7 @@ class User
      *     enum={0, 1}
      * )
      *
-     * @var boolean
+     * @var bool
      */
     private $status;
 
@@ -61,7 +61,7 @@ class User
      *     title="Role",
      *     description="Admin user's role"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Admin\Models\User\Role
      */
     private $role;
@@ -76,7 +76,7 @@ class User
      * @var string
      */
     private $token;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

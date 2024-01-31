@@ -3,8 +3,8 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Rules\Code;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\AttributeFamilyResource;
 
 class AttributeFamilyController extends CatalogController
@@ -37,8 +37,8 @@ class AttributeFamilyController extends CatalogController
     public function store()
     {
         $this->validate(request(), [
-            'code' => ['required', 'unique:attribute_families,code', new Code],
-            'name' => 'required',
+            'code'                      => ['required', 'unique:attribute_families,code', new Code],
+            'name'                      => 'required',
             'attribute_groups.*.code'   => 'required',
             'attribute_groups.*.name'   => 'required',
             'attribute_groups.*.column' => 'required|in:1,2',
@@ -46,10 +46,10 @@ class AttributeFamilyController extends CatalogController
 
         Event::dispatch('catalog.attribute_family.create.before');
 
-        $attributeFamily = $this->getRepositoryInstance()->create([    
-           'attribute_groups'=> request('attribute_groups'),
-           'code'            => request('code'),
-           'name'            => request('name'),
+        $attributeFamily = $this->getRepositoryInstance()->create([
+            'attribute_groups'=> request('attribute_groups'),
+            'code'            => request('code'),
+            'name'            => request('name'),
         ]);
 
         Event::dispatch('catalog.attribute_family.create.after', $attributeFamily);
@@ -63,14 +63,13 @@ class AttributeFamilyController extends CatalogController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(int $id)
     {
         $this->validate(request(), [
-            'code' => ['required', 'unique:attribute_families,code,' . $id, new Code],
-            'name' => 'required',
+            'code'                      => ['required', 'unique:attribute_families,code,'.$id, new Code],
+            'name'                      => 'required',
             'attribute_groups.*.code'   => 'required',
             'attribute_groups.*.name'   => 'required',
             'attribute_groups.*.column' => 'required|in:1,2',

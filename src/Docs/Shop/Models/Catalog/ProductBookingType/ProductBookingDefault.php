@@ -18,7 +18,7 @@ class ProductBookingDefault
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -41,7 +41,7 @@ class ProductBookingDefault
      *     example=50
      * )
      *
-     * @var integer
+     * @var int
      */
     public $duration;
 
@@ -52,7 +52,7 @@ class ProductBookingDefault
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     public $break_time;
 
@@ -64,10 +64,10 @@ class ProductBookingDefault
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $booking_product_id;
-    
+
     /**
      * @OA\Property(
      *     title="Slots",
@@ -79,7 +79,9 @@ class ProductBookingDefault
      *          "from_day": "0",
      *          "to_day": "0"
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(property="from", type="string"),
      *          @OA\Property(property="to", type="string"),
      *          @OA\Property(property="from_day", type="string", description="Day's number, Only use with one booking_type", example="0", enum={"0", "1", "2", "3", "4", "5", "6"}),

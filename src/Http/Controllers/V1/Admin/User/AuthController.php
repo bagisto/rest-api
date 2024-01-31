@@ -19,12 +19,10 @@ class AuthController extends UserController
     /**
      * Login user.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Webkul\User\Repositories\AdminRepository  $adminRepository
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request, AdminRepository $adminRepository)
-    { 
+    {
         $request->validate([
             'email'    => 'required|email',
             'password' => 'required',
@@ -36,7 +34,7 @@ class AuthController extends UserController
             ]);
 
             $admin = $adminRepository->where('email', $request->email)->first();
-            
+
             if (! $admin || ! Hash::check($request->password, $admin->password)) {
                 throw ValidationException::withMessages([
                     'email' => trans('rest-api::app.admin.account.error.credential-error'),
@@ -71,11 +69,10 @@ class AuthController extends UserController
     /**
      * Logout user.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
-    { 
+    {
         $admin = $this->resolveAdminUser($request);
 
         ! EnsureFrontendRequestsAreStateful::fromFrontend($request)
@@ -90,11 +87,10 @@ class AuthController extends UserController
     /**
      * Send forgot password link.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function forgotPassword(Request $request)
-    { 
+    {
         $request->validate([
             'email' => 'required|email',
         ]);

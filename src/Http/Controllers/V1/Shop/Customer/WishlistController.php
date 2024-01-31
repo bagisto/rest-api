@@ -27,16 +27,13 @@ class WishlistController extends CustomerController
 
     /**
      * Create a new controller istance.
-     *
-     * @param  \Webkul\Customer\Repositories\WishlistRepository  $wishlistRepository
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
      */
     public function __construct(
         WishlistRepository $wishlistRepository,
         ProductRepository $productRepository
     ) {
         parent::__construct();
-        
+
         $this->wishlistRepository = $wishlistRepository;
 
         $this->productRepository = $productRepository;
@@ -45,7 +42,6 @@ class WishlistController extends CustomerController
     /**
      * Get customer wishlist.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -60,7 +56,6 @@ class WishlistController extends CustomerController
     /**
      * Add or remote item from wishlist.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -87,7 +82,7 @@ class WishlistController extends CustomerController
             'channel_id'  => core()->getCurrentChannel()->id,
             'product_id'  => $id,
             'customer_id' => $customer->id,
-            'additional'  => $request->input('additional') ?? null
+            'additional'  => $request->input('additional') ?? null,
         ]);
 
         return response([
@@ -99,7 +94,6 @@ class WishlistController extends CustomerController
     /**
      * Move product from wishlist to cart.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

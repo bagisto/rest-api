@@ -4,8 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CoreConfigRepository;
-use Webkul\RestApi\Http\Resources\V1\Shop\Core\ConfigurationResource;
 use Webkul\RestApi\Http\Controllers\V1\Shop\ShopController;
+use Webkul\RestApi\Http\Resources\V1\Shop\Core\ConfigurationResource;
 
 class CoreController extends ShopController
 {
@@ -38,11 +38,10 @@ class CoreController extends ShopController
     {
         return ConfigurationResource::class;
     }
-    
+
     /**
      * Get core configs.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function getCoreConfigs(Request $request)

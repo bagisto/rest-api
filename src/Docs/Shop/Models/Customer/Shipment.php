@@ -18,10 +18,10 @@ class Shipment
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
-    
+
     /**
      * @OA\Property(
      *     title="Order's Shipment Status",
@@ -32,7 +32,7 @@ class Shipment
      * @var string
      */
     private $status;
-    
+
     /**
      * @OA\Property(
      *     title="Shipment Total Quantity",
@@ -41,10 +41,10 @@ class Shipment
      *     example=2
      * )
      *
-     * @var integer
+     * @var int
      */
     private $total_qty;
-    
+
     /**
      * @OA\Property(
      *     title="Total Weight Of Shipment",
@@ -55,7 +55,7 @@ class Shipment
      * @var float
      */
     private $total_weight;
-    
+
     /**
      * @OA\Property(
      *     title="Carrier/Shipment Code",
@@ -66,7 +66,7 @@ class Shipment
      * @var string
      */
     private $carrier_code;
-    
+
     /**
      * @OA\Property(
      *     title="Carrier Title",
@@ -77,7 +77,7 @@ class Shipment
      * @var string
      */
     private $carrier_title;
-    
+
     /**
      * @OA\Property(
      *     title="Tracking ID",
@@ -96,7 +96,7 @@ class Shipment
      *     example=true,
      * )
      *
-     * @var boolean
+     * @var bool
      */
     private $email_sent;
 
@@ -109,7 +109,7 @@ class Shipment
      * @var \Webkul\RestApi\Docs\Shop\Models\Customer\Customer
      */
     private $customer;
-    
+
     /**
      * @OA\Property(
      *     title="Order ID",
@@ -118,7 +118,7 @@ class Shipment
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $order_id;
 
@@ -130,10 +130,10 @@ class Shipment
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $order_address_id;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

@@ -18,10 +18,10 @@ class Order
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
-    
+
     /**
      * @OA\Property(
      *     title="Increment ID",

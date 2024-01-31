@@ -35,9 +35,6 @@ class TransactionController extends SaleController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     * @param  \Webkul\Sales\Repositories\InvoiceRepository  $invoiceRepository
-     * @param  \Webkul\Sales\Repositories\ShipmentRepository $shipmentRepository
      * @return void
      */
     public function __construct(
@@ -46,7 +43,7 @@ class TransactionController extends SaleController
         ShipmentRepository $shipmentRepository
     ) {
         parent::__construct();
-        
+
         $this->orderRepository = $orderRepository;
 
         $this->invoiceRepository = $invoiceRepository;
@@ -77,7 +74,6 @@ class TransactionController extends SaleController
     /**
      * Save the tranaction.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -89,13 +85,13 @@ class TransactionController extends SaleController
         ]);
 
         $invoice = $this->invoiceRepository->where('increment_id', $request->invoice_id)->first();
-        
+
         if (! $invoice) {
             return response([
                 'message' => trans('rest-api::app.admin.sales.transactions.invoice-missing'),
             ], 400);
         }
-        
+
         if ($invoice->state == 'paid') {
             return response([
                 'message' => trans('rest-api::app.admin.sales.transactions.already-paid'),
@@ -103,7 +99,7 @@ class TransactionController extends SaleController
         }
 
         $transactionTotal = $this->getRepositoryInstance()->where('invoice_id', $invoice->id)->sum('amount');
-        
+
         $transactionAmtfinal = $request->amount + $transactionTotal;
 
         if ($transactionAmtfinal > $invoice->base_grand_total) {

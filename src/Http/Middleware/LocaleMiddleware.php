@@ -18,7 +18,6 @@ class LocaleMiddleware
     /**
      * Create a middleware instance.
      *
-     * @param  \Webkul\Core\Repositories\LocaleRepository  $localeRepository
      * @return void
      */
     public function __construct(LocaleRepository $localeRepository)
@@ -29,8 +28,6 @@ class LocaleMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)

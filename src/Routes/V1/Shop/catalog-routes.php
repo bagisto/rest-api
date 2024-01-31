@@ -10,7 +10,7 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Catalog\ProductReviewController;
 /**
  * Product routes.
  */
-Route::controller(ProductController::class)->prefix('products')->group(function () { 
+Route::controller(ProductController::class)->prefix('products')->group(function () {
     Route::get('', 'allResources');
 
     Route::get('/{id}', 'getResource');
@@ -43,7 +43,7 @@ Route::controller(CategoryController::class)->prefix('categories')->group(functi
  * descendant category routes.
  */
 Route::controller(CategoryController::class)->prefix('descendant-categories')->group(function () {
-    Route::get('',  'descendantCategories');
+    Route::get('', 'descendantCategories');
 });
 
 /**

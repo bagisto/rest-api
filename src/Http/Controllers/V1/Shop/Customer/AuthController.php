@@ -5,13 +5,13 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Event;
-use Webkul\Core\Rules\PhoneNumber;
-use Webkul\Core\Rules\AlphaNumericSpace;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use Webkul\Core\Rules\AlphaNumericSpace;
+use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
@@ -37,8 +37,6 @@ class AuthController extends CustomerController
     /**
      * Controller instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
-     * @param  \Webkul\Customer\Repositories\CustomerGroupRepository  $customerGroupRepository
      * @return void
      */
     public function __construct(
@@ -55,7 +53,6 @@ class AuthController extends CustomerController
     /**
      * Register the customer.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request)
@@ -83,14 +80,13 @@ class AuthController extends CustomerController
         Event::dispatch('customer.registration.after', $customer);
 
         return response([
-            'message' =>  trans('rest-api::app.shop.customer.accounts.create-success'),
+            'message' => trans('rest-api::app.shop.customer.accounts.create-success'),
         ]);
     }
 
     /**
      * Login the customer.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request)
@@ -109,7 +105,7 @@ class AuthController extends CustomerController
 
             if (! $customer || ! Hash::check($request->password, $customer->password)) {
                 throw ValidationException::withMessages([
-                    'email' =>  trans('rest-api::app.shop.customer.accounts.error.credential-error'),
+                    'email' => trans('rest-api::app.shop.customer.accounts.error.credential-error'),
                 ]);
             }
 
@@ -118,14 +114,14 @@ class AuthController extends CustomerController
              */
             $customer->tokens()->delete();
 
-             /**
-              * Event passed to prepare cart after login.
-              */
-             Event::dispatch('customer.after.login', $request->get('email'));
+            /**
+             * Event passed to prepare cart after login.
+             */
+            Event::dispatch('customer.after.login', $request->get('email'));
 
             return response([
                 'data'    => new CustomerResource($customer),
-                'message' =>  trans('rest-api::app.shop.customer.accounts.logged-in-success'),
+                'message' => trans('rest-api::app.shop.customer.accounts.logged-in-success'),
                 'token'   => $customer->createToken($request->device_name, ['role:customer'])->plainTextToken,
             ]);
 
@@ -136,19 +132,18 @@ class AuthController extends CustomerController
 
             return response([
                 'data'    => new CustomerResource($this->resolveShopUser($request)),
-                'message' =>  trans('rest-api::app.shop.customer.accounts.logged-in-success'),
+                'message' => trans('rest-api::app.shop.customer.accounts.logged-in-success'),
             ]);
         }
 
         return response([
-            'message' =>  trans('rest-api::app.shop.customer.accounts.error.invalid'),
+            'message' => trans('rest-api::app.shop.customer.accounts.error.invalid'),
         ], 401);
     }
 
     /**
      * Get details for current logged in customer.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function get(Request $request)
@@ -163,7 +158,6 @@ class AuthController extends CustomerController
     /**
      * Update the customer.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -175,7 +169,7 @@ class AuthController extends CustomerController
             'last_name'     => ['required', new AlphaNumericSpace],
             'gender'        => 'required',
             'date_of_birth' => 'nullable|date|before:today',
-            'email'         => 'email|unique:customers,email,' . $customer->id,
+            'email'         => 'email|unique:customers,email,'.$customer->id,
             'phone'         => ['required', new PhoneNumber],
             'password'      => 'confirmed|min:6',
         ]);
@@ -192,14 +186,13 @@ class AuthController extends CustomerController
 
         return response([
             'data'    => new CustomerResource($updatedCustomer),
-            'message' =>  trans('rest-api::app.shop.customer.addresses.update-success'),
+            'message' => trans('rest-api::app.shop.customer.addresses.update-success'),
         ]);
     }
 
     /**
      * Logout the customer.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
@@ -210,7 +203,7 @@ class AuthController extends CustomerController
             ? $customer->tokens()->delete()
             : auth()->guard('customer')->logout();
 
-        Event::dispatch('customer.after.logout', $id);    
+        Event::dispatch('customer.after.logout', $id);
 
         return response([
             'message' => trans('rest-api::app.shop.customer.accounts.logged-in-success'),
@@ -220,7 +213,6 @@ class AuthController extends CustomerController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function forgotPassword(Request $request)

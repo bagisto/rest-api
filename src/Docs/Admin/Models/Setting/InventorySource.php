@@ -18,10 +18,10 @@ class InventorySource
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
-    
+
     /**
      * @OA\Property(
      *     title="Code",
@@ -32,7 +32,7 @@ class InventorySource
      * @var string
      */
     private $code;
-    
+
     /**
      * @OA\Property(
      *     title="Name",
@@ -43,7 +43,7 @@ class InventorySource
      * @var string
      */
     private $name;
-    
+
     /**
      * @OA\Property(
      *     title="Description",
@@ -54,7 +54,7 @@ class InventorySource
      * @var string
      */
     private $description;
-    
+
     /**
      * @OA\Property(
      *     title="Contact Name",
@@ -65,7 +65,7 @@ class InventorySource
      * @var string
      */
     private $contact_name;
-    
+
     /**
      * @OA\Property(
      *     title="Contact Email",
@@ -76,7 +76,7 @@ class InventorySource
      * @var string
      */
     private $contact_email;
-    
+
     /**
      * @OA\Property(
      *     title="Contact Number",
@@ -87,7 +87,7 @@ class InventorySource
      * @var string
      */
     private $contact_number;
-    
+
     /**
      * @OA\Property(
      *     title="Contact Fax",
@@ -98,7 +98,7 @@ class InventorySource
      * @var string
      */
     private $contact_fax;
-    
+
     /**
      * @OA\Property(
      *     title="Country",
@@ -109,7 +109,7 @@ class InventorySource
      * @var string
      */
     private $country;
-    
+
     /**
      * @OA\Property(
      *     title="State",
@@ -120,7 +120,7 @@ class InventorySource
      * @var string
      */
     private $state;
-    
+
     /**
      * @OA\Property(
      *     title="City",
@@ -131,7 +131,7 @@ class InventorySource
      * @var string
      */
     private $city;
-    
+
     /**
      * @OA\Property(
      *     title="Street",
@@ -142,7 +142,7 @@ class InventorySource
      * @var string
      */
     private $street;
-    
+
     /**
      * @OA\Property(
      *     title="Postcode",
@@ -153,7 +153,7 @@ class InventorySource
      * @var string
      */
     private $postcode;
-    
+
     /**
      * @OA\Property(
      *     title="Priority",
@@ -161,10 +161,10 @@ class InventorySource
      *     example=0
      * )
      *
-     * @var integer
+     * @var int
      */
     private $priority;
-    
+
     /**
      * @OA\Property(
      *     title="Latitude",
@@ -175,7 +175,7 @@ class InventorySource
      * @var float
      */
     private $latitude;
-    
+
     /**
      * @OA\Property(
      *     title="Longitude",
@@ -186,7 +186,7 @@ class InventorySource
      * @var float
      */
     private $longitude;
-    
+
     /**
      * @OA\Property(
      *     title="Status",
@@ -195,10 +195,10 @@ class InventorySource
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $status;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

@@ -18,7 +18,7 @@ class ProductBooking
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -41,7 +41,7 @@ class ProductBooking
      *     example=100
      * )
      *
-     * @var integer
+     * @var int
      */
     public $qty;
 
@@ -64,7 +64,7 @@ class ProductBooking
      *     enum={"0", "1"}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $show_location;
 
@@ -76,10 +76,10 @@ class ProductBooking
      *     enum={"null", "0"}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $available_every_week;
-    
+
     /**
      * @OA\Property(
      *     title="Available From",
@@ -105,7 +105,7 @@ class ProductBooking
      * @var \DateTime
      */
     protected $available_to;
-    
+
     /**
      * @OA\Property(
      *     title="Product ID",
@@ -114,10 +114,10 @@ class ProductBooking
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $product_id;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",
@@ -149,7 +149,7 @@ class ProductBooking
      *     title="Default Slot",
      *     description="Default booking slot information, This property will use with default type booking product only."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductBookingType\ProductBookingDefault
      */
     public $default_slot;
@@ -159,7 +159,7 @@ class ProductBooking
      *     title="Appointment Slot",
      *     description="Appointment booking slot information, This property will use with appointment type booking product only."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductBookingType\ProductBookingAppointment
      */
     public $appointment_slot;
@@ -169,7 +169,7 @@ class ProductBooking
      *     title="Event Tickets",
      *     description="Event booking slot information, This property will use with event type booking product only."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductBookingType\ProductBookingEvent
      */
     public $event_tickets;
@@ -179,7 +179,7 @@ class ProductBooking
      *     title="Rental Slot",
      *     description="Rental slot information, This property will use with rental booking product only."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductBookingType\ProductBookingRental
      */
     public $rental_slot;
@@ -189,7 +189,7 @@ class ProductBooking
      *     title="Table Slot",
      *     description="Table booking slot information, This property will use with table type booking product only."
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductBookingType\ProductBookingTable
      */
     public $table_slot;

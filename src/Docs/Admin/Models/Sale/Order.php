@@ -18,10 +18,10 @@ class Order
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
-    
+
     /**
      * @OA\Property(
      *     title="Increment ID",
@@ -65,7 +65,7 @@ class Order
      * @var string
      */
     private $channel_name;
-    
+
     /**
      * @OA\Property(
      *     title="Is Guest",
@@ -74,10 +74,10 @@ class Order
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $is_guest;
-    
+
     /**
      * @OA\Property(
      *     title="Email",
@@ -174,7 +174,7 @@ class Order
      *      enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $is_gift;
 
@@ -186,7 +186,7 @@ class Order
      *     example=2
      * )
      *
-     * @var integer
+     * @var int
      */
     private $total_item_count;
 
@@ -198,7 +198,7 @@ class Order
      *     example=4
      * )
      *
-     * @var integer
+     * @var int
      */
     private $total_qty_ordered;
 
@@ -474,7 +474,7 @@ class Order
      * @var \Webkul\RestApi\Docs\Admin\Models\Setting\Channel
      */
     private $channel;
-    
+
     /**
      * @OA\Property(
      *     title="Shipping Address",
@@ -484,7 +484,7 @@ class Order
      * @var \Webkul\RestApi\Docs\Admin\Models\Sale\OrderAddress
      */
     private $shipping_address;
-    
+
     /**
      * @OA\Property(
      *     title="Billing Address",
@@ -494,36 +494,39 @@ class Order
      * @var \Webkul\RestApi\Docs\Admin\Models\Sale\OrderAddress
      */
     private $billing_address;
-    
+
     /**
      * @OA\Property(
      *     title="Order Items",
      *     description="Order Items",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/OrderItem")
      * )
      *
      * @var array
      */
     private $items;
-    
+
     /**
      * @OA\Property(
      *     title="Invoices",
      *     description="Order's invoices'",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/Invoice")
      * )
      *
      * @var array
      */
     private $invoices;
-    
+
     /**
      * @OA\Property(
      *     title="Shipments",
      *     description="Order's shipments",
      *     type="array",
+     *
      *     @OA\Items(ref="#/components/schemas/Shipment")
      * )
      *

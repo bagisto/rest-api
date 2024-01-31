@@ -71,7 +71,9 @@ class ProductConfigurableConfig
      *              }
      *          }}
      *      }},
+     *
      *      @OA\Items(
+     *
      *          @OA\Property(property="id", type="integer"),
      *          @OA\Property(property="code", type="string"),
      *          @OA\Property(property="label", type="string"),
@@ -79,14 +81,18 @@ class ProductConfigurableConfig
      *          @OA\Property(
      *              property="options",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="id", type="integer"),
      *                  @OA\Property(property="label", type="string"),
      *                  @OA\Property(property="swatch_type", type="string"),
      *                  @OA\Property(
      *                      property="products",
      *                      type="array",
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(type="integer")
      *                      )
      *                  )
@@ -243,7 +249,9 @@ class ProductConfigurableConfig
      *          property="variant_product_id",
      *          type="array",
      *          example="Use the {variant_product_id} as index",
+     *
      *          @OA\Items(
+     *
      *              @OA\Property(property="small_image_url", type="string", example="http://localhost/public/cache/small/product/{product_id}/{image_name.jpg}"),
      *              @OA\Property(property="medium_image_url", type="string", example="http://localhost/public/cache/small/product/{product_id}/{image_name.jpg}"),
      *              @OA\Property(property="large_image_url", type="string", example="http://localhost/public/cache/small/product/{product_id}/{image_name.jpg}"),
@@ -271,7 +279,9 @@ class ProductConfigurableConfig
      *          property="variant_product_id",
      *          type="array",
      *          example="Use the {variant_product_id} as index",
+     *
      *          @OA\Items(
+     *
      *              @OA\Property(property="path", type="string", example="http://localhost/public/cache/small/product/{product_id}/{video_name.mp4}")
      *          )
      *      )
@@ -297,5 +307,4 @@ class ProductConfigurableConfig
      * @var object
      */
     public $regular_price;
-    
 }

@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::get('get', 'get');
 
         Route::put('profile', 'update');
-    
+
         Route::post('logout', 'logout');
     });
 
@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::post('', 'store');
 
         Route::put('{id}', 'update');
- 
+
         Route::delete('{id}', 'destroy');
     });
 
@@ -59,19 +59,19 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::get('', 'allResources');
 
         Route::get('{id}', 'getResource');
-    
+
         Route::post('{id}/cancel', 'cancel');
     });
-    
+
     /**
      * Customer sale invoices routes.
      */
     Route::controller(InvoiceController::class)->prefix('customer/invoices')->group(function () {
         Route::get('', 'allResources');
-    
+
         Route::get('{id}', 'getResource');
     });
-    
+
     /**
      * Customer sale shipment routes.
      */
@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
     Route::controller(TransactionController::class)->prefix('customer/transactions')->group(function () {
         Route::get('', 'allResources');
 
-        Route::get('{id}', 'getResource');    
+        Route::get('{id}', 'getResource');
     });
 
     /**
@@ -97,7 +97,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::get('', 'index');
 
         Route::post('{id}', 'addOrRemove');
-    
+
         Route::post('{id}/move-to-cart', 'moveToCart');
     });
 
@@ -108,17 +108,17 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::get('', 'index');
 
         Route::post('add/{productId}', 'store');
-    
+
         Route::put('update', 'update');
-    
+
         Route::delete('remove/{cartItemId}', 'removeItem');
-    
+
         Route::delete('empty', 'empty');
-    
+
         Route::post('move-to-wishlist/{cartItemId}', 'moveToWishlist');
-    
+
         Route::post('coupon', 'applyCoupon');
-    
+
         Route::delete('coupon', 'removeCoupon');
     });
 
@@ -129,11 +129,11 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::post('save-address', 'saveAddress');
 
         Route::post('save-shipping', 'saveShipping');
-    
+
         Route::post('save-payment', 'savePayment');
-    
+
         Route::post('check-minimum-order', 'checkMinimumOrder');
-    
+
         Route::post('save-order', 'saveOrder');
     });
 });

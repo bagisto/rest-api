@@ -18,7 +18,7 @@ class Attribute
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -84,7 +84,7 @@ class Attribute
      *     title="Options",
      *     description="Attribute's options"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\AttributeOption
      */
     public $options;
@@ -108,7 +108,7 @@ class Attribute
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $position;
 
@@ -120,7 +120,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $is_comparable;
 
@@ -132,7 +132,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $is_configurable;
 
@@ -144,7 +144,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $is_required;
 
@@ -156,7 +156,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $is_unique;
 
@@ -168,7 +168,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $is_filterable;
 
@@ -180,7 +180,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $is_user_defined;
 
@@ -192,7 +192,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $is_visible_on_front;
 
@@ -204,7 +204,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $use_in_flat;
 
@@ -216,7 +216,7 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $value_per_locale;
 
@@ -228,10 +228,10 @@ class Attribute
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     public $value_per_channel;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

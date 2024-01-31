@@ -4,102 +4,122 @@ namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing;
 
 class CartRuleController
 {
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/promotions/cart-rules",
-	 *      operationId="getCartRules",
-	 *      tags={"CartRules"},
-	 *      summary="Get admin cart rule list",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/promotions/cart-rules",
+     *      operationId="getCartRules",
+     *      tags={"CartRules"},
+     *      summary="Get admin cart rule list",
      *      description="Returns cart rule list, if you want to retrieve all cart rules at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Cart Rule Id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="sort",
      *          description="Sort column",
      *          example="id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="order",
      *          description="Sort order",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string",
      *              enum={"desc", "asc"}
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="page",
      *          description="Page number",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="limit",
      *          description="Limit",
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
+     *
      *                  @OA\Items(ref="#/components/schemas/CartRule")
      *              ),
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function list()
-	{
-	}
+     * )
+     */
+    public function list()
+    {
+    }
 
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/promotions/cart-rules/{id}",
-	 *      operationId="getCartRule",
-	 *      tags={"CartRules"},
-	 *      summary="Get admin cart rule detail",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/promotions/cart-rules/{id}",
+     *      operationId="getCartRule",
+     *      tags={"CartRules"},
+     *      summary="Get admin cart rule detail",
      *      description="Returns cart rule detail",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Cart Rule ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -107,11 +127,11 @@ class CartRuleController
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function get()
-	{
-	}
+     * )
+     */
+    public function get()
+    {
+    }
 
     /**
      * @OA\Post(
@@ -121,10 +141,14 @@ class CartRuleController
      *      summary="Store the cart rule",
      *      description="Store the cart rule",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="name",
      *                      type="string",
@@ -149,15 +173,19 @@ class CartRuleController
      *                      description="cart rule will applicable on which channels?",
      *                      type="array",
      *                      example={1, 2},
+     *
      *                      @OA\Items(type="integer")
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="customer_groups",
      *                      description="cart rule will applicable on which customer's groups?",
      *                      type="array",
      *                      example={1, 2},
+     *
      *                      @OA\Items(type="integer")
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="coupon_type",
      *                      description="Cart rule coupon type, i.e. `0` is used for `No Coupon` and `1` is for `Specific Coupon`",
@@ -225,7 +253,9 @@ class CartRuleController
      *                          "attribute": "cart|items_qty",
      *                          "attribute_type": "integer"
      *                      }},
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(property="value", type="string", example="2"),
      *                          @OA\Property(property="operator", type="string", example=">="),
      *                          @OA\Property(property="attribute", type="string", example="cart|items_qty"),
@@ -282,14 +312,18 @@ class CartRuleController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="cart rule created successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/CartRule")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -308,19 +342,25 @@ class CartRuleController
      *      summary="Update cart rule",
      *      description="Update cart rule",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="cart rule ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
-	 *              mediaType="application/json",
+     *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="name",
      *                      type="string",
@@ -345,15 +385,19 @@ class CartRuleController
      *                      description="cart rule will applicable on which channels?",
      *                      type="array",
      *                      example={1, 2},
+     *
      *                      @OA\Items(type="integer")
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="customer_groups",
      *                      description="cart rule will applicable on which customer's groups?",
      *                      type="array",
      *                      example={1, 2},
+     *
      *                      @OA\Items(type="integer")
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="coupon_type",
      *                      description="Cart rule coupon type, i.e. `0` is used for `No Coupon` and `1` is for `Specific Coupon`",
@@ -421,7 +465,9 @@ class CartRuleController
      *                          "attribute": "cart|items_qty",
      *                          "attribute_type": "integer"
      *                      }},
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(property="value", type="string", example="2"),
      *                          @OA\Property(property="operator", type="string", example=">="),
      *                          @OA\Property(property="attribute", type="string", example="cart|items_qty"),
@@ -478,10 +524,13 @@ class CartRuleController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -493,6 +542,7 @@ class CartRuleController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -511,19 +561,24 @@ class CartRuleController
      *      summary="Delete cart rule by id",
      *      description="Delete cart rule by id",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="cart rule ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",

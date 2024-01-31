@@ -31,7 +31,6 @@ class OrderController extends CustomerController
     /**
      * Cancel customer's order.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

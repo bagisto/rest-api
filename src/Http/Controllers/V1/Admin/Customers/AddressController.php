@@ -4,13 +4,13 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Customer\Rules\VatIdRule;
 use Webkul\Core\Http\Requests\MassDestroyRequest;
-use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Customer\Rules\VatIdRule;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerAddressResource;
 
-class CustomerAddressController extends CustomerBaseController
+class AddressController extends BaseController
 {
     /**
      * Customer repository instance.
@@ -22,13 +22,12 @@ class CustomerAddressController extends CustomerBaseController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Customer\Repositories\CustomerRepository  $customerRepository
      * @return void
      */
     public function __construct(CustomerRepository $customerRepository)
     {
         parent::__construct();
-        
+
         $this->customerRepository = $customerRepository;
     }
 
@@ -55,7 +54,6 @@ class CustomerAddressController extends CustomerBaseController
     /**
      * Fetch address by customer id.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $customerId
      * @return \Illuminate\Http\Response
      */
@@ -74,7 +72,7 @@ class CustomerAddressController extends CustomerBaseController
         } else {
             $query = $query->orderBy('id', 'desc');
         }
-        
+
         if (is_null($request->input('pagination')) || $request->input('pagination')) {
             $results = $query->paginate($request->input('limit') ?? 10);
         } else {
@@ -87,12 +85,11 @@ class CustomerAddressController extends CustomerBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $customerId
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $customerId)
-    {  
+    {
         $request->merge([
             'customer_id' => $customerId,
             'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),
@@ -142,7 +139,6 @@ class CustomerAddressController extends CustomerBaseController
     /**
      * Edit's the pre made resource of customer called address.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $customerId
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -206,7 +202,6 @@ class CustomerAddressController extends CustomerBaseController
     /**
      * Mass delete the customer's addresses.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @param  int  $customerId
      * @return \Illuminate\Http\Response
      */

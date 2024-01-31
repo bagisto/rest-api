@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'default' => 'default',
+    'default'        => 'default',
     'documentations' => [
         'default' => [
             'api' => [
@@ -12,8 +12,8 @@ return [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/shop/documentation',
-                'docs' => storage_path('api-docs/shop'),
+                'api'             => 'api/shop/documentation',
+                'docs'            => storage_path('api-docs/shop'),
                 'oauth2_callback' => 'api/shop/oauth2-callback',
             ],
             'paths' => [
@@ -55,8 +55,8 @@ return [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/admin/documentation',
-                'docs' => storage_path('api-docs/admin'),
+                'api'             => 'api/admin/documentation',
+                'docs'            => storage_path('api-docs/admin'),
                 'oauth2_callback' => 'api/admin/oauth2-callback',
             ],
             'paths' => [
@@ -106,9 +106,9 @@ return [
              * Middleware allows to prevent unexpected access to API documentation
             */
             'middleware' => [
-                'api' => [],
-                'asset' => [],
-                'docs' => [],
+                'api'             => [],
+                'asset'           => [],
+                'docs'            => [],
                 'oauth2_callback' => [],
             ],
 
@@ -238,16 +238,16 @@ return [
                 ],
                 */
                 'sanctum_admin' => [ // Unique name of security
-                    'type' => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
+                    'type'        => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
                     'description' => 'Enter token in format (Bearer <token>)',
-                    'name' => 'Authorization', // The name of the header or query parameter to be used.
-                    'in' => 'header', // The location of the API key. Valid values are "query" or "header".
+                    'name'        => 'Authorization', // The name of the header or query parameter to be used.
+                    'in'          => 'header', // The location of the API key. Valid values are "query" or "header".
                 ],
                 'sanctum' => [ // Unique name of security
-                    'type' => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
+                    'type'        => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
                     'description' => 'Enter token in format (Bearer <token>)',
-                    'name' => 'Authorization', // The name of the header or query parameter to be used.
-                    'in' => 'header', // The location of the API key. Valid values are "query" or "header".
+                    'name'        => 'Authorization', // The name of the header or query parameter to be used.
+                    'in'          => 'header', // The location of the API key. Valid values are "query" or "header".
                 ],
             ],
             'security' => [

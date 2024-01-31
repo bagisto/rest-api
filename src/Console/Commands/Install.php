@@ -24,7 +24,7 @@ class Install extends Command
      * Install and configure bagisto rest api.
      */
     public function handle()
-    {   
+    {
         $this->warn('Step: Publishing L5Swagger Provider File...');
         $result = shell_exec('php artisan vendor:publish --tag=bagisto-rest-api-swagger');
         $this->info($result);

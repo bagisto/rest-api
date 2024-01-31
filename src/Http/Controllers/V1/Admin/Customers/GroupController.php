@@ -2,13 +2,13 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
-use Webkul\Customer\Repositories\CustomerGroupRepository;
+use Illuminate\Support\Facades\Event;
 use Webkul\Core\Rules\Code;
+use Webkul\Customer\Repositories\CustomerGroupRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerGroupResource;
 
-class CustomerGroupController extends CustomerBaseController
+class GroupController extends BaseController
 {
     /**
      * Repository class name.
@@ -33,7 +33,6 @@ class CustomerGroupController extends CustomerBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -62,14 +61,13 @@ class CustomerGroupController extends CustomerBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code' => ['required', 'unique:customer_groups,code,' . $id, new Code],
+            'code' => ['required', 'unique:customer_groups,code,'.$id, new Code],
             'name' => 'required',
         ]);
 

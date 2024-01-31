@@ -10,5 +10,4 @@ namespace Webkul\RestApi\Docs\Shop\Models\Customer;
  */
 class Checkout
 {
-
 }
