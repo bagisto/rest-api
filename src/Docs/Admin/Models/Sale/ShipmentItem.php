@@ -18,7 +18,7 @@ class ShipmentItem
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -43,7 +43,7 @@ class ShipmentItem
      * @var string
      */
     private $description;
-    
+
     /**
      * @OA\Property(
      *     title="SKU",
@@ -63,7 +63,7 @@ class ShipmentItem
      *     example=2
      * )
      *
-     * @var integer
+     * @var int
      */
     private $qty;
 
@@ -195,11 +195,15 @@ class ShipmentItem
      *              "8"
      *          }
      *     },
+     *
      *     @OA\Items(
+     *
      *          @OA\Property(
      *              property="additional",
      *              type="array",
+     *
      *              @OA\Items(
+     *
      *                  @OA\Property(property="locale", type="string"),
      *                  @OA\Property(property="quantity", type="integer"),
      *                  @OA\Property(property="product_id", type="integer"),
@@ -208,11 +212,15 @@ class ShipmentItem
      *                  @OA\Property(
      *                      property="attributes",
      *                      type="array",
+     *
      *                      @OA\Items(
+     *
      *                          @OA\Property(
      *                              property="size",
      *                              type="array",
+     *
      *                              @OA\Items(
+     *
      *                                  @OA\Property(property="option_id", type="integer"),
      *                                  @OA\Property(property="option_label", type="string"),
      *                                  @OA\Property(property="attribute_name", type="string")
@@ -221,7 +229,9 @@ class ShipmentItem
      *                          @OA\Property(
      *                              property="color",
      *                              type="array",
+     *
      *                              @OA\Items(
+     *
      *                                  @OA\Property(property="option_id", type="integer"),
      *                                  @OA\Property(property="option_label", type="string"),
      *                                  @OA\Property(property="attribute_name", type="string")
@@ -232,13 +242,13 @@ class ShipmentItem
      *                  @OA\Property(
      *                      property="super_attribute",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer")
      *                  )
      *              )
      *          )
      *     )
      * )
-     *
      */
     private $additional;
 }

@@ -5,20 +5,19 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Webkul\Checkout\Facades\Cart;
-use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
 use Webkul\Payment\Facades\Payment;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shipping\Facades\Shipping;
+use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
 
 class CheckoutController extends CustomerController
 {
     /**
      * Save customer address.
      *
-     * @param  \Webkul\Shop\Http\Requests\Customer\CustomerAddressForm  $request
      * @return \Illuminate\Http\Response
      */
     public function saveAddress(CustomerAddressForm $request)
@@ -66,7 +65,6 @@ class CheckoutController extends CustomerController
     /**
      * Save shipping method.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function saveShipping(Request $request)
@@ -94,7 +92,6 @@ class CheckoutController extends CustomerController
     /**
      * Save payment method.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function savePayment(Request $request)
@@ -136,7 +133,6 @@ class CheckoutController extends CustomerController
     /**
      * Save order.
      *
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @return \Illuminate\Http\Response
      */
     public function saveOrder(OrderRepository $orderRepository)

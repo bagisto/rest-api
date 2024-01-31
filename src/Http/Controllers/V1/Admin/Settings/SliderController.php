@@ -31,7 +31,6 @@ class SliderController extends SettingController
     /**
      * Creates the new slider item.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -71,7 +70,6 @@ class SliderController extends SettingController
     /**
      * Edit the previously created slider item.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -92,12 +90,12 @@ class SliderController extends SettingController
             $data['locale'] = implode(',', $data['locale']);
         }
 
-        if (null === $request->image) {
+        if ($request->image === null) {
             return response([
                 'message' => __('rest-api::app.common-response.error.something-went-wrong'),
             ], 500);
-        }  
-         
+        }
+
         $result = $this->getRepositoryInstance()->update($data, $id);
         if ($result) {
             return response([

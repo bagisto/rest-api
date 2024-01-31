@@ -4,18 +4,21 @@ namespace Webkul\RestApi\Docs\Admin\Controllers\Velocity;
 
 class MetaDataController
 {
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/velocity/meta-data",
-	 *      operationId="getVelocityMetaData",
-	 *      tags={"Velocity"},
-	 *      summary="Get admin velocity meta data",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/velocity/meta-data",
+     *      operationId="getVelocityMetaData",
+     *      tags={"Velocity"},
+     *      summary="Get admin velocity meta data",
      *      description="Returns velocity meta data",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -23,11 +26,11 @@ class MetaDataController
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function renderMetaData()
-	{
-	}
+     * )
+     */
+    public function renderMetaData()
+    {
+    }
 
     /**
      * @OA\Post(
@@ -37,19 +40,25 @@ class MetaDataController
      *      summary="Store the velocity's meta data",
      *      description="Store the velocity's meta data",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Meta Data ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="locale",
      *                      type="string",
@@ -153,14 +162,18 @@ class MetaDataController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="Velocity meta data updated successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/MetaData")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",

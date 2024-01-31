@@ -4,98 +4,117 @@ namespace Webkul\RestApi\Docs\Admin\Controllers\Catalog;
 
 class CategoryController
 {
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/catalog/categories",
-	 *      operationId="getAdminCategories",
-	 *      tags={"Categories"},
-	 *      summary="Get category list for the shop",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/catalog/categories",
+     *      operationId="getAdminCategories",
+     *      tags={"Categories"},
+     *      summary="Get category list for the shop",
      *      description="Returns category list, if you want to retrieve all categories at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Category id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="sort",
      *          description="Sort column",
      *          example="id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="order",
      *          description="Sort order",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string",
      *              enum={"desc", "asc"}
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="page",
      *          description="Page number",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="limit",
      *          description="Limit",
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
+     *
      *                  @OA\Items(ref="#/components/schemas/Category")
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function list()
-	{
-	}
+     * )
+     */
+    public function list()
+    {
+    }
 
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/catalog/categories/{id}",
-	 *      operationId="getCategory",
-	 *      tags={"Categories"},
-	 *      summary="Get admin category detail",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/catalog/categories/{id}",
+     *      operationId="getCategory",
+     *      tags={"Categories"},
+     *      summary="Get admin category detail",
      *      description="Returns category detail",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Category ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -103,11 +122,11 @@ class CategoryController
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function get()
-	{
-	}
+     * )
+     */
+    public function get()
+    {
+    }
 
     /**
      * @OA\Post(
@@ -117,10 +136,14 @@ class CategoryController
      *      summary="Store the Category",
      *      description="Store the Category",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="locale",
      *                      type="string",
@@ -184,8 +207,10 @@ class CategoryController
      *                      property="attributes",
      *                      description="Category's attributes for filter",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer", example=11)
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="slug",
      *                      description="Category's slug",
@@ -214,14 +239,18 @@ class CategoryController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="Category created successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/Category")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -240,19 +269,25 @@ class CategoryController
      *      summary="Update category",
      *      description="Update category",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Category ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
-	 *              mediaType="application/json",
+     *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="en",
      *                      description="Category's locale code i.e. `en` Info: This field is required",
@@ -308,15 +343,19 @@ class CategoryController
      *                      property="attributes",
      *                      description="Category's attributes for filter",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer", example=11)
      *                  )
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -328,6 +367,7 @@ class CategoryController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -346,19 +386,24 @@ class CategoryController
      *      summary="Delete category by id",
      *      description="Delete category by id",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Category ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -380,10 +425,14 @@ class CategoryController
      *      summary="Mass delete categories",
      *      description="Mass delete categories",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
-	 *              mediaType="application/json",
+     *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="indexes",
      *                      description="Category's Ids `CommaSeperated`",
@@ -394,10 +443,13 @@ class CategoryController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",

@@ -18,7 +18,7 @@ class Campaign
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -52,7 +52,7 @@ class Campaign
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $status;
 
@@ -97,7 +97,7 @@ class Campaign
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $channel_id;
 
@@ -136,7 +136,7 @@ class Campaign
      * @var object
      */
     private $event;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

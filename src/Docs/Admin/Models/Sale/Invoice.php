@@ -18,7 +18,7 @@ class Invoice
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -41,7 +41,7 @@ class Invoice
      *     example=true,
      * )
      *
-     * @var boolean
+     * @var bool
      */
     private $email_sent;
 
@@ -52,7 +52,7 @@ class Invoice
      *     example=2,
      * )
      *
-     * @var integer
+     * @var int
      */
     private $total_qty;
 
@@ -318,7 +318,7 @@ class Invoice
      * @var \Webkul\RestApi\Docs\Admin\Models\Sale\OrderAddress
      */
     private $order_address;
-    
+
     /**
      * @OA\Property(
      *     title="Invoice Items",
@@ -339,7 +339,7 @@ class Invoice
      * @var string
      */
     private $transaction_id;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

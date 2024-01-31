@@ -4,9 +4,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Shop\Http\Requests\Customer\AddressRequest;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerAddressResource;
+use Webkul\Shop\Http\Requests\Customer\AddressRequest;
 
 class AddressController extends CustomerController
 {
@@ -38,7 +38,7 @@ class AddressController extends CustomerController
     public function store(AddressRequest $request)
     {
         $customer = $this->resolveShopUser($request);
-        
+
         Event::dispatch('customer.addresses.create.before');
 
         $data = array_merge($request->only([
@@ -117,16 +117,16 @@ class AddressController extends CustomerController
      */
     public function destroy(Request $request, int $id)
     {
-        $customer =  $this->resolveShopUser($request);
+        $customer = $this->resolveShopUser($request);
 
         Event::dispatch('customer.addresses.delete.before', $id);
 
         $customerAddress = $customer->addresses()->findOrFail($id);
-       
+
         $customerAddress->delete();
 
         Event::dispatch('customer.addresses.delete.after', $id);
-    
+
         return response([
             'message' => trans('rest-api::app.shop.customer.addresses.delete-success'),
         ]);

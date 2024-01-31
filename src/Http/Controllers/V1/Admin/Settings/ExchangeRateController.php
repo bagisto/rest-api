@@ -32,7 +32,6 @@ class ExchangeRateController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,13 +59,12 @@ class ExchangeRateController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
-    { 
+    {
         $request->validate([
-            'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,' . $id],
+            'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,'.$id],
             'rate'            => 'required|numeric',
         ]);
 
@@ -93,7 +91,7 @@ class ExchangeRateController extends SettingController
     public function updateRates()
     {
         try {
-            app(config('services.exchange-api.' . config('services.exchange-api.default') . '.class'))->updateRates();
+            app(config('services.exchange-api.'.config('services.exchange-api.default').'.class'))->updateRates();
 
             return response([
                 'message' => trans('rest-api::app.admin.settings.rates.update-success'),

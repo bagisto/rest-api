@@ -4,102 +4,122 @@ namespace Webkul\RestApi\Docs\Admin\Controllers\Setting;
 
 class UserController
 {
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/settings/users",
-	 *      operationId="getUsers",
-	 *      tags={"Users"},
-	 *      summary="Get admin users list",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/settings/users",
+     *      operationId="getUsers",
+     *      tags={"Users"},
+     *      summary="Get admin users list",
      *      description="Returns user list, if you want to retrieve all users at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="sort",
      *          description="Sort column",
      *          example="id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="order",
      *          description="Sort order",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string",
      *              enum={"desc", "asc"}
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="page",
      *          description="Page number",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="limit",
      *          description="Limit",
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
+     *
      *                  @OA\Items(ref="#/components/schemas/User")
      *              ),
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function list()
-	{
-	}
+     * )
+     */
+    public function list()
+    {
+    }
 
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/settings/users/{id}",
-	 *      operationId="getUser",
-	 *      tags={"Users"},
-	 *      summary="Get admin user detail",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/settings/users/{id}",
+     *      operationId="getUser",
+     *      tags={"Users"},
+     *      summary="Get admin user detail",
      *      description="Returns user detail",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="User ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -107,11 +127,11 @@ class UserController
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function get()
-	{
-	}
+     * )
+     */
+    public function get()
+    {
+    }
 
     /**
      * @OA\Post(
@@ -121,10 +141,14 @@ class UserController
      *      summary="Store the user",
      *      description="Store the user",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="name",
      *                      type="string",
@@ -161,14 +185,18 @@ class UserController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="User created successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/User")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -176,7 +204,9 @@ class UserController
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(example="result", value={"message":"The code may not be greater than 3 characters."}, summary="An result object."),
      *          )
      *      )
@@ -194,19 +224,25 @@ class UserController
      *      summary="Update user",
      *      description="Update user",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="User ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
-	 *              mediaType="multipart/form-data",
+     *              mediaType="multipart/form-data",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="_method",
      *                      type="string",
@@ -249,10 +285,13 @@ class UserController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -264,6 +303,7 @@ class UserController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -282,19 +322,24 @@ class UserController
      *      summary="Delete user by id",
      *      description="Delete user by id",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",

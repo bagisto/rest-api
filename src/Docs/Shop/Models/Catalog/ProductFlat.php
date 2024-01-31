@@ -18,7 +18,7 @@ class ProductFlat
      *     example=2
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -41,7 +41,7 @@ class ProductFlat
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $attribute_family_id;
 
@@ -88,7 +88,7 @@ class ProductFlat
      * @var string
      */
     public $url_key;
-    
+
     /**
      * @OA\Property(
      *     title="Tax Category ID",
@@ -97,7 +97,7 @@ class ProductFlat
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $tax_category_id;
 
@@ -108,7 +108,7 @@ class ProductFlat
      *     example=true
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $new;
 
@@ -119,7 +119,7 @@ class ProductFlat
      *     example=false
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $featured;
 
@@ -130,7 +130,7 @@ class ProductFlat
      *     example=true
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $visible_individually;
 
@@ -141,7 +141,7 @@ class ProductFlat
      *     example=true
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $guest_checkout;
 
@@ -152,7 +152,7 @@ class ProductFlat
      *     example=true
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $status;
 
@@ -164,7 +164,7 @@ class ProductFlat
      *     example=4
      * )
      *
-     * @var integer
+     * @var int
      */
     public $color;
 
@@ -176,7 +176,7 @@ class ProductFlat
      *     example=8
      * )
      *
-     * @var integer
+     * @var int
      */
     public $size;
 
@@ -188,7 +188,7 @@ class ProductFlat
      *     example=null
      * )
      *
-     * @var integer
+     * @var int
      */
     public $brand;
 
@@ -279,7 +279,7 @@ class ProductFlat
      * @var float
      */
     public $special_price;
-    
+
     /**
      * @OA\Property(
      *     title="Special Price From",
@@ -292,7 +292,7 @@ class ProductFlat
      * @var \Date
      */
     public $special_price_from;
-    
+
     /**
      * @OA\Property(
      *     title="Special Price To",
@@ -355,7 +355,7 @@ class ProductFlat
      *     title="Inventories",
      *     description="Product's inventories"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductInventory
      */
     public $inventories;
@@ -365,7 +365,7 @@ class ProductFlat
      *     title="Ordered Inventories",
      *     description="Product's ordered inventories"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductOrderedInventory
      */
     public $ordered_inventories;
@@ -375,7 +375,7 @@ class ProductFlat
      *     title="Customer Group Prices",
      *     description="Customer group price discount"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductCustomerGroupPrice
      */
     public $customer_group_prices;
@@ -385,7 +385,7 @@ class ProductFlat
      *     title="Attribute Values",
      *     description="Product's attribute values"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductAttributeValue
      */
     public $attribute_values;
@@ -400,7 +400,7 @@ class ProductFlat
      * @var object
      */
     public $additional;
-    
+
     /**
      * @OA\Property(
      *     title="Parent ID",
@@ -409,10 +409,10 @@ class ProductFlat
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $parent_id;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",
@@ -446,7 +446,7 @@ class ProductFlat
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $qty;
 
@@ -457,7 +457,7 @@ class ProductFlat
      *     example=true
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $isSaleable;
 
@@ -479,7 +479,7 @@ class ProductFlat
      *     example=true
      * )
      *
-     * @var boolean
+     * @var bool
      */
     public $show_quantity_changer;
 }

@@ -14,21 +14,21 @@ Route::group([
      * Product routes.
      */
     Route::controller(ProductController::class)->prefix('products')->group(function () {
-       Route::get('', 'allResources');
+        Route::get('', 'allResources');
 
-       Route::post('', 'store');
+        Route::post('', 'store');
 
-       Route::get('{id}', 'getResource');
+        Route::get('{id}', 'getResource');
 
-       Route::put('{id}', 'update');
+        Route::put('{id}', 'update');
 
-       Route::post('{id}/inventories', 'updateInventories');
+        Route::post('{id}/inventories', 'updateInventories');
 
-       Route::delete('{id}', 'destroy');
+        Route::delete('{id}', 'destroy');
 
-       Route::post('mass-update', 'massUpdate');
+        Route::post('mass-update', 'massUpdate');
 
-       Route::post('mass-destroy', 'massDestroy');
+        Route::post('mass-destroy', 'massDestroy');
     });
 
     /**
@@ -38,14 +38,14 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
-    
-        Route::post('mass-destroy', 'massDestroy');    
+
+        Route::post('mass-destroy', 'massDestroy');
     });
 
     /**
@@ -55,29 +55,29 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
-    
+
         Route::post('mass-destroy', 'massDestroy');
     });
-   
+
     /**
      * Attribute family routes.
      */
-    Route::controller(AttributeFamilyController::class)->prefix('attribute-families')->group(function () { 
-       Route::get('', 'allResources');
+    Route::controller(AttributeFamilyController::class)->prefix('attribute-families')->group(function () {
+        Route::get('', 'allResources');
 
-       Route::post('', 'store');
+        Route::post('', 'store');
 
-       Route::get('{id}', 'getResource');
+        Route::get('{id}', 'getResource');
 
-       Route::put('{id}', 'update');
+        Route::put('{id}', 'update');
 
-       Route::delete('{id}', 'destroy');
+        Route::delete('{id}', 'destroy');
     });
 
 });

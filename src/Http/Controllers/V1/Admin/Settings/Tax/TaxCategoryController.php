@@ -4,9 +4,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SettingController;
 use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxCategoryResource;
 use Webkul\Tax\Repositories\TaxCategoryRepository;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SettingController;
 
 class TaxCategoryController extends SettingController
 {
@@ -33,7 +33,6 @@ class TaxCategoryController extends SettingController
     /**
      * Store tax category.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,7 +48,7 @@ class TaxCategoryController extends SettingController
             'code',
             'name',
             'description',
-            'taxrates'
+            'taxrates',
         ]);
 
         Event::dispatch('tax.category.create.before');
@@ -69,13 +68,12 @@ class TaxCategoryController extends SettingController
     /**
      * To update the tax category.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
     {
         $request->validate([
-            'code'        => 'required|string|unique:tax_categories,code,' . $id,
+            'code'        => 'required|string|unique:tax_categories,code,'.$id,
             'name'        => 'required|string',
             'description' => 'required|string',
             'taxrates'    => 'array|required',
@@ -85,7 +83,7 @@ class TaxCategoryController extends SettingController
             'code',
             'name',
             'description',
-            'taxrates'
+            'taxrates',
         ]);
 
         Event::dispatch('tax.category.update.before', $id);

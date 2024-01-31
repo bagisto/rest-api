@@ -29,7 +29,6 @@ class ResourceController extends V1Controller implements ResourceContract
     /**
      * Returns a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function allResources(Request $request)
@@ -64,7 +63,6 @@ class ResourceController extends V1Controller implements ResourceContract
     /**
      * Returns an individual resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -82,8 +80,6 @@ class ResourceController extends V1Controller implements ResourceContract
     /**
      * Delete's an individual resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroyResource(Request $request, int $id)

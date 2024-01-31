@@ -7,7 +7,6 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\ExchangeRateController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\InventorySourceController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\LocaleController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\RoleController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SliderController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax\TaxCategoryController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax\TaxRateController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\UserController;
@@ -26,11 +25,11 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
 
@@ -41,15 +40,15 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
-    
+
         Route::post('mass-destroy', 'massDestroy');
-    
+
     });
 
     /**
@@ -59,13 +58,13 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
-    
+
         Route::post('update-rates', 'updateRates');
     });
 
@@ -76,11 +75,11 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
 
@@ -91,14 +90,14 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
-  
+
     /**
      * User routes.
      */
@@ -106,11 +105,11 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
 
@@ -123,9 +122,9 @@ Route::group([
         Route::post('', 'store');
 
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
 
@@ -136,11 +135,11 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
     });
 
@@ -151,11 +150,11 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
-    }); 
+    });
 });

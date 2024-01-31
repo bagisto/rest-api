@@ -18,11 +18,11 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::get('{id}', 'getResource');
-    
+
         Route::post('{id}/cancel', 'cancel');
-    
+
         Route::post('{id}/comments', 'comment');
-    
+
     });
 
     /**
@@ -32,9 +32,9 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::get('{id}', 'getResource');
-    
+
         Route::post('{order_id}', 'store');
-    
+
     });
 
     /**
@@ -55,9 +55,9 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::get('{id}', 'getResource');
-    
+
         Route::post('{order_id}', 'store');
-    
+
     });
 
     /**
@@ -67,7 +67,7 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::get('{id}', 'getResource');
-    
+
         Route::post('', 'store');
     });
 });

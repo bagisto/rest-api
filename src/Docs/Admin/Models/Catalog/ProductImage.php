@@ -18,7 +18,7 @@ class ProductImage
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -107,7 +107,7 @@ class ProductImage
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $product_id;
 
@@ -119,7 +119,7 @@ class ProductImage
      *     example=0
      * )
      *
-     * @var integer
+     * @var int
      */
     private $position;
 }

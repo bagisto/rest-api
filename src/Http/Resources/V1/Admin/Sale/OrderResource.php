@@ -3,8 +3,8 @@
 namespace Webkul\RestApi\Http\Resources\V1\Admin\Sale;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
 
 class OrderResource extends JsonResource
 {
@@ -28,7 +28,7 @@ class OrderResource extends JsonResource
             'customer_last_name'                  => $this->customer_last_name,
             'shipping_method'                     => $this->shipping_method,
             'shipping_title'                      => $this->shipping_title,
-            'payment_title'                       => core()->getConfigData('sales.paymentmethods.' . $this->payment->method . '.title'),
+            'payment_title'                       => core()->getConfigData('sales.paymentmethods.'.$this->payment->method.'.title'),
             'shipping_description'                => $this->shipping_description,
             'coupon_code'                         => $this->coupon_code,
             'is_gift'                             => $this->is_gift,

@@ -27,8 +27,6 @@ class ShipmentController extends SaleController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
-     * @param  \Webkul\Sales\Repositories\OrderitemRepository  $orderItemRepository
      * @return void
      */
     public function __construct(
@@ -36,7 +34,7 @@ class ShipmentController extends SaleController
         OrderItemRepository $orderItemRepository
     ) {
         parent::__construct();
-        
+
         $this->orderRepository = $orderRepository;
 
         $this->orderItemRepository = $orderItemRepository;
@@ -65,7 +63,6 @@ class ShipmentController extends SaleController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
@@ -81,9 +78,9 @@ class ShipmentController extends SaleController
 
         $request->validate([
             'shipment.carrier_title'    => 'required',
-            'shipment.track_number' => 'required',
-            'shipment.source'   => 'required',
-            'shipment.items.*.*' => 'required|numeric|min:0',
+            'shipment.track_number'     => 'required',
+            'shipment.source'           => 'required',
+            'shipment.items.*.*'        => 'required|numeric|min:0',
         ]);
 
         $data = $request->all();

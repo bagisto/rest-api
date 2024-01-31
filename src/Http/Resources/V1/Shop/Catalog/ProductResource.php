@@ -102,7 +102,7 @@ class ProductResource extends JsonResource
 
         return [
             'special_price'           => $this->when(
-                $productTypeInstance ->haveDiscount(),
+                $productTypeInstance->haveDiscount(),
                 core()->convertPrice($productTypeInstance->getMinimalPrice())
             ),
             'formatted_special_price' => $this->when(
@@ -249,6 +249,7 @@ class ProductResource extends JsonResource
                 $sample = $downloadableSample->toArray();
                 $data = $sample;
                 $data['download_url'] = route('shop.downloadable.download_sample', ['type' => 'sample', 'id' => $sample['id']]);
+
                 return $data;
             }),
         ];

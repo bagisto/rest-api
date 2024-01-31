@@ -18,7 +18,7 @@ class MetaData
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -63,7 +63,7 @@ class MetaData
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $slider;
 
@@ -100,7 +100,9 @@ class MetaData
      *     @OA\Property(
      *         property="2",
      *         type="array",
+     *
      *         @OA\Items(
+     *
      *             @OA\Property(property="id", type="integer", example=1),
      *             @OA\Property(property="type", type="string", example=null),
      *             @OA\Property(property="path", type="string", example="velocity/images/{image_name.jpg}"),
@@ -110,7 +112,9 @@ class MetaData
      *     @OA\Property(
      *         property="3",
      *         type="array",
+     *
      *         @OA\Items(
+     *
      *             @OA\Property(property="id", type="integer", example=1),
      *             @OA\Property(property="type", type="string", example=null),
      *             @OA\Property(property="path", type="string", example="velocity/images/{image_name.jpg}"),
@@ -120,7 +124,9 @@ class MetaData
      *     @OA\Property(
      *         property="4",
      *         type="array",
+     *
      *         @OA\Items(
+     *
      *             @OA\Property(property="id", type="integer", example=1),
      *             @OA\Property(property="type", type="string", example=null),
      *             @OA\Property(property="path", type="string", example="velocity/images/{image_name.jpg}"),
@@ -141,7 +147,7 @@ class MetaData
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     private $sidebar_category_count;
 
@@ -153,7 +159,7 @@ class MetaData
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     private $featured_product_count;
 
@@ -165,7 +171,7 @@ class MetaData
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     private $new_products_count;
 
@@ -179,7 +185,7 @@ class MetaData
      * @var string
      */
     private $subscription_bar_content;
-    
+
     /**
      * @OA\Property(
      *     title="Product View Images",
@@ -190,7 +196,7 @@ class MetaData
      * @var string
      */
     private $product_view_images;
-    
+
     /**
      * @OA\Property(
      *     title="Product Policy",
@@ -201,7 +207,7 @@ class MetaData
      * @var string
      */
     private $product_policy;
-    
+
     /**
      * @OA\Property(
      *     title="Locale",
@@ -232,10 +238,10 @@ class MetaData
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     private $header_content_count;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

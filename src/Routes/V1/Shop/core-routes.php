@@ -42,11 +42,11 @@ Route::controller(CurrencyController::class)->prefix('currencies')->group(functi
 /**
  * Channel routes.
  */
- Route::controller(ChannelController::class)->prefix('channels')->group(function () {
+Route::controller(ChannelController::class)->prefix('channels')->group(function () {
     Route::get('', 'allResources');
 
     Route::get('{id}', 'getResource');
- });
+});
 /**
  * Country routes.
  */

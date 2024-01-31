@@ -2,11 +2,11 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\CampaignRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CampaignResource;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CampaignResource;
 
 class CampaignController extends MarketingController
 {
@@ -33,7 +33,6 @@ class CampaignController extends MarketingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +60,6 @@ class CampaignController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

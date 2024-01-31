@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\CatalogRule\Helpers\CatalogRuleIndex;
 use Webkul\CatalogRule\Repositories\CatalogRuleRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CatalogRuleResource;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CatalogRuleResource;
 
 class CatalogRuleController extends MarketingController
 {
@@ -21,14 +21,13 @@ class CatalogRuleController extends MarketingController
     /**
      * Create a new controller instance.
      *
-     * @param  \Webkul\CatalogRule\Helpers\CatalogRuleIndex  $catalogRuleIndexHelper
      * @return void
      */
     public function __construct(
         CatalogRuleIndex $catalogRuleIndexHelper
     ) {
         parent::__construct();
-        
+
         $this->catalogRuleIndexHelper = $catalogRuleIndexHelper;
     }
 
@@ -55,7 +54,6 @@ class CatalogRuleController extends MarketingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -70,14 +68,13 @@ class CatalogRuleController extends MarketingController
             'discount_amount' => 'required|numeric',
         ]);
 
-
         Event::dispatch('promotions.catalog_rule.create.before');
 
         $data = $request->all();
 
         /**
          * These two keys needs to be removed in the next version compatibility.
-         * 
+         *
          * @deprecated
          */
         $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
@@ -98,8 +95,7 @@ class CatalogRuleController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int                      $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -122,7 +118,7 @@ class CatalogRuleController extends MarketingController
 
         /**
          * These two keys needs to be removed in the next version compatibility.
-         * 
+         *
          * @deprecated
          */
         $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;

@@ -41,7 +41,6 @@ class CountryController extends CoreController
     /**
      * Get country state group listing.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function getCountryStateGroups(Request $request)

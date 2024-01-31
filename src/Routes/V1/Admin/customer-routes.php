@@ -13,16 +13,16 @@ Route::group([
     /**
      * Customer's group routes.
      */
-    Route::controller(GroupController::class)->prefix('groups')->group(function () { 
+    Route::controller(GroupController::class)->prefix('groups')->group(function () {
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-    
+
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
-        Route::delete('{id}', 'destroy');    
+
+        Route::delete('{id}', 'destroy');
     });
 
     /**
@@ -32,15 +32,15 @@ Route::group([
         Route::get('', 'allResources');
 
         Route::get('{id}', 'getResource');
-    
+
         Route::put('{id}', 'update');
-    
+
         Route::delete('{id}', 'destroy');
-    
+
         Route::post('mass-destroy', 'massDestroy');
-    
+
         Route::post('mass-update', 'massUpdate');
-     });
+    });
 
     /**
      * Customer routes.
@@ -50,13 +50,13 @@ Route::group([
     Route::controller(CustomerController::class)->group(function () {
         Route::get('', 'allResources');
 
-        Route::post('',  'store');
+        Route::post('', 'store');
 
         Route::get('{id}', 'getResource');
 
         Route::put('{id}', 'update');
 
-        Route::delete('{id}',  'destroy');
+        Route::delete('{id}', 'destroy');
 
         Route::post('mass-destroy', 'massDestroy');
 

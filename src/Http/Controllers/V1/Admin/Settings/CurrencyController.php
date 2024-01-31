@@ -4,7 +4,6 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CurrencyRepository;
-use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CurrencyResource;
 
 class CurrencyController extends SettingController
@@ -31,7 +30,7 @@ class CurrencyController extends SettingController
 
     /**
      * Store a newly created resource in storage.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,7 +44,7 @@ class CurrencyController extends SettingController
             'code',
             'name',
             'symbol',
-            'decimal'
+            'decimal',
         ]));
 
         return response([
@@ -70,7 +69,7 @@ class CurrencyController extends SettingController
             'code',
             'name',
             'symbol',
-            'decimal'
+            'decimal',
         ]), $id);
 
         return response([

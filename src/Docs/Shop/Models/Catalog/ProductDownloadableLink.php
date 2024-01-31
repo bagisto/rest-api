@@ -18,10 +18,10 @@ class ProductDownloadableLink
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $id;
-    
+
     /**
      * @OA\Property(
      *     title="Title",
@@ -38,7 +38,7 @@ class ProductDownloadableLink
      *     title="Downloadable Link Translations",
      *     description="Translations for the downloadable link"
      * )
-     * 
+     *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductDownloadableLinkTranslation
      */
     public $translations;
@@ -185,7 +185,7 @@ class ProductDownloadableLink
      *     example=10
      * )
      *
-     * @var integer
+     * @var int
      */
     public $downloads;
 
@@ -197,7 +197,7 @@ class ProductDownloadableLink
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $sort_order;
 
@@ -209,10 +209,10 @@ class ProductDownloadableLink
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $product_id;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

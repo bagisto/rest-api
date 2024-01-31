@@ -4,102 +4,122 @@ namespace Webkul\RestApi\Docs\Admin\Controllers\Setting;
 
 class ChannelController
 {
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/settings/channels",
-	 *      operationId="getChannels",
-	 *      tags={"Channels"},
-	 *      summary="Get admin channel list",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/settings/channels",
+     *      operationId="getChannels",
+     *      tags={"Channels"},
+     *      summary="Get admin channel list",
      *      description="Returns channel list, if you want to retrieve all channels at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Channel ID",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="sort",
      *          description="Sort column",
      *          example="id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="order",
      *          description="Sort order",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string",
      *              enum={"desc", "asc"}
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="page",
      *          description="Page number",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="limit",
      *          description="Limit",
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
+     *
      *                  @OA\Items(ref="#/components/schemas/Channel")
      *              ),
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function list()
-	{
-	}
+     * )
+     */
+    public function list()
+    {
+    }
 
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/settings/channels/{id}",
-	 *      operationId="getChannel",
-	 *      tags={"Channels"},
-	 *      summary="Get admin channel detail",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/settings/channels/{id}",
+     *      operationId="getChannel",
+     *      tags={"Channels"},
+     *      summary="Get admin channel detail",
      *      description="Returns channel detail",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Channel ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -107,11 +127,11 @@ class ChannelController
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function get()
-	{
-	}
+     * )
+     */
+    public function get()
+    {
+    }
 
     /**
      * @OA\Post(
@@ -121,10 +141,14 @@ class ChannelController
      *      summary="Store the channel",
      *      description="Store the channel",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="code",
      *                      type="string",
@@ -143,8 +167,10 @@ class ChannelController
      *                  @OA\Property(
      *                      property="inventory_sources",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer", example=1)
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="root_category_id",
      *                      type="integer",
@@ -158,8 +184,10 @@ class ChannelController
      *                  @OA\Property(
      *                      property="locales",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer", example=1)
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="default_locale_id",
      *                      type="integer",
@@ -168,8 +196,10 @@ class ChannelController
      *                  @OA\Property(
      *                      property="currencies",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer", example=1)
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="base_currency_id",
      *                      type="integer",
@@ -236,14 +266,18 @@ class ChannelController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="Channel created successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/Channel")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -251,7 +285,9 @@ class ChannelController
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(example="result", value={"message":"The target currency has already been taken."}, summary="An result object."),
      *          )
      *      )
@@ -269,19 +305,25 @@ class ChannelController
      *      summary="Update channel",
      *      description="Update channel",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Channel ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
-	 *              mediaType="application/json",
+     *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="code",
      *                      type="string",
@@ -302,8 +344,10 @@ class ChannelController
      *                  @OA\Property(
      *                      property="inventory_sources",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer", example=3)
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="root_category_id",
      *                      type="integer",
@@ -317,8 +361,10 @@ class ChannelController
      *                  @OA\Property(
      *                      property="locales",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer", example=1)
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="default_locale_id",
      *                      type="integer",
@@ -327,8 +373,10 @@ class ChannelController
      *                  @OA\Property(
      *                      property="currencies",
      *                      type="array",
+     *
      *                      @OA\Items(type="integer", example=1)
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="base_currency_id",
      *                      type="integer",
@@ -363,10 +411,13 @@ class ChannelController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -378,6 +429,7 @@ class ChannelController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -385,7 +437,9 @@ class ChannelController
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(example="result", value={"message":"The code has already been taken."}, summary="An result object."),
      *          )
      *      )
@@ -403,19 +457,24 @@ class ChannelController
      *      summary="Delete channel by id",
      *      description="Delete channel by id",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Channel id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",

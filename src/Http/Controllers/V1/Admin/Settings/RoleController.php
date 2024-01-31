@@ -4,9 +4,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\User\Repositories\RoleRepository;
-use Webkul\User\Repositories\AdminRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\RoleResource;
+use Webkul\User\Repositories\AdminRepository;
+use Webkul\User\Repositories\RoleRepository;
 
 class RoleController extends SettingController
 {
@@ -33,14 +33,13 @@ class RoleController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
             'name'            => 'required',
-            'permission_type' => ['required','in:all,custom'],
+            'permission_type' => ['required', 'in:all,custom'],
             'description'     => 'required',
         ]);
 
@@ -59,7 +58,6 @@ class RoleController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Webkul\User\Repositories\AdminRepository  $adminRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -67,8 +65,8 @@ class RoleController extends SettingController
     {
         $request->validate([
             'name'            => 'required',
-            'permission_type' => ['required','in:all,custom'],
-            'description'     =>  'required',
+            'permission_type' => ['required', 'in:all,custom'],
+            'description'     => 'required',
         ]);
 
         $params = $request->all();

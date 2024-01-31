@@ -10,7 +10,6 @@ trait ProvideUser
     /**
      * Set default auth driver for admin.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
     public function setAdminAuthDriver(Request $request)
@@ -23,7 +22,6 @@ trait ProvideUser
     /**
      * Set default auth driver for shop.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
     public function setShopAuthDriver(Request $request)
@@ -36,7 +34,6 @@ trait ProvideUser
     /**
      * Resolve admin user.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Webkul\User\Contracts\Admin
      */
     public function resolveAdminUser(Request $request)
@@ -51,7 +48,6 @@ trait ProvideUser
     /**
      * Resolve shop user.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Webkul\Customer\Contracts\Customer
      */
     public function resolveShopUser(Request $request)

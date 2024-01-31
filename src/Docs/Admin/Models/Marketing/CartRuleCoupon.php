@@ -18,7 +18,7 @@ class CartRuleCoupon
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -40,7 +40,7 @@ class CartRuleCoupon
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $usage_limit;
 
@@ -51,7 +51,7 @@ class CartRuleCoupon
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $usage_per_customer;
 
@@ -62,7 +62,7 @@ class CartRuleCoupon
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $times_used;
 
@@ -73,7 +73,7 @@ class CartRuleCoupon
      *     example=0
      * )
      *
-     * @var integer
+     * @var int
      */
     private $type;
 
@@ -84,7 +84,7 @@ class CartRuleCoupon
      *     example=0
      * )
      *
-     * @var integer
+     * @var int
      */
     private $is_primary;
 
@@ -96,10 +96,10 @@ class CartRuleCoupon
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $cart_rule_id;
-    
+
     /**
      * @OA\Property(
      *     title="Expired at",

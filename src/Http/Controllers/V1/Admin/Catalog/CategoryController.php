@@ -4,10 +4,10 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Models\Channel;
 use Webkul\Admin\Http\Requests\CategoryRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Category\Repositories\CategoryRepository;
+use Webkul\Core\Models\Channel;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
 
 class CategoryController extends CatalogController
@@ -73,7 +73,7 @@ class CategoryController extends CatalogController
         Event::dispatch('catalog.category.update.before', $id);
 
         $category = $this->getRepositoryInstance()->update($request->all(), $id);
-        
+
         Event::dispatch('catalog.category.update.after', $category);
 
         return response([
@@ -85,7 +85,6 @@ class CategoryController extends CatalogController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

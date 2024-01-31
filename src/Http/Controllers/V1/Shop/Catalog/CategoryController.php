@@ -41,7 +41,6 @@ class CategoryController extends CatalogController
     /**
      * Returns a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function descendantCategories(Request $request)

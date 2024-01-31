@@ -4,15 +4,15 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Rules\PhoneNumber;
-use Webkul\Sales\Repositories\InvoiceRepository;
-use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
-use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
+use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Repositories\CustomerNoteRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
+use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
+use Webkul\Sales\Repositories\InvoiceRepository;
 
 class CustomerController extends BaseController
 {
@@ -26,7 +26,7 @@ class CustomerController extends BaseController
         protected CustomerNoteRepository $customerNoteRepository
     ) {
     }
-    
+
     /**
      * Repository class name.
      *
@@ -50,7 +50,6 @@ class CustomerController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -94,7 +93,6 @@ class CustomerController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
@@ -103,7 +101,7 @@ class CustomerController extends BaseController
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
-            'email'         => 'required|unique:customers,email,' . $id,
+            'email'         => 'required|unique:customers,email,'.$id,
             'date_of_birth' => 'date|before_or_equal:today',
             'phone'         => ['unique:customers,phone,'.$id, new PhoneNumber],
         ]);
@@ -213,8 +211,9 @@ class CustomerController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function orders(int $id)
-    { 
+    {
         $customer = $this->getRepositoryInstance()->findorFail($id);
+
         return response([
             'data' => OrderResource::collection($customer->orders),
         ]);
@@ -230,7 +229,7 @@ class CustomerController extends BaseController
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
         $orderIds = $customer->orders->pluck('id')->toArray();
-        
+
         return response([
             'data' => InvoiceResource::collection($this->invoiceRepository->findWhereIn('order_id', $orderIds)),
         ]);

@@ -18,7 +18,7 @@ class Comment
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -41,7 +41,7 @@ class Comment
      *     enum={0, 1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $customer_notified;
 
@@ -53,7 +53,7 @@ class Comment
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $order_id;
 
@@ -82,7 +82,7 @@ class Comment
      * @var \DateTime
      */
     private $updated_at;
-    
+
     /**
      * @OA\Property(
      *     title="Order",

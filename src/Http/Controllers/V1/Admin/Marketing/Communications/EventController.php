@@ -5,8 +5,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\EventRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\EventResource;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\EventResource;
 
 class EventController extends MarketingController
 {
@@ -33,11 +33,10 @@ class EventController extends MarketingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
         $request->validate([
             'name'        => 'required',
             'description' => 'required',
@@ -59,7 +58,6 @@ class EventController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

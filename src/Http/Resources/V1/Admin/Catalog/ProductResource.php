@@ -27,7 +27,7 @@ class ProductResource extends JsonResource
              * Main attributes.
              */
             ...$mainAttributes,
-            
+
             'sku' => $this->resource->sku,
 
             /**

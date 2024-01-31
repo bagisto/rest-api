@@ -18,7 +18,7 @@ class Cart
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -85,7 +85,7 @@ class Cart
      *     example=2
      * )
      *
-     * @var integer
+     * @var int
      */
     private $items_count;
 
@@ -97,7 +97,7 @@ class Cart
      *     example=4
      * )
      *
-     * @var integer
+     * @var int
      */
     private $items_qty;
 
@@ -317,7 +317,7 @@ class Cart
      *      example="true"
      * )
      *
-     * @var boolean
+     * @var bool
      */
     private $is_guest;
 
@@ -328,7 +328,7 @@ class Cart
      *      example="true"
      * )
      *
-     * @var boolean
+     * @var bool
      */
     private $is_active;
 
@@ -391,7 +391,7 @@ class Cart
      * @var \Webkul\RestApi\Docs\Shop\Models\Customer\CartAddress
      */
     private $shipping_address;
-    
+
     /**
      * @OA\Property(
      *     title="Created at",

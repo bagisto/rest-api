@@ -5,8 +5,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\TemplateRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\TemplateResource;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\TemplateResource;
 
 class TemplateController extends MarketingController
 {
@@ -33,7 +33,6 @@ class TemplateController extends MarketingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,11 +42,11 @@ class TemplateController extends MarketingController
             'status'  => 'required|in:active,inactive,draft',
             'content' => 'required',
         ]);
-        
+
         Event::dispatch('marketing.templates.create.before');
- 
+
         $template = $this->getRepositoryInstance()->create($request->all());
-        
+
         Event::dispatch('marketing.templates.create.after', $template);
 
         return response([
@@ -59,7 +58,6 @@ class TemplateController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

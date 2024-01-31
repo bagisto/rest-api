@@ -3,10 +3,10 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
 use Illuminate\Http\Request;
-use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleCouponResource;
+use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleCouponResource;
 
 class CartRuleCouponController extends MarketingController
 {
@@ -33,7 +33,6 @@ class CartRuleCouponController extends MarketingController
     /**
      * Get all cart rule coupons.
      *
-     * @param  int  $cartRuleId
      * @return \Illuminate\Http\Response
      */
     public function index(int $cartRuleId)
@@ -48,7 +47,6 @@ class CartRuleCouponController extends MarketingController
     /**
      * Generate coupon code for cart rule.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $cartRuleId
      * @return \Illuminate\Http\Response
      */
@@ -70,8 +68,6 @@ class CartRuleCouponController extends MarketingController
     /**
      * Show specific cart rule coupon.
      *
-     * @param  int  $cartRuleId
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(int $cartRuleId, int $id)
@@ -89,8 +85,6 @@ class CartRuleCouponController extends MarketingController
     /**
      * Show specific cart rule coupon.
      *
-     * @param  int  $cartRuleId
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(int $cartRuleId, int $id)
@@ -110,8 +104,6 @@ class CartRuleCouponController extends MarketingController
     /**
      * Mass delete the coupons.
      *
-     * @param  \Webkul\Admin\Http\Requests\MassDestroyRequest $request
-     * @param  int  $cartRuleId
      * @return \Illuminate\Http\Response
      */
     public function massDestroy(MassDestroyRequest $request, int $cartRuleId)

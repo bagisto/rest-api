@@ -18,7 +18,7 @@ class VelocityContent
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -41,7 +41,7 @@ class VelocityContent
      *     example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     private $position;
 
@@ -64,7 +64,7 @@ class VelocityContent
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $link_target;
 
@@ -143,7 +143,7 @@ class VelocityContent
      *     enum={0,1}
      * )
      *
-     * @var integer
+     * @var int
      */
     private $status;
 

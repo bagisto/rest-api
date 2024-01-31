@@ -32,15 +32,13 @@ class InvoiceController extends SaleController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, OrderRepository $orderRepository, $orderId)
-    { 
+    {
         $order = $orderRepository->findOrFail($orderId);
-        
+
         if (! $order->canInvoice()) {
             return response([
                 'message' => trans('rest-api::app.sales.invoices.error.creation-error'),
@@ -50,7 +48,7 @@ class InvoiceController extends SaleController
         $request->validate([
             'invoice.items.*' => 'required|numeric|min:0',
         ]);
-       
+
         $data = $request->all();
 
         if (! $this->getRepositoryInstance()->haveProductToInvoice($data)) {
@@ -58,7 +56,7 @@ class InvoiceController extends SaleController
                 'message' => trans('rest-api::app.admin.sales.invoices.error.product-error'),
             ], 400);
         }
-        
+
         if (! $this->getRepositoryInstance()->isValidQuantity($data)) {
             return response([
                 'message' => trans('rest-api::app.admin.sales.invoices.error.invalid-qty-error'),

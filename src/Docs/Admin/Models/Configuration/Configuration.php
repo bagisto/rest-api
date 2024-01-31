@@ -74,23 +74,27 @@ class Configuration
      *              @OA\Property(
      *                  property="children",
      *                  type="array",
+     *
      *                  @OA\Items(
+     *
      *                      @OA\Property(
      *                          property="content",
      *                          type="object",
      *                          @OA\Property(property="key", type="string", example="general.footer"),
      *                          @OA\Property(property="name", type="string", example="admin::app.admin.system.footer"),
-     *                          @OA\Property(property="sort", type="integer", example=1), 
+     *                          @OA\Property(property="sort", type="integer", example=1),
      *                          @OA\Property(
      *                              property="fields",
      *                              type="array",
+     *
      *                              @OA\Items(
+     *
      *                                  @OA\Property(property="name", type="string", example="footer_content"),
      *                                  @OA\Property(property="title", type="string", example="admin::app.admin.system.footer-content"),
      *                                  @OA\Property(property="type", type="string", example="text"),
      *                                  @OA\Property(property="channel_based", type="boolean", example=true, enum={true, false}),
      *                                  @OA\Property(property="locale_based", type="boolean", example=true, enum={true, false}),
-     * 
+     *
      *                              )
      *                          )
      *                      )
@@ -106,21 +110,25 @@ class Configuration
      *              @OA\Property(
      *                  property="children",
      *                  type="array",
+     *
      *                  @OA\Items(
+     *
      *                      @OA\Property(
      *                          property="products",
      *                          type="object",
      *                          @OA\Property(property="key", type="string", example="catalog.products"),
      *                          @OA\Property(property="name", type="string", example="admin::app.admin.system.products"),
-     *                          @OA\Property(property="sort", type="integer", example=1), 
+     *                          @OA\Property(property="sort", type="integer", example=1),
      *                          @OA\Property(
      *                              property="content",
      *                              type="array",
+     *
      *                              @OA\Items(
+     *
      *                                  @OA\Property(property="name", type="string", example="allow-guest-checkout"),
      *                                  @OA\Property(property="title", type="string", example="admin::app.admin.system.allow-guest-checkout"),
      *                                  @OA\Property(property="type", type="string", example="boolean", enum={"text", "textarea", "boolean", "select"})
-     * 
+     *
      *                              )
      *                          )
      *                      )
@@ -145,7 +153,7 @@ class Configuration
      * @var object
      */
     private $roles;
-    
+
     /**
      * @OA\Property(
      *     title="current",
@@ -157,7 +165,7 @@ class Configuration
      * @var string
      */
     private $current;
-    
+
     /**
      * @OA\Property(
      *     title="currentKey",

@@ -32,8 +32,6 @@ class RefundController extends SaleController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Webkul\Sales\Repositories\OrderRepository  $orderRepository
      * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
@@ -48,10 +46,10 @@ class RefundController extends SaleController
         }
 
         $request->validate([
-            'refund.items.*' => 'required|numeric|min:0',
-            'refund.shipping' => 'required',
+            'refund.items.*'           => 'required|numeric|min:0',
+            'refund.shipping'          => 'required',
             'refund.adjustment_refund' => 'required',
-            'refund.adjustment_fee' => 'required',
+            'refund.adjustment_fee'    => 'required',
         ]);
 
         $data = $request->all();

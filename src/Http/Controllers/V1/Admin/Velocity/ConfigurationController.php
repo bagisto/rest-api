@@ -39,7 +39,7 @@ class ConfigurationController extends VelocityController
         VelocityMetadataRepository $velocityMetadataRepository
     ) {
         parent::__construct();
-        
+
         $this->velocityHelper = $velocityHelper;
 
         $this->velocityMetaDataRepository = $velocityMetadataRepository;
@@ -74,7 +74,6 @@ class ConfigurationController extends VelocityController
     /**
      * Store meta data.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -137,9 +136,9 @@ class ConfigurationController extends VelocityController
     /**
      * Upload advertisement images.
      *
-     * @param  array    $data
-     * @param  int      $index
-     * @param  array    $advertisement
+     * @param  array  $data
+     * @param  int  $index
+     * @param  array  $advertisement
      * @return array
      */
     public function uploadAdvertisementImages($data, $index, $advertisement)
@@ -150,7 +149,7 @@ class ConfigurationController extends VelocityController
         $saveData = $advertisement;
         foreach ($data as $imageId => $image) {
             if ($image != '') {
-                $file = 'images.' . $index . '.' . $imageId;
+                $file = 'images.'.$index.'.'.$imageId;
 
                 if (Str::contains($imageId, 'image_')) {
                     if (request()->hasFile($file) && $image) {
@@ -167,7 +166,7 @@ class ConfigurationController extends VelocityController
                     }
 
                     if (
-                        gettype($image) == "string" 
+                        gettype($image) == 'string'
                         && in_array(exif_imagetype($image), [2, 3, 18])
                     ) {
                         $saveImage[substr($imageId, 6, 1)] = $this->copyAdvertiseImages($image, $dir);
@@ -192,7 +191,7 @@ class ConfigurationController extends VelocityController
                     if (isset($advertisement[$index][$subIndex])) {
                         $saveImage[$subIndex] = $advertisement[$index][$subIndex];
 
-                        if (sizeof($advertisement[$index]) == 1) {
+                        if (count($advertisement[$index]) == 1) {
                             unset($advertisement[$index]);
                         } else {
                             unset($advertisement[$index][$subIndex]);
@@ -302,11 +301,11 @@ class ConfigurationController extends VelocityController
         $result = null;
         $path = explode('/', $resourceImagePath);
 
-        $image = $copiedPath . '/' . Str::random(5) . end($path);
+        $image = $copiedPath.'/'.Str::random(5).end($path);
 
         Storage::makeDirectory($copiedPath);
 
-        if (File::copy($resourceImagePath, storage_path('app/public/' . $image))) {
+        if (File::copy($resourceImagePath, storage_path('app/public/'.$image))) {
             $result = $image;
         }
 

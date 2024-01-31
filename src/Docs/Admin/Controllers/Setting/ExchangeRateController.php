@@ -4,102 +4,122 @@ namespace Webkul\RestApi\Docs\Admin\Controllers\Setting;
 
 class ExchangeRateController
 {
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/settings/exchange-rates",
-	 *      operationId="getSettingExchangeRates",
-	 *      tags={"Exchange-Rates"},
-	 *      summary="Get admin exchange rate list",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/settings/exchange-rates",
+     *      operationId="getSettingExchangeRates",
+     *      tags={"Exchange-Rates"},
+     *      summary="Get admin exchange rate list",
      *      description="Returns exchange rate list, if you want to retrieve all exchange rates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Exchange Rate id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="sort",
      *          description="Sort column",
      *          example="id",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="order",
      *          description="Sort order",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="string",
      *              enum={"desc", "asc"}
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="page",
      *          description="Page number",
      *          required=false,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Parameter(
      *          name="limit",
      *          description="Limit",
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
+     *
      *                  @OA\Items(ref="#/components/schemas/ExchangeRate")
      *              ),
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function list()
-	{
-	}
+     * )
+     */
+    public function list()
+    {
+    }
 
-	/**
-	 * @OA\Get(
-	 *      path="/api/v1/admin/settings/exchange-rates/{id}",
-	 *      operationId="getSalesExchangeRates",
-	 *      tags={"Exchange-Rates"},
-	 *      summary="Get admin exchange rate detail",
+    /**
+     * @OA\Get(
+     *      path="/api/v1/admin/settings/exchange-rates/{id}",
+     *      operationId="getSalesExchangeRates",
+     *      tags={"Exchange-Rates"},
+     *      summary="Get admin exchange rate detail",
      *      description="Returns exchange rate detail",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Exchange Rate ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -107,11 +127,11 @@ class ExchangeRateController
      *              )
      *          )
      *      )
-	 * )
-	 */
-	public function get()
-	{
-	}
+     * )
+     */
+    public function get()
+    {
+    }
 
     /**
      * @OA\Post(
@@ -121,10 +141,14 @@ class ExchangeRateController
      *      summary="Store the exchange rate",
      *      description="Store the exchange rate",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="target_currency",
      *                      type="integer",
@@ -140,14 +164,18 @@ class ExchangeRateController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="Exchange rate created successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/ExchangeRate")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -155,7 +183,9 @@ class ExchangeRateController
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(example="result", value={"message":"The target currency has already been taken."}, summary="An result object."),
      *          )
      *      )
@@ -173,19 +203,25 @@ class ExchangeRateController
      *      summary="Update exchange rate",
      *      description="Update exchange rate",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Exchange Rate ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
-	 *              mediaType="application/json",
+     *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="target_currency",
      *                      type="integer",
@@ -200,10 +236,13 @@ class ExchangeRateController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -215,6 +254,7 @@ class ExchangeRateController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -222,7 +262,9 @@ class ExchangeRateController
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(example="result", value={"message":"The target currency has already been taken."}, summary="An result object."),
      *          )
      *      )
@@ -240,19 +282,24 @@ class ExchangeRateController
      *      summary="Delete exchange rate by id",
      *      description="Delete exchange rate by id",
      *      security={ {"sanctum_admin": {} }},
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Exchange Rate id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",

@@ -5,8 +5,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\CartRule\Repositories\CartRuleRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleResource;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleResource;
 
 class CartRuleController extends MarketingController
 {
@@ -33,7 +33,6 @@ class CartRuleController extends MarketingController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,7 +56,7 @@ class CartRuleController extends MarketingController
 
         /**
          * These two keys needs to be removed in the next version compatibility.
-         * 
+         *
          * @deprecated
          */
         $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
@@ -76,7 +75,6 @@ class CartRuleController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -99,7 +97,7 @@ class CartRuleController extends MarketingController
         if ($cartRule->coupon_type) {
             if ($cartRule->cart_rule_coupon) {
                 $request->validate([
-                    'coupon_code' => 'required_if:use_auto_generation,==,0|unique:cart_rule_coupons,code,' . $cartRule->cart_rule_coupon->id,
+                    'coupon_code' => 'required_if:use_auto_generation,==,0|unique:cart_rule_coupons,code,'.$cartRule->cart_rule_coupon->id,
                 ]);
             } else {
                 $request->validate([
@@ -114,7 +112,7 @@ class CartRuleController extends MarketingController
 
         /**
          * These two keys needs to be removed in the next version compatibility.
-         * 
+         *
          * @deprecated
          */
         $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
@@ -133,7 +131,7 @@ class CartRuleController extends MarketingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
