@@ -177,7 +177,7 @@ class ProductController extends CatalogController
         }
 
         return response([
-            'message' => trans('rest-api::app.admin.catalog.products.mass-operation.delete-success'),
+            'message' => trans('rest-api::app.admin.catalog.products.mass-operations.delete-success'),
         ]);
     }
 
@@ -203,7 +203,7 @@ class ProductController extends CatalogController
         }
         
         return response([
-            'message' => trans('rest-api::app.admin.catalog.products.mass-operation.update-success'),
+            'message' => trans('rest-api::app.admin.catalog.products.mass-operations.update-success'),
         ]);
     }
 }
