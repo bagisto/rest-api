@@ -53,7 +53,7 @@ class ExchangeRateController extends SettingController
 
         return response([
             'data'    => new ExchangeRateResource($exchangeRate),
-            'message' => trans('rest-api::app.admin.settings.exchange-rates.create-success', ['name' => 'Exchange rate']),
+            'message' => trans('rest-api::app.admin.settings.exchange-rates.create-success'),
         ]);
     }
 
@@ -96,7 +96,7 @@ class ExchangeRateController extends SettingController
             app(config('services.exchange-api.' . config('services.exchange-api.default') . '.class'))->updateRates();
 
             return response([
-                'message' => trans('rest-api::app.admin.settings.rates.update-success'),
+                'message' => trans('rest-api::app.admin.settings.tax-rates.update-success'),
             ]);
         } catch (\Exception $e) {
             return response([

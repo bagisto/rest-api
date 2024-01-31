@@ -119,13 +119,14 @@ class CustomerReviewController extends CustomerBaseController
             $this->getRepositoryInstance()->delete($index);
 
             return response([
-                'message' => trans('rest-api::app.admin.customers.reviews.mass-operations.update-success'),
+                'message' => trans('rest-api::app.admin.customers.reviews.mass-operations.delete-success'),
             ]);
+
             Event::dispatch('customer.review.delete.after', $index);
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.update', ['name' => 'customers']),
+            'message' => trans('rest-api::app.admin.customers.reviews.mass-operations.delete-success'),
         ]);
     }
 }
