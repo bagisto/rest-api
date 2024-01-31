@@ -51,7 +51,7 @@ class TemplateController extends MarketingController
 
         return response([
             'data'    => new TemplateResource($template),
-            'message' => trans('rest-api::app.admin.marketing.templates.create-success'),
+            'message' => trans('rest-api::app.admin.marketing.communications.templates.create-success'),
         ]);
     }
 
@@ -77,7 +77,7 @@ class TemplateController extends MarketingController
 
         return response([
             'data'    => new TemplateResource($template),
-            'message' => trans('rest-api::app.admin.marketing.templates.update-success'),
+            'message' => trans('rest-api::app.admin.marketing.communications.templates.update-success'),
         ]);
     }
 
@@ -98,7 +98,7 @@ class TemplateController extends MarketingController
         Event::dispatch('marketing.templates.delete.after', $id);
 
         return response([
-            'message' => trans('rest-api::app.admin.marketing.templates.delete-success'),
+            'message' => trans('rest-api::app.admin.marketing.communications.templates.delete-success'),
         ]);
     }
 }

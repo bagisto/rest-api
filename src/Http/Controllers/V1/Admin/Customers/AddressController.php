@@ -114,7 +114,7 @@ class AddressController extends BaseController
 
         return response([
             'data'    => new CustomerAddressResource($customerAddress),
-            'message' => trans('rest-api::app.customers.addresses.create-success'),
+            'message' => trans('rest-api::app.admin.customers.addresses.create-success'),
         ]);
     }
 

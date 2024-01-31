@@ -103,7 +103,7 @@ class GroupController extends BaseController
 
         if (count($customerGroup->customers) > 0) {
             return response([
-                'message' => trans('rest-api::appadmin.customers.groups.error.being-used'),
+                'message' => trans('rest-api::app.admin.customers.groups.error.being-used'),
             ], 400);
         }
 

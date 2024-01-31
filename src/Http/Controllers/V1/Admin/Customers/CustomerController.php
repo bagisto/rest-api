@@ -260,7 +260,7 @@ class CustomerController extends BaseController
 
         return response([
             'data'    => new CustomerResource($customer),
-            'message' => trans('rest-api::app.admin.customers.notes.note-taken'),
+            'message' => trans('rest-api::app.admin.customers.customers.notes.note-taken'),
         ]);
     }
 }
