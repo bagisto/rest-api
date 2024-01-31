@@ -379,6 +379,59 @@ class CustomerController
 
     /**
      * @OA\Post(
+     *      path="/api/v1/admin/customers/mass-update",
+     *      operationId="massUpdateCustomers",
+     *      tags={"Customers"},
+     *      summary="Mass update customers",
+     *      description="Mass update customers",
+     *      security={ {"sanctum_admin": {} }},
+     *
+     *      @OA\RequestBody(
+     *
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *
+     *              @OA\Schema(
+     *
+     *                  @OA\Property(
+     *                      property="indices",
+     *                      description="Products Ids `CommaSeperated`",
+     *                      type="string",
+     *                      example={1,2}
+     *                  ),
+     *                  @OA\Property(
+     *                      property="value",
+     *                      description="Customer's status value",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0,1}
+     *                  ),
+     *                  required={"indices", "update_value"}
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Selected customers successfully updated."),
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function massUpdate()
+    {
+    }
+
+    /**
+     * @OA\Post(
      *      path="/api/v1/admin/customers/mass-destroy",
      *      operationId="massDeleteCustomer",
      *      tags={"Customers"},
