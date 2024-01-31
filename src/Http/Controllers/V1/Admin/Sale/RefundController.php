@@ -43,7 +43,7 @@ class RefundController extends SaleController
 
         if (! $order->canRefund()) {
             return response([
-                'message' => trans('rest-api::app.sales.refunds.creation-error'),
+                'message' => trans('rest-api::app.sales.refunds.error.creation-error'),
             ], 400);
         }
 
@@ -64,7 +64,7 @@ class RefundController extends SaleController
 
         if (! $totals) {
             return response([
-                'message' => trans('rest-api::app.sales.refunds.invalid-qty-error'),
+                'message' => trans('rest-api::app.sales.refunds.error.invalid-qty-error'),
             ], 400);
         }
 
@@ -74,7 +74,7 @@ class RefundController extends SaleController
 
         if (! $refundAmount) {
             return response([
-                'message' => trans('rest-api::app.sales.refunds.invalid-amount-error'),
+                'message' => trans('rest-api::app.sales.refunds.error.invalid-amount-error'),
             ], 400);
         }
 
