@@ -15,8 +15,8 @@ return [
                 'create-success' => 'invoice have been successfully added.',
 
                 'error' => [
-                    'invalid-qty-error' => 'We found an invalid quantity to invoice items.',
                     'creation-error'    => 'Order invoice creation is not allowed.',
+                    'invalid-qty-error' => 'We found an invalid quantity to invoice items.',
                     'product-error'     => 'Invoice can not be created without products.',
                 ],
             ],
@@ -25,8 +25,8 @@ return [
                 'create-success' => 'Shipment have been successfully added.',
 
                 'error' => [
-                    'invalid-qty-error' => 'We found an invalid quantity for shipment items.',
                     'creation-error'    => 'Shipment cannot be created for this order.',
+                    'invalid-qty-error' => 'We found an invalid quantity for shipment items.',
                 ],
             ],
     
@@ -44,8 +44,8 @@ return [
             'transactions' => [
                 'already-paid'               => 'This invoice has already been paid.',
                 'invoice-missing'            => 'This invoice id does not exist.',
-                'transaction-saved'          => 'The transaction has been saved.',
                 'transaction-amount-exceeds' => 'The specified amount of this transaction exceeds the total amount of the invoice.',
+                'transaction-saved'          => 'The transaction has been saved.',
             ],
         ],
 
@@ -65,7 +65,7 @@ return [
                 ],
 
                 'error' => [
-                    'configurable-error' => 'Please select atleast one configurable attribute.',
+                    'configurable-error' => 'Please select at least one configurable attribute.',
                 ],
             ],
 
@@ -95,13 +95,13 @@ return [
             ],
 
             'families'   => [
-                'create-success'   => 'Family have been successfully added.',
-                'delete-success'   => 'Family successfully deleted',
-                'update-success'   => 'Family updated successfully.',
+                'create-success' => 'Family have been successfully added.',
+                'delete-success' => 'Family successfully deleted',
+                'update-success' => 'Family updated successfully.',
 
                 'error' => [
-                    'last-item-delete'             => 'At least one families is required.',
-                    'being-used'                   => 'This resource families is getting used in :source.',
+                    'last-item-delete' => 'At least one families is required.',
+                    'being-used'       => 'This resource families is getting used in :source.',
                 ],
             ],
         ],
@@ -322,9 +322,9 @@ return [
     'shop' => [
         'customer' => [
             'addresses' => [
-                'create-success'     => 'Your address has been created successfully.',
-                'delete-success'     => 'Your address has been deleted successfully.',
-                'update-success'     => 'Your address has been updated successfully.',
+                'create-success' => 'Your address has been created successfully.',
+                'delete-success' => 'Your address has been deleted successfully.',
+                'update-success' => 'Your address has been updated successfully.',
             ],
 
             'accounts' => [
