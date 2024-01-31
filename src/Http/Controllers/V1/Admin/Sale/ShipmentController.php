@@ -87,7 +87,7 @@ class ShipmentController extends SaleController
 
         if (! $this->isInventoryValidate($data)) {
             return response([
-                'message' => trans('rest-api::app.sales.shipments.invalid-qty-error'),
+                'message' => trans('rest-api::app.admin.sales.shipments.invalid-qty-error'),
             ], 400);
         }
 

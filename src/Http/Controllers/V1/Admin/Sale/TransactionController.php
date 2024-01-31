@@ -104,7 +104,7 @@ class TransactionController extends SaleController
 
         if ($transactionAmtfinal > $invoice->base_grand_total) {
             return response([
-                'message' => trans('rest-api::app.sales.transactions.transaction-amount-exceeds'),
+                'message' => trans('rest-api::app.admin.sales.transactions.transaction-amount-exceeds'),
             ], 400);
         }
 
