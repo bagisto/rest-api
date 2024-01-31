@@ -179,17 +179,15 @@ class CustomerController extends BaseController
     /**
      * To mass delete the customer.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
+     * @param MassDestroyRequest $massDestroyRequest
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $request)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {
-        $customerIds = $request->indexes;
+        $customerIds = $massDestroyRequest->input('indices');
 
         if (! $this->getRepositoryInstance()->checkBulkCustomerIfTheyHaveOrderPendingOrProcessing($customerIds)) {
             foreach ($customerIds as $customerId) {
-                $this->getRepositoryInstance()->findOrFail($customerId);
-
                 Event::dispatch('customer.delete.before', $customerId);
 
                 $this->getRepositoryInstance()->delete($customerId);
