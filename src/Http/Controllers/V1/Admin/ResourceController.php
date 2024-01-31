@@ -64,52 +64,12 @@ class ResourceController extends V1Controller implements ResourceContract
      *
      * @return \Illuminate\Http\Response
      */
-    public function getResource(Request $request, int $id)
+    public function getResource(int $id)
     {
         $resourceClassName = $this->resource();
 
         $resource = $this->getRepositoryInstance()->findOrFail($id);
 
         return new $resourceClassName($resource);
-    }
-
-    /**
-     * Delete's an individual resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroyResource(Request $request, int $id)
-    {
-        $this->getRepositoryInstance()->findOrFail($id);
-
-        $this->getRepositoryInstance()->delete($id);
-
-        return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => $this->resourceName]),
-        ]);
-    }
-
-    /**
-     * To mass delete the resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    protected function massDestroyResources(MassDestroyRequest $request)
-    {
-        $resources = $this->getRepositoryInstance()->findWhereIn('id', $request->indexes);
-
-        if ($resources->isEmpty()) {
-            return response([
-                'message' => __('rest-api::app.common-response.error.mass-operations.resource-not-found', ['name' => $this->resourceName]),
-            ], 404);
-        }
-
-        $resources->each(function ($resource) {
-            $this->getRepositoryInstance()->delete($resource->id);
-        });
-
-        return response([
-            'message' => __('rest-api::app.common-response.success.mass-operations.delete', ['name' => $this->resourceName]),
-        ]);
     }
 }

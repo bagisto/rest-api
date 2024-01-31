@@ -79,5 +79,4 @@ Route::group([
 
         Route::delete('{id}', 'destroy');
     });
-
 });

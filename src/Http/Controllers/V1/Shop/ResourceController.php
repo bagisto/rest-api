@@ -76,22 +76,4 @@ class ResourceController extends V1Controller implements ResourceContract
 
         return new $resourceClassName($resource);
     }
-
-    /**
-     * Delete's an individual resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroyResource(Request $request, int $id)
-    {
-        $resource = $this->isAuthorized()
-            ? $this->getRepositoryInstance()->where('customer_id', $this->resolveShopUser($request)->id)->findOrFail($id)
-            : $this->getRepositoryInstance()->findOrFail($id);
-
-        $resource->delete();
-
-        return response([
-            'message' => __('rest-api::app.common-response.success.delete', ['name' => $this->resourceName]),
-        ]);
-    }
 }
