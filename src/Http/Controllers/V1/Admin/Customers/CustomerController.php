@@ -159,16 +159,18 @@ class CustomerController extends BaseController
      * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function massUpdate(MassUpdateRequest $request)
+    public function massUpdate(MassUpdateRequest $massUpdateRequest)
     {
-        foreach ($request->indexes as $index) {
-            $this->getRepositoryInstance()->findorFail($index);
+        $selectedCustomerIds = $massUpdateRequest->input('indices');
+    
+        foreach ($selectedCustomerIds as $customerId) {
+            Event::dispatch('customer.update.before', $customerId);
 
-            Event::dispatch('customer.update.before', $index);
+            $customer = $this->getRepositoryInstance()->update([
+                'status' => $massUpdateRequest->input('value'),
+            ], $customerId);
 
-            $this->getRepositoryInstance()->update(['status' => $request->update_value], $index);
-
-            Event::dispatch('customer.update.after', $index);
+            Event::dispatch('customer.update.after', $customer);
         }
 
         return response([
