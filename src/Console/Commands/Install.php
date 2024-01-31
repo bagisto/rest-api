@@ -29,9 +29,6 @@ class Install extends Command
         $result = shell_exec('php artisan vendor:publish --tag=bagisto-rest-api-swagger');
         $this->info($result);
 
-        $result = shell_exec('php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"');
-        $this->info($result);
-
         $this->warn('Step: Generate l5-swagger docs (Admin & Shop)...');
         $result = shell_exec('php artisan l5-swagger:generate --all');
         $this->info($result);

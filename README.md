@@ -42,8 +42,10 @@ http://localhost/public/api/shop/documentation
 
 #####  For admin login
 
+* To add Laravel Sanctum's API token to the Admin model follow the given path.
+
 ~~~
-http://localhost/bagisto/public/api/v1/admin/login
+packages/Webkul/User/src/Models/Admin.php
 ~~~
 
 ~~~php
@@ -61,8 +63,10 @@ class Admin extends Authenticatable implements AdminContract
 
 #####  For customer login
 
+* To add Laravel Sanctum's API token to the customer model follow the given path.
+
 ~~~
-http://localhost/bagisto/public/api/v1/customer/login
+packages/Webkul/Customer/src/Models/Customer.php
 ~~~
 
 ~~~php
