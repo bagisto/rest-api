@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\EventRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
@@ -35,9 +34,9 @@ class EventController extends MarketingController
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
+        $this->validate(request(), [
             'name'        => 'required',
             'description' => 'required',
             'date'        => 'date|required',
@@ -45,7 +44,11 @@ class EventController extends MarketingController
 
         Event::dispatch('marketing.events.create.before');
 
-        $event = $this->getRepositoryInstance()->create($request->all());
+        $event = $this->getRepositoryInstance()->create(request()->only([
+            'name',
+            'description',
+            'date',
+        ]));
 
         Event::dispatch('marketing.events.create.after', $event);
 
@@ -61,9 +64,9 @@ class EventController extends MarketingController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(int $id)
     {
-        $request->validate([
+        $this->validate(request(), [
             'name'        => 'required',
             'description' => 'required',
             'date'        => 'date|required',
@@ -71,7 +74,11 @@ class EventController extends MarketingController
 
         Event::dispatch('marketing.events.update.before', $id);
 
-        $event = $this->getRepositoryInstance()->update($request->all(), $id);
+        $event = $this->getRepositoryInstance()->update(request()->only([
+            'name',
+            'description',
+            'date',
+        ]), $id);
 
         Event::dispatch('marketing.events.update.after', $event);
 
@@ -84,10 +91,9 @@ class EventController extends MarketingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 

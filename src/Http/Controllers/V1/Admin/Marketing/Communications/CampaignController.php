@@ -35,9 +35,9 @@ class CampaignController extends MarketingController
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
+        $this->validate(request(), [
             'name'                  => 'required',
             'subject'               => 'required',
             'status'                => 'required',
@@ -47,7 +47,15 @@ class CampaignController extends MarketingController
 
         Event::dispatch('marketing.campaigns.create.before');
 
-        $campaign = $this->getRepositoryInstance()->create($request->all());
+        $campaign = $this->getRepositoryInstance()->create(request()->only([
+            'name',
+            'subject',
+            'marketing_event_id',
+            'marketing_template_id',
+            'status',
+            'channel_id',
+            'customer_group_id',
+        ]));
 
         Event::dispatch('marketing.campaigns.create.after', $campaign);
 
@@ -60,12 +68,11 @@ class CampaignController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(int $id)
     {
-        $request->validate([
+        $this->validate(request(), [
             'name'                  => 'required',
             'subject'               => 'required',
             'status'                => 'required',
@@ -75,7 +82,15 @@ class CampaignController extends MarketingController
 
         Event::dispatch('marketing.campaigns.update.before', $id);
 
-        $campaign = $this->getRepositoryInstance()->update($request->all(), $id);
+        $campaign = $this->getRepositoryInstance()->update(request()->only([
+            'name',
+            'subject',
+            'marketing_event_id',
+            'marketing_template_id',
+            'status',
+            'channel_id',
+            'customer_group_id',
+        ]), $id);
 
         Event::dispatch('marketing.campaigns.update.after', $campaign);
 
@@ -88,10 +103,9 @@ class CampaignController extends MarketingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
