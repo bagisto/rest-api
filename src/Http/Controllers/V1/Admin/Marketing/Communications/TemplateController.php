@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\TemplateRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
@@ -35,9 +34,9 @@ class TemplateController extends MarketingController
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
+        $this->validate(request(), [
             'name'    => 'required',
             'status'  => 'required|in:active,inactive,draft',
             'content' => 'required',
@@ -45,7 +44,11 @@ class TemplateController extends MarketingController
 
         Event::dispatch('marketing.templates.create.before');
 
-        $template = $this->getRepositoryInstance()->create($request->all());
+        $template = $this->getRepositoryInstance()->create(request()->only([
+            'name',
+            'status',
+            'content',
+        ]));
 
         Event::dispatch('marketing.templates.create.after', $template);
 
@@ -58,12 +61,11 @@ class TemplateController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(int $id)
     {
-        $request->validate([
+        $this->validate(request(), [
             'name'    => 'required',
             'status'  => 'required|in:active,inactive,draft',
             'content' => 'required',
@@ -71,7 +73,11 @@ class TemplateController extends MarketingController
 
         Event::dispatch('marketing.templates.update.before', $id);
 
-        $template = $this->getRepositoryInstance()->update($request->all(), $id);
+        $template = $this->getRepositoryInstance()->update(request()->only([
+            'name',
+            'status',
+            'content',
+        ]), $id);
 
         Event::dispatch('marketing.templates.update.after', $template);
 
@@ -84,10 +90,9 @@ class TemplateController extends MarketingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
