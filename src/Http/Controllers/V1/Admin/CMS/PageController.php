@@ -105,7 +105,27 @@ class PageController extends CMSController
     }
 
     /**
+     * To delete the previously create CMS page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(int $id)
+    {
+        Event::dispatch('cms.pages.delete.before', $id);
+
+        $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('cms.pages.delete.after', $id);
+
+        return response([
+            'message' => trans('rest-api::app.admin.cms.mass-operations.delete-success'),
+        ]);
+    }
+
+    /**
      * To mass delete the CMS resource from storage.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Cms;
+namespace Webkul\RestApi\Docs\Admin\Controllers\CMS;
 
 class PageController
 {
