@@ -8,6 +8,8 @@ use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Rules\VatIdRule;
+use Webkul\Core\Rules\AlphaNumericSpace;
+use Webkul\Core\Rules\PhoneNumber;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerAddressResource;
 
 class AddressController extends BaseController
@@ -54,10 +56,9 @@ class AddressController extends BaseController
     /**
      * Fetch address by customer id.
      *
-     * @param  int  $customerId
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $customerId)
+    public function index(Request $request, int $customerId)
     {
         $customer = $this->customerRepository->findOrFail($customerId);
 
@@ -85,30 +86,43 @@ class AddressController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  int  $customerId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $customerId)
+    public function store(int $customerId)
     {
-        $request->merge([
-            'customer_id' => $customerId,
-            'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),
+        $this->validate(request(), [
+            'company_name' => [new AlphaNumericSpace],
+            'address1'     => ['required', 'array'],
+            'country'      => ['required', new AlphaNumericSpace],
+            'state'        => ['required', new AlphaNumericSpace],
+            'city'         => ['required', 'string'],
+            'postcode'     => ['required', 'numeric'],
+            'phone'        => ['required', new PhoneNumber],
+            'vat_id'       => [new VatIdRule()],
         ]);
 
-        $request->validate([
-            'company_name' => 'string',
-            'address1'     => 'string|required',
-            'country'      => 'string|required',
-            'state'        => 'string|required',
-            'city'         => 'string|required',
-            'postcode'     => 'required',
-            'phone'        => 'required',
-            'vat_id'       => new VatIdRule(),
+        $data = array_merge(request()->only([
+            'customer_id',
+            'company_name',
+            'vat_id',
+            'first_name',
+            'last_name',
+            'address1',
+            'city',
+            'country',
+            'state',
+            'postcode',
+            'phone',
+            'default_address',
+        ]), [
+            'customer_id' => $customerId,
+            'address1'    => implode(PHP_EOL, array_filter(request()->input('address1'))),
+            'address2'    => implode(PHP_EOL, array_filter(request()->input('address2', []))),
         ]);
 
         Event::dispatch('customer.addresses.create.before');
 
-        $customerAddress = $this->getRepositoryInstance()->create($request->all());
+        $customerAddress = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('customer.addresses.create.after', $customerAddress);
 
@@ -121,11 +135,9 @@ class AddressController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @param  int  $customerId
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($customerId, $id)
+    public function show(int $customerId, int $id)
     {
         $customer = $this->customerRepository->findOrFail($customerId);
 
@@ -139,33 +151,45 @@ class AddressController extends BaseController
     /**
      * Edit's the pre made resource of customer called address.
      *
-     * @param  int  $customerId
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $customerId, $id)
+    public function update(int $customerId, int $id)
     {
-        $request->merge([
-            'customer_id' => $customerId,
-            'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),
+        $this->validate(request(), [
+            'company_name' => [new AlphaNumericSpace],
+            'address1'     => ['required', 'array'],
+            'country'      => ['required', new AlphaNumericSpace],
+            'state'        => ['required', new AlphaNumericSpace],
+            'city'         => ['required', 'string'],
+            'postcode'     => ['required', 'numeric'],
+            'phone'        => ['required', new PhoneNumber],
+            'vat_id'       => [new VatIdRule()],
         ]);
 
-        $request->validate([
-            'company_name' => 'string',
-            'address1'     => 'string|required',
-            'country'      => 'string|required',
-            'state'        => 'string|required',
-            'city'         => 'string|required',
-            'postcode'     => 'required',
-            'phone'        => 'required',
-            'vat_id'       => new VatIdRule(),
+        $data = array_merge(request()->only([
+            'customer_id',
+            'company_name',
+            'vat_id',
+            'first_name',
+            'last_name',
+            'address1',
+            'city',
+            'country',
+            'state',
+            'postcode',
+            'phone',
+            'default_address',
+        ]), [
+            'customer_id' => $customerId,
+            'address1'    => implode(PHP_EOL, array_filter(request()->input('address1'))),
+            'address2'    => implode(PHP_EOL, array_filter(request()->input('address2', []))),
         ]);
 
         $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('customer.addresses.update.before', $id);
 
-        $customerAddress = $this->getRepositoryInstance()->update($request->all(), $id);
+        $customerAddress = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('customer.addresses.update.after', $customerAddress);
 
@@ -178,16 +202,10 @@ class AddressController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $customerId
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($customerId, $id)
+    public function destroy(int $id)
     {
-        $customer = $this->customerRepository->findOrFail($customerId);
-
-        $customer->addresses()->findOrFail($id);
-
         Event::dispatch('customer.addresses.delete.before', $id);
 
         $this->getRepositoryInstance()->delete($id);
@@ -202,12 +220,11 @@ class AddressController extends BaseController
     /**
      * Mass delete the customer's addresses.
      *
-     * @param  int  $customerId
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $request, $customerId)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest, int $customerId)
     {
-        foreach ($request->indexes as $addressId) {
+        foreach ($massDestroyRequest->indices as $addressId) {
             $customer = $this->customerRepository->findOrFail($customerId);
 
             $customer->addresses()->findOrFail($addressId);
