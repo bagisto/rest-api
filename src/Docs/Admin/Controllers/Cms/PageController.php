@@ -284,7 +284,7 @@ class PageController
      *                          @OA\Property(
      *                              property="meta_description",
      *                              type="string",
-     *                              description="CMS page's meta descripton",
+     *                              description="CMS page's meta description",
      *                              example="faq-info"
      *                          )
      *                  ),
@@ -384,12 +384,12 @@ class PageController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="indexes",
+     *                      property="indices",
      *                      description="CMS Page's Ids `CommaSeperated`",
      *                      type="string",
-     *                      example="1,2"
+     *                      example={1,2}
      *                  ),
-     *                  required={"indexes"}
+     *                  required={"indices"}
      *              )
      *          )
      *      ),

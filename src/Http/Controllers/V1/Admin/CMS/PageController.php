@@ -107,14 +107,14 @@ class PageController extends CMSController
     /**
      * To mass delete the CMS resource from storage.
      */
-    public function massDestroy(MassDestroyRequest $request, $id)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {
         $indices = $massDestroyRequest->input('indices');
 
         foreach ($indices as $index) {
             Event::dispatch('cms.pages.delete.before', $index);
 
-            $this->cmsRepository->delete($index);
+            $this->getRepositoryInstance()->delete($index);
 
             Event::dispatch('cms.pages.delete.after', $index);
         }
