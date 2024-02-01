@@ -168,15 +168,11 @@ class ProductController extends CatalogController
         $productIds = $massDestroyRequest->input('indices');
 
         foreach ($productIds as $productId) {
-            $product = $this->getRepositoryInstance()->find($productId);
+            Event::dispatch('catalog.product.delete.before', $productId);
 
-            if (isset($product)) {
-                Event::dispatch('catalog.product.delete.before', $productId);
+            $this->getRepositoryInstance()->delete($productId);
 
-                $this->getRepositoryInstance()->delete($productId);
-
-                Event::dispatch('catalog.product.delete.after', $productId);
-            }
+            Event::dispatch('catalog.product.delete.after', $productId);
         }
 
         return response([
