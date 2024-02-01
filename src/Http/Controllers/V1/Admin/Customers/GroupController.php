@@ -42,13 +42,14 @@ class GroupController extends BaseController
             'name' => 'required',
         ]);
 
-        $data = $request->all();
-
-        $data['is_user_defined'] = 1;
-
         Event::dispatch('customer.customer_group.create.before');
 
-        $customerGroup = $this->getRepositoryInstance()->create($data);
+        $customerGroup = $this->getRepositoryInstance()->create(request()->only([
+            'code',
+            'name'
+        ]), [
+            'is_user_defined' => 1,
+        ]);
 
         Event::dispatch('customer.customer_group.create.after', $customerGroup);
 
@@ -75,7 +76,10 @@ class GroupController extends BaseController
 
         Event::dispatch('customer.customer_group.update.before', $id);
 
-        $customerGroup = $this->getRepositoryInstance()->update($request->all(), $id);
+        $customerGroup = $this->getRepositoryInstance()->update(request()->only([
+            'code',
+            'name'
+        ]), $id);
 
         Event::dispatch('customer.customer_group.update.after', $customerGroup);
 
