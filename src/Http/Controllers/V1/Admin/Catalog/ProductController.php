@@ -4,11 +4,11 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Webkul\Core\Rules\Slug;
 use Webkul\Admin\Http\Requests\InventoryRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Admin\Http\Requests\ProductForm;
-use Webkul\Core\Rules\Slug;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
@@ -143,7 +143,7 @@ class ProductController extends CatalogController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, int $id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
@@ -163,16 +163,16 @@ class ProductController extends CatalogController
      *
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest, int $id)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {
-        foreach ($massDestroyRequest->indices as $id) {
-            $this->getRepositoryInstance()->findOrFail($id);
+        $productIds = $massDestroyRequest->input('indices');
 
-            Event::dispatch('catalog.product.delete.before', $id);
+        foreach ($productIds as $productId) {
+            Event::dispatch('catalog.product.delete.before', $productId);
 
-            $this->getRepositoryInstance()->delete($id);
+            $this->getRepositoryInstance()->delete($productId);
 
-            Event::dispatch('catalog.product.delete.after', $id);
+            Event::dispatch('catalog.product.delete.after', $productId);
         }
 
         return response([

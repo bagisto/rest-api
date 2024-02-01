@@ -434,12 +434,12 @@ class CategoryController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="indexes",
+     *                      property="indices",
      *                      description="Category's Ids `CommaSeperated`",
      *                      type="string",
-     *                      example="1,2"
+     *                      example={1,2}
      *                  ),
-     *                  required={"indexes"}
+     *                  required={"indices"}
      *              )
      *          )
      *      ),

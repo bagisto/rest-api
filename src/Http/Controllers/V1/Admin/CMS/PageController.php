@@ -47,7 +47,15 @@ class PageController extends CMSController
 
         Event::dispatch('cms.pages.create.before');
 
-        $page = $this->getRepositoryInstance()->create($request->all());
+        $page = $this->getRepositoryInstance()->create(request()->only([
+            'page_title',
+            'channels',
+            'html_content',
+            'meta_title',
+            'url_key',
+            'meta_keywords',
+            'meta_description',
+        ]));
 
         Event::dispatch('cms.pages.create.after', $page);
 
@@ -80,7 +88,13 @@ class PageController extends CMSController
 
         Event::dispatch('cms.pages.update.before', $id);
 
-        $page = $this->getRepositoryInstance()->update($request->all(), $id);
+        $data = [
+            $locale    => request()->input($locale),
+            'channels' => request()->input('channels'),
+            'locale'   => $locale,
+        ];
+
+        $page = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('cms.pages.update.after', $page);
 
@@ -91,16 +105,36 @@ class PageController extends CMSController
     }
 
     /**
-     * To mass delete the CMS resource from storage.
+     * To delete the previously create CMS page.
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $request, $id)
+    public function destroy(int $id)
+    {
+        Event::dispatch('cms.pages.delete.before', $id);
+
+        $this->getRepositoryInstance()->delete($id);
+
+        Event::dispatch('cms.pages.delete.after', $id);
+
+        return response([
+            'message' => trans('rest-api::app.admin.cms.mass-operations.delete-success'),
+        ]);
+    }
+
+    /**
+     * To mass delete the CMS resource from storage.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {
         $indices = $massDestroyRequest->input('indices');
 
         foreach ($indices as $index) {
             Event::dispatch('cms.pages.delete.before', $index);
 
-            $this->cmsRepository->delete($index);
+            $this->getRepositoryInstance()->delete($index);
 
             Event::dispatch('cms.pages.delete.after', $index);
         }

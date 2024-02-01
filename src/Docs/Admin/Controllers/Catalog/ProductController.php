@@ -1223,19 +1223,19 @@ class ProductController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="indexes",
+     *                      property="indices",
      *                      description="Products Ids `CommaSeperated`",
      *                      type="string",
-     *                      example="1,2"
+     *                      example={1,2}
      *                  ),
      *                  @OA\Property(
-     *                      property="update_value",
+     *                      property="value",
      *                      description="Product's status value",
      *                      type="integer",
      *                      example=1,
      *                      enum={0,1}
      *                  ),
-     *                  required={"indexes", "update_value"}
+     *                  required={"indices", "value"}
      *              )
      *          )
      *      ),
@@ -1276,12 +1276,12 @@ class ProductController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="indexes",
+     *                      property="indices",
      *                      description="Products Ids `CommaSeperated`",
      *                      type="string",
-     *                      example="1,2"
+     *                      example={1,2}
      *                  ),
-     *                  required={"indexes"}
+     *                  required={"indices"}
      *              )
      *          )
      *      ),

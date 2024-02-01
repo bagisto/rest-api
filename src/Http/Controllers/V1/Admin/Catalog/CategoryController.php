@@ -112,12 +112,12 @@ class CategoryController extends CatalogController
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
+     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $massDestroyRequest
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $request)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {
-        $categories = $this->getRepositoryInstance()->findWhereIn('id', $request->indexes);
+        $categories = $this->getRepositoryInstance()->findWhereIn('id', $massDestroyRequest->indices);
 
         if ($this->containsNonDeletableCategory($categories)) {
             return response([
