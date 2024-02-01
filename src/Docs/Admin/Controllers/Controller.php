@@ -146,10 +146,6 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     name="Campaigns",
  *     description="API Endpoints of Admin Campaign"
  * )
- * @OA\Tag(
- *     name="Velocity",
- *     description="API Endpoints of Admin Velocity"
- * )
  */
 class Controller
 {

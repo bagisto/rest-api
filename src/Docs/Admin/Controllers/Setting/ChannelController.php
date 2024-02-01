@@ -209,7 +209,7 @@ class ChannelController
      *                      property="theme",
      *                      type="string",
      *                      example="default",
-     *                      enum={"default", "velocity", "bliss"}
+     *                      enum={"default", "bliss"}
      *                  ),
      *                  @OA\Property(
      *                      property="home_page_content",
@@ -386,7 +386,7 @@ class ChannelController
      *                      property="theme",
      *                      type="string",
      *                      example="default",
-     *                      enum={"default", "velocity", "bliss"}
+     *                      enum={"default", "bliss"}
      *                  ),
      *                  @OA\Property(
      *                      property="is_maintenance_on",
