@@ -252,12 +252,12 @@ class ReviewController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="indexes",
+     *                      property="indices",
      *                      description="Review's Ids `CommaSeperated`",
      *                      type="string",
-     *                      example="8,7,6"
+     *                      example={1,2}
      *                  ),
-     *                  required={"indexes"}
+     *                  required={"indices"}
      *              )
      *          )
      *      ),
@@ -298,19 +298,19 @@ class ReviewController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="indexes",
+     *                      property="indices",
      *                      description="Review's Ids `CommaSeperated`",
      *                      type="string",
-     *                      example="8,7"
+     *                      example={1,2}
      *                  ),
      *                  @OA\Property(
-     *                      property="update_value",
+     *                      property="value",
      *                      description="Review's status",
      *                      type="integer",
-     *                      example=0,
-     *                      enum={0, 1, 2}
+     *                      example="approved",
+     *                      enum={"approved", "disapproved", "pending"}
      *                  ),
-     *                  required={"indexes", "update_value"}
+     *                  required={"indices", "value"}
      *              )
      *          )
      *      ),

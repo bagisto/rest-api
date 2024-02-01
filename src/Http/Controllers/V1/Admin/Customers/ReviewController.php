@@ -37,31 +37,26 @@ class ReviewController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
-
         Event::dispatch('customer.review.update.before', $id);
 
-        $review = $this->getRepositoryInstance()->update($request->all(), $id);
+        $review = $this->getRepositoryInstance()->update(request()->only(['status']), $id);
 
         Event::dispatch('customer.review.update.after', $review);
 
         return response([
-            'message' => trans('rest-api::app.dmin.customers.reviews.update-success'),
+            'message' => trans('rest-api::app.admin.customers.reviews.update-success'),
         ]);
     }
 
     /**
      * Delete the review.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $this->getRepositoryInstance()->findOrFail($id);
-
         Event::dispatch('customer.review.delete.before', $id);
 
         $this->getRepositoryInstance()->delete($id);
@@ -82,18 +77,12 @@ class ReviewController extends BaseController
     {
         $indices = $massUpdateRequest->input('indices');
 
-        foreach ($indices as $index) {
-            $review = $this->getRepositoryInstance()->findOrFail($index);
+        foreach ($indices as $id) {
+            Event::dispatch('customer.review.update.before', $id);
 
-            Event::dispatch('customer.review.update.before', $index);
-
-            if ($massUpdateRequest->value == 0) {
-                $review->update(['status' => 'pending']);
-            } elseif ($massUpdateRequest->value == 1) {
-                $review->update(['status' => 'approved']);
-            } elseif ($massUpdateRequest->value == 2) {
-                $review->update(['status' => 'disapproved']);
-            }
+            $review = $this->getRepositoryInstance()->update([
+                'status' => $massUpdateRequest->input('value'),
+            ], $id);
 
             Event::dispatch('customer.review.update.after', $review);
         }
@@ -116,10 +105,6 @@ class ReviewController extends BaseController
             Event::dispatch('customer.review.delete.before', $index);
 
             $this->getRepositoryInstance()->delete($index);
-
-            return response([
-                'message' => trans('rest-api::app.admin.customers.reviews.mass-operations.delete-success'),
-            ]);
 
             Event::dispatch('customer.review.delete.after', $index);
         }
