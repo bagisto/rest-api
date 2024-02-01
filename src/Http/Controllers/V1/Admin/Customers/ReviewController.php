@@ -106,10 +106,6 @@ class ReviewController extends BaseController
 
             $this->getRepositoryInstance()->delete($index);
 
-            return response([
-                'message' => trans('rest-api::app.admin.customers.reviews.mass-operations.delete-success'),
-            ]);
-
             Event::dispatch('customer.review.delete.after', $index);
         }
 
