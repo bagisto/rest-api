@@ -87,10 +87,6 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Role"
  * )
  * @OA\Tag(
- *     name="Sliders",
- *     description="API Endpoints of Admin Slider"
- * )
- * @OA\Tag(
  *     name="Tax-Categories",
  *     description="API Endpoints of Admin Tax-Category"
  * )

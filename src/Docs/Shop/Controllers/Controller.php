@@ -35,10 +35,6 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints of Channel"
  * )
  * @OA\Tag(
- *     name="Sliders",
- *     description="API Endpoints of Slider"
- * )
- * @OA\Tag(
  *     name="Countries",
  *     description="API Endpoints of Country"
  * )
