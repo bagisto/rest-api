@@ -324,6 +324,13 @@ class ProductController
      *                      enum={0,1}
      *                  ),
      *                  @OA\Property(
+     *                      property="manage_stock",
+     *                      description="Manage Stock status",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0,1}
+     *                  ),
+     *                  @OA\Property(
      *                      property="visible_individually",
      *                      description="Product visible individually status",
      *                      type="integer",
@@ -468,7 +475,7 @@ class ProductController
      *                      type="array",
      *                      collectionFormat="multi",
      *
-     *                      @OA\Items(format="id", type="inetger", example=1)
+     *                      @OA\Items(format="id", type="integer", example=1)
      *                  ),
      *
      *                  @OA\Property(
@@ -485,7 +492,7 @@ class ProductController
      *                      type="array",
      *                      collectionFormat="multi",
      *
-     *                      @OA\Items(format="id", type="inetger", example=1)
+     *                      @OA\Items(format="id", type="integer", example=1)
      *                  ),
      *
      *                  @OA\Property(
@@ -640,6 +647,13 @@ class ProductController
      *                  @OA\Property(
      *                      property="featured",
      *                      description="Featured's status",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0,1}
+     *                  ),
+     *                  @OA\Property(
+     *                      property="manage_stock",
+     *                      description="Manage Stock status",
      *                      type="integer",
      *                      example=1,
      *                      enum={0,1}
