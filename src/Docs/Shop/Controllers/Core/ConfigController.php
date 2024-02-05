@@ -13,15 +13,15 @@ class ConfigController
      *      description="Get core config field value by id",
      *
      *      @OA\Parameter(
-     *          name="_config",
+     *          name="_config[]",
      *          description="Config id",
      *          required=true,
-     *          example="general.general.locale_options.weight_unit,general.content.shop.compare_option",
      *          in="query",
-     *
      *          @OA\Schema(
-     *              type="string"
-     *          )
+     *              type="array",
+     *              @OA\Items(type="string")
+     *          ),
+     *          example={"general.general.locale_options.weight_unit"}
      *      ),
      *
      *      @OA\Response(
