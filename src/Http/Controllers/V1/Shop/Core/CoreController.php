@@ -47,7 +47,8 @@ class CoreController extends ShopController
     public function getCoreConfigs(Request $request)
     {
         $this->validate($request, [
-            '_config' => 'required|array',
+            '_config'   => 'required|array',
+            '_config.*' => 'required|string',
         ]);
 
         $configValues = [];

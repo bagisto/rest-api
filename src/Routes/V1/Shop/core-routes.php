@@ -12,7 +12,7 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Core\LocaleController;
  * Core configs.
  */
 Route::controller(CoreController::class)->prefix('core-configs')->group(function () {
-    Route::post('', 'getCoreConfigs');
+    Route::get('', 'getCoreConfigs');
 });
 
 Route::controller(CoreController::class)->prefix('core-config-fields')->group(function () {
