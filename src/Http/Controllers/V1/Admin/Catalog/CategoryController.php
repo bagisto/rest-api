@@ -113,7 +113,7 @@ class CategoryController extends CatalogController
     /**
      * Mass update Category.
      *
-     * @return \Illuminate\Http\response
+     * @return \Illuminate\Http\Response
      */
     public function massUpdate(MassUpdateRequest $massUpdateRequest)
     {
