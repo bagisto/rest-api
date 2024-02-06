@@ -76,6 +76,7 @@ return [
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected Categories successfully deleted.',
+                    'update-success'  => 'Selected Categories updated successfully.',
                 ],
             ],
 
