@@ -419,6 +419,59 @@ class CategoryController
 
     /**
      * @OA\Post(
+     *      path="/api/v1/admin/catalog/categories/mass-update",
+     *      operationId="massUpdateCategories",
+     *      tags={"Categories"},
+     *      summary="Mass update categories",
+     *      description="Mass update categories",
+     *      security={ {"sanctum_admin": {} }},
+     *
+     *      @OA\RequestBody(
+     *
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *
+     *              @OA\Schema(
+     *
+     *                  @OA\Property(
+     *                      property="indices",
+     *                      description="categories Ids `CommaSeperated`",
+     *                      type="string",
+     *                      example={1,2}
+     *                  ),
+     *                  @OA\Property(
+     *                      property="value",
+     *                      description="category's status value",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0,1}
+     *                  ),
+     *                  required={"indices", "value"}
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Selected categories successfully updated."),
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function massUpdate()
+    {
+    }
+
+    /**
+     * @OA\Post(
      *      path="/api/v1/admin/catalog/categories/mass-destroy",
      *      operationId="massDeleteCategories",
      *      tags={"Categories"},

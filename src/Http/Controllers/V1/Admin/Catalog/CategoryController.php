@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\CategoryRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Core\Models\Channel;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;
@@ -106,6 +107,34 @@ class CategoryController extends CatalogController
 
         return response([
             'message' => trans('rest-api::app.admin.catalog.categories.delete-success'),
+        ]);
+    }
+
+    /**
+     * Mass update Category.
+     *
+     * @return \Illuminate\Http\response
+     */
+    public function massUpdate(MassUpdateRequest $massUpdateRequest)
+    {
+        $indices = $massUpdateRequest->input('indices');
+
+        foreach ($indices as $categoryId) {
+            $this->getRepositoryInstance()->findOrFail($categoryId);
+
+            Event::dispatch('catalog.categories.mass-update.before', $categoryId);
+
+            $category = $this->getRepositoryInstance()->find($categoryId);
+
+            $category->status = $massUpdateRequest->input('value');
+            
+            $category->save();
+
+            Event::dispatch('catalog.categories.mass-update.after', $category);
+        }
+
+        return response([
+            'message' => trans('rest-api::app.admin.catalog.categories.mass-operations.update-success')
         ]);
     }
 
