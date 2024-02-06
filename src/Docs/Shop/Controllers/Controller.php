@@ -79,6 +79,10 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints of Transaction"
  * )
  * @OA\Tag(
+ *     name="Themes",
+ *     description="API Endpoints of Themes"
+ * )
+ * @OA\Tag(
  *     name="Wishlists",
  *     description="API Endpoints of Wishlist"
  * )
