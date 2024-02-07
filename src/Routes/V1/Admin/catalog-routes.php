@@ -45,6 +45,8 @@ Route::group([
 
         Route::delete('{id}', 'destroy');
 
+        Route::post('mass-update', 'massUpdate');
+
         Route::post('mass-destroy', 'massDestroy');
     });
 
