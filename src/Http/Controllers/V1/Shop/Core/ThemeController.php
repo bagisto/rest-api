@@ -17,16 +17,28 @@ class ThemeController extends CoreController
      *
      * @return string
      */
-    public function repository(){
+    public function repository() 
+    {
         return ThemeCustomizationRepository::class;
     }
 
+    /**
+     * Resource class name.
+     *
+     * @return string
+     */
     public function resource()
     {
         return ThemeResource::class;
     }
 
-    public function getThemeCustomizations(){
+    /**
+     * Get Theme Customizations listing.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getThemeCustomizations() 
+    {
         $customizations = $this->getRepositoryInstance()->orderBy('sort_order')->findWhere([
             'status'     => self::STATUS,
             'channel_id' => core()->getCurrentChannel()->id
