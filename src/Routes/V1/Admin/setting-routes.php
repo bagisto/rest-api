@@ -10,6 +10,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\RoleController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax\TaxCategoryController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax\TaxRateController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\UserController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\ThemeController;
 
 /**
  * Settings routes.
@@ -153,6 +154,22 @@ Route::group([
 
         Route::get('{id}', 'getResource');
 
+        Route::put('{id}', 'update');
+
+        Route::delete('{id}', 'destroy');
+    });
+
+    /**
+     * Themes routes.
+     */
+    Route::controller(ThemeController::class)->prefix('theme/customizations')->group(function () {
+        
+        Route::get('', 'allResources');
+
+        Route::post('', 'store');
+        
+        Route::get('{id}', 'getResource');
+        
         Route::put('{id}', 'update');
 
         Route::delete('{id}', 'destroy');
