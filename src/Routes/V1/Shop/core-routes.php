@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Core\ChannelController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\ThemeController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CoreController;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CountryController;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CountryStateController;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CurrencyController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\LocaleController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\ChannelController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CountryController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CurrencyController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CountryStateController;
 
 /**
  * Core configs.
@@ -47,6 +48,7 @@ Route::controller(ChannelController::class)->prefix('channels')->group(function 
 
     Route::get('{id}', 'getResource');
 });
+
 /**
  * Country routes.
  */
@@ -61,4 +63,13 @@ Route::controller(CountryController::class)->prefix('countries')->group(function
 
 Route::controller(CountryStateController::class)->prefix('countries-states')->group(function () {
     Route::get('', 'allResources');
+});
+
+/**
+ * Theme routes.
+ */
+Route::controller(ThemeController::class)->prefix('theme/customizations')->group(function () {
+    Route::get('', 'getThemeCustomizations');
+
+    Route::get('{id}', 'getResource');
 });
