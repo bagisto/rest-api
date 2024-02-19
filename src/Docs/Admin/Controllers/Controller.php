@@ -142,6 +142,10 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     name="Campaigns",
  *     description="API Endpoints of Admin Campaign"
  * )
+ * @OA\Tag(
+ *     name="Themes",
+ *     description="API Endpoints of Themes customization"
+ * )
  */
 class Controller
 {

@@ -109,7 +109,7 @@ class ThemeController extends SettingController
     /**
      * Destroy the Theme
      *
-    * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
