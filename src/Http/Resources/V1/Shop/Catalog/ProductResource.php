@@ -207,8 +207,7 @@ class ProductResource extends JsonResource
     private function getBundleProductInfo($product)
     {
         return [
-            'currency_options' => core()->getAccountJsSymbols(),
-            'bundle_options'   => app('Webkul\Product\Helpers\BundleOption')->getBundleConfig($product),
+            'bundle_options' => app('Webkul\Product\Helpers\BundleOption')->getBundleConfig($product),
         ];
     }
 
