@@ -9,8 +9,8 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\LocaleController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\RoleController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax\TaxCategoryController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax\TaxRateController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\UserController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\ThemeController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\UserController;
 
 /**
  * Settings routes.
@@ -163,13 +163,13 @@ Route::group([
      * Themes routes.
      */
     Route::controller(ThemeController::class)->prefix('theme/customizations')->group(function () {
-        
+
         Route::get('', 'allResources');
 
         Route::post('', 'store');
-        
+
         Route::get('{id}', 'getResource');
-        
+
         Route::put('{id}', 'update');
 
         Route::delete('{id}', 'destroy');

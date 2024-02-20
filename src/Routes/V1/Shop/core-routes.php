@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Core\ThemeController;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CoreController;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Core\LocaleController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\ChannelController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CoreController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CountryController;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CurrencyController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CountryStateController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\CurrencyController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\LocaleController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Core\ThemeController;
 
 /**
  * Core configs.

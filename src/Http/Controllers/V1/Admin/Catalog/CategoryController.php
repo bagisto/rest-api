@@ -127,14 +127,14 @@ class CategoryController extends CatalogController
             $category = $this->getRepositoryInstance()->find($categoryId);
 
             $category->status = $massUpdateRequest->input('value');
-            
+
             $category->save();
 
             Event::dispatch('catalog.categories.mass-update.after', $category);
         }
 
         return response([
-            'message' => trans('rest-api::app.admin.catalog.categories.mass-operations.update-success')
+            'message' => trans('rest-api::app.admin.catalog.categories.mass-operations.update-success'),
         ]);
     }
 

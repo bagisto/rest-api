@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;

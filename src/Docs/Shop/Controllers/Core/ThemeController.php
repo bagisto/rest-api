@@ -24,7 +24,7 @@ class ThemeController
      *
      *                  @OA\Items(ref="#/components/schemas/Theme")
      *              ),
-     * 
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"

@@ -124,7 +124,7 @@ class PageController extends CMSController
 
     /**
      * To mass delete the CMS resource from storage.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest)

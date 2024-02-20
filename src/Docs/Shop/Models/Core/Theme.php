@@ -70,7 +70,7 @@ class Theme
      */
     public $status;
 
-     /**
+    /**
      * @OA\Property(
      *     title="Created at",
      *     description="Created at",

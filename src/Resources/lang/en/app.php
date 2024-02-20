@@ -10,7 +10,7 @@ return [
                     'cancel-error' => 'Order can not be canceled.',
                 ],
             ],
-    
+
             'invoices' => [
                 'create-success' => 'invoice have been successfully added.',
 
@@ -20,7 +20,7 @@ return [
                     'product-error'     => 'Invoice can not be created without products.',
                 ],
             ],
-    
+
             'shipments' => [
                 'create-success' => 'Shipment have been successfully added.',
 
@@ -29,7 +29,7 @@ return [
                     'invalid-qty-error' => 'We found an invalid quantity for shipment items.',
                 ],
             ],
-    
+
             'refunds' => [
                 'create-success' => 'Refund have been successfully added.',
 
@@ -40,7 +40,7 @@ return [
                     'limit-error'          => 'The most money available to refund is :amount.',
                 ],
             ],
-    
+
             'transactions' => [
                 'already-paid'               => 'This invoice has already been paid.',
                 'invoice-missing'            => 'This invoice id does not exist.',
@@ -88,7 +88,7 @@ return [
                 'error' => [
                     'system-attributes-delete' => 'Cannot delete the system attributes.',
                     'cannot-change-type'       => 'Cannot Change type field',
-        
+
                     'mass-operations' => [
                         'resource-not-found' => 'Selected attributes not found.',
                     ],
@@ -151,7 +151,7 @@ return [
             'reviews' => [
                 'delete-success' => 'Review successfully deleted',
                 'update-success' => 'Review updated successfully.',
-    
+
                 'mass-operations' => [
                     'delete-success' => 'Selected reviews successfully deleted.',
                     'update-success' => 'Selected reviews successfully updated.',
@@ -172,22 +172,22 @@ return [
                 'already-taken' => 'The pages has already been taken.',
             ],
         ],
-      
+
         'marketing' => [
             'communications' => [
-                'campaigns' =>[
+                'campaigns' => [
                     'create-success' => 'Campaign have been successfully added.',
                     'delete-success' => 'Campaign successfully deleted',
                     'update-success' => 'Campaign updated successfully.',
                 ],
 
-                'events' =>[
+                'events' => [
                     'create-success' => 'Event have been successfully added.',
                     'delete-success' => 'Event successfully deleted',
                     'update-success' => 'Event updated successfully.',
                 ],
 
-                'templates' =>[
+                'templates' => [
                     'create-success' => 'Email Template have been successfully added.',
                     'delete-success' => 'Email Template successfully deleted',
                     'update-success' => 'Email Template updated successfully.',
@@ -200,13 +200,13 @@ return [
                     'delete-success' => 'Cart Rule successfully deleted',
                     'update-success' => 'Cart Rule updated successfully.',
                 ],
-    
+
                 'catalog-rules' => [
                     'create-success' => 'Catalog Rule have been successfully added.',
                     'delete-success' => 'Catalog Rule successfully deleted',
                     'update-success' => 'Catalog Rule updated successfully.',
                 ],
-    
+
                 'cart-rule-coupons' => [
                     'create-success' => 'Cart Rule Coupon have been successfully added.',
                     'delete-success' => 'Cart Rule Coupon successfully deleted',
@@ -216,7 +216,7 @@ return [
         ],
 
         'settings' => [
-            'locales' =>[
+            'locales' => [
                 'create-success' => 'Locale have been successfully added.',
                 'delete-success' => 'Locale successfully deleted',
                 'update-success' => 'Locale updated successfully.',
@@ -253,17 +253,17 @@ return [
             ],
 
             'taxes' => [
-               'tax-rates' => [
+                'tax-rates' => [
                     'create-success' => 'Tax Rate have been successfully added.',
                     'delete-success' => 'Tax Rate successfully deleted',
                     'update-success' => 'Tax Rate updated successfully.',
-               ],
+                ],
 
-               'tax-categories' => [
+                'tax-categories' => [
                     'create-success' => 'Tax Category have been successfully added.',
                     'delete-success' => 'Tax Category successfully deleted',
                     'update-success' => 'Tax Category updated successfully.',
-               ],
+                ],
             ],
 
             'channels' => [
@@ -296,6 +296,12 @@ return [
                     'being-used'       => 'This resource roles is getting used in admin user.',
                     'last-item-delete' => 'At least one roles is required.',
                 ],
+            ],
+
+            'themes' => [
+                'create-success' => 'Theme created successfully',
+                'delete-success' => 'Theme successfully deleted',
+                'update-success' => 'Theme updated successfully.',
             ],
         ],
 
@@ -358,25 +364,25 @@ return [
                     'success'        => 'Item is successfully added to cart.',
                     'success-remove' => 'Item is successfully removed from the cart.',
                 ],
-    
+
                 'quantity' => [
                     'illegal' => 'Quantity cannot be lesser than one.',
                     'success' => 'Cart Item(s) successfully updated.',
                 ],
-    
+
                 'coupon' => [
                     'apply-issue'    => 'Coupon code can\'t be applied.',
                     'invalid'        => 'Coupon code is invalid.',
                     'success'        => 'Coupon code applied successfully.',
                     'success-remove' => 'Coupon removed successfully.',
                 ],
-    
+
                 'move-wishlist' => [
                     'success' => 'Item moved to wishlist successfully.',
                 ],
-            ], 
+            ],
         ],
-        
+
         'wishlist' => [
             'success'        => 'Item Successfully Added To Wishlist',
             'removed'        => 'Item Successfully Removed From Wishlist',
@@ -384,9 +390,9 @@ return [
             'option-missing' => 'Product options are missing, so item can not be moved to the wishlist.',
 
             'error' => [
-               'security-warning' => 'Suspicious activity found!',
+                'security-warning' => 'Suspicious activity found!',
 
-               'mass-operations' => [
+                'mass-operations' => [
                     'resource-not-found' => 'Selected wishlist product not found.',
                 ],
             ],
@@ -395,7 +401,7 @@ return [
         'sales' => [
             'orders' => [
                 'cancel' => 'Order canceled successfully.',
-                
+
                 'error' => [
                     'cancel-error' => 'Order can not be canceled.',
                 ],

@@ -162,7 +162,7 @@ class CustomerController extends BaseController
     public function massUpdate(MassUpdateRequest $massUpdateRequest)
     {
         $selectedCustomerIds = $massUpdateRequest->input('indices');
-    
+
         foreach ($selectedCustomerIds as $customerId) {
             Event::dispatch('customer.update.before', $customerId);
 
@@ -181,7 +181,6 @@ class CustomerController extends BaseController
     /**
      * To mass delete the customer.
      *
-     * @param MassDestroyRequest $massDestroyRequest
      * @return \Illuminate\Http\Response
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest)

@@ -4,9 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ThemeResource;
-
+use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 
 class ThemeController extends SettingController
 {
@@ -19,7 +18,7 @@ class ThemeController extends SettingController
     {
         return ThemeCustomizationRepository::class;
     }
-    
+
     /**
      * Resource class name.
      *
@@ -62,7 +61,7 @@ class ThemeController extends SettingController
 
         return response([
             'data'    => $theme,
-            'message' => trans('Theme created successfully'),
+            'message' => trans('rest-api::app.admin.settings.themes.create-success'),
         ], 201);
     }
 
@@ -101,8 +100,8 @@ class ThemeController extends SettingController
         Event::dispatch('theme_customization.update.after', $theme);
 
         return response([
-            'data' => $theme,
-            'message' => trans('Theme updated successfully'),
+            'data'    => $theme,
+            'message' => trans('rest-api::app.admin.settings.themes.update-success'),
         ]);
     }
 
@@ -122,7 +121,7 @@ class ThemeController extends SettingController
         Event::dispatch('theme_customization.delete.after', $id);
 
         return response([
-            'message' => trans('admin::app.settings.themes.delete-success'),
+            'message' => trans('rest-api::app.admin.settings.themes.delete-success'),
         ]);
     }
 }
