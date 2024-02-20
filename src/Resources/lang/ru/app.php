@@ -327,21 +327,21 @@ return [
                 'delete-success' => 'Seu endereço foi excluído com sucesso.',
                 'update-success' => 'Seu endereço foi atualizado com sucesso.',
             ],
-    
+
             'accounts' => [
                 'create-success'     => 'Sua conta foi criada com sucesso.',
                 'delete-success'     => 'Sua conta foi excluída com sucesso.',
                 'update-success'     => 'Sua conta foi atualizada com sucesso.',
                 'logged-in-success'  => 'Logado com sucesso.',
                 'logged-out-success' => 'Deslogado com sucesso.',
-    
+
                 'error' => [
                     'invalid'          => 'E-mail ou senha inválidos',
                     'credential-error' => 'As credenciais fornecidas estão incorretas.',
                 ],
             ],
         ],
-    
+
         'checkout' => [
             'billing-address-saved'   => 'Endereço salvo com sucesso.',
             'check-billing-address'   => 'Por favor, verifique o endereço de cobrança.',
@@ -352,60 +352,60 @@ return [
             'shipping-method-saved'   => 'Método de envio salvo com sucesso.',
             'specify-payment-method'  => 'Por favor, especifique o método de pagamento.',
             'specify-shipping-method' => 'Por favor, especifique o método de envio.',
-    
+
             'cart' => [
                 'item' => [
                     'success'        => 'Item adicionado ao carrinho com sucesso.',
                     'success-remove' => 'Item removido do carrinho com sucesso.',
                 ],
-    
+
                 'quantity' => [
                     'illegal' => 'A quantidade não pode ser menor que um.',
                     'success' => 'Item(ns) do carrinho atualizado(s) com sucesso.',
                 ],
-    
+
                 'coupon' => [
                     'apply-issue'    => 'Não foi possível aplicar o código do cupom.',
                     'invalid'        => 'Código do cupom inválido.',
                     'success'        => 'Código do cupom aplicado com sucesso.',
                     'success-remove' => 'Cupom removido com sucesso.',
                 ],
-    
+
                 'move-wishlist' => [
                     'success' => 'Item movido para a lista de desejos com sucesso.',
                 ],
             ],
         ],
-    
+
         'wishlist' => [
             'success'        => 'Item adicionado à lista de desejos com sucesso.',
             'removed'        => 'Item removido da lista de desejos com sucesso.',
             'moved'          => 'Item movido com sucesso para o carrinho.',
             'option-missing' => 'Opções do produto estão faltando, portanto, o item não pode ser movido para a lista de desejos.',
-    
+
             'error' => [
                 'security-warning' => 'Atividade suspeita detectada!',
-    
+
                 'mass-operations' => [
                     'resource-not-found' => 'Produto selecionado na lista de desejos não encontrado.',
                 ],
             ],
         ],
-    
+
         'sales' => [
             'orders' => [
                 'cancel' => 'Pedido cancelado com sucesso.',
-    
+
                 'error' => [
                     'cancel-error' => 'Pedido não pode ser cancelado.',
                 ],
             ],
         ],
-    
+
         'catalog' => [
             'products' => [
                 'configurable-error' => 'Por favor, selecione pelo menos um atributo configurável.',
-    
+
                 'reviews' => [
                     'create-success' => 'Sua análise foi enviada com sucesso.',
                 ],

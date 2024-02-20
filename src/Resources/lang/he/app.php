@@ -327,21 +327,21 @@ return [
                 'delete-success' => 'הכתובת שלך נמחקה בהצלחה.',
                 'update-success' => 'הכתובת שלך עודכנה בהצלחה.',
             ],
-    
+
             'accounts' => [
                 'create-success'     => 'החשבון שלך נוצר בהצלחה.',
                 'delete-success'     => 'החשבון שלך נמחק בהצלחה.',
                 'update-success'     => 'החשבון שלך עודכן בהצלחה.',
                 'logged-in-success'  => 'נכנסת למערכת בהצלחה.',
                 'logged-out-success' => 'יצאת מהמערכת בהצלחה.',
-    
+
                 'error' => [
                     'invalid'          => 'אימייל או סיסמה לא תקינים',
                     'credential-error' => 'פרטי ההתחברות שסופקו אינם נכונים.',
                 ],
             ],
         ],
-    
+
         'checkout' => [
             'billing-address-saved'   => 'הכתובת נשמרה בהצלחה.',
             'check-billing-address'   => 'אנא בדוק כתובת לחיוב.',
@@ -352,60 +352,60 @@ return [
             'shipping-method-saved'   => 'שיטת המשלוח נשמרה בהצלחה.',
             'specify-payment-method'  => 'אנא ציין שיטת תשלום.',
             'specify-shipping-method' => 'אנא ציין שיטת משלוח.',
-    
+
             'cart' => [
                 'item' => [
                     'success'        => 'הפריט נוסף לעגלה בהצלחה.',
                     'success-remove' => 'הפריט הוסר מהעגלה בהצלחה.',
                 ],
-    
+
                 'quantity' => [
                     'illegal' => 'הכמות לא יכולה להיות פחותה מאחד.',
                     'success' => 'פריט(ים) בעגלה עודכנו בהצלחה.',
                 ],
-    
+
                 'coupon' => [
                     'apply-issue'    => 'לא ניתן להחיל קוד קופון.',
                     'invalid'        => 'קוד קופון לא תקין.',
                     'success'        => 'קוד הקופון הוחל בהצלחה.',
                     'success-remove' => 'הקופון הוסר בהצלחה.',
                 ],
-    
+
                 'move-wishlist' => [
                     'success' => 'הפריט הועבר לרשימת המשאלות בהצלחה.',
                 ],
             ],
         ],
-    
+
         'wishlist' => [
             'success'        => 'הפריט נוסף לרשימת המשאלות בהצלחה',
             'removed'        => 'הפריט הוסר בהצלחה מרשימת המשאלות',
             'moved'          => 'הפריט הועבר בהצלחה לעגלה.',
             'option-missing' => 'אפשרויות המוצר חסרות, לכן לא ניתן להעביר את הפריט לרשימת המשאלות.',
-    
+
             'error' => [
                 'security-warning' => 'נמצאה פעילות חשודה!',
-    
+
                 'mass-operations' => [
                     'resource-not-found' => 'המוצר ברשימת המשאלות שנבחר לא נמצא.',
                 ],
             ],
         ],
-    
+
         'sales' => [
             'orders' => [
                 'cancel' => 'ההזמנה בוטלה בהצלחה.',
-    
+
                 'error' => [
                     'cancel-error' => 'לא ניתן לבטל את ההזמנה.',
                 ],
             ],
         ],
-    
+
         'catalog' => [
             'products' => [
                 'configurable-error' => 'אנא בחר לפחות מאפיין אחד שניתן להגדרה.',
-    
+
                 'reviews' => [
                     'create-success' => 'הביקורת שלך נשלחה בהצלחה.',
                 ],
