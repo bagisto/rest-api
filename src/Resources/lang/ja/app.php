@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => '少なくとも1つのロールが必要です。',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'テーマが正常に作成されました',
+                'delete-success' => 'テーマが正常に削除されました',
+                'update-success' => 'テーマが正常に更新されました',
+            ],
         ],
 
         'configuration' => [

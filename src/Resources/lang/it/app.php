@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'È richiesto almeno un ruolo.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'Tema creato con successo',
+                'delete-success' => 'Tema eliminato con successo',
+                'update-success' => 'Tema aggiornato con successo',
+            ],
         ],
 
         'configuration' => [

@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => '至少需要一个角色。',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => '主题创建成功',
+                'delete-success' => '主题成功删除',
+                'update-success' => '主题成功更新',
+            ],
         ],
 
         'configuration' => [

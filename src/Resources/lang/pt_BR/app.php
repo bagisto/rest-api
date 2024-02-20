@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'Pelo menos uma função é necessária.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'Tema criado com sucesso',
+                'delete-success' => 'Tema excluído com sucesso',
+                'update-success' => 'Tema atualizado com sucesso',
+            ],
         ],
 
         'configuration' => [

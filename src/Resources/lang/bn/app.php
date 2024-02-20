@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'অন্তত একটি ভূমিকা প্রয়োজন।',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'থিম সফলভাবে তৈরি হয়েছে',
+                'delete-success' => 'থিম সফলভাবে মোছা হয়েছে',
+                'update-success' => 'থিম সফলভাবে আপডেট হয়েছে',
+            ],
         ],
 
         'configuration' => [

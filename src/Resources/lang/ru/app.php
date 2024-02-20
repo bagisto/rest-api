@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'Требуется как минимум одна роль.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'Тема успешно создана',
+                'delete-success' => 'Тема успешно удалена',
+                'update-success' => 'Тема успешно обновлена',
+            ],
         ],
 
         'configuration' => [

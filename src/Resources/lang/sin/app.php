@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'අවසන් භාවිතා කළ යුතු අයිතම් එකක් අවශ්‍ය වේ.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'තේමාව සාර්ථකව නිර්මාණය කර ඇත',
+                'delete-success' => 'තේමාව සාර්ථකව මකා ඇත',
+                'update-success' => 'තේමාව සාර්ථකව යාවත්කාලීන කර ඇත',
+            ],
         ],
 
         'configuration' => [

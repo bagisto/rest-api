@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'En az bir rol gerekli.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'Tema başarıyla oluşturuldu',
+                'delete-success' => 'Tema başarıyla silindi',
+                'update-success' => 'Tema başarıyla güncellendi',
+            ],
         ],
 
         'configuration' => [

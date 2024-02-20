@@ -61,7 +61,7 @@ class ThemeController extends SettingController
 
         return response([
             'data'    => $theme,
-            'message' => trans('Theme created successfully'),
+            'message' => trans('rest-api::app.admin.settings.themes.create-success'),
         ], 201);
     }
 
@@ -101,7 +101,7 @@ class ThemeController extends SettingController
 
         return response([
             'data'    => $theme,
-            'message' => trans('Theme updated successfully'),
+            'message' => trans('rest-api::app.admin.settings.themes.update-success'),
         ]);
     }
 
@@ -121,7 +121,7 @@ class ThemeController extends SettingController
         Event::dispatch('theme_customization.delete.after', $id);
 
         return response([
-            'message' => trans('admin::app.settings.themes.delete-success'),
+            'message' => trans('rest-api::app.admin.settings.themes.delete-success'),
         ]);
     }
 }

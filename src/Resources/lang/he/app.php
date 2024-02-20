@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'נדרש לפחות תפקיד אחד.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'נושא נוצר בהצלחה',
+                'delete-success' => 'נושא נמחק בהצלחה',
+                'update-success' => 'נושא עודכן בהצלחה',
+            ],
         ],
 
         'configuration' => [

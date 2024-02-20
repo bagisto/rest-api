@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'يتطلب وجود دور واحد على الأقل.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'تم إنشاء السمة بنجاح',
+                'delete-success' => 'تم حذف السمة بنجاح',
+                'update-success' => 'تم تحديث السمة بنجاح',
+            ],
         ],
 
         'configuration' => [

@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'कम से कम एक भूमिका की आवश्यकता है।',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'थीम सफलतापूर्वक बनाई गई',
+                'delete-success' => 'थीम सफलतापूर्वक हटा दी गई',
+                'update-success' => 'थीम सफलतापूर्वक अपडेट की गई',
+            ],
         ],
 
         'configuration' => [

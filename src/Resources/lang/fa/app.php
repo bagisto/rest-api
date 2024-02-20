@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'حداقل یک نقش مورد نیاز است.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'پوسته با موفقیت ایجاد شد',
+                'delete-success' => 'پوسته با موفقیت حذف شد',
+                'update-success' => 'پوسته با موفقیت به‌روزرسانی شد',
+            ],
         ],
 
         'configuration' => [

@@ -297,6 +297,12 @@ return [
                     'last-item-delete' => 'Er is minimaal één rol vereist.',
                 ],
             ],
+
+            'themes' => [
+                'create-success' => 'Thema succesvol aangemaakt',
+                'delete-success' => 'Thema succesvol verwijderd',
+                'update-success' => 'Thema succesvol bijgewerkt',
+            ],
         ],
 
         'configuration' => [
