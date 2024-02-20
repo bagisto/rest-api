@@ -4,9 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ThemeResource;
-
+use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 
 class ThemeController extends SettingController
 {
@@ -19,7 +18,7 @@ class ThemeController extends SettingController
     {
         return ThemeCustomizationRepository::class;
     }
-    
+
     /**
      * Resource class name.
      *
@@ -101,7 +100,7 @@ class ThemeController extends SettingController
         Event::dispatch('theme_customization.update.after', $theme);
 
         return response([
-            'data' => $theme,
+            'data'    => $theme,
             'message' => trans('Theme updated successfully'),
         ]);
     }

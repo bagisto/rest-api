@@ -17,8 +17,10 @@ class ConfigController
      *          description="Config id",
      *          required=true,
      *          in="query",
+     *
      *          @OA\Schema(
      *              type="array",
+     *
      *              @OA\Items(type="string")
      *          ),
      *          example={"general.general.locale_options.weight_unit"}

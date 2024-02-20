@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin;
 
 use Illuminate\Http\Request;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
 use Webkul\RestApi\Contracts\ResourceContract;
 use Webkul\RestApi\Http\Controllers\V1\V1Controller;
 use Webkul\RestApi\Traits\ProvideResource;

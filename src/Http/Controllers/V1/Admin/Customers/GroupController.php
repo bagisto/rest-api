@@ -46,7 +46,7 @@ class GroupController extends BaseController
 
         $customerGroup = $this->getRepositoryInstance()->create(request()->only([
             'code',
-            'name'
+            'name',
         ]), [
             'is_user_defined' => 1,
         ]);
@@ -78,7 +78,7 @@ class GroupController extends BaseController
 
         $customerGroup = $this->getRepositoryInstance()->update(request()->only([
             'code',
-            'name'
+            'name',
         ]), $id);
 
         Event::dispatch('customer.customer_group.update.after', $customerGroup);

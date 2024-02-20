@@ -5,11 +5,11 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Core\Rules\AlphaNumericSpace;
+use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Rules\VatIdRule;
-use Webkul\Core\Rules\AlphaNumericSpace;
-use Webkul\Core\Rules\PhoneNumber;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerAddressResource;
 
 class AddressController extends BaseController

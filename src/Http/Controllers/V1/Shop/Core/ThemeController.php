@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
-use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Core\ThemeResource;
+use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 
 class ThemeController extends CoreController
 {
@@ -17,7 +17,7 @@ class ThemeController extends CoreController
      *
      * @return string
      */
-    public function repository() 
+    public function repository()
     {
         return ThemeCustomizationRepository::class;
     }
@@ -37,11 +37,11 @@ class ThemeController extends CoreController
      *
      * @return \Illuminate\Http\Response
      */
-    public function getThemeCustomizations() 
+    public function getThemeCustomizations()
     {
         $customizations = $this->getRepositoryInstance()->orderBy('sort_order')->findWhere([
             'status'     => self::STATUS,
-            'channel_id' => core()->getCurrentChannel()->id
+            'channel_id' => core()->getCurrentChannel()->id,
         ]);
 
         return response([

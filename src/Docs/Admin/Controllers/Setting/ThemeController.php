@@ -81,7 +81,7 @@ class ThemeController
      *
      *                  @OA\Items(ref="#/components/schemas/Theme")
      *              ),
-     * 
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
@@ -217,6 +217,7 @@ class ThemeController
      *          description="Theme ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
@@ -224,9 +225,12 @@ class ThemeController
      *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="locale",
      *                      type="string",
@@ -245,8 +249,10 @@ class ThemeController
      *                              property="images",
      *                              type="array",
      *                              description="Image carousel images",
+     *
      *                              @OA\Items(
      *                                  type="object",
+     *
      *                                  @OA\Property(
      *                                      property="link",
      *                                      type="string",
@@ -300,7 +306,9 @@ class ThemeController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",

@@ -33,7 +33,9 @@ class Theme
      *             property="images",
      *             type="array",
      *             description="Image carousel images",
+     *
      *             @OA\Items(
+     *
      *                 @OA\Property(
      *                     property="link",
      *                     type="string",

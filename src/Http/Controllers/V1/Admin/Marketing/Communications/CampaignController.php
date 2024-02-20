@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\CampaignRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;

@@ -4,11 +4,11 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Rules\Slug;
 use Webkul\Admin\Http\Requests\InventoryRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Admin\Http\Requests\ProductForm;
+use Webkul\Core\Rules\Slug;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
