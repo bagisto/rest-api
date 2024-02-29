@@ -12,20 +12,16 @@ class ReviewController extends BaseController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ProductReviewRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ProductReviewResource::class;
     }
@@ -33,10 +29,9 @@ class ReviewController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(int $id)
     {
         Event::dispatch('customer.review.update.before', $id);
 

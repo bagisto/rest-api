@@ -12,20 +12,16 @@ class OrderController extends SaleController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return OrderRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return OrderResource::class;
     }
@@ -33,10 +29,9 @@ class OrderController extends SaleController
     /**
      * Cancel action for the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function cancel($id)
+    public function cancel(int $id)
     {
         $result = $this->getRepositoryInstance()->cancel($id);
 

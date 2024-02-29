@@ -29,13 +29,14 @@ class AuthController extends UserController
         ]);
 
         if (! EnsureFrontendRequestsAreStateful::fromFrontend($request)) {
-            $request->validate([
-                'device_name' => 'required',
-            ]);
+            $request->validate(['device_name' => 'required']);
 
             $admin = $adminRepository->where('email', $request->email)->first();
 
-            if (! $admin || ! Hash::check($request->password, $admin->password)) {
+            if (
+                ! $admin
+                || ! Hash::check($request->password, $admin->password)
+            ) {
                 throw ValidationException::withMessages([
                     'email' => trans('rest-api::app.admin.account.error.credential-error'),
                 ]);
@@ -91,9 +92,7 @@ class AuthController extends UserController
      */
     public function forgotPassword(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-        ]);
+        $request->validate(['email' => 'required|email']);
 
         $response = Password::broker('admins')->sendResetLink($request->only('email'));
 

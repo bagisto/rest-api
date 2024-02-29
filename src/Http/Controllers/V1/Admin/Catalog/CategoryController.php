@@ -15,20 +15,16 @@ class CategoryController extends CatalogController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CategoryRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CategoryResource::class;
     }
@@ -36,7 +32,6 @@ class CategoryController extends CatalogController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Webkul\Category\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryRequest $request)
@@ -63,11 +58,9 @@ class CategoryController extends CatalogController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Webkul\Category\Http\Requests\CategoryRequest  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $request, int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
@@ -86,10 +79,9 @@ class CategoryController extends CatalogController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, int $id)
     {
         $category = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -141,7 +133,6 @@ class CategoryController extends CatalogController
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $massDestroyRequest
      * @return \Illuminate\Http\Response
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest)

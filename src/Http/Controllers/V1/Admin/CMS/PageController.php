@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
-use Webkul\CMS\Repositories\CmsRepository;
+use Webkul\CMS\Repositories\PageRepository;
 use Webkul\Core\Rules\Slug;
 use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
 
@@ -13,20 +13,16 @@ class PageController extends CMSController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
-        return CmsRepository::class;
+        return PageRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CMSResource::class;
     }
@@ -68,10 +64,9 @@ class PageController extends CMSController
     /**
      * To update the previously created page in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $locale = core()->getRequestedLocaleCode();
 

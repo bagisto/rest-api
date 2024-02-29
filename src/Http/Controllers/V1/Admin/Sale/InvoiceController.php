@@ -11,20 +11,16 @@ class InvoiceController extends SaleController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return InvoiceRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return InvoiceResource::class;
     }
@@ -32,10 +28,9 @@ class InvoiceController extends SaleController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, OrderRepository $orderRepository, $orderId)
+    public function store(Request $request, OrderRepository $orderRepository, int $orderId)
     {
         $order = $orderRepository->findOrFail($orderId);
 

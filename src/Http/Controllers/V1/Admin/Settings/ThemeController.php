@@ -5,26 +5,22 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ThemeResource;
-use Webkul\Shop\Repositories\ThemeCustomizationRepository;
+use Webkul\Theme\Repositories\ThemeCustomizationRepository;
 
 class ThemeController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ThemeCustomizationRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ThemeResource::class;
     }
@@ -110,7 +106,7 @@ class ThemeController extends SettingController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         Event::dispatch('theme_customization.delete.before', $id);
 

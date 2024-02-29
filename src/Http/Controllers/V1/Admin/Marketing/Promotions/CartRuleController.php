@@ -12,20 +12,16 @@ class CartRuleController extends MarketingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CartRuleRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CartRuleResource::class;
     }
@@ -75,10 +71,9 @@ class CartRuleController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'name'                => 'required',
@@ -131,10 +126,9 @@ class CartRuleController extends MarketingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 

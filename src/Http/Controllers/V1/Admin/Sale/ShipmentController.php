@@ -11,51 +11,29 @@ use Webkul\Sales\Repositories\ShipmentRepository;
 class ShipmentController extends SaleController
 {
     /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Order item repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderItemRepository
-     */
-    protected $orderItemRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct(
-        OrderRepository $orderRepository,
-        OrderItemRepository $orderItemRepository
+        protected OrderRepository $orderRepository,
+        protected OrderItemRepository $orderItemRepository
     ) {
         parent::__construct();
-
-        $this->orderRepository = $orderRepository;
-
-        $this->orderItemRepository = $orderItemRepository;
     }
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ShipmentRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ShipmentResource::class;
     }
@@ -63,10 +41,9 @@ class ShipmentController extends SaleController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $orderId)
+    public function store(Request $request, int $orderId)
     {
         $order = $this->orderRepository->findOrFail($orderId);
 

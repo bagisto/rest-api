@@ -12,20 +12,16 @@ class GroupController extends BaseController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CustomerGroupRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CustomerGroupResource::class;
     }
@@ -62,10 +58,9 @@ class GroupController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'code' => ['required', 'unique:customer_groups,code,'.$id, new Code],
@@ -92,10 +87,9 @@ class GroupController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $customerGroup = $this->getRepositoryInstance()->findOrFail($id);
 

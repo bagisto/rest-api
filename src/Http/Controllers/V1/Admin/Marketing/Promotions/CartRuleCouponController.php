@@ -12,20 +12,16 @@ class CartRuleCouponController extends MarketingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CartRuleCouponRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CartRuleCouponResource::class;
     }
@@ -47,10 +43,9 @@ class CartRuleCouponController extends MarketingController
     /**
      * Generate coupon code for cart rule.
      *
-     * @param  int  $cartRuleId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $cartRuleId)
+    public function store(Request $request, int $cartRuleId)
     {
         $request->validate([
             'coupon_qty'  => 'required|integer|min:1',

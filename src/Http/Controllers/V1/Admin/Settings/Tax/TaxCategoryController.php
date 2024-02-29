@@ -12,20 +12,16 @@ class TaxCategoryController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return TaxCategoryRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return TaxCategoryResource::class;
     }
@@ -44,7 +40,7 @@ class TaxCategoryController extends SettingController
             'taxrates'    => 'array|required',
         ]);
 
-        $data = request()->only([
+        $data = $request->only([
             'code',
             'name',
             'description',
@@ -79,7 +75,7 @@ class TaxCategoryController extends SettingController
             'taxrates'    => 'array|required',
         ]);
 
-        $data = request()->only([
+        $data = $request->only([
             'code',
             'name',
             'description',

@@ -10,13 +10,6 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\AdminController;
 class ConfigurationController extends AdminController
 {
     /**
-     * Core config repository instance.
-     *
-     * @var \Webkul\Core\Repositories\CoreConfigRepository
-     */
-    protected $coreConfigRepository;
-
-    /**
      * Tree instance.
      *
      * @var \Webkul\Core\Tree
@@ -28,11 +21,9 @@ class ConfigurationController extends AdminController
      *
      * @return void
      */
-    public function __construct(CoreConfigRepository $coreConfigRepository)
+    public function __construct(protected CoreConfigRepository $coreConfigRepository)
     {
         parent::__construct();
-
-        $this->coreConfigRepository = $coreConfigRepository;
 
         $this->prepareConfigTree();
     }

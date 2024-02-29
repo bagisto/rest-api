@@ -29,20 +29,16 @@ class CustomerController extends BaseController
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CustomerRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CustomerResource::class;
     }
@@ -156,7 +152,6 @@ class CustomerController extends BaseController
     /**
      * To mass update the customer.
      *
-     * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function massUpdate(MassUpdateRequest $massUpdateRequest)

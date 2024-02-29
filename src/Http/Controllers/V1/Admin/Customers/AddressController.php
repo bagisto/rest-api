@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Rules\AlphaNumericSpace;
 use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
@@ -15,38 +15,25 @@ use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerAddressResource;
 class AddressController extends BaseController
 {
     /**
-     * Customer repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerRepository
-     */
-    protected $customerRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CustomerRepository $customerRepository)
+    public function __construct(protected CustomerRepository $customerRepository)
     {
         parent::__construct();
-
-        $this->customerRepository = $customerRepository;
     }
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CustomerAddressRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
     public function resource()
     {

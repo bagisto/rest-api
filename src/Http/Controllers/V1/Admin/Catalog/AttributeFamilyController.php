@@ -11,20 +11,16 @@ class AttributeFamilyController extends CatalogController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return AttributeFamilyRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return AttributeFamilyResource::class;
     }

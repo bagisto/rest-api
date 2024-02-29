@@ -11,20 +11,16 @@ class InventorySourceController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return InventorySourceRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return InventorySourceResource::class;
     }
@@ -38,7 +34,7 @@ class InventorySourceController extends SettingController
     {
         Event::dispatch('inventory.inventory_source.create.before');
 
-        $data = request()->only([
+        $data = $inventorySourceRequest->only([
             'code',
             'name',
             'description',
@@ -70,10 +66,9 @@ class InventorySourceController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(InventorySourceRequest $inventorySourceRequest, $id)
+    public function update(InventorySourceRequest $inventorySourceRequest, int $id)
     {
         Event::dispatch('inventory.inventory_source.update.before', $id);
 
@@ -113,10 +108,9 @@ class InventorySourceController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 

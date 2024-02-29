@@ -11,20 +11,16 @@ class ExchangeRateController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ExchangeRateRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ExchangeRateResource::class;
     }
@@ -43,7 +39,7 @@ class ExchangeRateController extends SettingController
 
         Event::dispatch('core.exchange_rate.create.before');
 
-        $exchangeRate = $this->getRepositoryInstance()->create(request()->only([
+        $exchangeRate = $this->getRepositoryInstance()->create($request->only([
             'target_currency',
             'rate',
         ]));
@@ -70,7 +66,7 @@ class ExchangeRateController extends SettingController
 
         Event::dispatch('core.exchange_rate.update.before', $id);
 
-        $exchangeRate = $this->getRepositoryInstance()->create(request()->only([
+        $exchangeRate = $this->getRepositoryInstance()->create($request->only([
             'target_currency',
             'rate',
         ]), $id);

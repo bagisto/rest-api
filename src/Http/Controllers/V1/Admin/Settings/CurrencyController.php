@@ -10,20 +10,16 @@ class CurrencyController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CurrencyRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CurrencyResource::class;
     }
@@ -40,7 +36,7 @@ class CurrencyController extends SettingController
             'name' => 'required',
         ]);
 
-        $currency = $this->getRepositoryInstance()->create(request()->only([
+        $currency = $this->getRepositoryInstance()->create($request->only([
             'code',
             'name',
             'symbol',
@@ -65,7 +61,7 @@ class CurrencyController extends SettingController
             'name' => 'required',
         ]);
 
-        $currency = $this->getRepositoryInstance()->update(request()->only([
+        $currency = $this->getRepositoryInstance()->update($request->only([
             'code',
             'name',
             'symbol',

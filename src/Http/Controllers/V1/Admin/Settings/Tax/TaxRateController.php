@@ -12,20 +12,16 @@ class TaxRateController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository():string
     {
         return TaxRateRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return TaxRateResource::class;
     }
@@ -47,7 +43,15 @@ class TaxRateController extends SettingController
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
 
-        $data = request()->only([
+        if ($request->has('is_zip')) {
+            $request['is_zip'] = 1;
+
+            unset($request['zip_code']);
+        }
+
+        Event::dispatch('tax.rate.create.before');
+
+        $taxRate = $this->getRepositoryInstance()->create($request->only([
             'identifier',
             'country',
             'state',
@@ -56,17 +60,7 @@ class TaxRateController extends SettingController
             'is_zip',
             'zip_from',
             'zip_to',
-        ]);
-
-        if (isset($data['is_zip'])) {
-            $data['is_zip'] = 1;
-
-            unset($data['zip_code']);
-        }
-
-        Event::dispatch('tax.rate.create.before');
-
-        $taxRate = $this->getRepositoryInstance()->create($data);
+        ]));
 
         Event::dispatch('tax.rate.create.after', $taxRate);
 
@@ -92,7 +86,9 @@ class TaxRateController extends SettingController
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
 
-        $data = request()->only([
+        Event::dispatch('tax.rate.update.before', $id);
+
+        $taxRate = $this->getRepositoryInstance()->update($request->only([
             'identifier',
             'country',
             'state',
@@ -101,11 +97,7 @@ class TaxRateController extends SettingController
             'is_zip',
             'zip_from',
             'zip_to',
-        ]);
-
-        Event::dispatch('tax.rate.update.before', $id);
-
-        $taxRate = $this->getRepositoryInstance()->update($data, $id);
+        ]), $id);
 
         Event::dispatch('tax.rate.update.after', $taxRate);
 
