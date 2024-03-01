@@ -10,30 +10,24 @@ class ProductController extends CatalogController
 {
     /**
      * Is resource authorized.
-     *
-     * @return bool
      */
-    public function isAuthorized()
+    public function isAuthorized(): bool
     {
         return false;
     }
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ProductRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ProductResource::class;
     }
@@ -53,10 +47,9 @@ class ProductController extends CatalogController
     /**
      * Returns product's additional information.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function additionalInformation(Request $request, $id)
+    public function additionalInformation(Request $request, int $id)
     {
         $resource = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -71,10 +64,9 @@ class ProductController extends CatalogController
     /**
      * Returns product's additional information.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function configurableConfig(Request $request, $id)
+    public function configurableConfig(Request $request, int $id)
     {
         $resource = $this->getRepositoryInstance()->findOrFail($id);
 

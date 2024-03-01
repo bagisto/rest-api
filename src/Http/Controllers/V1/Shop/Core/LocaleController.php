@@ -9,30 +9,24 @@ class LocaleController extends CoreController
 {
     /**
      * Is resource authorized.
-     *
-     * @return bool
      */
-    public function isAuthorized()
+    public function isAuthorized(): bool
     {
         return false;
     }
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return LocaleRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return LocaleResource::class;
     }

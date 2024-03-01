@@ -86,8 +86,8 @@ return [
                 'update-success' => 'Atrybut został pomyślnie zaktualizowany.',
 
                 'error' => [
-                    'system-attributes-delete' => 'Nie można usunąć atrybutów systemowych.',
                     'cannot-change-type'       => 'Nie można zmienić pola typu.',
+                    'system-attributes-delete' => 'Nie można usunąć atrybutów systemowych.',
 
                     'mass-operations' => [
                         'resource-not-found' => 'Wybrane atrybuty nie znalezione.',
@@ -101,8 +101,8 @@ return [
                 'update-success' => 'Grupa została pomyślnie zaktualizowana.',
 
                 'error' => [
-                    'last-item-delete' => 'Wymagana jest co najmniej jedna grupa.',
                     'being-used'       => 'Ta grupa zasobów jest używana w: :source.',
+                    'last-item-delete' => 'Wymagana jest co najmniej jedna grupa.',
                 ],
             ],
         ],
@@ -337,13 +337,13 @@ return [
             'accounts' => [
                 'create-success'     => 'Twoje konto zostało pomyślnie utworzone.',
                 'delete-success'     => 'Twoje konto zostało pomyślnie usunięte.',
-                'update-success'     => 'Twoje konto zostało pomyślnie zaktualizowane.',
                 'logged-in-success'  => 'Zalogowano pomyślnie.',
                 'logged-out-success' => 'Wylogowano pomyślnie.',
+                'update-success'     => 'Twoje konto zostało pomyślnie zaktualizowane.',
 
                 'error' => [
-                    'invalid'          => 'Nieprawidłowy adres email lub hasło.',
                     'credential-error' => 'Podane dane uwierzytelniające są niepoprawne.',
+                    'invalid'          => 'Nieprawidłowy adres email lub hasło.',
                 ],
             ],
         ],
@@ -373,8 +373,8 @@ return [
                 'coupon' => [
                     'apply-issue'    => 'Kod kuponu nie może zostać zastosowany.',
                     'invalid'        => 'Kod kuponu jest nieprawidłowy.',
-                    'success'        => 'Kod kuponu został pomyślnie zastosowany.',
                     'success-remove' => 'Kupon został pomyślnie usunięty.',
+                    'success'        => 'Kod kuponu został pomyślnie zastosowany.',
                 ],
 
                 'move-wishlist' => [
@@ -384,10 +384,10 @@ return [
         ],
 
         'wishlist' => [
-            'success'        => 'Produkt pomyślnie dodany do listy życzeń.',
-            'removed'        => 'Produkt pomyślnie usunięty z listy życzeń.',
             'moved'          => 'Produkt pomyślnie przeniesiony do koszyka.',
             'option-missing' => 'Opcje produktu są brakujące, więc produkt nie może zostać przeniesiony do listy życzeń.',
+            'removed'        => 'Produkt pomyślnie usunięty z listy życzeń.',
+            'success'        => 'Produkt pomyślnie dodany do listy życzeń.',
 
             'error' => [
                 'security-warning' => 'Wykryto podejrzaną aktywność!',

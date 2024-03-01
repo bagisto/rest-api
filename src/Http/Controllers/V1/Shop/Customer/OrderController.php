@@ -10,20 +10,16 @@ class OrderController extends CustomerController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return OrderRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return OrderResource::class;
     }
@@ -31,10 +27,9 @@ class OrderController extends CustomerController
     /**
      * Cancel customer's order.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function cancel(Request $request, $id)
+    public function cancel(Request $request, int $id)
     {
         $order = $this->resolveShopUser($request)->orders()->find($id);
 

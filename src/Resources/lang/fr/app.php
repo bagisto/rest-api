@@ -86,8 +86,8 @@ return [
                 'update-success' => 'Attribut mis à jour avec succès.',
 
                 'error' => [
-                    'system-attributes-delete' => 'Impossible de supprimer les attributs système.',
                     'cannot-change-type'       => 'Impossible de modifier le champ de type',
+                    'system-attributes-delete' => 'Impossible de supprimer les attributs système.',
 
                     'mass-operations' => [
                         'resource-not-found' => 'Attributs sélectionnés non trouvés.',
@@ -101,8 +101,8 @@ return [
                 'update-success' => 'Famille mise à jour avec succès.',
 
                 'error' => [
-                    'last-item-delete' => 'Au moins une famille est requise.',
                     'being-used'       => 'Cette famille de ressources est utilisée dans :source.',
+                    'last-item-delete' => 'Au moins une famille est requise.',
                 ],
             ],
         ],
@@ -337,13 +337,13 @@ return [
             'accounts' => [
                 'create-success'     => 'Votre compte a été créé avec succès.',
                 'delete-success'     => 'Votre compte a été supprimé avec succès.',
-                'update-success'     => 'Votre compte a été mis à jour avec succès.',
                 'logged-in-success'  => 'Connecté avec succès.',
                 'logged-out-success' => 'Déconnecté avec succès.',
+                'update-success'     => 'Votre compte a été mis à jour avec succès.',
 
                 'error' => [
-                    'invalid'          => 'E-mail ou mot de passe invalide',
                     'credential-error' => 'Les informations d\'identification fournies sont incorrectes.',
+                    'invalid'          => 'E-mail ou mot de passe invalide',
                 ],
             ],
         ],
@@ -361,8 +361,8 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'L\'article a été ajouté au panier avec succès.',
                     'success-remove' => 'L\'article a été supprimé du panier avec succès.',
+                    'success'        => 'L\'article a été ajouté au panier avec succès.',
                 ],
 
                 'quantity' => [
@@ -373,8 +373,8 @@ return [
                 'coupon' => [
                     'apply-issue'    => 'Le code de coupon ne peut pas être appliqué.',
                     'invalid'        => 'Le code de coupon est invalide.',
-                    'success'        => 'Code de coupon appliqué avec succès.',
                     'success-remove' => 'Coupon supprimé avec succès.',
+                    'success'        => 'Code de coupon appliqué avec succès.',
                 ],
 
                 'move-wishlist' => [
@@ -384,10 +384,10 @@ return [
         ],
 
         'wishlist' => [
-            'success'        => 'Article ajouté à la liste de souhaits avec succès',
-            'removed'        => 'Article supprimé de la liste de souhaits avec succès',
             'moved'          => 'Article déplacé avec succès vers le panier.',
             'option-missing' => 'Les options de produit sont manquantes, donc l\'article ne peut pas être déplacé vers la liste de souhaits.',
+            'removed'        => 'Article supprimé de la liste de souhaits avec succès',
+            'success'        => 'Article ajouté à la liste de souhaits avec succès',
 
             'error' => [
                 'security-warning' => 'Activité suspecte détectée !',

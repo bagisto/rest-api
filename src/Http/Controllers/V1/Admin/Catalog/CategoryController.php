@@ -45,7 +45,21 @@ class CategoryController extends CatalogController
             'description' => 'required_if:display_mode,==,description_only,products_and_description',
         ]);
 
-        $category = $this->getRepositoryInstance()->create($request->all());
+        $category = $this->getRepositoryInstance()->create($request->only([
+            'name',
+            'parent_id',
+            'description',
+            'slug',
+            'meta_title',
+            'meta_keywords',
+            'meta_description',
+            'status',
+            'position',
+            'display_mode',
+            'attributes',
+            'logo_path',
+            'banner_path',
+        ]));
 
         Event::dispatch('catalog.category.create.after', $category);
 
@@ -66,7 +80,21 @@ class CategoryController extends CatalogController
 
         Event::dispatch('catalog.category.update.before', $id);
 
-        $category = $this->getRepositoryInstance()->update($request->all(), $id);
+        $category = $this->getRepositoryInstance()->update($request->only([
+            'name',
+            'parent_id',
+            'description',
+            'slug',
+            'meta_title',
+            'meta_keywords',
+            'meta_description',
+            'status',
+            'position',
+            'display_mode',
+            'attributes',
+            'logo_path',
+            'banner_path',
+        ]), $id);
 
         Event::dispatch('catalog.category.update.after', $category);
 
@@ -81,13 +109,13 @@ class CategoryController extends CatalogController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, int $id)
+    public function destroy(int $id)
     {
         $category = $this->getRepositoryInstance()->findOrFail($id);
 
         if (! $this->isCategoryDeletable($category)) {
             return response([
-                'message' => trans('rest-api::app.admin.catalog.categories.error.root-category-delete'),
+                'message' => trans('rest-api::app.admin.catalog.categories.root-category-delete'),
             ], 400);
         }
 
@@ -165,17 +193,14 @@ class CategoryController extends CatalogController
      * then it is not deletable.
      *
      * @param  \Webkul\Category\Models\Category  $category
-     * @return bool
      */
-    private function isCategoryDeletable($category)
+    private function isCategoryDeletable($category): bool
     {
-        static $rootIdInChannels;
-
-        if (! $rootIdInChannels) {
-            $rootIdInChannels = Channel::pluck('root_category_id');
+        if ($category->id === 1) {
+            return false;
         }
 
-        return ! ($category->id === 1 || $rootIdInChannels->contains($category->id));
+        return ! Channel::pluck('root_category_id')->contains($category->id);
     }
 
     /**
@@ -186,8 +211,6 @@ class CategoryController extends CatalogController
      */
     private function containsNonDeletableCategory($categories)
     {
-        return $categories->contains(function ($category) {
-            return ! $this->isCategoryDeletable($category);
-        });
+        return $categories->contains(fn ($category) => ! $this->isCategoryDeletable($category));
     }
 }

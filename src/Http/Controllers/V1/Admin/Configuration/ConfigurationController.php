@@ -50,7 +50,6 @@ class ConfigurationController extends AdminController
         $this->coreConfigRepository->create($request->except(['_token', 'admin_locale']));
 
         return response([
-
             'message' => trans('rest-api::app.admin.configuration.update-success'),
         ]);
     }

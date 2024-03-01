@@ -86,8 +86,8 @@ return [
                 'update-success' => 'Özellik başarıyla güncellendi.',
 
                 'error' => [
-                    'system-attributes-delete' => 'Sistem özellikleri silinemez.',
                     'cannot-change-type'       => 'Tür alanı değiştirilemez.',
+                    'system-attributes-delete' => 'Sistem özellikleri silinemez.',
 
                     'mass-operations' => [
                         'resource-not-found' => 'Seçilen özellikler bulunamadı.',
@@ -101,8 +101,8 @@ return [
                 'update-success' => 'Aile başarıyla güncellendi.',
 
                 'error' => [
-                    'last-item-delete' => 'En az bir aile gerekli.',
                     'being-used'       => 'Bu kaynak ailesi :source içinde kullanılıyor.',
+                    'last-item-delete' => 'En az bir aile gerekli.',
                 ],
             ],
         ],
@@ -337,13 +337,13 @@ return [
             'accounts' => [
                 'create-success'     => 'Hesabınız başarıyla oluşturuldu.',
                 'delete-success'     => 'Hesabınız başarıyla silindi.',
-                'update-success'     => 'Hesabınız başarıyla güncellendi.',
                 'logged-in-success'  => 'Başarıyla giriş yapıldı.',
                 'logged-out-success' => 'Başarıyla çıkış yapıldı.',
+                'update-success'     => 'Hesabınız başarıyla güncellendi.',
 
                 'error' => [
-                    'invalid'          => 'Geçersiz E-posta veya Şifre',
                     'credential-error' => 'Sağlanan kimlik bilgileri yanlış.',
+                    'invalid'          => 'Geçersiz E-posta veya Şifre',
                 ],
             ],
         ],
@@ -373,8 +373,8 @@ return [
                 'coupon' => [
                     'apply-issue'    => 'Kupon kodu uygulanamıyor.',
                     'invalid'        => 'Kupon kodu geçersiz.',
-                    'success'        => 'Kupon kodu başarıyla uygulandı.',
                     'success-remove' => 'Kupon başarıyla kaldırıldı.',
+                    'success'        => 'Kupon kodu başarıyla uygulandı.',
                 ],
 
                 'move-wishlist' => [
@@ -384,10 +384,10 @@ return [
         ],
 
         'wishlist' => [
-            'success'        => 'Ürün Başarıyla Dilek Listesine Eklendi',
-            'removed'        => 'Ürün Başarıyla Dilek Listesinden Kaldırıldı',
             'moved'          => 'Ürün başarıyla sepete taşındı.',
             'option-missing' => 'Ürün seçenekleri eksik olduğundan, ürün dilek listesine taşınamaz.',
+            'removed'        => 'Ürün Başarıyla Dilek Listesinden Kaldırıldı',
+            'success'        => 'Ürün Başarıyla Dilek Listesine Eklendi',
 
             'error' => [
                 'security-warning' => 'Şüpheli aktivite tespit edildi!',

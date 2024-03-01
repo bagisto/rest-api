@@ -71,7 +71,7 @@ class PageController extends CMSController
         $locale = core()->getRequestedLocaleCode();
 
         $request->validate([
-            $locale.'.url_key'      => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
+            $locale.'.url_key'        => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
                     $fail(trans('rest-api::app.admin.cms.error.already-taken'));
                 }
@@ -83,13 +83,11 @@ class PageController extends CMSController
 
         Event::dispatch('cms.pages.update.before', $id);
 
-        $data = [
+        $page = $this->getRepositoryInstance()->update([
             $locale    => request()->input($locale),
             'channels' => request()->input('channels'),
             'locale'   => $locale,
-        ];
-
-        $page = $this->getRepositoryInstance()->update($data, $id);
+        ], $id);
 
         Event::dispatch('cms.pages.update.after', $page);
 

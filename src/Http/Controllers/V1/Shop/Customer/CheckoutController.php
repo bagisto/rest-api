@@ -11,7 +11,7 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shipping\Facades\Shipping;
-use Webkul\Shop\Http\Requests\Customer\CustomerAddressForm;
+use Webkul\Shop\Http\Requests\CartAddressRequest;
 
 class CheckoutController extends CustomerController
 {
@@ -20,7 +20,7 @@ class CheckoutController extends CustomerController
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveAddress(CustomerAddressForm $request)
+    public function saveAddress(CartAddressRequest $request)
     {
         $data = $request->all();
 

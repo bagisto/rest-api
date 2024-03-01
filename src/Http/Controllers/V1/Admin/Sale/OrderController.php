@@ -47,13 +47,13 @@ class OrderController extends SaleController
      */
     public function comment(Request $request, OrderCommentRepository $orderCommentRepository, int $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'comment' => 'required',
         ]);
 
-        $data = array_merge($request->all(), ['order_id' => $id]);
+        $data = array_merge($validatedData, ['order_id' => $id]);
 
-        $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;
+        $data['customer_notified'] = $request->has('customer_notified') ? 1 : 0;
 
         Event::dispatch('sales.order.comment.create.before', $data);
 

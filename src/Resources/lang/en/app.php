@@ -72,6 +72,7 @@ return [
             'categories' => [
                 'create-success' => 'Category have been successfully added.',
                 'delete-success' => 'Category successfully deleted',
+                'root-category-delete' => 'The Root category can not be deleted.',
                 'update-success' => 'Category updated successfully.',
 
                 'mass-operations' => [
@@ -86,8 +87,8 @@ return [
                 'update-success' => 'Attribute updated successfully.',
 
                 'error' => [
-                    'system-attributes-delete' => 'Cannot delete the system attributes.',
                     'cannot-change-type'       => 'Cannot Change type field',
+                    'system-attributes-delete' => 'Cannot delete the system attributes.',
 
                     'mass-operations' => [
                         'resource-not-found' => 'Selected attributes not found.',
@@ -101,8 +102,8 @@ return [
                 'update-success' => 'Family updated successfully.',
 
                 'error' => [
-                    'last-item-delete' => 'At least one families is required.',
                     'being-used'       => 'This resource families is getting used in :source.',
+                    'last-item-delete' => 'At least one families is required.',
                 ],
             ],
         ],
@@ -337,13 +338,13 @@ return [
             'accounts' => [
                 'create-success'     => 'Your Account has been created successfully.',
                 'delete-success'     => 'Your Account has been deleted successfully.',
-                'update-success'     => 'Your Account has been updated successfully.',
                 'logged-in-success'  => 'Logged in successfully.',
                 'logged-out-success' => 'Logged out successfully.',
+                'update-success'     => 'Your Account has been updated successfully.',
 
                 'error' => [
-                    'invalid'          => 'Invalid Email or Password',
                     'credential-error' => 'The provided credentials are incorrect.',
+                    'invalid'          => 'Invalid Email or Password',
                 ],
             ],
         ],
@@ -373,8 +374,8 @@ return [
                 'coupon' => [
                     'apply-issue'    => 'Coupon code can\'t be applied.',
                     'invalid'        => 'Coupon code is invalid.',
-                    'success'        => 'Coupon code applied successfully.',
                     'success-remove' => 'Coupon removed successfully.',
+                    'success'        => 'Coupon code applied successfully.',
                 ],
 
                 'move-wishlist' => [
@@ -384,10 +385,10 @@ return [
         ],
 
         'wishlist' => [
-            'success'        => 'Item Successfully Added To Wishlist',
-            'removed'        => 'Item Successfully Removed From Wishlist',
             'moved'          => 'Item successfully moved To cart.',
             'option-missing' => 'Product options are missing, so item can not be moved to the wishlist.',
+            'removed'        => 'Item Successfully Removed From Wishlist',
+            'success'        => 'Item Successfully Added To Wishlist',
 
             'error' => [
                 'security-warning' => 'Suspicious activity found!',

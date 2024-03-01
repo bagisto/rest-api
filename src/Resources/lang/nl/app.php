@@ -337,9 +337,9 @@ return [
             'accounts' => [
                 'create-success'     => 'Uw account is succesvol aangemaakt.',
                 'delete-success'     => 'Uw account is succesvol verwijderd.',
-                'update-success'     => 'Uw account is succesvol bijgewerkt.',
                 'logged-in-success'  => 'Succesvol ingelogd.',
                 'logged-out-success' => 'Succesvol uitgelogd.',
+                'update-success'     => 'Uw account is succesvol bijgewerkt.',
 
                 'error' => [
                     'invalid'          => 'Ongeldig e-mailadres of wachtwoord.',
@@ -373,8 +373,8 @@ return [
                 'coupon' => [
                     'apply-issue'    => 'Couponcode kan niet worden toegepast.',
                     'invalid'        => 'Couponcode is ongeldig.',
-                    'success'        => 'Couponcode succesvol toegepast.',
                     'success-remove' => 'Coupon succesvol verwijderd.',
+                    'success'        => 'Couponcode succesvol toegepast.',
                 ],
 
                 'move-wishlist' => [
@@ -384,10 +384,10 @@ return [
         ],
 
         'wishlist' => [
-            'success'        => 'Item succesvol toegevoegd aan verlanglijstje.',
-            'removed'        => 'Item succesvol verwijderd uit verlanglijstje.',
             'moved'          => 'Item succesvol verplaatst naar winkelwagen.',
             'option-missing' => 'Productopties ontbreken, dus item kan niet naar het verlanglijstje worden verplaatst.',
+            'removed'        => 'Item succesvol verwijderd uit verlanglijstje.',
+            'success'        => 'Item succesvol toegevoegd aan verlanglijstje.',
 
             'error' => [
                 'security-warning' => 'Verdachte activiteit gevonden!',

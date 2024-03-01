@@ -40,7 +40,7 @@ class GroupController extends BaseController
 
         Event::dispatch('customer.customer_group.create.before');
 
-        $customerGroup = $this->getRepositoryInstance()->create(request()->only([
+        $customerGroup = $this->getRepositoryInstance()->create($request->only([
             'code',
             'name',
         ]), [

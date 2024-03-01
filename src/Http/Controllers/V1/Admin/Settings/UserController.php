@@ -128,9 +128,11 @@ class UserController extends SettingController
 
         $data['status'] = $data['status'] ?? 0;
 
-        $isStatusChangedToInactive = (int) $data['status'] === 0 && (int) $user->status === 1;
-
-        if ($isStatusChangedToInactive && $this->getRepositoryInstance()->countAdminsWithAllAccessAndActiveStatus() === 1) {
+        if (
+            (int) $data['status'] === 0
+            && (int) $user->status === 1
+            && $this->getRepositoryInstance()->countAdminsWithAllAccessAndActiveStatus() === 1
+        ) {
             return $this->cannotChangeRedirectResponse('status');
         }
 

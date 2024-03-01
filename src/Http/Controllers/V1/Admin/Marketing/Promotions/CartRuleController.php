@@ -46,19 +46,9 @@ class CartRuleController extends MarketingController
             'discount_amount'     => 'required|numeric',
         ]);
 
-        $data = $request->all();
-
         Event::dispatch('promotions.cart_rule.create.before');
 
-        /**
-         * These two keys needs to be removed in the next version compatibility.
-         *
-         * @deprecated
-         */
-        $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
-        $data['ends_till'] = ! empty($data['ends_till']) ? $data['ends_till'] : null;
-
-        $cartRule = $this->getRepositoryInstance()->create($data);
+        $cartRule = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('promotions.cart_rule.create.after', $cartRule);
 
@@ -103,17 +93,7 @@ class CartRuleController extends MarketingController
 
         Event::dispatch('promotions.cart_rule.update.before', $id);
 
-        $data = $request->all();
-
-        /**
-         * These two keys needs to be removed in the next version compatibility.
-         *
-         * @deprecated
-         */
-        $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
-        $data['ends_till'] = ! empty($data['ends_till']) ? $data['ends_till'] : null;
-
-        $cartRule = $this->getRepositoryInstance()->update($data, $id);
+        $cartRule = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('promotions.cart_rule.update.after', $cartRule);
 
