@@ -10,8 +10,8 @@ use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Repositories\CustomerNoteRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceResource;
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sales\InvoiceResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sales\OrderResource;
 use Webkul\Sales\Repositories\InvoiceRepository;
 
 class CustomerController extends BaseController

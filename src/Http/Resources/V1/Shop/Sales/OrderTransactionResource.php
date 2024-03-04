@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Resources\V1\Shop\Sales;
 
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\OrderTransactionResource as AdminOrderTransactionResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sales\OrderTransactionResource as BaseOrderTransactionResource;
 
-class OrderTransactionResource extends AdminOrderTransactionResource
+class OrderTransactionResource extends BaseOrderTransactionResource
 {
 }

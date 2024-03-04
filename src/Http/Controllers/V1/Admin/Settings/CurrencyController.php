@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CurrencyRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\CurrencyResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\CurrencyResource;
 
 class CurrencyController extends SettingController
 {

@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ThemeResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\ThemeResource;
 use Webkul\Theme\Repositories\ThemeCustomizationRepository;
 
 class ThemeController extends SettingController

@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Sale\InvoiceController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Sale\OrderController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Sale\RefundController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Sale\ShipmentController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Sale\TransactionController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\InvoiceController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\OrderController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\RefundController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\ShipmentController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\TransactionController;
 
 Route::group([
     'middleware' => ['auth:sanctum', 'sanctum.admin'],

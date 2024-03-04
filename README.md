@@ -4,15 +4,30 @@
 
 ### 1. Requirements:
 
-* **Bagisto**: v2.0
+* **Bagisto**: v2.0.0
 
 ### 2. Installation:
 
 ##### To install Bagisto REST API from your console:
 
+#### For Bagisto v2.0:
+
 ~~~
-composer require bagisto/rest-api dev-master
+composer require bagisto/rest-api:2.0.0
 ~~~
+
+#### For Bagisto v1.4.5:
+
+~~~
+composer require bagisto/rest-api:1.4.5
+~~~
+
+#### For the master version:
+~~~
+composer require bagisto/rest-api:dev-master
+~~~
+
+***Note:*** It is not recommended to use the master version as it may contain breaking changes.
 
 ##### Add below options in the .env file (i.e. http://localhost/public your domain):
 
@@ -69,6 +84,7 @@ class Admin extends Authenticatable implements AdminContract
 packages/Webkul/Customer/src/Models/Customer.php
 ~~~
 
+For master
 ~~~php
 <?php
 namespace Webkul\Customer\Models;

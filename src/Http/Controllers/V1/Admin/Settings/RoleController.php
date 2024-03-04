@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\RoleResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\RoleResource;
 use Webkul\User\Repositories\AdminRepository;
 use Webkul\User\Repositories\RoleRepository;
 

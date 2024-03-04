@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\LocaleRepository;
 use Webkul\Core\Rules\Code;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\LocaleResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\LocaleResource;
 
 class LocaleController extends SettingController
 {

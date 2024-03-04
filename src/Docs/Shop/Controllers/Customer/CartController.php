@@ -171,67 +171,7 @@ class CartController
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
-     *                  @OA\Property(
-     *                      property="booking",
-     *                      type="array",
-     *                      description="Use date & slot in default & appointment booking type product only (Required), And qty array in event type booking only.",
-     *                      example={
-     *                          "date": "2023-05-14",
-     *                          "slot": "1684067400-1684078200",
-     *                          "qty": {
-     *                              "1": 2,
-     *                              "2": 5
-     *                          },
-     *                          "renting_type": "daily",
-     *                          "date_from": "2023-05-13",
-     *                          "date_to": "2023-05-15",
-     *                          "note": "This is a welcome note."
-     *                      },
      *
-     *                      @OA\Items(
-     *
-     *                          @OA\Property(
-     *                              property="date",
-     *                              description="Use with default, appointment, table, & hourly - rental type booking only(Required)",
-     *                              type="date"
-     *                          ),
-     *                          @OA\Property(
-     *                              property="slot",
-     *                              description="Use with default(type: string), appointment(type: string), table(type: string), & hourly - rental(type: array, indexes: from & to) type booking only(Required)",
-     *                              type="string"
-     *                          ),
-     *                          @OA\Property(
-     *                              property="qty",
-     *                              description="Use with event type booking only(Required)",
-     *                              type="array",
-     *
-     *                              @OA\Items(
-     *
-     *                                  @OA\Property(type="integer")
-     *                              )
-     *                          ),
-     *                          @OA\Property(
-     *                              property="renting_type",
-     *                              description="Possible values: daily or hourly, Use with rental type booking only(Required)",
-     *                              type="string"
-     *                          ),
-     *                          @OA\Property(
-     *                              property="date_from",
-     *                              description="Use with daily rental type booking only(Required)",
-     *                              type="date"
-     *                          ),
-     *                          @OA\Property(
-     *                              property="date_to",
-     *                              description="Use with daily rental type booking only(Required)",
-     *                              type="date"
-     *                          ),
-     *                          @OA\Property(
-     *                              property="note",
-     *                              description="Use with table type booking only",
-     *                              type="string"
-     *                          )
-     *                      )
-     *                  ),
      *                  required={"product_id", "quantity"}
      *              )
      *          )

@@ -161,10 +161,10 @@ class ProductController
      *
      *                  @OA\Property(
      *                      property="type",
-     *                      description="Product's type i.e. `simple`, `configurable`, `virtual`, `grouped`, `downloadable`, `bundle`, `booking`",
+     *                      description="Product's type i.e. `simple`, `configurable`, `virtual`, `grouped`, `downloadable`, `bundle`",
      *                      type="string",
      *                      example="simple",
-     *                      enum={"simple", "configurable", "virtual", "grouped", "downloadable", "bundle", "booking"}
+     *                      enum={"simple", "configurable", "virtual", "grouped", "downloadable", "bundle"}
      *                  ),
      *                  @OA\Property(
      *                      property="attribute_family_id",
@@ -572,8 +572,8 @@ class ProductController
      *      path="/api/v1/admin/catalog/products/{id}",
      *      operationId="updateOtherTypeProduct",
      *      tags={"Products"},
-     *      summary="Update product (Configurable, Grouped, Downloadable, Bundle, Booking)",
-     *      description="Update product (Configurable, Grouped, Downloadable, Bundle, Booking)",
+     *      summary="Update product (Configurable, Grouped, Downloadable, Bundle)",
+     *      description="Update product (Configurable, Grouped, Downloadable, Bundle)",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -1015,72 +1015,7 @@ class ProductController
      *                          )
      *                      )
      *                  ),
-     *                  @OA\Property(
-     *                      property="booking",
-     *                      description="Booking product options, `Info: Only use in booking type product`",
-     *                      type="object",
-     *                      @OA\Property(property="type", type="string", example="default", enum={"default", "appointment", "event", "rental", "table"}),
-     *                      @OA\Property(property="booking_type", description="`Only use with booking type=default`", type="string", example="one", enum={"one","many"}),
-     *                      @OA\Property(property="location", type="string", example="India"),
-     *                      @OA\Property(property="available_every_week", description="`Use with booking type=appointment, rental, table`", type="integer", example=1, enum={0,1}),
-     *                      @OA\Property(property="available_from", description="`Not use if available_every_week=1 in appointment, rental, table bookings`", format="datetime", type="string", example="2023-05-31 12:00:00"),
-     *                      @OA\Property(property="available_to", description="`Not use if available_every_week=1 in appointment, rental, table bookings`", format="datetime", type="string", example="2024-05-31 12:00:00"),
-     *                      @OA\Property(property="duration", description="`Not use with type=event, rental, & booking_type=one`", type="float", example=30),
-     *                      @OA\Property(property="break_time", description="`Not use with type=event, rental, & booking_type=one`", type="float", example=15),
-     *                      @OA\Property(property="qty", description="`Not use with booking type=event`", type="integer", example=50),
-     *                      @OA\Property(property="same_slot_all_days", description="`Use with booking type=appointment, rental, table`", type="integer", example=1, enum={0,1}),
-     *                      @OA\Property(
-     *                          property="slots",
-     *                          description="`Not use with booking type=event`",
-     *                          type="array",
-     *
-     *                          @OA\Items(
-     *
-     *                              @OA\Property(property="from_day", description="`Only use with type=default with booking_type=one`", type="integer", example=0, enum={0,1,2,3,4,5,6}),
-     *                              @OA\Property(property="to_day", description="`Only use with type=default with booking_type=one`", type="integer", example=0, enum={0,1,2,3,4,5,6}),
-     *                              @OA\Property(property="from", type="string", example="09:00"),
-     *                              @OA\Property(property="to", type="string", example="11:00"),
-     *                              @OA\Property(property="status", description="`Only use with booking_type=many`", type="integer", example=1, enum={0,1})
-     *                          )
-     *                      ),
-     *                      @OA\Property(
-     *                          property="tickets",
-     *                          description="`Only use with booking type=event`",
-     *                          type="object",
-     *                          @OA\Property(
-     *                              property="ticket_0",
-     *                              type="object",
-     *                              @OA\Property(property="en", type="object",
-     *                                  @OA\Property(property="name", type="string", example="Morning Show"),
-     *                                  @OA\Property(property="description", type="string", example="Lorem Ipsum is simply dummy text of the printing and typesetting industry.")
-     *                              ),
-     *                              @OA\Property(property="qty", type="integer", example="150"),
-     *                              @OA\Property(property="price", type="float", example=10.50),
-     *                              @OA\Property(property="special_price", type="float"),
-     *                              @OA\Property(property="special_price_from", format="datetime", type="string", example=null),
-     *                              @OA\Property(property="special_price_to", format="datetime", type="string", example=null)
-     *                          ),
-     *                          @OA\Property(
-     *                              property="ticket_1",
-     *                              type="object",
-     *                              @OA\Property(property="en", type="object",
-     *                                  @OA\Property(property="name", type="string", example="Evening Show"),
-     *                                  @OA\Property(property="description", type="string", example="Lorem Ipsum is simply dummy text of the printing and typesetting industry.")
-     *                              ),
-     *                              @OA\Property(property="qty", type="integer", example="200"),
-     *                              @OA\Property(property="price", type="float", example=22),
-     *                              @OA\Property(property="special_price", type="float", example=20.50),
-     *                              @OA\Property(property="special_price_from", format="datetime", type="string", example="2023-05-31 12:00:00"),
-     *                              @OA\Property(property="special_price_to", format="datetime", type="string", example="2024-05-31 12:00:00")
-     *                          )
-     *                      ),
-     *                      @OA\Property(property="renting_type", description="`Only use with booking type=rental`", type="string", example="daily_hourly", enum={"daily", "hourly", "daily_hourly"}),
-     *                      @OA\Property(property="daily_price", description="`Only use with booking type=rental & renting_type=daily, daily_hourly`", type="float", example=24.00),
-     *                      @OA\Property(property="hourly_price", description="`Only use with booking type=rental & renting_type=hourly, daily_hourly`", type="float", example=1.00),
-     *                      @OA\Property(property="price_type", description="`Only use with booking type=table`", type="string", example="guest", enum={"guest", "table"}),
-     *                      @OA\Property(property="guest_limit", description="`Only use with booking type=table & price_type=table`", type="integer", example=20),
-     *                      @OA\Property(property="prevent_scheduling_before", description="`Only use with booking type=table`", type="float", example=5.00)
-     *                  ),
+
      *                  required={"sku", "name", "url_key", "short_description", "description"}
      *              )
      *          )
