@@ -1015,7 +1015,7 @@ class ProductController
      *                          )
      *                      )
      *                  ),
-   
+
      *                  required={"sku", "name", "url_key", "short_description", "description"}
      *              )
      *          )

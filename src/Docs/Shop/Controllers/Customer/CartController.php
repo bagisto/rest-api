@@ -171,7 +171,7 @@ class CartController
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
-     *  
+     *
      *                  required={"product_id", "quantity"}
      *              )
      *          )
