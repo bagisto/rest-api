@@ -101,4 +101,21 @@ Route::group([
 
         Route::delete('{id}', 'destroy');
     });
+
+    /**
+     * URL Rewrites routes.
+     */
+    Route::controller(URLRewriteController::class)->prefix('url-rewrites')->group(function () {
+        Route::get('', 'allResources');
+
+        Route::post('', 'store');
+
+        Route::get('{id}', 'getResource');
+
+        Route::put('{id}', 'update');
+
+        Route::delete('{id}', 'destroy');
+
+        Route::post('mass-destroy', 'massDestroy');
+    });
 });
