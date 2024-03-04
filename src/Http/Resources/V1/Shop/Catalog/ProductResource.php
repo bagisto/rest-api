@@ -5,6 +5,7 @@ namespace Webkul\RestApi\Http\Resources\V1\Shop\Catalog;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Product\Facades\ProductImage;
+use Webkul\Product\Helpers\BundleOption;
 
 class ProductResource extends JsonResource
 {
@@ -163,14 +164,6 @@ class ProductResource extends JsonResource
                     ? $this->getDownloadableProductInfo($product)
                     : null
             ),
-
-            /* booking product */
-            $this->mergeWhen(
-                $product->type == 'booking',
-                $product->type == 'booking'
-                    ? $this->getBookingProductInfo($product)
-                    : null
-            ),
         ];
     }
 
@@ -207,8 +200,7 @@ class ProductResource extends JsonResource
     private function getBundleProductInfo($product)
     {
         return [
-            'currency_options' => core()->getAccountJsSymbols(),
-            'bundle_options'   => app('Webkul\Product\Helpers\BundleOption')->getBundleConfig($product),
+            'bundle_options' => app(BundleOption::class)->getBundleConfig($product),
         ];
     }
 
@@ -253,48 +245,5 @@ class ProductResource extends JsonResource
                 return $data;
             }),
         ];
-    }
-
-    /**
-     * Get booking product's extra information.
-     *
-     * @param  \Webkul\Product\Models\Product  $product
-     * @return array
-     */
-    private function getBookingProductInfo($product)
-    {
-        $bookingProduct = app('\Webkul\BookingProduct\Repositories\BookingProductRepository')->findOneByField('product_id', $product->id);
-
-        $data['booking'] = $bookingProduct;
-        $data['slot_index_route'] = route('booking_product.slots.index', $bookingProduct->id);
-
-        if ($bookingProduct->type == 'appointment') {
-            $bookingSlotHelper = app('\Webkul\BookingProduct\Helpers\AppointmentSlot');
-
-            $data['today_slots_html'] = $bookingSlotHelper->getTodaySlotsHtml($bookingProduct);
-            $data['week_slot_durations'] = $bookingSlotHelper->getWeekSlotDurations($bookingProduct);
-            $data['appointment_slot'] = $bookingProduct->appointment_slot;
-        }
-
-        if ($bookingProduct->type == 'event') {
-            $bookingSlotHelper = app('\Webkul\BookingProduct\Helpers\EventTicket');
-
-            $data['tickets'] = $bookingSlotHelper->getTickets($bookingProduct);
-            $data['event_date'] = $bookingSlotHelper->getEventDate($bookingProduct);
-        }
-
-        if ($bookingProduct->type == 'rental') {
-            $data['renting_slot'] = $bookingProduct->rental_slot;
-        }
-
-        if ($bookingProduct->type == 'table') {
-            $bookingSlotHelper = app('\Webkul\BookingProduct\Helpers\TableSlot');
-
-            $data['today_slots_html'] = $bookingSlotHelper->getTodaySlotsHtml($bookingProduct);
-            $data['week_slot_durations'] = $bookingSlotHelper->getWeekSlotDurations($bookingProduct);
-            $data['table_slot'] = $bookingProduct->table_slot;
-        }
-
-        return $data;
     }
 }
