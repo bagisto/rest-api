@@ -12,23 +12,13 @@ use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CatalogRuleResource;
 class CatalogRuleController extends MarketingController
 {
     /**
-     * Catalog rule index instance.
-     *
-     * @var \Webkul\CatalogRule\Helpers\CatalogRuleIndex
-     */
-    protected $catalogRuleIndexHelper;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(
-        CatalogRuleIndex $catalogRuleIndexHelper
-    ) {
+    public function __construct(protected CatalogRuleIndex $catalogRuleIndexHelper)
+    {
         parent::__construct();
-
-        $this->catalogRuleIndexHelper = $catalogRuleIndexHelper;
     }
 
     /**

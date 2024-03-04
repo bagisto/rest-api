@@ -9,20 +9,12 @@ use Webkul\Core\Repositories\LocaleRepository;
 class LocaleMiddleware
 {
     /**
-     * Locale repository.
-     *
-     * @var \Webkul\Core\Repositories\LocaleRepository
-     */
-    protected $localeRepository;
-
-    /**
      * Create a middleware instance.
      *
      * @return void
      */
-    public function __construct(LocaleRepository $localeRepository)
+    public function __construct(protected LocaleRepository $localeRepository)
     {
-        $this->localeRepository = $localeRepository;
     }
 
     /**
