@@ -211,6 +211,10 @@ return [
                     'create-success' => 'Warenkorbregel-Coupon wurde erfolgreich hinzugefügt.',
                     'delete-success' => 'Warenkorbregel-Coupon erfolgreich gelöscht',
                     'update-success' => 'Warenkorbregel-Coupon erfolgreich aktualisiert.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Warenkorbregel-Gutscheine erfolgreich gelöscht'
+                    ]
                 ],
             ],
         ],

@@ -211,6 +211,10 @@ return [
                     'create-success' => 'קופון חוק העגלה נוסף בהצלחה.',
                     'delete-success' => 'קופון חוק העגלה נמחק בהצלחה',
                     'update-success' => 'קופון חוק העגלה עודכן בהצלחה.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'קופונים של כלל העגלה נמחקו בהצלחה'
+                    ]
                 ],
             ],
         ],

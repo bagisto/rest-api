@@ -118,7 +118,7 @@ class CatalogRuleController extends MarketingController
         Event::dispatch('promotions.catalog_rule.delete.after', $id);
 
         return response([
-            'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rule.delete-success'),
+            'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rules.delete-success'),
         ]);
     }
 }

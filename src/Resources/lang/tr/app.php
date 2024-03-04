@@ -211,6 +211,10 @@ return [
                     'create-success' => 'Sepet Kuralı Kuponu başarıyla eklendi.',
                     'delete-success' => 'Sepet Kuralı Kuponu başarıyla silindi.',
                     'update-success' => 'Sepet Kuralı Kuponu başarıyla güncellendi.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Sepet Kuralı Kuponları başarıyla silindi'
+                    ]
                 ],
             ],
         ],

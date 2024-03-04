@@ -211,6 +211,10 @@ return [
                     'create-success' => 'Coupon della regola del carrello aggiunto con successo.',
                     'delete-success' => 'Coupon della regola del carrello eliminato con successo.',
                     'update-success' => 'Coupon della regola del carrello aggiornato con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Coupon delle regole del carrello eliminati con successo'
+                    ]
                 ],
             ],
         ],

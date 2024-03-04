@@ -40,7 +40,7 @@ class OrderController extends CustomerController
         }
 
         return response([
-            'message' => trans('rest-api::app.shop.sales.error.cancel-error'),
+            'message' => trans('rest-api::app.shop.sales.orders.error.cancel-error'),
         ]);
     }
 }

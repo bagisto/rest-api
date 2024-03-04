@@ -38,7 +38,10 @@ class CheckoutController extends CustomerController
             unset($data['shipping']['address_id']);
         }
 
-        if (Cart::hasError() || ! Cart::saveCustomerAddress($data) || ! Shipping::collectRates()) {
+        if (
+            Cart::hasError()
+            || ! Shipping::collectRates()
+        ) {
             abort(400);
         }
 
@@ -69,11 +72,13 @@ class CheckoutController extends CustomerController
      */
     public function saveShipping(Request $request)
     {
-        $shippingMethod = $request->get('shipping_method');
+        $validatedData = $this->validate($request, [
+            'shipping_method' => 'required',
+        ]);
 
         if (Cart::hasError()
-            || ! $shippingMethod
-            || ! Cart::saveShippingMethod($shippingMethod)
+            || ! $validatedData['shipping_method']
+            || ! Cart::saveShippingMethod($validatedData['shipping_method'])
         ) {
             abort(400);
         }
@@ -96,11 +101,19 @@ class CheckoutController extends CustomerController
      */
     public function savePayment(Request $request)
     {
-        $payment = $request->get('payment');
+        $validatedData = $this->validate($request, [
+            'payment' => 'required',
+        ]);
 
-        if (Cart::hasError() || ! $payment || ! Cart::savePaymentMethod($payment)) {
+        if (
+            Cart::hasError() 
+            || ! $validatedData['payment'] 
+            || ! Cart::savePaymentMethod($validatedData['payment'])
+        ) {
             abort(400);
         }
+
+        Cart::collectTotals();
 
         return response([
             'data'    => [

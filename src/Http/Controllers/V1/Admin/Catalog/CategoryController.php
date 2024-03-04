@@ -94,6 +94,7 @@ class CategoryController extends CatalogController
             'attributes',
             'logo_path',
             'banner_path',
+            core()->getCurrentLocale()->code
         ]), $id);
 
         Event::dispatch('catalog.category.update.after', $category);

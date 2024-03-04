@@ -182,21 +182,21 @@ class CustomerController extends BaseController
     {
         $customerIds = $massDestroyRequest->input('indices');
 
-        if (! $this->getRepositoryInstance()->checkBulkCustomerIfTheyHaveOrderPendingOrProcessing($customerIds)) {
+        try {
             foreach ($customerIds as $customerId) {
                 Event::dispatch('customer.delete.before', $customerId);
-
+    
                 $this->getRepositoryInstance()->delete($customerId);
-
+    
                 Event::dispatch('customer.delete.after', $customerId);
             }
-
+    
             return response([
                 'message' => trans('rest-api::app.admin.customers.customers.mass-operations.delete-success'),
             ]);
+        } catch (\Exception $e) {
+            return response(['message' => trans('rest-api::app.admin.customers.customers.error.order-pending-account-delete')], 400);
         }
-
-        return response(['message' => trans('rest-api::app.admin.customers.customers.error.order-pending-account-delete')], 400);
     }
 
     /**

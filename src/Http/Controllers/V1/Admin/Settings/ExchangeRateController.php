@@ -66,7 +66,7 @@ class ExchangeRateController extends SettingController
 
         Event::dispatch('core.exchange_rate.update.before', $id);
 
-        $exchangeRate = $this->getRepositoryInstance()->create($request->only([
+        $exchangeRate = $this->getRepositoryInstance()->update($request->only([
             'target_currency',
             'rate',
         ]), $id);

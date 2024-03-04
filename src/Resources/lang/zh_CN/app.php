@@ -211,6 +211,10 @@ return [
                     'create-success' => '购物车规则优惠券已成功添加。',
                     'delete-success' => '购物车规则优惠券已成功删除',
                     'update-success' => '购物车规则优惠券已成功更新。',
+
+                    'mass-operations' => [
+                        'delete-success' => '购物车规则优惠券已成功删除'
+                    ]
                 ],
             ],
         ],

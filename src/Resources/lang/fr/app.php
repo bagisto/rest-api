@@ -211,6 +211,10 @@ return [
                     'create-success' => 'Coupon de règle de panier ajouté avec succès.',
                     'delete-success' => 'Coupon de règle de panier supprimé avec succès',
                     'update-success' => 'Coupon de règle de panier mis à jour avec succès.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Les coupons de règle de panier ont été supprimés avec succès'
+                    ]
                 ],
             ],
         ],

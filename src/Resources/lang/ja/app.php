@@ -211,6 +211,10 @@ return [
                     'create-success' => 'カートルールクーポンが正常に追加されました。',
                     'delete-success' => 'カートルールクーポンが正常に削除されました。',
                     'update-success' => 'カートルールクーポンが正常に更新されました。',
+
+                    'mass-operations' => [
+                        'delete-success' => 'カート ルール クーポンが正常に削除されました'
+                    ]
                 ],
             ],
         ],

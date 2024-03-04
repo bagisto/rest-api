@@ -211,6 +211,10 @@ return [
                     'create-success' => 'Cupom de regra de carrinho adicionado com sucesso.',
                     'delete-success' => 'Cupom de regra de carrinho excluído com sucesso.',
                     'update-success' => 'Cupom de regra de carrinho atualizado com sucesso.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Cupons de regras de carrinho excluídos com sucesso'
+                    ]
                 ],
             ],
         ],

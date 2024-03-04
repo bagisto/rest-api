@@ -41,7 +41,14 @@ class RoleController extends SettingController
 
         Event::dispatch('user.role.create.before');
 
-        $role = $this->getRepositoryInstance()->create($request->all());
+        $data = $request->only([
+            'name',
+            'description',
+            'permission_type',
+            'permissions',
+        ]);
+
+        $role = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('user.role.create.after', $role);
 
