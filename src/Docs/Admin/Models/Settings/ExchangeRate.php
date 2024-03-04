@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Models\Setting;
+namespace Webkul\RestApi\Docs\Admin\Models\Settings;
 
 /**
  * @OA\Schema(
@@ -50,7 +50,7 @@ class ExchangeRate
      *     description="Target currency"
      * )
      *
-     * @var \Webkul\RestApi\Docs\Admin\Models\Setting\Currency
+     * @var \Webkul\RestApi\Docs\Admin\Models\Settings\Currency
      */
     public $target_currency;
 

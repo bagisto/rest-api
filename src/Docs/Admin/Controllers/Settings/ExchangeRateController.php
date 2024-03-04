@@ -1,21 +1,21 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Setting;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Settings;
 
-class TaxCategoryController
+class ExchangeRateController
 {
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/settings/tax-categories",
-     *      operationId="getTaxCategories",
-     *      tags={"Tax-Categories"},
-     *      summary="Get admin tax category list",
-     *      description="Returns tax category list, if you want to retrieve all tax categories at once pass pagination=0 otherwise ignore this parameter",
+     *      path="/api/v1/admin/settings/exchange-rates",
+     *      operationId="getSettingExchangeRates",
+     *      tags={"Exchange-Rates"},
+     *      summary="Get admin exchange rate list",
+     *      description="Returns exchange rate list, if you want to retrieve all exchange rates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Tax Category id",
+     *          description="Exchange Rate id",
      *          required=false,
      *          in="query",
      *
@@ -79,7 +79,7 @@ class TaxCategoryController
      *                  property="data",
      *                  type="array",
      *
-     *                  @OA\Items(ref="#/components/schemas/TaxCategory")
+     *                  @OA\Items(ref="#/components/schemas/ExchangeRate")
      *              ),
      *
      *              @OA\Property(
@@ -96,16 +96,16 @@ class TaxCategoryController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/settings/tax-categories/{id}",
-     *      operationId="getTaxCategory",
-     *      tags={"Tax-Categories"},
-     *      summary="Get admin tax category detail",
-     *      description="Returns tax category detail",
+     *      path="/api/v1/admin/settings/exchange-rates/{id}",
+     *      operationId="getSalesExchangeRates",
+     *      tags={"Exchange-Rates"},
+     *      summary="Get admin exchange rate detail",
+     *      description="Returns exchange rate detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Tax Category id",
+     *          description="Exchange Rate ID",
      *          required=true,
      *          in="path",
      *
@@ -123,7 +123,7 @@ class TaxCategoryController
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/TaxCategory"
+     *                  ref="#/components/schemas/ExchangeRate"
      *              )
      *          )
      *      )
@@ -135,46 +135,32 @@ class TaxCategoryController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/settings/tax-categories",
-     *      operationId="storeTaxCategory",
-     *      tags={"Tax-Categories"},
-     *      summary="Store the tax category",
-     *      description="Store the tax category",
+     *      path="/api/v1/admin/settings/exchange-rates",
+     *      operationId="storeSettingExchangeRate",
+     *      tags={"Exchange-Rates"},
+     *      summary="Store the exchange rate",
+     *      description="Store the exchange rate",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
-     *              mediaType="application/json",
+     *              mediaType="multipart/form-data",
      *
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="code",
-     *                      type="string",
-     *                      description="Tax category's code",
-     *                      example="service-tax"
+     *                      property="target_currency",
+     *                      type="integer",
+     *                      description="Target Currency ID",
+     *                      example=3
      *                  ),
      *                  @OA\Property(
-     *                      property="name",
-     *                      type="string",
-     *                      description="Tax category's name",
-     *                      example="Service Tax"
+     *                      property="rate",
+     *                      type="float",
+     *                      example=0.856
      *                  ),
-     *                  @OA\Property(
-     *                      property="description",
-     *                      type="string",
-     *                      description="Tax category's description",
-     *                      example="This tax category will apply to all states of a country."
-     *                  ),
-     *                  @OA\Property(
-     *                      property="taxrates",
-     *                      description="Tax category's rates",
-     *                      type="array",
-     *
-     *                      @OA\Items(type="integer", example=1)
-     *                  ),
-     *                  required={"code", "name", "description", "taxrates"}
+     *                  required={"target_currency", "rate"}
      *              )
      *          )
      *      ),
@@ -185,14 +171,23 @@ class TaxCategoryController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Property(property="message", type="string", example="Tax Category created successfully."),
-     *              @OA\Property(property="data", type="object", ref="#/components/schemas/TaxCategory")
+     *              @OA\Property(property="message", type="string", example="Exchange rate created successfully."),
+     *              @OA\Property(property="data", type="object", ref="#/components/schemas/ExchangeRate")
      *          )
      *      ),
      *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Error: Unprocessable Content",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Examples(example="result", value={"message":"The target currency has already been taken."}, summary="An result object."),
+     *          )
      *      )
      * )
      */
@@ -202,16 +197,16 @@ class TaxCategoryController
 
     /**
      * @OA\Put(
-     *      path="/api/v1/admin/settings/tax-categories/{id}",
-     *      operationId="updateTaxCategory",
-     *      tags={"Tax-Categories"},
-     *      summary="Update tax category",
-     *      description="Update tax category",
+     *      path="/api/v1/admin/settings/exchange-rates/{id}",
+     *      operationId="updateSettingExchangeRate",
+     *      tags={"Exchange-Rates"},
+     *      summary="Update exchange rate",
+     *      description="Update exchange rate",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Tax Category id",
+     *          description="Exchange Rate ID",
      *          required=true,
      *          in="path",
      *
@@ -228,31 +223,16 @@ class TaxCategoryController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="code",
-     *                      type="string",
-     *                      description="Tax category's code",
-     *                      example="service-tax"
+     *                      property="target_currency",
+     *                      type="integer",
+     *                      example=3
      *                  ),
      *                  @OA\Property(
-     *                      property="name",
-     *                      type="string",
-     *                      description="Tax category's name",
-     *                      example="Service Tax"
+     *                      property="rate",
+     *                      type="float",
+     *                      example=0.80
      *                  ),
-     *                  @OA\Property(
-     *                      property="description",
-     *                      type="string",
-     *                      description="Tax category's description",
-     *                      example="This tax category will apply to all states of a country."
-     *                  ),
-     *                  @OA\Property(
-     *                      property="taxrates",
-     *                      description="Tax category's rates",
-     *                      type="array",
-     *
-     *                      @OA\Items(type="integer", example=1)
-     *                  ),
-     *                  required={"code", "name", "description", "taxrates"}
+     *                  required={"target_currency", "rate"}
      *              )
      *          )
      *      ),
@@ -266,11 +246,11 @@ class TaxCategoryController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Tax Category updated successfully."),
+     *                  example="Exchange rate updated successfully."),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/TaxCategory"
+     *                  ref="#/components/schemas/ExchangeRate"
      *              )
      *          )
      *      ),
@@ -278,6 +258,15 @@ class TaxCategoryController
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Error: Unprocessable Content",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Examples(example="result", value={"message":"The target currency has already been taken."}, summary="An result object."),
+     *          )
      *      )
      * )
      */
@@ -287,16 +276,16 @@ class TaxCategoryController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/admin/settings/tax-categories/{id}",
-     *      operationId="deleteTaxCategory",
-     *      tags={"Tax-Categories"},
-     *      summary="Delete tax category by id",
-     *      description="Delete tax category by id",
+     *      path="/api/v1/admin/settings/exchange-rates/{id}",
+     *      operationId="deleteExchangeRate",
+     *      tags={"Exchange-Rates"},
+     *      summary="Delete exchange rate by id",
+     *      description="Delete exchange rate by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Tax Category id",
+     *          description="Exchange Rate id",
      *          required=true,
      *          in="path",
      *
@@ -314,7 +303,7 @@ class TaxCategoryController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Tax Category deleted successfully."),
+     *                  example="Exchange rate deleted successfully."),
      *              )
      *          )
      *      )

@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Models\Setting;
+namespace Webkul\RestApi\Docs\Admin\Models\Settings;
 
 /**
  * @OA\Schema(
@@ -160,7 +160,7 @@ class Channel
      *     description="Channel default locale"
      * )
      *
-     * @var \Webkul\RestApi\Docs\Admin\Models\Setting\Locale
+     * @var \Webkul\RestApi\Docs\Admin\Models\Settings\Locale
      */
     private $default_locale;
 

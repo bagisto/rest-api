@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Models\Setting;
+namespace Webkul\RestApi\Docs\Admin\Models\Settings;
 
 /**
  * @OA\Schema(

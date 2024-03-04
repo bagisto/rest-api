@@ -1,21 +1,21 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Setting;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Settings;
 
-class ExchangeRateController
+class CurrencyController
 {
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/settings/exchange-rates",
-     *      operationId="getSettingExchangeRates",
-     *      tags={"Exchange-Rates"},
-     *      summary="Get admin exchange rate list",
-     *      description="Returns exchange rate list, if you want to retrieve all exchange rates at once pass pagination=0 otherwise ignore this parameter",
+     *      path="/api/v1/admin/settings/currencies",
+     *      operationId="getSettingCurrencies",
+     *      tags={"Currencies"},
+     *      summary="Get admin currency list",
+     *      description="Returns currency list, if you want to retrieve all currencies at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Exchange Rate id",
+     *          description="Currency id",
      *          required=false,
      *          in="query",
      *
@@ -79,7 +79,7 @@ class ExchangeRateController
      *                  property="data",
      *                  type="array",
      *
-     *                  @OA\Items(ref="#/components/schemas/ExchangeRate")
+     *                  @OA\Items(ref="#/components/schemas/Currency")
      *              ),
      *
      *              @OA\Property(
@@ -96,16 +96,16 @@ class ExchangeRateController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/settings/exchange-rates/{id}",
-     *      operationId="getSalesExchangeRates",
-     *      tags={"Exchange-Rates"},
-     *      summary="Get admin exchange rate detail",
-     *      description="Returns exchange rate detail",
+     *      path="/api/v1/admin/settings/currencies/{id}",
+     *      operationId="getSalesCurrency",
+     *      tags={"Currencies"},
+     *      summary="Get admin currency detail",
+     *      description="Returns currency detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Exchange Rate ID",
+     *          description="Currency ID",
      *          required=true,
      *          in="path",
      *
@@ -123,7 +123,7 @@ class ExchangeRateController
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/ExchangeRate"
+     *                  ref="#/components/schemas/Currency"
      *              )
      *          )
      *      )
@@ -135,11 +135,11 @@ class ExchangeRateController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/settings/exchange-rates",
-     *      operationId="storeSettingExchangeRate",
-     *      tags={"Exchange-Rates"},
-     *      summary="Store the exchange rate",
-     *      description="Store the exchange rate",
+     *      path="/api/v1/admin/settings/currencies",
+     *      operationId="storeSettingCurrency",
+     *      tags={"Currencies"},
+     *      summary="Store the currency",
+     *      description="Store the currency",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
@@ -150,17 +150,24 @@ class ExchangeRateController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="target_currency",
-     *                      type="integer",
-     *                      description="Target Currency ID",
-     *                      example=3
+     *                      property="code",
+     *                      type="string",
+     *                      description="Currency code",
+     *                      example="INR",
+     *                      minLength=3,
+     *                      maxLength=3
      *                  ),
      *                  @OA\Property(
-     *                      property="rate",
-     *                      type="float",
-     *                      example=0.856
+     *                      property="name",
+     *                      type="string",
+     *                      example="Rupee"
      *                  ),
-     *                  required={"target_currency", "rate"}
+     *                  @OA\Property(
+     *                      property="symbol",
+     *                      type="string",
+     *                      example="₹"
+     *                  ),
+     *                  required={"code", "name"}
      *              )
      *          )
      *      ),
@@ -171,8 +178,8 @@ class ExchangeRateController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Property(property="message", type="string", example="Exchange rate created successfully."),
-     *              @OA\Property(property="data", type="object", ref="#/components/schemas/ExchangeRate")
+     *              @OA\Property(property="message", type="string", example="Currency created successfully."),
+     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Currency")
      *          )
      *      ),
      *
@@ -186,7 +193,7 @@ class ExchangeRateController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Examples(example="result", value={"message":"The target currency has already been taken."}, summary="An result object."),
+     *              @OA\Examples(example="result", value={"message":"The code may not be greater than 3 characters."}, summary="An result object."),
      *          )
      *      )
      * )
@@ -197,16 +204,16 @@ class ExchangeRateController
 
     /**
      * @OA\Put(
-     *      path="/api/v1/admin/settings/exchange-rates/{id}",
-     *      operationId="updateSettingExchangeRate",
-     *      tags={"Exchange-Rates"},
-     *      summary="Update exchange rate",
-     *      description="Update exchange rate",
+     *      path="/api/v1/admin/settings/currencies/{id}",
+     *      operationId="updateSettingCurrency",
+     *      tags={"Currencies"},
+     *      summary="Update currency",
+     *      description="Update currency",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Exchange Rate ID",
+     *          description="Currency ID",
      *          required=true,
      *          in="path",
      *
@@ -223,16 +230,21 @@ class ExchangeRateController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="target_currency",
-     *                      type="integer",
-     *                      example=3
+     *                      property="code",
+     *                      type="string",
+     *                      example="INR"
      *                  ),
      *                  @OA\Property(
-     *                      property="rate",
-     *                      type="float",
-     *                      example=0.80
+     *                      property="name",
+     *                      type="string",
+     *                      example="Rupee"
      *                  ),
-     *                  required={"target_currency", "rate"}
+     *                  @OA\Property(
+     *                      property="symbol",
+     *                      type="string",
+     *                      example="₹"
+     *                  ),
+     *                  required={"code", "name", "symbol"}
      *              )
      *          )
      *      ),
@@ -246,11 +258,11 @@ class ExchangeRateController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Exchange rate updated successfully."),
+     *                  example="Currency updated successfully."),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/ExchangeRate"
+     *                  ref="#/components/schemas/Currency"
      *              )
      *          )
      *      ),
@@ -265,7 +277,7 @@ class ExchangeRateController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Examples(example="result", value={"message":"The target currency has already been taken."}, summary="An result object."),
+     *              @OA\Examples(example="result", value={"message":"The code has already been taken."}, summary="An result object."),
      *          )
      *      )
      * )
@@ -276,16 +288,16 @@ class ExchangeRateController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/admin/settings/exchange-rates/{id}",
-     *      operationId="deleteExchangeRate",
-     *      tags={"Exchange-Rates"},
-     *      summary="Delete exchange rate by id",
-     *      description="Delete exchange rate by id",
+     *      path="/api/v1/admin/settings/currencies/{id}",
+     *      operationId="deleteCurrency",
+     *      tags={"Currencies"},
+     *      summary="Delete currency by id",
+     *      description="Delete currency by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Exchange Rate id",
+     *          description="Currency id",
      *          required=true,
      *          in="path",
      *
@@ -303,7 +315,7 @@ class ExchangeRateController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Exchange rate deleted successfully."),
+     *                  example="Currency Deleted Successfully."),
      *              )
      *          )
      *      )

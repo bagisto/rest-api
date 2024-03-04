@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Setting;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Settings;
 
 class TaxRateController
 {

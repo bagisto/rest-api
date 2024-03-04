@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Resources\V1\Admin\Setting;
+namespace Webkul\RestApi\Http\Resources\V1\Admin\Settings;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\CategoryResource;

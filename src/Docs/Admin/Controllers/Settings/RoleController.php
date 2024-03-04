@@ -1,21 +1,21 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Setting;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Settings;
 
-class ThemeController
+class RoleController
 {
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/settings/theme/customizations",
-     *      operationId="getSettingThemes",
-     *      tags={"Themes"},
-     *      summary="Get admin themes list",
-     *      description="Returns themes list, if you want to retrieve all themes at once pass pagination=0 otherwise ignore this parameter",
+     *      path="/api/v1/admin/settings/roles",
+     *      operationId="getRoles",
+     *      tags={"Roles"},
+     *      summary="Get admin role list",
+     *      description="Returns role list, if you want to retrieve all roles at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Theme id",
+     *          description="Role id",
      *          required=false,
      *          in="query",
      *
@@ -79,7 +79,7 @@ class ThemeController
      *                  property="data",
      *                  type="array",
      *
-     *                  @OA\Items(ref="#/components/schemas/Theme")
+     *                  @OA\Items(ref="#/components/schemas/Role")
      *              ),
      *
      *              @OA\Property(
@@ -87,13 +87,7 @@ class ThemeController
      *                  ref="#/components/schemas/Pagination"
      *              )
      *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
      *      )
-     * )
      * )
      */
     public function list()
@@ -102,16 +96,16 @@ class ThemeController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/settings/theme/customizations/{id}",
-     *      operationId="getSettingTheme",
-     *      tags={"Themes"},
-     *      summary="Get admin Themes detail",
-     *      description="Returns Themes detail",
+     *      path="/api/v1/admin/settings/roles/{id}",
+     *      operationId="getRole",
+     *      tags={"Roles"},
+     *      summary="Get admin role detail",
+     *      description="Returns role detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Theme id",
+     *          description="Role id",
      *          required=true,
      *          in="path",
      *
@@ -129,7 +123,7 @@ class ThemeController
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Theme"
+     *                  ref="#/components/schemas/Role"
      *              )
      *          )
      *      )
@@ -141,14 +135,14 @@ class ThemeController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/settings/theme/customizations",
-     *      operationId="storeSettingThemes",
-     *      tags={"Themes"},
-     *      summary="Store the theme",
-     *      description="Store the theme",
+     *      path="/api/v1/admin/settings/roles",
+     *      operationId="storeRole",
+     *      tags={"Roles"},
+     *      summary="Store the role",
+     *      description="Store the role",
      *      security={ {"sanctum_admin": {} }},
      *
-     *          @OA\RequestBody(
+     *      @OA\RequestBody(
      *
      *          @OA\MediaType(
      *              mediaType="application/json",
@@ -156,28 +150,30 @@ class ThemeController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="channel_id",
-     *                      type="integer",
-     *                      description="Channel Id",
-     *                      example="1"
-     *                  ),
-     *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      description="Theme name",
-     *                      example="Image Carousel"
+     *                      description="Role name",
+     *                      example="Sales Access Roles"
      *                  ),
      *                  @OA\Property(
-     *                      property="sort_order",
-     *                      type="integer",
-     *                      description="Sort Order",
-     *                      example="13"
+     *                      property="description",
+     *                      type="string",
+     *                      description="Role description",
+     *                      example="Test Description"
      *                  ),
      *                  @OA\Property(
-     *                      property="type",
-     *                      description="Theme Type",
-     *                      example="image_carousel"
+     *                      property="permission_type",
+     *                      type="string",
+     *                      example="custom",
+     *                      enum={"all", "custom"}
      *                  ),
+     *                  @OA\Property(
+     *                      property="permissions",
+     *                      type="array",
+     *
+     *                      @OA\Items(type="string", example="sales.orders.view")
+     *                  ),
+     *                  required={"name", "permission_type"}
      *              )
      *          )
      *      ),
@@ -188,8 +184,8 @@ class ThemeController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Property(property="message", type="string", example="Theme created successfully."),
-     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Theme")
+     *              @OA\Property(property="message", type="string", example="Role created successfully."),
+     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Role")
      *          )
      *      ),
      *
@@ -205,16 +201,16 @@ class ThemeController
 
     /**
      * @OA\Put(
-     *      path="/api/v1/admin/settings/theme/customizations/{id}",
-     *      operationId="updateSettingsTheme",
-     *      tags={"Themes"},
-     *      summary="Update Theme",
-     *      description="Update Theme",
+     *      path="/api/v1/admin/settings/roles/{id}",
+     *      operationId="updateRole",
+     *      tags={"Roles"},
+     *      summary="Update role",
+     *      description="Update role",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Theme ID",
+     *          description="Role id",
      *          required=true,
      *          in="path",
      *
@@ -224,7 +220,6 @@ class ThemeController
      *      ),
      *
      *      @OA\RequestBody(
-     *          required=true,
      *
      *          @OA\MediaType(
      *              mediaType="application/json",
@@ -232,73 +227,30 @@ class ThemeController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="locale",
-     *                      type="string",
-     *                      description="Locale code",
-     *                      example="en"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="en",
-     *                      type="object",
-     *                      description="English locale options",
-     *                      @OA\Property(
-     *                          property="options",
-     *                          type="object",
-     *                          description="Theme options",
-     *                          @OA\Property(
-     *                              property="images",
-     *                              type="array",
-     *                              description="Image carousel images",
-     *
-     *                              @OA\Items(
-     *                                  type="object",
-     *
-     *                                  @OA\Property(
-     *                                      property="link",
-     *                                      type="string",
-     *                                      description="Image link",
-     *                                      example="test1"
-     *                                  ),
-     *                                  @OA\Property(
-     *                                      property="image",
-     *                                      type="string",
-     *                                      description="Image path",
-     *                                      example="storage/theme/1/1.webp"
-     *                                  )
-     *                              )
-     *                          )
-     *                      )
-     *                  ),
-     *                  @OA\Property(
-     *                      property="type",
-     *                      type="string",
-     *                      description="Theme type",
-     *                      example="image_carousel"
-     *                  ),
-     *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      description="Theme name",
-     *                      example="Image Carousel"
+     *                      description="Role name",
+     *                      example="Sales Access Roles"
      *                  ),
      *                  @OA\Property(
-     *                      property="sort_order",
-     *                      type="integer",
-     *                      description="Sort order",
-     *                      example="12"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="channel_id",
+     *                      property="description",
      *                      type="string",
-     *                      description="Channel ID",
-     *                      example="1"
+     *                      description="Role description",
+     *                      example="<h2>What is Lorem Ipsum?</h2><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
      *                  ),
      *                  @OA\Property(
-     *                      property="status",
+     *                      property="permission_type",
      *                      type="string",
-     *                      description="Status",
-     *                      example="on"
+     *                      example="custom",
+     *                      enum={"all", "custom"}
      *                  ),
+     *                  @OA\Property(
+     *                      property="permissions",
+     *                      type="array",
+     *
+     *                      @OA\Items(type="string", example="sales.orders.cancel")
+     *                  ),
+     *                  required={"name", "permission_type"}
      *              )
      *          )
      *      ),
@@ -312,12 +264,11 @@ class ThemeController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Theme updated successfully"
-     *              ),
+     *                  example="Role updated successfully."),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Theme"
+     *                  ref="#/components/schemas/Role"
      *              )
      *          )
      *      ),
@@ -334,16 +285,16 @@ class ThemeController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/admin/settings/theme/customizations/{id}",
-     *      operationId="deleteTheme",
-     *      tags={"Themes"},
-     *      summary="Delete Theme options by id",
-     *      description="Delete Theme options by id",
+     *      path="/api/v1/admin/settings/roles/{id}",
+     *      operationId="deleteRole",
+     *      tags={"Roles"},
+     *      summary="Delete role by id",
+     *      description="Delete role by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Theme option id",
+     *          description="Role id",
      *          required=true,
      *          in="path",
      *
@@ -361,7 +312,7 @@ class ThemeController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Theme deleted successfully."),
+     *                  example="Role deleted successfully."),
      *              )
      *          )
      *      )

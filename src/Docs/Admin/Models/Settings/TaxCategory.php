@@ -1,14 +1,14 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Models\Setting;
+namespace Webkul\RestApi\Docs\Admin\Models\Settings;
 
 /**
  * @OA\Schema(
- *     title="Currency",
- *     description="Currency model",
+ *     title="TaxCategory",
+ *     description="TaxCategory model",
  * )
  */
-class Currency
+class TaxCategory
 {
     /**
      * @OA\Property(
@@ -20,40 +20,53 @@ class Currency
      *
      * @var int
      */
-    public $id;
+    private $id;
 
     /**
      * @OA\Property(
      *     title="Code",
-     *     description="Currency code",
-     *     example="EUR"
+     *     description="Tax Category's code",
+     *     example="in-service-tax"
      * )
      *
      * @var string
      */
-    public $code;
+    private $code;
 
     /**
      * @OA\Property(
      *     title="Name",
-     *     description="Currency name",
-     *     example="Euro"
+     *     description="Tax Category's name",
+     *     example="IN Service Tax"
      * )
      *
      * @var string
      */
-    public $name;
+    private $name;
 
     /**
      * @OA\Property(
-     *     title="Symbol",
-     *     description="Currency symbol",
-     *     example="€"
+     *     title="Description",
+     *     description="Tax Category's description",
+     *     example="Service tax applied to all state of India"
      * )
      *
      * @var string
      */
-    public $symbol;
+    private $description;
+
+    /**
+     * @OA\Property(
+     *     title="Rates",
+     *     description="Tax rates belongs to Tax category",
+     *     type="array",
+     *
+     *     @OA\Items(ref="#/components/schemas/TaxRate")
+     * )
+     *
+     * @var array
+     */
+    private $rates;
 
     /**
      * @OA\Property(
@@ -66,7 +79,7 @@ class Currency
      *
      * @var \DateTime
      */
-    public $created_at;
+    private $created_at;
 
     /**
      * @OA\Property(
@@ -79,5 +92,5 @@ class Currency
      *
      * @var \DateTime
      */
-    public $updated_at;
+    private $updated_at;
 }

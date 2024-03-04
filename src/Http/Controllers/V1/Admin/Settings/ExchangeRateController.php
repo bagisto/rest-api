@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ExchangeRateRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ExchangeRateResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\ExchangeRateResource;
 
 class ExchangeRateController extends SettingController
 {

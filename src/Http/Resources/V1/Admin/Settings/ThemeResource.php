@@ -1,10 +1,10 @@
 <?php
 
-namespace Webkul\RestApi\Http\Resources\V1\Admin\Setting;
+namespace Webkul\RestApi\Http\Resources\V1\Admin\Settings;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CountryResource extends JsonResource
+class ThemeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,7 @@ class CountryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'   => $this->id,
-            'code' => $this->code,
-            'name' => $this->name,
+            ...$this->resource->toArray(),
         ];
     }
 }

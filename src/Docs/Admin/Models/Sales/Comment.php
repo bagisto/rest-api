@@ -89,7 +89,7 @@ class Comment
      *     description="Order"
      * )
      *
-     * @var \Webkul\RestApi\Docs\Admin\Models\Sale\Order
+     * @var \Webkul\RestApi\Docs\Admin\Models\Sales\Order
      */
     private $order;
 }

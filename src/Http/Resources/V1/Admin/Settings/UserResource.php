@@ -1,10 +1,10 @@
 <?php
 
-namespace Webkul\RestApi\Http\Resources\V1\Admin\Setting;
+namespace Webkul\RestApi\Http\Resources\V1\Admin\Settings;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LocaleResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,10 @@ class LocaleResource extends JsonResource
     {
         return [
             'id'         => $this->id,
-            'code'       => $this->code,
             'name'       => $this->name,
+            'email'      => $this->email,
+            'status'     => $this->status,
+            'role'       => new RoleResource($this->role),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

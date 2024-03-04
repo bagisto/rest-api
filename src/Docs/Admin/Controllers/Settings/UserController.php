@@ -1,21 +1,21 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Setting;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Settings;
 
-class LocaleController
+class UserController
 {
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/settings/locales",
-     *      operationId="getSettingLocales",
-     *      tags={"Locales"},
-     *      summary="Get admin locale list",
-     *      description="Returns locale list, if you want to retrieve all locales at once pass pagination=0 otherwise ignore this parameter",
+     *      path="/api/v1/admin/settings/users",
+     *      operationId="getUsers",
+     *      tags={"Users"},
+     *      summary="Get admin users list",
+     *      description="Returns user list, if you want to retrieve all users at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Locale id",
+     *          description="User id",
      *          required=false,
      *          in="query",
      *
@@ -79,7 +79,7 @@ class LocaleController
      *                  property="data",
      *                  type="array",
      *
-     *                  @OA\Items(ref="#/components/schemas/Locale")
+     *                  @OA\Items(ref="#/components/schemas/User")
      *              ),
      *
      *              @OA\Property(
@@ -96,16 +96,16 @@ class LocaleController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/settings/locales/{id}",
-     *      operationId="getSalesLocale",
-     *      tags={"Locales"},
-     *      summary="Get admin locale detail",
-     *      description="Returns locale detail",
+     *      path="/api/v1/admin/settings/users/{id}",
+     *      operationId="getUser",
+     *      tags={"Users"},
+     *      summary="Get admin user detail",
+     *      description="Returns user detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Locale id",
+     *          description="User ID",
      *          required=true,
      *          in="path",
      *
@@ -123,7 +123,7 @@ class LocaleController
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Locale"
+     *                  ref="#/components/schemas/User"
      *              )
      *          )
      *      )
@@ -135,11 +135,11 @@ class LocaleController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/settings/locales",
-     *      operationId="storeSettingLocale",
-     *      tags={"Locales"},
-     *      summary="Store the locale",
-     *      description="Store the locale",
+     *      path="/api/v1/admin/settings/users",
+     *      operationId="storeUsers",
+     *      tags={"Users"},
+     *      summary="Store the user",
+     *      description="Store the user",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
@@ -150,27 +150,38 @@ class LocaleController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="code",
-     *                      type="string",
-     *                      description="Language code",
-     *                      example="en"
-     *                  ),
-     *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      example="English"
+     *                      description="User Full Name",
+     *                      example="Peter Doe"
      *                  ),
      *                  @OA\Property(
-     *                      property="direction",
-     *                      type="string",
-     *                      example="ltr",
-     *                      enum={"ltr", "rtl"}
+     *                      property="email",
+     *                      type="email",
+     *                      example="peter@example.com"
      *                  ),
      *                  @OA\Property(
-     *                      property="locale_image[]",
-     *                      type="file"
+     *                      property="password",
+     *                      type="password",
+     *                      example="admin123"
      *                  ),
-     *                  required={"code", "name", "direction"}
+     *                  @OA\Property(
+     *                      property="password_confirmation",
+     *                      type="password",
+     *                      example="admin123"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="status",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0, 1}
+     *                  ),
+     *                  @OA\Property(
+     *                      property="role_id",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  required={"name", "email", "password", "password_confirmation", "role_id"}
      *              )
      *          )
      *      ),
@@ -181,8 +192,8 @@ class LocaleController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Property(property="message", type="string", example="Locale added successfully."),
-     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Locale")
+     *              @OA\Property(property="message", type="string", example="User created successfully."),
+     *              @OA\Property(property="data", type="object", ref="#/components/schemas/User")
      *          )
      *      ),
      *
@@ -196,7 +207,7 @@ class LocaleController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Examples(example="result", value={"message":"The code has already been taken."}, summary="An result object."),
+     *              @OA\Examples(example="result", value={"message":"The code may not be greater than 3 characters."}, summary="An result object."),
      *          )
      *      )
      * )
@@ -206,17 +217,17 @@ class LocaleController
     }
 
     /**
-     * @OA\Put(
-     *      path="/api/v1/admin/settings/locales/{id}",
-     *      operationId="updateSettingLocale",
-     *      tags={"Locales"},
-     *      summary="Update locale",
-     *      description="Update locale",
+     * @OA\Post(
+     *      path="/api/v1/admin/settings/users/{id}",
+     *      operationId="updateUsers",
+     *      tags={"Users"},
+     *      summary="Update user",
+     *      description="Update user",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Locale id",
+     *          description="User ID",
      *          required=true,
      *          in="path",
      *
@@ -228,27 +239,49 @@ class LocaleController
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
-     *              mediaType="application/json",
+     *              mediaType="multipart/form-data",
      *
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="code",
+     *                      property="_method",
      *                      type="string",
-     *                      example="en"
+     *                      example="PUT"
      *                  ),
      *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      example="English"
+     *                      description="User Full Name",
+     *                      example="Peter Doe"
      *                  ),
      *                  @OA\Property(
-     *                      property="direction",
-     *                      type="string",
-     *                      example="ltr",
-     *                      enum={"ltr", "rtl"}
+     *                      property="email",
+     *                      type="email",
+     *                      example="peter@example.com"
      *                  ),
-     *                  required={"code", "name", "direction"}
+     *                  @OA\Property(
+     *                      property="password",
+     *                      type="password",
+     *                      example="admin123"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="password_confirmation",
+     *                      type="password",
+     *                      example="admin123"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="status",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0, 1}
+     *                  ),
+     *                  @OA\Property(
+     *                      property="role_id",
+     *                      format="id",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  required={"name", "email", "password", "password_confirmation", "role_id"}
      *              )
      *          )
      *      ),
@@ -262,11 +295,11 @@ class LocaleController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Locale updated successfully."),
+     *                  example="User updated successfully."),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Locale"
+     *                  ref="#/components/schemas/User"
      *              )
      *          )
      *      ),
@@ -274,15 +307,6 @@ class LocaleController
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=422,
-     *          description="Error: Unprocessable Content",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Examples(example="result", value={"message":"The code has already been taken."}, summary="An result object."),
-     *          )
      *      )
      * )
      */
@@ -292,16 +316,16 @@ class LocaleController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/admin/settings/locales/{id}",
-     *      operationId="deleteLocale",
-     *      tags={"Locales"},
-     *      summary="Delete locale by id",
-     *      description="Delete locale by id",
+     *      path="/api/v1/admin/settings/users/{id}",
+     *      operationId="deleteUser",
+     *      tags={"Users"},
+     *      summary="Delete user by id",
+     *      description="Delete user by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Locale id",
+     *          description="User id",
      *          required=true,
      *          in="path",
      *
@@ -319,14 +343,9 @@ class LocaleController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Locale Deleted Successfully."),
+     *                  example="Admin deleted successfully."),
      *              )
      *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
      *      )
      * )
      */

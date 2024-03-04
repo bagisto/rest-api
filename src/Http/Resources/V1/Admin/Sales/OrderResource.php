@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Resources\V1\Admin\Sales;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\ChannelResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\ChannelResource;
 
 class OrderResource extends JsonResource
 {
