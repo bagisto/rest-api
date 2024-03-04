@@ -10,16 +10,24 @@
 
 ##### To install Bagisto REST API from your console:
 
-#### For stable release (version 2.0.0):
+#### For Bagisto v2.0:
 
 ~~~
 composer require bagisto/rest-api:2.0.0
 ~~~
 
-#### For the master branch:
+#### For Bagisto v1.4.5:
+
 ~~~
-composer require bagisto/rest-api:master
+composer require bagisto/rest-api:1.4.5
 ~~~
+
+#### For the master version:
+~~~
+composer require bagisto/rest-api:dev-master
+~~~
+
+***Note:*** It is not recommended to use the master version as it may contain breaking changes.
 
 ##### Add below options in the .env file (i.e. http://localhost/public your domain):
 
