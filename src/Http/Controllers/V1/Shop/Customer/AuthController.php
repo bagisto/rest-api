@@ -21,33 +21,15 @@ class AuthController extends CustomerController
     use SendsPasswordResetEmails;
 
     /**
-     * Customer respository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerRepository
-     */
-    protected $customerRepository;
-
-    /**
-     * Customer group repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerGroupRepository
-     */
-    protected $customerGroupRepository;
-
-    /**
      * Controller instance.
      *
      * @return void
      */
     public function __construct(
-        CustomerRepository $customerRepository,
-        CustomerGroupRepository $customerGroupRepository
+        protected CustomerRepository $customerRepository,
+        protected CustomerGroupRepository $customerGroupRepository
     ) {
         parent::__construct();
-
-        $this->customerRepository = $customerRepository;
-
-        $this->customerGroupRepository = $customerGroupRepository;
     }
 
     /**

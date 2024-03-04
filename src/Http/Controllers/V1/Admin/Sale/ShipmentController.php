@@ -11,33 +11,15 @@ use Webkul\Sales\Repositories\ShipmentRepository;
 class ShipmentController extends SaleController
 {
     /**
-     * Order repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderRepository
-     */
-    protected $orderRepository;
-
-    /**
-     * Order item repository instance.
-     *
-     * @var \Webkul\Sales\Repositories\OrderItemRepository
-     */
-    protected $orderItemRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct(
-        OrderRepository $orderRepository,
-        OrderItemRepository $orderItemRepository
+        protected OrderRepository $orderRepository,
+        protected OrderItemRepository $orderItemRepository
     ) {
         parent::__construct();
-
-        $this->orderRepository = $orderRepository;
-
-        $this->orderItemRepository = $orderItemRepository;
     }
 
     /**

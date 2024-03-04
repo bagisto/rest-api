@@ -15,22 +15,13 @@ use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerAddressResource;
 class AddressController extends BaseController
 {
     /**
-     * Customer repository instance.
-     *
-     * @var \Webkul\Customer\Repositories\CustomerRepository
-     */
-    protected $customerRepository;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CustomerRepository $customerRepository)
+    public function __construct(protected CustomerRepository $customerRepository)
     {
         parent::__construct();
-
-        $this->customerRepository = $customerRepository;
     }
 
     /**
