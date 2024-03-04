@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Resources\V1\Shop\Sales;
 
-use Webkul\RestApi\Http\Resources\V1\Admin\Sale\InvoiceItemResource as AdminInvoiceItemResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Sales\InvoiceItemResource as BaseInvoiceItemResource;
 
-class InvoiceItemResource extends AdminInvoiceItemResource
+class InvoiceItemResource extends BaseInvoiceItemResource
 {
 }

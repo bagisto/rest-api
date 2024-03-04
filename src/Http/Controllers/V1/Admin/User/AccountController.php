@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
-use Webkul\RestApi\Http\Resources\V1\Admin\Setting\UserResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\UserResource;
 
 class AccountController extends UserController
 {
