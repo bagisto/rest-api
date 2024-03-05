@@ -108,7 +108,7 @@ class CartRuleCouponController extends MarketingController
      */
     public function massDestroy(MassDestroyRequest $request, int $cartRuleId)
     {
-        foreach ($request->indexes as $couponId) {
+        foreach ($request->indices as $couponId) {
             $this->getRepositoryInstance()
                 ->where('cart_rule_id', $cartRuleId)
                 ->where('id', $couponId)

@@ -211,6 +211,10 @@ return [
                     'create-success' => 'Warenkorbregel-Coupon wurde erfolgreich hinzugefügt.',
                     'delete-success' => 'Warenkorbregel-Coupon erfolgreich gelöscht',
                     'update-success' => 'Warenkorbregel-Coupon erfolgreich aktualisiert.',
+
+                    'mass-operations' => [
+                        'resource-not-found' => 'Ausgewählte Seiten erfolgreich gelöscht.',
+                    ],
                 ],
             ],
         ],
