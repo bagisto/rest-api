@@ -217,6 +217,48 @@ return [
                     ],
                 ],
             ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL-Umschreibung wurde erfolgreich hinzugefügt.',
+                    'delete-success'  => 'URL-Umschreibung wurde erfolgreich gelöscht.',
+                    'update-success'  => 'URL-Umschreibung wurde erfolgreich aktualisiert.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'URL-Umschreibung wurde erfolgreich gelöscht.',
+                    ],
+                ],
+            
+                'search-terms' => [
+                    'create-success'  => 'Suchbegriffe wurden erfolgreich hinzugefügt.',
+                    'delete-success'  => 'Suchbegriffe wurden erfolgreich gelöscht.',
+                    'update-success'  => 'Suchbegriffe wurden erfolgreich aktualisiert.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Suchbegriffe wurden erfolgreich gelöscht.',
+                    ],
+                ],
+            
+                'search-synonyms' => [
+                    'create-success'  => 'Synonyme wurden erfolgreich hinzugefügt.',
+                    'delete-success'  => 'Synonyme wurden erfolgreich gelöscht.',
+                    'update-success'  => 'Synonyme wurden erfolgreich aktualisiert.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Synonyme wurden erfolgreich gelöscht.',
+                    ],
+                ],
+            
+                'sitemaps' => [
+                    'create-success'  => 'Sitemap wurde erfolgreich hinzugefügt.',
+                    'delete-success'  => 'Sitemap wurde erfolgreich gelöscht.',
+                    'update-success'  => 'Sitemap wurde erfolgreich aktualisiert.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Sitemap wurde erfolgreich gelöscht.',
+                    ],
+                ],
+            ],
         ],
 
         'settings' => [

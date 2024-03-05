@@ -217,6 +217,48 @@ return [
                     ],
                 ],
             ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'Przekierowanie URL zostało pomyślnie dodane.',
+                    'delete-success'  => 'Przekierowanie URL zostało pomyślnie usunięte.',
+                    'update-success'  => 'Przekierowanie URL zostało pomyślnie zaktualizowane.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Przekierowanie URL zostało pomyślnie usunięte.',
+                    ],
+                ],
+            
+                'search-terms' => [
+                    'create-success'  => 'Warunki wyszukiwania zostały pomyślnie dodane.',
+                    'delete-success'  => 'Warunki wyszukiwania zostały pomyślnie usunięte.',
+                    'update-success'  => 'Warunki wyszukiwania zostały pomyślnie zaktualizowane.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Warunki wyszukiwania zostały pomyślnie usunięte.',
+                    ],
+                ],
+            
+                'search-synonyms' => [
+                    'create-success'  => 'Synonimy wyszukiwania zostały pomyślnie dodane.',
+                    'delete-success'  => 'Synonimy wyszukiwania zostały pomyślnie usunięte.',
+                    'update-success'  => 'Synonimy wyszukiwania zostały pomyślnie zaktualizowane.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Synonimy wyszukiwania zostały pomyślnie usunięte.',
+                    ],
+                ],
+            
+                'sitemaps' => [
+                    'create-success'  => 'Mapa witryny została pomyślnie dodana.',
+                    'delete-success'  => 'Mapa witryny została pomyślnie usunięta.',
+                    'update-success'  => 'Mapa witryny została pomyślnie zaktualizowana.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Mapa witryny została pomyślnie usunięta.',
+                    ],
+                ],
+            ],
         ],
 
         'settings' => [

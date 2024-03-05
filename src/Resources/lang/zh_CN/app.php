@@ -217,6 +217,48 @@ return [
                     ],
                 ],
             ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL重写成功添加。',
+                    'delete-success'  => 'URL重写成功删除。',
+                    'update-success'  => 'URL重写成功更新。',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'URL重写成功删除。',
+                    ],
+                ],
+            
+                'search-terms' => [
+                    'create-success'  => '搜索词成功添加。',
+                    'delete-success'  => '搜索词成功删除。',
+                    'update-success'  => '搜索词成功更新。',
+            
+                    'mass-operations' => [
+                        'delete-success' => '搜索词成功删除。',
+                    ],
+                ],
+            
+                'search-synonyms' => [
+                    'create-success'  => '搜索同义词成功添加。',
+                    'delete-success'  => '搜索同义词成功删除。',
+                    'update-success'  => '搜索同义词成功更新。',
+            
+                    'mass-operations' => [
+                        'delete-success' => '搜索同义词成功删除。',
+                    ],
+                ],
+            
+                'sitemaps' => [
+                    'create-success'  => '网站地图成功添加。',
+                    'delete-success'  => '网站地图成功删除。',
+                    'update-success'  => '网站地图成功更新。',
+            
+                    'mass-operations' => [
+                        'delete-success' => '网站地图成功删除。',
+                    ],
+                ],
+            ],
         ],
 
         'settings' => [

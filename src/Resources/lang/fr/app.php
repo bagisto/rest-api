@@ -217,6 +217,48 @@ return [
                     ],
                 ],
             ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'La réécriture d\'URL a été ajoutée avec succès.',
+                    'delete-success'  => 'La réécriture d\'URL a été supprimée avec succès.',
+                    'update-success'  => 'La réécriture d\'URL a été mise à jour avec succès.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'La réécriture d\'URL a été supprimée avec succès.',
+                    ],
+                ],
+            
+                'search-terms' => [
+                    'create-success'  => 'Les termes de recherche ont été ajoutés avec succès.',
+                    'delete-success'  => 'Les termes de recherche ont été supprimés avec succès.',
+                    'update-success'  => 'Les termes de recherche ont été mis à jour avec succès.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Les termes de recherche ont été supprimés avec succès.',
+                    ],
+                ],
+            
+                'search-synonyms' => [
+                    'create-success'  => 'Les synonymes de recherche ont été ajoutés avec succès.',
+                    'delete-success'  => 'Les synonymes de recherche ont été supprimés avec succès.',
+                    'update-success'  => 'Les synonymes de recherche ont été mis à jour avec succès.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Les synonymes de recherche ont été supprimés avec succès.',
+                    ],
+                ],
+            
+                'sitemaps' => [
+                    'create-success'  => 'Le plan du site a été ajouté avec succès.',
+                    'delete-success'  => 'Le plan du site a été supprimé avec succès.',
+                    'update-success'  => 'Le plan du site a été mis à jour avec succès.',
+            
+                    'mass-operations' => [
+                        'delete-success' => 'Le plan du site a été supprimé avec succès.',
+                    ],
+                ],
+            ],
         ],
 
         'settings' => [

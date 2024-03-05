@@ -217,6 +217,48 @@ return [
                     ],
                 ],
             ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL Rewrite have been successfully added.',
+                    'delete-success'  => 'URL Rewrite successfully deleted.',
+                    'update-success'  => 'URL Rewrite updated successfully.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'URL Rewrite successfully deleted.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'Search Terms have been successfully added.',
+                    'delete-success'  => 'Search Terms successfully deleted.',
+                    'update-success'  => 'Search Terms updated successfully.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Search Terms successfully deleted.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'Search Synonyms have been successfully added.',
+                    'delete-success'  => 'Search Synonyms successfully deleted.',
+                    'update-success'  => 'Search Synonyms updated successfully.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Search Synonyms successfully deleted.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'Search Synonyms have been successfully added.',
+                    'delete-success'  => 'Search Synonyms successfully deleted.',
+                    'update-success'  => 'Search Synonyms updated successfully.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Search Synonyms successfully deleted.',
+                    ],
+                ],
+            ],
         ],
 
         'settings' => [
