@@ -211,7 +211,7 @@ return [
                     'create-success' => 'Cart Rule Coupon have been successfully added.',
                     'delete-success' => 'Cart Rule Coupon successfully deleted',
                     'update-success' => 'Cart Rule Coupon updated successfully.',
-                    
+
                     'mass-operations' => [
                         'delete-success' => 'Selected pages successfully deleted.',
                     ],
