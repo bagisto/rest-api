@@ -211,6 +211,10 @@ return [
                     'create-success' => 'Kupon reguły koszyka został pomyślnie dodany.',
                     'delete-success' => 'Kupon reguły koszyka pomyślnie usunięty.',
                     'update-success' => 'Kupon reguły koszyka został pomyślnie zaktualizowany.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Wybrane strony pomyślnie usunięte.',
+                    ],
                 ],
             ],
         ],

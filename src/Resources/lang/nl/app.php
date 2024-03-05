@@ -211,6 +211,10 @@ return [
                     'create-success' => 'Coupon voor winkelwagenregel is succesvol toegevoegd.',
                     'delete-success' => 'Coupon voor winkelwagenregel succesvol verwijderd.',
                     'update-success' => 'Coupon voor winkelwagenregel succesvol bijgewerkt.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Geselecteerde pagina\'s succesvol verwijderd.',
+                    ],
                 ],
             ],
         ],

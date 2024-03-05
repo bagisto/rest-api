@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Resources\V1\Admin\Sales;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
-use Webkul\RestApi\Http\Resources\V1\Admin\Inventory\InventorySourceResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\InventorySourceResource;
 
 class ShipmentResource extends JsonResource
 {

@@ -19,5 +19,5 @@ Route::group([
     /**
      * Customer routes.
      */
-    require 'customer-routes.php';
+    require 'customers-routes.php';
 });
