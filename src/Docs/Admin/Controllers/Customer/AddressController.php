@@ -521,12 +521,12 @@ class AddressController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="indexes",
+     *                      property="indices",
      *                      description="Address's Ids `CommaSeperated`",
      *                      type="string",
-     *                      example="8,7"
+     *                      example={8,7}
      *                  ),
-     *                  required={"indexes"}
+     *                  required={"indices"}
      *              )
      *          )
      *      ),

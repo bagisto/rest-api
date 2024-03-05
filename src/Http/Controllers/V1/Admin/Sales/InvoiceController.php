@@ -36,7 +36,7 @@ class InvoiceController extends SalesController
 
         if (! $order->canInvoice()) {
             return response([
-                'message' => trans('rest-api::app.sales.invoices.error.creation-error'),
+                'message' => trans('rest-api::app.admin.sales.invoices.error.creation-error'),
             ], 400);
         }
 

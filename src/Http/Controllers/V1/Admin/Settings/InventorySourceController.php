@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\InventorySourceRequest;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Inventory\InventorySourceResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Settings\InventorySourceResource;
 
 class InventorySourceController extends SettingController
 {

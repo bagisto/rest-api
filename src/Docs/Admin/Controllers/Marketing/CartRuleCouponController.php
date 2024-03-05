@@ -261,12 +261,12 @@ class CartRuleCouponController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="indexes",
+     *                      property="indices",
      *                      description="Coupon's Ids `CommaSeperated`",
      *                      type="string",
-     *                      example="1,2"
+     *                      example={1,2}
      *                  ),
-     *                  required={"indexes"}
+     *                  required={"indices"}
      *              )
      *          )
      *      ),
