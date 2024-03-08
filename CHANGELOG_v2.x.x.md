@@ -2,7 +2,7 @@
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
-## **v2.0.0 (4th of March 2024)** - *Release*
+## **v2.0.0 (8th of March 2024)** - *Release*
 
 * #108 [enhancement] - Need to add an api for mass update in customer api.
 
