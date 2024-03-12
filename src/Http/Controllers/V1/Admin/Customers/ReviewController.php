@@ -33,6 +33,10 @@ class ReviewController extends BaseController
      */
     public function update(int $id)
     {
+        $this->validate(request(), [
+            'status' => 'required|in:approved,disapproved,pending',
+        ]);
+        
         Event::dispatch('customer.review.update.before', $id);
 
         $review = $this->getRepositoryInstance()->update(request()->only(['status']), $id);
@@ -40,6 +44,7 @@ class ReviewController extends BaseController
         Event::dispatch('customer.review.update.after', $review);
 
         return response([
+            'data'    => new ProductReviewResource($review),
             'message' => trans('rest-api::app.admin.customers.reviews.update-success'),
         ]);
     }

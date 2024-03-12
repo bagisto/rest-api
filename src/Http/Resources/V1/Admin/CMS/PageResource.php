@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Resources\V1\Admin\CMS;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CMSResource extends JsonResource
+class PageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

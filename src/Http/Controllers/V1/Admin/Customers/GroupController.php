@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Rules\Code;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
@@ -31,16 +30,16 @@ class GroupController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
+        $this->validate(request(), [
             'code' => ['required', 'unique:customer_groups,code', new Code],
             'name' => 'required',
         ]);
 
         Event::dispatch('customer.customer_group.create.before');
 
-        $customerGroup = $this->getRepositoryInstance()->create($request->only([
+        $customerGroup = $this->getRepositoryInstance()->create(request()->only([
             'code',
             'name',
         ]), [
@@ -60,9 +59,9 @@ class GroupController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(int $id)
     {
-        $request->validate([
+        $this->validate(request(), [
             'code' => ['required', 'unique:customer_groups,code,'.$id, new Code],
             'name' => 'required',
         ]);

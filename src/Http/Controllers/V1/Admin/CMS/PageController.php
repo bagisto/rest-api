@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\CMS\Repositories\PageRepository;
 use Webkul\Core\Rules\Slug;
-use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\CMS\PageResource;
 
 class PageController extends CMSController
 {
@@ -24,7 +24,7 @@ class PageController extends CMSController
      */
     public function resource(): string
     {
-        return CMSResource::class;
+        return PageResource::class;
     }
 
     /**
@@ -56,7 +56,7 @@ class PageController extends CMSController
         Event::dispatch('cms.pages.create.after', $page);
 
         return response([
-            'data'    => new CMSResource($page),
+            'data'    => new PageResource($page),
             'message' => trans('rest-api::app.admin.cms.create-success'),
         ]);
     }
@@ -71,14 +71,14 @@ class PageController extends CMSController
         $locale = core()->getRequestedLocaleCode();
 
         $request->validate([
-            $locale.'.url_key'        => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
+            $locale.'.url_key'     => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
                     $fail(trans('rest-api::app.admin.cms.error.already-taken'));
                 }
             }],
-            $locale.'.page_title'     => 'required',
-            $locale.'.html_content'   => 'required',
-            'channels'                => 'required',
+            $locale.'.page_title'   => 'required',
+            $locale.'.html_content' => 'required',
+            'channels'              => 'required',
         ]);
 
         Event::dispatch('cms.pages.update.before', $id);
@@ -92,7 +92,7 @@ class PageController extends CMSController
         Event::dispatch('cms.pages.update.after', $page);
 
         return response([
-            'data'    => new CMSResource($page),
+            'data'    => new PageResource($page),
             'message' => trans('rest-api::app.admin.cms.update-success'),
         ]);
     }

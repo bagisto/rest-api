@@ -134,7 +134,7 @@ class CustomerController extends BaseController
      */
     public function destroy(int $id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->findOrFail($id);
 
         if (! $this->getRepositoryInstance()->checkIfCustomerHasOrderPendingOrProcessing($customer)) {
             $this->getRepositoryInstance()->delete($id);
@@ -180,22 +180,36 @@ class CustomerController extends BaseController
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {
-        $customerIds = $massDestroyRequest->input('indices');
+        $customers = $this->getRepositoryInstance()->findWhereIn('id', $massDestroyRequest->input('indices'));
 
         try {
-            foreach ($customerIds as $customerId) {
-                Event::dispatch('customer.delete.before', $customerId);
-    
-                $this->getRepositoryInstance()->delete($customerId);
-    
-                Event::dispatch('customer.delete.after', $customerId);
+            /**
+             * Ensure that customers do not have any active orders before performing deletion.
+             */
+            foreach ($customers as $customer) {
+                if ($this->getRepositoryInstance()->haveActiveOrders($customer)) {
+                    throw new \Exception(trans('rest-api::app.admin.customers.customers.error.order-pending-account-delete'));
+                }
             }
-    
+
+            /**
+             * After ensuring that they have no active orders delete the corresponding customer.
+             */
+            foreach ($customers as $customer) {
+                Event::dispatch('customer.delete.before', $customer);
+
+                $this->getRepositoryInstance()->delete($customer->id);
+
+                Event::dispatch('customer.delete.after', $customer);
+            }
+
             return response([
                 'message' => trans('rest-api::app.admin.customers.customers.mass-operations.delete-success'),
             ]);
-        } catch (\Exception $e) {
-            return response(['message' => trans('rest-api::app.admin.customers.customers.error.order-pending-account-delete')], 400);
+        } catch (\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage(),
+            ], 500);
         }
     }
 
@@ -206,7 +220,7 @@ class CustomerController extends BaseController
      */
     public function orders(int $id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->findOrFail($id);
 
         return response([
             'data' => OrderResource::collection($customer->orders),
@@ -220,7 +234,7 @@ class CustomerController extends BaseController
      */
     public function invoices(int $id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->findOrFail($id);
 
         $orderIds = $customer->orders->pluck('id')->toArray();
 

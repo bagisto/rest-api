@@ -47,9 +47,10 @@ class ConfigurationController extends AdminController
      */
     public function store(ConfigurationForm $request)
     {
-        $this->coreConfigRepository->create($request->except(['_token', 'admin_locale']));
+        $coreConfigData = $this->coreConfigRepository->create($request->except(['_token', 'admin_locale']));
 
         return response([
+            'data'    => $coreConfigData,
             'message' => trans('rest-api::app.admin.configuration.update-success'),
         ]);
     }
