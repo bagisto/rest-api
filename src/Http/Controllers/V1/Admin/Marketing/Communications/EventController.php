@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\EventRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\EventResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Communications\EventResource;
 
 class EventController extends MarketingController
 {

@@ -29,7 +29,6 @@ class SubscriptionController extends MarketingController
      * To unsubscribe the user without deleting the resource of the subscribed
      *
      * @return \Illuminate\Http\Response
-     * 
      */
     public function update()
     {
@@ -65,7 +64,6 @@ class SubscriptionController extends MarketingController
      * Remove the specified resource from storage.
      *
      * @return \Illuminate\Http\Response
-     * 
      */
     public function destroy(int $id)
     {

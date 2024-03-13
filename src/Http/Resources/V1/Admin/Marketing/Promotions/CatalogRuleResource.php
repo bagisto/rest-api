@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Resources\V1\Admin\Marketing;
+namespace Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Promotions;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

@@ -9,6 +9,12 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleContro
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleCouponController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CatalogRuleController;
 
+/*
+|----------------------------------------------------------------
+| Routes According to Old formate need to improve it.
+|----------------------------------------------------------------
+*/
+
 Route::group([
     'middleware' => ['auth:sanctum', 'sanctum.admin'],
     'prefix'     => 'promotions',
@@ -104,6 +110,12 @@ Route::group([
     });
 });
 
+/*
+|-----------------------------------------------
+| Routes According to New formate 
+|-----------------------------------------------
+*/
+
 /**
  * Marketing routes.
  */
@@ -116,7 +128,7 @@ Route::group([
      */
     Route::prefix('communications')->group(function () {
         /**
-         * subscribers routes.
+         * Subscribers routes.
          */
         Route::controller(SubscriptionController::class)->prefix('subscribers')->group(function () {
             Route::get('', 'allResources');

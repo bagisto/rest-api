@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleCouponResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Promotions\CartRuleCouponResource;
 
 class CartRuleCouponController extends MarketingController
 {

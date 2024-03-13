@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\CartRule\Repositories\CartRuleRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CartRuleResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Promotions\CartRuleResource;
 
 class CartRuleController extends MarketingController
 {
