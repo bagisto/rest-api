@@ -11,20 +11,16 @@ class LocaleController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return LocaleRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return LocaleResource::class;
     }
@@ -61,10 +57,9 @@ class LocaleController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'code'      => ['required', 'unique:locales,code,'.$id, new Code],
@@ -91,10 +86,9 @@ class LocaleController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 

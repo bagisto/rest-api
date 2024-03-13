@@ -5,30 +5,26 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
-use Webkul\CMS\Repositories\CmsRepository;
+use Webkul\CMS\Repositories\PageRepository;
 use Webkul\Core\Rules\Slug;
-use Webkul\RestApi\Http\Resources\V1\Admin\CMS\CMSResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\CMS\PageResource;
 
 class PageController extends CMSController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
-        return CmsRepository::class;
+        return PageRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
-        return CMSResource::class;
+        return PageResource::class;
     }
 
     /**
@@ -60,7 +56,7 @@ class PageController extends CMSController
         Event::dispatch('cms.pages.create.after', $page);
 
         return response([
-            'data'    => new CMSResource($page),
+            'data'    => new PageResource($page),
             'message' => trans('rest-api::app.admin.cms.create-success'),
         ]);
     }
@@ -68,38 +64,35 @@ class PageController extends CMSController
     /**
      * To update the previously created page in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $locale = core()->getRequestedLocaleCode();
 
         $request->validate([
-            $locale.'.url_key'      => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
+            $locale.'.url_key'     => ['required', new Slug, function ($attribute, $value, $fail) use ($id) {
                 if (! $this->getRepositoryInstance()->isUrlKeyUnique($id, $value)) {
                     $fail(trans('rest-api::app.admin.cms.error.already-taken'));
                 }
             }],
-            $locale.'.page_title'     => 'required',
-            $locale.'.html_content'   => 'required',
-            'channels'                => 'required',
+            $locale.'.page_title'   => 'required',
+            $locale.'.html_content' => 'required',
+            'channels'              => 'required',
         ]);
 
         Event::dispatch('cms.pages.update.before', $id);
 
-        $data = [
+        $page = $this->getRepositoryInstance()->update([
             $locale    => request()->input($locale),
             'channels' => request()->input('channels'),
             'locale'   => $locale,
-        ];
-
-        $page = $this->getRepositoryInstance()->update($data, $id);
+        ], $id);
 
         Event::dispatch('cms.pages.update.after', $page);
 
         return response([
-            'data'    => new CMSResource($page),
+            'data'    => new PageResource($page),
             'message' => trans('rest-api::app.admin.cms.update-success'),
         ]);
     }

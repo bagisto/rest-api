@@ -12,20 +12,16 @@ class RoleController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return RoleRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return RoleResource::class;
     }
@@ -45,7 +41,14 @@ class RoleController extends SettingController
 
         Event::dispatch('user.role.create.before');
 
-        $role = $this->getRepositoryInstance()->create($request->all());
+        $data = $request->only([
+            'name',
+            'description',
+            'permission_type',
+            'permissions',
+        ]);
+
+        $role = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('user.role.create.after', $role);
 
@@ -58,10 +61,9 @@ class RoleController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdminRepository $adminRepository, $id)
+    public function update(Request $request, AdminRepository $adminRepository, int $id)
     {
         $request->validate([
             'name'            => 'required',
@@ -76,7 +78,10 @@ class RoleController extends SettingController
          */
         $isChangedFromAll = $params['permission_type'] == 'custom' && $this->getRepositoryInstance()->find($id)->permission_type == 'all';
 
-        if ($isChangedFromAll && $adminRepository->countAdminsWithAllAccess() === 1) {
+        if (
+            $isChangedFromAll
+            && $adminRepository->countAdminsWithAllAccess() === 1
+        ) {
             return response([
                 'message' => trans('rest-api::app.admin.settings.roles.error.being-used'),
             ], 400);
@@ -97,14 +102,13 @@ class RoleController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $role = $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($role->admins->count() >= 1) {
+        if ($role->admins->isNotEmpty()) {
             return response([
                 'message' => trans('rest-api::app.admin.settings.roles.error.being-used'),
             ], 400);

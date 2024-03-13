@@ -29,20 +29,16 @@ class CustomerController extends BaseController
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CustomerRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CustomerResource::class;
     }
@@ -138,7 +134,7 @@ class CustomerController extends BaseController
      */
     public function destroy(int $id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->findOrFail($id);
 
         if (! $this->getRepositoryInstance()->checkIfCustomerHasOrderPendingOrProcessing($customer)) {
             $this->getRepositoryInstance()->delete($id);
@@ -156,7 +152,6 @@ class CustomerController extends BaseController
     /**
      * To mass update the customer.
      *
-     * @param  \Webkul\Core\Http\Requests\MassUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function massUpdate(MassUpdateRequest $massUpdateRequest)
@@ -185,23 +180,37 @@ class CustomerController extends BaseController
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest)
     {
-        $customerIds = $massDestroyRequest->input('indices');
+        $customers = $this->getRepositoryInstance()->findWhereIn('id', $massDestroyRequest->input('indices'));
 
-        if (! $this->getRepositoryInstance()->checkBulkCustomerIfTheyHaveOrderPendingOrProcessing($customerIds)) {
-            foreach ($customerIds as $customerId) {
-                Event::dispatch('customer.delete.before', $customerId);
+        try {
+            /**
+             * Ensure that customers do not have any active orders before performing deletion.
+             */
+            foreach ($customers as $customer) {
+                if ($this->getRepositoryInstance()->haveActiveOrders($customer)) {
+                    throw new \Exception(trans('rest-api::app.admin.customers.customers.error.order-pending-account-delete'));
+                }
+            }
 
-                $this->getRepositoryInstance()->delete($customerId);
+            /**
+             * After ensuring that they have no active orders delete the corresponding customer.
+             */
+            foreach ($customers as $customer) {
+                Event::dispatch('customer.delete.before', $customer);
 
-                Event::dispatch('customer.delete.after', $customerId);
+                $this->getRepositoryInstance()->delete($customer->id);
+
+                Event::dispatch('customer.delete.after', $customer);
             }
 
             return response([
                 'message' => trans('rest-api::app.admin.customers.customers.mass-operations.delete-success'),
             ]);
+        } catch (\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage(),
+            ], 500);
         }
-
-        return response(['message' => trans('rest-api::app.admin.customers.customers.error.order-pending-account-delete')], 400);
     }
 
     /**
@@ -211,7 +220,7 @@ class CustomerController extends BaseController
      */
     public function orders(int $id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->findOrFail($id);
 
         return response([
             'data' => OrderResource::collection($customer->orders),
@@ -225,7 +234,7 @@ class CustomerController extends BaseController
      */
     public function invoices(int $id)
     {
-        $customer = $this->getRepositoryInstance()->findorFail($id);
+        $customer = $this->getRepositoryInstance()->findOrFail($id);
 
         $orderIds = $customer->orders->pluck('id')->toArray();
 

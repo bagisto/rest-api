@@ -11,20 +11,16 @@ class TemplateController extends MarketingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return TemplateRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return TemplateResource::class;
     }
@@ -36,7 +32,7 @@ class TemplateController extends MarketingController
      */
     public function store()
     {
-        $this->validate(request(), [
+        $validatedData = $this->validate(request(), [
             'name'    => 'required',
             'status'  => 'required|in:active,inactive,draft',
             'content' => 'required',
@@ -44,11 +40,7 @@ class TemplateController extends MarketingController
 
         Event::dispatch('marketing.templates.create.before');
 
-        $template = $this->getRepositoryInstance()->create(request()->only([
-            'name',
-            'status',
-            'content',
-        ]));
+        $template = $this->getRepositoryInstance()->create($validatedData);
 
         Event::dispatch('marketing.templates.create.after', $template);
 
@@ -65,7 +57,7 @@ class TemplateController extends MarketingController
      */
     public function update(int $id)
     {
-        $this->validate(request(), [
+        $validatedData = $this->validate(request(), [
             'name'    => 'required',
             'status'  => 'required|in:active,inactive,draft',
             'content' => 'required',
@@ -73,11 +65,7 @@ class TemplateController extends MarketingController
 
         Event::dispatch('marketing.templates.update.before', $id);
 
-        $template = $this->getRepositoryInstance()->update(request()->only([
-            'name',
-            'status',
-            'content',
-        ]), $id);
+        $template = $this->getRepositoryInstance()->update($validatedData, $id);
 
         Event::dispatch('marketing.templates.update.after', $template);
 

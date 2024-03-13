@@ -9,30 +9,24 @@ class CountryStateController extends CoreController
 {
     /**
      * Is resource authorized.
-     *
-     * @return bool
      */
-    public function isAuthorized()
+    public function isAuthorized(): bool
     {
         return false;
     }
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CountryStateRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CountryStateResource::class;
     }

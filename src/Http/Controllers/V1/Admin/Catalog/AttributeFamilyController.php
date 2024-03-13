@@ -11,20 +11,16 @@ class AttributeFamilyController extends CatalogController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return AttributeFamilyRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return AttributeFamilyResource::class;
     }
@@ -75,14 +71,12 @@ class AttributeFamilyController extends CatalogController
             'attribute_groups.*.column' => 'required|in:1,2',
         ]);
 
-        $data = request()->only([
-            'attribute_groups',
-            'name',
-        ]);
-
         Event::dispatch('catalog.attribute_family.update.before', $id);
 
-        $attributeFamily = $this->getRepositoryInstance()->update($data, $id);
+        $attributeFamily = $this->getRepositoryInstance()->update(request()->only([
+            'attribute_groups',
+            'name',
+        ]), $id);
 
         Event::dispatch('catalog.attribute_family.update.after', $attributeFamily);
 

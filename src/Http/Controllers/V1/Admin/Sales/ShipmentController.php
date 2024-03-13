@@ -24,20 +24,16 @@ class ShipmentController extends SalesController
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ShipmentRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ShipmentResource::class;
     }
@@ -45,10 +41,9 @@ class ShipmentController extends SalesController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $orderId)
+    public function store(Request $request, int $orderId)
     {
         $order = $this->orderRepository->findOrFail($orderId);
 

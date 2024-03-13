@@ -3,7 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
 use Webkul\RestApi\Http\Resources\V1\Shop\Core\ThemeResource;
-use Webkul\Shop\Repositories\ThemeCustomizationRepository;
+use Webkul\Theme\Repositories\ThemeCustomizationRepository;
 
 class ThemeController extends CoreController
 {
@@ -14,20 +14,16 @@ class ThemeController extends CoreController
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository():string
     {
         return ThemeCustomizationRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ThemeResource::class;
     }

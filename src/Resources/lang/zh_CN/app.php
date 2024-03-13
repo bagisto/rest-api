@@ -86,8 +86,8 @@ return [
                 'update-success' => '属性已成功更新。',
 
                 'error' => [
-                    'system-attributes-delete' => '无法删除系统属性。',
                     'cannot-change-type'       => '无法更改类型字段',
+                    'system-attributes-delete' => '无法删除系统属性。',
 
                     'mass-operations' => [
                         'resource-not-found' => '未找到所选属性。',
@@ -101,8 +101,8 @@ return [
                 'update-success' => '家族已成功更新。',
 
                 'error' => [
-                    'last-item-delete' => '至少需要一个家族。',
                     'being-used'       => '此资源家族正在 :source 中使用。',
+                    'last-item-delete' => '至少需要一个家族。',
                 ],
             ],
         ],
@@ -213,8 +213,8 @@ return [
                     'update-success' => '购物车规则优惠券已成功更新。',
 
                     'mass-operations' => [
-                        'delete-success' => '所选页面已成功删除。',
-                    ],
+                        'delete-success' => '购物车规则优惠券已成功删除'
+                    ]
                 ],
             ],
         ],
@@ -341,13 +341,13 @@ return [
             'accounts' => [
                 'create-success'     => '您的账户已成功创建。',
                 'delete-success'     => '您的账户已成功删除。',
-                'update-success'     => '您的账户已成功更新。',
                 'logged-in-success'  => '成功登录。',
                 'logged-out-success' => '成功登出。',
+                'update-success'     => '您的账户已成功更新。',
 
                 'error' => [
-                    'invalid'          => '电子邮件或密码无效。',
                     'credential-error' => '提供的凭据不正确。',
+                    'invalid'          => '电子邮件或密码无效。',
                 ],
             ],
         ],
@@ -377,8 +377,8 @@ return [
                 'coupon' => [
                     'apply-issue'    => '无法应用优惠券代码。',
                     'invalid'        => '优惠券代码无效。',
-                    'success'        => '优惠券代码已成功应用。',
                     'success-remove' => '优惠券已成功移除。',
+                    'success'        => '优惠券代码已成功应用。',
                 ],
 
                 'move-wishlist' => [
@@ -388,10 +388,10 @@ return [
         ],
 
         'wishlist' => [
-            'success'        => '商品已成功添加到愿望清单',
-            'removed'        => '商品已成功从愿望清单中移除',
             'moved'          => '商品已成功移至购物车。',
             'option-missing' => '由于缺少产品选项，因此无法将商品移至愿望清单。',
+            'removed'        => '商品已成功从愿望清单中移除',
+            'success'        => '商品已成功添加到愿望清单',
 
             'error' => [
                 'security-warning' => '发现可疑活动！',

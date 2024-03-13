@@ -86,8 +86,8 @@ return [
                 'update-success' => 'Attribut erfolgreich aktualisiert.',
 
                 'error' => [
-                    'system-attributes-delete' => 'Systemattribute können nicht gelöscht werden.',
                     'cannot-change-type'       => 'Feldtyp kann nicht geändert werden',
+                    'system-attributes-delete' => 'Systemattribute können nicht gelöscht werden.',
 
                     'mass-operations' => [
                         'resource-not-found' => 'Ausgewählte Attribute nicht gefunden.',
@@ -101,8 +101,8 @@ return [
                 'update-success' => 'Familie erfolgreich aktualisiert.',
 
                 'error' => [
-                    'last-item-delete' => 'Mindestens eine Familie ist erforderlich.',
                     'being-used'       => 'Diese Ressourcenfamilie wird in :source verwendet.',
+                    'last-item-delete' => 'Mindestens eine Familie ist erforderlich.',
                 ],
             ],
         ],
@@ -213,8 +213,8 @@ return [
                     'update-success' => 'Warenkorbregel-Coupon erfolgreich aktualisiert.',
 
                     'mass-operations' => [
-                        'resource-not-found' => 'Ausgewählte Seiten erfolgreich gelöscht.',
-                    ],
+                        'delete-success' => 'Warenkorbregel-Gutscheine erfolgreich gelöscht'
+                    ]
                 ],
             ],
         ],
@@ -341,13 +341,13 @@ return [
             'accounts' => [
                 'create-success'     => 'Ihr Konto wurde erfolgreich erstellt.',
                 'delete-success'     => 'Ihr Konto wurde erfolgreich gelöscht.',
-                'update-success'     => 'Ihr Konto wurde erfolgreich aktualisiert.',
                 'logged-in-success'  => 'Erfolgreich eingeloggt.',
                 'logged-out-success' => 'Erfolgreich ausgeloggt.',
+                'update-success'     => 'Ihr Konto wurde erfolgreich aktualisiert.',
 
                 'error' => [
-                    'invalid'          => 'Ungültige E-Mail oder Passwort',
                     'credential-error' => 'Die bereitgestellten Anmeldeinformationen sind inkorrekt.',
+                    'invalid'          => 'Ungültige E-Mail oder Passwort',
                 ],
             ],
         ],
@@ -377,8 +377,8 @@ return [
                 'coupon' => [
                     'apply-issue'    => 'Gutscheincode kann nicht angewendet werden.',
                     'invalid'        => 'Gutscheincode ist ungültig.',
-                    'success'        => 'Gutscheincode erfolgreich angewendet.',
                     'success-remove' => 'Gutschein erfolgreich entfernt.',
+                    'success'        => 'Gutscheincode erfolgreich angewendet.',
                 ],
 
                 'move-wishlist' => [
@@ -388,10 +388,10 @@ return [
         ],
 
         'wishlist' => [
-            'success'        => 'Artikel erfolgreich zur Wunschliste hinzugefügt',
-            'removed'        => 'Artikel erfolgreich aus der Wunschliste entfernt',
             'moved'          => 'Artikel erfolgreich in den Warenkorb verschoben.',
             'option-missing' => 'Produktoptionen fehlen, daher kann der Artikel nicht zur Wunschliste verschoben werden.',
+            'removed'        => 'Artikel erfolgreich aus der Wunschliste entfernt',
+            'success'        => 'Artikel erfolgreich zur Wunschliste hinzugefügt',
 
             'error' => [
                 'security-warning' => 'Verdächtige Aktivität festgestellt!',

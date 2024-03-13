@@ -12,20 +12,16 @@ class ReviewController extends BaseController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ProductReviewRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ProductReviewResource::class;
     }
@@ -33,11 +29,14 @@ class ReviewController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(int $id)
     {
+        $this->validate(request(), [
+            'status' => 'required|in:approved,disapproved,pending',
+        ]);
+        
         Event::dispatch('customer.review.update.before', $id);
 
         $review = $this->getRepositoryInstance()->update(request()->only(['status']), $id);
@@ -45,6 +44,7 @@ class ReviewController extends BaseController
         Event::dispatch('customer.review.update.after', $review);
 
         return response([
+            'data'    => new ProductReviewResource($review),
             'message' => trans('rest-api::app.admin.customers.reviews.update-success'),
         ]);
     }

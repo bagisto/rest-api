@@ -86,8 +86,8 @@ return [
                 'update-success' => '属性が正常に更新されました。',
 
                 'error' => [
-                    'system-attributes-delete' => 'システム属性を削除できません。',
                     'cannot-change-type'       => 'タイプフィールドを変更できません。',
+                    'system-attributes-delete' => 'システム属性を削除できません。',
 
                     'mass-operations' => [
                         'resource-not-found' => '選択した属性が見つかりません。',
@@ -101,8 +101,8 @@ return [
                 'update-success' => 'ファミリが正常に更新されました。',
 
                 'error' => [
-                    'last-item-delete' => '少なくとも1つのファミリが必要です。',
                     'being-used'       => 'このリソースファミリは :source で使用されています。',
+                    'last-item-delete' => '少なくとも1つのファミリが必要です。',
                 ],
             ],
         ],
@@ -213,8 +213,8 @@ return [
                     'update-success' => 'カートルールクーポンが正常に更新されました。',
 
                     'mass-operations' => [
-                        'delete-success' => '選択したページが正常に削除されました。',
-                    ],
+                        'delete-success' => 'カート ルール クーポンが正常に削除されました'
+                    ]
                 ],
             ],
         ],
@@ -341,9 +341,9 @@ return [
             'accounts' => [
                 'create-success'     => 'アカウントが正常に作成されました。',
                 'delete-success'     => 'アカウントが正常に削除されました。',
-                'update-success'     => 'アカウントが正常に更新されました。',
                 'logged-in-success'  => '正常にログインしました。',
                 'logged-out-success' => '正常にログアウトしました。',
+                'update-success'     => 'アカウントが正常に更新されました。',
 
                 'error' => [
                     'invalid'          => '無効なメールアドレスまたはパスワード',
@@ -377,8 +377,8 @@ return [
                 'coupon' => [
                     'apply-issue'    => 'クーポンコードは適用できません。',
                     'invalid'        => 'クーポンコードが無効です。',
-                    'success'        => 'クーポンコードが正常に適用されました。',
                     'success-remove' => 'クーポンが正常に削除されました。',
+                    'success'        => 'クーポンコードが正常に適用されました。',
                 ],
 
                 'move-wishlist' => [
@@ -388,10 +388,10 @@ return [
         ],
 
         'wishlist' => [
-            'success'        => '商品が正常にウィッシュリストに追加されました。',
-            'removed'        => '商品が正常にウィッシュリストから削除されました。',
             'moved'          => '商品が正常にカートに移動しました。',
             'option-missing' => '製品オプションが不足しているため、アイテムをウィッシュリストに移動できません。',
+            'removed'        => '商品が正常にウィッシュリストから削除されました。',
+            'success'        => '商品が正常にウィッシュリストに追加されました。',
 
             'error' => [
                 'security-warning' => '不審なアクティビティが検出されました！',

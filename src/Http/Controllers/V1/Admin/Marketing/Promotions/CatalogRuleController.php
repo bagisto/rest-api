@@ -23,20 +23,16 @@ class CatalogRuleController extends MarketingController
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CatalogRuleRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CatalogRuleResource::class;
     }
@@ -60,17 +56,7 @@ class CatalogRuleController extends MarketingController
 
         Event::dispatch('promotions.catalog_rule.create.before');
 
-        $data = $request->all();
-
-        /**
-         * These two keys needs to be removed in the next version compatibility.
-         *
-         * @deprecated
-         */
-        $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
-        $data['ends_till'] = ! empty($data['ends_till']) ? $data['ends_till'] : null;
-
-        $catalogRule = $this->getRepositoryInstance()->create($data);
+        $catalogRule = $this->getRepositoryInstance()->create($request->all());
 
         Event::dispatch('promotions.catalog_rule.create.after', $catalogRule);
 
@@ -85,10 +71,9 @@ class CatalogRuleController extends MarketingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'name'            => 'required',
@@ -104,17 +89,7 @@ class CatalogRuleController extends MarketingController
 
         Event::dispatch('promotions.catalog_rule.update.before', $id);
 
-        $data = $request->all();
-
-        /**
-         * These two keys needs to be removed in the next version compatibility.
-         *
-         * @deprecated
-         */
-        $data['starts_from'] = ! empty($data['starts_from']) ? $data['starts_from'] : null;
-        $data['ends_till'] = ! empty($data['ends_till']) ? $data['ends_till'] : null;
-
-        $catalogRule = $this->getRepositoryInstance()->update($data, $id);
+        $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('promotions.catalog_rule.update.after', $catalogRule);
 
@@ -129,10 +104,9 @@ class CatalogRuleController extends MarketingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
@@ -143,7 +117,7 @@ class CatalogRuleController extends MarketingController
         Event::dispatch('promotions.catalog_rule.delete.after', $id);
 
         return response([
-            'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rule.delete-success'),
+            'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rules.delete-success'),
         ]);
     }
 }

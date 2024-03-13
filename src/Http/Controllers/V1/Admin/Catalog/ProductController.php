@@ -18,20 +18,16 @@ class ProductController extends CatalogController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ProductRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ProductResource::class;
     }
@@ -126,7 +122,7 @@ class ProductController extends CatalogController
 
         Event::dispatch('catalog.product.update.before', $id);
 
-        $productInventoryRepository->saveInventories(request()->all(), $product);
+        $productInventoryRepository->saveInventories($inventoryRequest->all(), $product);
 
         Event::dispatch('catalog.product.update.after', $product);
 

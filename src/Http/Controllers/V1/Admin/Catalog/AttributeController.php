@@ -12,20 +12,16 @@ class AttributeController extends CatalogController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return AttributeRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return AttributeResource::class;
     }
@@ -159,7 +155,6 @@ class AttributeController extends CatalogController
     /**
      * Remove the specified resources from database.
      *
-     * @param  \Webkul\Core\Http\Requests\MassDestroyRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function massDestroy(MassDestroyRequest $request)

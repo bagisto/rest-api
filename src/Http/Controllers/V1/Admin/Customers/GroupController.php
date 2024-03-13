@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Rules\Code;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
@@ -12,20 +11,16 @@ class GroupController extends BaseController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CustomerGroupRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return CustomerGroupResource::class;
     }
@@ -35,9 +30,9 @@ class GroupController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
+        $this->validate(request(), [
             'code' => ['required', 'unique:customer_groups,code', new Code],
             'name' => 'required',
         ]);
@@ -62,12 +57,11 @@ class GroupController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(int $id)
     {
-        $request->validate([
+        $this->validate(request(), [
             'code' => ['required', 'unique:customer_groups,code,'.$id, new Code],
             'name' => 'required',
         ]);
@@ -92,10 +86,9 @@ class GroupController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $customerGroup = $this->getRepositoryInstance()->findOrFail($id);
 

@@ -38,10 +38,9 @@ class WishlistController extends CustomerController
     /**
      * Add or remote item from wishlist.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function addOrRemove(Request $request, $id)
+    public function addOrRemove(Request $request, int $id)
     {
         $customer = $this->resolveShopUser($request);
 
@@ -76,10 +75,9 @@ class WishlistController extends CustomerController
     /**
      * Move product from wishlist to cart.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function moveToCart(Request $request, $id)
+    public function moveToCart(Request $request, int $id)
     {
         $customer = $this->resolveShopUser($request);
 

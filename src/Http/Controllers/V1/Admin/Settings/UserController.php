@@ -12,20 +12,16 @@ class UserController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return AdminRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return UserResource::class;
     }
@@ -33,13 +29,22 @@ class UserController extends SettingController
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(UserForm $request)
     {
-        $data = $request->all();
-        if (isset($data['password']) && $data['password']) {
+        $data = $request->only([
+            'name',
+            'email',
+            'password',
+            'password_confirmation',
+            'role_id',
+            'status',
+        ]);
+
+        if ($data['password'] ?? null) {
             $data['password'] = bcrypt($data['password']);
+
             $data['api_token'] = Str::random(80);
         }
 
@@ -58,10 +63,9 @@ class UserController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserForm $request, $id)
+    public function update(UserForm $request, int $id)
     {
         $data = $this->prepareUserData($request, $id);
 
@@ -88,10 +92,9 @@ class UserController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
@@ -115,10 +118,9 @@ class UserController extends SettingController
     /**
      * Prepare user data.
      *
-     * @param  int  $id
      * @return array|\Illuminate\Http\RedirectResponse
      */
-    private function prepareUserData(UserForm $request, $id)
+    private function prepareUserData(UserForm $request, int $id)
     {
         $data = $request->validated();
 
@@ -133,14 +135,13 @@ class UserController extends SettingController
             $data['password'] = bcrypt($data['password']);
         }
 
-        /**
-         * Is user with `permission_type` all changed status.
-         */
-        $data['status'] = isset($data['status']) ? 1 : 0;
+        $data['status'] = $data['status'] ?? 0;
 
-        $isStatusChangedToInactive = (int) $data['status'] === 0 && (int) $user->status === 1;
-
-        if ($isStatusChangedToInactive && $this->getRepositoryInstance()->countAdminsWithAllAccessAndActiveStatus() === 1) {
+        if (
+            (int) $data['status'] === 0
+            && (int) $user->status === 1
+            && $this->getRepositoryInstance()->countAdminsWithAllAccessAndActiveStatus() === 1
+        ) {
             return $this->cannotChangeRedirectResponse('status');
         }
 
@@ -148,8 +149,8 @@ class UserController extends SettingController
          * Is user with `permission_type` all role changed.
          */
         $isRoleChanged = $user->role->permission_type === 'all'
-        && isset($data['role_id'])
-        && (int) $data['role_id'] !== $user->role_id;
+            && isset($data['role_id'])
+            && (int) $data['role_id'] !== $user->role_id;
 
         if ($isRoleChanged && $this->getRepositoryInstance()->countAdminsWithAllAccess() === 1) {
             return $this->cannotChangeRedirectResponse('role');

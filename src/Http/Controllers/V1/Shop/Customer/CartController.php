@@ -130,10 +130,9 @@ class CartController extends CustomerController
     /**
      * Remove item from the cart.
      *
-     * @param  int  $cartItemId
      * @return \Illuminate\Http\Response
      */
-    public function removeItem($cartItemId)
+    public function removeItem(int $cartItemId)
     {
         Event::dispatch('checkout.cart.item.delete.before', $cartItemId);
 
@@ -228,10 +227,9 @@ class CartController extends CustomerController
     /**
      * Move cart item to wishlist.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function moveToWishlist($cartItemId)
+    public function moveToWishlist(int $cartItemId)
     {
         Event::dispatch('checkout.cart.item.move-to-wishlist.before', $cartItemId);
 

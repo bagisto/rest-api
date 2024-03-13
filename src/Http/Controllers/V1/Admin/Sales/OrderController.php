@@ -12,20 +12,16 @@ class OrderController extends SalesController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return OrderRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return OrderResource::class;
     }
@@ -33,10 +29,9 @@ class OrderController extends SalesController
     /**
      * Cancel action for the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function cancel($id)
+    public function cancel(int $id)
     {
         $result = $this->getRepositoryInstance()->cancel($id);
 
@@ -52,13 +47,14 @@ class OrderController extends SalesController
      */
     public function comment(Request $request, OrderCommentRepository $orderCommentRepository, int $id)
     {
-        $request->validate([
-            'comment' => 'required',
+        $validatedData = $request->validate([
+            'comment'           => 'required',
+            'customer_notified' => 'sometimes|sometimes',
         ]);
 
-        $data = array_merge($request->all(), ['order_id' => $id]);
+        $data = array_merge($validatedData, ['order_id' => $id]);
 
-        $data['customer_notified'] = isset($data['customer_notified']) ? 1 : 0;
+        $data['customer_notified'] = $request->has('customer_notified') ? 1 : 0;
 
         Event::dispatch('sales.order.comment.create.before', $data);
 

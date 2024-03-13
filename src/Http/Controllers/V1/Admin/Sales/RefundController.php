@@ -11,20 +11,16 @@ class RefundController extends SalesController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return RefundRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return RefundResource::class;
     }
@@ -32,10 +28,9 @@ class RefundController extends SalesController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, OrderRepository $orderRepository, $orderId)
+    public function store(Request $request, OrderRepository $orderRepository, int $orderId)
     {
         $order = $orderRepository->findOrFail($orderId);
 

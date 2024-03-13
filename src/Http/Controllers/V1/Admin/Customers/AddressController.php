@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
-use Webkul\Core\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Core\Rules\AlphaNumericSpace;
 use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
@@ -26,18 +26,14 @@ class AddressController extends BaseController
 
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return CustomerAddressRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
     public function resource()
     {

@@ -12,20 +12,16 @@ class ChannelController extends SettingController
 {
     /**
      * Repository class name.
-     *
-     * @return string
      */
-    public function repository()
+    public function repository(): string
     {
         return ChannelRepository::class;
     }
 
     /**
      * Resource class name.
-     *
-     * @return string
      */
-    public function resource()
+    public function resource(): string
     {
         return ChannelResource::class;
     }
@@ -87,10 +83,9 @@ class ChannelController extends SettingController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $locale = core()->getRequestedLocaleCode();
 
@@ -127,6 +122,8 @@ class ChannelController extends SettingController
             'allowed_ips'                      => 'nullable',
         ]);
 
+        $data['is_maintenance_on'] = request()->input('is_maintenance_on') == '1';
+
         $data = $this->setSEOContent($data, $locale);
 
         Event::dispatch('core.channel.update.before', $id);
@@ -148,10 +145,9 @@ class ChannelController extends SettingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $channel = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -174,24 +170,20 @@ class ChannelController extends SettingController
 
     /**
      * Set the seo content and return back the updated array.
-     *
-     * @param  string  $locale
-     * @return array
      */
-    private function setSEOContent(array $data, $locale = null)
+    private function setSEOContent(array $data, string $locale = null): array
     {
-        $editedData = $data;
+        $editedData = $locale ? $data[$locale] : $data;
 
-        if ($locale) {
-            $editedData = $data[$locale];
-        }
+        $editedData['home_seo'] = [
+            'meta_title'       => $editedData['seo_title'],
+            'meta_description' => $editedData['seo_description'],
+            'meta_keywords'    => $editedData['seo_keywords'],
+        ];
 
-        $editedData['home_seo']['meta_title'] = $editedData['seo_title'];
-        $editedData['home_seo']['meta_description'] = $editedData['seo_description'];
-        $editedData['home_seo']['meta_keywords'] = $editedData['seo_keywords'];
         $editedData['home_seo'] = json_encode($editedData['home_seo']);
 
-        $editedData = $this->unsetKeys($editedData, ['seo_title', 'seo_description', 'seo_keywords']);
+        unset($editedData['seo_title'], $editedData['seo_description'], $editedData['seo_keywords']);
 
         if ($locale) {
             $data[$locale] = $editedData;
@@ -199,20 +191,5 @@ class ChannelController extends SettingController
         }
 
         return $editedData;
-    }
-
-    /**
-     * Unset keys.
-     *
-     * @param  array  $keys
-     * @return array
-     */
-    private function unsetKeys($data, $keys)
-    {
-        foreach ($keys as $key) {
-            unset($data[$key]);
-        }
-
-        return $data;
     }
 }
