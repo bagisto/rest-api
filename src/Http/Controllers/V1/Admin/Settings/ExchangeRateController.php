@@ -32,17 +32,14 @@ class ExchangeRateController extends SettingController
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency'],
             'rate'            => 'required|numeric',
         ]);
 
         Event::dispatch('core.exchange_rate.create.before');
 
-        $exchangeRate = $this->getRepositoryInstance()->create($request->only([
-            'target_currency',
-            'rate',
-        ]));
+        $exchangeRate = $this->getRepositoryInstance()->create($validatedData);
 
         Event::dispatch('core.exchange_rate.create.after', $exchangeRate);
 
@@ -59,17 +56,14 @@ class ExchangeRateController extends SettingController
      */
     public function update(Request $request, int $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,'.$id],
             'rate'            => 'required|numeric',
         ]);
 
         Event::dispatch('core.exchange_rate.update.before', $id);
 
-        $exchangeRate = $this->getRepositoryInstance()->update($request->only([
-            'target_currency',
-            'rate',
-        ]), $id);
+        $exchangeRate = $this->getRepositoryInstance()->update($validatedData, $id);
 
         Event::dispatch('core.exchange_rate.update.after', $exchangeRate);
 
@@ -82,12 +76,12 @@ class ExchangeRateController extends SettingController
     /**
      * Update rates using exchange rates API.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function updateRates()
     {
         try {
-            app(config('services.exchange-api.'.config('services.exchange-api.default').'.class'))->updateRates();
+            app(config('services.exchange_api.'.config('services.exchange_api.default').'.class'))->updateRates();
 
             return response([
                 'message' => trans('rest-api::app.admin.settings.tax-rates.update-success'),

@@ -53,7 +53,13 @@ class CartRuleCouponController extends MarketingController
             'code_format' => 'required',
         ]);
 
-        $this->getRepositoryInstance()->generateCoupons($request->all(), $cartRuleId);
+        $this->getRepositoryInstance()->generateCoupons($request->only(
+            'coupon_qty',
+            'code_length',
+            'code_format',
+            'code_prefix',
+            'code_suffix'
+        ), $cartRuleId);
 
         return response([
             'message' => trans('rest-api::app.admin.marketing.promotions.cart-rule-coupons.create-success'),
@@ -78,7 +84,7 @@ class CartRuleCouponController extends MarketingController
     }
 
     /**
-     * Show specific cart rule coupon.
+     * Delete specific cart rule coupon.
      *
      * @return \Illuminate\Http\Response
      */
@@ -101,9 +107,9 @@ class CartRuleCouponController extends MarketingController
      *
      * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $request, int $cartRuleId)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest, int $cartRuleId)
     {
-        foreach ($request->indices as $couponId) {
+        foreach ($massDestroyRequest->indices as $couponId) {
             $this->getRepositoryInstance()
                 ->where('cart_rule_id', $cartRuleId)
                 ->where('id', $couponId)

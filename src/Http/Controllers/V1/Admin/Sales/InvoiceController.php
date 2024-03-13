@@ -41,6 +41,7 @@ class InvoiceController extends SalesController
         }
 
         $request->validate([
+            'invoice.items'   => 'required|array',
             'invoice.items.*' => 'required|numeric|min:0',
         ]);
 

@@ -32,7 +32,7 @@ class EventController extends MarketingController
      */
     public function store()
     {
-        $this->validate(request(), [
+        $validatedData = $this->validate(request(), [
             'name'        => 'required',
             'description' => 'required',
             'date'        => 'date|required',
@@ -40,11 +40,7 @@ class EventController extends MarketingController
 
         Event::dispatch('marketing.events.create.before');
 
-        $event = $this->getRepositoryInstance()->create(request()->only([
-            'name',
-            'description',
-            'date',
-        ]));
+        $event = $this->getRepositoryInstance()->create($validatedData);
 
         Event::dispatch('marketing.events.create.after', $event);
 
@@ -61,7 +57,7 @@ class EventController extends MarketingController
      */
     public function update(int $id)
     {
-        $this->validate(request(), [
+        $validatedData = $this->validate(request(), [
             'name'        => 'required',
             'description' => 'required',
             'date'        => 'date|required',
@@ -69,11 +65,7 @@ class EventController extends MarketingController
 
         Event::dispatch('marketing.events.update.before', $id);
 
-        $event = $this->getRepositoryInstance()->update(request()->only([
-            'name',
-            'description',
-            'date',
-        ]), $id);
+        $event = $this->getRepositoryInstance()->update($validatedData, $id);
 
         Event::dispatch('marketing.events.update.after', $event);
 

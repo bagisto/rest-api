@@ -41,7 +41,7 @@ class TransactionController extends SalesController
     }
 
     /**
-     * Save the tranaction.
+     * Save the transaction.
      *
      * @return \Illuminate\Http\Response
      */
@@ -69,9 +69,9 @@ class TransactionController extends SalesController
 
         $transactionTotal = $this->getRepositoryInstance()->where('invoice_id', $invoice->id)->sum('amount');
 
-        $transactionAmtfinal = $request->amount + $transactionTotal;
+        $transactionAmtFinal = $request->amount + $transactionTotal;
 
-        if ($transactionAmtfinal > $invoice->base_grand_total) {
+        if ($transactionAmtFinal > $invoice->base_grand_total) {
             return response([
                 'message' => trans('rest-api::app.admin.sales.transactions.transaction-amount-exceeds'),
             ], 400);
