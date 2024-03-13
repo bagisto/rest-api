@@ -4,23 +4,11 @@
 
 ### 1. Requirements:
 
-* **Bagisto**: v2.0.0
+* **Bagisto**: v2.1.2
 
 ### 2. Installation:
 
 ##### To install Bagisto REST API from your console:
-
-#### For Bagisto v2.0:
-
-~~~
-composer require bagisto/rest-api:2.0.0
-~~~
-
-#### For Bagisto v1.4.5:
-
-~~~
-composer require bagisto/rest-api:1.4.5
-~~~
 
 #### For the master version:
 ~~~
@@ -51,49 +39,4 @@ http://localhost/public/api/admin/documentation
 
 ~~~
 http://localhost/public/api/shop/documentation
-~~~
-
-* You can check the <a href="https://github.com/DarkaOnLine/L5-Swagger"> L5-Swagger </a> guidelines too regarding the configuration the API documentation.
-
-#####  For admin login
-
-* To add Laravel Sanctum's API token to the Admin model follow the given path.
-
-~~~
-packages/Webkul/User/src/Models/Admin.php
-~~~
-
-~~~php
-<?php
-namespace Webkul\User\Models;
-
-use Laravel\Sanctum\HasApiTokens;
-
-class Admin extends Authenticatable implements AdminContract
-{
-    use HasApiTokens;
-    ...
-}
-~~~
-
-#####  For customer login
-
-* To add Laravel Sanctum's API token to the customer model follow the given path.
-
-~~~
-packages/Webkul/Customer/src/Models/Customer.php
-~~~
-
-For master
-~~~php
-<?php
-namespace Webkul\Customer\Models;
-
-use Laravel\Sanctum\HasApiTokens;
-
-class Customer extends Authenticatable implements CustomerContract
-{
-    use HasApiTokens;
-    ...
-}
 ~~~
