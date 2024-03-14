@@ -1,21 +1,21 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Customer;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing\Communications;
 
-class GroupController
+class SubscriptionController
 {
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/customers/groups",
-     *      operationId="getCustomerGroups",
-     *      tags={"CustomerGroups"},
-     *      summary="Get admin customer group list",
-     *      description="Returns customer group list, if you want to retrieve all customer groups at once pass pagination=0 otherwise ignore this parameter",
+     *      path="/api/v1/admin/marketing/communications/subscribers",
+     *      operationId="getSubscribers",
+     *      tags={"Subscription"},
+     *      summary="Get admin Subscribers list",
+     *      description="Returns Subscribers list, if you want to retrieve all Subscribers at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group Id",
+     *          description="Subscribers Id",
      *          required=false,
      *          in="query",
      *
@@ -79,7 +79,7 @@ class GroupController
      *                  property="data",
      *                  type="array",
      *
-     *                  @OA\Items(ref="#/components/schemas/Group")
+     *                  @OA\Items(ref="#/components/schemas/Subscription")
      *              ),
      *
      *              @OA\Property(
@@ -96,16 +96,16 @@ class GroupController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/customers/groups/{id}",
-     *      operationId="getCustomerGroup",
-     *      tags={"CustomerGroups"},
-     *      summary="Get admin customer group detail",
-     *      description="Returns customer group detail",
+     *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
+     *      operationId="getSubscriber",
+     *      tags={"Subscription"},
+     *      summary="Get admin Subscriber detail",
+     *      description="Returns getSubscriber detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group ID",
+     *          description="Subscriber ID",
      *          required=true,
      *          in="path",
      *
@@ -123,7 +123,7 @@ class GroupController
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Group"
+     *                  ref="#/components/schemas/Subscription"
      *              )
      *          )
      *      )
@@ -133,72 +133,18 @@ class GroupController
     {
     }
 
-    /**
-     * @OA\Post(
-     *      path="/api/v1/admin/customers/groups",
-     *      operationId="storeCustomerGroup",
-     *      tags={"CustomerGroups"},
-     *      summary="Store the customer group",
-     *      description="Store the customer group",
-     *      security={ {"sanctum_admin": {} }},
-     *
-     *      @OA\RequestBody(
-     *
-     *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
-     *
-     *              @OA\Schema(
-     *
-     *                  @OA\Property(
-     *                      property="code",
-     *                      type="string",
-     *                      description="Customer group's code `Unique`, `No-whitespace`, `No-underscore`",
-     *                      example="vip"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="name",
-     *                      type="string",
-     *                      description="Customer group's name",
-     *                      example="VIP Group"
-     *                  ),
-     *                  required={"code", "name"}
-     *              )
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="message", type="string", example="Customer group created successfully."),
-     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Group")
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      )
-     * )
-     */
-    public function store()
-    {
-    }
-
-    /**
+        /**
      * @OA\Put(
-     *      path="/api/v1/admin/customers/groups/{id}",
-     *      operationId="updateCustomerGroup",
-     *      tags={"CustomerGroups"},
-     *      summary="Update customer group",
-     *      description="Update customer group",
+     *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
+     *      operationId="updateSubscriber",
+     *      tags={"Subscription"},
+     *      summary="Update Subscriber",
+     *      description="Update Subscriber",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group ID",
+     *          description="Subscription ID",
      *          required=true,
      *          in="path",
      *
@@ -215,18 +161,19 @@ class GroupController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="code",
-     *                      type="string",
-     *                      description="Customer group's code `Unique`, `No-whitespace`, `No-underscore`",
-     *                      example="vip"
+     *                      property="id",
+     *                      type="integer",
+     *                      description="ID",
+     *                      example=1
      *                  ),
      *                  @OA\Property(
-     *                      property="name",
-     *                      type="string",
-     *                      description="Customer group's name",
-     *                      example="VIP Group"
+     *                      property="is_subscribed",
+     *                      description="isSubscribed",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0,1}
      *                  ),
-     *                  required={"code", "name"}
+     *                  required={"email", "isSubscribed"}
      *              )
      *          )
      *      ),
@@ -240,11 +187,11 @@ class GroupController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Customer group updated successfully."),
+     *                  example="Subscription updated successfully."),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Group"
+     *                  ref="#/components/schemas/Subscription"
      *              )
      *          )
      *      ),
@@ -261,16 +208,16 @@ class GroupController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/admin/customers/groups/{id}",
-     *      operationId="deleteCustomerGroup",
-     *      tags={"CustomerGroups"},
-     *      summary="Delete customer group by id",
-     *      description="Delete customer group by id",
+     *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
+     *      operationId="deleteSubscriber",
+     *      tags={"Subscription"},
+     *      summary="Delete Subscribers by id",
+     *      description="Delete Subscribers by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group ID",
+     *          description="Subscription ID",
      *          required=true,
      *          in="path",
      *
@@ -288,7 +235,7 @@ class GroupController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Customer group deleted successfully."),
+     *                  example="Event deleted successfully."),
      *              )
      *          )
      *      )

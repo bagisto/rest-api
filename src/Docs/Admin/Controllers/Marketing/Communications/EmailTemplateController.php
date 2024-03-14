@@ -1,21 +1,21 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing\Communications;
 
-class CampaignController
+class EmailTemplateController
 {
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/promotions/campaigns",
-     *      operationId="getCampaigns",
-     *      tags={"Campaigns"},
-     *      summary="Get admin campaign list",
-     *      description="Returns campaign list, if you want to retrieve all campaigns at once pass pagination=0 otherwise ignore this parameter",
+     *      path="/api/v1/admin/promotions/email-templates",
+     *      operationId="getEmailTemplates",
+     *      tags={"EmailTemplates"},
+     *      summary="Get admin email template list",
+     *      description="Returns email template list, if you want to retrieve all email templates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Campaign Id",
+     *          description="Email Template Id",
      *          required=false,
      *          in="query",
      *
@@ -79,7 +79,7 @@ class CampaignController
      *                  property="data",
      *                  type="array",
      *
-     *                  @OA\Items(ref="#/components/schemas/Campaign")
+     *                  @OA\Items(ref="#/components/schemas/EmailTemplate")
      *              ),
      *
      *              @OA\Property(
@@ -96,16 +96,16 @@ class CampaignController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/promotions/campaigns/{id}",
-     *      operationId="getCampaign",
-     *      tags={"Campaigns"},
-     *      summary="Get admin campaign detail",
-     *      description="Returns campaign detail",
+     *      path="/api/v1/admin/promotions/email-templates/{id}",
+     *      operationId="getEmailTemplate",
+     *      tags={"EmailTemplates"},
+     *      summary="Get admin email template detail",
+     *      description="Returns email template detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Campaign ID",
+     *          description="Email Template ID",
      *          required=true,
      *          in="path",
      *
@@ -123,7 +123,7 @@ class CampaignController
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Campaign"
+     *                  ref="#/components/schemas/EmailTemplate"
      *              )
      *          )
      *      )
@@ -135,64 +135,40 @@ class CampaignController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/promotions/campaigns",
-     *      operationId="storeCampaign",
-     *      tags={"Campaigns"},
-     *      summary="Store the campaign",
-     *      description="Store the campaign",
+     *      path="/api/v1/admin/promotions/email-templates",
+     *      operationId="storeEmailTemplate",
+     *      tags={"EmailTemplates"},
+     *      summary="Store the email template",
+     *      description="Store the email template",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
+     *              mediaType="application/json",
      *
      *              @OA\Schema(
      *
      *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      description="Campaign's name",
-     *                      example="Birthday Offer"
+     *                      description="Email template name",
+     *                      example="Festival Offer"
      *                  ),
      *                  @OA\Property(
-     *                      property="subject",
+     *                      property="content",
      *                      type="string",
-     *                      description="Campaign's subject",
-     *                      example="Birthday Offer"
+     *                      description="Email template content",
+     *                      example="What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
      *                  ),
      *                  @OA\Property(
      *                      property="status",
-     *                      description="Campaign's status",
-     *                      type="integer",
-     *                      example=1,
-     *                      enum={0,1}
+     *                      type="string",
+     *                      description="Email template status",
+     *                      example="inactive",
+     *                      enum={"active", "inactive", "draft"}
      *                  ),
-     *                  @OA\Property(
-     *                      property="marketing_template_id",
-     *                      description="Email Template ID",
-     *                      type="integer",
-     *                      example=1
-     *                  ),
-     *                  @OA\Property(
-     *                      property="marketing_event_id",
-     *                      description="Event ID",
-     *                      type="integer",
-     *                      example=1
-     *                  ),
-     *                  @OA\Property(
-     *                      property="channel_id",
-     *                      description="Channel ID",
-     *                      type="integer",
-     *                      example=1
-     *                  ),
-     *                  @OA\Property(
-     *                      property="customer_group_id",
-     *                      description="Customer Group ID",
-     *                      type="integer",
-     *                      example=1
-     *                  ),
-     *                  required={"name", "subject", "status", "marketing_template_id", "marketing_event_id", "channel_id", "customer_group_id"}
+     *                  required={"name", "content"}
      *              )
      *          )
      *      ),
@@ -203,8 +179,8 @@ class CampaignController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Property(property="message", type="string", example="Campaign created successfully."),
-     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Campaign")
+     *              @OA\Property(property="message", type="string", example="Email template created successfully."),
+     *              @OA\Property(property="data", type="object", ref="#/components/schemas/EmailTemplate")
      *          )
      *      ),
      *
@@ -220,16 +196,16 @@ class CampaignController
 
     /**
      * @OA\Put(
-     *      path="/api/v1/admin/promotions/campaigns/{id}",
-     *      operationId="updateCampaign",
-     *      tags={"Campaigns"},
-     *      summary="Update campaign",
-     *      description="Update campaign",
+     *      path="/api/v1/admin/promotions/email-templates/{id}",
+     *      operationId="updateEmailTemplate",
+     *      tags={"EmailTemplates"},
+     *      summary="Update email template",
+     *      description="Update email template",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Campaign ID",
+     *          description="Email Template ID",
      *          required=true,
      *          in="path",
      *
@@ -248,47 +224,23 @@ class CampaignController
      *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      description="Campaign's name",
-     *                      example="Birthday Offer"
+     *                      description="Email template name",
+     *                      example="Festival Offer"
      *                  ),
      *                  @OA\Property(
-     *                      property="subject",
+     *                      property="content",
      *                      type="string",
-     *                      description="Campaign's subject",
-     *                      example="Birthday Offer"
+     *                      description="Email template content",
+     *                      example="What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
      *                  ),
      *                  @OA\Property(
      *                      property="status",
-     *                      description="Campaign's status",
-     *                      type="integer",
-     *                      example=1,
-     *                      enum={0,1}
+     *                      type="string",
+     *                      description="Email template status",
+     *                      example="inactive",
+     *                      enum={"active", "inactive", "draft"}
      *                  ),
-     *                  @OA\Property(
-     *                      property="marketing_template_id",
-     *                      description="Email Template ID",
-     *                      type="integer",
-     *                      example=1
-     *                  ),
-     *                  @OA\Property(
-     *                      property="marketing_event_id",
-     *                      description="Event ID",
-     *                      type="integer",
-     *                      example=1
-     *                  ),
-     *                  @OA\Property(
-     *                      property="channel_id",
-     *                      description="Channel ID",
-     *                      type="integer",
-     *                      example=1
-     *                  ),
-     *                  @OA\Property(
-     *                      property="customer_group_id",
-     *                      description="Customer Group ID",
-     *                      type="integer",
-     *                      example=1
-     *                  ),
-     *                  required={"name", "subject", "status", "marketing_template_id", "marketing_event_id", "channel_id", "customer_group_id"}
+     *                  required={"name", "content"}
      *              )
      *          )
      *      ),
@@ -302,11 +254,11 @@ class CampaignController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Campaign updated successfully."),
+     *                  example="Email template updated successfully."),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Campaign"
+     *                  ref="#/components/schemas/EmailTemplate"
      *              )
      *          )
      *      ),
@@ -323,16 +275,16 @@ class CampaignController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/admin/promotions/campaigns/{id}",
-     *      operationId="deleteCampaign",
-     *      tags={"Campaigns"},
-     *      summary="Delete campaign by id",
-     *      description="Delete campaign by id",
+     *      path="/api/v1/admin/promotions/email-templates/{id}",
+     *      operationId="deleteEmailTemplate",
+     *      tags={"EmailTemplates"},
+     *      summary="Delete email template by id",
+     *      description="Delete email template by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Campaign ID",
+     *          description="Email Template ID",
      *          required=true,
      *          in="path",
      *
@@ -350,7 +302,7 @@ class CampaignController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Campaign deleted successfully."),
+     *                  example="Email template deleted successfully."),
      *              )
      *          )
      *      )
