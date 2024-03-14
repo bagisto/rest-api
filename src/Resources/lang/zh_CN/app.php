@@ -192,6 +192,12 @@ return [
                     'delete-success' => '电子邮件模板已成功删除',
                     'update-success' => '电子邮件模板已成功更新。',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => '邮件订阅成功删除',
+                    'update-failed'  => '邮件订阅更新失败',
+                    'update-success' => '邮件订阅成功更新',
+                ],
             ],
 
             'promotions' => [

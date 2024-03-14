@@ -193,6 +193,12 @@ return [
                     'delete-success' => 'Email Template successfully deleted',
                     'update-success' => 'Email Template updated successfully.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Newsletter Subscription deleted Successfully',
+                    'update-failed'  => 'Newsletter Subscription Updated Failed',
+                    'update-success' => 'Newsletter Subscription Updated Successfully.',
+                ],
             ],
 
             'promotions' => [

@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'Modèle d\'e-mail supprimé avec succès',
                     'update-success' => 'Modèle d\'e-mail mis à jour avec succès.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Abonnement à la newsletter supprimé avec succès',
+                    'update-failed'  => 'Échec de la mise à jour de l\'abonnement à la newsletter',
+                    'update-success' => 'Abonnement à la newsletter mis à jour avec succès',
+                ],
             ],
 
             'promotions' => [

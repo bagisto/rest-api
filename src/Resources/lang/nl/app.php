@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'E-mailsjabloon succesvol verwijderd.',
                     'update-success' => 'E-mailsjabloon succesvol bijgewerkt.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Nieuwsbriefabonnement succesvol verwijderd',
+                    'update-failed'  => 'Bijwerken van nieuwsbriefabonnement mislukt',
+                    'update-success' => 'Nieuwsbriefabonnement succesvol bijgewerkt',
+                ],
             ],
 
             'promotions' => [

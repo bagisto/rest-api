@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'Plantilla de correo electrónico eliminada correctamente',
                     'update-success' => 'Plantilla de correo electrónico actualizada con éxito.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Suscripción a la newsletter eliminada correctamente',
+                    'update-failed'  => 'Error al actualizar la suscripción a la newsletter',
+                    'update-success' => 'Suscripción a la newsletter actualizada correctamente',
+                ],
             ],
 
             'promotions' => [

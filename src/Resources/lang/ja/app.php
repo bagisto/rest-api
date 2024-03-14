@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'メールテンプレートが正常に削除されました。',
                     'update-success' => 'メールテンプレートが正常に更新されました。',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'ニュースレターサブスクリプションが正常に削除されました',
+                    'update-failed'  => 'ニュースレターサブスクリプションの更新に失敗しました',
+                    'update-success' => 'ニュースレターサブスクリプションが正常に更新されました',
+                ],
             ],
 
             'promotions' => [

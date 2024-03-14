@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'Modelo de email excluído com sucesso.',
                     'update-success' => 'Modelo de email atualizado com sucesso.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Assinatura da newsletter excluída com sucesso',
+                    'update-failed'  => 'Falha ao atualizar assinatura da newsletter',
+                    'update-success' => 'Assinatura da newsletter atualizada com sucesso',
+                ],
             ],
 
             'promotions' => [

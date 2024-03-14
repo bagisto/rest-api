@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'Szablon e-mail pomyślnie usunięty.',
                     'update-success' => 'Szablon e-mail został pomyślnie zaktualizowany.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Usunięto subskrypcję newslettera pomyślnie',
+                    'update-failed'  => 'Aktualizacja subskrypcji newslettera nie powiodła się',
+                    'update-success' => 'Aktualizacja subskrypcji newslettera pomyślnie wykonana',
+                ],
             ],
 
             'promotions' => [

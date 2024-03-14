@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'E-posta Şablonu başarıyla silindi.',
                     'update-success' => 'E-posta Şablonu başarıyla güncellendi.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Bülten Aboneliği Başarıyla Silindi',
+                    'update-failed'  => 'Bülten Aboneliği Güncelleme Başarısız',
+                    'update-success' => 'Bülten Aboneliği Başarıyla Güncellendi',
+                ],
             ],
 
             'promotions' => [

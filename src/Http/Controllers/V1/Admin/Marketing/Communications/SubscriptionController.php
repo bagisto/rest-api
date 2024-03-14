@@ -51,12 +51,12 @@ class SubscriptionController extends MarketingController
 
         if (! $result) {
             return response([
-                'message' => trans('Newsletter Subscription Updated Failed'),
+                'message' => trans('rest-api::app.admin.marketing.communications.subscribers.update-failed'),
             ], 500);
         }
 
         return response([
-            'message' => trans('Newsletter Subscription Updated Successfully'),
+            'message' => trans('rest-api::app.admin.marketing.communications.subscribers.update-success'),
         ], 200);
     }
 
@@ -76,7 +76,7 @@ class SubscriptionController extends MarketingController
         Event::dispatch('marketing.subscriber.delete.after', $id);
 
         return response([
-            'message' => trans('Newsletter Subscription deleted Successfully'),
+            'message' => trans('rest-api::app.admin.marketing.communications.subscribers.delete-success'),
         ]);
     }
 }

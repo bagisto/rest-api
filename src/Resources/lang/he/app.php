@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'תבנית האימייל נמחקה בהצלחה',
                     'update-success' => 'תבנית האימייל עודכנה בהצלחה.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'הרשמה לניוזלטר נמחקה בהצלחה',
+                    'update-failed'  => 'עדכון הרשמה לניוזלטר נכשל',
+                    'update-success' => 'הרשמה לניוזלטר עודכנה בהצלחה',
+                ],
             ],
 
             'promotions' => [
