@@ -170,12 +170,26 @@ class AddressController
      *                      example="Doe"
      *                  ),
      *                  @OA\Property(
-     *                      property="address1",
+     *                      property="address",
+     *                      description="Street Address",
      *                      type="array",
+     *                      example={
+     *                          "5230, N Lincoln Ave"
+     *                      },
      *
-     *                      @OA\Items(type="string")
+     *                      @OA\Items(
+     *
+     *                          @OA\Property(
+     *                              property="address",
+     *                              type="array",
+     *
+     *                              @OA\Items(
+     *
+     *                                  @OA\Property(type="string")
+     *                              )
+     *                          )
+     *                      )
      *                  ),
-     *
      *                  @OA\Property(
      *                      property="country",
      *                      type="string",
@@ -204,11 +218,16 @@ class AddressController
      *                      example="9876543210"
      *                  ),
      *                  @OA\Property(
+     *                      property="email",
+     *                      type="string",
+     *                      example="admin@example.com"
+     *                  ),
+     *                  @OA\Property(
      *                      property="vat_id",
      *                      type="string",
      *                      example="INV01234567891"
      *                  ),
-     *                  required={"first_name", "last_name", "address1", "country", "state", "city", "postcode", "phone"}
+     *                  required={"first_name", "last_name", "address", "country", "state", "city", "postcode", "phone", "email"}
      *              )
      *          )
      *      ),
@@ -289,12 +308,26 @@ class AddressController
      *                      example="Doe"
      *                  ),
      *                  @OA\Property(
-     *                      property="address1",
+     *                      property="address",
+     *                      description="Street Address",
      *                      type="array",
+     *                      example={
+     *                          "5230, N Lincoln Ave"
+     *                      },
      *
-     *                      @OA\Items(type="string")
+     *                      @OA\Items(
+     *
+     *                          @OA\Property(
+     *                              property="address",
+     *                              type="array",
+     *
+     *                              @OA\Items(
+     *
+     *                                  @OA\Property(type="string")
+     *                              )
+     *                          )
+     *                      )
      *                  ),
-     *
      *                  @OA\Property(
      *                      property="country",
      *                      type="string",
@@ -323,11 +356,16 @@ class AddressController
      *                      example="9876543210"
      *                  ),
      *                  @OA\Property(
+     *                      property="email",
+     *                      type="string",
+     *                      example="admin@example.com"
+     *                  ),
+     *                  @OA\Property(
      *                      property="vat_id",
      *                      type="string",
      *                      example="INV01234567891"
      *                  ),
-     *                  required={"first_name", "last_name", "address1", "country", "state", "city", "postcode", "phone"}
+     *                  required={"first_name", "last_name", "address1", "country", "state", "city", "postcode", "phone", "email"}
      *              )
      *          )
      *      ),

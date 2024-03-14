@@ -207,7 +207,7 @@ class AddressController
      *                      example="Doe"
      *                  ),
      *                  @OA\Property(
-     *                      property="address1",
+     *                      property="address",
      *                      description="Street Address",
      *                      type="array",
      *                      example={
@@ -217,7 +217,7 @@ class AddressController
      *                      @OA\Items(
      *
      *                          @OA\Property(
-     *                              property="address1",
+     *                              property="address",
      *                              type="array",
      *
      *                              @OA\Items(
@@ -252,6 +252,12 @@ class AddressController
      *                      example=60625
      *                  ),
      *                  @OA\Property(
+     *                      property="email",
+     *                      description="Address's email",
+     *                      type="string",
+     *                      example="admin@example.com"
+     *                  ),
+     *                  @OA\Property(
      *                      property="phone",
      *                      description="Phone Number",
      *                      type="string",
@@ -264,7 +270,7 @@ class AddressController
      *                      example=1,
      *                      enum={0, 1}
      *                  ),
-     *                  required={"first_name", "last_name", "address1", "country", "state", "city", "postcode", "phone"}
+     *                  required={"first_name", "last_name", "address", "country", "state", "city", "postcode", "phone", "email"}
      *              )
      *          )
      *      ),
@@ -353,7 +359,7 @@ class AddressController
      *                      example="Doe"
      *                  ),
      *                  @OA\Property(
-     *                      property="address1",
+     *                      property="address",
      *                      description="Street Address",
      *                      type="array",
      *                      example={
@@ -363,7 +369,7 @@ class AddressController
      *                      @OA\Items(
      *
      *                          @OA\Property(
-     *                              property="address1",
+     *                              property="address",
      *                              type="array",
      *
      *                              @OA\Items(
@@ -376,7 +382,7 @@ class AddressController
      *                  @OA\Property(
      *                      property="country",
      *                      type="string",
-     *                      description="Address's ountry code `United State` i.e. `US`",
+     *                      description="Address's country code `United State` i.e. `US`",
      *                      example="US"
      *                  ),
      *                  @OA\Property(
@@ -398,6 +404,12 @@ class AddressController
      *                      example=60625
      *                  ),
      *                  @OA\Property(
+     *                      property="email",
+     *                      description="Address's email",
+     *                      type="string",
+     *                      example="admin@example.com"
+     *                  ),
+     *                  @OA\Property(
      *                      property="phone",
      *                      description="Phone Number",
      *                      type="string",
@@ -410,7 +422,7 @@ class AddressController
      *                      example=null,
      *                      enum={1}
      *                  ),
-     *                  required={"first_name", "last_name", "address1", "country", "state", "city", "postcode", "phone"}
+     *                  required={"first_name", "last_name", "address", "country", "state", "city", "postcode", "phone", "email"}
      *              )
      *          )
      *      ),
@@ -465,7 +477,7 @@ class AddressController
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group ID",
+     *          description="Customer Address ID",
      *          required=true,
      *          in="path",
      *
