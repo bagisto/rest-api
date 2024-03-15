@@ -133,7 +133,7 @@ class SitemapController
     {
     }
 
-         /**
+    /**
      * @OA\Post(
      *      path="/api/v1/admin/marketing/search-seo/sitemaps",
      *      operationId="storeSitemaps",

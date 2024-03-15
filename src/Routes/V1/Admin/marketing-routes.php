@@ -1,15 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\CampaignController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\EventController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\TemplateController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\SubscriptionController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleCouponController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CatalogRuleController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SearchSynonymController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SitemapController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\EventController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\URLRewriteController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CatalogRuleController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\CampaignController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\TemplateController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SearchSynonymController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleCouponController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\SubscriptionController;
 
 /*
 |----------------------------------------------------------------
@@ -168,6 +169,23 @@ Route::group([
          * Sitemaps Routes.
          */
         Route::controller(SitemapController::class)->prefix('sitemaps')->group(function () {
+            Route::get('', 'allResources');
+
+            Route::post('', 'store');
+
+            Route::get('{id}', 'getResource');
+
+            Route::put('{id}', 'update');
+
+            Route::delete('{id}', 'destroy');
+
+            Route::post('mass-destroy', 'massDestroy');
+        });
+
+        /**
+         * URL Rewrites Routes.
+         */
+        Route::controller(URLRewriteController::class)->prefix('url-rewrites')->group(function () {
             Route::get('', 'allResources');
 
             Route::post('', 'store');

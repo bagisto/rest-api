@@ -155,6 +155,10 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Sitemaps"
  * )
  * @OA\Tag(
+ *     name="URLRewrite",
+ *     description="API Endpoints of Admin URLRewrite"
+ * )
+ * @OA\Tag(
  *     name="Themes",
  *     description="API Endpoints of Themes customization"
  * )
