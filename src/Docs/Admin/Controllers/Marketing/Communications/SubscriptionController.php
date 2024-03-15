@@ -8,7 +8,7 @@ class SubscriptionController
      * @OA\Get(
      *      path="/api/v1/admin/marketing/communications/subscribers",
      *      operationId="getSubscribers",
-     *      tags={"Subscription"},
+     *      tags={"Newsletter Subscriptions"},
      *      summary="Get admin Subscribers list",
      *      description="Returns Subscribers list, if you want to retrieve all Subscribers at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class SubscriptionController
      * @OA\Get(
      *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
      *      operationId="getSubscriber",
-     *      tags={"Subscription"},
+     *      tags={"Newsletter Subscriptions"},
      *      summary="Get admin Subscriber detail",
      *      description="Returns getSubscriber detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class SubscriptionController
      * @OA\Put(
      *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
      *      operationId="updateSubscriber",
-     *      tags={"Subscription"},
+     *      tags={"Newsletter Subscriptions"},
      *      summary="Update Subscriber",
      *      description="Update Subscriber",
      *      security={ {"sanctum_admin": {} }},
@@ -210,7 +210,7 @@ class SubscriptionController
      * @OA\Delete(
      *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
      *      operationId="deleteSubscriber",
-     *      tags={"Subscription"},
+     *      tags={"Newsletter Subscriptions"},
      *      summary="Delete Subscribers by id",
      *      description="Delete Subscribers by id",
      *      security={ {"sanctum_admin": {} }},
@@ -235,7 +235,7 @@ class SubscriptionController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Event deleted successfully."),
+     *                  example="Subscription deleted successfully."),
      *              )
      *          )
      *      )

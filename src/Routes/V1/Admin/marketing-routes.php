@@ -8,6 +8,8 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\Subscripti
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleCouponController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CatalogRuleController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SearchSynonymController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SitemapController;
 
 /*
 |----------------------------------------------------------------
@@ -138,6 +140,45 @@ Route::group([
             Route::put('{id}', 'update');
 
             Route::delete('{id}', 'destroy');
+        });
+    });
+
+    /**
+     * SearchSEO Routes.
+     */
+    Route::prefix('search-seo')->group(function () {
+        /**
+         * Search Synonyms Routes.
+         */
+        Route::controller(SearchSynonymController::class)->prefix('search-synonyms')->group(function () {
+            Route::get('', 'allResources');
+
+            Route::post('', 'store');
+
+            Route::get('{id}', 'getResource');
+
+            Route::put('{id}', 'update');
+
+            Route::delete('{id}', 'destroy');
+
+            Route::post('mass-destroy', 'massDestroy');
+        });
+
+        /**
+         * Sitemaps Routes.
+         */
+        Route::controller(SitemapController::class)->prefix('sitemaps')->group(function () {
+            Route::get('', 'allResources');
+
+            Route::post('', 'store');
+
+            Route::get('{id}', 'getResource');
+
+            Route::put('{id}', 'update');
+
+            Route::delete('{id}', 'destroy');
+
+            Route::post('mass-destroy', 'massDestroy');
         });
     });
 });

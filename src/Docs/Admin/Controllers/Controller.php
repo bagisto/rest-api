@@ -143,8 +143,16 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Campaign"
  * )
  * @OA\Tag(
- *     name="Subscription",
+ *     name="Newsletter Subscriptions",
  *     description="API Endpoints of Admin Newsletter Subscriptions"
+ * )
+ * @OA\Tag(
+ *     name="SearchSynonym",
+ *     description="API Endpoints of Admin SearchSynonym"
+ * )
+ * @OA\Tag(
+ *     name="Sitemaps",
+ *     description="API Endpoints of Admin Sitemaps"
  * )
  * @OA\Tag(
  *     name="Themes",
