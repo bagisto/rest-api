@@ -9,6 +9,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CatalogRuleCon
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\CampaignController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\TemplateController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SearchSynonymController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SearchTermController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleCouponController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\SubscriptionController;
 
@@ -186,6 +187,23 @@ Route::group([
          * URL Rewrites Routes.
          */
         Route::controller(URLRewriteController::class)->prefix('url-rewrites')->group(function () {
+            Route::get('', 'allResources');
+
+            Route::post('', 'store');
+
+            Route::get('{id}', 'getResource');
+
+            Route::put('{id}', 'update');
+
+            Route::delete('{id}', 'destroy');
+
+            Route::post('mass-destroy', 'massDestroy');
+        });
+
+        /**
+         * Search Terms Routes.
+         */
+        Route::controller(SearchTermController::class)->prefix('search-terms')->group(function () {
             Route::get('', 'allResources');
 
             Route::post('', 'store');
