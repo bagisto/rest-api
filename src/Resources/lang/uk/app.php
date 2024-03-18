@@ -223,6 +223,48 @@ return [
                     ]
                 ],
             ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'Перенаправлення URL успішно додано.',
+                    'delete-success'  => 'Перенаправлення URL успішно видалено.',
+                    'update-success'  => 'Перенаправлення URL успішно оновлено.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Перенаправлення URL успішно видалено.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'Пошукові терміни успішно додано.',
+                    'delete-success'  => 'Пошукові терміни успішно видалено.',
+                    'update-success'  => 'Пошукові терміни успішно оновлено.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Пошукові терміни успішно видалено.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'Синоніми пошуку успішно додано.',
+                    'delete-success'  => 'Синоніми пошуку успішно видалено.',
+                    'update-success'  => 'Синоніми пошуку успішно оновлено.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Синоніми пошуку успішно видалено.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'Карта сайту успішно додана.',
+                    'delete-success'  => 'Карта сайту успішно видалена.',
+                    'update-success'  => 'Карта сайту успішно оновлена.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Карта сайту успішно видалена.',
+                    ],
+                ],
+            ],
         ],
 
         'settings' => [

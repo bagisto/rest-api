@@ -223,6 +223,48 @@ return [
                     ]
                 ],
             ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'Riscrittura URL aggiunta con successo.',
+                    'delete-success'  => 'Riscrittura URL eliminata con successo.',
+                    'update-success'  => 'Riscrittura URL aggiornata con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Riscrittura URL eliminata con successo.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'Termini di ricerca aggiunti con successo.',
+                    'delete-success'  => 'Termini di ricerca eliminati con successo.',
+                    'update-success'  => 'Termini di ricerca aggiornati con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Termini di ricerca eliminati con successo.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'Sinonimi di ricerca aggiunti con successo.',
+                    'delete-success'  => 'Sinonimi di ricerca eliminati con successo.',
+                    'update-success'  => 'Sinonimi di ricerca aggiornati con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Sinonimi di ricerca eliminati con successo.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'Mappa del sito aggiunta con successo.',
+                    'delete-success'  => 'Mappa del sito eliminata con successo.',
+                    'update-success'  => 'Mappa del sito aggiornata con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Mappa del sito eliminata con successo.',
+                    ],
+                ],
+            ],
         ],
 
         'settings' => [

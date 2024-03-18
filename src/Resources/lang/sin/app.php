@@ -223,6 +223,48 @@ return [
                     ]
                 ],
             ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL පුරක්ෂාව සාර්ථකයි.',
+                    'delete-success'  => 'URL පුරක්ෂාව සාර්ථකව ඉවත් කරන ලදි.',
+                    'update-success'  => 'URL පුරක්ෂාව සාර්ථකව යාවත් කරන ලදි.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'URL පුරක්ෂාව සාර්ථකව ඉවත් කරන ලදි.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'සෙවුම් අදහස් සාර්ථකව එකතු කරන ලදි.',
+                    'delete-success'  => 'සෙවුම් අදහස් සාර්ථකව ඉවත් කරන ලදි.',
+                    'update-success'  => 'සෙවුම් අදහස් සාර්ථකව යාවත් කරන ලදි.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'සෙවුම් අදහස් සාර්ථකව ඉවත් කරන ලදි.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'සෙවුම් සමාලෝචනයන් සාර්ථකව එකතු කරන ලදි.',
+                    'delete-success'  => 'සෙවුම් සමාලෝචනයන් සාර්ථකව ඉවත් කරන ලදි.',
+                    'update-success'  => 'සෙවුම් සමාලෝචනයන් සාර්ථකව යාවත් කරන ලදි.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'සෙවුම් සමාලෝචනයන් සාර්ථකව ඉවත් කරන ලදි.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'සරුපය සාර්ථකව එකතු කරන ලදි.',
+                    'delete-success'  => 'සරුපය සාර්ථකව ඉවත් කරන ලදි.',
+                    'update-success'  => 'සරුපය සාර්ථකව යාවත් කරන ලදි.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'සරුපය සාර්ථකව ඉවත් කරන ලදි.',
+                    ],
+                ],
+            ],
         ],
 
         'settings' => [
