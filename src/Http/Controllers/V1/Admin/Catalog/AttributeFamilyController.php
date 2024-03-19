@@ -73,10 +73,21 @@ class AttributeFamilyController extends CatalogController
 
         Event::dispatch('catalog.attribute_family.update.before', $id);
 
-        $attributeFamily = $this->getRepositoryInstance()->update(request()->only([
+        $data = request()->only([
             'attribute_groups',
             'name',
-        ]), $id);
+            'code',
+        ]);
+
+        $attributeFamily = $this->getRepositoryInstance()->findOrFail($id);
+
+        if ($attributeFamily->code != request()->input('code')) {
+            return response([
+                'message' => trans('Cannot Change Code'),
+            ], 400);
+        }
+
+        $attributeFamily = $this->getRepositoryInstance()->update($data, $id);
 
         Event::dispatch('catalog.attribute_family.update.after', $attributeFamily);
 
