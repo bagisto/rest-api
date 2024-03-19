@@ -138,12 +138,10 @@ class CategoryController
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
-     *
+     *          required=true,
      *          @OA\MediaType(
-     *              mediaType="application/json",
-     *
+     *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *
      *                  @OA\Property(
      *                      property="locale",
      *                      type="string",
@@ -184,18 +182,16 @@ class CategoryController
      *                      example="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
      *                  ),
      *                  @OA\Property(
-     *                      property="image",
-     *                      description="Category's image",
-     *                      format="byte",
-     *                      type="string",
-     *                      example=null
+     *                      property="banner_path[]",
+     *                      description="Category's Banner",
+     *                      type="file",
+     *                      format="binary"
      *                  ),
      *                  @OA\Property(
-     *                      property="category_icon_path",
-     *                      description="Category's icon path",
-     *                      format="byte",
-     *                      type="string",
-     *                      example=null
+     *                      property="logo_path[]",
+     *                      description="Category's Logo",
+     *                      type="file",
+     *                      format="binary"
      *                  ),
      *                  @OA\Property(
      *                      property="parent_id",
@@ -204,13 +200,11 @@ class CategoryController
      *                      example=1
      *                  ),
      *                  @OA\Property(
-     *                      property="attributes",
+     *                      property="attributes[]",
      *                      description="Category's attributes for filter",
      *                      type="array",
-     *
-     *                      @OA\Items(type="integer", example=11)
+     *                      @OA\Items(type="string", example="11")
      *                  ),
-     *
      *                  @OA\Property(
      *                      property="slug",
      *                      description="Category's slug",
@@ -235,22 +229,19 @@ class CategoryController
      *                      type="string",
      *                      example="Home Decor Meta Keywords"
      *                  ),
-     *                  required={"locale", "name", "description", "slug"}
+     *                  required={"locale", "name", "description", "slug", "position", "display_mode", "attributes[]"}
      *              )
      *          )
      *      ),
-     *
+     * 
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *
      *          @OA\JsonContent(
-     *
      *              @OA\Property(property="message", type="string", example="Category created successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/Category")
      *          )
      *      ),
-     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
@@ -299,6 +290,12 @@ class CategoryController
      *                      @OA\Property(property="meta_description", type="string", description="Category's meta description", example="Home Decor Meta description"),
      *                      @OA\Property(property="meta_keywords", type="string", description="Category's meta keywords", example="Home Decor Meta keywords"),
      *                  ),
+     *                 @OA\Property(
+     *                      property="locale",
+     *                      type="string",
+     *                      description="Current Locale",
+     *                      example="en",
+     *                  ),
      *                  @OA\Property(
      *                      property="status",
      *                      type="integer",
@@ -320,15 +317,15 @@ class CategoryController
      *                      enum={"products_and_description", "products_only", "description_only"}
      *                  ),
      *                  @OA\Property(
-     *                      property="image",
-     *                      description="Category's image",
+     *                      property="banner_path[]",
+     *                      description="Category's Banner",
      *                      format="byte",
-     *                      type="string",
+     *                      type="file",
      *                      example=null
      *                  ),
      *                  @OA\Property(
-     *                      property="category_icon_path",
-     *                      description="Category's icon path",
+     *                      property="logo_path[]",
+     *                      description="Category's Logo",
      *                      format="byte",
      *                      type="string",
      *                      example=null

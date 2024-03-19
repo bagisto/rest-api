@@ -25,13 +25,10 @@ class CategoryResource extends JsonResource
             'meta_description'   => $this->meta_description,
             'meta_keywords'      => $this->meta_keywords,
             'status'             => $this->status,
-            'image_url'          => $this->image_url,
-            'category_icon_path' => $this->category_icon_path
-                ? Storage::url($this->category_icon_path)
-                : null,
-            'additional'         => is_array($this->resource->additional)
-                ? $this->resource->additional
-                : json_decode($this->resource->additional, true),
+            'banner_url'         => $this->banner_url,
+            'logo_url'           => $this->logo_url,
+            'translations'       => $this->translations,
+            'additional'         => $this->additional,
             'created_at'         => $this->created_at,
             'updated_at'         => $this->updated_at,
         ];
