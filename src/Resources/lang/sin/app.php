@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'එමේල් අඩවිය සාර්ථකව මකා දමා ඇත',
                     'update-success' => 'එමේල් අඩවිය සාර්ථකව යාවත්කාලීන කරන ලදි.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'පුද්ගලික පත්‍රය සාර්ථකව මකා දමන ලදි',
+                    'update-failed'  => 'නිවැරදි නිර්යාත්මක සාර්ථකව යාවත්කාලීන කිරීමේ අසාර්ථකයි',
+                    'update-success' => 'නිවැරදි නිර්යාත්මක සාර්ථකව යාවත්කාලීන කරන ලදි',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'කරත්ත රීති කූපන් පත් සාර්ථකව මකා ඇත'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL පුරක්ෂාව සාර්ථකයි.',
+                    'delete-success'  => 'URL පුරක්ෂාව සාර්ථකව ඉවත් කරන ලදි.',
+                    'update-success'  => 'URL පුරක්ෂාව සාර්ථකව යාවත් කරන ලදි.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'URL පුරක්ෂාව සාර්ථකව ඉවත් කරන ලදි.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'සෙවුම් අදහස් සාර්ථකව එකතු කරන ලදි.',
+                    'delete-success'  => 'සෙවුම් අදහස් සාර්ථකව ඉවත් කරන ලදි.',
+                    'update-success'  => 'සෙවුම් අදහස් සාර්ථකව යාවත් කරන ලදි.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'සෙවුම් අදහස් සාර්ථකව ඉවත් කරන ලදි.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'සෙවුම් සමාලෝචනයන් සාර්ථකව එකතු කරන ලදි.',
+                    'delete-success'  => 'සෙවුම් සමාලෝචනයන් සාර්ථකව ඉවත් කරන ලදි.',
+                    'update-success'  => 'සෙවුම් සමාලෝචනයන් සාර්ථකව යාවත් කරන ලදි.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'සෙවුම් සමාලෝචනයන් සාර්ථකව ඉවත් කරන ලදි.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'සරුපය සාර්ථකව එකතු කරන ලදි.',
+                    'delete-success'  => 'සරුපය සාර්ථකව ඉවත් කරන ලදි.',
+                    'update-success'  => 'සරුපය සාර්ථකව යාවත් කරන ලදි.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'සරුපය සාර්ථකව ඉවත් කරන ලදි.',
+                    ],
                 ],
             ],
         ],

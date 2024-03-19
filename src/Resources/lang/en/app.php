@@ -193,6 +193,12 @@ return [
                     'delete-success' => 'Email Template successfully deleted',
                     'update-success' => 'Email Template updated successfully.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Newsletter Subscription deleted Successfully',
+                    'update-failed'  => 'Newsletter Subscription Updated Failed',
+                    'update-success' => 'Newsletter Subscription Updated Successfully.',
+                ],
             ],
 
             'promotions' => [
@@ -216,6 +222,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'Cart Rule Coupons successfully deleted'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL Rewrite have been successfully added.',
+                    'delete-success'  => 'URL Rewrite successfully deleted.',
+                    'update-success'  => 'URL Rewrite updated successfully.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'URL Rewrite successfully deleted.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'Search Terms have been successfully added.',
+                    'delete-success'  => 'Search Terms successfully deleted.',
+                    'update-success'  => 'Search Terms updated successfully.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Search Terms successfully deleted.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'Search Synonyms have been successfully added.',
+                    'delete-success'  => 'Search Synonyms successfully deleted.',
+                    'update-success'  => 'Search Synonyms updated successfully.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Search Synonyms successfully deleted.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'Search Synonyms have been successfully added.',
+                    'delete-success'  => 'Search Synonyms successfully deleted.',
+                    'update-success'  => 'Search Synonyms updated successfully.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Search Synonyms successfully deleted.',
+                    ],
                 ],
             ],
         ],

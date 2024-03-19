@@ -1,21 +1,21 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing\Communications;
 
-class EventController
+class CampaignController
 {
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/promotions/events",
-     *      operationId="getEvents",
-     *      tags={"Events"},
-     *      summary="Get admin event list",
-     *      description="Returns event list, if you want to retrieve all events at once pass pagination=0 otherwise ignore this parameter",
+     *      path="/api/v1/admin/promotions/campaigns",
+     *      operationId="getCampaigns",
+     *      tags={"Campaigns"},
+     *      summary="Get admin campaign list",
+     *      description="Returns campaign list, if you want to retrieve all campaigns at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Event Id",
+     *          description="Campaign Id",
      *          required=false,
      *          in="query",
      *
@@ -79,7 +79,7 @@ class EventController
      *                  property="data",
      *                  type="array",
      *
-     *                  @OA\Items(ref="#/components/schemas/Event")
+     *                  @OA\Items(ref="#/components/schemas/Campaign")
      *              ),
      *
      *              @OA\Property(
@@ -96,16 +96,16 @@ class EventController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/promotions/events/{id}",
-     *      operationId="getEvent",
-     *      tags={"Events"},
-     *      summary="Get admin event detail",
-     *      description="Returns event detail",
+     *      path="/api/v1/admin/promotions/campaigns/{id}",
+     *      operationId="getCampaign",
+     *      tags={"Campaigns"},
+     *      summary="Get admin campaign detail",
+     *      description="Returns campaign detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Event ID",
+     *          description="Campaign ID",
      *          required=true,
      *          in="path",
      *
@@ -123,7 +123,7 @@ class EventController
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Event"
+     *                  ref="#/components/schemas/Campaign"
      *              )
      *          )
      *      )
@@ -135,40 +135,64 @@ class EventController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/promotions/events",
-     *      operationId="storeEvent",
-     *      tags={"Events"},
-     *      summary="Store the event",
-     *      description="Store the event",
+     *      path="/api/v1/admin/promotions/campaigns",
+     *      operationId="storeCampaign",
+     *      tags={"Campaigns"},
+     *      summary="Store the campaign",
+     *      description="Store the campaign",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
-     *              mediaType="application/json",
+     *              mediaType="multipart/form-data",
      *
      *              @OA\Schema(
      *
      *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      description="Event name",
+     *                      description="Campaign's name",
      *                      example="Birthday Offer"
      *                  ),
      *                  @OA\Property(
-     *                      property="description",
+     *                      property="subject",
      *                      type="string",
-     *                      description="Email template content",
-     *                      example="What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+     *                      description="Campaign's subject",
+     *                      example="Birthday Offer"
      *                  ),
      *                  @OA\Property(
-     *                      property="date",
-     *                      description="Event date",
-     *                      format="date",
-     *                      type="string",
-     *                      example="2024-01-27"
+     *                      property="status",
+     *                      description="Campaign's status",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0,1}
      *                  ),
-     *                  required={"name", "description", "date"}
+     *                  @OA\Property(
+     *                      property="marketing_template_id",
+     *                      description="Email Template ID",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  @OA\Property(
+     *                      property="marketing_event_id",
+     *                      description="Event ID",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  @OA\Property(
+     *                      property="channel_id",
+     *                      description="Channel ID",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  @OA\Property(
+     *                      property="customer_group_id",
+     *                      description="Customer Group ID",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  required={"name", "subject", "status", "marketing_template_id", "marketing_event_id", "channel_id", "customer_group_id"}
      *              )
      *          )
      *      ),
@@ -179,8 +203,8 @@ class EventController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Property(property="message", type="string", example="Event created successfully."),
-     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Event")
+     *              @OA\Property(property="message", type="string", example="Campaign created successfully."),
+     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Campaign")
      *          )
      *      ),
      *
@@ -196,16 +220,16 @@ class EventController
 
     /**
      * @OA\Put(
-     *      path="/api/v1/admin/promotions/events/{id}",
-     *      operationId="updateEvent",
-     *      tags={"Events"},
-     *      summary="Update event",
-     *      description="Update event",
+     *      path="/api/v1/admin/promotions/campaigns/{id}",
+     *      operationId="updateCampaign",
+     *      tags={"Campaigns"},
+     *      summary="Update campaign",
+     *      description="Update campaign",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Event ID",
+     *          description="Campaign ID",
      *          required=true,
      *          in="path",
      *
@@ -224,23 +248,47 @@ class EventController
      *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      description="Event name",
-     *                      example="Anniversary Offer"
+     *                      description="Campaign's name",
+     *                      example="Birthday Offer"
      *                  ),
      *                  @OA\Property(
-     *                      property="description",
+     *                      property="subject",
      *                      type="string",
-     *                      description="Email template content",
-     *                      example="What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+     *                      description="Campaign's subject",
+     *                      example="Birthday Offer"
      *                  ),
      *                  @OA\Property(
-     *                      property="date",
-     *                      description="Event date",
-     *                      format="date",
-     *                      type="string",
-     *                      example="2024-01-27"
+     *                      property="status",
+     *                      description="Campaign's status",
+     *                      type="integer",
+     *                      example=1,
+     *                      enum={0,1}
      *                  ),
-     *                  required={"name", "description", "date"}
+     *                  @OA\Property(
+     *                      property="marketing_template_id",
+     *                      description="Email Template ID",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  @OA\Property(
+     *                      property="marketing_event_id",
+     *                      description="Event ID",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  @OA\Property(
+     *                      property="channel_id",
+     *                      description="Channel ID",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  @OA\Property(
+     *                      property="customer_group_id",
+     *                      description="Customer Group ID",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *                  required={"name", "subject", "status", "marketing_template_id", "marketing_event_id", "channel_id", "customer_group_id"}
      *              )
      *          )
      *      ),
@@ -254,11 +302,11 @@ class EventController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Event updated successfully."),
+     *                  example="Campaign updated successfully."),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Event"
+     *                  ref="#/components/schemas/Campaign"
      *              )
      *          )
      *      ),
@@ -275,16 +323,16 @@ class EventController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/admin/promotions/events/{id}",
-     *      operationId="deleteEvent",
-     *      tags={"Events"},
-     *      summary="Delete event by id",
-     *      description="Delete event by id",
+     *      path="/api/v1/admin/promotions/campaigns/{id}",
+     *      operationId="deleteCampaign",
+     *      tags={"Campaigns"},
+     *      summary="Delete campaign by id",
+     *      description="Delete campaign by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Event ID",
+     *          description="Campaign ID",
      *          required=true,
      *          in="path",
      *
@@ -302,7 +350,7 @@ class EventController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Event deleted successfully."),
+     *                  example="Campaign deleted successfully."),
      *              )
      *          )
      *      )

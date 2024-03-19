@@ -29,7 +29,7 @@ class AddressController extends CustomerController
     /**
      * Store address.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(AddressRequest $request)
     {
@@ -42,17 +42,17 @@ class AddressController extends CustomerController
             'first_name',
             'last_name',
             'vat_id',
-            'address1',
+            'address',
             'country',
             'state',
             'city',
             'postcode',
             'phone',
+            'email',
             'default_address',
         ]), [
             'customer_id' => $customer->id,
-            'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),
-            'address2'    => implode(PHP_EOL, array_filter($request->input('address2', []))),
+            'address'     => implode(PHP_EOL, array_filter($request->input('address'))),
         ]);
 
         $customerAddress = $this->getRepositoryInstance()->create($data);
@@ -68,7 +68,7 @@ class AddressController extends CustomerController
     /**
      * Update address.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function update(AddressRequest $request, int $id)
     {
@@ -77,19 +77,19 @@ class AddressController extends CustomerController
         $data = array_merge(request()->only([
             'customer_id',
             'company_name',
-            'vat_id',
             'first_name',
             'last_name',
-            'address1',
-            'city',
+            'vat_id',
+            'address',
             'country',
             'state',
+            'city',
             'postcode',
             'phone',
+            'email',
             'default_address',
         ]), [
-            'address1' => implode(PHP_EOL, array_filter(request()->input('address1'))),
-            'address2' => implode(PHP_EOL, array_filter(request()->input('address2', []))),
+            'address' => implode(PHP_EOL, array_filter($request->input('address'))),
         ]);
 
         Event::dispatch('customer.addresses.update.before', $id);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing\Promotions;
 
 class CatalogRuleController
 {

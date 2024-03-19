@@ -68,7 +68,7 @@ class Address
 
     /**
      * @OA\Property(
-     *     title="Cart Address1",
+     *     title="Customer's Address",
      *     description="Customer's address detail",
      *     type="array",
      *     example={
@@ -78,7 +78,7 @@ class Address
      *     @OA\Items(
      *
      *          @OA\Property(
-     *              property="address1",
+     *              property="address",
      *              type="array",
      *
      *              @OA\Items(
@@ -89,18 +89,18 @@ class Address
      *     )
      * )
      */
-    private $address1;
+    private $address;
 
     /**
      * @OA\Property(
-     *     title="Address2",
-     *     description="Customer's Address2",
-     *     example="St. Elmira",
+     *     title="Email",
+     *     description="Customer's Email",
+     *     example="admin@example.com",
      * )
      *
      * @var string
      */
-    private $address2;
+    private $email;
 
     /**
      * @OA\Property(
@@ -116,7 +116,7 @@ class Address
     /**
      * @OA\Property(
      *     title="Country Name",
-     *     description="Address Country Name, contains complate country name (e.g. United States)",
+     *     description="Address Country Name, contains complete country name (e.g. United States)",
      *     example="United States",
      * )
      *

@@ -1,21 +1,21 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Customer;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Marketing\SearchSEO;
 
-class GroupController
+class SearchSynonymController
 {
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/customers/groups",
-     *      operationId="getCustomerGroups",
-     *      tags={"CustomerGroups"},
-     *      summary="Get admin customer group list",
-     *      description="Returns customer group list, if you want to retrieve all customer groups at once pass pagination=0 otherwise ignore this parameter",
+     *      path="/api/v1/admin/marketing/search-seo/search-synonyms",
+     *      operationId="getSearchSynonyms",
+     *      tags={"SearchSynonym"},
+     *      summary="Get admin SearchSynonym list",
+     *      description="Returns SearchSynonym list, if you want to retrieve all events at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group Id",
+     *          description="SearchSynonym Id",
      *          required=false,
      *          in="query",
      *
@@ -79,7 +79,7 @@ class GroupController
      *                  property="data",
      *                  type="array",
      *
-     *                  @OA\Items(ref="#/components/schemas/Group")
+     *                  @OA\Items(ref="#/components/schemas/SearchSynonym")
      *              ),
      *
      *              @OA\Property(
@@ -96,16 +96,16 @@ class GroupController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/admin/customers/groups/{id}",
-     *      operationId="getCustomerGroup",
-     *      tags={"CustomerGroups"},
-     *      summary="Get admin customer group detail",
-     *      description="Returns customer group detail",
+     *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
+     *      operationId="getSearchSynonym",
+     *      tags={"SearchSynonym"},
+     *      summary="Get admin SearchSynonym detail",
+     *      description="Returns SearchSynonym detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group ID",
+     *          description="SearchSynonym ID",
      *          required=true,
      *          in="path",
      *
@@ -123,7 +123,7 @@ class GroupController
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Group"
+     *                  ref="#/components/schemas/SearchSynonym"
      *              )
      *          )
      *      )
@@ -133,35 +133,35 @@ class GroupController
     {
     }
 
-    /**
+     /**
      * @OA\Post(
-     *      path="/api/v1/admin/customers/groups",
-     *      operationId="storeCustomerGroup",
-     *      tags={"CustomerGroups"},
-     *      summary="Store the customer group",
-     *      description="Store the customer group",
+     *      path="/api/v1/admin/marketing/search-seo/search-synonyms",
+     *      operationId="storeSearchSynonym",
+     *      tags={"SearchSynonym"},
+     *      summary="Store the SearchSynonym",
+     *      description="Store the SearchSynonym",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
+     *              mediaType="application/json",
      *
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="code",
-     *                      type="string",
-     *                      description="Customer group's code `Unique`, `No-whitespace`, `No-underscore`",
-     *                      example="vip"
-     *                  ),
-     *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      description="Customer group's name",
-     *                      example="VIP Group"
+     *                      description="SearchSynonym name",
+     *                      example="Shoes"
      *                  ),
-     *                  required={"code", "name"}
+     *                  @OA\Property(
+     *                      property="terms",
+     *                      type="string",
+     *                      description="SearchSynonym Terms",
+     *                      example="Shoes, Boot, SportShoes"
+     *                  ),
+     *                  required={"name", "terms"}
      *              )
      *          )
      *      ),
@@ -172,8 +172,8 @@ class GroupController
      *
      *          @OA\JsonContent(
      *
-     *              @OA\Property(property="message", type="string", example="Customer group created successfully."),
-     *              @OA\Property(property="data", type="object", ref="#/components/schemas/Group")
+     *              @OA\Property(property="message", type="string", example="SearchSynonym created successfully."),
+     *              @OA\Property(property="data", type="object", ref="#/components/schemas/SearchSynonym")
      *          )
      *      ),
      *
@@ -189,16 +189,16 @@ class GroupController
 
     /**
      * @OA\Put(
-     *      path="/api/v1/admin/customers/groups/{id}",
-     *      operationId="updateCustomerGroup",
-     *      tags={"CustomerGroups"},
-     *      summary="Update customer group",
-     *      description="Update customer group",
+     *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
+     *      operationId="updateSearchSynonym",
+     *      tags={"SearchSynonym"},
+     *      summary="Update SearchSynonym",
+     *      description="Update SearchSynonym",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group ID",
+     *          description="SearchSynonym ID",
      *          required=true,
      *          in="path",
      *
@@ -215,18 +215,18 @@ class GroupController
      *              @OA\Schema(
      *
      *                  @OA\Property(
-     *                      property="code",
-     *                      type="string",
-     *                      description="Customer group's code `Unique`, `No-whitespace`, `No-underscore`",
-     *                      example="vip"
-     *                  ),
-     *                  @OA\Property(
      *                      property="name",
      *                      type="string",
-     *                      description="Customer group's name",
-     *                      example="VIP Group"
+     *                      description="SearchSynonym name",
+     *                      example="Shoes"
      *                  ),
-     *                  required={"code", "name"}
+     *                  @OA\Property(
+     *                      property="terms",
+     *                      type="string",
+     *                      description="SearchSynonym Terms",
+     *                      example="Shoes, Boot, SportShoes"
+     *                  ),
+     *                  required={"name", "terms"}
      *              )
      *          )
      *      ),
@@ -240,11 +240,11 @@ class GroupController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Customer group updated successfully."),
+     *                  example="SearchSynonym updated successfully."),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Group"
+     *                  ref="#/components/schemas/SearchSynonym"
      *              )
      *          )
      *      ),
@@ -261,16 +261,16 @@ class GroupController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/admin/customers/groups/{id}",
-     *      operationId="deleteCustomerGroup",
-     *      tags={"CustomerGroups"},
-     *      summary="Delete customer group by id",
-     *      description="Delete customer group by id",
+     *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
+     *      operationId="deleteSearchSynonym",
+     *      tags={"SearchSynonym"},
+     *      summary="Delete SearchSynonym by id",
+     *      description="Delete SearchSynonym by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="Customer Group ID",
+     *          description="SearchSynonym ID",
      *          required=true,
      *          in="path",
      *
@@ -288,13 +288,66 @@ class GroupController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Customer group deleted successfully."),
+     *                  example="SearchSynonym deleted successfully."),
      *              )
      *          )
      *      )
      * )
      */
     public function destroy()
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/v1/admin/marketing/search-seo/search-synonyms/mass-destroy",
+     *      operationId="massDeleteSearchSynonym",
+     *      tags={"SearchSynonym"},
+     *      summary="Mass delete SearchSynonyms",
+     *      description="Mass delete SearchSynonyms",
+     *      security={ {"sanctum_admin": {} }},
+     *
+     *      @OA\RequestBody(
+     *
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *
+     *              @OA\Schema(
+     *
+     *                  @OA\Property(
+     *                      property="indices",
+     *                      description="SearchSynonym's Ids `CommaSeparated`",
+     *                      type="string",
+     *                      example={1,2}
+     *                  ),
+     *                  @OA\Property(
+     *                      property="value",
+     *                      description="SearchSynonym's status value",
+     *                      type="integer",
+     *                      example=null,
+     *                      enum={null}
+     *                  ),
+     *                  required={"indices", "update_value"}
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Selected SearchSynonyms successfully deleted."),
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function massDestroy()
     {
     }
 }

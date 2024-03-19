@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'メールテンプレートが正常に削除されました。',
                     'update-success' => 'メールテンプレートが正常に更新されました。',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'ニュースレターサブスクリプションが正常に削除されました',
+                    'update-failed'  => 'ニュースレターサブスクリプションの更新に失敗しました',
+                    'update-success' => 'ニュースレターサブスクリプションが正常に更新されました',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'カート ルール クーポンが正常に削除されました'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URLの書き換えが正常に追加されました。',
+                    'delete-success'  => 'URLの書き換えが正常に削除されました。',
+                    'update-success'  => 'URLの書き換えが正常に更新されました。',
+
+                    'mass-operations' => [
+                        'delete-success' => 'URLの書き換えが正常に削除されました。',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => '検索用語が正常に追加されました。',
+                    'delete-success'  => '検索用語が正常に削除されました。',
+                    'update-success'  => '検索用語が正常に更新されました。',
+
+                    'mass-operations' => [
+                        'delete-success' => '検索用語が正常に削除されました。',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => '検索シノニムが正常に追加されました。',
+                    'delete-success'  => '検索シノニムが正常に削除されました。',
+                    'update-success'  => '検索シノニムが正常に更新されました。',
+
+                    'mass-operations' => [
+                        'delete-success' => '検索シノニムが正常に削除されました。',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'サイトマップが正常に追加されました。',
+                    'delete-success'  => 'サイトマップが正常に削除されました。',
+                    'update-success'  => 'サイトマップが正常に更新されました。',
+
+                    'mass-operations' => [
+                        'delete-success' => 'サイトマップが正常に削除されました。',
+                    ],
                 ],
             ],
         ],

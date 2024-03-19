@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'Шаблон электронного письма успешно удален.',
                     'update-success' => 'Шаблон электронного письма успешно обновлен.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Подписка на рассылку успешно удалена',
+                    'update-failed'  => 'Обновление подписки на рассылку не удалось',
+                    'update-success' => 'Подписка на рассылку успешно обновлена',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'Купоны правил корзины успешно удалены.'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'Перенаправление URL успешно добавлено.',
+                    'delete-success'  => 'Перенаправление URL успешно удалено.',
+                    'update-success'  => 'Перенаправление URL успешно обновлено.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Перенаправление URL успешно удалено.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'Термины поиска успешно добавлены.',
+                    'delete-success'  => 'Термины поиска успешно удалены.',
+                    'update-success'  => 'Термины поиска успешно обновлены.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Термины поиска успешно удалены.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'Синонимы поиска успешно добавлены.',
+                    'delete-success'  => 'Синонимы поиска успешно удалены.',
+                    'update-success'  => 'Синонимы поиска успешно обновлены.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Синонимы поиска успешно удалены.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'Карта сайта успешно добавлена.',
+                    'delete-success'  => 'Карта сайта успешно удалена.',
+                    'update-success'  => 'Карта сайта успешно обновлена.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Карта сайта успешно удалена.',
+                    ],
                 ],
             ],
         ],

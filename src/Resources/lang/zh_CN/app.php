@@ -192,6 +192,12 @@ return [
                     'delete-success' => '电子邮件模板已成功删除',
                     'update-success' => '电子邮件模板已成功更新。',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => '邮件订阅成功删除',
+                    'update-failed'  => '邮件订阅更新失败',
+                    'update-success' => '邮件订阅成功更新',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => '购物车规则优惠券已成功删除'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL重写成功添加。',
+                    'delete-success'  => 'URL重写成功删除。',
+                    'update-success'  => 'URL重写成功更新。',
+
+                    'mass-operations' => [
+                        'delete-success' => 'URL重写成功删除。',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => '搜索词成功添加。',
+                    'delete-success'  => '搜索词成功删除。',
+                    'update-success'  => '搜索词成功更新。',
+
+                    'mass-operations' => [
+                        'delete-success' => '搜索词成功删除。',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => '搜索同义词成功添加。',
+                    'delete-success'  => '搜索同义词成功删除。',
+                    'update-success'  => '搜索同义词成功更新。',
+
+                    'mass-operations' => [
+                        'delete-success' => '搜索同义词成功删除。',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => '网站地图成功添加。',
+                    'delete-success'  => '网站地图成功删除。',
+                    'update-success'  => '网站地图成功更新。',
+
+                    'mass-operations' => [
+                        'delete-success' => '网站地图成功删除。',
+                    ],
                 ],
             ],
         ],

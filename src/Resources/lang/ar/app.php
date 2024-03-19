@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'تم حذف قالب البريد الإلكتروني بنجاح.',
                     'update-success' => 'تم تحديث قالب البريد الإلكتروني بنجاح.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'تم حذف اشتراك النشرة الإخبارية بنجاح',
+                    'update-failed'  => 'فشل تحديث اشتراك النشرة الإخبارية',
+                    'update-success' => 'تم تحديث اشتراك النشرة الإخبارية بنجاح',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'تم حذف كوبونات قاعدة سلة التسوق بنجاح'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'تم إضافة إعادة الكتابة لعنوان URL بنجاح.',
+                    'delete-success'  => 'تم حذف إعادة الكتابة لعنوان URL بنجاح.',
+                    'update-success'  => 'تم تحديث إعادة الكتابة لعنوان URL بنجاح.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'تم حذف إعادة الكتابة لعنوان URL بنجاح.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'تمت إضافة مصطلحات البحث بنجاح.',
+                    'delete-success'  => 'تم حذف مصطلحات البحث بنجاح.',
+                    'update-success'  => 'تم تحديث مصطلحات البحث بنجاح.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'تم حذف مصطلحات البحث بنجاح.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'تمت إضافة مرادفات البحث بنجاح.',
+                    'delete-success'  => 'تم حذف مرادفات البحث بنجاح.',
+                    'update-success'  => 'تم تحديث مرادفات البحث بنجاح.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'تم حذف مرادفات البحث بنجاح.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'تمت إضافة خرائط الموقع بنجاح.',
+                    'delete-success'  => 'تم حذف خرائط الموقع بنجاح.',
+                    'update-success'  => 'تم تحديث خرائط الموقع بنجاح.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'تم حذف خرائط الموقع بنجاح.',
+                    ],
                 ],
             ],
         ],

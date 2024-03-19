@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'E-mailsjabloon succesvol verwijderd.',
                     'update-success' => 'E-mailsjabloon succesvol bijgewerkt.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Nieuwsbriefabonnement succesvol verwijderd',
+                    'update-failed'  => 'Bijwerken van nieuwsbriefabonnement mislukt',
+                    'update-success' => 'Nieuwsbriefabonnement succesvol bijgewerkt',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'Winkelwagenregelcoupons zijn succesvol verwijderd'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL-omleiding succesvol toegevoegd.',
+                    'delete-success'  => 'URL-omleiding succesvol verwijderd.',
+                    'update-success'  => 'URL-omleiding succesvol bijgewerkt.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'URL-omleiding succesvol verwijderd.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'Zoektermen succesvol toegevoegd.',
+                    'delete-success'  => 'Zoektermen succesvol verwijderd.',
+                    'update-success'  => 'Zoektermen succesvol bijgewerkt.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Zoektermen succesvol verwijderd.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'Zoeksynoniemen succesvol toegevoegd.',
+                    'delete-success'  => 'Zoeksynoniemen succesvol verwijderd.',
+                    'update-success'  => 'Zoeksynoniemen succesvol bijgewerkt.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Zoeksynoniemen succesvol verwijderd.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'Sitemap succesvol toegevoegd.',
+                    'delete-success'  => 'Sitemap succesvol verwijderd.',
+                    'update-success'  => 'Sitemap succesvol bijgewerkt.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Sitemap succesvol verwijderd.',
+                    ],
                 ],
             ],
         ],

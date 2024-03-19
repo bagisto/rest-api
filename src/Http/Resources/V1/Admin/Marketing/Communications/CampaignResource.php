@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Http\Resources\V1\Admin\Marketing;
+namespace Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Communications;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerGroupResource;

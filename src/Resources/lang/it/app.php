@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'Modello di email eliminato con successo.',
                     'update-success' => 'Modello di email aggiornato con successo.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Abbonamento alla newsletter eliminato con successo',
+                    'update-failed'  => 'Aggiornamento dell\'abbonamento alla newsletter fallito',
+                    'update-success' => 'Abbonamento alla newsletter aggiornato con successo',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'Coupon delle regole del carrello eliminati con successo'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'Riscrittura URL aggiunta con successo.',
+                    'delete-success'  => 'Riscrittura URL eliminata con successo.',
+                    'update-success'  => 'Riscrittura URL aggiornata con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Riscrittura URL eliminata con successo.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'Termini di ricerca aggiunti con successo.',
+                    'delete-success'  => 'Termini di ricerca eliminati con successo.',
+                    'update-success'  => 'Termini di ricerca aggiornati con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Termini di ricerca eliminati con successo.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'Sinonimi di ricerca aggiunti con successo.',
+                    'delete-success'  => 'Sinonimi di ricerca eliminati con successo.',
+                    'update-success'  => 'Sinonimi di ricerca aggiornati con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Sinonimi di ricerca eliminati con successo.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'Mappa del sito aggiunta con successo.',
+                    'delete-success'  => 'Mappa del sito eliminata con successo.',
+                    'update-success'  => 'Mappa del sito aggiornata con successo.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Mappa del sito eliminata con successo.',
+                    ],
                 ],
             ],
         ],

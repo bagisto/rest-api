@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'قالب ایمیل با موفقیت حذف شد.',
                     'update-success' => 'قالب ایمیل با موفقیت به روز شد.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'اشتراک خبرنامه با موفقیت حذف شد',
+                    'update-failed'  => 'به روزرسانی اشتراک خبرنامه با شکست مواجه شد',
+                    'update-success' => 'اشتراک خبرنامه با موفقیت به‌روزرسانی شد',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'کوپن قانون سبد خرید با موفقیت حذف شد'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'با موفقیت بازنویسی URL افزوده شد.',
+                    'delete-success'  => 'بازنویسی URL با موفقیت حذف شد.',
+                    'update-success'  => 'بازنویسی URL با موفقیت به‌روزرسانی شد.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'بازنویسی URL با موفقیت حذف شد.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'با موفقیت اصطلاحات جستجو افزوده شدند.',
+                    'delete-success'  => 'اصطلاحات جستجو با موفقیت حذف شدند.',
+                    'update-success'  => 'اصطلاحات جستجو با موفقیت به‌روزرسانی شدند.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'اصطلاحات جستجو با موفقیت حذف شدند.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'با موفقیت مترادف‌های جستجو افزوده شدند.',
+                    'delete-success'  => 'مترادف‌های جستجو با موفقیت حذف شدند.',
+                    'update-success'  => 'مترادف‌های جستجو با موفقیت به‌روزرسانی شدند.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'مترادف‌های جستجو با موفقیت حذف شدند.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'با موفقیت نقشه سایت افزوده شد.',
+                    'delete-success'  => 'نقشه سایت با موفقیت حذف شد.',
+                    'update-success'  => 'نقشه سایت با موفقیت به‌روزرسانی شد.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'نقشه سایت با موفقیت حذف شد.',
+                    ],
                 ],
             ],
         ],

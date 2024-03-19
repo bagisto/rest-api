@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\RestApi\Docs\Admin\Controllers\Customer;
+namespace Webkul\RestApi\Docs\Admin\Controllers\Customers;
 
 class ReviewController
 {

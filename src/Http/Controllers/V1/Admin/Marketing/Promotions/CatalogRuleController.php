@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Event;
 use Webkul\CatalogRule\Helpers\CatalogRuleIndex;
 use Webkul\CatalogRule\Repositories\CatalogRuleRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CatalogRuleResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Promotions\CatalogRuleResource;
 
 class CatalogRuleController extends MarketingController
 {

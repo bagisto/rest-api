@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'תבנית האימייל נמחקה בהצלחה',
                     'update-success' => 'תבנית האימייל עודכנה בהצלחה.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'הרשמה לניוזלטר נמחקה בהצלחה',
+                    'update-failed'  => 'עדכון הרשמה לניוזלטר נכשל',
+                    'update-success' => 'הרשמה לניוזלטר עודכנה בהצלחה',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'קופונים של כלל העגלה נמחקו בהצלחה'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'הכתיבה מחדש של ה-URL נוספה בהצלחה.',
+                    'delete-success'  => 'הכתיבה מחדש של ה-URL נמחקה בהצלחה.',
+                    'update-success'  => 'הכתיבה מחדש של ה-URL עודכנה בהצלחה.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'הכתיבה מחדש של ה-URL נמחקה בהצלחה.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'מונחי החיפוש נוספו בהצלחה.',
+                    'delete-success'  => 'מונחי החיפוש נמחקו בהצלחה.',
+                    'update-success'  => 'מונחי החיפוש עודכנו בהצלחה.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'מונחי החיפוש נמחקו בהצלחה.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'הדמיונים לחיפוש נוספו בהצלחה.',
+                    'delete-success'  => 'הדמיונים לחיפוש נמחקו בהצלחה.',
+                    'update-success'  => 'הדמיונים לחיפוש עודכנו בהצלחה.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'הדמיונים לחיפוש נמחקו בהצלחה.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'מפת האתר נוספה בהצלחה.',
+                    'delete-success'  => 'מפת האתר נמחקה בהצלחה.',
+                    'update-success'  => 'מפת האתר עודכנה בהצלחה.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'מפת האתר נמחקה בהצלחה.',
+                    ],
                 ],
             ],
         ],

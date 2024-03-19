@@ -192,6 +192,12 @@ return [
                     'delete-success' => 'E-posta Şablonu başarıyla silindi.',
                     'update-success' => 'E-posta Şablonu başarıyla güncellendi.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Bülten Aboneliği Başarıyla Silindi',
+                    'update-failed'  => 'Bülten Aboneliği Güncelleme Başarısız',
+                    'update-success' => 'Bülten Aboneliği Başarıyla Güncellendi',
+                ],
             ],
 
             'promotions' => [
@@ -215,6 +221,48 @@ return [
                     'mass-operations' => [
                         'delete-success' => 'Sepet Kuralı Kuponları başarıyla silindi'
                     ]
+                ],
+            ],
+
+            'search-seo' => [
+                'url-rewrites' => [
+                    'create-success'  => 'URL Yönlendirmesi başarıyla eklendi.',
+                    'delete-success'  => 'URL Yönlendirmesi başarıyla silindi.',
+                    'update-success'  => 'URL Yönlendirmesi başarıyla güncellendi.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'URL Yönlendirmesi başarıyla silindi.',
+                    ],
+                ],
+
+                'search-terms' => [
+                    'create-success'  => 'Arama Terimleri başarıyla eklendi.',
+                    'delete-success'  => 'Arama Terimleri başarıyla silindi.',
+                    'update-success'  => 'Arama Terimleri başarıyla güncellendi.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Arama Terimleri başarıyla silindi.',
+                    ],
+                ],
+
+                'search-synonyms' => [
+                    'create-success'  => 'Arama Eşanlamlıları başarıyla eklendi.',
+                    'delete-success'  => 'Arama Eşanlamlıları başarıyla silindi.',
+                    'update-success'  => 'Arama Eşanlamlıları başarıyla güncellendi.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Arama Eşanlamlıları başarıyla silindi.',
+                    ],
+                ],
+
+                'sitemaps' => [
+                    'create-success'  => 'Site Haritası başarıyla eklendi.',
+                    'delete-success'  => 'Site Haritası başarıyla silindi.',
+                    'update-success'  => 'Site Haritası başarıyla güncellendi.',
+
+                    'mass-operations' => [
+                        'delete-success' => 'Site Haritası başarıyla silindi.',
+                    ],
                 ],
             ],
         ],

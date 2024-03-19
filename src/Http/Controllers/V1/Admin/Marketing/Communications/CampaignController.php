@@ -5,7 +5,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\CampaignRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\CampaignResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Communications\CampaignResource;
 
 class CampaignController extends MarketingController
 {
