@@ -83,7 +83,7 @@ class AttributeFamilyController extends CatalogController
 
         if ($attributeFamily->code != request()->input('code')) {
             return response([
-                'message' => trans('Cannot Change Code'),
+                'message' => trans('rest-api::app.admin.catalog.families.error.can-not-updated'),
             ], 400);
         }
 

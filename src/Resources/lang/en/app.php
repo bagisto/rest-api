@@ -103,6 +103,7 @@ return [
 
                 'error' => [
                     'being-used'       => 'This resource families is getting used in :source.',
+                    'can-not-updated'  => 'Cannot Update the Code',
                     'last-item-delete' => 'At least one families is required.',
                 ],
             ],

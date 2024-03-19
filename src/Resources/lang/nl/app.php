@@ -102,6 +102,7 @@ return [
 
                 'error' => [
                     'last-item-delete' => 'Er is minimaal één familie vereist.',
+                    'can-not-updated'  => 'Kan de code niet bijwerken',
                     'being-used'       => 'Deze resource families wordt gebruikt in :source.',
                 ],
             ],

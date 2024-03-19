@@ -102,6 +102,7 @@ return [
 
                 'error' => [
                     'being-used'       => 'Ta grupa zasobów jest używana w: :source.',
+                    'can-not-updated'  => 'Nie można zaktualizować kodu',
                     'last-item-delete' => 'Wymagana jest co najmniej jedna grupa.',
                 ],
             ],
