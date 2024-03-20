@@ -167,7 +167,7 @@ class LocaleController
      *                      enum={"ltr", "rtl"}
      *                  ),
      *                  @OA\Property(
-     *                      property="locale_image[]",
+     *                      property="logo_path[]",
      *                      type="file"
      *                  ),
      *                  required={"code", "name", "direction"}
@@ -206,7 +206,7 @@ class LocaleController
     }
 
     /**
-     * @OA\Put(
+     * @OA\Post(
      *      path="/api/v1/admin/settings/locales/{id}",
      *      operationId="updateSettingLocale",
      *      tags={"Locales"},
@@ -219,50 +219,58 @@ class LocaleController
      *          description="Locale id",
      *          required=true,
      *          in="path",
-     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
      *
      *      @OA\RequestBody(
-     *
-     *          @OA\MediaType(
-     *              mediaType="application/json",
-     *
-     *              @OA\Schema(
-     *
+     *          required=true,
+     *          content={
+     *              @OA\MediaType(
+     *                  mediaType="multipart/form-data",
+     *                  @OA\Schema(
      *                  @OA\Property(
-     *                      property="code",
+     *                      property="_method",
      *                      type="string",
-     *                      example="en"
+     *                      example="PUT"
      *                  ),
-     *                  @OA\Property(
-     *                      property="name",
-     *                      type="string",
-     *                      example="English"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="direction",
-     *                      type="string",
-     *                      example="ltr",
-     *                      enum={"ltr", "rtl"}
-     *                  ),
-     *                  required={"code", "name", "direction"}
+     *                      @OA\Property(
+     *                          property="code",
+     *                          type="string",
+     *                          example="en"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="name",
+     *                          type="string",
+     *                          example="English"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="direction",
+     *                          type="string",
+     *                          example="ltr",
+     *                          enum={"ltr", "rtl"}
+     *                      ),
+     *                      @OA\Property(
+     *                          property="logo_path[]",
+     *                          type="file",
+     *                          format="binary"
+     *                      ),
+     *                      required={"code", "name", "direction"}
+     *                  )
      *              )
-     *          )
+     *          }
      *      ),
      *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *
      *          @OA\JsonContent(
-     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Locale updated successfully."),
+     *                  example="Locale updated successfully."
+     *              ),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -273,22 +281,26 @@ class LocaleController
      *
      *      @OA\Response(
      *          response=401,
-     *          description="Unauthenticated",
+     *          description="Unauthenticated"
      *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
-     *
      *          @OA\JsonContent(
-     *
-     *              @OA\Examples(example="result", value={"message":"The code has already been taken."}, summary="An result object."),
+     *              @OA\Examples(
+     *                  example="result",
+     *                  value={"message":"The code has already been taken."},
+     *                  summary="An result object."
+     *              )
      *          )
      *      )
      * )
      */
+
     public function update()
     {
     }
+
 
     /**
      * @OA\Delete(
