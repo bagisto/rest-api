@@ -102,6 +102,7 @@ return [
 
                 'error' => [
                     'being-used'       => 'משאב זה משפחות בשימוש ב־:source.',
+                    'can-not-updated'  => 'לא ניתן לעדכן את הקוד',
                     'last-item-delete' => 'נדרשת לפחות משפחה אחת.',
                 ],
             ],

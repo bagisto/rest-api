@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\CategoryRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
@@ -37,13 +36,6 @@ class CategoryController extends CatalogController
     public function store(CategoryRequest $request)
     {
         Event::dispatch('catalog.category.create.before');
-
-        $request->validate([
-            'slug'        => ['required', 'unique:category_translations,slug'],
-            'name'        => 'required',
-            'image.*'     => 'mimes:bmp,jpeg,jpg,png,webp',
-            'description' => 'required_if:display_mode,==,description_only,products_and_description',
-        ]);
 
         $category = $this->getRepositoryInstance()->create($request->only([
             'name',

@@ -102,6 +102,7 @@ return [
 
                 'error' => [
                     'being-used'       => 'Bu kaynak ailesi :source içinde kullanılıyor.',
+                    'can-not-updated'  => 'Kod güncellenemez',
                     'last-item-delete' => 'En az bir aile gerekli.',
                 ],
             ],

@@ -114,25 +114,25 @@ class Category
 
     /**
      * @OA\Property(
-     *     title="Image URL",
-     *     description="Category's image URL",
+     *     title="Banner URL",
+     *     description="Category's Banner URL",
      *     example="http://localhost/private/storage/category/{category_id}/{image_name}.jpg"
      * )
      *
      * @var string
      */
-    private $image_url;
+    private $banner_path;
 
     /**
      * @OA\Property(
-     *     title="Category Icon Path",
-     *     description="Category's icon path",
-     *     example="http://localhost/private/storage/velocity/category_icon_path/{category_id}/{image_name}.png"
+     *     title="Category Logo Path",
+     *     description="Category's Logo path",
+     *     example="http://localhost/private/storage/velocity/logo_path/{category_id}/{image_name}.png"
      * )
      *
      * @var string
      */
-    private $category_icon_path;
+    private $logo_path;
 
     /**
      * @OA\Property(

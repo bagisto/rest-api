@@ -102,6 +102,7 @@ return [
 
                 'error' => [
                     'being-used'       => 'Cette famille de ressources est utilisée dans :source.',
+                    'can-not-updated'  => 'Impossible de mettre à jour le code',
                     'last-item-delete' => 'Au moins une famille est requise.',
                 ],
             ],

@@ -167,7 +167,6 @@ class AttributeFamilyController
      *                          @OA\Property(property="code", type="string", example="General"),
      *                          @OA\Property(property="column", type="integer", example=1),
      *                          @OA\Property(property="position", type="integer", example=1),
-     *                          @OA\Property(property="is_user_defined", type="integer", example=0),
      *                          @OA\Property(
      *                              property="custom_attributes",
      *                              type="array",
@@ -183,7 +182,6 @@ class AttributeFamilyController
      *                          @OA\Property(property="code", type="string", example="Description"),
      *                          @OA\Property(property="column", type="integer", example=2),
      *                          @OA\Property(property="position", type="integer", example=2),
-     *                          @OA\Property(property="is_user_defined", type="integer", example=0),
      *                          @OA\Property(
      *                              property="custom_attributes",
      *                              type="array",
@@ -262,30 +260,38 @@ class AttributeFamilyController
      *                      description="Attribute family's attribute groups",
      *                      type="object",
      *                      @OA\Property(
-     *                          property="6",
+     *                          property="8",
      *                          type="object",
      *                          @OA\Property(property="name", type="string", example="General"),
+     *                          @OA\Property(property="code", type="string", example="General"),
      *                          @OA\Property(property="position", type="integer", example=1),
-     *                          @OA\Property(property="is_user_defined", type="integer", example=0),
+     *                          @OA\Property(property="column", type="integer", example=1),
      *                          @OA\Property(
      *                              property="custom_attributes",
      *                              type="array",
-     *
-     *                              @OA\Items(@OA\Property(property="id", type="integer", example=1))
+     *                              @OA\Items(
+     *                                  type="object",
+     *                                  @OA\Property(property="id", type="integer", example=1),
+     *                                  @OA\Property(property="position", type="integer", example=1)
+     *                              )
      *                          )
      *                      ),
      *
      *                      @OA\Property(
-     *                          property="7",
+     *                          property="9",
      *                          type="object",
      *                          @OA\Property(property="name", type="string", example="Description"),
-     *                          @OA\Property(property="position", type="integer", example=2),
-     *                          @OA\Property(property="is_user_defined", type="integer", example=0),
+     *                          @OA\Property(property="code", type="string", example="Description"),
+     *                          @OA\Property(property="position", type="integer", example=1),
+     *                          @OA\Property(property="column", type="integer", example=2),
      *                          @OA\Property(
      *                              property="custom_attributes",
      *                              type="array",
-     *
-     *                              @OA\Items(@OA\Property(property="id", type="integer", example=9))
+     *                              @OA\Items(
+     *                                  type="object",
+     *                                  @OA\Property(property="id", type="integer", example=9),
+     *                                  @OA\Property(property="position", type="integer", example=1)
+     *                              )
      *                          )
      *                      )
      *                  ),
@@ -303,7 +309,8 @@ class AttributeFamilyController
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Family updated successfully."),
+     *                  example="Family updated successfully."
+     *              ),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -314,7 +321,7 @@ class AttributeFamilyController
      *
      *      @OA\Response(
      *          response=401,
-     *          description="Unauthenticated",
+     *          description="Unauthenticated"
      *      )
      * )
      */

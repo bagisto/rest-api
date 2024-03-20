@@ -102,6 +102,7 @@ return [
 
                 'error' => [
                     'being-used'       => '此资源家族正在 :source 中使用。',
+                    'can-not-updated'  => '无法更新代码',
                     'last-item-delete' => '至少需要一个家族。',
                 ],
             ],

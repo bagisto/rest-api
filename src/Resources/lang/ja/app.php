@@ -102,6 +102,7 @@ return [
 
                 'error' => [
                     'being-used'       => 'このリソースファミリは :source で使用されています。',
+                    'can-not-updated'  => 'コードを更新できません',
                     'last-item-delete' => '少なくとも1つのファミリが必要です。',
                 ],
             ],
