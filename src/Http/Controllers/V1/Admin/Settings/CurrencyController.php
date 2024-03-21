@@ -57,11 +57,11 @@ class CurrencyController extends SettingController
     public function update(Request $request, int $id)
     {
         $request->validate([
-            'code' => 'required|min:3|max:3|unique:currencies,code',
+            'code' => ['min:3','max:3','required', 'unique:currencies,code,'.$id, new \Webkul\Core\Rules\Code],
             'name' => 'required',
         ]);
 
-        $currency = $this->getRepositoryInstance()->update($request->only([
+        $currency = $this->getRepositoryInstance()->update(request()->only([
             'code',
             'name',
             'symbol',

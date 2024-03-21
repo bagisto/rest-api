@@ -66,22 +66,16 @@ class ConfigurationController
      *                      description="Replace `index` with your key, like: `general`",
      *                      type="object",
      *                      example={
-     *                          "general": {
-     *                              "content": {
-     *                                  "shop": {
-     *                                      "compare_option": "0",
-     *                                      "wishlist_option": "0"
-     *                                   },
-     *                                  "footer": {
-     *                                    "footer_content": "Powered By Webkul",
-     *                                    "footer_toggle": "1"
-     *                                  },
-     *                                  "custom_scripts": {
-     *                                    "custom_css": "<style>.demo{width:100px;}</style>",
-     *                                    "custom_javascript": "<script>console.log('Texting')</script>"
-     *                                  }
-     *                              }
-     *                          }
+     *                         "content": {
+     *                             "shop": {
+     *                                 "compare_option": "0",
+     *                                 "wishlist_option": "0"
+     *                              },
+     *                             "custom_scripts": {
+     *                               "custom_css": "<style>.demo{width:100px;}</style>",
+     *                               "custom_javascript": "<script>console.log('Texting')</script>"
+     *                             }
+     *                         }
      *                      },
      *                      @OA\Property(
      *                          property="child_index",

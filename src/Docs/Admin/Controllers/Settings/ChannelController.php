@@ -212,16 +212,6 @@ class ChannelController
      *                      enum={"default", "bliss"}
      *                  ),
      *                  @OA\Property(
-     *                      property="home_page_content",
-     *                      type="string",
-     *                      example="<h2 style='margin: 0px 0px 10px; padding: 0px; font-weight: 400; font-family: DauphinPlain; font-size: 24px; line-height: 24px;'>What is Lorem Ipsum?</h2><p style='margin: 0px 0px 15px; padding: 0px; text-align: justify; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px;'><strong style='margin: 0px; padding: 0px;'>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="footer_content",
-     *                      type="string",
-     *                      example="<h2 style='margin: 0px 0px 10px; padding: 0px; font-weight: 400; font-family: DauphinPlain; font-size: 24px; line-height: 24px;'>Where can I get some?</h2><p style='margin: 0px 0px 15px; padding: 0px; text-align: justify; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px;'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>"
-     *                  ),
-     *                  @OA\Property(
      *                      property="is_maintenance_on",
      *                      type="integer",
      *                      example=0,
@@ -333,14 +323,16 @@ class ChannelController
      *                      property="locale_code",
      *                      type="object",
      *                          @OA\Property(property="name", type="string", example="NCR Region"),
-     *                          @OA\Property(property="description", type="string", example="NCR Region NCR Region NCR Region"),
-     *                          @OA\Property(property="home_page_content", type="string", example="<h2 style='margin: 0px 0px 10px; padding: 0px; font-weight: 400; font-family: DauphinPlain; font-size: 24px; line-height: 24px;'>What is Lorem Ipsum?</h2><p style='margin: 0px 0px 15px; padding: 0px; text-align: justify; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px;'><strong style='margin: 0px; padding: 0px;'>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>"),
-     *                          @OA\Property(property="footer_content", type="string", example="<h2 style='margin: 0px 0px 10px; padding: 0px; font-weight: 400; font-family: DauphinPlain; font-size: 24px; line-height: 24px;'>Where can I get some?</h2><p style='margin: 0px 0px 15px; padding: 0px; text-align: justify; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px;'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>"),
      *                          @OA\Property(property="maintenance_mode_text", type="string", example="This site is under maintenance mode now, visit again after some time."),
      *                          @OA\Property(property="seo_title", type="string", example="NCR Region Store"),
      *                          @OA\Property(property="seo_description", type="string", example="NCR Region Description"),
      *                          @OA\Property(property="seo_keywords", type="string", example="NCR Region Keywords")
      *                  ),
+     *                  @OA\Property(
+     *                      property="description", 
+     *                      type="string", 
+     *                      example="NCR Region NCR Region NCR Region"
+     *                 ),
      *                  @OA\Property(
      *                      property="inventory_sources",
      *                      type="array",
@@ -406,6 +398,11 @@ class ChannelController
      *                  @OA\Property(
      *                      property="favicon[]",
      *                      type="file"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="locale",
+     *                      type="string",
+     *                      example="en"
      *                  ),
      *                  required={"code", "inventory_sources", "root_category_id", "locales", "default_locale_id", "currencies", "base_currency_id"}
      *              )

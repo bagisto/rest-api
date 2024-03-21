@@ -22,8 +22,6 @@ class ChannelResource extends JsonResource
             'description'       => $this->description,
             'timezone'          => $this->timezone,
             'theme'             => $this->theme,
-            'home_page_content' => $this->home_page_content,
-            'footer_content'    => $this->footer_content,
             'hostname'          => $this->hostname,
             'logo'              => $this->logo,
             'logo_url'          => $this->logo_url,

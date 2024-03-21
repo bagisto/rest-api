@@ -34,19 +34,17 @@ class LocaleController extends SettingController
     {
         $request->validate([
             'code'      => ['required', 'unique:locales,code', new Code],
-            'name'      => 'required',
-            'direction' => ['required', 'in:ltr,rtl'],
+            'direction'   => 'required|in:ltr,rtl',
+            'logo_path'   => 'array',
+            'logo_path.*' => 'image|extensions:jpeg,jpg,png,svg,webp',
         ]);
 
-        $data = request()->only([
+        $locale = $this->getRepositoryInstance()->create(request()->only([
             'code',
             'name',
             'direction',
-        ]);
-
-        $data['logo_path'] = request()->file('logo_path');
-
-        $locale = $this->getRepositoryInstance()->create($data);
+            'logo_path',
+        ]));
 
         return response([
             'data'    => new LocaleResource($locale),
@@ -62,20 +60,19 @@ class LocaleController extends SettingController
     public function update(Request $request, int $id)
     {
         $request->validate([
-            'code'      => ['required', 'unique:locales,code,'.$id, new Code],
-            'name'      => 'required',
-            'direction' => ['required', 'in:ltr,rtl'],
+            'code'        => ['required', 'unique:locales,code,'.$id, new Code],
+            'name'        => 'required',
+            'direction'   => 'required|in:ltr,rtl',
+            'logo_path'   => 'array',
+            'logo_path.*' => 'image|extensions:jpeg,jpg,png,svg,webp',
         ]);
 
-        $data = request()->only([
+        $locale = $this->getRepositoryInstance()->update(request()->only([
             'code',
             'name',
             'direction',
-        ]);
-
-        $data['logo_path'] = request()->file('logo_path');
-
-        $locale = $this->getRepositoryInstance()->update($data, $id);
+            'logo_path',
+        ]), $request->id);
 
         return response([
             'data'    => new LocaleResource($locale),
