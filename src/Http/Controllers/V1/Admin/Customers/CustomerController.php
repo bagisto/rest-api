@@ -136,7 +136,7 @@ class CustomerController extends BaseController
     {
         $customer = $this->getRepositoryInstance()->findOrFail($id);
 
-        if (! $this->getRepositoryInstance()->checkIfCustomerHasOrderPendingOrProcessing($customer)) {
+        if (! $this->getRepositoryInstance()->haveActiveOrders($customer)) {
             $this->getRepositoryInstance()->delete($id);
 
             return response([
