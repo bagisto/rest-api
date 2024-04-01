@@ -45,4 +45,9 @@ Route::group([
      * Configuration routes.
      */
     require 'configuration-routes.php';
+
+    /**
+     * Reporting routes.
+     */
+    require 'reporting-routes.php';
 });

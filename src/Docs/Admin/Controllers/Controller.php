@@ -166,6 +166,18 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     name="Themes",
  *     description="API Endpoints of Themes customization"
  * )
+ * @OA\Tag(
+ *     name="CustomersReporting",
+ *     description="API Endpoints of Customers Reporting"
+ * )
+ * @OA\Tag(
+ *     name="SalesReporting",
+ *     description="API Endpoints of Sales Reporting"
+ * )
+ * @OA\Tag(
+ *     name="ProductsReporting",
+ *     description="API Endpoints of Product Reporting"
+ * )
  */
 class Controller
 {
