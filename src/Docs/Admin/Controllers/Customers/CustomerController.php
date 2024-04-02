@@ -564,44 +564,48 @@ class CustomerController
     }
 
     /**
-     * @OA\Post(
-     *      path="/api/v1/admin/customers/{id}/notes",
-     *      operationId="storeCustomerNote",
-     *      tags={"Customers"},
-     *      summary="Store the customer's note by customer id",
-     *      description="Store the customer's note by customer id",
-     *      security={ {"sanctum_admin": {} }},
-     *
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="Customer ID",
-     *          required=true,
-     *          in="path",
-     *
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *
-     *      @OA\RequestBody(
-     *
-     *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
-     *
-     *              @OA\Schema(
-     *
-     *                  @OA\Property(
-     *                      property="notes",
-     *                      description="Customer's note",
-     *                      type="string",
-     *                      example="This is a first note for this customer"
-     *                  ),
-     *                  required={"notes"}
-     *              )
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
+    * @OA\Post(
+    *      path="/api/v1/admin/customers/{id}/notes",
+    *      operationId="storeCustomerNote",
+    *      tags={"Customers"},
+    *      summary="Store the customer's note by customer id",
+    *      description="Store the customer's note by customer id",
+    *      security={ {"sanctum_admin": {} }},
+    *
+    *      @OA\Parameter(
+    *          name="id",
+    *          description="Customer ID",
+    *          required=true,
+    *          in="path",
+    *          @OA\Schema(
+    *              type="integer"
+    *          )
+    *      ),
+    *
+    *      @OA\RequestBody(
+    *          required=true,
+    *          @OA\MediaType(
+    *              mediaType="multipart/form-data",
+    *              @OA\Schema(
+    *                  @OA\Property(
+    *                      property="note",
+    *                      description="Customer's note",
+    *                      type="string",
+    *                      example="This is a first note for this customer"
+    *                  ),
+    *                  @OA\Property(
+    *                      property="customer_notified",
+    *                      description="Flag indicating if customer has been notified",
+    *                      type="integer",
+    *                      enum={"0", "1"},
+    *                      example=1  
+    *                  ),
+    *                  required={"note"}
+    *              )
+    *          )
+    *      ),
+    *
+    *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
      *
@@ -616,7 +620,7 @@ class CustomerController
      *          )
      *      )
      * )
-     */
+    */
     public function storeNote()
     {
     }

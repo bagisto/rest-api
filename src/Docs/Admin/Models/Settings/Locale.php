@@ -90,5 +90,5 @@ class Locale
      *
      * @var string
      */
-    private $locale_image;
+    private $logo_path;
 }

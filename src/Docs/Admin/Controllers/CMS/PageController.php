@@ -248,6 +248,7 @@ class PageController
      *              @OA\Schema(
      *
      *                  @OA\Property(
+     *                      property="en",
      *                      description="Provide locale code as key to this index i.e. 'en'",
      *                      type="object",
      *                          @OA\Property(

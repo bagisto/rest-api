@@ -50,8 +50,6 @@ class ChannelController extends SettingController
 
             /* design */
             'theme'             => 'nullable',
-            'home_page_content' => 'nullable',
-            'footer_content'    => 'nullable',
             'logo.*'            => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
             'favicon.*'         => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
 

@@ -54,13 +54,16 @@ class ShipmentController extends SalesController
         }
 
         $request->validate([
-            'shipment.carrier_title'    => 'required',
-            'shipment.track_number'     => 'required',
-            'shipment.source'           => 'required',
-            'shipment.items.*.*'        => 'required|numeric|min:0',
+            'shipment.source'    => 'required',
+            'shipment.items.*.*' => 'required|numeric|min:0',
         ]);
 
-        $data = $request->all();
+        $data = request()->only([
+            'shipment', 
+            'carrier_title',
+            'source',
+            'items',
+        ]);
 
         if (! $this->isInventoryValidate($data)) {
             return response([
