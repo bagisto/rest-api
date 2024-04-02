@@ -3,7 +3,6 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Payment\Facades\Payment;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
@@ -20,23 +19,9 @@ class CheckoutController extends CustomerController
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveAddress(CartAddressRequest $request)
+    public function saveAddress(CartAddressRequest $cartAddressRequest)
     {
-        $data = $request->all();
-
-        $data['billing']['address1'] = implode(PHP_EOL, array_filter($data['billing']['address1']));
-
-        $data['shipping']['address1'] = implode(PHP_EOL, array_filter($data['shipping']['address1']));
-
-        if (isset($data['billing']['id']) && str_contains($data['billing']['id'], 'address_')) {
-            unset($data['billing']['id']);
-            unset($data['billing']['address_id']);
-        }
-
-        if (isset($data['shipping']['id']) && Str::contains($data['shipping']['id'], 'address_')) {
-            unset($data['shipping']['id']);
-            unset($data['shipping']['address_id']);
-        }
+        $data =  $cartAddressRequest->all();
 
         if (
             Cart::hasError()
@@ -44,6 +29,8 @@ class CheckoutController extends CustomerController
         ) {
             abort(400);
         }
+
+        Cart::saveAddresses($data);
 
         $rates = [];
 

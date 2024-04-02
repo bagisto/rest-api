@@ -25,8 +25,8 @@ class CheckoutController
      *                      type="array",
      *                      description="",
      *                      example={
-     *                          "address_id": 14,
-     *                          "address1": {"70 Winchester Rd"},
+     *                          "id": 14,
+     *                          "address": {"70 Winchester Rd"},
      *                          "save_as_address": false,
      *                          "use_for_shipping": false,
      *                          "first_name": "John",
@@ -42,8 +42,8 @@ class CheckoutController
      *
      *                      @OA\Items(
      *
-     *                          @OA\Property(property="address_id", type="integer"),
-     *                          @OA\Property(property="address1", type="array", @OA\Items(
+     *                          @OA\Property(property="id", type="integer"),
+     *                          @OA\Property(property="address", type="array", @OA\Items(
      *                              @OA\Property(type="string")
      *                          )),
      *                          @OA\Property(property="save_as_address", type="boolean"),
@@ -64,8 +64,8 @@ class CheckoutController
      *                      type="array",
      *                      description="",
      *                      example={
-     *                          "address_id": null,
-     *                          "address1": {"819  Farnum Road"},
+     *                          "id": null,
+     *                          "address": {"819  Farnum Road"},
      *                          "save_as_address": false,
      *                          "first_name": "John",
      *                          "last_name": "Doe",
@@ -80,8 +80,8 @@ class CheckoutController
      *
      *                      @OA\Items(
      *
-     *                          @OA\Property(property="address_id", type="integer"),
-     *                          @OA\Property(property="address1", type="array", @OA\Items(
+     *                          @OA\Property(property="id", type="integer"),
+     *                          @OA\Property(property="address", type="array", @OA\Items(
      *                              @OA\Property(type="string")
      *                          )),
      *                          @OA\Property(property="save_as_address", type="boolean"),
