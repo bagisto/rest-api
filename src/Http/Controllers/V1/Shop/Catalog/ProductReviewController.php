@@ -4,10 +4,20 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Illuminate\Http\Request;
 use Webkul\Product\Repositories\ProductReviewRepository;
+use Webkul\Product\Repositories\ProductReviewAttachmentRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductReviewResource;
 
 class ProductReviewController extends CatalogController
 {
+    /**
+     * Create a controller instance.
+     *
+     * @return void
+     */
+    public function __construct(protected ProductReviewAttachmentRepository $productReviewAttachmentRepository) 
+    {
+    }
+
     /**
      * Repository class name.
      */
@@ -32,9 +42,11 @@ class ProductReviewController extends CatalogController
     public function store(Request $request, int $productId)
     {
         $this->validate($request, [
-            'comment' => 'required',
-            'rating'  => 'required|numeric|min:1|max:5',
-            'title'   => 'required',
+            'title'         => 'required',
+            'comment'       => 'required',
+            'rating'        => 'required|numeric|min:1|max:5',
+            'attachments'   => 'array',
+            'attachments.*' => 'file|mimetypes:image/*,video/*',
         ]);
 
         $customer = $this->resolveShopUser($request);
@@ -48,6 +60,8 @@ class ProductReviewController extends CatalogController
             'rating'      => $request->rating,
             'title'       => $request->title,
         ]);
+
+        $this->productReviewAttachmentRepository->upload(request()->file('attachments') ?? [], $productReview);
 
         return response([
             'data'    => new ProductReviewResource($productReview),

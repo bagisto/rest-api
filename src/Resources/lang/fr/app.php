@@ -372,9 +372,10 @@ return [
             'update-success'     => 'Compte mis à jour avec succès.',
 
             'error' => [
-                'credential-error'  => 'Les informations d\'identification fournies sont incorrectes.',
-                'invalid'           => 'E-mail ou mot de passe invalide',
+                'credential-error'  => 'Les identifiants fournis sont incorrects.',
+                'invalid'           => 'Email ou mot de passe invalide',
                 'password-mismatch' => 'Le mot de passe actuel ne correspond pas.',
+                'update-failed'     => 'Une erreur s\'est produite lors de la mise à jour de votre compte',
             ],
         ],
     ],

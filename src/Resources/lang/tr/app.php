@@ -395,8 +395,10 @@ return [
                 'update-success'     => 'Hesabınız başarıyla güncellendi.',
 
                 'error' => [
-                    'credential-error' => 'Sağlanan kimlik bilgileri yanlış.',
-                    'invalid'          => 'Geçersiz E-posta veya Şifre',
+                    'credential-error'  => 'Sağlanan kimlik bilgileri yanlış.',
+                    'invalid'           => 'Geçersiz E-posta veya Parola',
+                    'password-mismatch' => 'Mevcut şifre eşleşmiyor.',
+                    'update-failed'     => 'Hesabınızı güncelleştirirken bir hata oluştu',
                 ],
             ],
         ],

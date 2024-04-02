@@ -101,6 +101,29 @@ class Customer
 
     /**
      * @OA\Property(
+     *     title="Newsletter Subscription",
+     *     description="Customer's Newsletter Subscription",
+     *     example="1",
+     * )
+     *
+     * @var string
+     */
+    private $subscribed_to_news_letter;
+
+
+    /**
+     * @OA\Property(
+     *     title="Image",
+     *     description="Customer's Image",
+     *     example="http://localhost/private/storage/customer/image.jpg"
+     * )
+     *
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @OA\Property(
      *     title="Notes",
      *     description="Customer's notes",
      * )

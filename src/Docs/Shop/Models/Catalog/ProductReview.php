@@ -81,6 +81,17 @@ class ProductReview
 
     /**
      * @OA\Property(
+     *     title="Attachments",
+     *     description="Review attachments",
+     *     example="http://localhost/private/storage/review/{product_id}/{image_name.jpg}"
+     * )
+     *
+     * @var string
+     */
+    private $attachments;
+
+    /**
+     * @OA\Property(
      *     title="Created at",
      *     description="Created at",
      *     example="2020-01-27 17:50:45",

@@ -389,8 +389,10 @@ return [
                 'update-success'     => 'Ihr Konto wurde erfolgreich aktualisiert.',
 
                 'error' => [
-                    'credential-error' => 'Die bereitgestellten Anmeldeinformationen sind inkorrekt.',
-                    'invalid'          => 'Ungültige E-Mail oder Passwort',
+                    'credential-error'  => 'Die angegebenen Anmeldedaten sind inkorrekt.',
+                    'invalid'           => 'Ungültige E-Mail oder Passwort',
+                    'password-mismatch' => 'Das aktuelle Passwort stimmt nicht überein.',
+                    'update-failed'     => 'Beim Aktualisieren Ihres Kontos ist ein Fehler aufgetreten',
                 ],
             ],
         ],
