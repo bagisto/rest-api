@@ -395,8 +395,10 @@ return [
                 'update-success'     => 'アカウントが正常に更新されました。',
 
                 'error' => [
-                    'invalid'          => '無効なメールアドレスまたはパスワード',
-                    'credential-error' => '提供された資格情報が正しくありません。',
+                    'credential-error'  => '提供された認証情報が間違っています。',
+                    'invalid'           => '無効なメールアドレスまたはパスワード',
+                    'password-mismatch' => '現在のパスワードが一致しません。',
+                    'update-failed'     => 'アカウントの更新中にエラーが発生しました',
                 ],
             ],
         ],

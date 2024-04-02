@@ -395,8 +395,10 @@ return [
                 'update-success'     => 'Il tuo account è stato aggiornato con successo.',
 
                 'error' => [
-                    'credential-error' => 'Le credenziali fornite non sono corrette.',
-                    'invalid'          => 'Email o password non valide',
+                    'credential-error'  => 'Le credenziali fornite non sono corrette.',
+                    'invalid'           => 'Email o password non valide',
+                    'password-mismatch' => 'La password attuale non corrisponde.',
+                    'update-failed'     => 'Si è verificato un errore durante l\'aggiornamento del tuo account',
                 ],
             ],
         ],

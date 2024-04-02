@@ -12,7 +12,7 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerWishlistResource;
 class WishlistController extends CustomerController
 {
     /**
-     * Create a new controller istance.
+     * Create a new controller instance.
      */
     public function __construct(
         protected WishlistRepository $wishlistRepository,

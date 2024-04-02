@@ -395,8 +395,10 @@ return [
                 'update-success'     => 'Sua conta foi atualizada com sucesso.',
 
                 'error' => [
-                    'credential-error' => 'As credenciais fornecidas estão incorretas.',
-                    'invalid'          => 'Email ou senha inválidos',
+                    'credential-error'  => 'As credenciais fornecidas estão incorretas.',
+                    'invalid'           => 'Email ou senha inválidos',
+                    'password-mismatch' => 'A senha atual não corresponde.',
+                    'update-failed'     => 'Ocorreu um erro ao atualizar sua conta',
                 ],
             ],
         ],

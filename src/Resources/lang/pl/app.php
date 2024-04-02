@@ -395,8 +395,10 @@ return [
                 'update-success'     => 'Twoje konto zostało pomyślnie zaktualizowane.',
 
                 'error' => [
-                    'credential-error' => 'Podane dane uwierzytelniające są niepoprawne.',
-                    'invalid'          => 'Nieprawidłowy adres email lub hasło.',
+                    'credential-error'  => 'Podane dane uwierzytelniające są niepoprawne.',
+                    'invalid'           => 'Nieprawidłowy adres e-mail lub hasło',
+                    'password-mismatch' => 'Aktualne hasło nie pasuje.',
+                    'update-failed'     => 'Wystąpił błąd podczas aktualizacji konta',
                 ],
             ],
         ],

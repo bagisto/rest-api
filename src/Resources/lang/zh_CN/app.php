@@ -395,8 +395,10 @@ return [
                 'update-success'     => '您的账户已成功更新。',
 
                 'error' => [
-                    'credential-error' => '提供的凭据不正确。',
-                    'invalid'          => '电子邮件或密码无效。',
+                    'credential-error'  => '提供的凭据不正确。',
+                    'invalid'           => '无效的电子邮件或密码',
+                    'password-mismatch' => '当前密码不匹配。',
+                    'update-failed'     => '更新您的帐户时出错',
                 ],
             ],
         ],

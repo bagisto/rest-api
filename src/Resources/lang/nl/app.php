@@ -395,8 +395,10 @@ return [
                 'update-success'     => 'Uw account is succesvol bijgewerkt.',
 
                 'error' => [
-                    'invalid'          => 'Ongeldig e-mailadres of wachtwoord.',
-                    'credential-error' => 'De verstrekte inloggegevens zijn onjuist.',
+                    'credential-error'  => 'De verstrekte inloggegevens zijn onjuist.',
+                    'invalid'           => 'Ongeldig e-mailadres of wachtwoord',
+                    'password-mismatch' => 'Het huidige wachtwoord komt niet overeen.',
+                    'update-failed'     => 'Er is een fout opgetreden bij het bijwerken van uw account',
                 ],
             ],
         ],
