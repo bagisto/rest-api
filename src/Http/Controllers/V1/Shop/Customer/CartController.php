@@ -26,6 +26,16 @@ class CartController extends CustomerController
     }
 
     /**
+     * Resource class name.
+     *
+     * @return string
+     */
+    public function resource()
+    {
+        return CartResource::class;
+    }
+
+    /**
      * Get the customer cart.
      */
     public function index(): JsonResponse
@@ -33,7 +43,7 @@ class CartController extends CustomerController
         Cart::collectTotals();
 
         return response()->json([
-            'data' => ($cart = Cart::getCart()) ? new CartResource($cart) : null,
+            'data' => ($cart = Cart::getCart()) ? app()->make($this->resource(), ['resource' => $cart]) : null,
         ]);
     }
 
@@ -78,13 +88,13 @@ class CartController extends CustomerController
                     Event::dispatch('shop.item.buy-now', request()->input('product_id'));
 
                     return response()->json([
-                        'data'     => new CartResource(Cart::getCart()),
+                        'data'     => app()->make($this->resource(), ['resource' => Cart::getCart()]),
                         'message'  => trans('rest-api::app.shop.checkout.cart.item.success'),
                     ]);
                 }
 
                 return response()->json([
-                    'data'    => new CartResource(Cart::getCart()),
+                    'data'    => app()->make($this->resource(), ['resource' => Cart::getCart()]),
                     'message' => trans('rest-api::app.shop.checkout.cart.item.success'),
                 ]);
             }
@@ -117,7 +127,7 @@ class CartController extends CustomerController
             Cart::updateItems(request()->input());
 
             return response()->json([
-                'data'    => new CartResource(Cart::getCart()),
+                'data'    => app()->make($this->resource(), ['resource' => Cart::getCart()]),
                 'message' => trans('rest-api::app.shop.checkout.cart.quantity.success'),
             ]);
         } catch (\Exception $exception) {
@@ -145,7 +155,7 @@ class CartController extends CustomerController
         $cart = Cart::getCart();
 
         return response([
-            'data'    => $cart ? new CartResource($cart) : null,
+            'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
             'message' => trans('rest-api::app.shop.checkout.cart.item.success-remove'),
         ]);
     }
@@ -166,7 +176,7 @@ class CartController extends CustomerController
         $cart = Cart::getCart();
 
         return response([
-            'data'    => $cart ? new CartResource($cart) : null,
+            'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
             'message' => trans('rest-api::app.shop.checkout.cart.item.success-remove'),
         ]);
     }
@@ -189,7 +199,7 @@ class CartController extends CustomerController
                     $cart = Cart::getCart();
 
                     return response([
-                        'data'    => $cart ? new CartResource($cart) : null,
+                        'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
                         'message' => trans('rest-api::app.shop.checkout.cart.coupon.success'),
                     ]);
                 }
@@ -213,13 +223,13 @@ class CartController extends CustomerController
      * @return \Illuminate\Http\Response
      */
     public function removeCoupon()
-    {
+    {   
         Cart::removeCouponCode()->collectTotals();
 
         $cart = Cart::getCart();
 
         return response([
-            'data'    => $cart ? new CartResource($cart) : null,
+            'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
             'message' => __('rest-api::app.shop.checkout.cart.coupon.success-remove'),
         ]);
     }
@@ -242,7 +252,7 @@ class CartController extends CustomerController
         $cart = Cart::getCart();
 
         return response([
-            'data'    => $cart ? new CartResource($cart) : null,
+            'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
             'message' => __('rest-api::app.shop.checkout.cart.move-wishlist.success'),
         ]);
     }
