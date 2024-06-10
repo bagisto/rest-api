@@ -154,7 +154,7 @@ class AttributeController
      *                      property="type",
      *                      type="string",
      *                      description="Attribute's type",
-     *                      example="select",
+     *                      example="text",
      *                      enum={"text", "textarea", "price", "boolean", "select", "multiselect", "datetime", "date", "image", "file", "checkbox"}
      *                  ),
      *                  @OA\Property(
@@ -256,8 +256,8 @@ class AttributeController
      *                      property="validation",
      *                      description="Attribute's validation",
      *                      type="string",
-     *                      example="numeric",
-     *                      enum={"numeric", "email", "decimal", "url"}
+     *                      example="number",
+     *                      enum={"number", "email", "decimal", "url"}
      *                  ),
      *                  @OA\Property(
      *                      property="value_per_locale",
@@ -364,7 +364,7 @@ class AttributeController
      *                      property="type",
      *                      type="string",
      *                      description="Attribute's type",
-     *                      example="select",
+     *                      example="text",
      *                      enum={"text", "textarea", "price", "boolean", "select", "multiselect", "datetime", "date", "image", "file", "checkbox"}
      *                  ),
      *                  @OA\Property(
@@ -464,8 +464,8 @@ class AttributeController
      *                      property="validation",
      *                      description="Attribute's validation",
      *                      type="string",
-     *                      example="numeric",
-     *                      enum={"numeric", "email", "decimal", "url"}
+     *                      example="number",
+     *                      enum={"number", "email", "decimal", "url"}
      *                  ),
      *                  @OA\Property(
      *                      property="is_configurable",
