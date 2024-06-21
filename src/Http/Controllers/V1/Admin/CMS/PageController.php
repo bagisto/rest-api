@@ -83,11 +83,13 @@ class PageController extends CMSController
 
         Event::dispatch('cms.pages.update.before', $id);
 
-        $page = $this->getRepositoryInstance()->update([
+        $this->getRepositoryInstance()->update([
             $locale    => request()->input($locale),
             'channels' => request()->input('channels'),
             'locale'   => $locale,
         ], $id);
+
+        $page = $this->getRepositoryInstance()->find($id);
 
         Event::dispatch('cms.pages.update.after', $page);
 
