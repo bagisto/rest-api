@@ -320,24 +320,20 @@ class ChannelController
      *                      example="ncr"
      *                  ),
      *                  @OA\Property(
-     *                      property="locale_code",
+     *                      property="en",
      *                      type="object",
      *                          @OA\Property(property="name", type="string", example="NCR Region"),
      *                          @OA\Property(property="maintenance_mode_text", type="string", example="This site is under maintenance mode now, visit again after some time."),
      *                          @OA\Property(property="seo_title", type="string", example="NCR Region Store"),
      *                          @OA\Property(property="seo_description", type="string", example="NCR Region Description"),
-     *                          @OA\Property(property="seo_keywords", type="string", example="NCR Region Keywords")
+     *                          @OA\Property(property="seo_keywords", type="string", example="NCR Region Keywords"),
+     *                          @OA\Property(property="description", type="string", example="NCR Region NCR Region NCR Region"),
      *                  ),
-     *                  @OA\Property(
-     *                      property="description", 
-     *                      type="string", 
-     *                      example="NCR Region NCR Region NCR Region"
-     *                 ),
      *                  @OA\Property(
      *                      property="inventory_sources",
      *                      type="array",
      *
-     *                      @OA\Items(type="integer", example=3)
+     *                      @OA\Items(type="integer", example=1)
      *                  ),
      *
      *                  @OA\Property(
