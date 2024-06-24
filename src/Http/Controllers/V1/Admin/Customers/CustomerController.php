@@ -256,6 +256,8 @@ class CustomerController extends BaseController
 
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
+        Event::dispatch('customer.note.create.before', $id);
+
         $customerNote = $this->customerNoteRepository->create([
             'customer_id'       => $id,
             'note'              => request()->input('note'),
@@ -265,6 +267,8 @@ class CustomerController extends BaseController
         if (request()->has('customer_notified')) {
             Event::dispatch('customer.note-created.after', $customerNote);
         }
+
+        Event::dispatch('customer.note.create.after', $customerNote);
 
         return response([
             'data'    => new CustomerResource($customer),
