@@ -377,6 +377,10 @@ return [
                 'password-mismatch' => 'Aktualne hasło nie pasuje.',
             ],
         ],
+
+        'error' => [
+            'not-authorized' => 'Nieautoryzowany',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +475,10 @@ return [
                     'create-success' => 'Twoja recenzja została pomyślnie przesłana.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized' => 'Nieautoryzowany',
         ],
     ],
 ];

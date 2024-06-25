@@ -377,6 +377,10 @@ return [
                 'password-mismatch' => '現在のパスワードが一致しません。',
             ],
         ],
+
+        'error' => [
+            'not-authorized' => '許可されていません',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +475,10 @@ return [
                     'create-success' => 'レビューが正常に送信されました。',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized' => '許可されていません',
         ],
     ],
 ];

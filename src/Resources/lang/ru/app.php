@@ -377,6 +377,10 @@ return [
                 'password-mismatch' => 'Текущий пароль не совпадает.',
             ],
         ],
+
+        'error' => [
+            'not-authorized' => 'Не авторизовано',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +475,10 @@ return [
                     'create-success' => 'Sua análise foi enviada com sucesso.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized' => 'Не авторизовано',
         ],
     ],
 ];

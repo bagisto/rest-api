@@ -377,6 +377,10 @@ return [
                 'password-mismatch' => 'Mevcut şifre eşleşmiyor.',
             ],
         ],
+
+        'error' => [
+            'not-authorized' => 'Yetkili değil',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +475,10 @@ return [
                     'create-success' => 'İncelemeniz başarıyla gönderildi.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized' => 'Yetkili değil',
         ],
     ],
 ];

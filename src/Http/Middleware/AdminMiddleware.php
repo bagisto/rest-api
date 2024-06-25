@@ -37,7 +37,7 @@ class AdminMiddleware
         }
 
         return response([
-            'message' => __('rest-api::app.common-response.error.not-authorized'),
+            'message' => trans('rest-api::app.admin.error.not-authorized'),
         ], 401);
     }
 }

@@ -377,6 +377,10 @@ return [
                 'password-mismatch' => '当前密码不匹配。',
             ],
         ],
+
+        'error' => [
+            'not-authorized' => '未经授权',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +475,10 @@ return [
                     'create-success' => '您的评论提交成功。',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized' => '未经授权',
         ],
     ],
 ];

@@ -377,6 +377,10 @@ return [
                 'password-mismatch' => 'كلمة المرور الحالية غير مطابقة.',
             ],
         ],
+
+        'error' => [
+            'not-authorized' => 'غير مخول',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +475,10 @@ return [
                     'create-success' => 'تم إرسال مراجعتك بنجاح.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized' => 'غير مخول',
         ],
     ],
 ];

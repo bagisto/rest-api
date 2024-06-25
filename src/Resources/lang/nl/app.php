@@ -377,6 +377,10 @@ return [
                 'password-mismatch' => 'Huidig wachtwoord komt niet overeen.',
             ],
         ],
+
+        'error' => [
+            'not-authorized' => 'Geen bevoegdheid',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +475,10 @@ return [
                     'create-success' => 'Uw beoordeling is succesvol ingediend.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized' => 'Geen bevoegdheid',
         ],
     ],
 ];

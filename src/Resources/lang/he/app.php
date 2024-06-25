@@ -377,6 +377,10 @@ return [
                 'password-mismatch' => 'הסיסמה הנוכחית אינה תואמת.',
             ],
         ],
+
+        'error' => [
+            'not-authorized' => 'לא מורשה',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +475,10 @@ return [
                     'create-success' => 'הביקורת שלך נשלחה בהצלחה.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized' => 'לא מורשה',
         ],
     ],
 ];
