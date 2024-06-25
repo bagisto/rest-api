@@ -524,7 +524,7 @@ class ProductController
      *                      description="Product's channels",
      *                      type="array",
      *
-     *                      @OA\Items(type="integer", example=18)
+     *                      @OA\Items(type="integer", example=1)
      *                  ),
      *
      *                  @OA\Property(
@@ -532,7 +532,7 @@ class ProductController
      *                      description="Product's channels",
      *                      type="array",
      *
-     *                      @OA\Items(type="integer", example=8)
+     *                      @OA\Items(type="integer", example=1)
      *                  ),
      *                  required={"sku", "name", "url_key", "short_description", "description"}
      *              )
