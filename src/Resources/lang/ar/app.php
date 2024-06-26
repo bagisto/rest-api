@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'غير مخول',
+            'not-authorized'   => 'غير مخول',
+            'record-not-found' => 'لم يتم العثور على السجل',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'غير مخول',
+            'not-authorized'   => 'غير مخول',
+            'record-not-found' => 'لم يتم العثور على السجل',
         ],
     ],
 ];

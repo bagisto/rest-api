@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'مجاز نیست',
+            'not-authorized'   => 'مجاز نیست',
+            'record-not-found' => 'سابقه ای یافت نشد',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'مجاز نیست',
+            'not-authorized'   => 'مجاز نیست',
+            'record-not-found' => 'سابقه ای یافت نشد',
         ],
     ],
 ];

@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => '許可されていません',
+            'not-authorized'   => '許可されていません',
+            'record-not-found' => '記録が見当たりませんでした',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => '許可されていません',
+            'not-authorized'   => '許可されていません',
+            'record-not-found' => '記録が見当たりませんでした',
         ],
     ],
 ];

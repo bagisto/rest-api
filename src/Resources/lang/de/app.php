@@ -373,7 +373,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Nicht berechtigt',
+            'not-authorized'   => 'Nicht berechtigt',
+            'record-not-found' => 'Aufnahme nicht gefunden',
         ],
     ],
 
@@ -472,7 +473,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Nicht berechtigt',
+            'not-authorized'   => 'Nicht berechtigt',
+            'record-not-found' => 'Aufnahme nicht gefunden',
         ],
     ],
 ];

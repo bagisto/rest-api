@@ -33,7 +33,9 @@ class AdminMiddleware
          * This is for token based authentication.
          */
         if ($request->user()?->tokenCan('role:admin')) {
-            return $next($request);
+            return response([
+                'message' => trans('rest-api::app.admin.error.record-not-found'),
+            ], 401);
         }
 
         return response([

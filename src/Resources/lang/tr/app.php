@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Yetkili değil',
+            'not-authorized'   => 'Yetkili değil',
+            'record-not-found' => 'Kayıt bulunamadı',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Yetkili değil',
+            'not-authorized'   => 'Yetkili değil',
+            'record-not-found' => 'Kayıt bulunamadı',
         ],
     ],
 ];

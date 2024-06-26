@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'לא מורשה',
+            'not-authorized'   => 'לא מורשה',
+            'record-not-found' => 'רשומה לא נמצאה',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'לא מורשה',
+            'not-authorized'   => 'לא מורשה',
+            'record-not-found' => 'רשומה לא נמצאה',
         ],
     ],
 ];

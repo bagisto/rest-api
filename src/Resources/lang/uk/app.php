@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Не авторизовано',
+            'not-authorized'   => 'Не авторизовано',
+            'record-not-found' => 'Запис не знайдено',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Не авторизовано',
+            'not-authorized'   => 'Не авторизовано',
+            'record-not-found' => 'Запис не знайдено',
         ],
     ],
 ];

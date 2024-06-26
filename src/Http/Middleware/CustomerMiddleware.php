@@ -33,7 +33,9 @@ class CustomerMiddleware
          * This is for token based authentication.
          */
         if ($request->user()?->tokenCan('role:customer')) {
-            return $next($request);
+            return response([
+                'message' => trans('rest-api::app.customer.error.record-not-found'),
+            ], 401);
         }
 
         return response([

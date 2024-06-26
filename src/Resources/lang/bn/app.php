@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'অনুমোদিত না',
+            'not-authorized'   => 'অনুমোদিত না',
+            'record-not-found' => 'রেকর্ড পাওয়া যায়নি',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'অনুমোদিত না',
+            'not-authorized'   => 'অনুমোদিত না',
+            'record-not-found' => 'রেকর্ড পাওয়া যায়নি',
         ],
     ],
 ];

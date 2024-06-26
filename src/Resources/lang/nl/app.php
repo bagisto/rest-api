@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Geen bevoegdheid',
+            'not-authorized'   => 'Geen bevoegdheid',
+            'record-not-found' => 'Document niet gevonden',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Geen bevoegdheid',
+            'not-authorized'   => 'Geen bevoegdheid',
+            'record-not-found' => 'Document niet gevonden',
         ],
     ],
 ];

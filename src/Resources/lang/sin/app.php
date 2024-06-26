@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'අවසර නැත',
+            'not-authorized'   => 'අවසර නැත',
+            'record-not-found' => 'වාර්තාව හමු නොවීය',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'අවසර නැත',
+            'not-authorized'   => 'අවසර නැත',
+            'record-not-found' => 'වාර්තාව හමු නොවීය',
         ],
     ],
 ];

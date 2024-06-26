@@ -380,7 +380,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Pas autorisé',
+            'not-authorized'   => 'Pas autorisé',
+            'record-not-found' => 'Enregistrement non trouvé',
         ],
     ],
 
@@ -477,7 +478,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Pas autorisé',
+            'not-authorized'   => 'Pas autorisé',
+            'record-not-found' => 'Enregistrement non trouvé',
         ],
     ],
 ];

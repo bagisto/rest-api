@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Não autorizado',
+            'not-authorized'   => 'Não autorizado',
+            'record-not-found' => 'Registro não encontrado',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'Não autorizado',
+            'not-authorized'   => 'Não autorizado',
+            'record-not-found' => 'Registro não encontrado',
         ],
     ],
 ];

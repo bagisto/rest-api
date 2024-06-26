@@ -379,8 +379,9 @@ return [
             ],
         ],
 
-        'error' => [
-            'not-authorized' => 'Not Authorized',
+       'error' => [
+            'not-authorized'   => 'Not Authorized',
+            'record-not-found' => 'Record Not Found',
         ],
     ],
 
@@ -478,8 +479,9 @@ return [
             ],
         ],
 
-        'error' => [
-            'not-authorized' => 'Not Authorized',
+       'error' => [
+            'not-authorized'   => 'Not Authorized',
+            'record-not-found' => 'Record Not Found',
         ],
     ],
 ];

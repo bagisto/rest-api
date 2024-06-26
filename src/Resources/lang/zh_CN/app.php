@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => '未经授权',
+            'not-authorized'   => '未经授权',
+            'record-not-found' => '找不到记录',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => '未经授权',
+            'not-authorized'   => '未经授权',
+            'record-not-found' => '找不到记录',
         ],
     ],
 ];

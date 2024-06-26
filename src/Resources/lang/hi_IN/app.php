@@ -379,7 +379,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'अधिकृत नहीं हैं',
+            'not-authorized'   => 'अधिकृत नहीं हैं',
+            'record-not-found' => 'रिकॉर्ड नहीं मिला',
         ],
     ],
 
@@ -478,7 +479,8 @@ return [
         ],
 
         'error' => [
-            'not-authorized' => 'अधिकृत नहीं हैं',
+            'not-authorized'   => 'अधिकृत नहीं हैं',
+            'record-not-found' => 'रिकॉर्ड नहीं मिला',
         ],
     ],
 ];
