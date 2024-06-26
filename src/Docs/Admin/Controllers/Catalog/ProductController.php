@@ -727,7 +727,7 @@ class ProductController
      *                      description="Product's customer group prices",
      *                      type="object",
      *                      @OA\Property(
-     *                          property="customer_group_price_0",
+     *                          property="price_0",
      *                          type="object",
      *                          @OA\Property(
      *                              property="customer_group_id",
