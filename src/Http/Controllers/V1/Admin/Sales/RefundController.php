@@ -80,7 +80,7 @@ class RefundController extends SalesController
         $refund = $this->getRepositoryInstance()->create(array_merge($data, ['order_id' => $orderId]));
 
         return response([
-            'data'    => new RefundResource($refund),
+            'data'    => new RefundResource($refund->refresh()),
             'message' => trans('rest-api::app.admin.sales.refunds.create-success'),
         ]);
     }
