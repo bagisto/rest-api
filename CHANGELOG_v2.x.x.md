@@ -1,3 +1,58 @@
+# CHANGELOG for v2.1.2
+
+#### This changelog consists the bug & security fixes in the releases listed below.
+
+## **v2.1.2 (5th of July 2024)** - *Release*
+
+* #268 [enhancement] - Add decimal option for currency create or update api in the request body.
+
+* #262 [fixed] - Add password validation when create or update new user.
+
+* #263 [fixed] - If type "text" is selected then number validation is not adding while creating attribute.
+
+* #264 [fixed] - Getting mail in both options for customer notified field.
+
+* #265 [fixed] - Getting email_sent = null in response when generate new invoice.
+
+* #266 [fixed] - Getting email_sent = null in response and receive 3 times shipment email when generate new shipment.
+
+* #267 [fixed] - Getting email_sent = null in response and receive 2 times refund email when generate new refund.
+
+* #269 [fixed] - Getting 2 as decimal value when admin create new currency.
+
+* #270 [fixed] - Getting "Internal server error" if trying to delete the CMS page with invalid id.
+
+* #271 [fixed] - Getting "Internal Server Error" when try to store exchange rate with invalid target currency.
+
+* #272 [fixed] - Not getting updated response after update the CMS page.
+
+* #273 [Fixed] - Getting "Internal server error" and mention 2 times category id parameter while getting product list form the shop.
+
+* #278 [Fixed] - Store and Admin|| Need email, postcode and phone number validation while adding new address.
+
+* #279 [Fixed] - Need to improve the response message when order is cancelled by customer.
+
+* #287 [Fixed] - Need to improve the response message when store new catalog rule.
+
+* #288 [Fixed] - Getting "Internal Server Error" when update catalog price rule.
+
+* #292 [Fixed] - Getting "Internal Server Error" when update the theme.
+
+* #293 [Fixed] - Getting "Internal Server Error" when delete unavailable theme.
+
+* #295 [Fixed] - Need email validation while store or update new customer.
+
+* #296 [Fixed] - Not receiving the email by customer notify api.
+
+* #298 [Fixed] - Getting exception from admin end when admin edit the newly store channel by api.
+
+* #299 [Fixed] - Getting error when trying to update the channel.
+
+* #300 [Fixed] - Getting "Internal Server Error" when update configurable, downloadable, bundle and grouped product.
+
+* #301 [Fixed] - Getting "Internal Server Error" when update simple and virtual products.
+
+
 # CHANGELOG for v2.x.x
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
