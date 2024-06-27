@@ -44,6 +44,8 @@
 
 * #296 [Fixed] - Not receiving the email by customer notify api.
 
+* #297 [Fixed] - Not getting correct warning message in response if update inventory source with invalid phone number.
+
 * #298 [Fixed] - Getting exception from admin end when admin edit the newly store channel by api.
 
 * #299 [Fixed] - Getting error when trying to update the channel.
