@@ -186,8 +186,8 @@ class InventorySourceController
      *                  ),
      *                  @OA\Property(
      *                      property="contact_number",
-     *                      type="integer",
-     *                      example=1325469780
+     *                      type="string",
+     *                      example="1325469780"
      *                  ),
      *                  @OA\Property(
      *                      property="street",
@@ -313,8 +313,8 @@ class InventorySourceController
      *                  ),
      *                  @OA\Property(
      *                      property="contact_number",
-     *                      type="integer",
-     *                      example=1325469780
+     *                      type="string",
+     *                      example="1325469780"
      *                  ),
      *                  @OA\Property(
      *                      property="street",
