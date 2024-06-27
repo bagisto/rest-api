@@ -176,6 +176,11 @@ class AttributeController
      *                      @OA\Property(property="name", type="string", example="Tranche d'âge")
      *                  ),
      *                  @OA\Property(
+     *                      property="default_value",
+     *                      type="interger",
+     *                      example=null,
+     *                  ),
+     *                  @OA\Property(
      *                      property="swatch_type",
      *                      description="Only use with select type attribute",
      *                      type="string",
@@ -384,6 +389,11 @@ class AttributeController
      *                      description="Attribute's name based on locale French",
      *                      type="object",
      *                      @OA\Property(property="name", type="string", example="Tranche d'âge")
+     *                  ),
+     *                  @OA\Property(
+     *                      property="default_value",
+     *                      type="interger",
+     *                      example=null,
      *                  ),
      *                  @OA\Property(
      *                      property="swatch_type",

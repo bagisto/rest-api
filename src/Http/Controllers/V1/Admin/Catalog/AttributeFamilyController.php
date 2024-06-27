@@ -73,12 +73,6 @@ class AttributeFamilyController extends CatalogController
 
         Event::dispatch('catalog.attribute_family.update.before', $id);
 
-        $data = request()->only([
-            'attribute_groups',
-            'name',
-            'code',
-        ]);
-
         $attributeFamily = $this->getRepositoryInstance()->findOrFail($id);
 
         if ($attributeFamily->code != request()->input('code')) {
@@ -87,7 +81,11 @@ class AttributeFamilyController extends CatalogController
             ], 400);
         }
 
-        $attributeFamily = $this->getRepositoryInstance()->update($data, $id);
+        $attributeFamily = $this->getRepositoryInstance()->update(request()->only([
+            'attribute_groups',
+            'name',
+            'code',
+        ]), $id);
 
         Event::dispatch('catalog.attribute_family.update.after', $attributeFamily);
 
@@ -120,7 +118,7 @@ class AttributeFamilyController extends CatalogController
 
         Event::dispatch('catalog.attribute_family.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $attributeFamily->delete();
 
         Event::dispatch('catalog.attribute_family.delete.after', $id);
 
