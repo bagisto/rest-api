@@ -166,7 +166,7 @@ class EventController
      *                      description="Event date",
      *                      format="date",
      *                      type="string",
-     *                      example="2024-01-27"
+     *                      example="2024-07-27"
      *                  ),
      *                  required={"name", "description", "date"}
      *              )

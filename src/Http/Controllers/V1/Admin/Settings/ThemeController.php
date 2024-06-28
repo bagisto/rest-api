@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
 use Webkul\RestApi\Http\Resources\V1\Admin\Settings\ThemeResource;
 use Webkul\Theme\Repositories\ThemeCustomizationRepository;
 
@@ -27,10 +28,8 @@ class ThemeController extends SettingController
 
     /**
      * Store a newly created Theme.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(): Response
     {
         if (request()->has('id')) {
             $this->validate(request(), [
@@ -42,37 +41,37 @@ class ThemeController extends SettingController
             return $this->getRepositoryInstance()->uploadImage(request()->all(), $theme);
         }
 
-        $data = request()->validate([
+        $validated = request()->validate([
             'name'       => 'required',
             'sort_order' => 'required|numeric',
             'type'       => 'required|in:product_carousel,category_carousel,static_content,image_carousel,footer_links,services_content',
             'channel_id' => 'required|in:'.implode(',', core()->getAllChannels()->pluck('id')->toArray()),
+            'theme_code' => 'required',
         ]);
 
         Event::dispatch('theme_customization.create.before');
 
-        $theme = $this->getRepositoryInstance()->create($data);
+        $theme = $this->getRepositoryInstance()->create($validated);
 
         Event::dispatch('theme_customization.create.after', $theme);
 
         return response([
-            'data'    => $theme,
+            'data'    => new ThemeResource($theme),
             'message' => trans('rest-api::app.admin.settings.themes.create-success'),
         ], 201);
     }
 
     /**
-     * Update the Theme
-     *
-     * @return \Illuminate\Http\Response
+     * Update the Theme.
      */
-    public function update(int $id)
+    public function update(int $id): Response
     {
         $this->validate(request(), [
             'name'       => 'required',
             'sort_order' => 'required|numeric',
             'type'       => 'required|in:product_carousel,category_carousel,static_content,image_carousel,footer_links,services_content',
             'channel_id' => 'required|in:'.implode(',', (core()->getAllChannels()->pluck('id')->toArray())),
+            'theme_code' => 'required',
         ]);
 
         $locale = request('locale');
@@ -83,6 +82,7 @@ class ThemeController extends SettingController
             'name',
             'sort_order',
             'channel_id',
+            'theme_code',
             'status',
             $locale
         );
@@ -96,21 +96,21 @@ class ThemeController extends SettingController
         Event::dispatch('theme_customization.update.after', $theme);
 
         return response([
-            'data'    => $theme,
+            'data'    => new ThemeResource($theme),
             'message' => trans('rest-api::app.admin.settings.themes.update-success'),
         ]);
     }
 
     /**
-     * Destroy the Theme
-     *
-     * @return \Illuminate\Http\Response
+     * Destroy the Theme,
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
+        $theme = $this->getRepositoryInstance()->findOrFail($id);
+
         Event::dispatch('theme_customization.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $theme->delete();
 
         Storage::deleteDirectory('theme/'.$id);
 

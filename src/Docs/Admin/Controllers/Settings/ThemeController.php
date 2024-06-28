@@ -162,6 +162,12 @@ class ThemeController
      *                      example="1"
      *                  ),
      *                  @OA\Property(
+     *                      property="theme_code",
+     *                      type="string",
+     *                      description="Theme code",
+     *                      example="default"
+     *                  ),
+     *                  @OA\Property(
      *                      property="name",
      *                      type="string",
      *                      description="Theme name",
@@ -247,24 +253,20 @@ class ThemeController
      *                          description="Theme options",
      *                          @OA\Property(
      *                              property="images",
-     *                              type="array",
+     *                              type="object",
      *                              description="Image carousel images",
      *
-     *                              @OA\Items(
-     *                                  type="object",
-     *
-     *                                  @OA\Property(
-     *                                      property="link",
-     *                                      type="string",
-     *                                      description="Image link",
-     *                                      example="test1"
-     *                                  ),
-     *                                  @OA\Property(
-     *                                      property="image",
-     *                                      type="string",
-     *                                      description="Image path",
-     *                                      example="storage/theme/1/1.webp"
-     *                                  )
+     *                              @OA\Property(
+     *                                  property="link",
+     *                                  type="string",
+     *                                  description="Image link",
+     *                                  example="test1"
+     *                              ),
+     *                              @OA\Property(
+     *                                  property="image",
+     *                                  type="string",
+     *                                  description="Image path",
+     *                                  example="storage/theme/1/1.webp"
      *                              )
      *                          )
      *                      )
@@ -292,6 +294,12 @@ class ThemeController
      *                      type="string",
      *                      description="Channel ID",
      *                      example="1"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="theme_code",
+     *                      type="string",
+     *                      description="Theme code",
+     *                      example="default"
      *                  ),
      *                  @OA\Property(
      *                      property="status",

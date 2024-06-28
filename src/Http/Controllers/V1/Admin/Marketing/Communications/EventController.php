@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\EventRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
@@ -27,12 +28,10 @@ class EventController extends MarketingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(): Response
     {
-        $validatedData = $this->validate(request(), [
+        $this->validate(request(), [
             'name'        => 'required',
             'description' => 'required',
             'date'        => 'date|required',
@@ -40,7 +39,11 @@ class EventController extends MarketingController
 
         Event::dispatch('marketing.events.create.before');
 
-        $event = $this->getRepositoryInstance()->create($validatedData);
+        $event = $this->getRepositoryInstance()->create(request()->only([
+            'name',
+            'description',
+            'date',
+        ]));
 
         Event::dispatch('marketing.events.create.after', $event);
 
@@ -52,12 +55,10 @@ class EventController extends MarketingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id): Response
     {
-        $validatedData = $this->validate(request(), [
+        $this->validate(request(), [
             'name'        => 'required',
             'description' => 'required',
             'date'        => 'date|required',
@@ -65,7 +66,11 @@ class EventController extends MarketingController
 
         Event::dispatch('marketing.events.update.before', $id);
 
-        $event = $this->getRepositoryInstance()->update($validatedData, $id);
+        $event = $this->getRepositoryInstance()->update(request()->only([
+            'name',
+            'description',
+            'date',
+        ]), $id);
 
         Event::dispatch('marketing.events.update.after', $event);
 
