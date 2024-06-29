@@ -346,4 +346,83 @@ class ProductController
     public function store()
     {
     }
+
+    /**
+     * @OA\Get(
+     *      path="/api/v1/product/reviews",
+     *      operationId="getProductReview",
+     *      tags={"Products"},
+     *      summary="Get product's reviews by product id",
+     *      description="Returns reviews list, if you want to retrieve all reviews by products at once pass pagination=0 otherwise ignore this parameter",
+     *      @OA\Parameter(
+     *          name="product_id",
+     *          description="Product id",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="sort",
+     *          description="Sort column",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *          example="id"
+     *      ),
+     *      @OA\Parameter(
+     *          name="order",
+     *          description="Sort order",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *              enum={"desc", "asc"}
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="page",
+     *          description="Page number",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="limit",
+     *          description="Limit",
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Get review by product successfully."
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/ProductsReview"
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+    public function getProductReview()
+    {
+    }
 }

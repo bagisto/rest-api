@@ -68,4 +68,41 @@ class ProductReviewController extends CatalogController
             'message' => trans('rest-api::app.shop.catalog.products.reviews.create-success'),
         ]);
     }
+
+    /**
+     * Get all reviews by the specific product.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getProductReview(Request $request)
+    {
+        $this->validate($request, [
+            'product_id' => 'required|numeric',
+        ]);
+
+        $query = $this->getRepositoryInstance()->scopeQuery(function ($query) use ($request) {
+            foreach ($request->except($this->requestException) as $input => $value) {
+                $query = $query->whereIn($input, array_map('trim', explode(',', $value)));
+            }
+
+            if ($sort = $request->input('sort')) {
+                $query = $query->orderBy($sort, $request->input('order') ?? 'desc');
+            } else {
+                $query = $query->orderBy('id', $request->input('order') ?? 'desc');
+            }
+
+            return $query;
+        });
+
+        if (is_null($request->input('pagination')) || $request->input('pagination')) {
+            $results = $query->paginate($request->input('limit') ?? 10);
+        } else {
+            $results = $query->get();
+        }
+
+        return response([
+            'message' => trans('rest-api::app.shop.catalog.products.reviews.get-success'),
+            'data'    => $this->getResourceCollection($results),
+        ]);
+    }
 }

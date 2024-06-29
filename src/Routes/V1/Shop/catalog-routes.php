@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
     });
 });
 
+Route::controller(ProductReviewController::class)->prefix('product')->group(function () {
+    Route::get('/reviews', 'getProductReview');
+});
+
 /**
  * Category routes.
  */
