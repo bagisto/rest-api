@@ -104,11 +104,11 @@ class PageController extends CMSController
      */
     public function destroy(int $id)
     {
-        Event::dispatch('cms.pages.delete.before', $id);
-
         $page = $this->getRepositoryInstance()->findOrFail($id);
 
-        $page->delete($id);
+        Event::dispatch('cms.pages.delete.before', $id);
+
+        $page->delete();
 
         Event::dispatch('cms.pages.delete.after', $id);
 
