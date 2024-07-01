@@ -469,6 +469,7 @@ return [
                 'configurable-error' => 'Please select at least one configurable attribute.',
 
                 'reviews' => [
+                    'get-success'       => 'Get reviews by product successfully.',
                     'create-success' => 'Your review submitted successfully.',
                 ],
             ],
