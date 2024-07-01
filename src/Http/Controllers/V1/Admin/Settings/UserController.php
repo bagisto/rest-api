@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
-use Webkul\Admin\Http\Requests\UserForm;
+use Webkul\RestApi\Http\Requests\UserForm;
 use Webkul\RestApi\Http\Resources\V1\Admin\Settings\UserResource;
 use Webkul\User\Repositories\AdminRepository;
 
