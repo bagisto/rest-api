@@ -83,18 +83,16 @@ class PageController extends CMSController
 
         Event::dispatch('cms.pages.update.before', $id);
 
-        $this->getRepositoryInstance()->update([
+        $page = $this->getRepositoryInstance()->update([
             $locale    => request()->input($locale),
             'channels' => request()->input('channels'),
             'locale'   => $locale,
         ], $id);
 
-        $page = $this->getRepositoryInstance()->find($id);
-
-        Event::dispatch('cms.pages.update.after', $page);
+        Event::dispatch('cms.pages.update.after', $page->refresh());
 
         return response([
-            'data'    => new PageResource($page),
+            'data'    => new PageResource($page->refresh()),
             'message' => trans('rest-api::app.admin.cms.update-success'),
         ]);
     }
