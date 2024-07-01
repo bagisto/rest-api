@@ -58,7 +58,7 @@ class OrderController extends SalesController
     {
         $validatedData = $request->validate([
             'comment'           => 'required',
-            'customer_notified' => 'sometimes|sometimes',
+            'customer_notified' => 'sometimes',
         ]);
 
         $data = array_merge($validatedData, ['order_id' => $id]);
