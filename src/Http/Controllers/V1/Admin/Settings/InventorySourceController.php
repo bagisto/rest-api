@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\InventorySourceRequest;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
@@ -27,10 +28,8 @@ class InventorySourceController extends SettingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(InventorySourceRequest $inventorySourceRequest)
+    public function store(InventorySourceRequest $inventorySourceRequest): Response
     {
         Event::dispatch('inventory.inventory_source.create.before');
 
@@ -65,10 +64,8 @@ class InventorySourceController extends SettingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(InventorySourceRequest $inventorySourceRequest, int $id)
+    public function update(InventorySourceRequest $inventorySourceRequest, int $id): Response
     {
         Event::dispatch('inventory.inventory_source.update.before', $id);
 

@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ChannelRepository;
@@ -28,10 +29,8 @@ class ChannelController extends SettingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $data = $request->validate([
             /* general */
@@ -80,10 +79,8 @@ class ChannelController extends SettingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): Response
     {
         $locale = core()->getRequestedLocaleCode();
 
@@ -142,10 +139,8 @@ class ChannelController extends SettingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $channel = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -157,7 +152,7 @@ class ChannelController extends SettingController
 
         Event::dispatch('core.channel.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $channel->delete();
 
         Event::dispatch('core.channel.delete.after', $id);
 
@@ -173,15 +168,11 @@ class ChannelController extends SettingController
     {
         $editedData = $locale ? $data[$locale] : $data;
 
-        $editedData['home_seo'] = [
-            'meta_title'       => $editedData['seo_title'],
-            'meta_description' => $editedData['seo_description'],
-            'meta_keywords'    => $editedData['seo_keywords'],
-        ];
+        $editedData['home_seo']['meta_title'] = $editedData['seo_title'];
+        $editedData['home_seo']['meta_description'] = $editedData['seo_description'];
+        $editedData['home_seo']['meta_keywords'] = $editedData['seo_keywords'];
 
-        $editedData['home_seo'] = json_encode($editedData['home_seo']);
-
-        unset($editedData['seo_title'], $editedData['seo_description'], $editedData['seo_keywords']);
+        $editedData = $this->unsetKeys($editedData, ['seo_title', 'seo_description', 'seo_keywords']);
 
         if ($locale) {
             $data[$locale] = $editedData;
@@ -189,5 +180,17 @@ class ChannelController extends SettingController
         }
 
         return $editedData;
+    }
+
+    /**
+     * Unset keys.
+     */
+    private function unsetKeys($data, array $keys): array
+    {
+        foreach ($keys as $key) {
+            unset($data[$key]);
+        }
+
+        return $data;
     }
 }

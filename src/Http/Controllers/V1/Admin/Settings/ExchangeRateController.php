@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ExchangeRateRepository;
@@ -27,10 +28,8 @@ class ExchangeRateController extends SettingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $validatedData = $request->validate([
             'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency'],
@@ -51,13 +50,11 @@ class ExchangeRateController extends SettingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): Response
     {
         $validatedData = $request->validate([
-            'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,'.$id],
+            'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,' . $id],
             'rate'            => 'required|numeric',
         ]);
 
@@ -75,10 +72,8 @@ class ExchangeRateController extends SettingController
 
     /**
      * Update rates using exchange rates API.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function updateRates()
+    public function updateRates(): Response
     {
         try {
             app(config('services.exchange_api.'.config('services.exchange_api.default').'.class'))->updateRates();
@@ -95,16 +90,14 @@ class ExchangeRateController extends SettingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $exchangeRate = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('core.exchange_rate.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $exchangeRate->delete();
 
         Event::dispatch('core.exchange_rate.delete.after', $id);
 
