@@ -377,6 +377,11 @@ return [
                 'password-mismatch' => 'كلمة المرور الحالية غير مطابقة.',
             ],
         ],
+
+        'error' => [
+            'not-authorized'   => 'غير مخول',
+            'record-not-found' => 'لم يتم العثور على السجل',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +476,11 @@ return [
                     'create-success' => 'تم إرسال مراجعتك بنجاح.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized'   => 'غير مخول',
+            'record-not-found' => 'لم يتم العثور على السجل',
         ],
     ],
 ];

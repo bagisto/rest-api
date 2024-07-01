@@ -377,6 +377,11 @@ return [
                 'password-mismatch' => 'رمز عبور فعلی مطابقت ندارد.',
             ],
         ],
+
+        'error' => [
+            'not-authorized'   => 'مجاز نیست',
+            'record-not-found' => 'سابقه ای یافت نشد',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +476,11 @@ return [
                     'create-success' => 'نقد و بررسی شما با موفقیت ثبت شد.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized'   => 'مجاز نیست',
+            'record-not-found' => 'سابقه ای یافت نشد',
         ],
     ],
 ];
