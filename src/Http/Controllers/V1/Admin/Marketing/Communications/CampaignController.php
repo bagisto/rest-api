@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Marketing\Repositories\CampaignRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
@@ -12,7 +13,7 @@ class CampaignController extends MarketingController
     /**
      * Repository class name.
      */
-    public function repository():string
+    public function repository(): string
     {
         return CampaignRepository::class;
     }
@@ -27,16 +28,14 @@ class CampaignController extends MarketingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(): Response
     {
         $validatedData = $this->validate(request(), [
             'name'                  => 'required',
             'subject'               => 'required',
             'marketing_template_id' => 'required',
-            'marketing_event_id'    => 'required_if:schedule_type,event',
+            'marketing_event_id'    => 'required',
             'channel_id'            => 'required',
             'customer_group_id'     => 'required',
             'status'                => 'sometimes|required|in:0,1',
@@ -56,10 +55,8 @@ class CampaignController extends MarketingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id): Response
     {
         $validatedData = $this->validate(request(), [
             'name'                  => 'required',
@@ -85,16 +82,14 @@ class CampaignController extends MarketingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $campaign = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('marketing.campaigns.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $campaign->delete();
 
         Event::dispatch('marketing.campaigns.delete.after', $id);
 

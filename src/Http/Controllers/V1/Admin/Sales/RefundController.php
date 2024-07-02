@@ -27,10 +27,8 @@ class RefundController extends SalesController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, OrderRepository $orderRepository, int $orderId)
+    public function store(Request $request, OrderRepository $orderRepository, int $orderId): \Illuminate\Http\Response
     {
         $order = $orderRepository->findOrFail($orderId);
 
@@ -41,19 +39,17 @@ class RefundController extends SalesController
         }
 
         $request->validate([
-            'refund.items.*'           => 'required|numeric|min:0',
-            'refund.shipping'          => 'required',
-            'refund.adjustment_refund' => 'required',
-            'refund.adjustment_fee'    => 'required',
+            'refund.items'   => 'array',
+            'refund.items.*' => 'required|numeric|min:0',
         ]);
 
         $data = $request->all();
 
-        if (! $data['refund']['shipping']) {
+        if (! isset($data['refund']['shipping'])) {
             $data['refund']['shipping'] = 0;
         }
 
-        $totals = $this->getRepositoryInstance()->getOrderItemsRefundSummary($data['refund']['items'], $orderId);
+        $totals = $this->getRepositoryInstance()->getOrderItemsRefundSummary($data['refund'], $orderId);
 
         if (! $totals) {
             return response([

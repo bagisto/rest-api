@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
@@ -29,13 +30,11 @@ class PageController extends CMSController
 
     /**
      * To store a new page in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $request->validate([
-            'url_key'      => ['required', 'unique:cms_page_translations,url_key', new \Webkul\Core\Rules\Slug],
+            'url_key'      => ['required', 'unique:cms_page_translations,url_key', new Slug],
             'page_title'   => 'required',
             'channels'     => 'required',
             'html_content' => 'required',
@@ -43,7 +42,7 @@ class PageController extends CMSController
 
         Event::dispatch('cms.pages.create.before');
 
-        $page = $this->getRepositoryInstance()->create(request()->only([
+        $page = $this->getRepositoryInstance()->create($request->only([
             'page_title',
             'channels',
             'html_content',
@@ -63,10 +62,8 @@ class PageController extends CMSController
 
     /**
      * To update the previously created page in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): Response
     {
         $locale = core()->getRequestedLocaleCode();
 
@@ -99,14 +96,14 @@ class PageController extends CMSController
 
     /**
      * To delete the previously create CMS page.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
+        $page = $this->getRepositoryInstance()->findOrFail($id);
+
         Event::dispatch('cms.pages.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $page->delete();
 
         Event::dispatch('cms.pages.delete.after', $id);
 
@@ -117,10 +114,8 @@ class PageController extends CMSController
 
     /**
      * To mass delete the CMS resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
         $indices = $massDestroyRequest->input('indices');
 

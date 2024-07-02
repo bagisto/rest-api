@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sales;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sales\OrderResource;
@@ -37,10 +38,8 @@ class OrderController extends SalesController
 
     /**
      * Cancel action for the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function cancel(int $id)
+    public function cancel(int $id): Response
     {
         $result = $this->getRepositoryInstance()->cancel($id);
 
@@ -50,11 +49,9 @@ class OrderController extends SalesController
     }
 
     /**
-     * Add comment to the order
-     *
-     * @return \Illuminate\Http\Response
+     * Add comment to the order.
      */
-    public function comment(Request $request, int $id)
+    public function comment(Request $request, int $id): Response
     {
         $validatedData = $request->validate([
             'comment'           => 'required',

@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\InventoryRequest;
@@ -34,30 +35,35 @@ class ProductController extends CatalogController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
+        $request->validate([
+            'type'                => 'required',
+            'attribute_family_id' => 'required',
+            'sku'                 => ['required', 'unique:products,sku', new Slug],
+            'super_attributes'    => 'array|min:1',
+            'super_attributes.*'  => 'array|min:1',
+        ]);
+
         if (
             ProductType::hasVariants($request->input('type'))
-            && (! $request->has('super_attributes')
-                || ! count($request->get('super_attributes')))
+            && ! $request->has('super_attributes')
         ) {
             return response([
                 'message' => trans('rest-api::app.admin.catalog.products.error.configurable-error'),
             ], 400);
         }
 
-        $request->validate([
-            'type'                => 'required',
-            'attribute_family_id' => 'required',
-            'sku'                 => ['required', 'unique:products,sku', new Slug],
-        ]);
-
         Event::dispatch('catalog.product.create.before');
 
-        $product = $this->getRepositoryInstance()->create($request->all());
+        $product = $this->getRepositoryInstance()->create($request->only([
+            'type',
+            'attribute_family_id',
+            'sku',
+            'super_attributes',
+            'family',
+        ]));
 
         Event::dispatch('catalog.product.create.after', $product);
 
@@ -69,39 +75,12 @@ class ProductController extends CatalogController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(ProductForm $request, int $id)
+    public function update(ProductForm $request, int $id): Response
     {
-        $data = $request->all();
-
-        $multiselectAttributeCodes = [];
-
-        $productAttributes = $this->getRepositoryInstance()->findOrFail($id);
-
-        foreach ($productAttributes->attribute_family->attribute_groups as $attributeGroup) {
-            $customAttributes = $productAttributes->getEditableAttributes($attributeGroup);
-
-            if (count($customAttributes)) {
-                foreach ($customAttributes as $attribute) {
-                    if ($attribute->type == 'multiselect' || $attribute->type == 'checkbox') {
-                        array_push($multiselectAttributeCodes, $attribute->code);
-                    }
-                }
-            }
-        }
-
-        if (count($multiselectAttributeCodes)) {
-            foreach ($multiselectAttributeCodes as $multiselectAttributeCode) {
-                if (! isset($data[$multiselectAttributeCode])) {
-                    $data[$multiselectAttributeCode] = [];
-                }
-            }
-        }
         Event::dispatch('catalog.product.update.before', $id);
 
-        $product = $this->getRepositoryInstance()->update($data, $id);
+        $product = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('catalog.product.update.after', $product);
 
@@ -113,10 +92,8 @@ class ProductController extends CatalogController
 
     /**
      * Update inventories.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function updateInventories(InventoryRequest $inventoryRequest, ProductInventoryRepository $productInventoryRepository, int $id)
+    public function updateInventories(InventoryRequest $inventoryRequest, ProductInventoryRepository $productInventoryRepository, int $id): Response
     {
         $product = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -126,7 +103,7 @@ class ProductController extends CatalogController
 
         Event::dispatch('catalog.product.update.after', $product);
 
-        return response()->json([
+        return response([
             'data'    => [
                 'total' => $productInventoryRepository->where('product_id', $product->id)->sum('qty'),
             ],
@@ -136,16 +113,14 @@ class ProductController extends CatalogController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $product = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('catalog.product.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $product->delete();
 
         Event::dispatch('catalog.product.delete.after', $id);
 
@@ -156,10 +131,8 @@ class ProductController extends CatalogController
 
     /**
      * Remove the specified resources from database.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
         $productIds = $massDestroyRequest->input('indices');
 
@@ -178,21 +151,19 @@ class ProductController extends CatalogController
 
     /**
      * Mass update the products.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massUpdate(MassUpdateRequest $massUpdateRequest)
+    public function massUpdate(MassUpdateRequest $massUpdateRequest): Response
     {
         foreach ($massUpdateRequest->indices as $id) {
-            $this->getRepositoryInstance()->findOrFail($id);
+            $product = $this->getRepositoryInstance()->findOrFail($id);
 
             Event::dispatch('catalog.product.update.before', $id);
 
-            $product = $this->getRepositoryInstance()->update([
+            $product->update([
                 'channel' => null,
                 'locale'  => null,
                 'status'  => $massUpdateRequest->value,
-            ], $id);
+            ]);
 
             Event::dispatch('catalog.product.update.after', $product);
         }

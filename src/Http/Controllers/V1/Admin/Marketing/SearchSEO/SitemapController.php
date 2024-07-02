@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Webkul\Sitemap\Repositories\SitemapRepository;
@@ -28,10 +29,8 @@ class SitemapController extends MarketingController
 
     /**
      * Store a newly created resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(): Response
     {
         $this->validate(request(), [
             'file_name' => 'required',
@@ -55,10 +54,8 @@ class SitemapController extends MarketingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id): Response
     {
         $this->validate(request(), [
             'file_name' => 'required',
@@ -82,22 +79,20 @@ class SitemapController extends MarketingController
 
     /**
      * Remove the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $sitemap = $this->getRepositoryInstance()->findOrFail($id);
 
-        Storage::delete($sitemap->path.'/'.$sitemap->file_name);
+        Storage::delete($sitemap->path . '/' . $sitemap->file_name);
 
         Event::dispatch('marketing.search_seo.sitemap.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $sitemap->delete();
 
         Event::dispatch('marketing.search_seo.sitemap.delete.after', $id);
 
-        return response()->json([
+        return response([
             'message' => trans('rest-api::app.admin.marketing.search-seo.sitemaps.delete-success'),
         ], 200);
     }

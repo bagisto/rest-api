@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SettingController;
@@ -13,7 +14,7 @@ class TaxRateController extends SettingController
     /**
      * Repository class name.
      */
-    public function repository():string
+    public function repository(): string
     {
         return TaxRateRepository::class;
     }
@@ -28,10 +29,8 @@ class TaxRateController extends SettingController
 
     /**
      * Create the tax rate.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $request->validate([
             'identifier' => 'required|string|unique:tax_rates,identifier',
@@ -42,12 +41,6 @@ class TaxRateController extends SettingController
             'country'    => 'required|string',
             'tax_rate'   => 'required|numeric|min:0.0001',
         ]);
-
-        if ($request->has('is_zip')) {
-            $request['is_zip'] = 1;
-
-            unset($request['zip_code']);
-        }
 
         Event::dispatch('tax.rate.create.before');
 
@@ -72,10 +65,8 @@ class TaxRateController extends SettingController
 
     /**
      * Edit the previous tax rate.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): Response
     {
         $request->validate([
             'identifier' => 'required|string|unique:tax_rates,identifier,'.$id,
@@ -109,16 +100,14 @@ class TaxRateController extends SettingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $taxrate = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('tax.rate.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $taxrate->delete();
 
         Event::dispatch('tax.rate.delete.after', $id);
 

@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\User;
 
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -18,10 +19,8 @@ class AuthController extends UserController
 
     /**
      * Login user.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function login(Request $request, AdminRepository $adminRepository)
+    public function login(Request $request, AdminRepository $adminRepository): Response
     {
         $request->validate([
             'email'    => 'required|email',
@@ -69,10 +68,8 @@ class AuthController extends UserController
 
     /**
      * Logout user.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
+    public function logout(Request $request): Response
     {
         $admin = $this->resolveAdminUser($request);
 
@@ -87,10 +84,8 @@ class AuthController extends UserController
 
     /**
      * Send forgot password link.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function forgotPassword(Request $request)
+    public function forgotPassword(Request $request): Response
     {
         $request->validate(['email' => 'required|email']);
 

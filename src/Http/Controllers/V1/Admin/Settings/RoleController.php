@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Resources\V1\Admin\Settings\RoleResource;
@@ -28,10 +29,8 @@ class RoleController extends SettingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $request->validate([
             'name'            => 'required',
@@ -60,23 +59,19 @@ class RoleController extends SettingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdminRepository $adminRepository, int $id)
+    public function update(Request $request, AdminRepository $adminRepository, int $id): Response
     {
         $request->validate([
             'name'            => 'required',
-            'permission_type' => ['required', 'in:all,custom'],
+            'permission_type' => 'required|in:all,custom',
             'description'     => 'required',
         ]);
-
-        $params = $request->all();
 
         /**
          * Check for other admins if the role has been changed from all to custom.
          */
-        $isChangedFromAll = $params['permission_type'] == 'custom' && $this->getRepositoryInstance()->find($id)->permission_type == 'all';
+        $isChangedFromAll = $request->permission_type == 'custom' && $this->getRepositoryInstance()->find($id)->permission_type == 'all';
 
         if (
             $isChangedFromAll
@@ -89,7 +84,13 @@ class RoleController extends SettingController
 
         Event::dispatch('user.role.update.before', $id);
 
-        $role = $this->getRepositoryInstance()->update($params, $id);
+        $role = $this->getRepositoryInstance()->update(array_merge($request->only([
+            'name',
+            'description',
+            'permission_type',
+        ]), [
+            'permissions' => $request->has('permissions') ? $request->permissions : [],
+        ]), $id);
 
         Event::dispatch('user.role.update.after', $role);
 
@@ -101,10 +102,8 @@ class RoleController extends SettingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $role = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -122,7 +121,7 @@ class RoleController extends SettingController
 
         Event::dispatch('user.role.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $role->delete();
 
         Event::dispatch('user.role.delete.after', $id);
 

@@ -4,6 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sales;
 
 use Illuminate\Http\Request;
 use Webkul\RestApi\Http\Resources\V1\Admin\Sales\OrderTransactionResource;
+use Webkul\Sales\Models\Invoice;
+use Webkul\Sales\Models\Order;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Repositories\OrderTransactionRepository;
@@ -19,10 +21,9 @@ class TransactionController extends SalesController
     public function __construct(
         protected OrderRepository $orderRepository,
         protected InvoiceRepository $invoiceRepository,
-        protected ShipmentRepository $shipmentRepository
-    ) {
-        parent::__construct();
-    }
+        protected ShipmentRepository $shipmentRepository,
+        protected OrderTransactionRepository $orderTransactionRepository
+    ) {}
 
     /**
      * Repository class name.
@@ -42,10 +43,8 @@ class TransactionController extends SalesController
 
     /**
      * Save the transaction.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\Response
     {
         $request->validate([
             'invoice_id'     => 'required',
@@ -53,7 +52,7 @@ class TransactionController extends SalesController
             'amount'         => 'required|numeric|min:0.0001',
         ]);
 
-        $invoice = $this->invoiceRepository->where('increment_id', $request->invoice_id)->first();
+        $invoice = $this->invoiceRepository->where('id', $request->invoice_id)->first();
 
         if (! $invoice) {
             return response([
@@ -77,38 +76,39 @@ class TransactionController extends SalesController
             ], 400);
         }
 
+        if ($request->amount <= 0) {
+            return response([
+                'message' => trans('rest-api::app.admin.sales.transactions.transaction-amount-zero'),
+            ], 400);
+        }
+
         $order = $this->orderRepository->find($invoice->order_id);
 
-        $data = [
-            'paidAmount' => $request->amount,
-        ];
-
-        $randomId = random_bytes(20);
-        $transactionId = bin2hex($randomId);
-
-        $transactionData['transaction_id'] = $transactionId;
-        $transactionData['type'] = $request->payment_method;
-        $transactionData['payment_method'] = $request->payment_method;
-        $transactionData['invoice_id'] = $invoice->id;
-        $transactionData['order_id'] = $invoice->order_id;
-        $transactionData['amount'] = $request->amount;
-        $transactionData['status'] = 'paid';
-        $transactionData['data'] = json_encode($data);
-
-        $transaction = $this->getRepositoryInstance()->create($transactionData);
+        $transaction = $this->getRepositoryInstance()->create([
+            'transaction_id' => bin2hex(random_bytes(20)),
+            'type'           => $request->payment_method,
+            'payment_method' => $request->payment_method,
+            'invoice_id'     => $invoice->id,
+            'order_id'       => $invoice->order_id,
+            'amount'         => $request->amount,
+            'status'         => 'paid',
+            'data'           => json_encode([
+                'paidAmount' => $request->amount,
+            ]),
+        ]);
 
         $transactionTotal = $this->getRepositoryInstance()->where('invoice_id', $invoice->id)->sum('amount');
 
         if ($transactionTotal >= $invoice->base_grand_total) {
             $shipments = $this->shipmentRepository->where('order_id', $invoice->order_id)->first();
 
-            if (isset($shipments)) {
-                $this->orderRepository->updateOrderStatus($order, 'completed');
-            } else {
-                $this->orderRepository->updateOrderStatus($order, 'processing');
-            }
+            $status = isset($shipments)
+                ? Order::STATUS_COMPLETED
+                : Order::STATUS_PROCESSING;
 
-            $this->invoiceRepository->updateState($invoice, 'paid');
+            $this->orderRepository->updateOrderStatus($order, $status);
+
+            $this->invoiceRepository->updateState($invoice, Invoice::STATUS_PAID);
         }
 
         return response([

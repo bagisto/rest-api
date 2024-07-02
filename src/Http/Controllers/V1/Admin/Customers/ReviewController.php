@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
@@ -28,10 +29,8 @@ class ReviewController extends BaseController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id): Response
     {
         $this->validate(request(), [
             'status' => 'required|in:approved,disapproved,pending',
@@ -51,14 +50,14 @@ class ReviewController extends BaseController
 
     /**
      * Delete the review.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
+        $review = $this->getRepositoryInstance()->findOrFail($id);
+
         Event::dispatch('customer.review.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $review->delete();
 
         Event::dispatch('customer.review.delete.after', $id);
 
@@ -69,10 +68,8 @@ class ReviewController extends BaseController
 
     /**
      * Mass approve the reviews.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massUpdate(MassUpdateRequest $massUpdateRequest)
+    public function massUpdate(MassUpdateRequest $massUpdateRequest): Response
     {
         $indices = $massUpdateRequest->input('indices');
 
@@ -93,10 +90,8 @@ class ReviewController extends BaseController
 
     /**
      * Mass delete the reviews on the products.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
         $indices = $massDestroyRequest->input('indices');
 
