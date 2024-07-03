@@ -2,9 +2,10 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\CartRule\Repositories\CartRuleRepository;
+use Webkul\Admin\Http\Requests\CartRuleRequest;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Promotions\CartRuleResource;
 
@@ -28,27 +29,12 @@ class CartRuleController extends MarketingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CartRuleRequest $cartRuleRequest): Response
     {
-        $request->validate([
-            'name'                => 'required',
-            'channels'            => 'required|array|min:1',
-            'customer_groups'     => 'required|array|min:1',
-            'coupon_type'         => 'required',
-            'use_auto_generation' => 'required_if:coupon_type,==,1',
-            'coupon_code'         => 'required_if:use_auto_generation,==,0|unique:cart_rule_coupons,code',
-            'starts_from'         => 'nullable|date',
-            'ends_till'           => 'nullable|date|after_or_equal:starts_from',
-            'action_type'         => 'required',
-            'discount_amount'     => 'required|numeric',
-        ]);
-
         Event::dispatch('promotions.cart_rule.create.before');
 
-        $cartRule = $this->getRepositoryInstance()->create($request->all());
+        $cartRule = $this->getRepositoryInstance()->create($cartRuleRequest->all());
 
         Event::dispatch('promotions.cart_rule.create.after', $cartRule);
 
@@ -60,32 +46,18 @@ class CartRuleController extends MarketingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(CartRuleRequest $cartRuleRequest, int $id): Response
     {
-        $request->validate([
-            'name'                => 'required',
-            'channels'            => 'required|array|min:1',
-            'customer_groups'     => 'required|array|min:1',
-            'coupon_type'         => 'required',
-            'use_auto_generation' => 'required_if:coupon_type,==,1',
-            'starts_from'         => 'nullable|date',
-            'ends_till'           => 'nullable|date|after_or_equal:starts_from',
-            'action_type'         => 'required',
-            'discount_amount'     => 'required|numeric',
-        ]);
-
         $cartRule = $this->getRepositoryInstance()->findOrFail($id);
 
         if ($cartRule->coupon_type) {
             if ($cartRule->cart_rule_coupon) {
-                $request->validate([
+                $cartRuleRequest->validate([
                     'coupon_code' => 'required_if:use_auto_generation,==,0|unique:cart_rule_coupons,code,'.$cartRule->cart_rule_coupon->id,
                 ]);
             } else {
-                $request->validate([
+                $cartRuleRequest->validate([
                     'coupon_code' => 'required_if:use_auto_generation,==,0|unique:cart_rule_coupons,code',
                 ]);
             }
@@ -93,7 +65,7 @@ class CartRuleController extends MarketingController
 
         Event::dispatch('promotions.cart_rule.update.before', $id);
 
-        $cartRule = $this->getRepositoryInstance()->update($request->all(), $id);
+        $cartRule = $this->getRepositoryInstance()->update($cartRuleRequest->all(), $id);
 
         Event::dispatch('promotions.cart_rule.update.after', $cartRule);
 
@@ -105,16 +77,14 @@ class CartRuleController extends MarketingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $cartRule = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('promotions.cart_rule.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $cartRule->delete();
 
         Event::dispatch('promotions.cart_rule.delete.after', $id);
 

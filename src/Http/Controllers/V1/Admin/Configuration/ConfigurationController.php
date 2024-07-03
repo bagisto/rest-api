@@ -2,9 +2,9 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Configuration;
 
+use Illuminate\Http\Response;
 use Webkul\Admin\Http\Requests\ConfigurationForm;
 use Webkul\Core\Repositories\CoreConfigRepository;
-use Webkul\Core\Tree;
 use Webkul\RestApi\Http\Controllers\V1\Admin\AdminController;
 
 class ConfigurationController extends AdminController
@@ -18,10 +18,8 @@ class ConfigurationController extends AdminController
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): Response
     {
         return response([
             'data' => config('core'),
@@ -30,10 +28,8 @@ class ConfigurationController extends AdminController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(ConfigurationForm $request)
+    public function store(ConfigurationForm $request): Response
     {
         $this->coreConfigRepository->create($request->except(['_token', 'admin_locale']));
 

@@ -2,9 +2,10 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\CatalogRule\Helpers\CatalogRuleIndex;
+use Webkul\Admin\Http\Requests\CatalogRuleRequest;
 use Webkul\CatalogRule\Repositories\CatalogRuleRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Promotions\CatalogRuleResource;
@@ -16,10 +17,7 @@ class CatalogRuleController extends MarketingController
      *
      * @return void
      */
-    public function __construct(protected CatalogRuleIndex $catalogRuleIndexHelper)
-    {
-        parent::__construct();
-    }
+    public function __construct(protected CatalogRuleIndex $catalogRuleIndexHelper) {}
 
     /**
      * Repository class name.
@@ -39,24 +37,12 @@ class CatalogRuleController extends MarketingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CatalogRuleRequest $catalogRuleRequest): Response
     {
-        $request->validate([
-            'name'            => 'required',
-            'channels'        => 'required|array|min:1',
-            'customer_groups' => 'required|array|min:1',
-            'starts_from'     => 'nullable|date',
-            'ends_till'       => 'nullable|date|after_or_equal:starts_from',
-            'action_type'     => 'required',
-            'discount_amount' => 'required|numeric',
-        ]);
-
         Event::dispatch('promotions.catalog_rule.create.before');
 
-        $catalogRule = $this->getRepositoryInstance()->create($request->all());
+        $catalogRule = $this->getRepositoryInstance()->create($catalogRuleRequest->all());
 
         Event::dispatch('promotions.catalog_rule.create.after', $catalogRule);
 
@@ -70,26 +56,14 @@ class CatalogRuleController extends MarketingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(CatalogRuleRequest $catalogRuleRequest, int $id): Response
     {
-        $request->validate([
-            'name'            => 'required',
-            'channels'        => 'required|array|min:1',
-            'customer_groups' => 'required|array|min:1',
-            'starts_from'     => 'nullable|date',
-            'ends_till'       => 'nullable|date|after_or_equal:starts_from',
-            'action_type'     => 'required',
-            'discount_amount' => 'required|numeric',
-        ]);
-
         $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('promotions.catalog_rule.update.before', $id);
 
-        $catalogRule = $this->getRepositoryInstance()->update($request->all(), $id);
+        $catalogRule = $this->getRepositoryInstance()->update($catalogRuleRequest->all(), $id);
 
         Event::dispatch('promotions.catalog_rule.update.after', $catalogRule);
 
@@ -103,16 +77,14 @@ class CatalogRuleController extends MarketingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $catalogRule = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('promotions.catalog_rule.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $catalogRule->delete();
 
         Event::dispatch('promotions.catalog_rule.delete.after', $id);
 

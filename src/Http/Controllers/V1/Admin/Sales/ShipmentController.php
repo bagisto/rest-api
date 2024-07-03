@@ -18,9 +18,7 @@ class ShipmentController extends SalesController
     public function __construct(
         protected OrderRepository $orderRepository,
         protected OrderItemRepository $orderItemRepository
-    ) {
-        parent::__construct();
-    }
+    ) {}
 
     /**
      * Repository class name.

@@ -6,10 +6,8 @@ class ProductController extends ReportingController
 {
     /**
      * Request param functions.
-     *
-     * @var array
      */
-    protected $typeFunctions = [
+    protected array $typeFunctions = [
         'total-sold-quantities'            => 'getTotalSoldQuantitiesStats',
         'total-products-added-to-wishlist' => 'getTotalProductsAddedToWishlistStats',
         'top-selling-products-by-revenue'  => 'getTopSellingProductsByRevenue',

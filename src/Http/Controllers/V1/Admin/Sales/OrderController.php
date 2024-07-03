@@ -16,9 +16,7 @@ class OrderController extends SalesController
      *
      * @return void
      */
-    public function __construct(protected OrderCommentRepository $orderCommentRepository) 
-    {
-    }
+    public function __construct(protected OrderCommentRepository $orderCommentRepository) {}
 
     /**
      * Repository class name.

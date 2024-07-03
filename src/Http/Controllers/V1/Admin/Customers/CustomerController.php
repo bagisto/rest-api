@@ -3,10 +3,10 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
-use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Repositories\CustomerNoteRepository;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\CustomerResource;
@@ -24,8 +24,7 @@ class CustomerController extends BaseController
     public function __construct(
         protected InvoiceRepository $invoiceRepository,
         protected CustomerNoteRepository $customerNoteRepository
-    ) {
-    }
+    ) {}
 
     /**
      * Repository class name.
@@ -45,18 +44,16 @@ class CustomerController extends BaseController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $request->validate([
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
             'email'         => 'required|unique:customers,email',
-            'date_of_birth' => 'date|before_or_equal:today',
-            'phone'         => ['unique:customers,phone', new PhoneNumber],
+            'date_of_birth' => 'date|before:today',
+            'phone'         => 'unique:customers,phone',
         ]);
 
         $password = rand(100000, 10000000);
@@ -69,10 +66,16 @@ class CustomerController extends BaseController
             'date_of_birth',
             'phone',
             'customer_group_id',
+            'channel_id'
         ]), [
             'password'    => bcrypt($password),
             'is_verified' => 1,
+            'channel_id'  => core()->getCurrentChannel()->id,
         ]);
+
+        if (empty($data['phone'])) {
+            $data['phone'] = null;
+        }
 
         Event::dispatch('customer.registration.before');
 
@@ -88,18 +91,16 @@ class CustomerController extends BaseController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): Response
     {
         $request->validate([
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
             'email'         => 'required|unique:customers,email,'.$id,
-            'date_of_birth' => 'date|before_or_equal:today',
-            'phone'         => ['unique:customers,phone,'.$id, new PhoneNumber],
+            'date_of_birth' => 'date|before:today',
+            'phone'         => 'unique:customers,phone,'.$id,
         ]);
 
         $data = array_merge(request()->only([
@@ -115,6 +116,10 @@ class CustomerController extends BaseController
             'is_suspended' => request()->input('is_suspended', 0),
         ]);
 
+        if (empty($data['phone'])) {
+            $data['phone'] = null;
+        }
+
         Event::dispatch('customer.update.before', $id);
 
         $customer = $this->getRepositoryInstance()->update($data, $id);
@@ -129,15 +134,13 @@ class CustomerController extends BaseController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $customer = $this->getRepositoryInstance()->findOrFail($id);
 
         if (! $this->getRepositoryInstance()->haveActiveOrders($customer)) {
-            $this->getRepositoryInstance()->delete($id);
+            $customer->delete();
 
             return response([
                 'message' => trans('rest-api::app.admin.customers.customers.delete-success'),
@@ -151,10 +154,8 @@ class CustomerController extends BaseController
 
     /**
      * To mass update the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massUpdate(MassUpdateRequest $massUpdateRequest)
+    public function massUpdate(MassUpdateRequest $massUpdateRequest): Response
     {
         $selectedCustomerIds = $massUpdateRequest->input('indices');
 
@@ -175,10 +176,8 @@ class CustomerController extends BaseController
 
     /**
      * To mass delete the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
         $customers = $this->getRepositoryInstance()->findWhereIn('id', $massDestroyRequest->input('indices'));
 
@@ -215,10 +214,8 @@ class CustomerController extends BaseController
 
     /**
      * Retrieve all orders from customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function orders(int $id)
+    public function orders(int $id): Response
     {
         $customer = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -229,10 +226,8 @@ class CustomerController extends BaseController
 
     /**
      * Retrieve all invoices from customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function invoices(int $id)
+    public function invoices(int $id): Response
     {
         $customer = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -244,17 +239,17 @@ class CustomerController extends BaseController
     }
 
     /**
-     * To store the response of the note in storage
-     *
-     * @return \Illuminate\Http\Response
+     * To store the response of the note in storage.
      */
-    public function storeNote(Request $request, int $id)
+    public function storeNote(Request $request, int $id): Response
     {
         $request->validate([
-            'note' => 'string|nullable',
+            'note' => 'string|required',
         ]);
 
         $customer = $this->getRepositoryInstance()->findorFail($id);
+
+        Event::dispatch('customer.note.create.before', $id);
 
         $customerNote = $this->customerNoteRepository->create([
             'customer_id'       => $id,
