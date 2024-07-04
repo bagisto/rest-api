@@ -112,7 +112,7 @@ class ThemeController extends SettingController
 
         Event::dispatch('theme_customization.delete.before', $id);
 
-        $theme->delete($id);
+        $theme->delete();
 
         Storage::deleteDirectory('theme/'.$id);
 
