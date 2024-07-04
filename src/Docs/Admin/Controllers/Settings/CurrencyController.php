@@ -148,7 +148,6 @@ class CurrencyController
      *              mediaType="multipart/form-data",
      *
      *              @OA\Schema(
-     *
      *                  @OA\Property(
      *                      property="code",
      *                      type="string",
@@ -167,9 +166,29 @@ class CurrencyController
      *                      type="string",
      *                      example="₹"
      *                  ),
+     *                  @OA\Property(
+     *                      property="decimal",
+     *                      type="string",
+     *                      example=""
+     *                  ),
+     *                  @OA\Property(
+     *                      property="group_separator",
+     *                      type="string",
+     *                      example=""
+     *                  ),
+     *                  @OA\Property(
+     *                      property="decimal_separator",
+     *                      type="string",
+     *                      example=""
+     *                  ),
+     *                  @OA\Property(
+     *                      property="currency_position",
+     *                      type="string",
+     *                      enum={"left", "left_with_space", "right", "right_with_space"}
+     *                  ),
      *                  required={"code", "name"}
-     *              )
-     *          )
+     *              ),
+     *          ),
      *      ),
      *
      *      @OA\Response(
@@ -243,6 +262,26 @@ class CurrencyController
      *                      property="symbol",
      *                      type="string",
      *                      example="₹"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="decimal",
+     *                      type="string",
+     *                      example=""
+     *                  ),
+     *                  @OA\Property(
+     *                      property="group_separator",
+     *                      type="string",
+     *                      example=""
+     *                  ),
+     *                  @OA\Property(
+     *                      property="decimal_separator",
+     *                      type="string",
+     *                      example=""
+     *                  ),
+     *                  @OA\Property(
+     *                      property="currency_position",
+     *                      type="string",
+     *                      enum={"left", "left_with_space", "right", "right_with_space"}
      *                  ),
      *                  required={"code", "name", "symbol"}
      *              )
