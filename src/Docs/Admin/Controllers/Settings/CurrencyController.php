@@ -167,6 +167,11 @@ class CurrencyController
      *                      type="string",
      *                      example="₹"
      *                  ),
+     *                  @OA\Property(
+     *                      property="decimal",
+     *                      type="number",
+     *                      example="0"
+     *                  ),
      *                  required={"code", "name"}
      *              )
      *          )
