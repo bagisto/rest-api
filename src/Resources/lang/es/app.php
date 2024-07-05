@@ -377,6 +377,11 @@ return [
                 'password-mismatch' => 'La contraseña actual no coincide.',
             ],
         ],
+
+         'error' => [
+            'not-authorized'   => 'No autorizada',
+            'record-not-found' => 'Registro no encontrado',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +476,11 @@ return [
                     'create-success' => 'Tu reseña se ha enviado correctamente.',
                 ],
             ],
+        ],
+
+         'error' => [
+            'not-authorized'   => 'No autorizada',
+            'record-not-found' => 'Registro no encontrado',
         ],
     ],
 ];

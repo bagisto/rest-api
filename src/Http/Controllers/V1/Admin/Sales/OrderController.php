@@ -11,6 +11,15 @@ use Webkul\Sales\Repositories\OrderRepository;
 class OrderController extends SalesController
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(protected OrderCommentRepository $orderCommentRepository) 
+    {
+    }
+
+    /**
      * Repository class name.
      */
     public function repository(): string
@@ -45,20 +54,18 @@ class OrderController extends SalesController
      *
      * @return \Illuminate\Http\Response
      */
-    public function comment(Request $request, OrderCommentRepository $orderCommentRepository, int $id)
+    public function comment(Request $request, int $id)
     {
         $validatedData = $request->validate([
             'comment'           => 'required',
-            'customer_notified' => 'sometimes|sometimes',
+            'customer_notified' => 'sometimes',
         ]);
 
         $data = array_merge($validatedData, ['order_id' => $id]);
 
-        $data['customer_notified'] = $request->has('customer_notified') ? 1 : 0;
-
         Event::dispatch('sales.order.comment.create.before', $data);
 
-        $comment = $orderCommentRepository->create($data);
+        $comment = $this->orderCommentRepository->create($data);
 
         Event::dispatch('sales.order.comment.create.after', $comment);
 
