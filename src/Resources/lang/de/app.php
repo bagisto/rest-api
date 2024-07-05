@@ -371,11 +371,6 @@ return [
                 'password-mismatch' => 'Das aktuelle Passwort stimmt nicht überein.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Nicht berechtigt',
-            'record-not-found' => 'Aufnahme nicht gefunden',
-        ],
     ],
 
     'shop' => [
@@ -470,11 +465,6 @@ return [
                     'create-success' => 'Ihre Bewertung wurde erfolgreich eingereicht.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Nicht berechtigt',
-            'record-not-found' => 'Aufnahme nicht gefunden',
         ],
     ],
 ];

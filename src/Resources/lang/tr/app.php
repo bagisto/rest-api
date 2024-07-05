@@ -377,11 +377,6 @@ return [
                 'password-mismatch' => 'Mevcut şifre eşleşmiyor.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Yetkili değil',
-            'record-not-found' => 'Kayıt bulunamadı',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +471,6 @@ return [
                     'create-success' => 'İncelemeniz başarıyla gönderildi.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Yetkili değil',
-            'record-not-found' => 'Kayıt bulunamadı',
         ],
     ],
 ];
