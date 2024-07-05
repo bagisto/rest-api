@@ -54,7 +54,7 @@ class CustomerController extends BaseController
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
-            'email'         => 'required|unique:customers|email',
+            'email'         => 'required|email|unique:customers,email',
             'date_of_birth' => 'date|before_or_equal:today',
             'phone'         => ['unique:customers,phone', new PhoneNumber],
         ]);
@@ -97,7 +97,7 @@ class CustomerController extends BaseController
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
-            'email'         => 'required|unique:customers|email,'.$id,
+            'email'         => 'required|email|unique:customers,email,'.$id,
             'date_of_birth' => 'date|before_or_equal:today',
             'phone'         => ['unique:customers,phone,'.$id, new PhoneNumber],
         ]);
