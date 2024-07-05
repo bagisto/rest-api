@@ -108,9 +108,11 @@ class ThemeController extends SettingController
      */
     public function destroy(int $id)
     {
+        $theme = $this->getRepositoryInstance()->findOrFail($id);
+
         Event::dispatch('theme_customization.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $theme->delete();
 
         Storage::deleteDirectory('theme/'.$id);
 
