@@ -373,11 +373,6 @@ return [
                 'password-mismatch' => 'वर्तमान पासवर्ड मेल नहीं खाता।',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'अधिकृत नहीं हैं',
-            'record-not-found' => 'रिकॉर्ड नहीं मिला',
-        ],
     ],
 
     'shop' => [
@@ -472,11 +467,6 @@ return [
                     'create-success' => 'आपकी समीक्षा सफलतापूर्वक प्रस्तुत की गई है।',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'अधिकृत नहीं हैं',
-            'record-not-found' => 'रिकॉर्ड नहीं मिला',
         ],
     ],
 ];

@@ -74,34 +74,9 @@ class ProductController extends CatalogController
      */
     public function update(ProductForm $request, int $id)
     {
-        $data = $request->all();
-
-        $multiselectAttributeCodes = [];
-
-        $productAttributes = $this->getRepositoryInstance()->findOrFail($id);
-
-        foreach ($productAttributes->attribute_family->attribute_groups as $attributeGroup) {
-            $customAttributes = $productAttributes->getEditableAttributes($attributeGroup);
-
-            if (count($customAttributes)) {
-                foreach ($customAttributes as $attribute) {
-                    if ($attribute->type == 'multiselect' || $attribute->type == 'checkbox') {
-                        array_push($multiselectAttributeCodes, $attribute->code);
-                    }
-                }
-            }
-        }
-
-        if (count($multiselectAttributeCodes)) {
-            foreach ($multiselectAttributeCodes as $multiselectAttributeCode) {
-                if (! isset($data[$multiselectAttributeCode])) {
-                    $data[$multiselectAttributeCode] = [];
-                }
-            }
-        }
         Event::dispatch('catalog.product.update.before', $id);
 
-        $product = $this->getRepositoryInstance()->update($data, $id);
+        $product = $this->getRepositoryInstance()->update($request->all(), $id);
 
         Event::dispatch('catalog.product.update.after', $product);
 

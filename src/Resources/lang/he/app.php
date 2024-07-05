@@ -373,11 +373,6 @@ return [
                 'password-mismatch' => 'הסיסמה הנוכחית אינה תואמת.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'לא מורשה',
-            'record-not-found' => 'רשומה לא נמצאה',
-        ],
     ],
 
     'shop' => [
@@ -472,11 +467,6 @@ return [
                     'create-success' => 'הביקורת שלך נשלחה בהצלחה.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'לא מורשה',
-            'record-not-found' => 'רשומה לא נמצאה',
         ],
     ],
 ];

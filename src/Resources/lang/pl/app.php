@@ -373,11 +373,6 @@ return [
                 'password-mismatch' => 'Aktualne hasło nie pasuje.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Nieautoryzowany',
-            'record-not-found' => 'Nie znaleziono rekordu',
-        ],
     ],
 
     'shop' => [
@@ -472,11 +467,6 @@ return [
                     'create-success' => 'Twoja recenzja została pomyślnie przesłana.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Nieautoryzowany',
-            'record-not-found' => 'Nie znaleziono rekordu',
         ],
     ],
 ];

@@ -373,11 +373,6 @@ return [
                 'password-mismatch' => 'Текущий пароль не совпадает.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Не авторизовано',
-            'record-not-found' => 'Запись не найдена',
-        ],
     ],
 
     'shop' => [
@@ -472,11 +467,6 @@ return [
                     'create-success' => 'Sua análise foi enviada com sucesso.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Не авторизовано',
-            'record-not-found' => 'Запись не найдена',
         ],
     ],
 ];

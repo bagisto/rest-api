@@ -374,11 +374,6 @@ return [
                 'password-mismatch' => 'Current password does not match.',
             ],
         ],
-
-       'error' => [
-            'not-authorized'   => 'Not Authorized',
-            'record-not-found' => 'Record Not Found',
-        ],
     ],
 
     'shop' => [
@@ -473,11 +468,6 @@ return [
                     'create-success' => 'Your review submitted successfully.',
                 ],
             ],
-        ],
-
-       'error' => [
-            'not-authorized'   => 'Not Authorized',
-            'record-not-found' => 'Record Not Found',
         ],
     ],
 ];

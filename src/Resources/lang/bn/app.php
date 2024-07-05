@@ -373,11 +373,6 @@ return [
                 'password-mismatch' => 'বর্তমান পাসওয়ার্ড মিলছে না।',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'অনুমোদিত না',
-            'record-not-found' => 'রেকর্ড পাওয়া যায়নি',
-        ],
     ],
 
     'shop' => [
@@ -472,11 +467,6 @@ return [
                     'create-success' => 'আপনার পর্যালোচনা সফলভাবে জমা দেয়া হয়েছে।',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'অনুমোদিত না',
-            'record-not-found' => 'রেকর্ড পাওয়া যায়নি',
         ],
     ],
 ];
