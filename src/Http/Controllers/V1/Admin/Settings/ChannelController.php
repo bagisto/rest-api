@@ -173,15 +173,11 @@ class ChannelController extends SettingController
     {
         $editedData = $locale ? $data[$locale] : $data;
 
-        $editedData['home_seo'] = [
-            'meta_title'       => $editedData['seo_title'],
-            'meta_description' => $editedData['seo_description'],
-            'meta_keywords'    => $editedData['seo_keywords'],
-        ];
+        $editedData['home_seo']['meta_title'] = $editedData['seo_title'];
+        $editedData['home_seo']['meta_description'] = $editedData['seo_description'];
+        $editedData['home_seo']['meta_keywords'] = $editedData['seo_keywords'];
 
-        $editedData['home_seo'] = json_encode($editedData['home_seo']);
-
-        unset($editedData['seo_title'], $editedData['seo_description'], $editedData['seo_keywords']);
+        $editedData = $this->unsetKeys($editedData, ['seo_title', 'seo_description', 'seo_keywords']);
 
         if ($locale) {
             $data[$locale] = $editedData;
@@ -189,5 +185,20 @@ class ChannelController extends SettingController
         }
 
         return $editedData;
+    }
+
+    /**
+     * Unset keys.
+     *
+     * @param  array  $keys
+     * @return array
+     */
+    private function unsetKeys($data, $keys)
+    {
+        foreach ($keys as $key) {
+            unset($data[$key]);
+        }
+
+        return $data;
     }
 }
