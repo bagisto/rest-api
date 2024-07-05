@@ -1,8 +1,8 @@
-# CHANGELOG for v2.1.2
+# CHANGELOG for v2.x.x
 
-#### This changelog consists the bug & security fixes in the releases listed below.
+This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
-## **v2.1.2 (5th of July 2024)** - *Release*
+## **v2.1.0 (8th of July 2024)** - *Release*
 
 * #268 [enhancement] - Add decimal option for currency create or update api in the request body.
 
@@ -53,11 +53,6 @@
 * #300 [Fixed] - Getting "Internal Server Error" when update configurable, downloadable, bundle and grouped product.
 
 * #301 [Fixed] - Getting "Internal Server Error" when update simple and virtual products.
-
-
-# CHANGELOG for v2.x.x
-
-This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
 ## **v2.0.0 (8th of March 2024)** - *Release*
 
