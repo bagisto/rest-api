@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Mapa do site adicionado com sucesso.',
-                    'delete-success'  => 'Mapa do site excluído com sucesso.',
-                    'update-success'  => 'Mapa do site atualizado com sucesso.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Mapa do site excluído com sucesso.',
-                    ],
+                    'create-success' => 'Os sitemaps foram criados com sucesso.',
+                    'delete-success' => 'Os sitemaps foram excluídos com sucesso.',
+                    'update-success' => 'Os sitemaps foram atualizados com sucesso.',
                 ],
             ],
         ],

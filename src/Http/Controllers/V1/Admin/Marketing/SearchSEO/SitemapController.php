@@ -75,7 +75,6 @@ class SitemapController extends MarketingController
         Event::dispatch('marketing.search_seo.sitemap.update.after', $sitemap);
 
         return response([
-            'data'    => new SitemapResource($sitemap),
             'message' => trans('rest-api::app.admin.marketing.search-seo.sitemaps.update-success'),
         ]);
     }

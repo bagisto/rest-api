@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'サイトマップが正常に追加されました。',
-                    'delete-success'  => 'サイトマップが正常に削除されました。',
-                    'update-success'  => 'サイトマップが正常に更新されました。',
-
-                    'mass-operations' => [
-                        'delete-success' => 'サイトマップが正常に削除されました。',
-                    ],
+                    'create-success' => 'サイトマップが正常に作成されました。',
+                    'delete-success' => 'サイトマップが正常に削除されました。',
+                    'update-success' => 'サイトマップが正常に更新されました。',
                 ],
             ],
         ],
