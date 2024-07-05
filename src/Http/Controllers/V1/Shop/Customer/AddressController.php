@@ -72,12 +72,6 @@ class AddressController extends CustomerController
      */
     public function update(AddressRequest $request, int $id)
     {
-        $this->validate($request, [
-            'email'   => 'email',
-            'postcde' => 'numeric',
-            'phone'   => 'numeric',
-        ]);
-
         $customer = $this->resolveShopUser($request);
 
         $data = array_merge(request()->only([

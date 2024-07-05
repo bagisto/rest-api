@@ -279,19 +279,15 @@ class AddressController
      *          description="Address id",
      *          required=true,
      *          in="path",
-     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
      *
      *      @OA\RequestBody(
-     *
      *          @OA\MediaType(
      *              mediaType="application/json",
-     *
      *              @OA\Schema(
-     *
      *                  @OA\Property(
      *                      property="company_name",
      *                      type="string",
@@ -311,21 +307,9 @@ class AddressController
      *                      property="address",
      *                      description="Street Address",
      *                      type="array",
-     *                      example={
-     *                          "5230, N Lincoln Ave"
-     *                      },
-     *
+     *                      example={"5230, N Lincoln Ave"},
      *                      @OA\Items(
-     *
-     *                          @OA\Property(
-     *                              property="address",
-     *                              type="array",
-     *
-     *                              @OA\Items(
-     *
-     *                                  @OA\Property(type="string")
-     *                              )
-     *                          )
+     *                          type="string"
      *                      )
      *                  ),
      *                  @OA\Property(
@@ -347,12 +331,12 @@ class AddressController
      *                  ),
      *                  @OA\Property(
      *                      property="postcode",
-     *                      type="integer",
+     *                      type="string",
      *                      example="94606"
      *                  ),
      *                  @OA\Property(
      *                      property="phone",
-     *                      type="integer",
+     *                      type="string",
      *                      example="9876543210"
      *                  ),
      *                  @OA\Property(
@@ -365,7 +349,7 @@ class AddressController
      *                      type="string",
      *                      example="INV01234567891"
      *                  ),
-     *                  required={"first_name", "last_name", "address1", "country", "state", "city", "postcode", "phone", "email"}
+     *                  required={"first_name", "last_name", "address", "country", "state", "city", "postcode", "phone", "email"}
      *              )
      *          )
      *      ),
@@ -373,13 +357,12 @@ class AddressController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *
      *          @OA\JsonContent(
-     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Your address has been updated successfully."),
+     *                  example="Your address has been updated successfully."
+     *              ),
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -387,18 +370,20 @@ class AddressController
      *              )
      *          )
      *      ),
-     *
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
-     *
      *          @OA\JsonContent(
-     *
-     *              @OA\Examples(example="result", value={"message":"The first name field is required.","errors":{"first_name":{"The first name field is required."}}}, summary="An result object."),
+     *              @OA\Examples(
+     *                  example="result",
+     *                  value={"message":"The first name field is required.","errors":{"first_name":{"The first name field is required."}}},
+     *                  summary="An result object."
+     *              )
      *          )
      *      )
      * )
      */
+
     public function update()
     {
     }
