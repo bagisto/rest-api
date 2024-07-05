@@ -97,7 +97,7 @@ class CatalogRuleController extends MarketingController
 
         return response([
             'data'    => new CatalogRuleResource($catalogRule),
-            'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rule.update-success'),
+            'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rules.update-success'),
         ]);
     }
 
