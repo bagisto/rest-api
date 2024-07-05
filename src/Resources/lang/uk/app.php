@@ -377,6 +377,11 @@ return [
                 'password-mismatch' => 'Поточний пароль не відповідає.',
             ],
         ],
+
+        'error' => [
+            'not-authorized'   => 'Не авторизовано',
+            'record-not-found' => 'Запис не знайдено',
+        ],
     ],
 
     'shop' => [
@@ -471,6 +476,11 @@ return [
                     'create-success' => 'Ваш відгук успішно надіслано.',
                 ],
             ],
+        ],
+
+        'error' => [
+            'not-authorized'   => 'Не авторизовано',
+            'record-not-found' => 'Запис не знайдено',
         ],
     ],
 ];

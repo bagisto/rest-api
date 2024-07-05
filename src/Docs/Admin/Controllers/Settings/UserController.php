@@ -181,7 +181,7 @@ class UserController
      *                      type="integer",
      *                      example=1
      *                  ),
-     *                  required={"name", "email", "password", "password_confirmation", "role_id"}
+     *                  required={"name", "email", "role_id"}
      *              )
      *          )
      *      ),
@@ -281,7 +281,7 @@ class UserController
      *                      type="integer",
      *                      example=1
      *                  ),
-     *                  required={"name", "email", "password", "password_confirmation", "role_id"}
+     *                  required={"name", "email", "role_id"}
      *              )
      *          )
      *      ),
