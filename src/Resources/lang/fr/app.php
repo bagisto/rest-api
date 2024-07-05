@@ -378,11 +378,6 @@ return [
                 'update-failed'     => 'Une erreur s\'est produite lors de la mise à jour de votre compte',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Pas autorisé',
-            'record-not-found' => 'Enregistrement non trouvé',
-        ],
     ],
 
     'shop' => [
@@ -475,11 +470,6 @@ return [
                     'create-success' => 'Votre avis a été soumis avec succès.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Pas autorisé',
-            'record-not-found' => 'Enregistrement non trouvé',
         ],
     ],
 ];
