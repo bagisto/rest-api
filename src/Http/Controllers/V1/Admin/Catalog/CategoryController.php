@@ -160,6 +160,12 @@ class CategoryController extends CatalogController
     {
         $categories = $this->getRepositoryInstance()->findWhereIn('id', $massDestroyRequest->indices);
 
+        if (! $categories->count()) {
+            return response([
+                'message' => trans('rest-api::app.admin.catalog.categories.not-exist'),
+            ], 400);
+        }
+
         if ($this->containsNonDeletableCategory($categories)) {
             return response([
                 'message' => trans('rest-api::app.admin.catalog.categories.root-category-delete'),

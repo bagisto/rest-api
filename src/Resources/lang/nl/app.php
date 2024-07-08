@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Categorie is succesvol toegevoegd.',
                 'delete-success' => 'Categorie succesvol verwijderd.',
                 'update-success' => 'Categorie succesvol bijgewerkt.',
+                'not-exist'      => 'Categorie niet gevonden.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Geselecteerde categorieën succesvol verwijderd.',
