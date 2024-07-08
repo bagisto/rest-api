@@ -162,7 +162,7 @@ class CategoryController extends CatalogController
 
         if ($this->containsNonDeletableCategory($categories)) {
             return response([
-                'message' => trans('rest-api::app.admin.catalog.categories.error.root-category-delete'),
+                'message' => trans('rest-api::app.admin.catalog.categories.root-category-delete'),
             ], 400);
         }
 
