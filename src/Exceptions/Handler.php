@@ -80,7 +80,7 @@ class Handler extends BaseHandler
             $errorCode = 500;
 
             if ($request->wantsJson()) {
-                return response()->json(['description' => trans("rest-api::app.shop.errors.description")], $errorCode);
+                return response()->json(['description' => trans("rest-api::app.errors.description")], $errorCode);
             }
 
             return response()->view("{$path}::errors.index", compact('errorCode'));
