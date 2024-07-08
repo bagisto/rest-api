@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'מפת האתר נוספה בהצלחה.',
-                    'delete-success'  => 'מפת האתר נמחקה בהצלחה.',
-                    'update-success'  => 'מפת האתר עודכנה בהצלחה.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'מפת האתר נמחקה בהצלחה.',
-                    ],
+                    'create-success' => 'מפת האתר נוצרה בהצלחה.',
+                    'delete-success' => 'מפת האתר נמחקה בהצלחה.',
+                    'update-success' => 'מפת האתר עודכנה בהצלחה.',
                 ],
             ],
         ],

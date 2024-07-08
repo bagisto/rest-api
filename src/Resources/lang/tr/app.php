@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Site Haritası başarıyla eklendi.',
-                    'delete-success'  => 'Site Haritası başarıyla silindi.',
-                    'update-success'  => 'Site Haritası başarıyla güncellendi.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Site Haritası başarıyla silindi.',
-                    ],
+                    'create-success' => 'Site haritaları başarıyla oluşturuldu.',
+                    'delete-success' => 'Site haritaları başarıyla silindi.',
+                    'update-success' => 'Site haritaları başarıyla güncellendi.',
                 ],
             ],
         ],
