@@ -377,11 +377,6 @@ return [
                 'password-mismatch' => 'වත්මන් මුරපදය ගැලපෙන්නේ නැත.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'අවසර නැත',
-            'record-not-found' => 'වාර්තාව හමු නොවීය',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +471,6 @@ return [
                     'create-success' => 'ඔබගේ විශ්වාසය සාර්ථකව යොමු කර ඇත.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'අවසර නැත',
-            'record-not-found' => 'වාර්තාව හමු නොවීය',
         ],
     ],
 ];

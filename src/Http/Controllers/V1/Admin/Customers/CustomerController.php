@@ -54,7 +54,7 @@ class CustomerController extends BaseController
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
-            'email'         => 'required|unique:customers,email',
+            'email'         => 'required|email|unique:customers,email',
             'date_of_birth' => 'date|before_or_equal:today',
             'phone'         => ['unique:customers,phone', new PhoneNumber],
         ]);
@@ -97,7 +97,7 @@ class CustomerController extends BaseController
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
-            'email'         => 'required|unique:customers,email,'.$id,
+            'email'         => 'required|email|unique:customers,email,'.$id,
             'date_of_birth' => 'date|before_or_equal:today',
             'phone'         => ['unique:customers,phone,'.$id, new PhoneNumber],
         ]);
@@ -256,6 +256,8 @@ class CustomerController extends BaseController
 
         $customer = $this->getRepositoryInstance()->findorFail($id);
 
+        Event::dispatch('customer.note.create.before', $id);
+
         $customerNote = $this->customerNoteRepository->create([
             'customer_id'       => $id,
             'note'              => request()->input('note'),
@@ -265,6 +267,8 @@ class CustomerController extends BaseController
         if (request()->has('customer_notified')) {
             Event::dispatch('customer.note-created.after', $customerNote);
         }
+
+        Event::dispatch('customer.note.create.after', $customerNote);
 
         return response([
             'data'    => new CustomerResource($customer),

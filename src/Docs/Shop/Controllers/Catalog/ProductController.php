@@ -13,7 +13,7 @@ class ProductController
      *      description="Returns product list, if you want to retrieve all products at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
-     *          name="id",
+     *          name="category_id",
      *          description="Category ID",
      *          required=false,
      *          in="query",

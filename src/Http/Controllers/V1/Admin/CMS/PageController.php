@@ -89,10 +89,10 @@ class PageController extends CMSController
             'locale'   => $locale,
         ], $id);
 
-        Event::dispatch('cms.pages.update.after', $page);
+        Event::dispatch('cms.pages.update.after', $page->refresh());
 
         return response([
-            'data'    => new PageResource($page),
+            'data'    => new PageResource($page->refresh()),
             'message' => trans('rest-api::app.admin.cms.update-success'),
         ]);
     }
@@ -104,9 +104,11 @@ class PageController extends CMSController
      */
     public function destroy(int $id)
     {
+        $page = $this->getRepositoryInstance()->findOrFail($id);
+
         Event::dispatch('cms.pages.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $page->delete();
 
         Event::dispatch('cms.pages.delete.after', $id);
 
