@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => '网站地图成功添加。',
-                    'delete-success'  => '网站地图成功删除。',
-                    'update-success'  => '网站地图成功更新。',
-
-                    'mass-operations' => [
-                        'delete-success' => '网站地图成功删除。',
-                    ],
+                    'create-success' => '站点地图创建成功。',
+                    'delete-success' => '站点地图删除成功。',
+                    'update-success' => '站点地图更新成功。',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => '当前密码不匹配。',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => '未经授权',
-            'record-not-found' => '找不到记录',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => '您的评论提交成功。',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => '未经授权',
-            'record-not-found' => '找不到记录',
         ],
     ],
 ];

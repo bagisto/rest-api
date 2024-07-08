@@ -64,15 +64,17 @@ class SitemapController extends MarketingController
 
         Event::dispatch('marketing.search_seo.sitemap.update.before', $id);
 
-        $sitemap = $this->getRepositoryInstance()->update(request()->only([
+        $this->getRepositoryInstance()->update(request()->only([
             'file_name',
             'path',
         ]), $id);
 
+        $sitemap = $this->getRepositoryInstance()->findOrFail($id);
+
         Event::dispatch('marketing.search_seo.sitemap.update.after', $sitemap);
 
         return response([
-            'data'    => new SitemapResource($sitemap),
+            'data' => new SitemapResource($sitemap),
             'message' => trans('rest-api::app.admin.marketing.search-seo.sitemaps.update-success'),
         ]);
     }

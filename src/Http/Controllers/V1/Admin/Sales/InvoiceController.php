@@ -59,10 +59,12 @@ class InvoiceController extends SalesController
             ], 400);
         }
 
-        $invoice = $this->getRepositoryInstance()->create($data);
+        $invoice = $this->getRepositoryInstance()->create(array_merge($data, [
+            'order_id' => $orderId
+        ]));
 
         return response([
-            'data'    => new InvoiceResource($invoice),
+            'data'    => new InvoiceResource($invoice->refresh()),
             'message' => trans('rest-api::app.admin.sales.invoices.create-success'),
         ]);
     }

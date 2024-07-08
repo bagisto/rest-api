@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Mappa del sito aggiunta con successo.',
-                    'delete-success'  => 'Mappa del sito eliminata con successo.',
-                    'update-success'  => 'Mappa del sito aggiornata con successo.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Mappa del sito eliminata con successo.',
-                    ],
+                    'create-success' => 'Le sitemap sono state create con successo.',
+                    'delete-success' => 'Le sitemap sono state eliminate con successo.',
+                    'update-success' => 'Le sitemap sono state aggiornate con successo.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'La password attuale non corrisponde.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Non autorizzato',
-            'record-not-found' => 'Inserimento non trovato',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'La tua recensione è stata inviata con successo.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Non autorizzato',
-            'record-not-found' => 'Inserimento non trovato',
         ],
     ],
 ];

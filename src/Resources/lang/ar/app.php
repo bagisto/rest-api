@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'تمت إضافة خرائط الموقع بنجاح.',
-                    'delete-success'  => 'تم حذف خرائط الموقع بنجاح.',
-                    'update-success'  => 'تم تحديث خرائط الموقع بنجاح.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'تم حذف خرائط الموقع بنجاح.',
-                    ],
+                    'create-success' => 'تم إنشاء خرائط المواقع بنجاح.',
+                    'delete-success' => 'تم حذف خرائط المواقع بنجاح.',
+                    'update-success' => 'تم تحديث خرائط المواقع بنجاح.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'كلمة المرور الحالية غير مطابقة.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'غير مخول',
-            'record-not-found' => 'لم يتم العثور على السجل',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'تم إرسال مراجعتك بنجاح.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'غير مخول',
-            'record-not-found' => 'لم يتم العثور على السجل',
         ],
     ],
 ];

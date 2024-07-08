@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'සරුපය සාර්ථකව එකතු කරන ලදි.',
-                    'delete-success'  => 'සරුපය සාර්ථකව ඉවත් කරන ලදි.',
-                    'update-success'  => 'සරුපය සාර්ථකව යාවත් කරන ලදි.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'සරුපය සාර්ථකව ඉවත් කරන ලදි.',
-                    ],
+                    'create-success' => 'සයිට්සැටුම් සාර්ථකව නිර්මාණය කරන ලදි.',
+                    'delete-success' => 'සයිට්සැටුම් සාර්ථකව මකා දමන ලදි.',
+                    'update-success' => 'සයිට්සැටුම් සාර්ථකව යාවත්කාලීන කරන ලදි.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'වත්මන් මුරපදය ගැලපෙන්නේ නැත.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'අවසර නැත',
-            'record-not-found' => 'වාර්තාව හමු නොවීය',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'ඔබගේ විශ්වාසය සාර්ථකව යොමු කර ඇත.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'අවසර නැත',
-            'record-not-found' => 'වාර්තාව හමු නොවීය',
         ],
     ],
 ];

@@ -256,6 +256,7 @@ class ThemeController
      *                              type="object",
      *                              description="Image carousel images",
      *
+     *
      *                              @OA\Property(
      *                                  property="link",
      *                                  type="string",

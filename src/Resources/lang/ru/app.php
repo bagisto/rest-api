@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Карта сайта успешно добавлена.',
-                    'delete-success'  => 'Карта сайта успешно удалена.',
-                    'update-success'  => 'Карта сайта успешно обновлена.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Карта сайта успешно удалена.',
-                    ],
+                    'create-success' => 'Карты сайта успешно созданы.',
+                    'delete-success' => 'Карты сайта успешно удалены.',
+                    'update-success' => 'Карты сайта успешно обновлены.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'Текущий пароль не совпадает.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Не авторизовано',
-            'record-not-found' => 'Запись не найдена',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'Sua análise foi enviada com sucesso.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Не авторизовано',
-            'record-not-found' => 'Запись не найдена',
         ],
     ],
 ];

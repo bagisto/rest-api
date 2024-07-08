@@ -186,6 +186,11 @@ class CurrencyController
      *                      type="string",
      *                      enum={"left", "left_with_space", "right", "right_with_space"}
      *                  ),
+     *                  @OA\Property(
+     *                      property="decimal",
+     *                      type="number",
+     *                      example="0"
+     *                  ),
      *                  required={"code", "name"}
      *              ),
      *          ),

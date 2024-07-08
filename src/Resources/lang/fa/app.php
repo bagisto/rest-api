@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'با موفقیت نقشه سایت افزوده شد.',
-                    'delete-success'  => 'نقشه سایت با موفقیت حذف شد.',
-                    'update-success'  => 'نقشه سایت با موفقیت به‌روزرسانی شد.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'نقشه سایت با موفقیت حذف شد.',
-                    ],
+                    'create-success' => 'نقشه‌های سایت با موفقیت ایجاد شد.',
+                    'delete-success' => 'نقشه‌های سایت با موفقیت حذف شد.',
+                    'update-success' => 'نقشه‌های سایت با موفقیت به‌روزرسانی شد.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'رمز عبور فعلی مطابقت ندارد.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'مجاز نیست',
-            'record-not-found' => 'سابقه ای یافت نشد',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'نقد و بررسی شما با موفقیت ثبت شد.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'مجاز نیست',
-            'record-not-found' => 'سابقه ای یافت نشد',
         ],
     ],
 ];

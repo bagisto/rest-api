@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Mapa witryny została pomyślnie dodana.',
-                    'delete-success'  => 'Mapa witryny została pomyślnie usunięta.',
-                    'update-success'  => 'Mapa witryny została pomyślnie zaktualizowana.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Mapa witryny została pomyślnie usunięta.',
-                    ],
+                    'create-success' => 'Sitemapy zostały pomyślnie utworzone.',
+                    'delete-success' => 'Sitemapy zostały pomyślnie usunięte.',
+                    'update-success' => 'Sitemapy zostały pomyślnie zaktualizowane.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'Aktualne hasło nie pasuje.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Nieautoryzowany',
-            'record-not-found' => 'Nie znaleziono rekordu',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'Twoja recenzja została pomyślnie przesłana.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Nieautoryzowany',
-            'record-not-found' => 'Nie znaleziono rekordu',
         ],
     ],
 ];

@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Site Haritası başarıyla eklendi.',
-                    'delete-success'  => 'Site Haritası başarıyla silindi.',
-                    'update-success'  => 'Site Haritası başarıyla güncellendi.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Site Haritası başarıyla silindi.',
-                    ],
+                    'create-success' => 'Site haritaları başarıyla oluşturuldu.',
+                    'delete-success' => 'Site haritaları başarıyla silindi.',
+                    'update-success' => 'Site haritaları başarıyla güncellendi.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'Mevcut şifre eşleşmiyor.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Yetkili değil',
-            'record-not-found' => 'Kayıt bulunamadı',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'İncelemeniz başarıyla gönderildi.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Yetkili değil',
-            'record-not-found' => 'Kayıt bulunamadı',
         ],
     ],
 ];

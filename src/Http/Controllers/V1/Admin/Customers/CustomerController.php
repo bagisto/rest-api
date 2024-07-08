@@ -51,9 +51,9 @@ class CustomerController extends BaseController
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
-            'email'         => 'required|unique:customers,email',
-            'date_of_birth' => 'date|before:today',
-            'phone'         => 'unique:customers,phone',
+            'email'         => 'required|email|unique:customers,email',
+            'date_of_birth' => 'date|before_or_equal:today',
+            'phone'         => ['unique:customers,phone', new PhoneNumber],
         ]);
 
         $password = rand(100000, 10000000);
@@ -98,9 +98,9 @@ class CustomerController extends BaseController
             'first_name'    => 'string|required',
             'last_name'     => 'string|required',
             'gender'        => 'required',
-            'email'         => 'required|unique:customers,email,'.$id,
-            'date_of_birth' => 'date|before:today',
-            'phone'         => 'unique:customers,phone,'.$id,
+            'email'         => 'required|email|unique:customers,email,'.$id,
+            'date_of_birth' => 'date|before_or_equal:today',
+            'phone'         => ['unique:customers,phone,'.$id, new PhoneNumber],
         ]);
 
         $data = array_merge(request()->only([
@@ -260,6 +260,8 @@ class CustomerController extends BaseController
         if (request()->has('customer_notified')) {
             Event::dispatch('customer.note-created.after', $customerNote);
         }
+
+        Event::dispatch('customer.note.create.after', $customerNote);
 
         return response([
             'data'    => new CustomerResource($customer),

@@ -50,7 +50,7 @@ class CatalogRuleController extends MarketingController
 
         return response([
             'data'    => new CatalogRuleResource($catalogRule),
-            'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rule.create-success'),
+            'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rules.create-success'),
         ]);
     }
 
@@ -70,7 +70,7 @@ class CatalogRuleController extends MarketingController
         $this->catalogRuleIndexHelper->reindexComplete();
 
         return response([
-            'data'    => new CatalogRuleResource($catalogRule),
+            'data'    => new CatalogRuleResource($catalogRule->refresh()),
             'message' => trans('rest-api::app.admin.marketing.promotions.catalog-rule.update-success'),
         ]);
     }

@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Mapa do site adicionado com sucesso.',
-                    'delete-success'  => 'Mapa do site excluído com sucesso.',
-                    'update-success'  => 'Mapa do site atualizado com sucesso.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Mapa do site excluído com sucesso.',
-                    ],
+                    'create-success' => 'Os sitemaps foram criados com sucesso.',
+                    'delete-success' => 'Os sitemaps foram excluídos com sucesso.',
+                    'update-success' => 'Os sitemaps foram atualizados com sucesso.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'A senha atual não corresponde.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Não autorizado',
-            'record-not-found' => 'Registro não encontrado',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'Sua avaliação foi enviada com sucesso.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Não autorizado',
-            'record-not-found' => 'Registro não encontrado',
         ],
     ],
 ];

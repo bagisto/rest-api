@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Sitemap succesvol toegevoegd.',
-                    'delete-success'  => 'Sitemap succesvol verwijderd.',
-                    'update-success'  => 'Sitemap succesvol bijgewerkt.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Sitemap succesvol verwijderd.',
-                    ],
+                    'create-success' => 'Sitemaps succesvol aangemaakt.',
+                    'delete-success' => 'Sitemaps succesvol verwijderd.',
+                    'update-success' => 'Sitemaps succesvol bijgewerkt.',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => 'Huidig wachtwoord komt niet overeen.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Geen bevoegdheid',
-            'record-not-found' => 'Document niet gevonden',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'Uw beoordeling is succesvol ingediend.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Geen bevoegdheid',
-            'record-not-found' => 'Document niet gevonden',
         ],
     ],
 ];

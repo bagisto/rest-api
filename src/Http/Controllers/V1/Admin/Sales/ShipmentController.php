@@ -69,10 +69,12 @@ class ShipmentController extends SalesController
             ], 400);
         }
 
-        $shipment = $this->getRepositoryInstance()->create($data);
+        $shipment = $this->getRepositoryInstance()->create(array_merge($data, [
+            'order_id' => $orderId,
+        ]));
 
         return response([
-            'data'    => new ShipmentResource($shipment),
+            'data'    => new ShipmentResource($shipment->refresh()),
             'message' => trans('rest-api::app.admin.sales.shipments.create-success'),
         ]);
     }

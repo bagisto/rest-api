@@ -251,13 +251,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Sitemap wurde erfolgreich hinzugefügt.',
-                    'delete-success'  => 'Sitemap wurde erfolgreich gelöscht.',
-                    'update-success'  => 'Sitemap wurde erfolgreich aktualisiert.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Sitemap wurde erfolgreich gelöscht.',
-                    ],
+                    'create-success' => 'Sitemaps wurden erfolgreich erstellt.',
+                    'delete-success' => 'Sitemaps wurden erfolgreich gelöscht.',
+                    'update-success' => 'Sitemaps wurden erfolgreich aktualisiert.',
                 ],
             ],
         ],
@@ -371,11 +367,6 @@ return [
                 'password-mismatch' => 'Das aktuelle Passwort stimmt nicht überein.',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => 'Nicht berechtigt',
-            'record-not-found' => 'Aufnahme nicht gefunden',
-        ],
     ],
 
     'shop' => [
@@ -470,11 +461,6 @@ return [
                     'create-success' => 'Ihre Bewertung wurde erfolgreich eingereicht.',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => 'Nicht berechtigt',
-            'record-not-found' => 'Aufnahme nicht gefunden',
         ],
     ],
 ];

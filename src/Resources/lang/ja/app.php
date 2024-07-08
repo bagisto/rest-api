@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'サイトマップが正常に追加されました。',
-                    'delete-success'  => 'サイトマップが正常に削除されました。',
-                    'update-success'  => 'サイトマップが正常に更新されました。',
-
-                    'mass-operations' => [
-                        'delete-success' => 'サイトマップが正常に削除されました。',
-                    ],
+                    'create-success' => 'サイトマップが正常に作成されました。',
+                    'delete-success' => 'サイトマップが正常に削除されました。',
+                    'update-success' => 'サイトマップが正常に更新されました。',
                 ],
             ],
         ],
@@ -377,11 +373,6 @@ return [
                 'password-mismatch' => '現在のパスワードが一致しません。',
             ],
         ],
-
-        'error' => [
-            'not-authorized'   => '許可されていません',
-            'record-not-found' => '記録が見当たりませんでした',
-        ],
     ],
 
     'shop' => [
@@ -476,11 +467,6 @@ return [
                     'create-success' => 'レビューが正常に送信されました。',
                 ],
             ],
-        ],
-
-        'error' => [
-            'not-authorized'   => '許可されていません',
-            'record-not-found' => '記録が見当たりませんでした',
         ],
     ],
 ];
