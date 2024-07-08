@@ -36,10 +36,8 @@ class ProductReviewController extends CatalogController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, int $productId)
+    public function store(Request $request, int $productId): \Illuminate\Http\Response
     {
         $this->validate($request, [
             'title'         => 'required',

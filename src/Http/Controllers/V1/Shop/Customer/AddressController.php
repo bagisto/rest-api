@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
@@ -28,16 +29,14 @@ class AddressController extends CustomerController
 
     /**
      * Store address.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(AddressRequest $request)
+    public function store(AddressRequest $request): Response
     {
         $customer = $this->resolveShopUser($request);
 
         Event::dispatch('customer.addresses.create.before');
 
-        $data = array_merge($request->only([
+        $customerAddress = $this->getRepositoryInstance()->create(array_merge($request->only([
             'company_name',
             'first_name',
             'last_name',
@@ -53,9 +52,7 @@ class AddressController extends CustomerController
         ]), [
             'customer_id' => $customer->id,
             'address'     => implode(PHP_EOL, array_filter($request->input('address'))),
-        ]);
-
-        $customerAddress = $this->getRepositoryInstance()->create($data);
+        ]));
 
         Event::dispatch('customer.addresses.create.after', $customerAddress);
 
@@ -67,14 +64,16 @@ class AddressController extends CustomerController
 
     /**
      * Update address.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(AddressRequest $request, int $id)
+    public function update(AddressRequest $request, int $id): Response
     {
         $customer = $this->resolveShopUser($request);
 
-        $data = array_merge(request()->only([
+        Event::dispatch('customer.addresses.update.before', $id);
+
+        $customerAddress = $customer->addresses()->findOrFail($id);
+
+        $customerAddress->update(array_merge(request()->only([
             'customer_id',
             'company_name',
             'first_name',
@@ -90,13 +89,7 @@ class AddressController extends CustomerController
             'default_address',
         ]), [
             'address' => implode(PHP_EOL, array_filter($request->input('address'))),
-        ]);
-
-        Event::dispatch('customer.addresses.update.before', $id);
-
-        $customerAddress = $customer->addresses()->findOrFail($id);
-
-        $customerAddress->update($data);
+        ]));
 
         Event::dispatch('customer.addresses.update.after', $customerAddress);
 
@@ -108,10 +101,8 @@ class AddressController extends CustomerController
 
     /**
      * Delete customer address.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, int $id)
+    public function destroy(Request $request, int $id): Response
     {
         $customer = $this->resolveShopUser($request);
 

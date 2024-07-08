@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Webkul\Core\Rules\PhoneNumber;
 use Illuminate\Support\Facades\Auth;
@@ -38,10 +39,8 @@ class AuthController extends CustomerController
 
     /**
      * Register the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function register(RegistrationRequest $registrationRequest)
+    public function register(RegistrationRequest $registrationRequest): Response
     {
         Event::dispatch('customer.registration.before');
 
@@ -64,10 +63,8 @@ class AuthController extends CustomerController
 
     /**
      * Login the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function login(Request $request)
+    public function login(Request $request): Response
     {
         $request->validate([
             'email'    => 'required|email',
@@ -95,7 +92,7 @@ class AuthController extends CustomerController
             /**
              * Event passed to prepare cart after login.
              */
-            Event::dispatch('customer.after.login', $request->get('email'));
+            Event::dispatch('customer.after.login', $customer);
 
             return response([
                 'data'    => new CustomerResource($customer),
@@ -121,10 +118,8 @@ class AuthController extends CustomerController
 
     /**
      * Get details for current logged in customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function get(Request $request)
+    public function get(Request $request): Response
     {
         $customer = $this->resolveShopUser($request);
 
@@ -135,10 +130,8 @@ class AuthController extends CustomerController
 
     /**
      * Update the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request): Response
     {
         $customer = $this->resolveShopUser($request);
 
@@ -226,10 +219,8 @@ class AuthController extends CustomerController
 
     /**
      * Logout the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
+    public function logout(Request $request): Response
     {
         $customer = $this->resolveShopUser($request);
 
@@ -246,10 +237,8 @@ class AuthController extends CustomerController
 
     /**
      * Send Reset Password Link.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function forgotPassword(Request $request)
+    public function forgotPassword(Request $request): Response
     {
         $request->validate([
             'email' => 'required|email',

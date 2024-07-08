@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
@@ -22,8 +23,7 @@ class CartController extends CustomerController
         protected WishlistRepository $wishlistRepository,
         protected ProductRepository $productRepository,
         protected CartRuleCouponRepository $cartRuleCouponRepository
-    ) {
-    }
+    ) {}
 
     /**
      * Resource class name.
@@ -139,10 +139,8 @@ class CartController extends CustomerController
 
     /**
      * Remove item from the cart.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function removeItem(int $cartItemId)
+    public function removeItem(int $cartItemId): Response
     {
         Event::dispatch('checkout.cart.item.delete.before', $cartItemId);
 
@@ -162,10 +160,8 @@ class CartController extends CustomerController
 
     /**
      * Empty the cart.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function empty()
+    public function empty(): Response
     {
         Event::dispatch('checkout.cart.delete.before');
 
@@ -183,10 +179,8 @@ class CartController extends CustomerController
 
     /**
      * Apply the coupon code.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function applyCoupon(Request $request)
+    public function applyCoupon(Request $request): Response
     {
         $couponCode = $request->code;
 
@@ -218,11 +212,9 @@ class CartController extends CustomerController
     }
 
     /**
-     * Remove the coupon code.
-     *
-     * @return \Illuminate\Http\Response
+     
      */
-    public function removeCoupon()
+    public function removeCoupon(): Response
     {   
         Cart::removeCouponCode()->collectTotals();
 
@@ -236,10 +228,8 @@ class CartController extends CustomerController
 
     /**
      * Move cart item to wishlist.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function moveToWishlist(int $cartItemId)
+    public function moveToWishlist(int $cartItemId): Response
     {
         Event::dispatch('checkout.cart.item.move-to-wishlist.before', $cartItemId);
 

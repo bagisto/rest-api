@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Payment\Facades\Payment;
@@ -54,10 +55,8 @@ class CheckoutController extends CustomerController
 
     /**
      * Save shipping method.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function saveShipping(Request $request)
+    public function saveShipping(Request $request): Response
     {
         $validatedData = $this->validate($request, [
             'shipping_method' => 'required',
@@ -83,10 +82,8 @@ class CheckoutController extends CustomerController
 
     /**
      * Save payment method.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function savePayment(Request $request)
+    public function savePayment(Request $request): Response
     {
         $validatedData = $this->validate($request, [
             'payment' => 'required',
@@ -112,10 +109,8 @@ class CheckoutController extends CustomerController
 
     /**
      * Check for minimum order.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function checkMinimumOrder()
+    public function checkMinimumOrder(): Response
     {
         $minimumOrderAmount = (float) core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?? 0;
 
@@ -132,10 +127,8 @@ class CheckoutController extends CustomerController
 
     /**
      * Save order.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function saveOrder(OrderRepository $orderRepository)
+    public function saveOrder(OrderRepository $orderRepository): Response
     {
         if (Cart::hasError()) {
             abort(400);

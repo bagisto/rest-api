@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Customer\Repositories\WishlistRepository;
@@ -17,16 +18,12 @@ class WishlistController extends CustomerController
     public function __construct(
         protected WishlistRepository $wishlistRepository,
         protected ProductRepository $productRepository
-    ) {
-        parent::__construct();
-    }
+    ) {}
 
     /**
      * Get customer wishlist.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $customer = $this->resolveShopUser($request);
 
@@ -37,10 +34,8 @@ class WishlistController extends CustomerController
 
     /**
      * Add or remote item from wishlist.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function addOrRemove(Request $request, int $id)
+    public function addOrRemove(Request $request, int $id): Response
     {
         $customer = $this->resolveShopUser($request);
 
@@ -74,10 +69,8 @@ class WishlistController extends CustomerController
 
     /**
      * Move product from wishlist to cart.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function moveToCart(Request $request, int $id)
+    public function moveToCart(Request $request, int $id): Response
     {
         $customer = $this->resolveShopUser($request);
 

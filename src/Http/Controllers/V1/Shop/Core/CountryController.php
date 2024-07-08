@@ -2,7 +2,6 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Core;
 
-use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CountryRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Core\CountryResource;
 
@@ -34,10 +33,8 @@ class CountryController extends CoreController
 
     /**
      * Get country state group listing.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function getCountryStateGroups(Request $request)
+    public function getCountryStateGroups(): \Illuminate\Http\Response
     {
         $resources = core()->groupedStatesByCountries();
 
