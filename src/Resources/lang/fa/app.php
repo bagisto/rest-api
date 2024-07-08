@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'سابقه ای یافت نشد.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

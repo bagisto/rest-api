@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'Nie znaleziono rekordu.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

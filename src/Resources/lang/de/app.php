@@ -373,6 +373,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'Aufnahme nicht gefunden.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

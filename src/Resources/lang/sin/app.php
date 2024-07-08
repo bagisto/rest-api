@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'වාර්තාව හමු නොවීය.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

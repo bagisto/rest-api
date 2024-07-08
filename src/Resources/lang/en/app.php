@@ -380,6 +380,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'Record Not Found',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

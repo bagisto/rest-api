@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => '記録が見当たりませんでした。',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

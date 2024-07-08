@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'Kayıt bulunamadı.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

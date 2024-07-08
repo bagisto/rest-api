@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'Inserimento non trovato.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'রেকর্ড পাওয়া যায়নি।',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

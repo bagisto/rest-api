@@ -380,6 +380,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'Enregistrement non trouvé.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

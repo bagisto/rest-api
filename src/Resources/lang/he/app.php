@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'רשומה לא נמצאה.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

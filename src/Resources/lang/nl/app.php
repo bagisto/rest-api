@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'Document niet gevonden.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

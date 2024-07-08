@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'रिकॉर्ड नहीं मिला।',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

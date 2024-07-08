@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => '找不到记录。',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

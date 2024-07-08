@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'لم يتم العثور على السجل.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [

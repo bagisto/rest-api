@@ -379,6 +379,10 @@ return [
         ],
     ],
 
+    'errors' => [
+        'description' => 'Запис не знайдено.',
+    ],
+
     'shop' => [
         'customer' => [
             'addresses' => [
