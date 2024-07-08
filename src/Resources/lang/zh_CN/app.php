@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => '网站地图成功添加。',
-                    'delete-success'  => '网站地图成功删除。',
-                    'update-success'  => '网站地图成功更新。',
-
-                    'mass-operations' => [
-                        'delete-success' => '网站地图成功删除。',
-                    ],
+                    'create-success' => '站点地图创建成功。',
+                    'delete-success' => '站点地图删除成功。',
+                    'update-success' => '站点地图更新成功。',
                 ],
             ],
         ],

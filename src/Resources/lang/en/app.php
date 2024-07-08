@@ -258,13 +258,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Search Synonyms have been successfully added.',
-                    'delete-success'  => 'Search Synonyms successfully deleted.',
-                    'update-success'  => 'Search Synonyms updated successfully.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Search Synonyms successfully deleted.',
-                    ],
+                    'create-success'  => 'Sitemaps created successfully.',
+                    'delete-success'  => 'Sitemaps successfully deleted.',
+                    'update-success'  => 'Sitemaps updated successfully.',
                 ],
             ],
         ],

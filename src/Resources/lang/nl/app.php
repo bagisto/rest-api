@@ -257,13 +257,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Sitemap succesvol toegevoegd.',
-                    'delete-success'  => 'Sitemap succesvol verwijderd.',
-                    'update-success'  => 'Sitemap succesvol bijgewerkt.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Sitemap succesvol verwijderd.',
-                    ],
+                    'create-success' => 'Sitemaps succesvol aangemaakt.',
+                    'delete-success' => 'Sitemaps succesvol verwijderd.',
+                    'update-success' => 'Sitemaps succesvol bijgewerkt.',
                 ],
             ],
         ],
