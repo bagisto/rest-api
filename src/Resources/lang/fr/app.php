@@ -380,6 +380,33 @@ return [
                 'update-failed'     => 'Une erreur s\'est produite lors de la mise à jour de votre compte',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oups ! La page que vous recherchez est en vacances. Il semble que nous n\'ayons pas pu trouver ce que vous cherchiez.',
+                'title'   => '404 Page non trouvée',
+            ],
+
+            '401' => [
+                'message' => 'Oups ! Il semble que vous n\'ayez pas l\'autorisation d\'accéder à cette page. Vous semblez manquer des informations d\'identification nécessaires.',
+                'title'   => '401 Non autorisé',
+            ],
+
+            '403' => [
+                'message' => 'Oups ! Cette page est interdite. Il semble que vous n\'ayez pas les autorisations nécessaires pour afficher ce contenu.',
+                'title'   => '403 Interdit',
+            ],
+
+            '500' => [
+                'message' => 'Oups ! Quelque chose s\'est mal passé. Il semble que nous ayons des problèmes pour charger la page que vous recherchez.',
+                'title'   => '500 Erreur interne du serveur',
+            ],
+
+            '503' => [
+                'message' => 'Oups ! Il semble que nous soyons temporairement en maintenance. Veuillez revenir un peu plus tard.',
+                'title'   => '503 Service non disponible',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -471,6 +498,33 @@ return [
                 'reviews' => [
                     'create-success' => 'Votre avis a été soumis avec succès.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oups ! La page que vous recherchez est en vacances. Il semble que nous n\'ayons pas pu trouver ce que vous cherchiez.',
+                'title'   => '404 Page non trouvée',
+            ],
+
+            '401' => [
+                'message' => 'Oups ! Il semble que vous n\'ayez pas l\'autorisation d\'accéder à cette page. Vous semblez manquer des informations d\'identification nécessaires.',
+                'title'   => '401 Non autorisé',
+            ],
+
+            '403' => [
+                'message' => 'Oups ! Cette page est interdite. Il semble que vous n\'ayez pas les autorisations nécessaires pour afficher ce contenu.',
+                'title'   => '403 Interdit',
+            ],
+
+            '500' => [
+                'message' => 'Oups ! Quelque chose s\'est mal passé. Il semble que nous ayons des problèmes pour charger la page que vous recherchez.',
+                'title'   => '500 Erreur interne du serveur',
+            ],
+
+            '503' => [
+                'message' => 'Oups ! Il semble que nous soyons temporairement en maintenance. Veuillez revenir un peu plus tard.',
+                'title'   => '503 Service non disponible',
             ],
         ],
     ],

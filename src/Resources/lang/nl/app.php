@@ -379,6 +379,33 @@ return [
                 'password-mismatch' => 'Huidig wachtwoord komt niet overeen.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oeps! De pagina die je zoekt, is met vakantie. Het lijkt erop dat we niet hebben gevonden wat je zocht.',
+                'title'   => '404 Pagina niet gevonden',
+            ],
+
+            '401' => [
+                'message' => 'Oeps! Het lijkt erop dat je geen toegang hebt tot deze pagina. Het lijkt erop dat je de benodigde referenties mist.',
+                'title'   => '401 Onbevoegd',
+            ],
+
+            '403' => [
+                'message' => 'Oeps! Deze pagina is verboden terrein. Het lijkt erop dat je niet over de vereiste rechten beschikt om deze inhoud te bekijken.',
+                'title'   => '403 Verboden',
+            ],
+
+            '500' => [
+                'message' => 'Oeps! Er is iets misgegaan. Het lijkt erop dat we problemen hebben met het laden van de pagina die je zoekt.',
+                'title'   => '500 Interne serverfout',
+            ],
+
+            '503' => [
+                'message' => 'Oeps! Het lijkt erop dat we tijdelijk offline zijn voor onderhoud. Kom later terug.',
+                'title'   => '503 Service Niet Beschikbaar',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -472,6 +499,33 @@ return [
                 'reviews' => [
                     'create-success' => 'Uw beoordeling is succesvol ingediend.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oeps! De pagina die je zoekt, is met vakantie. Het lijkt erop dat we niet hebben gevonden wat je zocht.',
+                'title'   => '404 Pagina niet gevonden',
+            ],
+
+            '401' => [
+                'message' => 'Oeps! Het lijkt erop dat je geen toegang hebt tot deze pagina. Het lijkt erop dat je de benodigde referenties mist.',
+                'title'   => '401 Onbevoegd',
+            ],
+
+            '403' => [
+                'message' => 'Oeps! Deze pagina is verboden terrein. Het lijkt erop dat je niet over de vereiste rechten beschikt om deze inhoud te bekijken.',
+                'title'   => '403 Verboden',
+            ],
+
+            '500' => [
+                'message' => 'Oeps! Er is iets misgegaan. Het lijkt erop dat we problemen hebben met het laden van de pagina die je zoekt.',
+                'title'   => '500 Interne serverfout',
+            ],
+
+            '503' => [
+                'message' => 'Oeps! Het lijkt erop dat we tijdelijk offline zijn voor onderhoud. Kom later terug.',
+                'title'   => '503 Service Niet Beschikbaar',
             ],
         ],
     ],

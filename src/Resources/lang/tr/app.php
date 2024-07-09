@@ -379,6 +379,33 @@ return [
                 'password-mismatch' => 'Mevcut şifre eşleşmiyor.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Üzgünüz! Aradığınız sayfa tatilde. Aradığınızı bulamadık gibi görünüyor.',
+                'title'   => '404 Sayfa Bulunamadı',
+            ],
+
+            '401' => [
+                'message' => 'Üzgünüz! Bu sayfaya erişme izniniz yok gibi görünüyor. Gerekli kimlik bilgilerini eksik gördük.',
+                'title'   => '401 Yetkisiz Erişim',
+            ],
+
+            '403' => [
+                'message' => 'Üzgünüz! Bu sayfa yasaklanmış durumda. İçeriği görüntülemek için gerekli izinlere sahip değilsiniz gibi görünüyor.',
+                'title'   => '403 Yasak',
+            ],
+
+            '500' => [
+                'message' => 'Üzgünüz! Bir şeyler yanlış gitti. Aradığınız sayfayı yüklerken sorun yaşadığımız görünüyor.',
+                'title'   => '500 İç Sunucu Hatası',
+            ],
+
+            '503' => [
+                'message' => 'Üzgünüz! Geçici olarak bakımda gibi görünüyoruz. Lütfen biraz sonra tekrar kontrol edin.',
+                'title'   => '503 Hizmet Kullanılamıyor',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -472,6 +499,33 @@ return [
                 'reviews' => [
                     'create-success' => 'İncelemeniz başarıyla gönderildi.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Üzgünüz! Aradığınız sayfa tatilde. Aradığınızı bulamadık gibi görünüyor.',
+                'title'   => '404 Sayfa Bulunamadı',
+            ],
+
+            '401' => [
+                'message' => 'Üzgünüz! Bu sayfaya erişme izniniz yok gibi görünüyor. Gerekli kimlik bilgilerini eksik gördük.',
+                'title'   => '401 Yetkisiz Erişim',
+            ],
+
+            '403' => [
+                'message' => 'Üzgünüz! Bu sayfa yasaklanmış durumda. İçeriği görüntülemek için gerekli izinlere sahip değilsiniz gibi görünüyor.',
+                'title'   => '403 Yasak',
+            ],
+
+            '500' => [
+                'message' => 'Üzgünüz! Bir şeyler yanlış gitti. Aradığınız sayfayı yüklerken sorun yaşadığımız görünüyor.',
+                'title'   => '500 İç Sunucu Hatası',
+            ],
+
+            '503' => [
+                'message' => 'Üzgünüz! Geçici olarak bakımda gibi görünüyoruz. Lütfen biraz sonra tekrar kontrol edin.',
+                'title'   => '503 Hizmet Kullanılamıyor',
             ],
         ],
     ],

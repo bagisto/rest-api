@@ -4,6 +4,8 @@ namespace Webkul\RestApi\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Webkul\Core\Exceptions\Handler as BaseHandler;
+use Webkul\RestApi\Exceptions\Handler;
 
 class RestApiServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,8 @@ class RestApiServiceProvider extends ServiceProvider
         $this->activateMiddlewareAliases();
 
         $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'rest-api');
+
+        $this->app->bind(BaseHandler::class, Handler::class);
 
         $this->publishes([
             __DIR__.'/../Config/l5-swagger.php' => config_path('l5-swagger.php'),
