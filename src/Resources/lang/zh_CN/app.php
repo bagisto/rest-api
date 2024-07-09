@@ -158,6 +158,11 @@ return [
                     'update-success' => '所选评论已成功更新。',
                 ],
             ],
+
+            'news-letter' => [
+                'create-success'  => '您已成功订阅我们的新闻通讯。',
+                'warning-message' => '您已经订阅了我们的新闻通讯。',
+            ],
         ],
 
         'cms' => [

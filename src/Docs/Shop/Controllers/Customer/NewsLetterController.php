@@ -13,14 +13,21 @@ class NewsLetterController
      *      description="Add subscription by customer",
      *      security={ {"sanctum": {} }},
      *
-     *      @OA\Parameter(
-     *          name="email",
-     *          description="Email Id",
-     *          required=true,
-     *          in="query",
+     *      @OA\RequestBody(
      *
-     *          @OA\Schema(
-     *              type="string"
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *
+     *              @OA\Schema(
+     *
+     *                  @OA\Property(
+     *                      property="email",
+     *                      type="string",
+     *                      format="email",
+     *                      example=""
+     *                  ),
+     *                  required={"email"}
+     *              )
      *          )
      *      ),
      *

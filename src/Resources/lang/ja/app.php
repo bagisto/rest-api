@@ -158,6 +158,11 @@ return [
                     'update-success' => '選択したレビューが正常に更新されました。',
                 ],
             ],
+
+            'news-letter' => [
+                'create-success'  => 'ニュースレターに正常に登録されました。',
+                'warning-message' => 'すでにニュースレターに登録されています。',
+            ],
         ],
 
         'cms' => [

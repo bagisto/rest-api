@@ -28,8 +28,8 @@ class NewsLetterController extends CustomerController
 
         if ($subscription) {
             return response([
-                'message' => 'Already subscribed.',
-            ], 199);
+                'message' => trans('rest-api::app.admin.customers.news-letter.warning-message'),
+            ]);
         }
 
         Event::dispatch('customer.subscription.before');
@@ -40,6 +40,7 @@ class NewsLetterController extends CustomerController
             'email'         => $email,
             'channel_id'    => core()->getCurrentChannel()->id,
             'is_subscribed' => 1,
+            'token'         => uniqid(),
             'customer_id'   => $customer->id ?? null,
         ]);
 
@@ -52,8 +53,8 @@ class NewsLetterController extends CustomerController
         Event::dispatch('customer.subscription.after', $subscription);
 
         return response([
-            'date' => '',
-            'message' => '',
+            'date'    => $subscription,
+            'message' => trans('rest-api::app.admin.customers.news-letter.create-success'),
         ]);
     }
 }
