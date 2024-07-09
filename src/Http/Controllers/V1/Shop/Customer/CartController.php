@@ -52,16 +52,22 @@ class CartController extends CustomerController
      */
     public function store($productId): JsonResponse
     {
-        try {
-            $product = $this->productRepository->with('parent')->find($productId);
+        $this->validate(request(), [
+            'product_id' => 'required|integer|exists:products,id',
+        ]);
+        
+        $product = $this->productRepository->with('parent')->findOrFail($productId);
 
-            Event::dispatch('checkout.cart.item.add.before', $product->id);
+        try {
+            if (! $product->status) {
+                throw new \Exception(trans('rest-api::app.shop.checkout.cart.item.inactive-add'));
+            }
 
             if (request()->get('is_buy_now')) {
                 Cart::deActivateCart();
             }
 
-            $cart = Cart::addProduct($product->id, request()->all());
+            $cart = Cart::addProduct($product, request()->all());
 
             if (
                 is_array($cart)
@@ -73,24 +79,8 @@ class CartController extends CustomerController
             }
 
             if ($cart) {
-                $customer = $this->resolveShopUser(request());
-
-                if ($customer) {
-                    $this->wishlistRepository->deleteWhere([
-                        'product_id'  => $product->id,
-                        'customer_id' => $customer->id,
-                    ]);
-                }
-
-                Event::dispatch('checkout.cart.item.add.after', $cart);
-
                 if (request()->get('is_buy_now')) {
-                    Event::dispatch('shop.item.buy-now', request()->input('product_id'));
-
-                    return response()->json([
-                        'data'     => app()->make($this->resource(), ['resource' => Cart::getCart()]),
-                        'message'  => trans('rest-api::app.shop.checkout.cart.item.success'),
-                    ]);
+                    Event::dispatch('shop.item.buy-now', $productId);
                 }
 
                 return response()->json([
