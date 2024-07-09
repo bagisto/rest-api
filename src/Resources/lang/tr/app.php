@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Kategori başarıyla eklendi.',
                 'delete-success' => 'Kategori başarıyla silindi.',
                 'update-success' => 'Kategori başarıyla güncellendi.',
+                'not-exist'      => 'Kategori bulunamadı.',
 
                 'mass-operations' => [
                     'delete-success' => 'Seçilen Kategoriler başarıyla silindi.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Seçilen incelemeler başarıyla silindi.',
                     'update-success' => 'Seçilen incelemeler başarıyla güncellendi.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'Bültenimize başarıyla abone oldunuz.',
+                'warning-message' => 'Bültenimize zaten abone oldunuz.',
             ],
         ],
 

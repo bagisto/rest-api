@@ -145,24 +145,22 @@ class CategoryController extends CatalogController
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
-        $suppressFlash = true;
+        $categories = $this->getRepositoryInstance()->findWhereIn('id', $massDestroyRequest->indices);
 
-        $categoryIds = $massDestroyRequest->indices;
+        if (! $categories->count()) {
+            return response([
+                'message' => trans('rest-api::app.admin.catalog.categories.not-exist'),
+            ], 400);
+        }
 
-        foreach ($categoryIds as $categoryId) {
-            $category = $this->getRepositoryInstance()->find($categoryId);
+        if ($this->containsNonDeletableCategory($categories)) {
+            return response([
+                'message' => trans('rest-api::app.admin.catalog.categories.root-category-delete'),
+            ], 400);
+        }
 
-            if (isset($category)) {
-                if (! $this->isCategoryDeletable($category)) {
-                    $suppressFlash = false;
-
-                    return response([
-                        'message' => trans('Root category can\'t be deleted'),
-                    ], 400);
-                } else {
-                    $suppressFlash = true;
-
-                    Event::dispatch('catalog.category.delete.before', $categoryId);
+        $categories->each(function ($category) {
+            Event::dispatch('catalog.category.delete.before', $category->id);
 
                     $category->delete();
 

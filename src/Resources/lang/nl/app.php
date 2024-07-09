@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Categorie is succesvol toegevoegd.',
                 'delete-success' => 'Categorie succesvol verwijderd.',
                 'update-success' => 'Categorie succesvol bijgewerkt.',
+                'not-exist'      => 'Categorie niet gevonden.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Geselecteerde categorieën succesvol verwijderd.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Geselecteerde recensies succesvol verwijderd.',
                     'update-success' => 'Geselecteerde recensies succesvol bijgewerkt.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'U bent succesvol geabonneerd op onze nieuwsbrief.',
+                'warning-message' => 'U bent al geabonneerd op onze nieuwsbrief.',
             ],
         ],
 

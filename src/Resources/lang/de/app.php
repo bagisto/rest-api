@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Kategorie wurde erfolgreich hinzugefügt.',
                 'delete-success' => 'Kategorie erfolgreich gelöscht',
                 'update-success' => 'Kategorie erfolgreich aktualisiert.',
+                'not-exist'      => 'Kategorie nicht gefunden.',
 
                 'mass-operations' => [
                     'delete-success' => 'Ausgewählte Kategorien erfolgreich gelöscht.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Ausgewählte Bewertungen erfolgreich gelöscht.',
                     'update-success' => 'Ausgewählte Bewertungen erfolgreich aktualisiert.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'Sie haben sich erfolgreich für unseren Newsletter angemeldet.',
+                'warning-message' => 'Sie haben sich bereits für unseren Newsletter angemeldet.',
             ],
         ],
 

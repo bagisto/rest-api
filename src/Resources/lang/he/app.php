@@ -73,6 +73,7 @@ return [
                 'create-success' => 'הקטגוריה נוספה בהצלחה.',
                 'delete-success' => 'הקטגוריה נמחקה בהצלחה',
                 'update-success' => 'הקטגוריה עודכנה בהצלחה.',
+                'not-exist'      => 'הקטגוריה לא נמצאה.',
 
                 'mass-operations' => [
                     'delete-success'  => 'הקטגוריות שנבחרו נמחקו בהצלחה.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'הביקורות שנבחרו נמחקו בהצלחה.',
                     'update-success' => 'הביקורות שנבחרו עודכנו בהצלחה.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'נרשמת בהצלחה לניוזלטר שלנו.',
+                'warning-message' => 'כבר נרשמת לניוזלטר שלנו.',
             ],
         ],
 

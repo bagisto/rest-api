@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Categoría añadida con éxito.',
                 'delete-success' => 'Categoría eliminada correctamente',
                 'update-success' => 'Categoría actualizada con éxito.',
+                'not-exist'      => 'Categoría no encontrada.',
 
                 'mass-operations' => [
                     'delete-success' => 'Categorías seleccionadas eliminadas correctamente.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Reseñas seleccionadas eliminadas correctamente.',
                     'update-success' => 'Reseñas seleccionadas actualizadas correctamente.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'Te has suscrito con éxito a nuestro boletín.',
+                'warning-message' => 'Ya te has suscrito a nuestro boletín.',
             ],
         ],
 

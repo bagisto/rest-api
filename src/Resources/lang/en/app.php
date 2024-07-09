@@ -74,6 +74,7 @@ return [
                 'delete-success' => 'Category successfully deleted',
                 'root-category-delete' => 'The Root category can not be deleted.',
                 'update-success' => 'Category updated successfully.',
+                'not-exist'      => 'Category not found',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected Categories successfully deleted.',
@@ -158,6 +159,11 @@ return [
                     'delete-success' => 'Selected reviews successfully deleted.',
                     'update-success' => 'Selected reviews successfully updated.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'You have successfully subscribed to our newsletter.',
+                'warning-message' => 'You have already subscribed to our newsletter.',
             ],
         ],
 
