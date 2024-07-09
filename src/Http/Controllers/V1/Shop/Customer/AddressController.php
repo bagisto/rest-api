@@ -33,6 +33,10 @@ class AddressController extends CustomerController
      */
     public function store(AddressRequest $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
         $customer = $this->resolveShopUser($request);
 
         Event::dispatch('customer.addresses.create.before');
@@ -72,6 +76,10 @@ class AddressController extends CustomerController
      */
     public function update(AddressRequest $request, int $id)
     {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
         $customer = $this->resolveShopUser($request);
 
         $data = array_merge(request()->only([
