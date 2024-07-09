@@ -158,6 +158,11 @@ return [
                     'update-success' => 'Reseñas seleccionadas actualizadas correctamente.',
                 ],
             ],
+
+            'news-letter' => [
+                'create-success'  => 'Te has suscrito con éxito a nuestro boletín.',
+                'warning-message' => 'Ya te has suscrito a nuestro boletín.',
+            ],
         ],
 
         'cms' => [

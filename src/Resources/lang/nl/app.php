@@ -158,6 +158,11 @@ return [
                     'update-success' => 'Geselecteerde recensies succesvol bijgewerkt.',
                 ],
             ],
+
+            'news-letter' => [
+                'create-success'  => 'U bent succesvol geabonneerd op onze nieuwsbrief.',
+                'warning-message' => 'U bent al geabonneerd op onze nieuwsbrief.',
+            ],
         ],
 
         'cms' => [

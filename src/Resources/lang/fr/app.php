@@ -158,6 +158,11 @@ return [
                     'update-success' => 'Avis sélectionnés mis à jour avec succès.',
                 ],
             ],
+
+            'news-letter' => [
+                'create-success'  => 'Vous vous êtes abonné avec succès à notre newsletter.',
+                'warning-message' => 'Vous êtes déjà abonné à notre newsletter.',
+            ],
         ],
 
         'cms' => [

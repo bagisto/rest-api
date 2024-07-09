@@ -158,6 +158,11 @@ return [
                     'update-success' => 'Seçilen incelemeler başarıyla güncellendi.',
                 ],
             ],
+
+            'news-letter' => [
+                'create-success'  => 'Bültenimize başarıyla abone oldunuz.',
+                'warning-message' => 'Bültenimize zaten abone oldunuz.',
+            ],
         ],
 
         'cms' => [

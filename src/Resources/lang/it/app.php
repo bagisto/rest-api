@@ -158,6 +158,11 @@ return [
                     'update-success' => 'Recensioni selezionate aggiornate con successo.',
                 ],
             ],
+
+            'news-letter' => [
+                'create-success'  => 'Ti sei iscritto con successo alla nostra newsletter.',
+                'warning-message' => 'Sei già iscritto alla nostra newsletter.',
+            ],
         ],
 
         'cms' => [

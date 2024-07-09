@@ -159,6 +159,11 @@ return [
                     'update-success' => 'Selected reviews successfully updated.',
                 ],
             ],
+
+            'news-letter' => [
+                'create-success'  => 'You have successfully subscribed to our newsletter.',
+                'warning-message' => 'You have already subscribed to our newsletter.',
+            ],
         ],
 
         'cms' => [
