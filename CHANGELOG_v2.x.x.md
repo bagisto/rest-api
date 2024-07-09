@@ -2,9 +2,13 @@
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
-## **v2.1.0 (8th of July 2024)** - *Release*
+## **v2.1.0 (9th of July 2024)** - *Release*
 
 * #268 [enhancement] - Add decimal option for currency create or update api in the request body.
+
+* #291 [fixed] - Getting "Internal Server Error" when update the sitemap.
+
+* #339 [enhancement] - Please create an API for Newsletter subscription.
 
 * #262 [fixed] - Add password validation when create or update new user.
 
@@ -53,6 +57,10 @@ This changelog consists of the bug & security fixes and new features being inclu
 * #300 [Fixed] - Getting "Internal Server Error" when update configurable, downloadable, bundle and grouped product.
 
 * #301 [Fixed] - Getting "Internal Server Error" when update simple and virtual products.
+
+* #340 [fixed] - ON the Store API -> Address create/Update API, need email validation.
+
+* #336 [fixed] - while mass delete category API with invalid id getting unwanted message.
 
 ## **v2.0.0 (8th of March 2024)** - *Release*
 
