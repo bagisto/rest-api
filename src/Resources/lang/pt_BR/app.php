@@ -379,6 +379,33 @@ return [
                 'password-mismatch' => 'A senha atual não corresponde.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Ops! A página que você está procurando está em férias. Parece que não conseguimos encontrar o que você estava procurando.',
+                'title'   => '404 Página Não Encontrada',
+            ],
+
+            '401' => [
+                'message' => 'Ops! Parece que você não tem permissão para acessar esta página. Parece que você está sem as credenciais necessárias.',
+                'title'   => '401 Não Autorizado',
+            ],
+
+            '403' => [
+                'message' => 'Ops! Esta página está fora dos limites. Parece que você não tem as permissões necessárias para visualizar este conteúdo.',
+                'title'   => '403 Proibido',
+            ],
+
+            '500' => [
+                'message' => 'Ops! Algo deu errado. Parece que estamos tendo problemas para carregar a página que você está procurando.',
+                'title'   => '500 Erro Interno do Servidor',
+            ],
+
+            '503' => [
+                'message' => 'Ops! Parece que estamos temporariamente fora do ar para manutenção. Por favor, volte em breve.',
+                'title'   => '503 Serviço Indisponível',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -472,6 +499,33 @@ return [
                 'reviews' => [
                     'create-success' => 'Sua avaliação foi enviada com sucesso.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Ops! A página que você está procurando está em férias. Parece que não conseguimos encontrar o que você estava procurando.',
+                'title'   => '404 Página Não Encontrada',
+            ],
+
+            '401' => [
+                'message' => 'Ops! Parece que você não tem permissão para acessar esta página. Parece que você está sem as credenciais necessárias.',
+                'title'   => '401 Não Autorizado',
+            ],
+
+            '403' => [
+                'message' => 'Ops! Esta página está fora dos limites. Parece que você não tem as permissões necessárias para visualizar este conteúdo.',
+                'title'   => '403 Proibido',
+            ],
+
+            '500' => [
+                'message' => 'Ops! Algo deu errado. Parece que estamos tendo problemas para carregar a página que você está procurando.',
+                'title'   => '500 Erro Interno do Servidor',
+            ],
+
+            '503' => [
+                'message' => 'Ops! Parece que estamos temporariamente fora do ar para manutenção. Por favor, volte em breve.',
+                'title'   => '503 Serviço Indisponível',
             ],
         ],
     ],
