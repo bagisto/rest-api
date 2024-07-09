@@ -445,6 +445,7 @@ return [
 
             'cart' => [
                 'item' => [
+                    'inactive-add'   => '无法将非活动商品添加到购物车。',
                     'success'        => '商品已成功添加到购物车。',
                     'success-remove' => '商品已成功从购物车中移除。',
                 ],
