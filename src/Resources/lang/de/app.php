@@ -373,10 +373,33 @@ return [
                 'password-mismatch' => 'Das aktuelle Passwort stimmt nicht überein.',
             ],
         ],
-    ],
 
-    'errors' => [
-        'description' => 'Aufnahme nicht gefunden.',
+        'errors' => [
+            '404' => [
+                'message' => 'Hoppla! Die Seite, die Sie suchen, ist im Urlaub. Es scheint, dass wir nicht finden konnten, wonach Sie gesucht haben.',
+                'title'   => '404 Seite nicht gefunden',
+            ],
+
+            '401' => [
+                'message' => 'Hoppla! Es sieht so aus, als hätten Sie keine Berechtigung, auf diese Seite zuzugreifen. Es scheint, dass Ihnen die erforderlichen Zugangsdaten fehlen.',
+                'title'   => '401 Nicht autorisiert',
+            ],
+
+            '403' => [
+                'message' => 'Hoppla! Diese Seite ist tabu. Es sieht so aus, als hätten Sie nicht die erforderlichen Berechtigungen, um diesen Inhalt anzuzeigen.',
+                'title'   => '403 Verboten',
+            ],
+
+            '500' => [
+                'message' => 'Hoppla! Etwas ist schiefgelaufen. Es scheint, dass wir Probleme haben, die Seite, nach der Sie suchen, zu laden.',
+                'title'   => '500 Interner Serverfehler',
+            ],
+
+            '503' => [
+                'message' => 'Hoppla! Es sieht so aus, als wären wir vorübergehend wegen Wartungsarbeiten nicht erreichbar. Bitte kommen Sie später wieder vorbei.',
+                'title'   => '503 Dienst nicht verfügbar',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -470,6 +493,33 @@ return [
                 'reviews' => [
                     'create-success' => 'Ihre Bewertung wurde erfolgreich eingereicht.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Hoppla! Die Seite, die Sie suchen, ist im Urlaub. Es scheint, dass wir nicht finden konnten, wonach Sie gesucht haben.',
+                'title'   => '404 Seite nicht gefunden',
+            ],
+
+            '401' => [
+                'message' => 'Hoppla! Es sieht so aus, als hätten Sie keine Berechtigung, auf diese Seite zuzugreifen. Es scheint, dass Ihnen die erforderlichen Zugangsdaten fehlen.',
+                'title'   => '401 Nicht autorisiert',
+            ],
+
+            '403' => [
+                'message' => 'Hoppla! Diese Seite ist tabu. Es sieht so aus, als hätten Sie nicht die erforderlichen Berechtigungen, um diesen Inhalt anzuzeigen.',
+                'title'   => '403 Verboten',
+            ],
+
+            '500' => [
+                'message' => 'Hoppla! Etwas ist schiefgelaufen. Es scheint, dass wir Probleme haben, die Seite, nach der Sie suchen, zu laden.',
+                'title'   => '500 Interner Serverfehler',
+            ],
+
+            '503' => [
+                'message' => 'Hoppla! Es sieht so aus, als wären wir vorübergehend wegen Wartungsarbeiten nicht erreichbar. Bitte kommen Sie später wieder vorbei.',
+                'title'   => '503 Dienst nicht verfügbar',
             ],
         ],
     ],

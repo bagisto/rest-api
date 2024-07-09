@@ -379,10 +379,33 @@ return [
                 'password-mismatch' => 'La password attuale non corrisponde.',
             ],
         ],
-    ],
 
-    'errors' => [
-        'description' => 'Inserimento non trovato.',
+        'errors' => [
+            '404' => [
+                'message' => 'Oops! La pagina che stai cercando è in vacanza. Sembra che non siamo riusciti a trovare quello che cercavi.',
+                'title'   => '404 Pagina non trovata',
+            ],
+
+            '401' => [
+                'message' => 'Oops! Sembra che tu non abbia il permesso di accedere a questa pagina. Sembra che ti manchino le credenziali necessarie.',
+                'title'   => '401 Non autorizzato',
+            ],
+
+            '403' => [
+                'message' => 'Oops! Questa pagina è off-limits. Sembra che tu non abbia i permessi necessari per visualizzare questo contenuto.',
+                'title'   => '403 Vietato',
+            ],
+
+            '500' => [
+                'message' => 'Oops! Qualcosa è andato storto. Sembra che stiamo avendo problemi a caricare la pagina che stai cercando.',
+                'title'   => '500 Errore interno del server',
+            ],
+
+            '503' => [
+                'message' => 'Oops! Sembra che siamo temporaneamente offline per manutenzione. Torna tra un po\'.',
+                'title'   => '503 Servizio non disponibile',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -476,6 +499,33 @@ return [
                 'reviews' => [
                     'create-success' => 'La tua recensione è stata inviata con successo.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oops! La pagina che stai cercando è in vacanza. Sembra che non siamo riusciti a trovare quello che cercavi.',
+                'title'   => '404 Pagina non trovata',
+            ],
+
+            '401' => [
+                'message' => 'Oops! Sembra che tu non abbia il permesso di accedere a questa pagina. Sembra che ti manchino le credenziali necessarie.',
+                'title'   => '401 Non autorizzato',
+            ],
+
+            '403' => [
+                'message' => 'Oops! Questa pagina è off-limits. Sembra che tu non abbia i permessi necessari per visualizzare questo contenuto.',
+                'title'   => '403 Vietato',
+            ],
+
+            '500' => [
+                'message' => 'Oops! Qualcosa è andato storto. Sembra che stiamo avendo problemi a caricare la pagina che stai cercando.',
+                'title'   => '500 Errore interno del server',
+            ],
+
+            '503' => [
+                'message' => 'Oops! Sembra che siamo temporaneamente offline per manutenzione. Torna tra un po\'.',
+                'title'   => '503 Servizio non disponibile',
             ],
         ],
     ],

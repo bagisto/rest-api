@@ -35,13 +35,15 @@ class Handler extends BaseHandler
     private function handleAuthenticationException(): void
     {
         $this->renderable(function (AuthenticationException $exception, Request $request) {
-            $path = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
+            $nameSpace = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
 
             if ($request->wantsJson()) {
-                return response()->json(['error' => trans("rest-api::app.errors.description")], 401);
+                return response()->json([
+                    'error' => trans("rest-api::app.{$nameSpace}.errors.401.message")
+                ], 401);
             }
 
-            if ($path !== 'admin') {
+            if ($nameSpace !== 'admin') {
                 return redirect()->guest(route('shop.customer.session.index'));
             }
 
@@ -55,17 +57,20 @@ class Handler extends BaseHandler
     private function handleHttpException(): void
     {
         $this->renderable(function (HttpException $exception, Request $request) {
-            $path = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
+            $nameSpace = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
 
             $errorCode = in_array($exception->getStatusCode(), [401, 403, 404, 503])
                 ? $exception->getStatusCode()
                 : 500;
 
             if ($request->wantsJson()) {
-                return response()->json(['description' => trans("rest-api::app.errors.description")], $errorCode);
+                return response()->json([
+                    'title'   => trans("rest-api::app.{$nameSpace}.errors.{$errorCode}.title"),
+                    'message' => trans("rest-api::app.{$nameSpace}.errors.{$errorCode}.message"),
+                ], $errorCode);
             }
 
-            return response()->view("{$path}::errors.index", compact('errorCode'));
+            return response()->view("{$nameSpace}::errors.index", compact('errorCode'));
         });
     }
 
@@ -75,15 +80,17 @@ class Handler extends BaseHandler
     private function handleServerException(): void
     {
         $this->renderable(function (Throwable $throwable, Request $request) {
-            $path = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
+            $nameSpace = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
 
             $errorCode = 500;
 
             if ($request->wantsJson()) {
-                return response()->json(['description' => trans("rest-api::app.errors.description")], $errorCode);
+                return response()->json([
+                    'error' => trans("rest-api::app.{$nameSpace}.errors.message")
+                ], $errorCode);
             }
 
-            return response()->view("{$path}::errors.index", compact('errorCode'));
+            return response()->view("{$nameSpace}::errors.index", compact('errorCode'));
         });
     }
 
