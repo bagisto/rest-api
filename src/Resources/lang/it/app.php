@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Categoria aggiunta con successo.',
                 'delete-success' => 'Categoria eliminata con successo.',
                 'update-success' => 'Categoria aggiornata con successo.',
+                'not-exist'      => 'Categoria non trovata.',
 
                 'mass-operations' => [
                     'delete-success' => 'Categorie selezionate eliminate con successo.',

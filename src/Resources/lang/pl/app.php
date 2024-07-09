@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Kategoria została pomyślnie dodana.',
                 'delete-success' => 'Kategoria pomyślnie usunięta.',
                 'update-success' => 'Kategoria została pomyślnie zaktualizowana.',
+                'not-exist'      => 'Nie znaleziono kategorii.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Wybrane kategorie pomyślnie usunięte.',

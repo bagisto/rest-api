@@ -73,6 +73,7 @@ return [
                 'create-success' => 'تمت إضافة الفئة بنجاح.',
                 'delete-success' => 'تم حذف الفئة بنجاح.',
                 'update-success' => 'تم تحديث الفئة بنجاح.',
+                'not-exist'      => 'لم يتم العثور على الفئة.',
 
                 'mass-operations' => [
                     'delete-success'  => 'تم حذف الفئات المحددة بنجاح.',

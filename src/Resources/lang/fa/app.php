@@ -73,6 +73,7 @@ return [
                 'create-success' => 'دسته با موفقیت اضافه شد.',
                 'delete-success' => 'دسته با موفقیت حذف شد',
                 'update-success' => 'دسته با موفقیت به روز شد.',
+                'not-exist'      => 'دسته پیدا نشد',
 
                 'mass-operations' => [
                     'delete-success'  => 'دسته‌های انتخاب شده با موفقیت حذف شدند.',

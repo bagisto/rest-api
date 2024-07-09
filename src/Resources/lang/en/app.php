@@ -74,6 +74,7 @@ return [
                 'delete-success' => 'Category successfully deleted',
                 'root-category-delete' => 'The Root category can not be deleted.',
                 'update-success' => 'Category updated successfully.',
+                'not-exist'      => 'Category not found',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected Categories successfully deleted.',
