@@ -8,7 +8,7 @@
 
 ### 2. Installation:
 
-#### Install the stable version of the Bagisto REST API from your console using the command below:
+#### Install the stable version of Bagisto Rest API from your console using the below command:
 ~~~
 composer require bagisto/rest-api
 ~~~
