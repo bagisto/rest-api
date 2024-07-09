@@ -2,7 +2,7 @@
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
-## **v2.1.0 (9th of July 2024)** - *Release*
+## **v2.1.0 (10th of July 2024)** - *Release*
 
 * #268 [enhancement] - Add decimal option for currency create or update api in the request body.
 
