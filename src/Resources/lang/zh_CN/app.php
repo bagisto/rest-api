@@ -73,6 +73,7 @@ return [
                 'create-success' => '分类已成功添加。',
                 'delete-success' => '分类已成功删除',
                 'update-success' => '分类已成功更新。',
+                'not-exist'      => '未找到类别。',
 
                 'mass-operations' => [
                     'delete-success'  => '所选分类已成功删除。',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => '所选评论已成功删除。',
                     'update-success' => '所选评论已成功更新。',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => '您已成功订阅我们的新闻通讯。',
+                'warning-message' => '您已经订阅了我们的新闻通讯。',
             ],
         ],
 

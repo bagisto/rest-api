@@ -73,6 +73,7 @@ return [
                 'create-success' => 'カテゴリが正常に追加されました。',
                 'delete-success' => 'カテゴリが正常に削除されました。',
                 'update-success' => 'カテゴリが正常に更新されました。',
+                'not-exist'      => 'カテゴリが見つかりません。',
 
                 'mass-operations' => [
                     'delete-success' => '選択したカテゴリが正常に削除されました。',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => '選択したレビューが正常に削除されました。',
                     'update-success' => '選択したレビューが正常に更新されました。',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'ニュースレターに正常に登録されました。',
+                'warning-message' => 'すでにニュースレターに登録されています。',
             ],
         ],
 

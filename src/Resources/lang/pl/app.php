@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Kategoria została pomyślnie dodana.',
                 'delete-success' => 'Kategoria pomyślnie usunięta.',
                 'update-success' => 'Kategoria została pomyślnie zaktualizowana.',
+                'not-exist'      => 'Nie znaleziono kategorii.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Wybrane kategorie pomyślnie usunięte.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Wybrane recenzje pomyślnie usunięte.',
                     'update-success' => 'Wybrane recenzje pomyślnie zaktualizowane.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'Pomyślnie zasubskrybowałeś nasz newsletter.',
+                'warning-message' => 'Już subskrybujesz nasz newsletter.',
             ],
         ],
 

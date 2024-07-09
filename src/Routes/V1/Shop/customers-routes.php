@@ -10,6 +10,7 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\OrderController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\ShipmentController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\TransactionController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\WishlistController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\NewsLetterController;
 
 /**
  * Customer unauthorized routes.
@@ -135,5 +136,12 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::post('check-minimum-order', 'checkMinimumOrder');
 
         Route::post('save-order', 'saveOrder');
+    });
+
+    /**
+     * News Letter routes.
+     */
+    Route::controller(NewsLetterController::class)->prefix('customer/subscription')->group(function () {
+        Route::post('', 'store');
     });
 });
