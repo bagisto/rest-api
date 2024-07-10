@@ -37,11 +37,17 @@ class WishlistController extends CustomerController
      */
     public function addOrRemove(Request $request, int $id): Response
     {
+        $this->validate($request, [
+            'product_id' => 'required|integer|exists:products,id',
+        ]);
+
+        $product = $this->productRepository->findOrFail($id);
+
         $customer = $this->resolveShopUser($request);
 
         $wishlistItem = $this->wishlistRepository->findOneWhere([
             'channel_id'  => core()->getCurrentChannel()->id,
-            'product_id'  => $id,
+            'product_id'  => $product->id,
             'customer_id' => $customer->id,
         ]);
 
@@ -56,7 +62,7 @@ class WishlistController extends CustomerController
 
         $wishlistItem = $this->wishlistRepository->create([
             'channel_id'  => core()->getCurrentChannel()->id,
-            'product_id'  => $id,
+            'product_id'  => $product->id,
             'customer_id' => $customer->id,
             'additional'  => $request->input('additional') ?? null,
         ]);
@@ -75,7 +81,6 @@ class WishlistController extends CustomerController
         $customer = $this->resolveShopUser($request);
 
         $wishlistItem = $this->wishlistRepository->findOneWhere([
-            'channel_id'  => core()->getCurrentChannel()->id,
             'product_id'  => $id,
             'customer_id' => $customer->id,
         ]);
@@ -92,11 +97,9 @@ class WishlistController extends CustomerController
             ], 400);
         }
 
-        $result = Cart::moveToCart($wishlistItem);
+        $result = Cart::moveToCart($wishlistItem, $request->input('quantity'));
 
         if ($result) {
-            Cart::collectTotals();
-
             $cart = Cart::getCart();
 
             return response([
@@ -108,5 +111,27 @@ class WishlistController extends CustomerController
         return response([
             'message' => trans('rest-api::app.shop.wishlist.option-missing'),
         ], 400);
+    }
+
+     /**
+     * Method for removing all items from the wishlist.
+     */
+    public function destroyAll(Request $request): Response
+    {
+        $customer = $this->resolveShopUser($request);
+
+        $success = $this->wishlistRepository->deleteWhere([
+            'customer_id'  => $customer->id,
+        ]);
+
+        if (! $success) {
+            return response([
+                'message'  => trans('rest-api::app.shop.wishlist.remove-fail'),
+            ]);
+        }
+
+        return response([
+            'message'  => trans('rest-api::app.shop.wishlist.removed'),
+        ]);
     }
 }

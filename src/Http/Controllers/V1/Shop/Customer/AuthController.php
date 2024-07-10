@@ -33,9 +33,7 @@ class AuthController extends CustomerController
         protected CustomerRepository $customerRepository,
         protected CustomerGroupRepository $customerGroupRepository,
         protected SubscribersListRepository $subscriptionRepository
-    ) {
-        parent::__construct();
-    }
+    ) {}
 
     /**
      * Register the customer.
@@ -138,8 +136,8 @@ class AuthController extends CustomerController
         $isPasswordChanged = false;
 
         $request->validate([
-            'first_name'                => ['required', new AlphaNumericSpace()],
-            'last_name'                 => ['required', new AlphaNumericSpace()],
+            'first_name'                => ['required'],
+            'last_name'                 => ['required'],
             'gender'                    => 'required|in:Other,Male,Female',
             'date_of_birth'             => 'date|before:today',
             'email'                     => 'email|unique:customers,email,'.$customer->id,
@@ -154,9 +152,10 @@ class AuthController extends CustomerController
 
         $data = $request->all();
 
-        if (core()->getCurrentChannel()->theme === 'default' 
-            && !isset($data['image'])) 
-        {
+        if (
+            core()->getCurrentChannel()->theme === 'default' 
+            && ! isset($data['image'])
+        ) {
             $data['image']['image_0'] = '';
         }
 
@@ -177,21 +176,38 @@ class AuthController extends CustomerController
         Event::dispatch('customer.update.before');
 
         if ($customer = $this->customerRepository->update($data, $customer->id)) {
-                if($isPasswordChanged){
-                    Event::dispatch('customer.password.update.after', $customer);
-                }   
+            if ($isPasswordChanged){
+                Event::dispatch('customer.password.update.after', $customer);
+            }
 
-                if ($request->boolean('subscribed_to_news_letter')) {
+            Event::dispatch('customer.update.after', $customer);
+
+            if ($request->boolean('subscribed_to_news_letter')) {
                 $subscription = $this->subscriptionRepository->firstOrNew(['email' => $data['email']]);
 
-                $subscription->fill([
-                    'customer_id'   => $customer->id,
-                    'is_subscribed' => 1,
-                    'channel_id'    => core()->getCurrentChannel()->id,
-                    'token'         => uniqid(),
-                ])->save();
+                if ($subscription) {
+                    $this->subscriptionRepository->update([
+                        'customer_id'   => $customer->id,
+                        'is_subscribed' => 1,
+                    ], $subscription->id);
+                } else {
+                    $this->subscriptionRepository->create([
+                        'email'         => $data['email'],
+                        'customer_id'   => $customer->id,
+                        'channel_id'    => core()->getCurrentChannel()->id,
+                        'is_subscribed' => 1,
+                        'token'         => $token = uniqid(),
+                    ]);
+                }
             } else {
-                $this->subscriptionRepository->where('email', $data['email'])->update(['is_subscribed' => 0]);
+                $subscription = $this->subscriptionRepository->findOneWhere(['email' => $data['email']]);
+
+                if ($subscription) {
+                    $this->subscriptionRepository->update([
+                        'customer_id'   => $customer->id,
+                        'is_subscribed' => 0,
+                    ], $subscription->id);
+                }
             }
 
             if ($request->hasFile('image')) {
@@ -211,8 +227,6 @@ class AuthController extends CustomerController
                 'message' => trans('rest-api::app.shop.customer.accounts.update-success'),
             ]);
         }
-
-        Event::dispatch('customer.update.after', $customer);
 
         return response(['message' => trans('rest-api::app.shop.customer.accounts.error.update-failed')]);
     }

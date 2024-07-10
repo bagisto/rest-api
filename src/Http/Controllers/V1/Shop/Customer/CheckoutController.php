@@ -114,7 +114,7 @@ class CheckoutController extends CustomerController
     {
         $minimumOrderAmount = (float) core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?? 0;
 
-        $status = Cart::checkMinimumOrder();
+        $status = Cart::haveMinimumOrderAmount();
 
         return response([
             'data'    => [
@@ -146,7 +146,11 @@ class CheckoutController extends CustomerController
             ]);
         }
 
-        $order = $orderRepository->create(Cart::prepareDataForOrder());
+        $data = (new OrderResource($cart))->jsonSerialize();
+
+        $order = $orderRepository->create($data);
+
+        dd($order);
 
         Cart::deActivateCart();
 
@@ -167,9 +171,9 @@ class CheckoutController extends CustomerController
     {
         $cart = Cart::getCart();
 
-        $minimumOrderAmount = core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?? 0;
+        $minimumOrderAmount = core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?: 0;
 
-        if (! $cart->checkMinimumOrder()) {
+        if (! Cart::haveMinimumOrderAmount()) {
             throw new \Exception(trans('rest-api::app.shop.checkout.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
         }
 
