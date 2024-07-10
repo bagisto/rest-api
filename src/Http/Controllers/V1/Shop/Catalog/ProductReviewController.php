@@ -14,9 +14,7 @@ class ProductReviewController extends CatalogController
      *
      * @return void
      */
-    public function __construct(protected ProductReviewAttachmentRepository $productReviewAttachmentRepository) 
-    {
-    }
+    public function __construct(protected ProductReviewAttachmentRepository $productReviewAttachmentRepository) {}
 
     /**
      * Repository class name.

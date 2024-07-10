@@ -47,6 +47,10 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Order"
  * )
  * @OA\Tag(
+ *     name="ReOrders",
+ *     description="API Endpoints of Admin Re Order"
+ * )
+ * @OA\Tag(
  *     name="Invoices",
  *     description="API Endpoints of Admin Invoice"
  * )

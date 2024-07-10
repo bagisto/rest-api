@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductResource;
 
@@ -35,21 +36,19 @@ class ProductController extends CatalogController
     /**
      * Returns a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function allResources(Request $request)
     {
-        $results = $this->getRepositoryInstance()->getAll($request->input('category_id'));
+        $results = $this->getRepositoryInstance()->getAll($request->all());
 
         return $this->getResourceCollection($results);
     }
 
     /**
      * Returns product's additional information.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function additionalInformation(Request $request, int $id)
+    public function additionalInformation(Request $request, int $id): Response
     {
         $resource = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -63,10 +62,8 @@ class ProductController extends CatalogController
 
     /**
      * Returns product's additional information.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function configurableConfig(Request $request, int $id)
+    public function configurableConfig(Request $request, int $id): Response
     {
         $resource = $this->getRepositoryInstance()->findOrFail($id);
 

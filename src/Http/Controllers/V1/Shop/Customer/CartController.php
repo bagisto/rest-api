@@ -38,11 +38,11 @@ class CartController extends CustomerController
     /**
      * Get the customer cart.
      */
-    public function index(): JsonResponse
+    public function index(): Response
     {
         Cart::collectTotals();
 
-        return response()->json([
+        return response([
             'data' => ($cart = Cart::getCart()) ? app()->make($this->resource(), ['resource' => $cart]) : null,
         ]);
     }
@@ -50,7 +50,7 @@ class CartController extends CustomerController
     /**
      * Store items to the cart.
      */
-    public function store($productId): JsonResponse
+    public function store($productId): Response
     {
         $this->validate(request(), [
             'product_id' => 'required|integer|exists:products,id',
@@ -73,7 +73,7 @@ class CartController extends CustomerController
                 is_array($cart)
                 && isset($cart['warning'])
             ) {
-                return response()->json([
+                return response([
                     'message' => $cart['warning'],
                 ], 400);
             }
@@ -83,18 +83,18 @@ class CartController extends CustomerController
                     Event::dispatch('shop.item.buy-now', $productId);
                 }
 
-                return response()->json([
+                return response([
                     'data'    => app()->make($this->resource(), ['resource' => Cart::getCart()]),
                     'message' => trans('rest-api::app.shop.checkout.cart.item.success'),
                 ]);
             }
 
-            return response()->json([
+            return response([
                 'data'    => null,
                 'message' => trans('rest-api::app.shop.checkout.cart.item.success'),
             ]);
         } catch (\Exception $exception) {
-            return response()->json([
+            return response([
                 'message'      => $exception->getMessage(),
             ], 400);
         }
@@ -103,11 +103,11 @@ class CartController extends CustomerController
     /**
      * Updates the quantity of the items present in the cart.
      */
-    public function update(): JsonResponse
+    public function update(): Response
     {
         foreach (request()->qty as $qty) {
             if (! $qty) {
-                return response()->json([
+                return response([
                     'message' => trans('rest-api::app.shop.checkout.cart.quantity.illegal'),
                 ], 400);
             }
@@ -116,12 +116,12 @@ class CartController extends CustomerController
         try {
             Cart::updateItems(request()->input());
 
-            return response()->json([
+            return response([
                 'data'    => app()->make($this->resource(), ['resource' => Cart::getCart()]),
                 'message' => trans('rest-api::app.shop.checkout.cart.quantity.success'),
             ]);
         } catch (\Exception $exception) {
-            return response()->json([
+            return response([
                 'message' => $exception->getMessage(),
             ]);
         }

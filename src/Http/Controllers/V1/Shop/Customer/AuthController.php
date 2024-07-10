@@ -4,21 +4,20 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Webkul\Core\Rules\PhoneNumber;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
-use Webkul\Core\Rules\AlphaNumericSpace;
 use Illuminate\Validation\ValidationException;
-use Webkul\Customer\Repositories\CustomerRepository;
-use Webkul\Core\Repositories\SubscribersListRepository;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Webkul\Customer\Repositories\CustomerGroupRepository;
-use Webkul\Shop\Http\Requests\Customer\RegistrationRequest;
-use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use Webkul\Core\Repositories\SubscribersListRepository;
+use Webkul\Core\Rules\PhoneNumber;
+use Webkul\Customer\Repositories\CustomerGroupRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
+use Webkul\Shop\Http\Requests\Customer\RegistrationRequest;
 
 class AuthController extends CustomerController
 {
@@ -196,7 +195,7 @@ class AuthController extends CustomerController
                         'customer_id'   => $customer->id,
                         'channel_id'    => core()->getCurrentChannel()->id,
                         'is_subscribed' => 1,
-                        'token'         => $token = uniqid(),
+                        'token'         => uniqid(),
                     ]);
                 }
             } else {

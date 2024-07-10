@@ -10,6 +10,7 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Transformers\OrderResource as OrderTransformer;
 use Webkul\Shipping\Facades\Shipping;
 use Webkul\Shop\Http\Requests\CartAddressRequest;
 
@@ -17,10 +18,8 @@ class CheckoutController extends CustomerController
 {
     /**
      * Save customer address.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function saveAddress(CartAddressRequest $cartAddressRequest)
+    public function saveAddress(CartAddressRequest $cartAddressRequest): Response
     {
         $data =  $cartAddressRequest->all();
 
@@ -146,11 +145,7 @@ class CheckoutController extends CustomerController
             ]);
         }
 
-        $data = (new OrderResource($cart))->jsonSerialize();
-
-        $order = $orderRepository->create($data);
-
-        dd($order);
+        $order = $orderRepository->create((new OrderTransformer($cart))->jsonSerialize());
 
         Cart::deActivateCart();
 
