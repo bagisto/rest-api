@@ -9,6 +9,13 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductResource;
 
 class ProductController extends CatalogController
 {
+        /**
+     * Create a controller instance.
+     *
+     * @return void
+     */
+    public function __construct(protected ProductRepository $productRepository) {}
+
     /**
      * Is resource authorized.
      */
@@ -40,9 +47,19 @@ class ProductController extends CatalogController
      */
     public function allResources(Request $request)
     {
-        $results = $this->getRepositoryInstance()->getAll($request->all());
+        if (core()->getConfigData('catalog.products.search.engine') == 'elastic') {
+            $searchEngine = core()->getConfigData('catalog.products.search.storefront_mode');
+        }
 
-        return $this->getResourceCollection($results);
+        $products = $this->productRepository
+            ->setSearchEngine($searchEngine ?? 'database')
+            ->getAll(array_merge(request()->query(), [
+                'channel_id'           => core()->getCurrentChannel()->id,
+                'status'               => 1,
+                'visible_individually' => 1,
+            ]));
+
+        return response([$this->getResourceCollection($products)]);
     }
 
     /**
