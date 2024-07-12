@@ -28,11 +28,11 @@ Route::group([
     Route::controller(ReOrderController::class)->prefix('re-orders')->group(function () {
         Route::post('{id}', 'store');
 
-        Route::post('save-address', 'saveAddress');
+        Route::post('{id}/save-address', 'saveAddress');
 
-        Route::post('save-shipping', 'saveShipping');
+        Route::post('{id}/save-shipping', 'saveShipping');
 
-        Route::post('save-payment', 'savePayment');
+        Route::post('{id}/save-payment', 'savePayment');
     });
 
     /**

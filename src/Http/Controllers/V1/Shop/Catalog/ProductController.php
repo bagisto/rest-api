@@ -42,8 +42,6 @@ class ProductController extends CatalogController
 
     /**
      * Returns a listing of the resource.
-     *
-     * @return Response
      */
     public function allResources(Request $request)
     {
@@ -59,7 +57,7 @@ class ProductController extends CatalogController
                 'visible_individually' => 1,
             ]));
 
-        return response([$this->getResourceCollection($products)]);
+        return $this->getResourceCollection($products);
     }
 
     /**

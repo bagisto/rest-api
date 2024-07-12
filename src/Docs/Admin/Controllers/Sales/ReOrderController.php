@@ -50,7 +50,7 @@ class ReOrderController
     }
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/sales/re-orders/save-address",
+     *      path="/api/v1/admin/sales/re-orders/{id}/save-address",
      *      operationId="saveCheckoutAddress",
      *      tags={"ReOrders"},
      *      summary="Save addresses at the checkout",
