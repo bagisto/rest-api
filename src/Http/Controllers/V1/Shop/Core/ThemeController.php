@@ -30,10 +30,8 @@ class ThemeController extends CoreController
 
     /**
      * Get Theme Customizations listing.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function getThemeCustomizations()
+    public function getThemeCustomizations(): \Illuminate\Http\Response
     {
         $customizations = $this->getRepositoryInstance()->orderBy('sort_order')->findWhere([
             'status'     => self::STATUS,

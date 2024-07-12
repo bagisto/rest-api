@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
@@ -28,10 +29,8 @@ class CartRuleCouponController extends MarketingController
 
     /**
      * Get all cart rule coupons.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index(int $cartRuleId)
+    public function index(int $cartRuleId): Response
     {
         $coupons = $this->getRepositoryInstance()->where('cart_rule_id', $cartRuleId)->get();
 
@@ -42,16 +41,20 @@ class CartRuleCouponController extends MarketingController
 
     /**
      * Generate coupon code for cart rule.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, int $cartRuleId)
+    public function store(Request $request, int $cartRuleId): Response
     {
         $request->validate([
             'coupon_qty'  => 'required|integer|min:1',
             'code_length' => 'required|integer|min:10',
             'code_format' => 'required',
         ]);
+
+        if (! $cartRuleId) {
+            return response([
+                'message' => trans('rest-api::app.admin.marketing.promotions.cart-rule-coupons.not-defined-error'),
+            ], 400);
+        }
 
         $this->getRepositoryInstance()->generateCoupons($request->only(
             'coupon_qty',
@@ -68,10 +71,8 @@ class CartRuleCouponController extends MarketingController
 
     /**
      * Show specific cart rule coupon.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function show(int $cartRuleId, int $id)
+    public function show(int $cartRuleId, int $id): Response
     {
         $coupon = $this->getRepositoryInstance()
             ->where('cart_rule_id', $cartRuleId)
@@ -85,17 +86,15 @@ class CartRuleCouponController extends MarketingController
 
     /**
      * Delete specific cart rule coupon.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $cartRuleId, int $id)
+    public function destroy(int $cartRuleId, int $id): Response
     {
-        $this->getRepositoryInstance()
+        $cartRuleCoupon = $this->getRepositoryInstance()
             ->where('cart_rule_id', $cartRuleId)
             ->where('id', $id)
             ->firstOrFail();
 
-        $this->getRepositoryInstance()->delete($id);
+            $cartRuleCoupon->delete();
 
         return response([
             'message' => trans('rest-api::app.admin.marketing.promotions.cart-rule-coupons.delete-success'),
@@ -104,18 +103,16 @@ class CartRuleCouponController extends MarketingController
 
     /**
      * Mass delete the coupons.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest, int $cartRuleId)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest, int $cartRuleId): Response
     {
         foreach ($massDestroyRequest->indices as $couponId) {
-            $this->getRepositoryInstance()
+            $cartRuleCoupon = $this->getRepositoryInstance()
                 ->where('cart_rule_id', $cartRuleId)
                 ->where('id', $couponId)
                 ->firstOrFail();
 
-            $this->getRepositoryInstance()->delete($couponId);
+            $cartRuleCoupon->delete();
         }
 
         return response([

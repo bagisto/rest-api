@@ -11,10 +11,8 @@ class RestApiServiceProvider extends ServiceProvider
 {
     /**
      * Register your middleware aliases here.
-     *
-     * @var array
      */
-    protected $middlewareAliases = [
+    protected array $middlewareAliases = [
         'sanctum.admin'    => \Webkul\RestApi\Http\Middleware\AdminMiddleware::class,
         'sanctum.customer' => \Webkul\RestApi\Http\Middleware\CustomerMiddleware::class,
         'sanctum.locale'   => \Webkul\RestApi\Http\Middleware\LocaleMiddleware::class,

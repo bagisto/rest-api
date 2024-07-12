@@ -27,10 +27,8 @@ class InvoiceController extends SalesController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, OrderRepository $orderRepository, int $orderId)
+    public function store(Request $request, OrderRepository $orderRepository, int $orderId): \Illuminate\Http\Response
     {
         $order = $orderRepository->findOrFail($orderId);
 
@@ -45,7 +43,9 @@ class InvoiceController extends SalesController
             'invoice.items.*' => 'required|numeric|min:0',
         ]);
 
-        $data = $request->all();
+        $data = array_merge($request->all(), [
+            'order_id' => $orderId
+        ]);
 
         if (! $this->getRepositoryInstance()->haveProductToInvoice($data)) {
             return response([

@@ -184,4 +184,41 @@ class WishlistController
     public function moveToCart()
     {
     }
+
+    /**
+     * @OA\Delete(
+     *      path="/api/v1/customer/wishlist/all",
+     *      operationId="deleteAllWishlistItems",
+     *      tags={"Wishlists"},
+     *      summary="Delete all wishlist items.",
+     *      description="Delete all wishlists items to the customer.",
+     *      security={ {"sanctum": {} }},
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/Wishlist"
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+    public function deleteAll()
+    {
+    }
 }

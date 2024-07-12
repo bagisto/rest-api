@@ -26,10 +26,8 @@ class OrderController extends CustomerController
 
     /**
      * Cancel customer's order.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function cancel(Request $request, int $id)
+    public function cancel(Request $request, int $id): \Illuminate\Http\Response
     {
         $order = $this->resolveShopUser($request)->orders()->find($id);
 

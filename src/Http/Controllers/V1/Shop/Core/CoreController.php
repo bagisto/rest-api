@@ -35,10 +35,8 @@ class CoreController extends ShopController
 
     /**
      * Get core configs.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function getCoreConfigs(Request $request)
+    public function getCoreConfigs(Request $request): \Illuminate\Http\Response
     {
         $this->validate($request, [
             '_config'   => 'required|array',

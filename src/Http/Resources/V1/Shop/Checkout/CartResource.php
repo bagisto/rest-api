@@ -2,22 +2,24 @@
 
 namespace Webkul\RestApi\Http\Resources\V1\Shop\Checkout;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Core\ChannelResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
-use Webkul\Tax\Helpers\Tax;
+use Webkul\Tax\Tax;
 
 class CartResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
      */
-    public function toArray($request): array
+    public function toArray(Request $request): array
     {
-        $taxes = Tax::getTaxRatesWithAmount($this, false);
-        $baseTaxes = Tax::getTaxRatesWithAmount($this, true);
+        $tax = new Tax;
+
+        $taxes = $tax->getTaxRatesWithAmount($this, false);
+
+        $baseTaxes = $tax->getTaxRatesWithAmount($this, true);
 
         $formattedTaxes = $this->formatTaxAmounts($taxes, false);
         $formattedBaseTaxes = $this->formatTaxAmounts($baseTaxes, true);
@@ -43,7 +45,11 @@ class CartResource extends JsonResource
             'formatted_base_grand_total'          => core()->formatBasePrice($this->base_grand_total),
             'sub_total'                           => $this->sub_total,
             'formatted_sub_total'                 => core()->formatPrice($this->sub_total, $this->cart_currency_code),
+            'sub_total_incl_tax'                  => $this->sub_total_incl_tax,
+            'formatted_sub_total_incl_tax'        => core()->formatPrice($this->sub_total_incl_tax, $this->cart_currency_code),
             'base_sub_total'                      => $this->base_sub_total,
+            'base_sub_total_incl_tax'             => $this->base_sub_total_incl_tax,
+            'formatted_base_sub_total_incl_tax'   => core()->formatBasePrice($this->base_sub_total_incl_tax),
             'formatted_base_sub_total'            => core()->formatBasePrice($this->base_sub_total),
             'tax_total'                           => $this->tax_total,
             'formatted_tax_total'                 => core()->formatPrice($this->tax_total, $this->cart_currency_code),

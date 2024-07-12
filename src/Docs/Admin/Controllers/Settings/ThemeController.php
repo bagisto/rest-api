@@ -162,6 +162,12 @@ class ThemeController
      *                      example="1"
      *                  ),
      *                  @OA\Property(
+     *                      property="theme_code",
+     *                      type="string",
+     *                      description="Theme code",
+     *                      example="default"
+     *                  ),
+     *                  @OA\Property(
      *                      property="name",
      *                      type="string",
      *                      description="Theme name",
@@ -289,6 +295,12 @@ class ThemeController
      *                      type="string",
      *                      description="Channel ID",
      *                      example="1"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="theme_code",
+     *                      type="string",
+     *                      description="Theme code",
+     *                      example="default"
      *                  ),
      *                  @OA\Property(
      *                      property="status",

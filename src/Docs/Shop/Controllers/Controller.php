@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
 
 /**
  * @OA\Info(
- *      version="2.1.2",
+ *      version="2.2.0",
  *      title="Bagisto Store Front Rest API Documentation",
  *      description="Bagisto Store Front Rest API Documentation",
  *
@@ -93,6 +93,10 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  * @OA\Tag(
  *     name="Checkout",
  *     description="API Endpoints of Checkout"
+ * )
+ * @OA\Tag(
+ *     name="Newsletter",
+ *     description="API Endpoints of Newsletters"
  * )
  */
 class Controller

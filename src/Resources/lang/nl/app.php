@@ -445,6 +445,7 @@ return [
 
             'cart' => [
                 'item' => [
+                    'inactive-add'   => 'Inactief item kan niet aan de winkelwagen worden toegevoegd.',
                     'success'        => 'Item is succesvol toegevoegd aan winkelwagen.',
                     'success-remove' => 'Item is succesvol verwijderd uit de winkelwagen.',
                 ],

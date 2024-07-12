@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Payment\Facades\Payment;
@@ -9,6 +10,7 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
 use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Transformers\OrderResource as OrderTransformer;
 use Webkul\Shipping\Facades\Shipping;
 use Webkul\Shop\Http\Requests\CartAddressRequest;
 
@@ -16,10 +18,8 @@ class CheckoutController extends CustomerController
 {
     /**
      * Save customer address.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function saveAddress(CartAddressRequest $cartAddressRequest)
+    public function saveAddress(CartAddressRequest $cartAddressRequest): Response
     {
         $data =  $cartAddressRequest->all();
 
@@ -54,10 +54,8 @@ class CheckoutController extends CustomerController
 
     /**
      * Save shipping method.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function saveShipping(Request $request)
+    public function saveShipping(Request $request): Response
     {
         $validatedData = $this->validate($request, [
             'shipping_method' => 'required',
@@ -83,10 +81,8 @@ class CheckoutController extends CustomerController
 
     /**
      * Save payment method.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function savePayment(Request $request)
+    public function savePayment(Request $request): Response
     {
         $validatedData = $this->validate($request, [
             'payment' => 'required',
@@ -112,14 +108,12 @@ class CheckoutController extends CustomerController
 
     /**
      * Check for minimum order.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function checkMinimumOrder()
+    public function checkMinimumOrder(): Response
     {
         $minimumOrderAmount = (float) core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?? 0;
 
-        $status = Cart::checkMinimumOrder();
+        $status = Cart::haveMinimumOrderAmount();
 
         return response([
             'data'    => [
@@ -132,10 +126,8 @@ class CheckoutController extends CustomerController
 
     /**
      * Save order.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function saveOrder(OrderRepository $orderRepository)
+    public function saveOrder(OrderRepository $orderRepository): Response
     {
         if (Cart::hasError()) {
             abort(400);
@@ -153,7 +145,7 @@ class CheckoutController extends CustomerController
             ]);
         }
 
-        $order = $orderRepository->create(Cart::prepareDataForOrder());
+        $order = $orderRepository->create((new OrderTransformer($cart))->jsonSerialize());
 
         Cart::deActivateCart();
 
@@ -174,9 +166,9 @@ class CheckoutController extends CustomerController
     {
         $cart = Cart::getCart();
 
-        $minimumOrderAmount = core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?? 0;
+        $minimumOrderAmount = core()->getConfigData('sales.orderSettings.minimum-order.minimum_order_amount') ?: 0;
 
-        if (! $cart->checkMinimumOrder()) {
+        if (! Cart::haveMinimumOrderAmount()) {
             throw new \Exception(trans('rest-api::app.shop.checkout.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
         }
 

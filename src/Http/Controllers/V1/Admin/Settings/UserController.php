@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Webkul\RestApi\Http\Requests\UserForm;
@@ -28,10 +29,8 @@ class UserController extends SettingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(UserForm $request)
+    public function store(UserForm $request): Response
     {
         $data = $request->only([
             'name',
@@ -62,14 +61,12 @@ class UserController extends SettingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(UserForm $request, int $id)
+    public function update(UserForm $request, int $id): Response
     {
         $data = $this->prepareUserData($request, $id);
 
-        if ($data instanceof \Illuminate\Http\Response) {
+        if ($data instanceof Response) {
             return $data;
         }
 
@@ -91,10 +88,8 @@ class UserController extends SettingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $this->getRepositoryInstance()->findOrFail($id);
 

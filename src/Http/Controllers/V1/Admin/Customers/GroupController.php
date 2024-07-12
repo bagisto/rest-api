@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Rules\Code;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
@@ -27,10 +28,8 @@ class GroupController extends BaseController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(): Response
     {
         $this->validate(request(), [
             'code' => ['required', 'unique:customer_groups,code', new Code],
@@ -56,24 +55,22 @@ class GroupController extends BaseController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id): Response
     {
         $this->validate(request(), [
             'code' => ['required', 'unique:customer_groups,code,'.$id, new Code],
             'name' => 'required',
         ]);
 
-        $this->getRepositoryInstance()->findOrFail($id);
+        $customerGroup = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('customer.customer_group.update.before', $id);
 
-        $customerGroup = $this->getRepositoryInstance()->update(request()->only([
+        $customerGroup->update(request()->only([
             'code',
             'name',
-        ]), $id);
+        ]));
 
         Event::dispatch('customer.customer_group.update.after', $customerGroup);
 
@@ -85,20 +82,18 @@ class GroupController extends BaseController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $customerGroup = $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($customerGroup->is_user_defined == 0) {
+        if (! $customerGroup->is_user_defined) {
             return response([
                 'message' => trans('rest-api::app.admin.customers.groups.error.default-group-delete'),
             ], 400);
         }
 
-        if (count($customerGroup->customers) > 0) {
+        if ($customerGroup->customers->count()) {
             return response([
                 'message' => trans('rest-api::app.admin.customers.groups.error.being-used'),
             ], 400);
@@ -106,7 +101,7 @@ class GroupController extends BaseController
 
         Event::dispatch('customer.customer_group.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $customerGroup->delete();
 
         Event::dispatch('customer.customer_group.delete.after', $id);
 

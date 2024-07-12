@@ -439,6 +439,7 @@ return [
 
             'cart' => [
                 'item' => [
+                    'inactive-add'   => 'Inaktiver Artikel kann nicht in den Warenkorb gelegt werden.',
                     'success'        => 'Artikel wurde erfolgreich zum Warenkorb hinzugefügt.',
                     'success-remove' => 'Artikel wurde erfolgreich aus dem Warenkorb entfernt.',
                 ],

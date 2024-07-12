@@ -446,6 +446,7 @@ return [
 
             'cart' => [
                 'item' => [
+                    'inactive-add'   => 'Inactive item cannot be added to cart.',
                     'success'        => 'Item is successfully added to cart.',
                     'success-remove' => 'Item is successfully removed from the cart.',
                 ],
@@ -471,8 +472,9 @@ return [
         'wishlist' => [
             'moved'          => 'Item successfully moved To cart.',
             'option-missing' => 'Product options are missing, so item can not be moved to the wishlist.',
-            'removed'        => 'Item Successfully Removed From Wishlist',
-            'success'        => 'Item Successfully Added To Wishlist',
+            'removed'        => 'Item Successfully Removed From Wishlist.',
+            'remove-fail'    => 'Item Cannot Be Removed From Wishlist.',
+            'success'        => 'Item Successfully Added To Wishlist.',
 
             'error' => [
                 'security-warning' => 'Suspicious activity found!',

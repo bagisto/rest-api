@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\InvoiceController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\OrderController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\ReOrderController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\RefundController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\ShipmentController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\TransactionController;
@@ -22,7 +23,16 @@ Route::group([
         Route::post('{id}/cancel', 'cancel');
 
         Route::post('{id}/comments', 'comment');
+    });
 
+    Route::controller(ReOrderController::class)->prefix('re-orders')->group(function () {
+        Route::post('{id}', 'store');
+
+        Route::post('{id}/save-address', 'saveAddress');
+
+        Route::post('{id}/save-shipping', 'saveShipping');
+
+        Route::post('{id}/save-payment', 'savePayment');
     });
 
     /**
@@ -34,7 +44,6 @@ Route::group([
         Route::get('{id}', 'getResource');
 
         Route::post('{order_id}', 'store');
-
     });
 
     /**
@@ -57,7 +66,6 @@ Route::group([
         Route::get('{id}', 'getResource');
 
         Route::post('{order_id}', 'store');
-
     });
 
     /**

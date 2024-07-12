@@ -6,10 +6,8 @@ class SaleController extends ReportingController
 {
     /**
      * Request param functions.
-     *
-     * @var array
      */
-    protected $typeFunctions = [
+    protected array $typeFunctions = [
         'total-sales'         => 'getTotalSalesStats',
         'average-sales'       => 'getAverageSalesStats',
         'total-orders'        => 'getTotalOrdersStats',
