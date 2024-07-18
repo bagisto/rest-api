@@ -497,6 +497,7 @@ return [
                 'configurable-error' => 'Selecteer alstublieft minimaal één configureerbaar attribuut.',
 
                 'reviews' => [
+                    'get-success' => 'Beoordelingen per product succesvol ontvangen.',
                     'create-success' => 'Uw beoordeling is succesvol ingediend.',
                 ],
             ],

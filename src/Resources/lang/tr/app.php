@@ -497,6 +497,7 @@ return [
                 'configurable-error' => 'Lütfen en az bir yapılandırılabilir özellik seçin.',
 
                 'reviews' => [
+                    'get-success' => 'Ürün tarafından başarıyla yorumlar alındı.',
                     'create-success' => 'İncelemeniz başarıyla gönderildi.',
                 ],
             ],

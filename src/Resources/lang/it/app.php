@@ -497,6 +497,7 @@ return [
                 'configurable-error' => 'Si prega di selezionare almeno un attributo configurabile.',
 
                 'reviews' => [
+                    'get-success' => 'Recensioni del prodotto ottenute con successo.',
                     'create-success' => 'La tua recensione è stata inviata con successo.',
                 ],
             ],

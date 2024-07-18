@@ -491,6 +491,7 @@ return [
                 'configurable-error' => 'Bitte wählen Sie mindestens ein konfigurierbares Attribut aus.',
 
                 'reviews' => [
+                    'get-success' => 'Erfolgreich Bewertungen nach Produkt abgerufen.',
                     'create-success' => 'Ihre Bewertung wurde erfolgreich eingereicht.',
                 ],
             ],

@@ -497,6 +497,7 @@ return [
                 'configurable-error' => '请至少选择一个可配置属性。',
 
                 'reviews' => [
+                    'get-success' => '产品评论获取成功.',
                     'create-success' => '您的评论提交成功。',
                 ],
             ],

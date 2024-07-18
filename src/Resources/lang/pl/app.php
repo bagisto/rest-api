@@ -497,6 +497,7 @@ return [
                 'configurable-error' => 'Proszę wybrać co najmniej jedną konfigurowalną cechę.',
 
                 'reviews' => [
+                    'get-success' => 'Pomyślnie uzyskano recenzje produktu.',
                     'create-success' => 'Twoja recenzja została pomyślnie przesłana.',
                 ],
             ],

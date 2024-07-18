@@ -497,6 +497,7 @@ return [
                 'configurable-error' => '少なくとも1つの設定可能な属性を選択してください。',
 
                 'reviews' => [
+                    'get-success' => '商品によるレビューを成功的に取得しました。',
                     'create-success' => 'レビューが正常に送信されました。',
                 ],
             ],

@@ -497,6 +497,7 @@ return [
                 'configurable-error' => 'Por favor, selecione pelo menos um atributo configurável.',
 
                 'reviews' => [
+                    'get-success' => 'Успешно получены отзывы по продукту.',
                     'create-success' => 'Sua análise foi enviada com sucesso.',
                 ],
             ],
