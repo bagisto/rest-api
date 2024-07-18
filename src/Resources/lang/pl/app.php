@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Kategoria została pomyślnie dodana.',
                 'delete-success' => 'Kategoria pomyślnie usunięta.',
                 'update-success' => 'Kategoria została pomyślnie zaktualizowana.',
+                'not-exist'      => 'Nie znaleziono kategorii.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Wybrane kategorie pomyślnie usunięte.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Wybrane recenzje pomyślnie usunięte.',
                     'update-success' => 'Wybrane recenzje pomyślnie zaktualizowane.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'Pomyślnie zasubskrybowałeś nasz newsletter.',
+                'warning-message' => 'Już subskrybujesz nasz newsletter.',
             ],
         ],
 
@@ -257,13 +263,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Mapa witryny została pomyślnie dodana.',
-                    'delete-success'  => 'Mapa witryny została pomyślnie usunięta.',
-                    'update-success'  => 'Mapa witryny została pomyślnie zaktualizowana.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Mapa witryny została pomyślnie usunięta.',
-                    ],
+                    'create-success' => 'Sitemapy zostały pomyślnie utworzone.',
+                    'delete-success' => 'Sitemapy zostały pomyślnie usunięte.',
+                    'update-success' => 'Sitemapy zostały pomyślnie zaktualizowane.',
                 ],
             ],
         ],
@@ -377,6 +379,33 @@ return [
                 'password-mismatch' => 'Aktualne hasło nie pasuje.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Ups! Strona, którą szukasz, jest na wakacjach. Wygląda na to, że nie możemy znaleźć tego, czego szukasz.',
+                'title'   => '404 Strona nie znaleziona',
+            ],
+    
+            '401' => [
+                'message' => 'Ups! Wygląda na to, że nie masz dostępu do tej strony. Wydaje się, że brakuje Ci niezbędnych uprawnień.',
+                'title'   => '401 Nieautoryzowany',
+            ],
+    
+            '403' => [
+                'message' => 'Ups! Ta strona jest niedostępna. Wygląda na to, że nie masz wymaganych uprawnień do przeglądania tego treści.',
+                'title'   => '403 Dostęp zabroniony',
+            ],
+    
+            '500' => [
+                'message' => 'Ups! Coś poszło nie tak. Wydaje się, że mamy problemy z załadowaniem strony, której szukasz.',
+                'title'   => '500 Wewnętrzny błąd serwera',
+            ],
+    
+            '503' => [
+                'message' => 'Ups! Wygląda na to, że jesteśmy tymczasowo wyłączeni z powodu prac konserwacyjnych. Proszę wrócić za chwilę.',
+                'title'   => '503 Usługa niedostępna',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -468,8 +497,36 @@ return [
                 'configurable-error' => 'Proszę wybrać co najmniej jedną konfigurowalną cechę.',
 
                 'reviews' => [
+                    'get-success' => 'Pomyślnie uzyskano recenzje produktu.',
                     'create-success' => 'Twoja recenzja została pomyślnie przesłana.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Ups! Strona, którą szukasz, jest na wakacjach. Wygląda na to, że nie możemy znaleźć tego, czego szukasz.',
+                'title'   => '404 Strona nie znaleziona',
+            ],
+    
+            '401' => [
+                'message' => 'Ups! Wygląda na to, że nie masz dostępu do tej strony. Wydaje się, że brakuje Ci niezbędnych uprawnień.',
+                'title'   => '401 Nieautoryzowany',
+            ],
+    
+            '403' => [
+                'message' => 'Ups! Ta strona jest niedostępna. Wygląda na to, że nie masz wymaganych uprawnień do przeglądania tego treści.',
+                'title'   => '403 Dostęp zabroniony',
+            ],
+    
+            '500' => [
+                'message' => 'Ups! Coś poszło nie tak. Wydaje się, że mamy problemy z załadowaniem strony, której szukasz.',
+                'title'   => '500 Wewnętrzny błąd serwera',
+            ],
+    
+            '503' => [
+                'message' => 'Ups! Wygląda na to, że jesteśmy tymczasowo wyłączeni z powodu prac konserwacyjnych. Proszę wrócić za chwilę.',
+                'title'   => '503 Usługa niedostępna',
             ],
         ],
     ],

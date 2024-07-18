@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Categoria aggiunta con successo.',
                 'delete-success' => 'Categoria eliminata con successo.',
                 'update-success' => 'Categoria aggiornata con successo.',
+                'not-exist'      => 'Categoria non trovata.',
 
                 'mass-operations' => [
                     'delete-success' => 'Categorie selezionate eliminate con successo.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Recensioni selezionate eliminate con successo.',
                     'update-success' => 'Recensioni selezionate aggiornate con successo.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'Ti sei iscritto con successo alla nostra newsletter.',
+                'warning-message' => 'Sei già iscritto alla nostra newsletter.',
             ],
         ],
 
@@ -257,13 +263,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Mappa del sito aggiunta con successo.',
-                    'delete-success'  => 'Mappa del sito eliminata con successo.',
-                    'update-success'  => 'Mappa del sito aggiornata con successo.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Mappa del sito eliminata con successo.',
-                    ],
+                    'create-success' => 'Le sitemap sono state create con successo.',
+                    'delete-success' => 'Le sitemap sono state eliminate con successo.',
+                    'update-success' => 'Le sitemap sono state aggiornate con successo.',
                 ],
             ],
         ],
@@ -377,6 +379,33 @@ return [
                 'password-mismatch' => 'La password attuale non corrisponde.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oops! La pagina che stai cercando è in vacanza. Sembra che non siamo riusciti a trovare quello che cercavi.',
+                'title'   => '404 Pagina non trovata',
+            ],
+
+            '401' => [
+                'message' => 'Oops! Sembra che tu non abbia il permesso di accedere a questa pagina. Sembra che ti manchino le credenziali necessarie.',
+                'title'   => '401 Non autorizzato',
+            ],
+
+            '403' => [
+                'message' => 'Oops! Questa pagina è off-limits. Sembra che tu non abbia i permessi necessari per visualizzare questo contenuto.',
+                'title'   => '403 Vietato',
+            ],
+
+            '500' => [
+                'message' => 'Oops! Qualcosa è andato storto. Sembra che stiamo avendo problemi a caricare la pagina che stai cercando.',
+                'title'   => '500 Errore interno del server',
+            ],
+
+            '503' => [
+                'message' => 'Oops! Sembra che siamo temporaneamente offline per manutenzione. Torna tra un po\'.',
+                'title'   => '503 Servizio non disponibile',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -468,8 +497,36 @@ return [
                 'configurable-error' => 'Si prega di selezionare almeno un attributo configurabile.',
 
                 'reviews' => [
+                    'get-success' => 'Recensioni del prodotto ottenute con successo.',
                     'create-success' => 'La tua recensione è stata inviata con successo.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oops! La pagina che stai cercando è in vacanza. Sembra che non siamo riusciti a trovare quello che cercavi.',
+                'title'   => '404 Pagina non trovata',
+            ],
+
+            '401' => [
+                'message' => 'Oops! Sembra che tu non abbia il permesso di accedere a questa pagina. Sembra che ti manchino le credenziali necessarie.',
+                'title'   => '401 Non autorizzato',
+            ],
+
+            '403' => [
+                'message' => 'Oops! Questa pagina è off-limits. Sembra che tu non abbia i permessi necessari per visualizzare questo contenuto.',
+                'title'   => '403 Vietato',
+            ],
+
+            '500' => [
+                'message' => 'Oops! Qualcosa è andato storto. Sembra che stiamo avendo problemi a caricare la pagina che stai cercando.',
+                'title'   => '500 Errore interno del server',
+            ],
+
+            '503' => [
+                'message' => 'Oops! Sembra che siamo temporaneamente offline per manutenzione. Torna tra un po\'.',
+                'title'   => '503 Servizio non disponibile',
             ],
         ],
     ],

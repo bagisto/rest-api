@@ -13,7 +13,7 @@ class ProductController
      *      description="Returns product list, if you want to retrieve all products at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
-     *          name="id",
+     *          name="category_id",
      *          description="Category ID",
      *          required=false,
      *          in="query",
@@ -349,7 +349,7 @@ class ProductController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/product/reviews",
+     *      path="/api/v1/products/{product_id}/reviews",
      *      operationId="getProductReview",
      *      tags={"Products"},
      *      summary="Get product's reviews by product id",
@@ -358,7 +358,7 @@ class ProductController
      *          name="product_id",
      *          description="Product id",
      *          required=true,
-     *          in="query",
+     *          in="path",
      *          @OA\Schema(
      *              type="integer"
      *          )
@@ -422,7 +422,7 @@ class ProductController
      *      )
      * )
      */
-    public function getProductReview()
+    public function index()
     {
     }
 }

@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Categorie is succesvol toegevoegd.',
                 'delete-success' => 'Categorie succesvol verwijderd.',
                 'update-success' => 'Categorie succesvol bijgewerkt.',
+                'not-exist'      => 'Categorie niet gevonden.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Geselecteerde categorieën succesvol verwijderd.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Geselecteerde recensies succesvol verwijderd.',
                     'update-success' => 'Geselecteerde recensies succesvol bijgewerkt.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'U bent succesvol geabonneerd op onze nieuwsbrief.',
+                'warning-message' => 'U bent al geabonneerd op onze nieuwsbrief.',
             ],
         ],
 
@@ -257,13 +263,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Sitemap succesvol toegevoegd.',
-                    'delete-success'  => 'Sitemap succesvol verwijderd.',
-                    'update-success'  => 'Sitemap succesvol bijgewerkt.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Sitemap succesvol verwijderd.',
-                    ],
+                    'create-success' => 'Sitemaps succesvol aangemaakt.',
+                    'delete-success' => 'Sitemaps succesvol verwijderd.',
+                    'update-success' => 'Sitemaps succesvol bijgewerkt.',
                 ],
             ],
         ],
@@ -377,6 +379,33 @@ return [
                 'password-mismatch' => 'Huidig wachtwoord komt niet overeen.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oeps! De pagina die je zoekt, is met vakantie. Het lijkt erop dat we niet hebben gevonden wat je zocht.',
+                'title'   => '404 Pagina niet gevonden',
+            ],
+
+            '401' => [
+                'message' => 'Oeps! Het lijkt erop dat je geen toegang hebt tot deze pagina. Het lijkt erop dat je de benodigde referenties mist.',
+                'title'   => '401 Onbevoegd',
+            ],
+
+            '403' => [
+                'message' => 'Oeps! Deze pagina is verboden terrein. Het lijkt erop dat je niet over de vereiste rechten beschikt om deze inhoud te bekijken.',
+                'title'   => '403 Verboden',
+            ],
+
+            '500' => [
+                'message' => 'Oeps! Er is iets misgegaan. Het lijkt erop dat we problemen hebben met het laden van de pagina die je zoekt.',
+                'title'   => '500 Interne serverfout',
+            ],
+
+            '503' => [
+                'message' => 'Oeps! Het lijkt erop dat we tijdelijk offline zijn voor onderhoud. Kom later terug.',
+                'title'   => '503 Service Niet Beschikbaar',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -468,8 +497,36 @@ return [
                 'configurable-error' => 'Selecteer alstublieft minimaal één configureerbaar attribuut.',
 
                 'reviews' => [
+                    'get-success' => 'Beoordelingen per product succesvol ontvangen.',
                     'create-success' => 'Uw beoordeling is succesvol ingediend.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oeps! De pagina die je zoekt, is met vakantie. Het lijkt erop dat we niet hebben gevonden wat je zocht.',
+                'title'   => '404 Pagina niet gevonden',
+            ],
+
+            '401' => [
+                'message' => 'Oeps! Het lijkt erop dat je geen toegang hebt tot deze pagina. Het lijkt erop dat je de benodigde referenties mist.',
+                'title'   => '401 Onbevoegd',
+            ],
+
+            '403' => [
+                'message' => 'Oeps! Deze pagina is verboden terrein. Het lijkt erop dat je niet over de vereiste rechten beschikt om deze inhoud te bekijken.',
+                'title'   => '403 Verboden',
+            ],
+
+            '500' => [
+                'message' => 'Oeps! Er is iets misgegaan. Het lijkt erop dat we problemen hebben met het laden van de pagina die je zoekt.',
+                'title'   => '500 Interne serverfout',
+            ],
+
+            '503' => [
+                'message' => 'Oeps! Het lijkt erop dat we tijdelijk offline zijn voor onderhoud. Kom later terug.',
+                'title'   => '503 Service Niet Beschikbaar',
             ],
         ],
     ],

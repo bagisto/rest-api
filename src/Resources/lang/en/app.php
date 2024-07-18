@@ -74,6 +74,7 @@ return [
                 'delete-success' => 'Category successfully deleted',
                 'root-category-delete' => 'The Root category can not be deleted.',
                 'update-success' => 'Category updated successfully.',
+                'not-exist'      => 'Category not found',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected Categories successfully deleted.',
@@ -158,6 +159,11 @@ return [
                     'delete-success' => 'Selected reviews successfully deleted.',
                     'update-success' => 'Selected reviews successfully updated.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'You have successfully subscribed to our newsletter.',
+                'warning-message' => 'You have already subscribed to our newsletter.',
             ],
         ],
 
@@ -258,13 +264,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Search Synonyms have been successfully added.',
-                    'delete-success'  => 'Search Synonyms successfully deleted.',
-                    'update-success'  => 'Search Synonyms updated successfully.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Search Synonyms successfully deleted.',
-                    ],
+                    'create-success'  => 'Sitemaps created successfully.',
+                    'delete-success'  => 'Sitemaps successfully deleted.',
+                    'update-success'  => 'Sitemaps updated successfully.',
                 ],
             ],
         ],
@@ -378,6 +380,33 @@ return [
                 'password-mismatch' => 'Current password does not match.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oops! The page you\'re looking for is on vacation. It seems we couldn\'t find what you were searching for.',
+                'title'   => '404 Page Not Found',
+            ],
+
+            '401' => [
+                'message' => 'Oops! Looks like you\'re not allowed to access this page. It seems you\'re missing the necessary credentials.',
+                'title'   => '401 Unauthorized',
+            ],
+
+            '403' => [
+                'message' => 'Oops! This page is off-limits. It appears you don\'t have the required permissions to view this content.',
+                'title'   => '403 Forbidden',
+            ],
+
+            '500' => [
+                'message' => 'Oops! Something went wrong. It seems we\'re having trouble loading the page you\'re looking for.',
+                'title'   => '500 Internal Server Error',
+            ],
+
+            '503' => [
+                'message' => 'Oops! Looks like we\'re temporarily down for maintenance. Please check back in a bit.',
+                'title'   => '503 Service Unavailable',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -469,9 +498,36 @@ return [
                 'configurable-error' => 'Please select at least one configurable attribute.',
 
                 'reviews' => [
-                    'get-success'       => 'Get reviews by product successfully.',
+                    'get-success' => 'Get reviews by product successfully.',
                     'create-success' => 'Your review submitted successfully.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Oops! The page you\'re looking for is on vacation. It seems we couldn\'t find what you were searching for.',
+                'title'   => '404 Page Not Found',
+            ],
+
+            '401' => [
+                'message' => 'Oops! Looks like you\'re not allowed to access this page. It seems you\'re missing the necessary credentials.',
+                'title'   => '401 Unauthorized',
+            ],
+
+            '403' => [
+                'message' => 'Oops! This page is off-limits. It appears you don\'t have the required permissions to view this content.',
+                'title'   => '403 Forbidden',
+            ],
+
+            '500' => [
+                'message' => 'Oops! Something went wrong. It seems we\'re having trouble loading the page you\'re looking for.',
+                'title'   => '500 Internal Server Error',
+            ],
+
+            '503' => [
+                'message' => 'Oops! Looks like we\'re temporarily down for maintenance. Please check back in a bit.',
+                'title'   => '503 Service Unavailable',
             ],
         ],
     ],

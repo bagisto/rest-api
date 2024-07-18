@@ -18,6 +18,8 @@ Route::controller(ProductController::class)->prefix('products')->group(function 
     Route::get('{id}/additional-information', 'additionalInformation');
 
     Route::get('{id}/configurable-config', 'configurableConfig');
+
+    Route::get('{product_id}/reviews', 'index');
 });
 
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
@@ -27,10 +29,6 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
     Route::controller(ProductReviewController::class)->prefix('products')->group(function () {
         Route::post('{product_id}/reviews', 'store');
     });
-});
-
-Route::controller(ProductReviewController::class)->prefix('product')->group(function () {
-    Route::get('/reviews', 'getProductReview');
 });
 
 /**

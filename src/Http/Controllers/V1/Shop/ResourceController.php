@@ -24,7 +24,7 @@ class ResourceController extends V1Controller implements ResourceContract
      *
      * @var array
      */
-    protected $requestException = ['page', 'limit', 'pagination', 'sort', 'order', 'token'];
+    protected $requestException = ['page', 'limit', 'pagination', 'sort', 'order', 'token', 'reviews_by_product'];
 
     /**
      * Returns a listing of the resource.

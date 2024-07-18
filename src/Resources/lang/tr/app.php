@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Kategori başarıyla eklendi.',
                 'delete-success' => 'Kategori başarıyla silindi.',
                 'update-success' => 'Kategori başarıyla güncellendi.',
+                'not-exist'      => 'Kategori bulunamadı.',
 
                 'mass-operations' => [
                     'delete-success' => 'Seçilen Kategoriler başarıyla silindi.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Seçilen incelemeler başarıyla silindi.',
                     'update-success' => 'Seçilen incelemeler başarıyla güncellendi.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'Bültenimize başarıyla abone oldunuz.',
+                'warning-message' => 'Bültenimize zaten abone oldunuz.',
             ],
         ],
 
@@ -257,13 +263,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Site Haritası başarıyla eklendi.',
-                    'delete-success'  => 'Site Haritası başarıyla silindi.',
-                    'update-success'  => 'Site Haritası başarıyla güncellendi.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Site Haritası başarıyla silindi.',
-                    ],
+                    'create-success' => 'Site haritaları başarıyla oluşturuldu.',
+                    'delete-success' => 'Site haritaları başarıyla silindi.',
+                    'update-success' => 'Site haritaları başarıyla güncellendi.',
                 ],
             ],
         ],
@@ -377,6 +379,33 @@ return [
                 'password-mismatch' => 'Mevcut şifre eşleşmiyor.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Üzgünüz! Aradığınız sayfa tatilde. Aradığınızı bulamadık gibi görünüyor.',
+                'title'   => '404 Sayfa Bulunamadı',
+            ],
+
+            '401' => [
+                'message' => 'Üzgünüz! Bu sayfaya erişme izniniz yok gibi görünüyor. Gerekli kimlik bilgilerini eksik gördük.',
+                'title'   => '401 Yetkisiz Erişim',
+            ],
+
+            '403' => [
+                'message' => 'Üzgünüz! Bu sayfa yasaklanmış durumda. İçeriği görüntülemek için gerekli izinlere sahip değilsiniz gibi görünüyor.',
+                'title'   => '403 Yasak',
+            ],
+
+            '500' => [
+                'message' => 'Üzgünüz! Bir şeyler yanlış gitti. Aradığınız sayfayı yüklerken sorun yaşadığımız görünüyor.',
+                'title'   => '500 İç Sunucu Hatası',
+            ],
+
+            '503' => [
+                'message' => 'Üzgünüz! Geçici olarak bakımda gibi görünüyoruz. Lütfen biraz sonra tekrar kontrol edin.',
+                'title'   => '503 Hizmet Kullanılamıyor',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -468,8 +497,36 @@ return [
                 'configurable-error' => 'Lütfen en az bir yapılandırılabilir özellik seçin.',
 
                 'reviews' => [
+                    'get-success' => 'Ürün tarafından başarıyla yorumlar alındı.',
                     'create-success' => 'İncelemeniz başarıyla gönderildi.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Üzgünüz! Aradığınız sayfa tatilde. Aradığınızı bulamadık gibi görünüyor.',
+                'title'   => '404 Sayfa Bulunamadı',
+            ],
+
+            '401' => [
+                'message' => 'Üzgünüz! Bu sayfaya erişme izniniz yok gibi görünüyor. Gerekli kimlik bilgilerini eksik gördük.',
+                'title'   => '401 Yetkisiz Erişim',
+            ],
+
+            '403' => [
+                'message' => 'Üzgünüz! Bu sayfa yasaklanmış durumda. İçeriği görüntülemek için gerekli izinlere sahip değilsiniz gibi görünüyor.',
+                'title'   => '403 Yasak',
+            ],
+
+            '500' => [
+                'message' => 'Üzgünüz! Bir şeyler yanlış gitti. Aradığınız sayfayı yüklerken sorun yaşadığımız görünüyor.',
+                'title'   => '500 İç Sunucu Hatası',
+            ],
+
+            '503' => [
+                'message' => 'Üzgünüz! Geçici olarak bakımda gibi görünüyoruz. Lütfen biraz sonra tekrar kontrol edin.',
+                'title'   => '503 Hizmet Kullanılamıyor',
             ],
         ],
     ],

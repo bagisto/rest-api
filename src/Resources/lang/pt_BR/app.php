@@ -73,6 +73,7 @@ return [
                 'create-success' => 'Categoria adicionada com sucesso.',
                 'delete-success' => 'Categoria excluída com sucesso.',
                 'update-success' => 'Categoria atualizada com sucesso.',
+                'not-exist'      => 'Categoria não encontrada.',
 
                 'mass-operations' => [
                     'delete-success' => 'Categorias selecionadas excluídas com sucesso.',
@@ -157,6 +158,11 @@ return [
                     'delete-success' => 'Revisões selecionadas excluídas com sucesso.',
                     'update-success' => 'Revisões selecionadas atualizadas com sucesso.',
                 ],
+            ],
+
+            'news-letter' => [
+                'create-success'  => 'Você se inscreveu com sucesso na nossa newsletter.',
+                'warning-message' => 'Você já está inscrito na nossa newsletter.',
             ],
         ],
 
@@ -257,13 +263,9 @@ return [
                 ],
 
                 'sitemaps' => [
-                    'create-success'  => 'Mapa do site adicionado com sucesso.',
-                    'delete-success'  => 'Mapa do site excluído com sucesso.',
-                    'update-success'  => 'Mapa do site atualizado com sucesso.',
-
-                    'mass-operations' => [
-                        'delete-success' => 'Mapa do site excluído com sucesso.',
-                    ],
+                    'create-success' => 'Os sitemaps foram criados com sucesso.',
+                    'delete-success' => 'Os sitemaps foram excluídos com sucesso.',
+                    'update-success' => 'Os sitemaps foram atualizados com sucesso.',
                 ],
             ],
         ],
@@ -377,6 +379,33 @@ return [
                 'password-mismatch' => 'A senha atual não corresponde.',
             ],
         ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Ops! A página que você está procurando está em férias. Parece que não conseguimos encontrar o que você estava procurando.',
+                'title'   => '404 Página Não Encontrada',
+            ],
+
+            '401' => [
+                'message' => 'Ops! Parece que você não tem permissão para acessar esta página. Parece que você está sem as credenciais necessárias.',
+                'title'   => '401 Não Autorizado',
+            ],
+
+            '403' => [
+                'message' => 'Ops! Esta página está fora dos limites. Parece que você não tem as permissões necessárias para visualizar este conteúdo.',
+                'title'   => '403 Proibido',
+            ],
+
+            '500' => [
+                'message' => 'Ops! Algo deu errado. Parece que estamos tendo problemas para carregar a página que você está procurando.',
+                'title'   => '500 Erro Interno do Servidor',
+            ],
+
+            '503' => [
+                'message' => 'Ops! Parece que estamos temporariamente fora do ar para manutenção. Por favor, volte em breve.',
+                'title'   => '503 Serviço Indisponível',
+            ],
+        ],
     ],
 
     'shop' => [
@@ -468,8 +497,36 @@ return [
                 'configurable-error' => 'Por favor, selecione pelo menos um atributo configurável.',
 
                 'reviews' => [
+                    'get-success' => 'Obter avaliações por produto com sucesso.',
                     'create-success' => 'Sua avaliação foi enviada com sucesso.',
                 ],
+            ],
+        ],
+
+        'errors' => [
+            '404' => [
+                'message' => 'Ops! A página que você está procurando está em férias. Parece que não conseguimos encontrar o que você estava procurando.',
+                'title'   => '404 Página Não Encontrada',
+            ],
+
+            '401' => [
+                'message' => 'Ops! Parece que você não tem permissão para acessar esta página. Parece que você está sem as credenciais necessárias.',
+                'title'   => '401 Não Autorizado',
+            ],
+
+            '403' => [
+                'message' => 'Ops! Esta página está fora dos limites. Parece que você não tem as permissões necessárias para visualizar este conteúdo.',
+                'title'   => '403 Proibido',
+            ],
+
+            '500' => [
+                'message' => 'Ops! Algo deu errado. Parece que estamos tendo problemas para carregar a página que você está procurando.',
+                'title'   => '500 Erro Interno do Servidor',
+            ],
+
+            '503' => [
+                'message' => 'Ops! Parece que estamos temporariamente fora do ar para manutenção. Por favor, volte em breve.',
+                'title'   => '503 Serviço Indisponível',
             ],
         ],
     ],
