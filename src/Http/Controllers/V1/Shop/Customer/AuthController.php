@@ -95,7 +95,7 @@ class AuthController extends CustomerController
             /**
              * Event passed to prepare cart after login.
              */
-            Event::dispatch('customer.after.login', $request->get('email'));
+            //Event::dispatch('customer.after.login', $request->get('email'));
 
             return response([
                 'data'    => new CustomerResource($customer),
