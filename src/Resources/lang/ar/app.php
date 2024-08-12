@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'تم حفظ العنوان بنجاح',
+                'address-not-available'   => 'لا توجد طرق شحن متاحة.',
+                'create'                  => 'تمت إضافة العنصر بنجاح إلى السلة',
+                'error'                   => 'حدث خطأ ما!',
+                'order-create-success'    => 'تم تقديم الطلب بنجاح.',
+                'payment-create-success'  => 'تم حفظ طريقة الدفع بنجاح',
+                'shipping-create-success' => 'تم حفظ طريقة الشحن بنجاح',
+            ],
+
             'invoices' => [
                 'create-success' => 'تم إضافة الفاتورة بنجاح.',
 

@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'ලිපිනය සාර්ථකව සුරැකිණි',
+                'address-not-available'   => 'ඉඩ පහසුකම් කිසිවක් නොමැත.',
+                'create'                  => 'අයිතමය සාර්ථකව බාගත කරන ලදි',
+                'error'                   => 'කුසලතාවක් ඇති විය!',
+                'order-create-success'    => 'ඇණවුම සාර්ථකව දාන්න ලැබුනේය.',
+                'payment-create-success'  => 'ගෙවීම් ක්‍රමය සාර්ථකව සුරැකිණි',
+                'shipping-create-success' => 'බෙදාහැරීමේ ක්‍රමය සාර්ථකව සුරැකිණි',
+            ],
+
             'invoices' => [
                 'create-success' => 'ක්ෂේත්‍රය සාර්ථකව එකතු වී ඇත.',
 

@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Adresse erfolgreich gespeichert',
+                'address-not-available'   => 'Es sind keine Versandmethoden verfügbar.',
+                'create'                  => 'Artikel erfolgreich in den Warenkorb gelegt',
+                'error'                   => 'Etwas ist schiefgegangen!',
+                'order-create-success'    => 'Bestellung wurde erfolgreich aufgegeben.',
+                'payment-create-success'  => 'Zahlungsmethode erfolgreich gespeichert',
+                'shipping-create-success' => 'Versandmethode erfolgreich gespeichert',
+            ],
+
             'invoices' => [
                 'create-success' => 'Rechnung wurde erfolgreich hinzugefügt.',
 

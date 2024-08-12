@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Endereço salvo com sucesso',
+                'address-not-available'   => 'Não há métodos de envio disponíveis.',
+                'create'                  => 'Item adicionado com sucesso ao carrinho',
+                'error'                   => 'Algo deu errado!',
+                'order-create-success'    => 'Pedido realizado com sucesso.',
+                'payment-create-success'  => 'Método de pagamento salvo com sucesso',
+                'shipping-create-success' => 'Método de envio salvo com sucesso',
+            ],
+
             'invoices' => [
                 'create-success' => 'Fatura adicionada com sucesso.',
 

@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => '地址保存成功',
+                'address-not-available'   => '没有可用的配送方式。',
+                'create'                  => '商品成功添加到购物车',
+                'error'                   => '出错了！',
+                'order-create-success'    => '订单成功下达。',
+                'payment-create-success'  => '支付方式成功保存',
+                'shipping-create-success' => '配送方式成功保存',
+            ],
+
             'invoices' => [
                 'create-success' => '发票已成功添加。',
 

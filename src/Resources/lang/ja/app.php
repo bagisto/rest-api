@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => '住所が正常に保存されました',
+                'address-not-available'   => '利用可能な配送方法はありません。',
+                'create'                  => 'アイテムが正常にカートに追加されました',
+                'error'                   => '何かがうまくいかなかった！',
+                'order-create-success'    => '注文が正常に完了しました。',
+                'payment-create-success'  => '支払い方法が正常に保存されました',
+                'shipping-create-success' => '配送方法が正常に保存されました',
+            ],
+
             'invoices' => [
                 'create-success' => '請求書が正常に追加されました。',
 

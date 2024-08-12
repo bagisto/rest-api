@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'آدرس با موفقیت ذخیره شد',
+                'address-not-available'   => 'هیچ روش حمل و نقلی در دسترس نیست.',
+                'create'                  => 'آیتم با موفقیت به سبد خرید اضافه شد',
+                'error'                   => 'مشکلی پیش آمد!',
+                'order-create-success'    => 'سفارش با موفقیت ثبت شد.',
+                'payment-create-success'  => 'روش پرداخت با موفقیت ذخیره شد',
+                'shipping-create-success' => 'روش حمل و نقل با موفقیت ذخیره شد',
+            ],
+
             'invoices' => [
                 'create-success' => 'فاکتور با موفقیت اضافه شد.',
 

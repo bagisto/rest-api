@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Адресу успішно збережено',
+                'address-not-available'   => 'Доступних методів доставки немає.',
+                'create'                  => 'Товар успішно додано до кошика',
+                'error'                   => 'Щось пішло не так!',
+                'order-create-success'    => 'Замовлення успішно зроблено.',
+                'payment-create-success'  => 'Метод оплати успішно збережено',
+                'shipping-create-success' => 'Метод доставки успішно збережено',
+            ],
+
             'invoices' => [
                 'create-success' => 'Рахунок успішно додано.',
 

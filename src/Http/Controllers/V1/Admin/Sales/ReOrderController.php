@@ -5,15 +5,15 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sales;
 use Illuminate\Http\Response;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Payment\Facades\Payment;
-use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
-use Webkul\Customer\Repositories\CustomerAddressRepository;
-use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Shipping\Facades\Shipping;
-use Webkul\Shop\Http\Requests\CartAddressRequest;
-use Webkul\CartRule\Repositories\CartRuleCouponRepository;
+use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Checkout\Repositories\CartRepository;
-use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Shop\Http\Requests\CartAddressRequest;
 use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\CartRule\Repositories\CartRuleCouponRepository;
+use Webkul\Customer\Repositories\CustomerAddressRepository;
+use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 
 class ReOrderController extends SalesController
 {
@@ -52,7 +52,7 @@ class ReOrderController extends SalesController
 
         return response([
             'data' => $cart,
-            'message' => trans('Item added successfully to cart')
+            'message' => trans('rest-api::app.admin.sales.re-order.create')
         ]);
     }
 
@@ -63,30 +63,30 @@ class ReOrderController extends SalesController
     {
         $cart = $this->cartRepository->findOrFail($id);
 
-        $params = $cartAddressRequest->all();
-        
         Cart::setCart($cart);
 
         if (Cart::hasError()) {
             return response([
-                'message' => implode(': ', Cart::getErrors()) ?: 'Something went wrong',
-            ], Response::HTTP_BAD_REQUEST);
+                'message' => implode(': ', Cart::getErrors()) ?: 'rest-api::app.admin.sales.re-order.error',
+            ]);
         }
 
-        Cart::saveAddresses($params);
+        Cart::saveAddresses($cartAddressRequest->all());
+
+        $carts = Cart::getCart();
 
         Cart::collectTotals();
 
-        if ($cart->haveStockableItems()) {
+        if ($carts->haveStockableItems()) {
             if (! $rates = Shipping::collectRates()) {
                 return response([
-                    'message' => trans('Their are no any shipping methods available.'),
+                    'message' => trans('rest-api::app.admin.sales.re-order.address-not-available'),
                 ]);
             }
 
             return response([
                 'data' => $rates,
-                'message' => trans('Address Saved Successfully'),
+                'message' => trans('rest-api::app.admin.sales.re-order.address-create-success'),
             ]);
         }
 
@@ -113,16 +113,16 @@ class ReOrderController extends SalesController
             || ! $validatedData['shipping_method']
             || ! Cart::saveShippingMethod($validatedData['shipping_method'])
         ) {
-            return response()->json([
-                'redirect_url' => route('shop.checkout.cart.index'),
-            ], Response::HTTP_FORBIDDEN);
+            return response([
+                'data' => trans('rest-api::app.admin.sales.re-order.error'),
+            ]);
         }
 
         Cart::collectTotals();
 
         return response([
             'data'    => Payment::getSupportedPaymentMethods(),
-            'message' => trans('Shipping Method Saved Successfully'),
+            'message' => trans('rest-api::app.admin.sales.re-order.shipping-create-success'),
         ]);
     }
 
@@ -145,8 +145,8 @@ class ReOrderController extends SalesController
             || ! Cart::savePaymentMethod($validatedData['payment'])
         ) {
             return response([
-                'redirect_url' => route('shop.checkout.cart.index'),
-            ], Response::HTTP_FORBIDDEN);
+                'data' => trans('rest-api::app.admin.sales.re-order.error'),
+            ]);
         }
 
         Cart::collectTotals();
@@ -155,25 +155,25 @@ class ReOrderController extends SalesController
 
         return response([
             'data'    => new CartResource($cart),
-            'message' => trans('Payment Method Saved Successfully'),
+            'message' => trans('rest-api::app.admin.sales.re-order.payment-create-success'),
         ]);
     }
 
     /**
      * Store order
      */
-    public function saveOrder(): Response
+    public function saveOrder(int $id): Response
     {
         if (Cart::hasError()) {
             return response([
-                'message' => 'Something went wrong while saving order.'
+                'data' => trans('rest-api::app.admin.sales.re-order.error'),
             ]);
         }
 
         Cart::collectTotals();
 
         try {
-            $this->validateOrder();
+            $this->validateOrder($id);
         } catch (\Exception $e) {
             return response([
                 'message' => $e->getMessage(),
@@ -182,15 +182,12 @@ class ReOrderController extends SalesController
 
         $cart = Cart::getCart();
 
-        $data = (response($cart))->jsonSerialize();
-
-        $order = $this->orderRepository->create($data);
+        $this->orderRepository->create((array) $cart);
 
         Cart::deActivateCart();
 
         return response([
-            'data'    => $order,
-            'message' => 'Order was successfully placed.',
+            'message' =>  trans('rest-api::app.admin.sales.re-order.order-create-success'),
         ]);
     }
 
@@ -199,9 +196,9 @@ class ReOrderController extends SalesController
      *
      * @return void|\Exception
      */
-    public function validateOrder()
+    public function validateOrder(int $id)
     {
-        $cart = Cart::getCart();
+        $cart = $this->cartRepository->findOrFail($id);
 
         $minimumOrderAmount = core()->getConfigData('sales.order_settings.minimum_order.minimum_order_amount') ?: 0;
 

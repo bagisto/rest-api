@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'ঠিকানা সফলভাবে সংরক্ষিত হয়েছে',
+                'address-not-available'   => 'কোনও শিপিং পদ্ধতি উপলব্ধ নেই।',
+                'create'                  => 'বস্তুর সফলভাবে কার্টে যোগ করা হয়েছে',
+                'error'                   => 'কিছু ভুল হয়েছে!',
+                'order-create-success'    => 'অর্ডার সফলভাবে সম্পন্ন হয়েছে।',
+                'payment-create-success'  => 'পেমেন্ট পদ্ধতি সফলভাবে সংরক্ষিত হয়েছে',
+                'shipping-create-success' => 'শিপিং পদ্ধতি সফলভাবে সংরক্ষিত হয়েছে',
+            ],
+
             'invoices' => [
                 'create-success' => 'চালান সফলভাবে যোগ করা হয়েছে।',
 

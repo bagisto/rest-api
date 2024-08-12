@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Adres Başarıyla Kaydedildi',
+                'address-not-available'   => 'Hiçbir gönderim yöntemi mevcut değil.',
+                'create'                  => 'Ürün başarıyla sepete eklendi',
+                'error'                   => 'Bir şeyler yanlış gitti!',
+                'order-create-success'    => 'Sipariş başarıyla verildi.',
+                'payment-create-success'  => 'Ödeme Yöntemi Başarıyla Kaydedildi',
+                'shipping-create-success' => 'Gönderim Yöntemi Başarıyla Kaydedildi',
+            ],
+
             'invoices' => [
                 'create-success' => 'Fatura başarıyla eklendi.',
 

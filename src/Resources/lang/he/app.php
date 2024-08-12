@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'כתובת נשמרה בהצלחה',
+                'address-not-available'   => 'אין שיטות שילוח זמינות.',
+                'create'                  => 'פריט נוסף בהצלחה לעגלת הקניות',
+                'error'                   => 'אירעה שגיאה!',
+                'order-create-success'    => 'ההזמנה בוצעה בהצלחה.',
+                'payment-create-success'  => 'שיטת תשלום נשמרה בהצלחה',
+                'shipping-create-success' => 'שיטת משלוח נשמרה בהצלחה',
+            ],
+
             'invoices' => [
                 'create-success' => 'החשבונית נוספה בהצלחה.',
 

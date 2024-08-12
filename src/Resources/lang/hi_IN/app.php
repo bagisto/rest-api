@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'पता सफलतापूर्वक सहेजा गया',
+                'address-not-available'   => 'कोई शिपिंग विधियाँ उपलब्ध नहीं हैं।',
+                'create'                  => 'वस्तु सफलतापूर्वक कार्ट में जोड़ी गई',
+                'error'                   => 'कुछ गलत हो गया!',
+                'order-create-success'    => 'आर्डर सफलतापूर्वक स्थानित किया गया।',
+                'payment-create-success'  => 'भुगतान विधि सफलतापूर्वक सहेजी गई',
+                'shipping-create-success' => 'शिपिंग विधि सफलतापूर्वक सहेजी गई',
+            ],
+
             'invoices' => [
                 'create-success' => 'चालान सफलतापूर्वक जोड़ा गया है।',
 

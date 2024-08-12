@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Address Saved Successfully',
+                'address-not-available'   => 'Their are no any shipping methods available.',
+                'create'                  => 'Item added successfully to cart',
+                'error'                   => 'Something went wrong !',
+                'order-create-success'    => 'Order was successfully placed.',
+                'payment-create-success'  => 'Payment Method Saved Successfully',
+                'shipping-create-success' => 'Shipping Method Saved Successfully',
+            ],
+
             'invoices' => [
                 'create-success' => 'invoice have been successfully added.',
 

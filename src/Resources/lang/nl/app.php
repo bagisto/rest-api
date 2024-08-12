@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Adres succesvol opgeslagen',
+                'address-not-available'   => 'Er zijn geen verzendmethoden beschikbaar.',
+                'create'                  => 'Artikel succesvol aan winkelwagentje toegevoegd',
+                'error'                   => 'Er is iets fout gegaan!',
+                'order-create-success'    => 'Bestelling is succesvol geplaatst.',
+                'payment-create-success'  => 'Betaalmethode succesvol opgeslagen',
+                'shipping-create-success' => 'Verzendmethode succesvol opgeslagen',
+            ],
+
             'invoices' => [
                 'create-success' => 'Factuur is succesvol toegevoegd.',
 
