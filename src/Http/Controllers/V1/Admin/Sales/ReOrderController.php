@@ -86,7 +86,7 @@ class ReOrderController extends SalesController
 
             return response([
                 'data' => $rates,
-                'message' => trans(''),
+                'message' => trans('Address Saved Successfully'),
             ]);
         }
 
@@ -120,7 +120,10 @@ class ReOrderController extends SalesController
 
         Cart::collectTotals();
 
-        return response(Payment::getSupportedPaymentMethods());
+        return response([
+            'data'    => Payment::getSupportedPaymentMethods(),
+            'message' => trans('Shipping Method Saved Successfully'),
+        ]);
     }
 
     /**
@@ -151,7 +154,92 @@ class ReOrderController extends SalesController
         $cart = Cart::getCart();
 
         return response([
-            'cart' => new CartResource($cart),
+            'data'    => new CartResource($cart),
+            'message' => trans('Payment Method Saved Successfully'),
         ]);
+    }
+
+    /**
+     * Store order
+     */
+    public function saveOrder(): Response
+    {
+        if (Cart::hasError()) {
+            return response([
+                'message' => 'Something went wrong while saving order.'
+            ]);
+        }
+
+        Cart::collectTotals();
+
+        try {
+            $this->validateOrder();
+        } catch (\Exception $e) {
+            return response([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+
+        $cart = Cart::getCart();
+
+        $data = (response($cart))->jsonSerialize();
+
+        $order = $this->orderRepository->create($data);
+
+        Cart::deActivateCart();
+
+        return response([
+            'data'    => $order,
+            'message' => 'Order was successfully placed.',
+        ]);
+    }
+
+    /**
+     * Validate order before creation.
+     *
+     * @return void|\Exception
+     */
+    public function validateOrder()
+    {
+        $cart = Cart::getCart();
+
+        $minimumOrderAmount = core()->getConfigData('sales.order_settings.minimum_order.minimum_order_amount') ?: 0;
+
+        if (
+            auth()->guard('customer')->check()
+            && auth()->guard('customer')->user()->is_suspended
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.suspended-account-message'));
+        }
+
+        if (
+            auth()->guard('customer')->user()
+            && ! auth()->guard('customer')->user()->status
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.inactive-account-message'));
+        }
+
+        if (! Cart::haveMinimumOrderAmount()) {
+            throw new \Exception(trans('shop::app.checkout.cart.minimum-order-message', ['amount' => core()->currency($minimumOrderAmount)]));
+        }
+
+        if ($cart->haveStockableItems() && ! $cart->shipping_address) {
+            throw new \Exception(trans('shop::app.checkout.onepage.address.check-shipping-address'));
+        }
+
+        if (! $cart->billing_address) {
+            throw new \Exception(trans('shop::app.checkout.onepage.address.check-billing-address'));
+        }
+
+        if (
+            $cart->haveStockableItems()
+            && ! $cart->selected_shipping_rate
+        ) {
+            throw new \Exception(trans('shop::app.checkout.cart.specify-shipping-method'));
+        }
+
+        if (! $cart->payment) {
+            throw new \Exception(trans('shop::app.checkout.cart.specify-payment-method'));
+        }
     }
 }

@@ -215,13 +215,24 @@ class ReOrderController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/sales/re-orders/save-shipping",
+     *      path="/api/v1/admin/sales/re-orders/{id}/save-shipping",
      *      operationId="saveCheckoutShipping",
      *      tags={"ReOrders"},
      *      summary="Save shipping method at the checkout",
      *      description="Save shipping method at the checkout",
-     *      security={ {"sanctum": {} }},
+     *      security={ {"sanctum_admin": {} }},
      *
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="cart id",
+     *          required=true,
+     *          in="path",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     * 
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
@@ -277,13 +288,24 @@ class ReOrderController
 
     /**
      * @OA\Post(
-     *      path="/api/v1/admin/sales/re-orders/save-payment",
+     *      path="/api/v1/admin/sales/re-orders/{id}/save-payment",
      *      operationId="saveCheckoutPayment",
      *      tags={"ReOrders"},
      *      summary="Save payment method at the checkout",
      *      description="Save payment method at the checkout",
-     *      security={ {"sanctum": {} }},
+     *      security={ {"sanctum_admin": {} }},
      *
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="cart id",
+     *          required=true,
+     *          in="path",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     * 
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
@@ -341,6 +363,63 @@ class ReOrderController
      * )
      */
     public function savePayment()
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/v1/admin/sales/re-orders/{id}/save-order",
+     *      operationId="saveCheckoutOrder",
+     *      tags={"ReOrders"},
+     *      summary="Save payment method at the checkout",
+     *      description="Save payment method at the checkout",
+     *      security={ {"sanctum_admin": {} }},
+     *
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="cart id",
+     *          required=true,
+     *          in="path",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Order was successfully placed."
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *
+     *                  @OA\Items(
+     *
+     *                      @OA\Property(
+     *                          property="cart",
+     *                          type="object",
+     *                      )
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=404,
+     *          description="Something went wrong!"
+     *      )
+     * )
+     */
+
+    public function saveOrder()
     {
     }
 }

@@ -33,6 +33,8 @@ Route::group([
         Route::post('{id}/save-shipping', 'saveShipping');
 
         Route::post('{id}/save-payment', 'savePayment');
+
+        Route::post('{id}/save-order', 'saveOrder');
     });
 
     /**

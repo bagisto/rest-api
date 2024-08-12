@@ -162,21 +162,14 @@ class CategoryController extends CatalogController
         $categories->each(function ($category) {
             Event::dispatch('catalog.category.delete.before', $category->id);
 
-                    $category->delete();
+            $this->getRepositoryInstance()->delete($category->id);
 
-                    Event::dispatch('catalog.category.delete.after', $categoryId);
-                }
-            }
-        }
+            Event::dispatch('catalog.category.delete.after', $category->id);
+        });
 
-        if (
-            count($categoryIds) != 1
-            || $suppressFlash == true
-        ) {
-            return response([
-                'message' => trans('rest-api::app.admin.catalog.categories.mass-operations.delete-success'),
-            ]);
-        }
+        return response([
+            'message' => trans('rest-api::app.admin.catalog.categories.mass-operations.delete-success'),
+        ]);
     }
 
     /**
