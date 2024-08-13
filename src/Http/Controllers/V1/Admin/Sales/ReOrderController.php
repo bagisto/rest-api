@@ -3,17 +3,18 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Sales;
 
 use Illuminate\Http\Response;
-use Webkul\Checkout\Facades\Cart;
-use Webkul\Payment\Facades\Payment;
-use Webkul\Shipping\Facades\Shipping;
-use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Checkout\Repositories\CartRepository;
-use Webkul\Shop\Http\Requests\CartAddressRequest;
-use Webkul\Product\Repositories\ProductRepository;
-use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
+use Webkul\Checkout\Facades\Cart;
+use Webkul\Checkout\Repositories\CartRepository;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Payment\Facades\Payment;
+use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
+use Webkul\Sales\Repositories\OrderRepository;
+use Webkul\Sales\Transformers\OrderResource;
+use Webkul\Shipping\Facades\Shipping;
+use Webkul\Shop\Http\Requests\CartAddressRequest;
 
 class ReOrderController extends SalesController
 {
@@ -61,10 +62,6 @@ class ReOrderController extends SalesController
      */
     public function saveAddress(CartAddressRequest $cartAddressRequest, int $id): Response
     {
-        $cart = $this->cartRepository->findOrFail($id);
-
-        Cart::setCart($cart);
-
         if (Cart::hasError()) {
             return response([
                 'message' => implode(': ', Cart::getErrors()) ?: 'rest-api::app.admin.sales.re-order.error',
@@ -104,10 +101,6 @@ class ReOrderController extends SalesController
             'shipping_method' => 'required',
         ]);
 
-        $cart = $this->cartRepository->findOrFail($id);
-
-        Cart::setCart($cart);
-
         if (
             Cart::hasError()
             || ! $validatedData['shipping_method']
@@ -134,10 +127,6 @@ class ReOrderController extends SalesController
         $validatedData = $this->validate(request(), [
             'payment' => 'required',
         ]);
-
-        $cart = $this->cartRepository->findOrFail($id);
-
-        Cart::setCart($cart);
 
         if (
             Cart::hasError()
@@ -180,9 +169,9 @@ class ReOrderController extends SalesController
             ], 500);
         }
 
-        $cart = Cart::getCart();
+        $data = (new OrderResource(Cart::getCart()))->jsonSerialize();
 
-        $this->orderRepository->create((array) $cart);
+        $this->orderRepository->create($data);
 
         Cart::deActivateCart();
 
@@ -198,7 +187,7 @@ class ReOrderController extends SalesController
      */
     public function validateOrder(int $id)
     {
-        $cart = $this->cartRepository->findOrFail($id);
+        $cart = Cart::getCart();
 
         $minimumOrderAmount = core()->getConfigData('sales.order_settings.minimum_order.minimum_order_amount') ?: 0;
 

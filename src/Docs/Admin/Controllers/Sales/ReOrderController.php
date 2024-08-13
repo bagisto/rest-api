@@ -396,18 +396,6 @@ class ReOrderController
      *                  property="message",
      *                  type="string",
      *                  example="Order was successfully placed."
-     *              ),
-     *              @OA\Property(
-     *                  property="data",
-     *                  type="array",
-     *
-     *                  @OA\Items(
-     *
-     *                      @OA\Property(
-     *                          property="cart",
-     *                          type="object",
-     *                      )
-     *                  )
      *              )
      *          )
      *      ),
