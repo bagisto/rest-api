@@ -455,11 +455,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'empty'          => 'Tu carrito está vacío.',
-                    'error'          => 'Elemento en el carrito no encontrado.',
-                    'inactive-add'   => 'El artículo inactivo no se puede agregar al carrito.',
-                    'success'        => 'El artículo se ha añadido al carrito correctamente.',
-                    'success-remove' => 'El artículo se ha eliminado del carrito correctamente.',
+                    'empty'           => 'Tu carrito está vacío.',
+                    'error'           => 'Elemento en el carrito no encontrado.',
+                    'inactive-add'    => 'El artículo inactivo no se puede agregar al carrito.',
+                    'invalid-product' => 'El ID del producto no es válido.',
+                    'success'         => 'El artículo se ha añadido al carrito correctamente.',
+                    'success-remove'  => 'El artículo se ha eliminado del carrito correctamente.',
                 ],
 
                 'quantity' => [

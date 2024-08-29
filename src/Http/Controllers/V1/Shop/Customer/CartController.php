@@ -55,7 +55,13 @@ class CartController extends CustomerController
         $this->validate(request(), [
             'product_id' => 'required|integer|exists:products,id',
         ]);
-        
+
+        if ($productId != request()->product_id) {
+            return response([
+                'message' => trans('rest-api::app.shop.checkout.cart.item.invalid-product'),
+            ], 400);
+        }
+
         $product = $this->productRepository->with('parent')->findOrFail($productId);
 
         try {

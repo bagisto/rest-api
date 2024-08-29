@@ -455,11 +455,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'empty'          => 'Sepetiniz boş.',
-                    'error'          => 'Sepet ürünü bulunamadı.',
-                    'inactive-add'   => 'Etkin olmayan ürün sepete eklenemez.',
-                    'success'        => 'Ürün başarıyla sepete eklendi.',
-                    'success-remove' => 'Ürün sepetten başarıyla kaldırıldı.',
+                    'empty'           => 'Sepetiniz boş.',
+                    'error'           => 'Sepet ürünü bulunamadı.',
+                    'inactive-add'    => 'Etkin olmayan ürün sepete eklenemez.',
+                    'invalid-product' => 'Ürün ID\'si geçersiz.',
+                    'success'         => 'Ürün başarıyla sepete eklendi.',
+                    'success-remove'  => 'Ürün sepetten başarıyla kaldırıldı.',
                 ],
 
                 'quantity' => [
