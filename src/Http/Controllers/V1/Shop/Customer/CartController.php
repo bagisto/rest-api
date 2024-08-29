@@ -151,7 +151,7 @@ class CartController extends CustomerController
     /**
      * Empty the cart.
      */
-    public function empty(): Response
+    public function removeall(): Response
     {
         Event::dispatch('checkout.cart.delete.before');
 
@@ -159,10 +159,7 @@ class CartController extends CustomerController
 
         Event::dispatch('checkout.cart.delete.after');
 
-        $cart = Cart::getCart();
-
         return response([
-            'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
             'message' => trans('rest-api::app.shop.checkout.cart.item.success-remove'),
         ]);
     }
