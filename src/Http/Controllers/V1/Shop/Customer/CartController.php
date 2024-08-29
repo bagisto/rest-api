@@ -229,7 +229,13 @@ class CartController extends CustomerController
 
         Event::dispatch('checkout.cart.item.move-to-wishlist.before', $cartItemId);
 
-        Cart::moveToWishlist($cartItemId);
+        $cartItem = Cart::moveToWishlist($cartItemId);
+
+        if (! $cartItem) {
+            return response([
+                'message' => __('rest-api::app.shop.checkout.cart.move-wishlist.error'),
+            ], 400);
+        }
 
         Event::dispatch('checkout.cart.item.move-to-wishlist.after', $cartItemId);
 

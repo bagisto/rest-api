@@ -474,6 +474,7 @@ return [
                 ],
 
                 'move-wishlist' => [
+                    'error'   => 'Artikeltje in het winkelwagentje niet gevonden.',
                     'success' => 'Item succesvol verplaatst naar verlanglijstje.',
                 ],
             ],

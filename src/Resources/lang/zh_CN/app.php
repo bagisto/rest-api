@@ -474,6 +474,7 @@ return [
                 ],
 
                 'move-wishlist' => [
+                    'error'   => '购物车中的项目未找到。',
                     'success' => '商品已成功移至愿望清单。',
                 ],
             ],

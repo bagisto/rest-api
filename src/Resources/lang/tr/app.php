@@ -474,6 +474,7 @@ return [
                 ],
 
                 'move-wishlist' => [
+                    'error'   => 'Sepet ürünü bulunamadı.',
                     'success' => 'Ürün başarıyla dilek listesine taşındı.',
                 ],
             ],

@@ -468,6 +468,7 @@ return [
                 ],
 
                 'move-wishlist' => [
+                    'error'   => 'Artikel im Warenkorb nicht gefunden.',
                     'success' => 'Artikel erfolgreich zur Wunschliste verschoben.',
                 ],
             ],

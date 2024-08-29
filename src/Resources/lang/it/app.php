@@ -474,6 +474,7 @@ return [
                 ],
 
                 'move-wishlist' => [
+                    'error'   => 'Articolo nel carrello non trovato.',
                     'success' => 'Articolo spostato nella lista dei desideri con successo.',
                 ],
             ],

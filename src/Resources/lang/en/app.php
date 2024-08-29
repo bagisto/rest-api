@@ -476,6 +476,7 @@ return [
 
                 'move-wishlist' => [
                     'success' => 'Item moved to wishlist successfully.',
+                    'error'   => 'Cart item not found.',
                 ],
             ],
         ],

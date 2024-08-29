@@ -473,6 +473,7 @@ return [
                 ],
 
                 'move-wishlist' => [
+                    'error'   => 'Élément dans le panier non trouvé.',
                     'success' => 'L\'article a été déplacé vers la liste de souhaits avec succès.',
                 ],
             ],

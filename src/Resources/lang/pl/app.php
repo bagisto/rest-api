@@ -474,6 +474,7 @@ return [
                 ],
 
                 'move-wishlist' => [
+                    'error'   => 'Przedmiot w koszyku nie znaleziony.',
                     'success' => 'Produkt przeniesiony do listy życzeń pomyślnie.',
                 ],
             ],
