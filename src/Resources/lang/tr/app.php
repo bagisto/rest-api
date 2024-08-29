@@ -456,6 +456,7 @@ return [
             'cart' => [
                 'item' => [
                     'empty'          => 'Sepetiniz boş.',
+                    'error'          => 'Sepet ürünü bulunamadı.',
                     'inactive-add'   => 'Etkin olmayan ürün sepete eklenemez.',
                     'success'        => 'Ürün başarıyla sepete eklendi.',
                     'success-remove' => 'Ürün sepetten başarıyla kaldırıldı.',
@@ -474,7 +475,6 @@ return [
                 ],
 
                 'move-wishlist' => [
-                    'error'   => 'Sepet ürünü bulunamadı.',
                     'success' => 'Ürün başarıyla dilek listesine taşındı.',
                 ],
             ],

@@ -105,12 +105,28 @@ class CartController extends CustomerController
      */
     public function update(): Response
     {
-        foreach (request()->qty as $qty) {
+        if (! $cart = Cart::getCart()) {
+            return response([
+                'message' => trans('rest-api::app.shop.checkout.cart.item.empty'),
+            ], 400);
+        }
+
+        foreach (request()->qty as $cartId => $qty) {
+            $ids[] = $cartId; 
+
             if (! $qty) {
                 return response([
                     'message' => trans('rest-api::app.shop.checkout.cart.quantity.illegal'),
                 ], 400);
             }
+        }
+
+        $cartItemIds = $cart->items()->pluck('id')->toArray();
+
+        if (! empty(array_diff($ids, $cartItemIds))) {
+            return response([
+                'message' => 'Cart Item not found',
+            ], 400);
         }
 
         try {
@@ -209,7 +225,7 @@ class CartController extends CustomerController
 
         return response([
             'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
-            'message' => __('rest-api::app.shop.checkout.cart.coupon.success-remove'),
+            'message' => trans('rest-api::app.shop.checkout.cart.coupon.success-remove'),
         ]);
     }
 
@@ -220,7 +236,7 @@ class CartController extends CustomerController
     {
         if (! Cart::getCart()) {
             return response([
-                'message' => __('rest-api::app.shop.checkout.cart.item.empty'),
+                'message' => trans('rest-api::app.shop.checkout.cart.item.empty'),
             ], 400);
         }
 
@@ -230,7 +246,7 @@ class CartController extends CustomerController
 
         if (! $cartItem) {
             return response([
-                'message' => __('rest-api::app.shop.checkout.cart.move-wishlist.error'),
+                'message' => trans('rest-api::app.shop.checkout.cart.item.error'),
             ], 400);
         }
 
@@ -239,7 +255,7 @@ class CartController extends CustomerController
         Cart::collectTotals();
 
         return response([
-            'message' => __('rest-api::app.shop.checkout.cart.move-wishlist.success'),
+            'message' => trans('rest-api::app.shop.checkout.cart.move-wishlist.success'),
         ]);
     }
 }

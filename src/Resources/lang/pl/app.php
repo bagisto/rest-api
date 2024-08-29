@@ -456,6 +456,7 @@ return [
             'cart' => [
                 'item' => [
                     'empty'          => 'Twój koszyk jest pusty.',
+                    'error'          => 'Przedmiot w koszyku nie znaleziony.',
                     'inactive-add'   => 'Nieaktywny przedmiot nie może zostać dodany do koszyka.',
                     'success'        => 'Produkt został pomyślnie dodany do koszyka.',
                     'success-remove' => 'Produkt został pomyślnie usunięty z koszyka.',
@@ -474,7 +475,6 @@ return [
                 ],
 
                 'move-wishlist' => [
-                    'error'   => 'Przedmiot w koszyku nie znaleziony.',
                     'success' => 'Produkt przeniesiony do listy życzeń pomyślnie.',
                 ],
             ],

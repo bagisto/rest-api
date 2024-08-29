@@ -456,6 +456,7 @@ return [
             'cart' => [
                 'item' => [
                     'empty'          => 'Je winkelwagentje is leeg.',
+                    'error'          => 'Artikeltje in het winkelwagentje niet gevonden.',
                     'inactive-add'   => 'Inactief item kan niet aan de winkelwagen worden toegevoegd.',
                     'success'        => 'Item is succesvol toegevoegd aan winkelwagen.',
                     'success-remove' => 'Item is succesvol verwijderd uit de winkelwagen.',
@@ -474,7 +475,6 @@ return [
                 ],
 
                 'move-wishlist' => [
-                    'error'   => 'Artikeltje in het winkelwagentje niet gevonden.',
                     'success' => 'Item succesvol verplaatst naar verlanglijstje.',
                 ],
             ],

@@ -456,6 +456,7 @@ return [
             'cart' => [
                 'item' => [
                     'empty'          => 'Seu carrinho está vazio.',
+                    'error'          => 'Item no carrinho não encontrado.',
                     'inactive-add'   => 'Item inativo não pode ser adicionado ao carrinho.',
                     'success'        => 'Item adicionado ao carrinho com sucesso.',
                     'success-remove' => 'Item removido do carrinho com sucesso.',
@@ -474,7 +475,6 @@ return [
                 ],
 
                 'move-wishlist' => [
-                    'error'   => 'Item no carrinho não encontrado.',
                     'success' => 'Item movido para a lista de desejos com sucesso.',
                 ],
             ],

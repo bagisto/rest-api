@@ -456,6 +456,7 @@ return [
             'cart' => [
                 'item' => [
                     'empty'          => 'Il tuo carrello è vuoto.',
+                    'error'          => 'Articolo nel carrello non trovato.',
                     'inactive-add'   => 'L\'articolo inattivo non può essere aggiunto al carrello.',
                     'success'        => 'Articolo aggiunto al carrello con successo.',
                     'success-remove' => 'Articolo rimosso con successo dal carrello.',
@@ -473,8 +474,7 @@ return [
                     'success'        => 'Codice del coupon applicato con successo.',
                 ],
 
-                'move-wishlist' => [
-                    'error'   => 'Articolo nel carrello non trovato.',
+                'move-wishlist' => [                    
                     'success' => 'Articolo spostato nella lista dei desideri con successo.',
                 ],
             ],

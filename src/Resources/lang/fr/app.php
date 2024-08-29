@@ -455,6 +455,7 @@ return [
             'cart' => [
                 'item' => [
                     'empty'          => 'Votre panier est vide.',
+                    'error'          => 'Élément dans le panier non trouvé.',
                     'inactive-add'   => 'L\'article inactif ne peut pas être ajouté au panier.',
                     'success'        => 'L\'article a été ajouté au panier avec succès.',
                     'success-remove' => 'L\'article a été supprimé du panier avec succès.',
@@ -473,7 +474,6 @@ return [
                 ],
 
                 'move-wishlist' => [
-                    'error'   => 'Élément dans le panier non trouvé.',
                     'success' => 'L\'article a été déplacé vers la liste de souhaits avec succès.',
                 ],
             ],
