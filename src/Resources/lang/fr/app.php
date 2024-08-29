@@ -454,9 +454,10 @@ return [
 
             'cart' => [
                 'item' => [
+                    'empty'          => 'Votre panier est vide.',
                     'inactive-add'   => 'L\'article inactif ne peut pas être ajouté au panier.',
-                    'success-remove' => 'L\'article a été supprimé du panier avec succès.',
                     'success'        => 'L\'article a été ajouté au panier avec succès.',
+                    'success-remove' => 'L\'article a été supprimé du panier avec succès.',
                 ],
 
                 'quantity' => [

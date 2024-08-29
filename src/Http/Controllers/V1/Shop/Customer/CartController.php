@@ -221,6 +221,12 @@ class CartController extends CustomerController
      */
     public function moveToWishlist(int $cartItemId): Response
     {
+        if (! Cart::getCart()) {
+            return response([
+                'message' => __('rest-api::app.shop.checkout.cart.item.empty'),
+            ], 400);
+        }
+
         Event::dispatch('checkout.cart.item.move-to-wishlist.before', $cartItemId);
 
         Cart::moveToWishlist($cartItemId);
@@ -229,10 +235,7 @@ class CartController extends CustomerController
 
         Cart::collectTotals();
 
-        $cart = Cart::getCart();
-
         return response([
-            'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
             'message' => __('rest-api::app.shop.checkout.cart.move-wishlist.success'),
         ]);
     }

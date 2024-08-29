@@ -455,6 +455,7 @@ return [
 
             'cart' => [
                 'item' => [
+                    'empty'          => 'Sepetiniz boş.',
                     'inactive-add'   => 'Etkin olmayan ürün sepete eklenemez.',
                     'success'        => 'Ürün başarıyla sepete eklendi.',
                     'success-remove' => 'Ürün sepetten başarıyla kaldırıldı.',

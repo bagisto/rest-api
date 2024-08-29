@@ -455,6 +455,7 @@ return [
 
             'cart' => [
                 'item' => [
+                    'empty'          => 'Il tuo carrello è vuoto.',
                     'inactive-add'   => 'L\'articolo inattivo non può essere aggiunto al carrello.',
                     'success'        => 'Articolo aggiunto al carrello con successo.',
                     'success-remove' => 'Articolo rimosso con successo dal carrello.',

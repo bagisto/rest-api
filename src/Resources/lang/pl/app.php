@@ -455,6 +455,7 @@ return [
 
             'cart' => [
                 'item' => [
+                    'empty'          => 'Twój koszyk jest pusty.',
                     'inactive-add'   => 'Nieaktywny przedmiot nie może zostać dodany do koszyka.',
                     'success'        => 'Produkt został pomyślnie dodany do koszyka.',
                     'success-remove' => 'Produkt został pomyślnie usunięty z koszyka.',
