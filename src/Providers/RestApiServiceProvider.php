@@ -11,7 +11,7 @@ class RestApiServiceProvider extends ServiceProvider
 {
     /**
      * Register your middleware aliases here.
-     * 
+     *
      * @var array
      */
     protected $middlewareAliases = [
