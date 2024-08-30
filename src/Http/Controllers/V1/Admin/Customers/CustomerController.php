@@ -53,7 +53,7 @@ class CustomerController extends BaseController
             'gender'        => 'required',
             'email'         => 'required|email|unique:customers,email',
             'date_of_birth' => 'date|before_or_equal:today',
-            'phone'         => ['unique:customers,phone', new PhoneNumber],
+            'phone'         => ['unique:customers,phone'],
         ]);
 
         $password = rand(100000, 10000000);
@@ -100,7 +100,7 @@ class CustomerController extends BaseController
             'gender'        => 'required',
             'email'         => 'required|email|unique:customers,email,'.$id,
             'date_of_birth' => 'date|before_or_equal:today',
-            'phone'         => ['unique:customers,phone,'.$id, new PhoneNumber],
+            'phone'         => ['unique:customers,phone,'.$id],
         ]);
 
         $data = array_merge(request()->only([
