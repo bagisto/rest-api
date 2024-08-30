@@ -47,7 +47,7 @@ class ThemeController
      *      path="/api/v1/theme/customizations/{id}",
      *      operationId="repository",
      *      tags={"Themes"},
-     *      summary="Get Theme Customizations Value",
+     *      summary="Get Theme Customizations Value By ID",
      *      description="Get Theme Customizations",
      *
      *      @OA\Parameter(
