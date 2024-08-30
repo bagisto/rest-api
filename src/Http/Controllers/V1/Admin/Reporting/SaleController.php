@@ -6,7 +6,7 @@ class SaleController extends ReportingController
 {
     /**
      * Request param functions.
-     * 
+     *
      * @var array
      */
     protected $typeFunctions = [

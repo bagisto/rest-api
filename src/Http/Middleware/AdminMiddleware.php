@@ -4,7 +4,6 @@ namespace Webkul\RestApi\Http\Middleware;
 
 use Closure;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class AdminMiddleware

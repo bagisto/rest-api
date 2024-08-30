@@ -180,6 +180,6 @@ class CategoryController extends CatalogController
             return false;
         }
 
-        return !Channel::pluck('root_category_id')->contains($category->id);
+        return ! Channel::pluck('root_category_id')->contains($category->id);
     }
 }
