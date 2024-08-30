@@ -328,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Tax Category have been successfully added.',
                     'delete-success' => 'Tax Category successfully deleted',
+                    'error'          => 'One or more tax rates do not exist.',
                     'update-success' => 'Tax Category updated successfully.',
                 ],
             ],

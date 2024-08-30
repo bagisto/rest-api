@@ -80,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => '分类已成功添加。',
-                'delete-success' => '分类已成功删除',
-                'update-success' => '分类已成功更新。',
-                'not-exist'      => '未找到类别。',
+                'create-success'       => '分类已成功添加。',
+                'delete-success'       => '分类已成功删除',
+                'root-category-delete' => '根类别无法删除。',
+                'update-success'       => '分类已成功更新。',
+                'not-exist'            => '未找到类别。',
 
                 'mass-operations' => [
                     'delete-success'  => '所选分类已成功删除。',
@@ -327,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => '税类别已成功添加。',
                     'delete-success' => '税类别已成功删除',
+                    'error'          => '一个或多个税率不存在。',
                     'update-success' => '税类别已成功更新。',
                 ],
             ],

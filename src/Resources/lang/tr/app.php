@@ -80,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Kategori başarıyla eklendi.',
-                'delete-success' => 'Kategori başarıyla silindi.',
-                'update-success' => 'Kategori başarıyla güncellendi.',
-                'not-exist'      => 'Kategori bulunamadı.',
+                'create-success'       => 'Kategori başarıyla eklendi.',
+                'delete-success'       => 'Kategori başarıyla silindi.',
+                'root-category-delete' => 'Kök kategori silinemiyor.',
+                'update-success'       => 'Kategori başarıyla güncellendi.',
+                'not-exist'            => 'Kategori bulunamadı.',
 
                 'mass-operations' => [
                     'delete-success' => 'Seçilen Kategoriler başarıyla silindi.',
@@ -327,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Vergi Kategorisi başarıyla eklendi.',
                     'delete-success' => 'Vergi Kategorisi başarıyla silindi.',
+                    'error'          => 'Bir veya daha fazla vergi oranı mevcut değil.',
                     'update-success' => 'Vergi Kategorisi başarıyla güncellendi.',
                 ],
             ],

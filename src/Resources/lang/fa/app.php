@@ -80,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'دسته با موفقیت اضافه شد.',
-                'delete-success' => 'دسته با موفقیت حذف شد',
-                'update-success' => 'دسته با موفقیت به روز شد.',
-                'not-exist'      => 'دسته پیدا نشد',
+                'create-success'       => 'دسته با موفقیت اضافه شد.',
+                'delete-success'       => 'دسته با موفقیت حذف شد',
+                'root-category-delete' => 'دسته‌بندی اصلی را نمی‌توان حذف کرد.',
+                'update-success'       => 'دسته با موفقیت به روز شد.',
+                'not-exist'            => 'دسته پیدا نشد',
 
                 'mass-operations' => [
                     'delete-success'  => 'دسته‌های انتخاب شده با موفقیت حذف شدند.',
@@ -327,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'دسته مالیات با موفقیت اضافه شد.',
                     'delete-success' => 'دسته مالیات با موفقیت حذف شد.',
+                    'error'          => 'یکی یا بیشتر از نرخ‌های مالیاتی وجود ندارد.',
                     'update-success' => 'دسته مالیات با موفقیت به روز شد.',
                 ],
             ],

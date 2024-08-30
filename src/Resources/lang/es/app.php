@@ -80,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Categoría añadida con éxito.',
-                'delete-success' => 'Categoría eliminada correctamente',
-                'update-success' => 'Categoría actualizada con éxito.',
-                'not-exist'      => 'Categoría no encontrada.',
+                'create-success'       => 'Categoría añadida con éxito.',
+                'delete-success'       => 'Categoría eliminada correctamente',
+                'root-category-delete' => 'No se puede eliminar la categoría raíz.',
+                'update-success'       => 'Categoría actualizada con éxito.',
+                'not-exist'            => 'Categoría no encontrada.',
 
                 'mass-operations' => [
                     'delete-success' => 'Categorías seleccionadas eliminadas correctamente.',
@@ -327,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Categoría de impuestos añadida con éxito.',
                     'delete-success' => 'Categoría de impuestos eliminada correctamente',
+                    'error'          => 'Una o más tasas de impuestos no existen.',
                     'update-success' => 'Categoría de impuestos actualizada con éxito.',
                 ],
             ],

@@ -80,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Kategorie wurde erfolgreich hinzugefügt.',
-                'delete-success' => 'Kategorie erfolgreich gelöscht',
-                'update-success' => 'Kategorie erfolgreich aktualisiert.',
-                'not-exist'      => 'Kategorie nicht gefunden.',
+                'create-success'       => 'Kategorie wurde erfolgreich hinzugefügt.',
+                'delete-success'       => 'Kategorie erfolgreich gelöscht',
+                'root-category-delete' => 'Die Stammkategorie kann nicht gelöscht werden.',
+                'update-success'       => 'Kategorie erfolgreich aktualisiert.',
+                'not-exist'            => 'Kategorie nicht gefunden.',
 
                 'mass-operations' => [
                     'delete-success' => 'Ausgewählte Kategorien erfolgreich gelöscht.',
@@ -209,6 +210,12 @@ return [
                     'delete-success' => 'E-Mail-Vorlage erfolgreich gelöscht',
                     'update-success' => 'E-Mail-Vorlage erfolgreich aktualisiert.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Newsletter-Abonnement erfolgreich gelöscht.',
+                    'update-failed'  => 'Fehler beim Aktualisieren des Newsletter-Abonnements.',
+                    'update-success' => 'Newsletter-Abonnement erfolgreich aktualisiert.',
+                ],
             ],
 
             'promotions' => [
@@ -321,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Steuerkategorie wurde erfolgreich hinzugefügt.',
                     'delete-success' => 'Steuerkategorie erfolgreich gelöscht',
+                    'error'          => 'Eine oder mehrere Steuersätze existieren nicht.',
                     'update-success' => 'Steuerkategorie erfolgreich aktualisiert.',
                 ],
             ],

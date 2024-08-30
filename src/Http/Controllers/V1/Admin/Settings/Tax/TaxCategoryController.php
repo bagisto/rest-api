@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SettingController;
 use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxCategoryResource;
+use Webkul\Tax\Models\TaxRate;
 use Webkul\Tax\Repositories\TaxCategoryRepository;
 
 class TaxCategoryController extends SettingController
@@ -45,6 +46,14 @@ class TaxCategoryController extends SettingController
             'description',
             'taxrates',
         ]);
+
+        $taxRates = TaxRate::whereIn('id', $data['taxrates'])->get();
+
+        if ($taxRates->count() !== count($data['taxrates'])) {
+            return response([
+                'message' => trans('rest-api::app.admin.settings.taxes.tax-categories.error'),
+            ], 400);
+        }
 
         Event::dispatch('tax.category.create.before');
 

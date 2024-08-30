@@ -49,7 +49,7 @@ class ProductController extends CatalogController
             $searchEngine = core()->getConfigData('catalog.products.search.storefront_mode');
         }
 
-        $products = $this->productRepository
+        $products = $this->getRepositoryInstance()
             ->setSearchEngine($searchEngine ?? 'database')
             ->getAll(array_merge(request()->query(), [
                 'channel_id'           => core()->getCurrentChannel()->id,

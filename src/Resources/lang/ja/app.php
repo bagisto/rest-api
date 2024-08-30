@@ -80,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'カテゴリが正常に追加されました。',
-                'delete-success' => 'カテゴリが正常に削除されました。',
-                'update-success' => 'カテゴリが正常に更新されました。',
-                'not-exist'      => 'カテゴリが見つかりません。',
+                'create-success'       => 'カテゴリが正常に追加されました。',
+                'delete-success'       => 'カテゴリが正常に削除されました。',
+                'root-category-delete' => 'ルートカテゴリーは削除できません。',
+                'update-success'       => 'カテゴリが正常に更新されました。',
+                'not-exist'            => 'カテゴリが見つかりません。',
 
                 'mass-operations' => [
                     'delete-success' => '選択したカテゴリが正常に削除されました。',
@@ -327,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => '税カテゴリが正常に追加されました。',
                     'delete-success' => '税カテゴリが正常に削除されました。',
+                    'error'          => '1つ以上の税率が存在しません。',
                     'update-success' => '税カテゴリが正常に更新されました。',
                 ],
             ],

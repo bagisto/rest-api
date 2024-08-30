@@ -80,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'הקטגוריה נוספה בהצלחה.',
-                'delete-success' => 'הקטגוריה נמחקה בהצלחה',
-                'update-success' => 'הקטגוריה עודכנה בהצלחה.',
-                'not-exist'      => 'הקטגוריה לא נמצאה.',
+                'create-success'       => 'הקטגוריה נוספה בהצלחה.',
+                'delete-success'       => 'הקטגוריה נמחקה בהצלחה',
+                'root-category-delete' => 'קטגוריית השורש לא ניתנת למחיקה.',
+                'update-success'       => 'הקטגוריה עודכנה בהצלחה.',
+                'not-exist'            => 'הקטגוריה לא נמצאה.',
 
                 'mass-operations' => [
                     'delete-success'  => 'הקטגוריות שנבחרו נמחקו בהצלחה.',
@@ -327,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'קטגוריית המס נוספה בהצלחה.',
                     'delete-success' => 'קטגוריית המס נמחקה בהצלחה',
+                    'error'          => 'שיעור מס אחד או יותר אינם קיימים',
                     'update-success' => 'קטגוריית המס עודכנה בהצלחה.',
                 ],
             ],

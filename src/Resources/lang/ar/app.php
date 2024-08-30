@@ -82,6 +82,7 @@ return [
             'categories' => [
                 'create-success' => 'تمت إضافة الفئة بنجاح.',
                 'delete-success' => 'تم حذف الفئة بنجاح.',
+                'root-category-delete' => 'The Root category can not be deleted.',
                 'update-success' => 'تم تحديث الفئة بنجاح.',
                 'not-exist'      => 'لم يتم العثور على الفئة.',
 
@@ -327,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'تمت إضافة فئة الضريبة بنجاح.',
                     'delete-success' => 'تم حذف فئة الضريبة بنجاح.',
+                    'error'          => 'لا يوجد واحد أو أكثر من معدلات الضرائب.',
                     'update-success' => 'تم تحديث فئة الضريبة بنجاح.',
                 ],
             ],

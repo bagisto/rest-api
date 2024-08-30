@@ -80,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Categorie is succesvol toegevoegd.',
-                'delete-success' => 'Categorie succesvol verwijderd.',
-                'update-success' => 'Categorie succesvol bijgewerkt.',
-                'not-exist'      => 'Categorie niet gevonden.',
+                'create-success'       => 'Categorie is succesvol toegevoegd.',
+                'delete-success'       => 'Categorie succesvol verwijderd.',
+                'root-category-delete' => 'De rootcategorie kan niet worden verwijderd.',
+                'update-success'       => 'Categorie succesvol bijgewerkt.',
+                'not-exist'            => 'Categorie niet gevonden.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Geselecteerde categorieën succesvol verwijderd.',
@@ -327,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Belastingcategorie is succesvol toegevoegd.',
                     'delete-success' => 'Belastingcategorie succesvol verwijderd.',
+                    'error'          => 'Een of meer belastingtarieven bestaan niet.',
                     'update-success' => 'Belastingcategorie succesvol bijgewerkt.',
                 ],
             ],
