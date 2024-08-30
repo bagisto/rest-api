@@ -6,8 +6,10 @@ class CustomerController extends ReportingController
 {
     /**
      * Request param functions.
+     * 
+     * @var array
      */
-    protected array $typeFunctions = [
+    protected $typeFunctions = [
         'total-customers'             => 'getTotalCustomersStats',
         'customers-traffic'           => 'getCustomersTrafficStats',
         'customers-with-most-sales'   => 'getCustomersWithMostSales',
