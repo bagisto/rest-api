@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
 
 /**
  * @OA\Info(
- *      version="2.1.2",
+ *      version="2.2.0",
  *      title="Bagisto Admin Rest API Documentation",
  *      description="Bagisto Admin Rest API Documentation",
  *
@@ -45,6 +45,10 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  * @OA\Tag(
  *     name="Orders",
  *     description="API Endpoints of Admin Order"
+ * )
+ * @OA\Tag(
+ *     name="ReOrders",
+ *     description="API Endpoints of Admin Re Order"
  * )
  * @OA\Tag(
  *     name="Invoices",

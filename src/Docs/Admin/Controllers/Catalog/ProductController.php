@@ -652,6 +652,12 @@ class ProductController
      *                      enum={0,1}
      *                  ),
      *                  @OA\Property(
+     *                      property="weight",
+     *                      description="Weight",
+     *                      type="integer",
+     *                      example=1,
+     *                  ),
+     *                  @OA\Property(
      *                      property="manage_stock",
      *                      description="Manage Stock status",
      *                      type="integer",
@@ -775,6 +781,12 @@ class ProductController
      *                      },
      *
      *                      @OA\Items(type="integer", example=1)
+     *                  ),
+     *                  @OA\Property(
+     *                      property="inventories",
+     *                      description="Inventories",
+     *                      type="object",
+     *                      @OA\Property(property="1", description="Inventory source id", format="id", type="integer", example=270)
      *                  ),
      *
      *                  @OA\Property(

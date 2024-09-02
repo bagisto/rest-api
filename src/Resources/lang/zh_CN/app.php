@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => '地址保存成功',
+                'address-not-available'   => '没有可用的配送方式。',
+                'create'                  => '商品成功添加到购物车',
+                'error'                   => '出错了！',
+                'order-create-success'    => '订单成功下达。',
+                'payment-create-success'  => '支付方式成功保存',
+                'shipping-create-success' => '配送方式成功保存',
+            ],
+
             'invoices' => [
                 'create-success' => '发票已成功添加。',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => '分类已成功添加。',
-                'delete-success' => '分类已成功删除',
-                'update-success' => '分类已成功更新。',
-                'not-exist'      => '未找到类别。',
+                'create-success'       => '分类已成功添加。',
+                'delete-success'       => '分类已成功删除',
+                'root-category-delete' => '根类别无法删除。',
+                'update-success'       => '分类已成功更新。',
+                'not-exist'            => '未找到类别。',
 
                 'mass-operations' => [
                     'delete-success'  => '所选分类已成功删除。',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => '税类别已成功添加。',
                     'delete-success' => '税类别已成功删除',
+                    'error'          => '一个或多个税率不存在。',
                     'update-success' => '税类别已成功更新。',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => '商品已成功添加到购物车。',
-                    'success-remove' => '商品已成功从购物车中移除。',
+                    'empty'           => '购物车是空的。',
+                    'error'           => '购物车中的项目未找到。',
+                    'inactive-add'    => '无法将非活动商品添加到购物车。',
+                    'invalid-product' => '产品 ID 无效。',
+                    'success'         => '商品已成功添加到购物车。',
+                    'success-remove'  => '商品已成功从购物车中移除。',
                 ],
 
                 'quantity' => [

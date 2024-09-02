@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'تم حفظ العنوان بنجاح',
+                'address-not-available'   => 'لا توجد طرق شحن متاحة.',
+                'create'                  => 'تمت إضافة العنصر بنجاح إلى السلة',
+                'error'                   => 'حدث خطأ ما!',
+                'order-create-success'    => 'تم تقديم الطلب بنجاح.',
+                'payment-create-success'  => 'تم حفظ طريقة الدفع بنجاح',
+                'shipping-create-success' => 'تم حفظ طريقة الشحن بنجاح',
+            ],
+
             'invoices' => [
                 'create-success' => 'تم إضافة الفاتورة بنجاح.',
 
@@ -72,6 +82,7 @@ return [
             'categories' => [
                 'create-success' => 'تمت إضافة الفئة بنجاح.',
                 'delete-success' => 'تم حذف الفئة بنجاح.',
+                'root-category-delete' => 'The Root category can not be deleted.',
                 'update-success' => 'تم تحديث الفئة بنجاح.',
                 'not-exist'      => 'لم يتم العثور على الفئة.',
 
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'تمت إضافة فئة الضريبة بنجاح.',
                     'delete-success' => 'تم حذف فئة الضريبة بنجاح.',
+                    'error'          => 'لا يوجد واحد أو أكثر من معدلات الضرائب.',
                     'update-success' => 'تم تحديث فئة الضريبة بنجاح.',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'تمت إضافة العنصر بنجاح إلى العربة.',
-                    'success-remove' => 'تمت إزالة العنصر بنجاح من العربة.',
+                    'empty'           => 'سلة التسوق الخاصة بك فارغة.',
+                    'error'           => 'لم يتم العثور على عنصر في السلة.',
+                    'inactive-add'    => 'لا يمكن إضافة العنصر غير النشط إلى سلة التسوق.',
+                    'invalid-product' => 'معرف المنتج غير صالح.',
+                    'success'         => 'تمت إضافة العنصر بنجاح إلى العربة.',
+                    'success-remove'  => 'تمت إزالة العنصر بنجاح من العربة.',
                 ],
 
                 'quantity' => [

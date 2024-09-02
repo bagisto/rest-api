@@ -2,22 +2,22 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Webkul\Core\Rules\PhoneNumber;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
-use Webkul\Core\Rules\AlphaNumericSpace;
 use Illuminate\Validation\ValidationException;
-use Webkul\Customer\Repositories\CustomerRepository;
-use Webkul\Core\Repositories\SubscribersListRepository;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Webkul\Customer\Repositories\CustomerGroupRepository;
-use Webkul\Shop\Http\Requests\Customer\RegistrationRequest;
-use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use Webkul\Core\Repositories\SubscribersListRepository;
+use Webkul\Core\Rules\PhoneNumber;
+use Webkul\Customer\Repositories\CustomerGroupRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerResource;
+use Webkul\Shop\Http\Requests\Customer\RegistrationRequest;
 
 class AuthController extends CustomerController
 {
@@ -32,16 +32,12 @@ class AuthController extends CustomerController
         protected CustomerRepository $customerRepository,
         protected CustomerGroupRepository $customerGroupRepository,
         protected SubscribersListRepository $subscriptionRepository
-    ) {
-        parent::__construct();
-    }
+    ) {}
 
     /**
      * Register the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function register(RegistrationRequest $registrationRequest)
+    public function register(RegistrationRequest $registrationRequest): Response
     {
         Event::dispatch('customer.registration.before');
 
@@ -64,10 +60,8 @@ class AuthController extends CustomerController
 
     /**
      * Login the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function login(Request $request)
+    public function login(Request $request): Response
     {
         $request->validate([
             'email'    => 'required|email',
@@ -95,7 +89,7 @@ class AuthController extends CustomerController
             /**
              * Event passed to prepare cart after login.
              */
-            Event::dispatch('customer.after.login', $request->get('email'));
+            Event::dispatch('customer.after.login', $customer);
 
             return response([
                 'data'    => new CustomerResource($customer),
@@ -121,10 +115,8 @@ class AuthController extends CustomerController
 
     /**
      * Get details for current logged in customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function get(Request $request)
+    public function get(Request $request): Response
     {
         $customer = $this->resolveShopUser($request);
 
@@ -135,18 +127,16 @@ class AuthController extends CustomerController
 
     /**
      * Update the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request): Response
     {
         $customer = $this->resolveShopUser($request);
 
         $isPasswordChanged = false;
 
         $request->validate([
-            'first_name'                => ['required', new AlphaNumericSpace()],
-            'last_name'                 => ['required', new AlphaNumericSpace()],
+            'first_name'                => ['required'],
+            'last_name'                 => ['required'],
             'gender'                    => 'required|in:Other,Male,Female',
             'date_of_birth'             => 'date|before:today',
             'email'                     => 'email|unique:customers,email,'.$customer->id,
@@ -161,9 +151,10 @@ class AuthController extends CustomerController
 
         $data = $request->all();
 
-        if (core()->getCurrentChannel()->theme === 'default' 
-            && !isset($data['image'])) 
-        {
+        if (
+            core()->getCurrentChannel()->theme === 'default' 
+            && ! isset($data['image'])
+        ) {
             $data['image']['image_0'] = '';
         }
 
@@ -184,21 +175,38 @@ class AuthController extends CustomerController
         Event::dispatch('customer.update.before');
 
         if ($customer = $this->customerRepository->update($data, $customer->id)) {
-                if($isPasswordChanged){
-                    Event::dispatch('customer.password.update.after', $customer);
-                }   
+            if ($isPasswordChanged){
+                Event::dispatch('customer.password.update.after', $customer);
+            }
 
-                if ($request->boolean('subscribed_to_news_letter')) {
+            Event::dispatch('customer.update.after', $customer);
+
+            if ($request->boolean('subscribed_to_news_letter')) {
                 $subscription = $this->subscriptionRepository->firstOrNew(['email' => $data['email']]);
 
-                $subscription->fill([
-                    'customer_id'   => $customer->id,
-                    'is_subscribed' => 1,
-                    'channel_id'    => core()->getCurrentChannel()->id,
-                    'token'         => uniqid(),
-                ])->save();
+                if ($subscription) {
+                    $this->subscriptionRepository->update([
+                        'customer_id'   => $customer->id,
+                        'is_subscribed' => 1,
+                    ], $subscription->id);
+                } else {
+                    $this->subscriptionRepository->create([
+                        'email'         => $data['email'],
+                        'customer_id'   => $customer->id,
+                        'channel_id'    => core()->getCurrentChannel()->id,
+                        'is_subscribed' => 1,
+                        'token'         => uniqid(),
+                    ]);
+                }
             } else {
-                $this->subscriptionRepository->where('email', $data['email'])->update(['is_subscribed' => 0]);
+                $subscription = $this->subscriptionRepository->findOneWhere(['email' => $data['email']]);
+
+                if ($subscription) {
+                    $this->subscriptionRepository->update([
+                        'customer_id'   => $customer->id,
+                        'is_subscribed' => 0,
+                    ], $subscription->id);
+                }
             }
 
             if ($request->hasFile('image')) {
@@ -219,17 +227,13 @@ class AuthController extends CustomerController
             ]);
         }
 
-        Event::dispatch('customer.update.after', $customer);
-
         return response(['message' => trans('rest-api::app.shop.customer.accounts.error.update-failed')]);
     }
 
     /**
      * Logout the customer.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
+    public function logout(Request $request): Response
     {
         $customer = $this->resolveShopUser($request);
 
@@ -246,10 +250,8 @@ class AuthController extends CustomerController
 
     /**
      * Send Reset Password Link.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function forgotPassword(Request $request)
+    public function forgotPassword(Request $request): Response
     {
         $request->validate([
             'email' => 'required|email',

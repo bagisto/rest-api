@@ -324,7 +324,7 @@ class CartController
 
     /**
      * @OA\Delete(
-     *      path="/api/v1/customer/cart/empty",
+     *      path="/api/v1/customer/cart/remove",
      *      operationId="emptyCart",
      *      tags={"Cart"},
      *      summary="Delete all item from cart",
@@ -351,7 +351,7 @@ class CartController
      *      )
      * )
      */
-    public function empty()
+    public function remove()
     {
     }
 

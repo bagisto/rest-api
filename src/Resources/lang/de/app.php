@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Adresse erfolgreich gespeichert',
+                'address-not-available'   => 'Es sind keine Versandmethoden verfügbar.',
+                'create'                  => 'Artikel erfolgreich in den Warenkorb gelegt',
+                'error'                   => 'Etwas ist schiefgegangen!',
+                'order-create-success'    => 'Bestellung wurde erfolgreich aufgegeben.',
+                'payment-create-success'  => 'Zahlungsmethode erfolgreich gespeichert',
+                'shipping-create-success' => 'Versandmethode erfolgreich gespeichert',
+            ],
+
             'invoices' => [
                 'create-success' => 'Rechnung wurde erfolgreich hinzugefügt.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Kategorie wurde erfolgreich hinzugefügt.',
-                'delete-success' => 'Kategorie erfolgreich gelöscht',
-                'update-success' => 'Kategorie erfolgreich aktualisiert.',
-                'not-exist'      => 'Kategorie nicht gefunden.',
+                'create-success'       => 'Kategorie wurde erfolgreich hinzugefügt.',
+                'delete-success'       => 'Kategorie erfolgreich gelöscht',
+                'root-category-delete' => 'Die Stammkategorie kann nicht gelöscht werden.',
+                'update-success'       => 'Kategorie erfolgreich aktualisiert.',
+                'not-exist'            => 'Kategorie nicht gefunden.',
 
                 'mass-operations' => [
                     'delete-success' => 'Ausgewählte Kategorien erfolgreich gelöscht.',
@@ -199,6 +210,12 @@ return [
                     'delete-success' => 'E-Mail-Vorlage erfolgreich gelöscht',
                     'update-success' => 'E-Mail-Vorlage erfolgreich aktualisiert.',
                 ],
+
+                'subscribers' => [
+                    'delete-success' => 'Newsletter-Abonnement erfolgreich gelöscht.',
+                    'update-failed'  => 'Fehler beim Aktualisieren des Newsletter-Abonnements.',
+                    'update-success' => 'Newsletter-Abonnement erfolgreich aktualisiert.',
+                ],
             ],
 
             'promotions' => [
@@ -311,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Steuerkategorie wurde erfolgreich hinzugefügt.',
                     'delete-success' => 'Steuerkategorie erfolgreich gelöscht',
+                    'error'          => 'Eine oder mehrere Steuersätze existieren nicht.',
                     'update-success' => 'Steuerkategorie erfolgreich aktualisiert.',
                 ],
             ],
@@ -439,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'Artikel wurde erfolgreich zum Warenkorb hinzugefügt.',
-                    'success-remove' => 'Artikel wurde erfolgreich aus dem Warenkorb entfernt.',
+                    'empty'           => 'Ihr Warenkorb ist leer.',
+                    'error'           => 'Artikel im Warenkorb nicht gefunden.',
+                    'inactive-add'    => 'Inaktiver Artikel kann nicht in den Warenkorb gelegt werden.',
+                    'invalid-product' => 'Produkt-ID ist ungültig.',
+                    'success'         => 'Artikel wurde erfolgreich zum Warenkorb hinzugefügt.',
+                    'success-remove'  => 'Artikel wurde erfolgreich aus dem Warenkorb entfernt.',
                 ],
 
                 'quantity' => [

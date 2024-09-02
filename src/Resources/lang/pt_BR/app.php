@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Endereço salvo com sucesso',
+                'address-not-available'   => 'Não há métodos de envio disponíveis.',
+                'create'                  => 'Item adicionado com sucesso ao carrinho',
+                'error'                   => 'Algo deu errado!',
+                'order-create-success'    => 'Pedido realizado com sucesso.',
+                'payment-create-success'  => 'Método de pagamento salvo com sucesso',
+                'shipping-create-success' => 'Método de envio salvo com sucesso',
+            ],
+
             'invoices' => [
                 'create-success' => 'Fatura adicionada com sucesso.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Categoria adicionada com sucesso.',
-                'delete-success' => 'Categoria excluída com sucesso.',
-                'update-success' => 'Categoria atualizada com sucesso.',
-                'not-exist'      => 'Categoria não encontrada.',
+                'create-success'       => 'Categoria adicionada com sucesso.',
+                'delete-success'       => 'Categoria excluída com sucesso.',
+                'root-category-delete' => 'A categoria raiz não pode ser excluída.',
+                'update-success'       => 'Categoria atualizada com sucesso.',
+                'not-exist'            => 'Categoria não encontrada.',
 
                 'mass-operations' => [
                     'delete-success' => 'Categorias selecionadas excluídas com sucesso.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Categoria de imposto adicionada com sucesso.',
                     'delete-success' => 'Categoria de imposto excluída com sucesso.',
+                    'error'          => 'Uma ou mais taxas de imposto não existem.',
                     'update-success' => 'Categoria de imposto atualizada com sucesso.',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'Item adicionado ao carrinho com sucesso.',
-                    'success-remove' => 'Item removido do carrinho com sucesso.',
+                    'empty'           => 'Seu carrinho está vazio.',
+                    'error'           => 'Item no carrinho não encontrado.',
+                    'inactive-add'    => 'Item inativo não pode ser adicionado ao carrinho.',
+                    'invalid-product' => 'O ID do produto é inválido.',
+                    'success'         => 'Item adicionado ao carrinho com sucesso.',
+                    'success-remove'  => 'Item removido do carrinho com sucesso.',
                 ],
 
                 'quantity' => [

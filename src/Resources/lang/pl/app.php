@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Adres zapisany pomyślnie',
+                'address-not-available'   => 'Brak dostępnych metod wysyłki.',
+                'create'                  => 'Przedmiot pomyślnie dodany do koszyka',
+                'error'                   => 'Coś poszło nie tak!',
+                'order-create-success'    => 'Zamówienie zostało złożone pomyślnie.',
+                'payment-create-success'  => 'Metoda płatności zapisana pomyślnie',
+                'shipping-create-success' => 'Metoda wysyłki zapisana pomyślnie',
+            ],
+
             'invoices' => [
                 'create-success' => 'Faktura została pomyślnie dodana.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Kategoria została pomyślnie dodana.',
-                'delete-success' => 'Kategoria pomyślnie usunięta.',
-                'update-success' => 'Kategoria została pomyślnie zaktualizowana.',
-                'not-exist'      => 'Nie znaleziono kategorii.',
+                'create-success'       => 'Kategoria została pomyślnie dodana.',
+                'delete-success'       => 'Kategoria pomyślnie usunięta.',
+                'root-category-delete' => 'Kategorii głównej nie można usunąć.',
+                'update-success'       => 'Kategoria została pomyślnie zaktualizowana.',
+                'not-exist'            => 'Nie znaleziono kategorii.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Wybrane kategorie pomyślnie usunięte.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Kategoria podatkowa została pomyślnie dodana.',
                     'delete-success' => 'Kategoria podatkowa pomyślnie usunięta.',
+                    'error'          => 'Jeden lub więcej stawek podatkowych nie istnieje.',
                     'update-success' => 'Kategoria podatkowa została pomyślnie zaktualizowana.',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'Produkt został pomyślnie dodany do koszyka.',
-                    'success-remove' => 'Produkt został pomyślnie usunięty z koszyka.',
+                    'empty'           => 'Twój koszyk jest pusty.',
+                    'error'           => 'Przedmiot w koszyku nie znaleziony.',
+                    'inactive-add'    => 'Nieaktywny przedmiot nie może zostać dodany do koszyka.',
+                    'invalid-product' => 'Identyfikator produktu jest nieprawidłowy.',
+                    'success'         => 'Produkt został pomyślnie dodany do koszyka.',
+                    'success-remove'  => 'Produkt został pomyślnie usunięty z koszyka.',
                 ],
 
                 'quantity' => [

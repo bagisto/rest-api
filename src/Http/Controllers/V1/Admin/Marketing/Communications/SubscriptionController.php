@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\SubscribersListRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
@@ -26,11 +27,9 @@ class SubscriptionController extends MarketingController
     }
 
     /**
-     * To unsubscribe the user without deleting the resource of the subscribed
-     *
-     * @return \Illuminate\Http\Response
+     * To unsubscribe the user without deleting the resource of the subscribed,
      */
-    public function update()
+    public function update(): Response
     {
         $validatedData = $this->validate(request(), [
             'id'            => 'required',
@@ -49,7 +48,7 @@ class SubscriptionController extends MarketingController
 
         $result = $subscriber->update(['is_subscribed' => $validatedData['is_subscribed']]);
 
-        if (! $result) {
+        if (!$result) {
             return response([
                 'message' => trans('rest-api::app.admin.marketing.communications.subscribers.update-failed'),
             ], 500);
@@ -62,16 +61,14 @@ class SubscriptionController extends MarketingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $subscription = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('marketing.subscriber.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $subscription->delete();
 
         Event::dispatch('marketing.subscriber.delete.after', $id);
 

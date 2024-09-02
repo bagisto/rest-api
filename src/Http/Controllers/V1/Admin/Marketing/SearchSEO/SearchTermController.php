@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Marketing\Repositories\SearchTermRepository;
@@ -28,10 +29,8 @@ class SearchTermController extends MarketingController
 
     /**
      * Store a newly created resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(): Response
     {
         $this->validate(request(), [
             'term'         => 'required',
@@ -59,10 +58,8 @@ class SearchTermController extends MarketingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id): Response
     {
         $this->validate(request(), [
             'term'         => 'required',
@@ -92,16 +89,14 @@ class SearchTermController extends MarketingController
 
     /**
      * Remove the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $searchTerm = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('marketing.search_seo.search_terms.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $searchTerm->delete($id);
 
         Event::dispatch('marketing.search_seo.search_terms.delete.after', $id);
 
@@ -112,10 +107,8 @@ class SearchTermController extends MarketingController
 
      /**
      * To mass delete the url rewrites.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
         $searchTermIds = $massDestroyRequest->input('indices');
 

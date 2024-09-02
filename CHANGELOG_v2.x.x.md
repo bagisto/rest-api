@@ -2,6 +2,38 @@
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
+## **v2.2.0 (2nd of September 2024)** - *Release*
+
+* #362 [Enhancement] - On the Shop API -> Theme API -> Please update the name of the API -> Get Theme Customization by id.
+
+* #349 [Fixed] - wrong parameter raise error with customer on login listener.
+
+* #347 [fixed] - Email verification is not sent while registering a new customer through (REST API) /api/v1/customer/register.
+
+* #352 [fixed] - On the Admin API -> Categories API -> Mass Delete Categories -> while hitting the API getting exception.
+
+* #353 [fixed] - On the admin API -> Please handle the 500 Internal server error on API on various cases.
+
+* #354 [fixed] - On the admin API -> Store the customer -> getting internal server error on hitting the API.
+
+* #355 [fixed] - On the admin API -> Update customer -> getting internal server error on hitting the API.
+
+* #358 [fixed] - On the admin API -> Sales Reporting API -> getting internal server error.
+
+* #360 [fixed] - On the Shop API -> Wishlists API - Get Customer Wishlist -> product details are showing null of the wishlist products.
+
+* #363 [fixed] - On the Shop API -> Products API -> unable to get the product data.
+
+* #367 [fixed] - On the Shop API -> Cart API -> Add Product to add to cart API -> if we give the different id on request data then also product going to add to cart.
+
+* #368 [fixed] - On the Shop API -> Cart -> Update Cart Item API -> Giving invalid cart id but the response is not showing accordingly.[not found].
+
+* #369 [fixed] - On the Shop API -> Cart API -> Delete all items from cart API -> Please update the response message.
+
+* #370 [fixed] - On the Shop API -> Cart API -> move cart item to customer wishlist API -> on giving wrong cart item id the response message not showing correct.
+
+* #371 [fixed] - On the Shop API -> Cart API -> move cart item to customer wishlist API -> please update the message.
+
 ## **v2.1.0 (10th of July 2024)** - *Release*
 
 * #268 [enhancement] - Add decimal option for currency create or update api in the request body.

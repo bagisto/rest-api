@@ -100,6 +100,8 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::post('{id}', 'addOrRemove');
 
         Route::post('{id}/move-to-cart', 'moveToCart');
+
+        Route::delete('all', 'destroyAll');
     });
 
     /**
@@ -114,7 +116,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
 
         Route::delete('remove/{cartItemId}', 'removeItem');
 
-        Route::delete('empty', 'empty');
+        Route::delete('remove', 'removeall');
 
         Route::post('move-to-wishlist/{cartItemId}', 'moveToWishlist');
 

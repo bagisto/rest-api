@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Adres succesvol opgeslagen',
+                'address-not-available'   => 'Er zijn geen verzendmethoden beschikbaar.',
+                'create'                  => 'Artikel succesvol aan winkelwagentje toegevoegd',
+                'error'                   => 'Er is iets fout gegaan!',
+                'order-create-success'    => 'Bestelling is succesvol geplaatst.',
+                'payment-create-success'  => 'Betaalmethode succesvol opgeslagen',
+                'shipping-create-success' => 'Verzendmethode succesvol opgeslagen',
+            ],
+
             'invoices' => [
                 'create-success' => 'Factuur is succesvol toegevoegd.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Categorie is succesvol toegevoegd.',
-                'delete-success' => 'Categorie succesvol verwijderd.',
-                'update-success' => 'Categorie succesvol bijgewerkt.',
-                'not-exist'      => 'Categorie niet gevonden.',
+                'create-success'       => 'Categorie is succesvol toegevoegd.',
+                'delete-success'       => 'Categorie succesvol verwijderd.',
+                'root-category-delete' => 'De rootcategorie kan niet worden verwijderd.',
+                'update-success'       => 'Categorie succesvol bijgewerkt.',
+                'not-exist'            => 'Categorie niet gevonden.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Geselecteerde categorieën succesvol verwijderd.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Belastingcategorie is succesvol toegevoegd.',
                     'delete-success' => 'Belastingcategorie succesvol verwijderd.',
+                    'error'          => 'Een of meer belastingtarieven bestaan niet.',
                     'update-success' => 'Belastingcategorie succesvol bijgewerkt.',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'Item is succesvol toegevoegd aan winkelwagen.',
-                    'success-remove' => 'Item is succesvol verwijderd uit de winkelwagen.',
+                    'empty'           => 'Je winkelwagentje is leeg.',
+                    'error'           => 'Artikeltje in het winkelwagentje niet gevonden.',
+                    'inactive-add'    => 'Inactief item kan niet aan de winkelwagen worden toegevoegd.',
+                    'invalid-product' => 'Product-ID is ongeldig.',
+                    'success'         => 'Item is succesvol toegevoegd aan winkelwagen.',
+                    'success-remove'  => 'Item is succesvol verwijderd uit de winkelwagen.',
                 ],
 
                 'quantity' => [

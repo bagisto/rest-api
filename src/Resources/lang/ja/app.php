@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => '住所が正常に保存されました',
+                'address-not-available'   => '利用可能な配送方法はありません。',
+                'create'                  => 'アイテムが正常にカートに追加されました',
+                'error'                   => '何かがうまくいかなかった！',
+                'order-create-success'    => '注文が正常に完了しました。',
+                'payment-create-success'  => '支払い方法が正常に保存されました',
+                'shipping-create-success' => '配送方法が正常に保存されました',
+            ],
+
             'invoices' => [
                 'create-success' => '請求書が正常に追加されました。',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'カテゴリが正常に追加されました。',
-                'delete-success' => 'カテゴリが正常に削除されました。',
-                'update-success' => 'カテゴリが正常に更新されました。',
-                'not-exist'      => 'カテゴリが見つかりません。',
+                'create-success'       => 'カテゴリが正常に追加されました。',
+                'delete-success'       => 'カテゴリが正常に削除されました。',
+                'root-category-delete' => 'ルートカテゴリーは削除できません。',
+                'update-success'       => 'カテゴリが正常に更新されました。',
+                'not-exist'            => 'カテゴリが見つかりません。',
 
                 'mass-operations' => [
                     'delete-success' => '選択したカテゴリが正常に削除されました。',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => '税カテゴリが正常に追加されました。',
                     'delete-success' => '税カテゴリが正常に削除されました。',
+                    'error'          => '1つ以上の税率が存在しません。',
                     'update-success' => '税カテゴリが正常に更新されました。',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => '商品がカートに正常に追加されました。',
-                    'success-remove' => '商品がカートから正常に削除されました。',
+                    'empty'           => 'カートは空です。',
+                    'error'           => 'ト内の商品が見つかりません。',
+                    'inactive-add'    => '無効なアイテムはカートに追加できません',
+                    'invalid-product' => '商品IDが無効です。',
+                    'success'         => '商品がカートに正常に追加されました。',
+                    'success-remove'  => '商品がカートから正常に削除されました。',
                 ],
 
                 'quantity' => [

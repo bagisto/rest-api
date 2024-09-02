@@ -18,9 +18,7 @@ class ShipmentController extends SalesController
     public function __construct(
         protected OrderRepository $orderRepository,
         protected OrderItemRepository $orderItemRepository
-    ) {
-        parent::__construct();
-    }
+    ) {}
 
     /**
      * Repository class name.
@@ -40,10 +38,8 @@ class ShipmentController extends SalesController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, int $orderId)
+    public function store(Request $request, int $orderId): \Illuminate\Http\Response
     {
         $order = $this->orderRepository->findOrFail($orderId);
 
@@ -58,11 +54,13 @@ class ShipmentController extends SalesController
             'shipment.items.*.*' => 'required|numeric|min:0',
         ]);
 
-        $data = request()->only([
+        $data = array_merge(request()->only([
             'shipment', 
             'carrier_title',
             'source',
             'items',
+        ]), [
+            'order_id' => $orderId
         ]);
 
         if (! $this->isInventoryValidate($data)) {
@@ -83,14 +81,11 @@ class ShipmentController extends SalesController
 
     /**
      * Checks if requested quantity available or not.
-     *
-     * @param  array  $data
-     * @return bool
      */
-    public function isInventoryValidate(&$data)
+    public function isInventoryValidate(array $data): bool
     {
         if (! isset($data['shipment']['items'])) {
-            return;
+            return false;
         }
 
         $valid = false;

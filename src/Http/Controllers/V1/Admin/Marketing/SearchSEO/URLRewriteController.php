@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Marketing\Repositories\URLRewriteRepository;
@@ -28,10 +29,8 @@ class URLRewriteController extends MarketingController
 
     /**
      * Store a newly created resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(): Response
     {
         $this->validate(request(), [
             'entity_type'   => 'required:in:category,product,cms_page',
@@ -61,10 +60,8 @@ class URLRewriteController extends MarketingController
 
     /**
      * Update the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id): Response
     {
         $this->validate(request(), [
             'entity_type'   => 'required:in:category,product,cms_page',
@@ -94,16 +91,14 @@ class URLRewriteController extends MarketingController
 
     /**
      * Remove the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $urlRewrite = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('marketing.search_seo.url_rewrites.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $urlRewrite->delete();
 
         Event::dispatch('marketing.search_seo.url_rewrites.delete.after', $id);
 
@@ -114,10 +109,8 @@ class URLRewriteController extends MarketingController
 
     /**
      * To mass delete the url rewrites.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
         $urlRewriteIds = $massDestroyRequest->input('indices');
 

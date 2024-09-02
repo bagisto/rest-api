@@ -14,9 +14,7 @@ class ProductReviewController extends CatalogController
      *
      * @return void
      */
-    public function __construct(protected ProductReviewAttachmentRepository $productReviewAttachmentRepository) 
-    {
-    }
+    public function __construct(protected ProductReviewAttachmentRepository $productReviewAttachmentRepository) {}
 
     /**
      * Repository class name.
@@ -36,10 +34,8 @@ class ProductReviewController extends CatalogController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, int $productId)
+    public function store(Request $request, int $productId): \Illuminate\Http\Response
     {
         $this->validate($request, [
             'title'         => 'required',

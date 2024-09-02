@@ -3,44 +3,27 @@
 namespace Webkul\RestApi\Http\Resources\V1\Shop\Catalog;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Webkul\Checkout\Facades\Cart;
 use Webkul\Product\Facades\ProductImage;
 use Webkul\Product\Helpers\BundleOption;
 
 class ProductResource extends JsonResource
 {
     /**
-     * Product review helper.
-     *
-     * @var \Webkul\Product\Helpers\Review
-     */
-    protected $productReviewHelper;
-
-    /**
-     * Create a new resource instance.
-     *
-     * @return void
-     */
-    public function __construct($resource)
-    {
-        $this->productReviewHelper = app(\Webkul\Product\Helpers\Review::class);
-
-        parent::__construct($resource);
-    }
-
-    /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
     {
         /* assign product */
-        $product = $this->product ? $this->product : $this;
+        $product = $this->product ?? $this;
 
         /* get type instance */
         $productTypeInstance = $product->getTypeInstance();
+
+        /* Get review helper */
+        $reviewHelper = app(\Webkul\Product\Helpers\Review::class);
 
         /* generating resource */
         return [
@@ -62,16 +45,16 @@ class ProductResource extends JsonResource
 
             /* product's reviews */
             'reviews' => [
-                'total'          => $total = $this->productReviewHelper->getTotalReviews($product),
-                'total_rating'   => $total ? $this->productReviewHelper->getTotalRating($product) : 0,
-                'average_rating' => $total ? $this->productReviewHelper->getAverageRating($product) : 0,
-                'percentage'     => $total ? json_encode($this->productReviewHelper->getPercentageRating($product)) : [],
+                'total'          => $total = $reviewHelper->getTotalReviews($product),
+                'total_rating'   => $total ? $reviewHelper->getTotalRating($product) : 0,
+                'average_rating' => $total ? $reviewHelper->getAverageRating($product) : 0,
+                'percentage'     => $total ? json_encode($reviewHelper->getPercentageRating($product)) : [],
             ],
 
             /* product's checks */
             'in_stock'              => $product->haveSufficientQuantity(1),
             'is_saved'              => false,
-            'is_item_in_cart'       => Cart::hasProduct($product),
+            'is_item_in_cart'       => \Cart::getCart(),
             'show_quantity_changer' => $this->when(
                 $product->type !== 'grouped',
                 $product->getTypeInstance()->showQuantityBox()
@@ -97,7 +80,7 @@ class ProductResource extends JsonResource
      */
     private function specialPriceInfo()
     {
-        $product = $this->product ? $this->product : $this;
+        $product = $this->product ?? $this;
 
         $productTypeInstance = $product->getTypeInstance();
 
@@ -128,7 +111,7 @@ class ProductResource extends JsonResource
      */
     private function allProductExtraInfo()
     {
-        $product = $this->product ? $this->product : $this;
+        $product = $this->product ?? $this;
 
         $productTypeInstance = $product->getTypeInstance();
 

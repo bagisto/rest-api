@@ -2,8 +2,10 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Webkul\Core\Repositories\CurrencyRepository;
+use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Settings\CurrencyResource;
 
 class CurrencyController extends SettingController
@@ -26,13 +28,11 @@ class CurrencyController extends SettingController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $request->validate([
-            'code' => 'required|min:3|max:3|unique:currencies,code',
+            'code' => ['required', 'min:3', 'max:3', 'unique:currencies,code', new Code],
             'name' => 'required',
         ]);
 
@@ -41,6 +41,9 @@ class CurrencyController extends SettingController
             'name',
             'symbol',
             'decimal',
+            'group_separator',
+            'decimal_separator',
+            'currency_position',
         ]));
 
         return response([
@@ -51,13 +54,11 @@ class CurrencyController extends SettingController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): Response
     {
         $request->validate([
-            'code' => ['min:3','max:3','required', 'unique:currencies,code,'.$id, new \Webkul\Core\Rules\Code],
+            'code' => ['required', 'unique:currencies,code,' . $id, new Code],
             'name' => 'required',
         ]);
 
@@ -66,6 +67,9 @@ class CurrencyController extends SettingController
             'name',
             'symbol',
             'decimal',
+            'group_separator',
+            'decimal_separator',
+            'currency_position',
         ]), $id);
 
         return response([
@@ -76,22 +80,20 @@ class CurrencyController extends SettingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $currency = $this->getRepositoryInstance()->findOrFail($id);
 
-        if ($this->getRepositoryInstance()->count() == 1) {
+        if ($currency->count() == 1) {
             return response([
                 'message' => trans('rest-api::app.admin.settings.currencies.error.last-item-delete'),
             ], 400);
         }
 
-        $this->getRepositoryInstance()->delete($id);
+        $currency->delete();
 
-        return response()->json([
+        return response([
             'message' => trans('rest-api::app.admin.settings.currencies.delete-success'),
         ]);
     }

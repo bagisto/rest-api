@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Адрес успешно сохранен',
+                'address-not-available'   => 'Нет доступных методов доставки.',
+                'create'                  => 'Товар успешно добавлен в корзину',
+                'error'                   => 'Что-то пошло не так!',
+                'order-create-success'    => 'Заказ успешно размещен.',
+                'payment-create-success'  => 'Метод оплаты успешно сохранен',
+                'shipping-create-success' => 'Метод доставки успешно сохранен',
+            ],
+
             'invoices' => [
                 'create-success' => 'Счет успешно добавлен.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Категория успешно добавлена.',
-                'delete-success' => 'Категория успешно удалена.',
-                'update-success' => 'Категория успешно обновлена.',
-                'not-exist'      => 'Категория не найдена.',
+                'create-success'       => 'Категория успешно добавлена.',
+                'delete-success'       => 'Категория успешно удалена.',
+                'root-category-delete' => 'Корневую категорию удалить нельзя.',
+                'update-success'       => 'Категория успешно обновлена.',
+                'not-exist'            => 'Категория не найдена.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Выбранные категории успешно удалены.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Налоговая категория успешно добавлена.',
                     'delete-success' => 'Налоговая категория успешно удалена.',
+                    'error'          => 'Один или несколько налоговых ставок не существуют.',
                     'update-success' => 'Налоговая категория успешно обновлена.',
                 ],
             ],
@@ -433,71 +445,75 @@ return [
         ],
 
         'checkout' => [
-            'billing-address-saved'   => 'Endereço salvo com sucesso.',
-            'check-billing-address'   => 'Por favor, verifique o endereço de cobrança.',
-            'check-shipping-address'  => 'Por favor, verifique o endereço de entrega.',
-            'minimum-order-message'   => 'O valor mínimo do pedido é :amount.',
-            'order-saved'             => 'Pedido salvo com sucesso.',
-            'payment-method-saved'    => 'Método de pagamento salvo com sucesso.',
-            'shipping-method-saved'   => 'Método de envio salvo com sucesso.',
-            'specify-payment-method'  => 'Por favor, especifique o método de pagamento.',
-            'specify-shipping-method' => 'Por favor, especifique o método de envio.',
+            'billing-address-saved'   => 'Адрес успешно сохранен.',
+            'check-billing-address'   => 'Пожалуйста, проверьте платежный адрес.',
+            'check-shipping-address'  => 'Пожалуйста, проверьте адрес доставки.',
+            'minimum-order-message'   => 'Минимальная сумма заказа составляет :amount.',
+            'order-saved'             => 'Заказ успешно сохранен',
+            'payment-method-saved'    => 'Способ оплаты успешно сохранен.',
+            'shipping-method-saved'   => 'Способ доставки успешно сохранен.',
+            'specify-payment-method'  => 'Пожалуйста, укажите способ оплаты.',
+            'specify-shipping-method' => 'Пожалуйста, укажите способ доставки.',
 
             'cart' => [
                 'item' => [
-                    'success-remove' => 'Item removido do carrinho com sucesso.',
-                    'success'        => 'Item adicionado ao carrinho com sucesso.',
+                    'empty'           => 'Ваша корзина пуста.',
+                    'error'           => 'Товар в корзине не найден.',
+                    'inactive-add'    => 'Неактивный товар нельзя добавить в корзину.',
+                    'invalid-product' => 'Идентификатор продукта недействителен.',
+                    'success'         => 'Товар успешно удален из корзины.',
+                    'success-remove'  => 'Товар успешно добавлен в корзину.',
                 ],
 
                 'quantity' => [
-                    'illegal' => 'A quantidade não pode ser menor que um.',
-                    'success' => 'Item(ns) do carrinho atualizado(s) com sucesso.',
+                    'illegal' => 'Количество не может быть меньше единицы.',
+                    'success' => 'Товар(ы) в корзине успешно обновлен(ы).',
                 ],
 
                 'coupon' => [
-                    'apply-issue'    => 'Não foi possível aplicar o código do cupom.',
-                    'invalid'        => 'Código do cupom inválido.',
-                    'success-remove' => 'Cupom removido com sucesso.',
-                    'success'        => 'Código do cupom aplicado com sucesso.',
+                    'apply-issue'    => 'Не удалось применить код купона.',
+                    'invalid'        => 'Неверный код купона.',
+                    'success-remove' => 'Купон успешно удален.',
+                    'success'        => 'Код купона успешно применен.',
                 ],
 
                 'move-wishlist' => [
-                    'success' => 'Item movido para a lista de desejos com sucesso.',
+                    'success' => 'Товар успешно перемещен в список желаний.',
                 ],
             ],
         ],
 
         'wishlist' => [
-            'moved'          => 'Item movido com sucesso para o carrinho.',
-            'option-missing' => 'Opções do produto estão faltando, portanto, o item não pode ser movido para a lista de desejos.',
-            'removed'        => 'Item removido da lista de desejos com sucesso.',
-            'success'        => 'Item adicionado à lista de desejos com sucesso.',
+            'moved'          => 'Товар успешно перемещен в корзину.',
+            'option-missing' => 'Отсутствуют параметры продукта, поэтому товар не может быть перемещен в список желаний.',
+            'removed'        => 'Товар успешно удален из списка желаний.',
+            'success'        => 'Товар успешно добавлен в список желаний.',
 
             'error' => [
-                'security-warning' => 'Atividade suspeita detectada!',
+                'security-warning' => 'Обнаружена подозрительная активность!',
 
                 'mass-operations' => [
-                    'resource-not-found' => 'Produto selecionado na lista de desejos não encontrado.',
+                    'resource-not-found' => 'Выбранный продукт в списке желаний не найден.',
                 ],
             ],
         ],
 
         'sales' => [
             'orders' => [
-                'cancel' => 'Pedido cancelado com sucesso.',
+                'cancel' => 'Заказ успешно отменен.',
 
                 'error' => [
-                    'cancel-error' => 'Pedido não pode ser cancelado.',
+                    'cancel-error' => 'Заказ не может быть отменен.',
                 ],
             ],
         ],
 
         'catalog' => [
             'products' => [
-                'configurable-error' => 'Por favor, selecione pelo menos um atributo configurável.',
+                'configurable-error' => 'Пожалуйста, выберите хотя бы один настраиваемый атрибут.',
 
                 'reviews' => [
-                    'create-success' => 'Sua análise foi enviada com sucesso.',
+                    'create-success' => 'Ваш отзыв был успешно отправлен.',
                 ],
             ],
         ],

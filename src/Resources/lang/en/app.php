@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Address Saved Successfully',
+                'address-not-available'   => 'Their are no any shipping methods available.',
+                'create'                  => 'Item added successfully to cart',
+                'error'                   => 'Something went wrong !',
+                'order-create-success'    => 'Order was successfully placed.',
+                'payment-create-success'  => 'Payment Method Saved Successfully',
+                'shipping-create-success' => 'Shipping Method Saved Successfully',
+            ],
+
             'invoices' => [
                 'create-success' => 'invoice have been successfully added.',
 
@@ -318,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Tax Category have been successfully added.',
                     'delete-success' => 'Tax Category successfully deleted',
+                    'error'          => 'One or more tax rates do not exist.',
                     'update-success' => 'Tax Category updated successfully.',
                 ],
             ],
@@ -446,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'Item is successfully added to cart.',
-                    'success-remove' => 'Item is successfully removed from the cart.',
+                    'empty'           => 'Your cart is empty.',
+                    'error'           => 'Cart item not found.',
+                    'inactive-add'    => 'Inactive item cannot be added to cart.',
+                    'invalid-product' => 'Product Id is invalid.',
+                    'success'         => 'Item is successfully added to cart.',
+                    'success-remove'  => 'Item is successfully removed from the cart.',
                 ],
 
                 'quantity' => [
@@ -471,8 +486,9 @@ return [
         'wishlist' => [
             'moved'          => 'Item successfully moved To cart.',
             'option-missing' => 'Product options are missing, so item can not be moved to the wishlist.',
-            'removed'        => 'Item Successfully Removed From Wishlist',
-            'success'        => 'Item Successfully Added To Wishlist',
+            'removed'        => 'Item Successfully Removed From Wishlist.',
+            'remove-fail'    => 'Item Cannot Be Removed From Wishlist.',
+            'success'        => 'Item Successfully Added To Wishlist.',
 
             'error' => [
                 'security-warning' => 'Suspicious activity found!',

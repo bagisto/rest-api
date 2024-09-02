@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Indirizzo salvato con successo',
+                'address-not-available'   => 'Nessun metodo di spedizione disponibile.',
+                'create'                  => 'Articolo aggiunto con successo al carrello',
+                'error'                   => 'Qualcosa è andato storto!',
+                'order-create-success'    => 'Ordine effettuato con successo.',
+                'payment-create-success'  => 'Metodo di pagamento salvato con successo',
+                'shipping-create-success' => 'Metodo di spedizione salvato con successo',
+            ],
+
             'invoices' => [
                 'create-success' => 'Fattura aggiunta con successo.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Categoria aggiunta con successo.',
-                'delete-success' => 'Categoria eliminata con successo.',
-                'update-success' => 'Categoria aggiornata con successo.',
-                'not-exist'      => 'Categoria non trovata.',
+                'create-success'       => 'Categoria aggiunta con successo.',
+                'delete-success'       => 'Categoria eliminata con successo.',
+                'root-category-delete' => 'La categoria radice non può essere eliminata.',
+                'update-success'       => 'Categoria aggiornata con successo.',
+                'not-exist'            => 'Categoria non trovata.',
 
                 'mass-operations' => [
                     'delete-success' => 'Categorie selezionate eliminate con successo.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Categoria fiscale aggiunta con successo.',
                     'delete-success' => 'Categoria fiscale eliminata con successo.',
+                    'error'          => 'Una o più aliquote fiscali non esistono.',
                     'update-success' => 'Categoria fiscale aggiornata con successo.',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'Articolo aggiunto al carrello con successo.',
-                    'success-remove' => 'Articolo rimosso con successo dal carrello.',
+                    'empty'           => 'Il tuo carrello è vuoto.',
+                    'error'           => 'Articolo nel carrello non trovato.',
+                    'inactive-add'    => 'L\'articolo inattivo non può essere aggiunto al carrello.',
+                    'invalid-product' => 'L\'ID del prodotto non è valido.',
+                    'success'         => 'Articolo aggiunto al carrello con successo.',
+                    'success-remove'  => 'Articolo rimosso con successo dal carrello.',
                 ],
 
                 'quantity' => [
@@ -461,7 +477,7 @@ return [
                     'success'        => 'Codice del coupon applicato con successo.',
                 ],
 
-                'move-wishlist' => [
+                'move-wishlist' => [                    
                     'success' => 'Articolo spostato nella lista dei desideri con successo.',
                 ],
             ],

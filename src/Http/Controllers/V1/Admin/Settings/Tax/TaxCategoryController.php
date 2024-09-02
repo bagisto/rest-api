@@ -2,10 +2,12 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings\Tax;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Settings\SettingController;
 use Webkul\RestApi\Http\Resources\V1\Admin\Tax\TaxCategoryResource;
+use Webkul\Tax\Models\TaxRate;
 use Webkul\Tax\Repositories\TaxCategoryRepository;
 
 class TaxCategoryController extends SettingController
@@ -28,10 +30,8 @@ class TaxCategoryController extends SettingController
 
     /**
      * Store tax category.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $request->validate([
             'code'        => 'required|string|unique:tax_categories,code',
@@ -46,6 +46,14 @@ class TaxCategoryController extends SettingController
             'description',
             'taxrates',
         ]);
+
+        $taxRates = TaxRate::whereIn('id', $data['taxrates'])->get();
+
+        if ($taxRates->count() !== count($data['taxrates'])) {
+            return response([
+                'message' => trans('rest-api::app.admin.settings.taxes.tax-categories.error'),
+            ], 400);
+        }
 
         Event::dispatch('tax.category.create.before');
 
@@ -63,10 +71,8 @@ class TaxCategoryController extends SettingController
 
     /**
      * To update the tax category.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): Response
     {
         $request->validate([
             'code'        => 'required|string|unique:tax_categories,code,'.$id,
@@ -98,16 +104,14 @@ class TaxCategoryController extends SettingController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
-        $this->getRepositoryInstance()->findOrFail($id);
+        $taxCategory = $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('tax.category.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $taxCategory->delete();
 
         Event::dispatch('tax.category.delete.after', $id);
 

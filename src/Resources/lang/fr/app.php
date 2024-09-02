@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Adresse enregistrée avec succès',
+                'address-not-available'   => 'Aucune méthode d\'expédition disponible.',
+                'create'                  => 'Article ajouté avec succès au panier',
+                'error'                   => 'Une erreur est survenue !',
+                'order-create-success'    => 'Commande passée avec succès.',
+                'payment-create-success'  => 'Méthode de paiement enregistrée avec succès',
+                'shipping-create-success' => 'Méthode de livraison enregistrée avec succès',
+            ],
+
             'invoices' => [
                 'create-success' => 'Facture ajoutée avec succès.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Catégorie ajoutée avec succès.',
-                'delete-success' => 'Catégorie supprimée avec succès',
-                'update-success' => 'Catégorie mise à jour avec succès.',
-                'not-exist'      => 'Catégorie introuvable.',
+                'create-success'       => 'Catégorie ajoutée avec succès.',
+                'delete-success'       => 'Catégorie supprimée avec succès',
+                'root-category-delete' => 'La catégorie racine ne peut pas être supprimée.',
+                'update-success'       => 'Catégorie mise à jour avec succès.',
+                'not-exist'            => 'Catégorie introuvable.',
 
                 'mass-operations' => [
                     'delete-success'  => 'Catégories sélectionnées supprimées avec succès.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Catégorie de taxe ajoutée avec succès.',
                     'delete-success' => 'Catégorie de taxe supprimée avec succès',
+                    'error'          => 'Un ou plusieurs taux de taxe n\'existent pas.',
                     'update-success' => 'Catégorie de taxe mise à jour avec succès.',
                 ],
             ],
@@ -444,8 +456,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success-remove' => 'L\'article a été supprimé du panier avec succès.',
-                    'success'        => 'L\'article a été ajouté au panier avec succès.',
+                    'empty'           => 'Votre panier est vide.',
+                    'error'           => 'Élément dans le panier non trouvé.',
+                    'inactive-add'    => 'L\'article inactif ne peut pas être ajouté au panier.',
+                    'invalid-product' => 'L\'identifiant du produit est invalide.',
+                    'success'         => 'L\'article a été ajouté au panier avec succès.',
+                    'success-remove'  => 'L\'article a été supprimé du panier avec succès.',
                 ],
 
                 'quantity' => [

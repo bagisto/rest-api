@@ -452,13 +452,6 @@ class CustomerController
      *                      type="string",
      *                      example={1,2}
      *                  ),
-     *                  @OA\Property(
-     *                      property="value",
-     *                      description="Customer's status value",
-     *                      type="integer",
-     *                      example=null,
-     *                      enum={null}
-     *                  ),
      *                  required={"indices", "update_value"}
      *              )
      *          )

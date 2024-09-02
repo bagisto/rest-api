@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
 use Illuminate\Support\Facades\Event;
+use Illuminate\Http\Response;
 use Webkul\Admin\Http\Requests\CategoryRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
@@ -30,14 +31,13 @@ class CategoryController extends CatalogController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryRequest $request): Response
     {
         Event::dispatch('catalog.category.create.before');
 
         $category = $this->getRepositoryInstance()->create($request->only([
+            'locale',
             'name',
             'parent_id',
             'description',
@@ -63,30 +63,23 @@ class CategoryController extends CatalogController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, int $id)
+    public function update(CategoryRequest $request, int $id): Response
     {
         $this->getRepositoryInstance()->findOrFail($id);
 
         Event::dispatch('catalog.category.update.before', $id);
 
         $category = $this->getRepositoryInstance()->update($request->only([
-            'name',
+            'locale',
             'parent_id',
-            'description',
-            'slug',
-            'meta_title',
-            'meta_keywords',
-            'meta_description',
-            'status',
-            'position',
-            'display_mode',
-            'attributes',
             'logo_path',
             'banner_path',
-            core()->getCurrentLocale()->code
+            'position',
+            'display_mode',
+            'status',
+            'attributes',
+            $request->input('locale'),
         ]), $id);
 
         Event::dispatch('catalog.category.update.after', $category);
@@ -99,10 +92,8 @@ class CategoryController extends CatalogController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $category = $this->getRepositoryInstance()->findOrFail($id);
 
@@ -114,7 +105,7 @@ class CategoryController extends CatalogController
 
         Event::dispatch('catalog.category.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $category->delete();
 
         Event::dispatch('catalog.category.delete.after', $id);
 
@@ -125,10 +116,8 @@ class CategoryController extends CatalogController
 
     /**
      * Mass update Category.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massUpdate(MassUpdateRequest $massUpdateRequest)
+    public function massUpdate(MassUpdateRequest $massUpdateRequest): Response
     {
         $indices = $massUpdateRequest->input('indices');
 
@@ -153,31 +142,23 @@ class CategoryController extends CatalogController
 
     /**
      * Remove the specified resources from database.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function massDestroy(MassDestroyRequest $massDestroyRequest)
+    public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
-        $categories = $this->getRepositoryInstance()->findWhereIn('id', $massDestroyRequest->indices);
+        $categoryIds = collect($massDestroyRequest->input('indices'));
+    
+        $categoryIds->each(function ($categoryId) {
+            $category = $this->getRepositoryInstance()->find($categoryId);
 
-        if (! $categories->count()) {
-            return response([
-                'message' => trans('rest-api::app.admin.catalog.categories.not-exist'),
-            ], 400);
-        }
+            if (! $this->isCategoryDeletable($category)) {
+                return response(['message' => trans('rest-api::app.admin.catalog.categories.root-category-delete')]);
+            }
 
-        if ($this->containsNonDeletableCategory($categories)) {
-            return response([
-                'message' => trans('rest-api::app.admin.catalog.categories.root-category-delete'),
-            ], 400);
-        }
+            Event::dispatch('catalog.category.delete.before', $categoryId);
 
-        $categories->each(function ($category) {
-            Event::dispatch('catalog.category.delete.before', $category->id);
+            $this->getRepositoryInstance()->delete($categoryId);
 
-            $this->getRepositoryInstance()->delete($category->id);
-
-            Event::dispatch('catalog.category.delete.after', $category->id);
+            Event::dispatch('catalog.category.delete.after', $categoryId);
         });
 
         return response([
@@ -200,16 +181,5 @@ class CategoryController extends CatalogController
         }
 
         return ! Channel::pluck('root_category_id')->contains($category->id);
-    }
-
-    /**
-     * Check whether indexes contains non deletable category or not.
-     *
-     * @param  \Kalnoy\Nestedset\Collection  $categoryIds
-     * @return bool
-     */
-    private function containsNonDeletableCategory($categories)
-    {
-        return $categories->contains(fn ($category) => ! $this->isCategoryDeletable($category));
     }
 }

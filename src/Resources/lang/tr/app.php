@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Adres Başarıyla Kaydedildi',
+                'address-not-available'   => 'Hiçbir gönderim yöntemi mevcut değil.',
+                'create'                  => 'Ürün başarıyla sepete eklendi',
+                'error'                   => 'Bir şeyler yanlış gitti!',
+                'order-create-success'    => 'Sipariş başarıyla verildi.',
+                'payment-create-success'  => 'Ödeme Yöntemi Başarıyla Kaydedildi',
+                'shipping-create-success' => 'Gönderim Yöntemi Başarıyla Kaydedildi',
+            ],
+
             'invoices' => [
                 'create-success' => 'Fatura başarıyla eklendi.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Kategori başarıyla eklendi.',
-                'delete-success' => 'Kategori başarıyla silindi.',
-                'update-success' => 'Kategori başarıyla güncellendi.',
-                'not-exist'      => 'Kategori bulunamadı.',
+                'create-success'       => 'Kategori başarıyla eklendi.',
+                'delete-success'       => 'Kategori başarıyla silindi.',
+                'root-category-delete' => 'Kök kategori silinemiyor.',
+                'update-success'       => 'Kategori başarıyla güncellendi.',
+                'not-exist'            => 'Kategori bulunamadı.',
 
                 'mass-operations' => [
                     'delete-success' => 'Seçilen Kategoriler başarıyla silindi.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Vergi Kategorisi başarıyla eklendi.',
                     'delete-success' => 'Vergi Kategorisi başarıyla silindi.',
+                    'error'          => 'Bir veya daha fazla vergi oranı mevcut değil.',
                     'update-success' => 'Vergi Kategorisi başarıyla güncellendi.',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'Ürün başarıyla sepete eklendi.',
-                    'success-remove' => 'Ürün sepetten başarıyla kaldırıldı.',
+                    'empty'           => 'Sepetiniz boş.',
+                    'error'           => 'Sepet ürünü bulunamadı.',
+                    'inactive-add'    => 'Etkin olmayan ürün sepete eklenemez.',
+                    'invalid-product' => 'Ürün ID\'si geçersiz.',
+                    'success'         => 'Ürün başarıyla sepete eklendi.',
+                    'success-remove'  => 'Ürün sepetten başarıyla kaldırıldı.',
                 ],
 
                 'quantity' => [

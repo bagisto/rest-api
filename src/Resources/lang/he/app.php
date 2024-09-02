@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'כתובת נשמרה בהצלחה',
+                'address-not-available'   => 'אין שיטות שילוח זמינות.',
+                'create'                  => 'פריט נוסף בהצלחה לעגלת הקניות',
+                'error'                   => 'אירעה שגיאה!',
+                'order-create-success'    => 'ההזמנה בוצעה בהצלחה.',
+                'payment-create-success'  => 'שיטת תשלום נשמרה בהצלחה',
+                'shipping-create-success' => 'שיטת משלוח נשמרה בהצלחה',
+            ],
+
             'invoices' => [
                 'create-success' => 'החשבונית נוספה בהצלחה.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'הקטגוריה נוספה בהצלחה.',
-                'delete-success' => 'הקטגוריה נמחקה בהצלחה',
-                'update-success' => 'הקטגוריה עודכנה בהצלחה.',
-                'not-exist'      => 'הקטגוריה לא נמצאה.',
+                'create-success'       => 'הקטגוריה נוספה בהצלחה.',
+                'delete-success'       => 'הקטגוריה נמחקה בהצלחה',
+                'root-category-delete' => 'קטגוריית השורש לא ניתנת למחיקה.',
+                'update-success'       => 'הקטגוריה עודכנה בהצלחה.',
+                'not-exist'            => 'הקטגוריה לא נמצאה.',
 
                 'mass-operations' => [
                     'delete-success'  => 'הקטגוריות שנבחרו נמחקו בהצלחה.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'קטגוריית המס נוספה בהצלחה.',
                     'delete-success' => 'קטגוריית המס נמחקה בהצלחה',
+                    'error'          => 'שיעור מס אחד או יותר אינם קיימים',
                     'update-success' => 'קטגוריית המס עודכנה בהצלחה.',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success-remove' => 'הפריט הוסר מהעגלה בהצלחה.',
-                    'success'        => 'הפריט נוסף לעגלה בהצלחה.',
+                    'empty'           => ' העגלת קניות שלך ריקה.',
+                    'error'           => 'פריט בעגלת הקניות לא נמצא.',
+                    'inactive-add'    => 'לא ניתן להוסיף פריט לא פעיל לעגלה.',
+                    'invalid-product' => 'מזהה המוצר אינו בתוקף.',
+                    'success'         => 'הפריט נוסף לעגלה בהצלחה.',
+                    'success-remove'  => 'הפריט הוסר מהעגלה בהצלחה.',
                 ],
 
                 'quantity' => [

@@ -2,6 +2,7 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
@@ -22,8 +23,7 @@ class CartController extends CustomerController
         protected WishlistRepository $wishlistRepository,
         protected ProductRepository $productRepository,
         protected CartRuleCouponRepository $cartRuleCouponRepository
-    ) {
-    }
+    ) {}
 
     /**
      * Resource class name.
@@ -38,11 +38,11 @@ class CartController extends CustomerController
     /**
      * Get the customer cart.
      */
-    public function index(): JsonResponse
+    public function index(): Response
     {
         Cart::collectTotals();
 
-        return response()->json([
+        return response([
             'data' => ($cart = Cart::getCart()) ? app()->make($this->resource(), ['resource' => $cart]) : null,
         ]);
     }
@@ -50,61 +50,57 @@ class CartController extends CustomerController
     /**
      * Store items to the cart.
      */
-    public function store($productId): JsonResponse
+    public function store($productId): Response
     {
-        try {
-            $product = $this->productRepository->with('parent')->find($productId);
+        $this->validate(request(), [
+            'product_id' => 'required|integer|exists:products,id',
+        ]);
 
-            Event::dispatch('checkout.cart.item.add.before', $product->id);
+        if ($productId != request()->product_id) {
+            return response([
+                'message' => trans('rest-api::app.shop.checkout.cart.item.invalid-product'),
+            ], 400);
+        }
+
+        $product = $this->productRepository->with('parent')->findOrFail($productId);
+
+        try {
+            if (! $product->status) {
+                throw new \Exception(trans('rest-api::app.shop.checkout.cart.item.inactive-add'));
+            }
 
             if (request()->get('is_buy_now')) {
                 Cart::deActivateCart();
             }
 
-            $cart = Cart::addProduct($product->id, request()->all());
+            $cart = Cart::addProduct($product, request()->all());
 
             if (
                 is_array($cart)
                 && isset($cart['warning'])
             ) {
-                return response()->json([
+                return response([
                     'message' => $cart['warning'],
                 ], 400);
             }
 
             if ($cart) {
-                $customer = $this->resolveShopUser(request());
-
-                if ($customer) {
-                    $this->wishlistRepository->deleteWhere([
-                        'product_id'  => $product->id,
-                        'customer_id' => $customer->id,
-                    ]);
-                }
-
-                Event::dispatch('checkout.cart.item.add.after', $cart);
-
                 if (request()->get('is_buy_now')) {
-                    Event::dispatch('shop.item.buy-now', request()->input('product_id'));
-
-                    return response()->json([
-                        'data'     => app()->make($this->resource(), ['resource' => Cart::getCart()]),
-                        'message'  => trans('rest-api::app.shop.checkout.cart.item.success'),
-                    ]);
+                    Event::dispatch('shop.item.buy-now', $productId);
                 }
 
-                return response()->json([
+                return response([
                     'data'    => app()->make($this->resource(), ['resource' => Cart::getCart()]),
                     'message' => trans('rest-api::app.shop.checkout.cart.item.success'),
                 ]);
             }
 
-            return response()->json([
+            return response([
                 'data'    => null,
                 'message' => trans('rest-api::app.shop.checkout.cart.item.success'),
             ]);
         } catch (\Exception $exception) {
-            return response()->json([
+            return response([
                 'message'      => $exception->getMessage(),
             ], 400);
         }
@@ -113,25 +109,41 @@ class CartController extends CustomerController
     /**
      * Updates the quantity of the items present in the cart.
      */
-    public function update(): JsonResponse
+    public function update(): Response
     {
-        foreach (request()->qty as $qty) {
+        if (! $cart = Cart::getCart()) {
+            return response([
+                'message' => trans('rest-api::app.shop.checkout.cart.item.empty'),
+            ], 400);
+        }
+
+        foreach (request()->qty as $cartId => $qty) {
+            $ids[] = $cartId; 
+
             if (! $qty) {
-                return response()->json([
+                return response([
                     'message' => trans('rest-api::app.shop.checkout.cart.quantity.illegal'),
                 ], 400);
             }
         }
 
+        $cartItemIds = $cart->items()->pluck('id')->toArray();
+
+        if (! empty(array_diff($ids, $cartItemIds))) {
+            return response([
+                'message' => 'Cart Item not found',
+            ], 400);
+        }
+
         try {
             Cart::updateItems(request()->input());
 
-            return response()->json([
+            return response([
                 'data'    => app()->make($this->resource(), ['resource' => Cart::getCart()]),
                 'message' => trans('rest-api::app.shop.checkout.cart.quantity.success'),
             ]);
         } catch (\Exception $exception) {
-            return response()->json([
+            return response([
                 'message' => $exception->getMessage(),
             ]);
         }
@@ -139,10 +151,8 @@ class CartController extends CustomerController
 
     /**
      * Remove item from the cart.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function removeItem(int $cartItemId)
+    public function removeItem(int $cartItemId): Response
     {
         Event::dispatch('checkout.cart.item.delete.before', $cartItemId);
 
@@ -162,10 +172,8 @@ class CartController extends CustomerController
 
     /**
      * Empty the cart.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function empty()
+    public function removeall(): Response
     {
         Event::dispatch('checkout.cart.delete.before');
 
@@ -173,20 +181,15 @@ class CartController extends CustomerController
 
         Event::dispatch('checkout.cart.delete.after');
 
-        $cart = Cart::getCart();
-
         return response([
-            'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
             'message' => trans('rest-api::app.shop.checkout.cart.item.success-remove'),
         ]);
     }
 
     /**
      * Apply the coupon code.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function applyCoupon(Request $request)
+    public function applyCoupon(Request $request): Response
     {
         $couponCode = $request->code;
 
@@ -218,11 +221,9 @@ class CartController extends CustomerController
     }
 
     /**
-     * Remove the coupon code.
-     *
-     * @return \Illuminate\Http\Response
+     
      */
-    public function removeCoupon()
+    public function removeCoupon(): Response
     {   
         Cart::removeCouponCode()->collectTotals();
 
@@ -230,30 +231,37 @@ class CartController extends CustomerController
 
         return response([
             'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
-            'message' => __('rest-api::app.shop.checkout.cart.coupon.success-remove'),
+            'message' => trans('rest-api::app.shop.checkout.cart.coupon.success-remove'),
         ]);
     }
 
     /**
      * Move cart item to wishlist.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function moveToWishlist(int $cartItemId)
+    public function moveToWishlist(int $cartItemId): Response
     {
+        if (! Cart::getCart()) {
+            return response([
+                'message' => trans('rest-api::app.shop.checkout.cart.item.empty'),
+            ], 400);
+        }
+
         Event::dispatch('checkout.cart.item.move-to-wishlist.before', $cartItemId);
 
-        Cart::moveToWishlist($cartItemId);
+        $cartItem = Cart::moveToWishlist($cartItemId);
+
+        if (! $cartItem) {
+            return response([
+                'message' => trans('rest-api::app.shop.checkout.cart.item.error'),
+            ], 400);
+        }
 
         Event::dispatch('checkout.cart.item.move-to-wishlist.after', $cartItemId);
 
         Cart::collectTotals();
 
-        $cart = Cart::getCart();
-
         return response([
-            'data'    => $cart ? app()->make($this->resource(), ['resource' => $cart]) : null,
-            'message' => __('rest-api::app.shop.checkout.cart.move-wishlist.success'),
+            'message' => trans('rest-api::app.shop.checkout.cart.move-wishlist.success'),
         ]);
     }
 }

@@ -42,8 +42,6 @@ class AttributeController extends CatalogController
 
         $data = request()->all();
 
-        $data['is_user_defined'] = 1;
-
         $data['default_value'] ??= null;
 
         Event::dispatch('catalog.attribute.create.before');
@@ -115,7 +113,7 @@ class AttributeController extends CatalogController
 
         Event::dispatch('catalog.attribute.delete.before', $id);
 
-        $this->getRepositoryInstance()->delete($id);
+        $attribute->delete();
 
         Event::dispatch('catalog.attribute.delete.after', $id);
 

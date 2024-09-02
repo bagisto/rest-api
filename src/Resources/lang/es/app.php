@@ -11,6 +11,16 @@ return [
                 ],
             ],
 
+            're-order' => [
+                'address-create-success'  => 'Dirección guardada exitosamente',
+                'address-not-available'   => 'No hay métodos de envío disponibles.',
+                'create'                  => 'Artículo añadido exitosamente al carrito',
+                'error'                   => '¡Algo salió mal!',
+                'order-create-success'    => 'Pedido realizado con éxito.',
+                'payment-create-success'  => 'Método de pago guardado exitosamente',
+                'shipping-create-success' => 'Método de envío guardado exitosamente',
+            ],
+
             'invoices' => [
                 'create-success' => 'Factura añadida con éxito.',
 
@@ -70,10 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Categoría añadida con éxito.',
-                'delete-success' => 'Categoría eliminada correctamente',
-                'update-success' => 'Categoría actualizada con éxito.',
-                'not-exist'      => 'Categoría no encontrada.',
+                'create-success'       => 'Categoría añadida con éxito.',
+                'delete-success'       => 'Categoría eliminada correctamente',
+                'root-category-delete' => 'No se puede eliminar la categoría raíz.',
+                'update-success'       => 'Categoría actualizada con éxito.',
+                'not-exist'            => 'Categoría no encontrada.',
 
                 'mass-operations' => [
                     'delete-success' => 'Categorías seleccionadas eliminadas correctamente.',
@@ -317,6 +328,7 @@ return [
                 'tax-categories' => [
                     'create-success' => 'Categoría de impuestos añadida con éxito.',
                     'delete-success' => 'Categoría de impuestos eliminada correctamente',
+                    'error'          => 'Una o más tasas de impuestos no existen.',
                     'update-success' => 'Categoría de impuestos actualizada con éxito.',
                 ],
             ],
@@ -445,8 +457,12 @@ return [
 
             'cart' => [
                 'item' => [
-                    'success'        => 'El artículo se ha añadido al carrito correctamente.',
-                    'success-remove' => 'El artículo se ha eliminado del carrito correctamente.',
+                    'empty'           => 'Tu carrito está vacío.',
+                    'error'           => 'Elemento en el carrito no encontrado.',
+                    'inactive-add'    => 'El artículo inactivo no se puede agregar al carrito.',
+                    'invalid-product' => 'El ID del producto no es válido.',
+                    'success'         => 'El artículo se ha añadido al carrito correctamente.',
+                    'success-remove'  => 'El artículo se ha eliminado del carrito correctamente.',
                 ],
 
                 'quantity' => [
