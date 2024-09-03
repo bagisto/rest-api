@@ -2,7 +2,7 @@
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
-## **v2.2.0 (2nd of September 2024)** - *Release*
+## **v2.2.0 (3rd of September 2024)** - *Release*
 
 * #362 [Enhancement] - On the Shop API -> Theme API -> Please update the name of the API -> Get Theme Customization by id.
 
