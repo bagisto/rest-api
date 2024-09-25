@@ -2,6 +2,12 @@
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
+## **v2.1.1 (25th of September 2024)** - *Release*
+
+* #372 [Fixed] - Duplicate routes fixing.
+
+* Fixed events argument.
+
 ## **v2.1.0 (10th of July 2024)** - *Release*
 
 * #268 [enhancement] - Add decimal option for currency create or update api in the request body.
