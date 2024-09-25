@@ -8,6 +8,12 @@ This changelog consists of the bug & security fixes and new features being inclu
 
 * Fixed events argument.
 
+## **v2.1.1 (25th of September 2024)** - *Release*
+
+* #372 [Fixed] - Duplicate routes fixing.
+
+* Fixed events argument.
+
 ## **v2.2.0 (3rd of September 2024)** - *Release*
 
 * #362 [Enhancement] - On the Shop API -> Theme API -> Please update the name of the API -> Get Theme Customization by id.
