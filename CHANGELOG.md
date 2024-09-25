@@ -1,6 +1,12 @@
-# CHANGELOG for v2.x.x
+# CHANGELOG
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
+
+## **v2.2.1 (25th of September 2024)** - *Release*
+
+* #372 [Fixed] - Duplicate routes fixing.
+
+* Fixed events argument.
 
 ## **v2.2.0 (3rd of September 2024)** - *Release*
 
