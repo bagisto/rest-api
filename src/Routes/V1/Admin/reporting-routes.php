@@ -23,13 +23,13 @@ Route::group([
      * Customer routes.
      */
     Route::controller(CustomerController::class)->prefix('customers')->group(function () {
-        Route::get('stats', 'stats')->name('admin.reporting.customers.stats');
+        Route::get('stats', 'stats');
     });
 
     /**
      * Product routes.
      */
     Route::controller(ProductController::class)->prefix('products')->group(function () {
-        Route::get('stats', 'stats')->name('admin.reporting.products.stats');
+        Route::get('stats', 'stats');
     });
 });
