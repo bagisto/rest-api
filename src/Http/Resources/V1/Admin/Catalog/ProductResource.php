@@ -3,6 +3,7 @@
 namespace Webkul\RestApi\Http\Resources\V1\Admin\Catalog;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Webkul\RestApi\Http\Resources\V1\Admin\Catalog\Product\ReviewResource;
 
 class ProductResource extends JsonResource
 {
@@ -14,21 +15,14 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        /**
-         * Not able to use individual key in the resource because
-         * attributes are system defined and custom defined.
-         *
-         * @var array
-         */
-        $mainAttributes = $this->resource->toArray();
-
         return [
             /**
              * Main attributes.
              */
-            ...$mainAttributes,
+            ...$this->resource->toArray(),
 
-            'sku' => $this->resource->sku,
+            'sku'        => $this->resource->sku,
+            'reviews'    => $this->when($this->resource->reviews, ReviewResource::collection($this->resource->reviews)),
 
             /**
              * Additional attributes.
