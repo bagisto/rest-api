@@ -143,6 +143,17 @@ class ProductController
      *          )
      *      ),
      * 
+     *      @OA\Parameter(
+     *          name="page",
+     *          description="Page number",
+     *          required=false,
+     *          in="query",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     * 
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
