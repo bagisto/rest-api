@@ -117,6 +117,56 @@ class ProductController
 
     /**
      * @OA\Get(
+     *      path="/api/v1/products/{product_id}/reviews",
+     *      operationId="getShopProductReviews",
+     *      tags={"Products"},
+     *      summary="Get shop product reviews by product id",
+     *      description="Returns shop product reviews by product id",
+     *
+     *      @OA\Parameter(
+     *          name="product_id",
+     *          description="Product id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Parameter(
+     *          name="limit",
+     *          description="Limit",
+     *          in="query",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     * 
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/ProductReview"
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+    public function reviews()
+    {
+    }
+
+    /**
+     * @OA\Get(
      *      path="/api/v1/products/{id}",
      *      operationId="getShopProduct",
      *      tags={"Products"},
