@@ -28,6 +28,7 @@ class CategoryResource extends JsonResource
             'banner_url'         => $this->banner_url,
             'logo_url'           => $this->logo_url,
             'translations'       => $this->translations,
+            'position'           => $this->position,
             'additional'         => $this->additional,
             'created_at'         => $this->created_at,
             'updated_at'         => $this->updated_at,
