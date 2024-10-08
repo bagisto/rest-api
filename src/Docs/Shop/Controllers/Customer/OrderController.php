@@ -181,4 +181,69 @@ class OrderController
     public function cancel()
     {
     }
+
+    /**
+     * @OA\Get(
+     *      path="/api/v1/customer/orders/reorder/{id}",
+     *      operationId="ReOrder",
+     *      tags={"ReOrder"},
+     *      summary="Customer Re Order",
+     *      description="This endpoint adds order items to the customer's cart for reordering. After successfully adding items to the cart, the customer should proceed with the checkout process via the checkout APIs.",
+     *      security={ {"sanctum": {} }},
+     *
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Order id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Order canceled successfully."
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=404,
+     *          description="Something went wrong!",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="title",
+     *                  type="string",
+     *                  example="404 Page Not Found"
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Oops! The page you're looking for is on vacation. It seems we couldn't find what you were searching for."
+     *              )
+     *          )
+     *      ),
+     * 
+     *      @OA\Response(
+     *          response=405,
+     *          description="Method not allowed",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Order can not be reordered"
+     *              )
+     *          )
+     *      ),
+     * )
+     */
+    public function reorder()
+    {
+    }
 }

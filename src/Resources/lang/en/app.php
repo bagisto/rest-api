@@ -504,7 +504,8 @@ return [
                 'cancel' => 'Order canceled successfully.',
 
                 'error' => [
-                    'cancel-error' => 'Order can not be canceled.',
+                    'cancel-error'  => 'Order can not be canceled.',
+                    'reorder-error' => 'Order can not be reordered.',
                 ],
             ],
         ],

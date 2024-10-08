@@ -503,7 +503,8 @@ return [
                 'cancel' => 'Bestelling succesvol geannuleerd.',
 
                 'error' => [
-                    'cancel-error' => 'Bestelling kan niet worden geannuleerd.',
+                    'cancel-error'  => 'Bestelling kan niet worden geannuleerd.',
+                    'reorder-error' => 'Bestelling kan niet opnieuw besteld worden.',
                 ],
             ],
         ],

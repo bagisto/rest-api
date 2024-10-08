@@ -502,7 +502,8 @@ return [
                 'cancel' => 'Commande annulée avec succès.',
 
                 'error' => [
-                    'cancel-error' => 'La commande ne peut pas être annulée.',
+                    'cancel-error'  => 'La commande ne peut pas être annulée.',
+                    'reorder-error' => 'La commande ne peut pas être réorganisée.',
                 ],
             ],
         ],

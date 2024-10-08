@@ -67,6 +67,10 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints of Order"
  * )
  * @OA\Tag(
+ *     name="ReOrder",
+ *     description="API Endpoints of Re Order"
+ * )
+ * @OA\Tag(
  *     name="Invoices",
  *     description="API Endpoints of Invoice"
  * )
