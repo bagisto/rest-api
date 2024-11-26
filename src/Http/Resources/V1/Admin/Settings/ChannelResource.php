@@ -27,6 +27,7 @@ class ChannelResource extends JsonResource
             'logo_url'          => $this->logo_url,
             'favicon'           => $this->favicon,
             'favicon_url'       => $this->favicon_url,
+            'locales'           => $this->locales,
             'default_locale'    => $this->when($this->default_locale_id, new LocaleResource($this->default_locale)),
             'base_currency'     => $this->when($this->default_currency_id, new CurrencyResource($this->default_currency)),
             'root_category_id'  => $this->root_category_id,
