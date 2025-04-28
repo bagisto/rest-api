@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductReviewResource;
 
 class ProductController extends CatalogController
 {
@@ -87,6 +88,22 @@ class ProductController extends CatalogController
 
         return response([
             'data' => $configurableConfig,
+        ]);
+    }
+
+    /**
+     * Get the reviews of a product.
+     */
+    public function reviews(int $id): \Illuminate\Http\Response
+    {
+        $resource = $this->getRepositoryInstance()->findOrFail($id);
+
+        $reviews = $resource->reviews()
+            ->where('status', 'approved')
+            ->paginate(request()->input('limit') ?? 10);
+
+        return response([
+            'data' => ProductReviewResource::collection($reviews),
         ]);
     }
 }
