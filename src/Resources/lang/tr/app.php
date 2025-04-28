@@ -503,7 +503,8 @@ return [
                 'cancel' => 'Sipariş başarıyla iptal edildi.',
 
                 'error' => [
-                    'cancel-error' => 'Sipariş iptal edilemiyor.',
+                    'cancel-error'  => 'Sipariş iptal edilemiyor.',
+                    'reorder-error' => 'Sipariş tekrar verilemez.',
                 ],
             ],
         ],

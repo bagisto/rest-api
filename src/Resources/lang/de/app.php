@@ -503,7 +503,8 @@ return [
                 'cancel' => 'Bestellung erfolgreich storniert.',
 
                 'error' => [
-                    'cancel-error' => 'Bestellung kann nicht storniert werden.',
+                    'cancel-error'  => 'Bestellung kann nicht storniert werden.',
+                    'reorder-error' => 'Bestellung kann nicht nachbestellt werden.',
                 ],
             ],
         ],

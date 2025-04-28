@@ -503,7 +503,8 @@ return [
                 'cancel' => 'Zamówienie zostało pomyślnie anulowane.',
 
                 'error' => [
-                    'cancel-error' => 'Zamówienie nie może być anulowane.',
+                    'cancel-error'   => 'Zamówienie nie może być anulowane.',
+                    'reorder-error'  => 'Zamówienie nie może zostać ponownie złożone.',
                 ],
             ],
         ],

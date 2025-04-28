@@ -503,7 +503,8 @@ return [
                 'cancel' => 'Ordine annullato con successo.',
 
                 'error' => [
-                    'cancel-error' => 'L\'ordine non può essere annullato.',
+                    'cancel-error'  => 'L\'ordine non può essere annullato.',
+                    'reorder-error' => 'L\'ordine non può essere riordinato.',
                 ],
             ],
         ],

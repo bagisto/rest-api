@@ -503,7 +503,8 @@ return [
                 'cancel' => 'Pedido cancelado correctamente.',
 
                 'error' => [
-                    'cancel-error' => 'No se puede cancelar el pedido.',
+                    'cancel-error'  => 'No se puede cancelar el pedido.',
+                    'reorder-error' => 'El pedido no puede ser reordenado.',
                 ],
             ],
         ],
