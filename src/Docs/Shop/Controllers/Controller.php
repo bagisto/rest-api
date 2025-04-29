@@ -63,6 +63,10 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints of Address"
  * )
  * @OA\Tag(
+ *     name="GDPR",
+ *     description="API Endpoints of GDPR"
+ * )
+ * @OA\Tag(
  *     name="Orders",
  *     description="API Endpoints of Order"
  * )
