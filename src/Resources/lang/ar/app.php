@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'حدث خطأ أثناء تحديث حسابك',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'تم إنشاء طلب GDPR بنجاح.',
+                'revoke-success' => 'تم إلغاء طلب GDPR بنجاح.',
+                'revoke-failed'  => 'لا يمكن إلغاء طلب GDPR.',
+            ],
         ],
 
         'checkout' => [

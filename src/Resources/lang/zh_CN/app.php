@@ -442,6 +442,12 @@ return [
                     'update-failed'     => '更新您的帐户时出错',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'GDPR请求已成功创建。',
+                'revoke-success' => 'GDPR请求已成功撤销。',
+                'revoke-failed'  => '无法撤销GDPR请求。',
+            ],
         ],
 
         'checkout' => [

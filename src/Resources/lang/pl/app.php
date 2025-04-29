@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'Wystąpił błąd podczas aktualizacji konta',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'Żądanie GDPR zostało pomyślnie utworzone.',
+                'revoke-success' => 'Żądanie GDPR zostało pomyślnie cofnięte.',
+                'revoke-failed'  => 'Nie można cofnąć żądania GDPR.',
+            ],
         ],
 
         'checkout' => [

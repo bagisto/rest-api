@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'Произошла ошибка при обновлении вашей учетной записи',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'Запрос GDPR успешно создан.',
+                'revoke-success' => 'Запрос GDPR успешно отозван.',
+                'revoke-failed'  => 'Не удалось отозвать запрос GDPR.',
+            ],
         ],
 
         'checkout' => [

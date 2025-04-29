@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'アカウントの更新中にエラーが発生しました',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'GDPRリクエストが正常に作成されました。',
+                'revoke-success' => 'GDPRリクエストが正常に取り消されました。',
+                'revoke-failed'  => 'GDPRリクエストを取り消すことができません。',
+            ],
         ],
 
         'checkout' => [

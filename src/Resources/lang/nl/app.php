@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'Er is een fout opgetreden bij het bijwerken van uw account',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'GDPR-verzoek is succesvol aangemaakt.',
+                'revoke-success' => 'GDPR-verzoek is succesvol ingetrokken.',
+                'revoke-failed'  => 'GDPR-verzoek kan niet worden ingetrokken.',
+            ],
         ],
 
         'checkout' => [

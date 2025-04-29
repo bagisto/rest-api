@@ -441,6 +441,12 @@ return [
                     'invalid'          => 'E-mail ou mot de passe invalide',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'La demande GDPR a été créée avec succès.',
+                'revoke-success' => 'La demande GDPR a été révoquée avec succès.',
+                'revoke-failed'  => 'Impossible de révoquer la demande GDPR.',
+            ],
         ],
 
         'checkout' => [

@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'An error has occurred while updating your account',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'GDPR Request has been created successfully.',
+                'revoke-success' => 'GDPR Request has been revoked successfully.',
+                'revoke-failed'  => 'GDPR Request cannot be revoked.',
+            ],
         ],
 
         'checkout' => [

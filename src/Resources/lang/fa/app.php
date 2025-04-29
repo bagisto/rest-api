@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'خطایی در هنگام به‌روزرسانی حساب شما رخ داده است',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'درخواست GDPR با موفقیت ایجاد شد.',
+                'revoke-success' => 'درخواست GDPR با موفقیت لغو شد.',
+                'revoke-failed'  => 'امکان لغو درخواست GDPR وجود ندارد.',
+            ],
         ],
 
         'checkout' => [

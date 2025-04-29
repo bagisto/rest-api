@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'Ocorreu um erro ao atualizar sua conta',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'Solicitação de GDPR criada com sucesso.',
+                'revoke-success' => 'Solicitação de GDPR revogada com sucesso.',
+                'revoke-failed'  => 'Não é possível revogar a solicitação de GDPR.',
+            ],
         ],
 
         'checkout' => [

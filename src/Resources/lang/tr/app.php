@@ -442,6 +442,12 @@ return [
                     'update-failed'     => 'Hesabınızı güncelleştirirken bir hata oluştu',
                 ],
             ],
+
+            'gdpr' => [
+                'create-success' => 'GDPR isteği başarıyla oluşturuldu.',
+                'revoke-success' => 'GDPR isteği başarıyla iptal edildi.',
+                'revoke-failed'  => 'GDPR isteği iptal edilemedi.',
+            ],
         ],
 
         'checkout' => [
