@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'Bültenimize başarıyla abone oldunuz.',
                 'warning-message' => 'Bültenimize zaten abone oldunuz.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'GDPR isteği başarıyla silindi.',
+                'update-success' => 'GDPR isteği başarıyla güncellendi.',
+            ],
         ],
 
         'cms' => [

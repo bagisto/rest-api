@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'ニュースレターに正常に登録されました。',
                 'warning-message' => 'すでにニュースレターに登録されています。',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'GDPRリクエストは正常に削除されました。',
+                'update-success' => 'GDPRリクエストは正常に更新されました。',
+            ],
         ],
 
         'cms' => [

@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'Você se inscreveu com sucesso na nossa newsletter.',
                 'warning-message' => 'Você já está inscrito na nossa newsletter.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'O pedido de GDPR foi excluído com sucesso.',
+                'update-success' => 'O pedido de GDPR foi atualizado com sucesso.',
+            ],
         ],
 
         'cms' => [

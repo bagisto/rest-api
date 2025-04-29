@@ -175,6 +175,11 @@ return [
                 'create-success'  => '您已成功订阅我们的新闻通讯。',
                 'warning-message' => '您已经订阅了我们的新闻通讯。',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'GDPR请求已成功删除。',
+                'update-success' => 'GDPR请求已成功更新。',
+            ],
         ],
 
         'cms' => [

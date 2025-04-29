@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'U bent succesvol geabonneerd op onze nieuwsbrief.',
                 'warning-message' => 'U bent al geabonneerd op onze nieuwsbrief.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'De GDPR-aanvraag is succesvol verwijderd.',
+                'update-success' => 'De GDPR-aanvraag is succesvol bijgewerkt.',
+            ],
         ],
 
         'cms' => [

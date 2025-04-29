@@ -153,10 +153,6 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
 
         Route::post('', 'store');
 
-        Route::get('pdf-view', 'pdfView');
-
-        Route::get('html-view', 'htmlView');
-
         Route::put('revoke/{id}', 'revoke');
     });
 

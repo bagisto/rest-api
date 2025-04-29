@@ -5,6 +5,7 @@ use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\AddressController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\GroupController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\ReviewController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\GDPRController;
 
 Route::group([
     'middleware' => ['auth:sanctum', 'sanctum.admin'],
@@ -91,5 +92,18 @@ Route::group([
         Route::delete('{id}', 'destroy');
 
         Route::post('mass-destroy', 'massDestroy');
+    });
+
+    /**
+     * Customer's GDPR routes.
+     */
+    Route::controller(GDPRController::class)->prefix('gdpr')->group(function () {
+        Route::get('', 'allResources');
+
+        Route::get('{id}', 'getResource');
+
+        Route::put('{id}', 'update');
+
+        Route::delete('{id}', 'delete');
     });
 });

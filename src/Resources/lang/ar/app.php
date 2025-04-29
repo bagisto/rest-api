@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'لقد اشتركت بنجاح في نشرتنا الإخبارية.',
                 'warning-message' => 'لقد اشتركت بالفعل في نشرتنا الإخبارية.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'تم حذف طلب GDPR بنجاح.',
+                'update-success' => 'تم تحديث طلب GDPR بنجاح.',
+            ],
         ],
 
         'cms' => [

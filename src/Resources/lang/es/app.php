@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'Te has suscrito con éxito a nuestro boletín.',
                 'warning-message' => 'Ya te has suscrito a nuestro boletín.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'La solicitud de GDPR se ha eliminado con éxito.',
+                'update-success' => 'La solicitud de GDPR se ha actualizado con éxito.',
+            ],
         ],
 
         'cms' => [

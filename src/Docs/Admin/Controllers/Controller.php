@@ -122,6 +122,10 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     name="CustomerAddresses",
  *     description="API Endpoints of Admin CustomerAddress"
  * )
+ *  @OA\Tag(
+ *     name="CustomerGDPR",
+ *     description="API Endpoints of Admin CustomerGDPR"
+ * )
  * @OA\Tag(
  *     name="CatalogRules",
  *     description="API Endpoints of Admin CatalogRule"

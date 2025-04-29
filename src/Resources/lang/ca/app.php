@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'Vous vous êtes abonné avec succès à notre newsletter.',
                 'warning-message' => 'Vous êtes déjà abonné à notre newsletter.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'GDPR Request has been deleted successfully.',
+                'update-success' => 'GDPR Request has been updated successfully.',
+            ],
         ],
 
         'cms' => [

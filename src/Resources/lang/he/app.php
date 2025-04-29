@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'נרשמת בהצלחה לניוזלטר שלנו.',
                 'warning-message' => 'כבר נרשמת לניוזלטר שלנו.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'הבקשה ל-GDPR נמחקה בהצלחה.',
+                'update-success' => 'הבקשה ל-GDPR עודכנה בהצלחה.',
+            ],
         ],
 
         'cms' => [
