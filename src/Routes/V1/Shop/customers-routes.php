@@ -119,7 +119,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
 
         Route::delete('remove/{cartItemId}', 'removeItem');
 
-        Route::delete('remove', 'removeall');
+        Route::delete('remove', 'removeAll');
 
         Route::post('move-to-wishlist/{cartItemId}', 'moveToWishlist');
 

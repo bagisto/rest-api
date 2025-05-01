@@ -44,6 +44,19 @@ Route::group([
     });
 
     /**
+     * Customer's GDPR routes.
+     */
+    Route::controller(GDPRController::class)->prefix('gdpr')->group(function () {
+        Route::get('', 'allResources');
+
+        Route::get('{id}', 'getResource');
+
+        Route::put('{id}', 'update');
+
+        Route::delete('{id}', 'delete');
+    });
+
+    /**
      * Customer routes.
      *
      * Note: Main customer routes should be placed after all these routes i.e. `customers/<static-slug>`.
@@ -92,18 +105,5 @@ Route::group([
         Route::delete('{id}', 'destroy');
 
         Route::post('mass-destroy', 'massDestroy');
-    });
-
-    /**
-     * Customer's GDPR routes.
-     */
-    Route::controller(GDPRController::class)->prefix('gdpr')->group(function () {
-        Route::get('', 'allResources');
-
-        Route::get('{id}', 'getResource');
-
-        Route::put('{id}', 'update');
-
-        Route::delete('{id}', 'delete');
     });
 });

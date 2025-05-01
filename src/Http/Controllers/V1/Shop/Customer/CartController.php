@@ -173,7 +173,7 @@ class CartController extends CustomerController
     /**
      * Empty the cart.
      */
-    public function removeall(): Response
+    public function removeAll(): Response
     {
         Event::dispatch('checkout.cart.delete.before');
 
