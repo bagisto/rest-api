@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'U bent succesvol geabonneerd op onze nieuwsbrief.',
                 'warning-message' => 'U bent al geabonneerd op onze nieuwsbrief.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'De GDPR-aanvraag is succesvol verwijderd.',
+                'update-success' => 'De GDPR-aanvraag is succesvol bijgewerkt.',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => 'Het huidige wachtwoord komt niet overeen.',
                     'update-failed'     => 'Er is een fout opgetreden bij het bijwerken van uw account',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'GDPR-verzoek is succesvol aangemaakt.',
+                'revoke-success' => 'GDPR-verzoek is succesvol ingetrokken.',
+                'revoke-failed'  => 'GDPR-verzoek kan niet worden ingetrokken.',
             ],
         ],
 

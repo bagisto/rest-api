@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'Vous vous êtes abonné avec succès à notre newsletter.',
                 'warning-message' => 'Vous êtes déjà abonné à notre newsletter.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'La demande GDPR a été supprimée avec succès.',
+                'update-success' => 'La demande GDPR a été mise à jour avec succès.',
+            ],
         ],
 
         'cms' => [
@@ -440,6 +445,12 @@ return [
                     'credential-error' => 'Les informations d\'identification fournies sont incorrectes.',
                     'invalid'          => 'E-mail ou mot de passe invalide',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'La demande GDPR a été créée avec succès.',
+                'revoke-success' => 'La demande GDPR a été révoquée avec succès.',
+                'revoke-failed'  => 'Impossible de révoquer la demande GDPR.',
             ],
         ],
 

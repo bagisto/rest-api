@@ -32,7 +32,7 @@ class Handler extends BaseHandler
     /**
      * Handle the authentication exception.
      */
-    private function handleAuthenticationException(): void
+    protected function handleAuthenticationException(): void
     {
         $this->renderable(function (AuthenticationException $exception, Request $request) {
             $nameSpace = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
@@ -54,7 +54,7 @@ class Handler extends BaseHandler
     /**
      * Handle the http exceptions.
      */
-    private function handleHttpException(): void
+    protected function handleHttpException(): void
     {
         $this->renderable(function (HttpException $exception, Request $request) {
             $nameSpace = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
@@ -77,7 +77,7 @@ class Handler extends BaseHandler
     /**
      * Handle the server exceptions.
      */
-    private function handleServerException(): void
+    protected function handleServerException(): void
     {
         $this->renderable(function (Throwable $throwable, Request $request) {
             $nameSpace = $request->is(config('app.admin_url').'/*') ? 'admin' : 'shop';
@@ -97,7 +97,7 @@ class Handler extends BaseHandler
     /**
      * Handle validation exceptions.
      */
-    private function handleValidationException(): void
+    protected function handleValidationException(): void
     {
         $this->renderable(function (ValidationException $exception, Request $request) {
             return parent::convertValidationExceptionToResponse($exception, $request);

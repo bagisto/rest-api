@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'Te has suscrito con éxito a nuestro boletín.',
                 'warning-message' => 'Ya te has suscrito a nuestro boletín.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'La solicitud de GDPR se ha eliminado con éxito.',
+                'update-success' => 'La solicitud de GDPR se ha actualizado con éxito.',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => 'La contraseña actual no coincide.',
                     'update-failed'     => 'Se ha producido un error al actualizar su cuenta',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'La solicitud de GDPR se ha creado con éxito.',
+                'revoke-success' => 'La solicitud de GDPR se ha revocado con éxito.',
+                'revoke-failed'  => 'No se puede revocar la solicitud de GDPR.',
             ],
         ],
 

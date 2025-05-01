@@ -175,6 +175,11 @@ return [
                 'create-success'  => '您已成功订阅我们的新闻通讯。',
                 'warning-message' => '您已经订阅了我们的新闻通讯。',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'GDPR请求已成功删除。',
+                'update-success' => 'GDPR请求已成功更新。',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => '当前密码不匹配。',
                     'update-failed'     => '更新您的帐户时出错',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'GDPR请求已成功创建。',
+                'revoke-success' => 'GDPR请求已成功撤销。',
+                'revoke-failed'  => '无法撤销GDPR请求。',
             ],
         ],
 

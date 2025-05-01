@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'Pomyślnie zasubskrybowałeś nasz newsletter.',
                 'warning-message' => 'Już subskrybujesz nasz newsletter.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'Żądanie GDPR zostało pomyślnie usunięte.',
+                'update-success' => 'Żądanie GDPR zostało pomyślnie zaktualizowane.',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => 'Aktualne hasło nie pasuje.',
                     'update-failed'     => 'Wystąpił błąd podczas aktualizacji konta',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'Żądanie GDPR zostało pomyślnie utworzone.',
+                'revoke-success' => 'Żądanie GDPR zostało pomyślnie cofnięte.',
+                'revoke-failed'  => 'Nie można cofnąć żądania GDPR.',
             ],
         ],
 

@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'لقد اشتركت بنجاح في نشرتنا الإخبارية.',
                 'warning-message' => 'لقد اشتركت بالفعل في نشرتنا الإخبارية.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'تم حذف طلب GDPR بنجاح.',
+                'update-success' => 'تم تحديث طلب GDPR بنجاح.',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => 'كلمة المرور الحالية لا تتطابق.',
                     'update-failed'     => 'حدث خطأ أثناء تحديث حسابك',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'تم إنشاء طلب GDPR بنجاح.',
+                'revoke-success' => 'تم إلغاء طلب GDPR بنجاح.',
+                'revoke-failed'  => 'لا يمكن إلغاء طلب GDPR.',
             ],
         ],
 

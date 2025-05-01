@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'ニュースレターに正常に登録されました。',
                 'warning-message' => 'すでにニュースレターに登録されています。',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'GDPRリクエストは正常に削除されました。',
+                'update-success' => 'GDPRリクエストは正常に更新されました。',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => '現在のパスワードが一致しません。',
                     'update-failed'     => 'アカウントの更新中にエラーが発生しました',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'GDPRリクエストが正常に作成されました。',
+                'revoke-success' => 'GDPRリクエストが正常に取り消されました。',
+                'revoke-failed'  => 'GDPRリクエストを取り消すことができません。',
             ],
         ],
 

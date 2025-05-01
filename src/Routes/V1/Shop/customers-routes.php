@@ -11,6 +11,7 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\ShipmentController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\TransactionController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\WishlistController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\NewsLetterController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\GDPRController;
 
 /**
  * Customer unauthorized routes.
@@ -118,7 +119,7 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
 
         Route::delete('remove/{cartItemId}', 'removeItem');
 
-        Route::delete('remove', 'removeall');
+        Route::delete('remove', 'removeAll');
 
         Route::post('move-to-wishlist/{cartItemId}', 'moveToWishlist');
 
@@ -140,6 +141,19 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::post('check-minimum-order', 'checkMinimumOrder');
 
         Route::post('save-order', 'saveOrder');
+    });
+
+    /**
+     * GDPR.
+     */
+    Route::controller(GDPRController::class)->prefix('customer/gdpr')->group(function () {
+        Route::get('', 'allResources');
+
+        Route::get('{id}', 'getResource');
+
+        Route::post('', 'store');
+
+        Route::put('revoke/{id}', 'revoke');
     });
 
     /**

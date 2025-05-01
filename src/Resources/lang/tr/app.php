@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'Bültenimize başarıyla abone oldunuz.',
                 'warning-message' => 'Bültenimize zaten abone oldunuz.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'GDPR isteği başarıyla silindi.',
+                'update-success' => 'GDPR isteği başarıyla güncellendi.',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => 'Mevcut şifre eşleşmiyor.',
                     'update-failed'     => 'Hesabınızı güncelleştirirken bir hata oluştu',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'GDPR isteği başarıyla oluşturuldu.',
+                'revoke-success' => 'GDPR isteği başarıyla iptal edildi.',
+                'revoke-failed'  => 'GDPR isteği iptal edilemedi.',
             ],
         ],
 

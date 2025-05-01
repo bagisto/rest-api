@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'You have successfully subscribed to our newsletter.',
                 'warning-message' => 'You have already subscribed to our newsletter.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'GDPR Request has been deleted successfully.',
+                'update-success' => 'GDPR Request has been updated successfully.',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => 'Current password does not match.',
                     'update-failed'     => 'An error has occurred while updating your account',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'GDPR Request has been created successfully.',
+                'revoke-success' => 'GDPR Request has been revoked successfully.',
+                'revoke-failed'  => 'GDPR Request cannot be revoked.',
             ],
         ],
 

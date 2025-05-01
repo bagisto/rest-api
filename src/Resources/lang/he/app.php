@@ -175,6 +175,11 @@ return [
                 'create-success'  => 'נרשמת בהצלחה לניוזלטר שלנו.',
                 'warning-message' => 'כבר נרשמת לניוזלטר שלנו.',
             ],
+
+            'gdpr' => [
+                'delete-success' => 'הבקשה ל-GDPR נמחקה בהצלחה.',
+                'update-success' => 'הבקשה ל-GDPR עודכנה בהצלחה.',
+            ],
         ],
 
         'cms' => [
@@ -441,6 +446,12 @@ return [
                     'password-mismatch' => 'הסיסמה הנוכחית אינה תואמת.',
                     'update-failed'     => 'אירעה שגיאה בעת עדכון החשבון שלך',
                 ],
+            ],
+
+            'gdpr' => [
+                'create-success' => 'הבקשה ל-GDPR נוצרה בהצלחה.',
+                'revoke-success' => 'הבקשה ל-GDPR בוטלה בהצלחה.',
+                'revoke-failed'  => 'לא ניתן לבטל את הבקשה ל-GDPR.',
             ],
         ],
 
