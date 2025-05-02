@@ -5,6 +5,7 @@ namespace Webkul\RestApi\Http\Resources\V1\Shop\Catalog;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Product\Facades\ProductImage;
 use Webkul\Product\Helpers\BundleOption;
+use Webkul\Checkout\Facades\Cart;
 
 class ProductResource extends JsonResource
 {
@@ -54,7 +55,7 @@ class ProductResource extends JsonResource
             /* product's checks */
             'in_stock'              => $product->haveSufficientQuantity(1),
             'is_saved'              => false,
-            'is_item_in_cart'       => \Cart::getCart(),
+            'is_item_in_cart'       => Cart::getCart(),
             'show_quantity_changer' => $this->when(
                 $product->type !== 'grouped',
                 $product->getTypeInstance()->showQuantityBox()
