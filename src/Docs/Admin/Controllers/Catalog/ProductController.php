@@ -1098,6 +1098,8 @@ class ProductController
      *                 example="ConfigurableProduct",
      *                 summary="Configurable Product",
      *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
      *                     "sku": "skipping-rope",
      *                     "product_number": "sr-001",
      *                     "name": "Skipping Rope",
@@ -1456,36 +1458,41 @@ class ProductController
      *                       4
      *                     },
      *                     "booking": {
-     *                       "type": "default",
-     *                       "location": "Delhi",
-     *                       "qty": "10",
-     *                       "available_from": "2025-05-05 12:00:00",
-     *                       "available_to": "2025-05-08 12:00:00",
-     *                       "booking_type": "one",
-     *                       "slots": {
-     *                         {
-     *                           "id": "3",
-     *                           "from_day": "1",
-     *                           "from": "12:00",
-     *                           "to_day": "2",
-     *                           "to": "20:00"
-     *                         },
-     *                         {
-     *                           "id": "4",
-     *                           "from_day": "3",
-     *                           "from": "12:00",
-     *                           "to_day": "4",
-     *                           "to": "20:00"
-     *                         },
-     *                         {
-     *                           "id": "5",
-     *                           "from_day": "5",
-     *                           "from": "12:00",
-     *                           "to_day": "6",
-     *                           "to": "20:00"
-     *                         }
-     *                       }
-     *                     }
+     *                        "type": "default",
+     *                        "location": "Delhi",
+     *                        "qty": "25",
+     *                        "available_from": "2025-05-07 12:00:00",
+     *                        "available_to": "2025-05-16 12:00:00",
+     *                        "booking_type": "many",
+     *                        "duration": "45",
+     *                        "break_time": "15",
+     *                        "slots": {
+     *                            "0": {{
+     *                                "id": "0",
+     *                                "from": "13:00",
+     *                                "to": "16:00",
+     *                                "status": "1"
+     *                            }},
+     *                            "1": {{
+     *                                "id": "1",
+     *                                "from": "12:00",
+     *                                "to": "14:00",
+     *                                "status": "0"
+     *                            }},
+     *                            "2": {{
+     *                                "id": "2",
+     *                                "from": "13:00",
+     *                                "to": "17:00",
+     *                                "status": "0"
+     *                            }},
+     *                            "6": {{
+     *                                "id": "6",
+     *                                "from": "12:00",
+     *                                "to": "15:00",
+     *                                "status": "0"
+     *                            }}
+     *                        }
+     *                    }
      *                 }
      *             ),
      *             @OA\Examples(
