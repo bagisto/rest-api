@@ -171,8 +171,81 @@ class CartController
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
+     *                  @OA\Property(
+     *                      property="booking",
+     *                      type="array",
+     *                      description="Use in booking type product only (Required)",
      *
+     *                      @OA\Items(
      *
+     *                          @OA\Property(
+     *                              property="date",
+     *                              type="string",
+     *                              format="datetime",
+     *                              example="2025-05-07"
+     *                          ),
+     *
+     *                           @OA\Property(
+     *                              property="date_from",
+     *                              type="string",
+     *                              format="datetime",
+     *                              example="2025-05-07"
+     *                          ),
+     *
+     *                          @OA\Property(
+     *                              property="date_to",
+     *                              type="string",
+     *                              format="datetime",
+     *                              example="2025-05-14"
+     *                          ),
+     *
+     *                          @OA\Property(
+     *                              property="renting_type",
+     *                              type="string",
+     *                              description="Use in rental type product only (Required)",
+     *                              enum={"hourly", "daily"},
+     *                              example="2025-05-14"
+     *                          ),
+     *
+     *                         @OA\Property(
+     *                             property="slot",
+     *                             type="array",
+     *
+     *                             @OA\Items(
+     *                               @OA\Property(
+     *                                 property="from",
+     *                                 type="integer",
+     *                                 example=1746685800
+     *                               ),
+     *
+     *                               @OA\Property(
+     *                                 property="to",
+     *                                 type="integer",
+     *                                 example=1746685800
+     *                               ),
+     *
+     *                             )
+     *                         ),
+     *                        @OA\Property(
+     *                            property="qty",
+     *                            type="array",
+     *                            description="Use in booking event type product only (Required), index used as event id & value as quantity",
+     *                            example={
+     *                               "3": 1,
+     *                               "4": 2,
+     *                               "5": 1
+     *                            },
+     *                            @OA\Items(
+     *                                @OA\Property(type="integer")
+     *                            )
+     *                        ),
+     *                        @OA\Property(
+     *                            property="note",
+     *                            type="string",
+     *                            example="Use this with booking product table"
+     *                        ),
+     *                      )
+     *                  ),
      *
      *                  required={"product_id", "quantity"}
      *              ),
@@ -219,12 +292,12 @@ class CartController
      *                 example="GroupedProduct",
      *                 summary="Grouped Product",
      *                 value={
-     *                     "product_id": 30,
+     *                     "product_id": 5,
      *                     "is_buy_now": 0,
-     *                     "selected_configurable_option": 4,
      *                     "qty": {
-     *                         "1": 2,
-     *                         "2": 3
+     *                         "1": 4,
+     *                         "3": 3,
+     *                         "4": 2
      *                     },
      *                     "quantity": 1
      *                 }
