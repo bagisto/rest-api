@@ -188,6 +188,21 @@ class CartController
      *              ),
      *
      *              @OA\Examples(
+     *                 example="ConfigurableAddToCart",
+     *                 summary="Configurable product",
+     *                 value={
+     *                     "product_id": 21,
+     *                     "is_buy_now": 0,
+     *                     "selected_configurable_option": 22,
+     *                     "super_attribute": {
+     *                         "23": 4,
+     *                         "24": 6
+     *                     },
+     *                     "quantity": 2
+     *                 }
+     *              ),
+     *
+     *              @OA\Examples(
      *                 example="VirtualProduct",
      *                 summary="Virtual Product",
      *                 value={
