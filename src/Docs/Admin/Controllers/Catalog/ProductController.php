@@ -161,10 +161,10 @@ class ProductController
      *
      *                  @OA\Property(
      *                      property="type",
-     *                      description="Product's type i.e. `simple`, `configurable`, `virtual`, `grouped`, `downloadable`, `bundle`",
+     *                      description="Product's type i.e. `simple`, `configurable`, `virtual`, `grouped`, `downloadable`, `bundle`, `booking`",
      *                      type="string",
      *                      example="simple",
-     *                      enum={"simple", "configurable", "virtual", "grouped", "downloadable", "bundle"}
+     *                      enum={"simple", "configurable", "virtual", "grouped", "downloadable", "bundle", "booking"}
      *                  ),
      *                  @OA\Property(
      *                      property="attribute_family_id",
@@ -569,32 +569,29 @@ class ProductController
 
     /**
      * @OA\Put(
-     *      path="/api/v1/admin/catalog/products/{id}",
-     *      operationId="updateOtherTypeProduct",
-     *      tags={"Products"},
-     *      summary="Update product (Configurable, Grouped, Downloadable, Bundle)",
-     *      description="Update product (Configurable, Grouped, Downloadable, Bundle)",
-     *      security={ {"sanctum_admin": {} }},
+     *     path="/api/v1/admin/catalog/products/{id}",
+     *     operationId="updateOtherTypeProduct",
+     *     tags={"Products"},
+     *     summary="Update product (Configurable, Grouped, Downloadable, Bundle, Booking)",
+     *     description="Update product (Configurable, Grouped, Downloadable, Bundle, Booking)",
+     *     security={{"sanctum_admin": {}}},
      *
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="Product ID",
-     *          required=true,
-     *          in="path",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Product ID",
+     *         @OA\Schema(type="integer")
+     *     ),
      *
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/json",
      *
-     *      @OA\RequestBody(
-     *
-     *          @OA\MediaType(
-     *              mediaType="application/json",
-     *
-     *              @OA\Schema(
-     *
-     *                  @OA\Property(
+     *             @OA\Schema(
+     *                 required={"sku", "name", "url_key", "short_description", "description"},
+     *                 @OA\Property(
      *                      property="channel",
      *                      description="Store's channel code",
      *                      type="string",
@@ -1027,34 +1024,809 @@ class ProductController
      *                          )
      *                      )
      *                  ),
-
-     *                  required={"sku", "name", "url_key", "short_description", "description"}
-     *              )
-     *          )
-     *      ),
      *
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
+     *                  @OA\Property(
+     *                      property="booking",
+     *                      description="Booking product options, `Info: Only use in booking type product`",
+     *                      type="object",
+     *                      @OA\Property(property="type", type="string", example="default", enum={"default", "appointment", "event", "rental", "table"}),
+     *                      @OA\Property(property="booking_type", description="`Only use with booking type=default`", type="string", example="one", enum={"one","many"}),
+     *                      @OA\Property(property="location", type="string", example="India"),
+     *                      @OA\Property(property="available_every_week", description="`Use with booking type=appointment, rental, table`", type="integer", example=1, enum={0,1}),
+     *                      @OA\Property(property="available_from", description="`Not use if available_every_week=1 in appointment, rental, table bookings`", format="datetime", type="string", example="2023-05-31 12:00:00"),
+     *                      @OA\Property(property="available_to", description="`Not use if available_every_week=1 in appointment, rental, table bookings`", format="datetime", type="string", example="2024-05-31 12:00:00"),
+     *                      @OA\Property(property="duration", description="`Not use with type=event, rental, & booking_type=one`", type="float", example=30),
+     *                      @OA\Property(property="break_time", description="`Not use with type=event, rental, & booking_type=one`", type="float", example=15),
+     *                      @OA\Property(property="qty", description="`Not use with booking type=event`", type="integer", example=50),
+     *                      @OA\Property(property="same_slot_all_days", description="`Use with booking type=appointment, rental, table`", type="integer", example=1, enum={0,1}),
+     *                      @OA\Property(
+     *                          property="slots",
+     *                          description="`Not use with booking type=event`",
+     *                          type="array",
      *
-     *          @OA\JsonContent(
+     *                          @OA\Items(
      *
-     *              @OA\Property(
-     *                  property="message",
-     *                  type="string",
-     *                  example="Product updated successfully."),
-     *              @OA\Property(
-     *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/Product"
-     *              )
-     *          )
-     *      ),
+     *                              @OA\Property(property="from_day", description="`Only use with type=default with booking_type=one`", type="integer", example=0, enum={0,1,2,3,4,5,6}),
+     *                              @OA\Property(property="to_day", description="`Only use with type=default with booking_type=one`", type="integer", example=0, enum={0,1,2,3,4,5,6}),
+     *                              @OA\Property(property="from", type="string", example="09:00"),
+     *                              @OA\Property(property="to", type="string", example="11:00"),
+     *                              @OA\Property(property="status", description="`Only use with booking_type=many`", type="integer", example=1, enum={0,1})
+     *                          )
+     *                      ),
+     *                      @OA\Property(
+     *                          property="tickets",
+     *                          description="`Only use with booking type=event`",
+     *                          type="object",
+     *                          @OA\Property(
+     *                              property="ticket_0",
+     *                              type="object",
+     *                              @OA\Property(property="en", type="object",
+     *                                  @OA\Property(property="name", type="string", example="Morning Show"),
+     *                                  @OA\Property(property="description", type="string", example="Lorem Ipsum is simply dummy text of the printing and typesetting industry.")
+     *                              ),
+     *                              @OA\Property(property="qty", type="integer", example="150"),
+     *                              @OA\Property(property="price", type="float", example=10.50),
+     *                              @OA\Property(property="special_price", type="float"),
+     *                              @OA\Property(property="special_price_from", format="datetime", type="string", example=null),
+     *                              @OA\Property(property="special_price_to", format="datetime", type="string", example=null)
+     *                          ),
+     *                          @OA\Property(
+     *                              property="ticket_1",
+     *                              type="object",
+     *                              @OA\Property(property="en", type="object",
+     *                                  @OA\Property(property="name", type="string", example="Evening Show"),
+     *                                  @OA\Property(property="description", type="string", example="Lorem Ipsum is simply dummy text of the printing and typesetting industry.")
+     *                              ),
+     *                              @OA\Property(property="qty", type="integer", example="200"),
+     *                              @OA\Property(property="price", type="float", example=22),
+     *                              @OA\Property(property="special_price", type="float", example=20.50),
+     *                              @OA\Property(property="special_price_from", format="datetime", type="string", example="2023-05-31 12:00:00"),
+     *                              @OA\Property(property="special_price_to", format="datetime", type="string", example="2024-05-31 12:00:00")
+     *                          )
+     *                      ),
+     *                      @OA\Property(property="renting_type", description="`Only use with booking type=rental`", type="string", example="daily_hourly", enum={"daily", "hourly", "daily_hourly"}),
+     *                      @OA\Property(property="daily_price", description="`Only use with booking type=rental & renting_type=daily, daily_hourly`", type="float", example=24.00),
+     *                      @OA\Property(property="hourly_price", description="`Only use with booking type=rental & renting_type=hourly, daily_hourly`", type="float", example=1.00),
+     *                      @OA\Property(property="price_type", description="`Only use with booking type=table`", type="string", example="guest", enum={"guest", "table"}),
+     *                      @OA\Property(property="guest_limit", description="`Only use with booking type=table & price_type=table`", type="integer", example=20),
+     *                      @OA\Property(property="prevent_scheduling_before", description="`Only use with booking type=table`", type="float", example=5.00)
+     *                  ),
      *
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      )
+     *             ),
+     *
+     *             @OA\Examples(
+     *                 example="ConfigurableProduct",
+     *                 summary="Configurable Product",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                     "variants": {
+     *                       "28": {
+     *                         "sku": "skipping-rope-variant-1-6",
+     *                         "name": "Red-S",
+     *                         "color": 1,
+     *                         "size": 6,
+     *                         "price": 10.5,
+     *                         "weight": 1.2,
+     *                         "status": 1,
+     *                         "inventories": {
+     *                           "1": 500
+     *                         },
+     *                         "images[]": {
+     *                           "string"
+     *                         }
+     *                       },
+     *                       "29": {
+     *                         "sku": "skipping-rope-variant-1-7",
+     *                         "name": "Red-M",
+     *                         "color": 1,
+     *                         "size": 7,
+     *                         "price": 15,
+     *                         "weight": 1,
+     *                         "status": 1,
+     *                         "inventories": {
+     *                           "1": 500
+     *                         },
+     *                         "images[files]": {
+     *                           "string"
+     *                         }
+     *                       }
+     *                     },
+     *                  }
+     *             ),
+     *             @OA\Examples(
+     *                 example="DownloadableProduct",
+     *                 summary="Downloadable Product",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                    "downloadable_links": {
+     *                      "link_0": {
+     *                        "en": {
+     *                          "title": "Link 1"
+     *                        },
+     *                        "price": 5,
+     *                        "type": "url",
+     *                        "url": "https://cdn.pixabay.com/photo/2016/03/26/13/08/conceptual-1280533_1280.jpg",
+     *                        "sample_type": "url",
+     *                        "sample_url": "https://cdn.pixabay.com/photo/2016/11/22/19/11/brick-wall-1850095_1280.jpg",
+     *                        "downloads": 10,
+     *                        "sort_order": 1
+     *                      },
+     *                      "link_1": {
+     *                        "en": {
+     *                          "title": "Link 2"
+     *                        },
+     *                        "price": 10,
+     *                        "type": "url",
+     *                        "url": "https://cdn.pixabay.com/photo/2016/03/26/13/08/conceptual-1280533_1280.jpg",
+     *                        "sample_type": "url",
+     *                        "sample_url": "https://cdn.pixabay.com/photo/2016/11/22/19/11/brick-wall-1850095_1280.jpg",
+     *                        "downloads": 20,
+     *                        "sort_order": 2
+     *                      }
+     *                    },
+     *                    "downloadable_samples": {
+     *                      "sample_0": {
+     *                        "en": {
+     *                          "title": "Sample 1"
+     *                        },
+     *                        "type": "url",
+     *                        "url": "https://cdn.pixabay.com/photo/2017/10/04/14/50/staging-2816464_1280.jpg",
+     *                        "sort_order": 1
+     *                      },
+     *                      "sample_1": {
+     *                        "en": {
+     *                          "title": "Sample 2"
+     *                        },
+     *                        "type": "url",
+     *                        "url": "https://cdn.pixabay.com/photo/2015/12/05/23/38/nursery-1078923_1280.jpg",
+     *                        "sort_order": 2
+     *                      }
+     *                    },
+     *                  }
+     *             ),
+     *             @OA\Examples(
+     *                 example="GroupedProduct",
+     *                 summary="Grouped Product",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                     "links": {
+     *                         "link_0": {
+     *                             "associated_product_id": 1,
+     *                             "qty": 2,
+     *                             "sort_order": 1
+     *                         },
+     *                         "link_1": {
+     *                             "associated_product_id": 2,
+     *                             "qty": 3,
+     *                             "sort_order": 2
+     *                         }
+     *                     }
+     *                 }
+     *             ),
+     *             @OA\Examples(
+     *                 example="BundleProduct",
+     *                 summary="Bundle Product",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                     "bundle_options": {
+     *                           "option_0": {
+     *                             "en": {
+     *                               "label": "Select One"
+     *                             },
+     *                             "type": "select",
+     *                             "is_required": 0,
+     *                             "sort_order": 1,
+     *                             "products": {
+     *                               "product_0": {
+     *                                 "product_id": 1,
+     *                                 "qty": 2,
+     *                                 "sort_order": 1
+     *                               },
+     *                               "product_1": {
+     *                                 "product_id": 2,
+     *                                 "qty": 3,
+     *                                 "sort_order": 2
+     *                               }
+     *                             }
+     *                           },
+     *                           "option_1": {
+     *                             "en": {
+     *                               "label": "Radio One"
+     *                             },
+     *                             "type": "radio",
+     *                             "is_required": 1,
+     *                             "sort_order": 2,
+     *                             "products": {
+     *                               "product_0": {
+     *                                 "product_id": 1,
+     *                                 "qty": 2,
+     *                                 "sort_order": 1
+     *                               },
+     *                               "product_1": {
+     *                                 "product_id": 2,
+     *                                 "qty": 3,
+     *                                 "sort_order": 2
+     *                               }
+     *                             }
+     *                           },
+     *                           "option_3": {
+     *                             "en": {
+     *                               "label": "Multiselect One"
+     *                             },
+     *                             "type": "multiselect",
+     *                             "is_required": 1,
+     *                             "sort_order": 3,
+     *                             "products": {
+     *                               "product_0": {
+     *                                 "product_id": 1,
+     *                                 "qty": 2,
+     *                                 "sort_order": 1
+     *                               },
+     *                               "product_1": {
+     *                                 "product_id": 2,
+     *                                 "qty": 3,
+     *                                 "sort_order": 2
+     *                               },
+     *                               "product_2": {
+     *                                 "product_id": 3,
+     *                                 "qty": 1,
+     *                                 "sort_order": 3
+     *                               }
+     *                             }
+     *                           }
+     *                         }
+     *                 }
+     *             ),
+     *             @OA\Examples(
+     *                 example="BookingProduct",
+     *                 summary="Booking Product | Default",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                     "booking": {
+     *                        "type": "default",
+     *                        "location": "Delhi",
+     *                        "qty": "25",
+     *                        "available_from": "2025-05-07 12:00:00",
+     *                        "available_to": "2025-05-16 12:00:00",
+     *                        "booking_type": "many",
+     *                        "duration": "45",
+     *                        "break_time": "15",
+     *                        "slots": {
+     *                            "0": {{
+     *                                "id": "0",
+     *                                "from": "13:00",
+     *                                "to": "16:00",
+     *                                "status": "1"
+     *                            }},
+     *                            "1": {{
+     *                                "id": "1",
+     *                                "from": "12:00",
+     *                                "to": "14:00",
+     *                                "status": "0"
+     *                            }},
+     *                            "2": {{
+     *                                "id": "2",
+     *                                "from": "13:00",
+     *                                "to": "17:00",
+     *                                "status": "0"
+     *                            }},
+     *                            "6": {{
+     *                                "id": "6",
+     *                                "from": "12:00",
+     *                                "to": "15:00",
+     *                                "status": "0"
+     *                            }}
+     *                        }
+     *                    }
+     *                 }
+     *             ),
+     *             @OA\Examples(
+     *                 example="BookingProductAppointment",
+     *                 summary="Booking Product | Appointment",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                     "booking": {
+     *                       "type": "appointment",
+     *                       "location": "Noida",
+     *                       "qty": "15",
+     *                       "available_every_week": "0",
+     *                       "available_from": "2025-05-05 12:00:00",
+     *                       "available_to": "2025-05-08 12:00:00",
+     *                       "duration": "45",
+     *                       "break_time": "15",
+     *                       "same_slot_all_days": "0",
+     *                       "slots": {
+     *                          "0": {
+     *                              {
+     *                                  "from": "12:10",
+     *                                  "to": "13:00"
+     *                              }
+     *                          },
+     *                          "1": {
+     *                              {
+     *                                  "from": "12:00",
+     *                                  "to": "13:00"
+     *                              },
+     *                              {
+     *                                  "from": "14:00",
+     *                                  "to": "15:00"
+     *                              }
+     *                          },
+     *
+     *                          "6": {
+     *                              {
+     *                                  "from": "13:00",
+     *                                  "to": "15:00"
+     *                              }
+     *                          }
+     *                       }
+     *                     }
+     *                 }
+     *             ),
+     *             @OA\Examples(
+     *                 example="BookingProductRental",
+     *                 summary="Booking Product | Rental",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                     "booking": {
+     *                       "type": "rental",
+     *                       "location": "Delhi",
+     *                       "qty": "35",
+     *                       "available_every_week": "0",
+     *                       "available_from": "2025-05-06 12:00:00",
+     *                       "available_to": "2025-05-08 12:00:00",
+     *                       "renting_type": "daily_hourly",
+     *                       "daily_price": "50",
+     *                       "hourly_price": "5.0000",
+     *                       "same_slot_all_days": "0",
+     *                       "slots": {
+     *                           "0": {
+     *                               {
+     *                                   "from": "12:00",
+     *                                   "to": "13:00"
+     *                               },
+     *                               {
+     *                                   "from": "13:00",
+     *                                   "to": "14:00"
+     *                               }
+     *                           },
+     *                           "1": {
+     *                               {
+     *                                   "from": "12:00",
+     *                                   "to": "13:00"
+     *                               },
+     *                               {
+     *                                   "from": "13:00",
+     *                                   "to": "14:00"
+     *                               },
+     *                               {
+     *                                   "from": "14:00",
+     *                                   "to": "15:00"
+     *                               }
+     *                           },
+     *                           "6": {
+     *                               {
+     *                                   "from": "12:00",
+     *                                   "to": "13:00"
+     *                               },
+     *                               {
+     *                                   "from": "13:00",
+     *                                   "to": "14:00"
+     *                               }
+     *                           }
+     *                       }
+     *                     }
+     *                 }
+     *             ),
+     *             @OA\Examples(
+     *                 example="BookingProductTable",
+     *                 summary="Booking Product | Table",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                     "booking": {
+     *                        "type": "table",
+     *                        "location": "Delhi",
+     *                        "available_every_week": "0",
+     *                        "available_from": "2025-05-06 12:00:00",
+     *                        "available_to": "2025-05-14 12:00:00",
+     *                        "price_type": "table",
+     *                        "guest_limit": "5",
+     *                        "qty": "6",
+     *                        "duration": "20",
+     *                        "break_time": "10",
+     *                        "prevent_scheduling_before": "0",
+     *                        "same_slot_all_days": "0",
+     *                        "slots": {
+     *                            "0": {
+     *                                {
+     *                                    "from": "12:00",
+     *                                    "to": "13:00"
+     *                                },
+     *                                {
+     *                                    "from": "13:00",
+     *                                    "to": "14:00"
+     *                                }
+     *                            },
+     *                            "1": {
+     *                                {
+     *                                    "from": "13:00",
+     *                                    "to": "15:00"
+     *                                }
+     *                            },
+     *                            "6": {
+     *                                {
+     *                                    "from": "13:00",
+     *                                    "to": "14:00"
+     *                                }
+     *                            }
+     *                        }
+     *                    }
+     *                 }
+     *             ),
+     *             @OA\Examples(
+     *                 example="BookingProductEvent",
+     *                 summary="Booking Product | Event",
+     *                 value={
+     *                     "channel": "default",
+     *                     "locale": "en",
+     *                     "sku": "skipping-rope",
+     *                     "product_number": "sr-001",
+     *                     "name": "Skipping Rope",
+     *                     "url_key": "skipping-rope",
+     *                     "tax_category_id": null,
+     *                     "new": 1,
+     *                     "featured": 1,
+     *                     "visible_individually": 1,
+     *                     "guest_checkout": 0,
+     *                     "status": 1,
+     *                     "brand": 17,
+     *                     "short_description": "What is Lorem Ipsum?",
+     *                     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_title": "Premium sofa sets",
+     *                     "meta_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+     *                     "meta_keywords": "Sofa set",
+     *                     "price": 0,
+     *                     "customer_group_prices": {
+     *                       "customer_group_price_0": {
+     *                         "customer_group_id": 1,
+     *                         "qty": 2,
+     *                         "value_type": "fixed",
+     *                         "value": 3.2
+     *                       }
+     *                     },
+     *                     "categories": {
+     *                       1,
+     *                       2
+     *                     },
+     *                     "channels": {
+     *                       1,
+     *                       3,
+     *                       4
+     *                     },
+     *                     "booking": {
+     *                        "type": "event",
+     *                        "location": "Delhi",
+     *                        "available_from": "2025-05-06 12:00:00",
+     *                        "available_to": "2025-05-09 12:00:00",
+     *                        "tickets": {
+     *                            "ticket_0": {
+     *                                "en": {
+     *                                    "name": "Morning event",
+     *                                    "description": "Morning event"
+     *                                },
+     *                                "qty": "5",
+     *                                "price": "500.0000",
+     *                                "special_price": "",
+     *                                "special_price_from": "2025-05-05 12:00:00",
+     *                                "special_price_to": "2025-05-09 12:00:00"
+     *                            },
+     *                            "ticket_1": {
+     *                                "en": {
+     *                                    "name": "Evening event",
+     *                                    "description": "Evening event"
+     *                                },
+     *                                "qty": "4",
+     *                                "price": "400.0000",
+     *                                "special_price": "",
+     *                                "special_price_from": "2025-05-05 12:00:00",
+     *                                "special_price_to": "2025-05-09 12:00:00"
+     *                            }
+     *                        }
+     *                    }
+     *                 }
+     *             ),
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Product updated successfully."),
+     *             @OA\Property(property="data", type="object")
+     *         )
+     *     ),
+     *     @OA\Response(response=401, description="Unauthenticated")
      * )
      */
     public function updateOtherTypeProduct()
