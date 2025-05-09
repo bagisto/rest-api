@@ -64,7 +64,7 @@ class WishlistController extends CustomerController
             'channel_id'  => core()->getCurrentChannel()->id,
             'product_id'  => $product->id,
             'customer_id' => $customer->id,
-            'additional'  => $request->input('additional') ?? null,
+            'additional'  => $request->has('additional') ? array_merge($request->input('additional'), ['product_id' => $request->input('product_id')]) : null,
         ]);
 
         return response([
@@ -97,7 +97,10 @@ class WishlistController extends CustomerController
             ], 400);
         }
 
-        $result = Cart::moveToCart($wishlistItem, $request->input('quantity'));
+        $result = Cart::moveToCart(
+            $wishlistItem,
+            $request->input('quantity') ?? ($wishlistItem->additional['quantity'] ?? null)
+        );
 
         if ($result) {
             $cart = Cart::getCart();
