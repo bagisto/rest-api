@@ -62,6 +62,10 @@ class ReOrderController extends SalesController
      */
     public function saveAddress(CartAddressRequest $cartAddressRequest, int $id): Response
     {
+        $cart = $this->cartRepository->findOrFail($id);
+
+        Cart::setCart($cart);
+
         if (Cart::hasError()) {
             return response([
                 'message' => implode(': ', Cart::getErrors()) ?: 'rest-api::app.admin.sales.re-order.error',
@@ -97,6 +101,10 @@ class ReOrderController extends SalesController
      */
     public function saveShipping(int $id): Response
     {
+        $cart = $this->cartRepository->findOrFail($id);
+
+        Cart::setCart($cart);
+
         $validatedData = $this->validate(request(), [
             'shipping_method' => 'required',
         ]);
@@ -124,6 +132,10 @@ class ReOrderController extends SalesController
      */
     public function savePayment(int $id): Response
     {
+        $cart = $this->cartRepository->findOrFail($id);
+
+        Cart::setCart($cart);
+
         $validatedData = $this->validate(request(), [
             'payment' => 'required',
         ]);
@@ -153,6 +165,10 @@ class ReOrderController extends SalesController
      */
     public function saveOrder(int $id): Response
     {
+        $cart = $this->cartRepository->findOrFail($id);
+
+        Cart::setCart($cart);
+
         if (Cart::hasError()) {
             return response([
                 'data' => trans('rest-api::app.admin.sales.re-order.error'),
