@@ -181,6 +181,14 @@ class InvoiceController
      *                          @OA\Property(property=1, type="integer", example=1)
      *                      )
      *                  ),
+     *
+     *                  @OA\Property(
+     *                      property="can_create_transaction",
+     *                      description="User for create invoice transaction",
+     *                      type="integer",
+     *                      example=1
+     *                  ),
+     *
      *                  required={"invoice"}
      *              )
      *          )
