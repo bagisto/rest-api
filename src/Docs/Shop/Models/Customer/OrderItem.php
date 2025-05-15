@@ -142,9 +142,10 @@ class OrderItem
      *     title="Ordered Item Price",
      *     description="Price of ordered item",
      *     example="18.63",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $price;
 
@@ -152,7 +153,8 @@ class OrderItem
      * @OA\Property(
      *      title="Formatted Price",
      *      description="Formatted Price of the Order Item",
-     *      example="€18.63"
+     *      example="€18.63",
+     *      type="string"
      * )
      *
      * @var string
@@ -163,10 +165,11 @@ class OrderItem
      * @OA\Property(
      *      title="Base Price",
      *      description="Base price of the Order Item",
-     *      example="20.45"
+     *      example="20.45",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $base_price;
 
@@ -174,7 +177,8 @@ class OrderItem
      * @OA\Property(
      *      title="Formatted Base Price",
      *      description="Formatted Base price of the Order Item",
-     *      example="$20.45"
+     *      example="$20.45",
+     *      type="string"
      * )
      *
      * @var string
@@ -186,9 +190,10 @@ class OrderItem
      *     title="Ordered Item Total",
      *     description="Total of ordered item",
      *     example="37.26",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $total;
 
@@ -197,6 +202,7 @@ class OrderItem
      *     title="Formatted Ordered Item Total",
      *     description="Formatted total of ordered item",
      *     example="€37.26",
+     *     type="string"
      * )
      *
      * @var string
@@ -208,9 +214,10 @@ class OrderItem
      *      title="Base Total",
      *      description="Base total of the Order Item",
      *      example="42.95"
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $base_total;
 
@@ -230,9 +237,10 @@ class OrderItem
      *     title="Total Invoiced of Ordered Item",
      *     description="Total invoiced amount of ordered item",
      *     example="20.45",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $total_invoiced;
 
@@ -241,6 +249,7 @@ class OrderItem
      *     title="Total Base Invoiced of Ordered Item",
      *     description="Total base invoiced amount of ordered item",
      *     example="$20.45",
+     *     type="string"
      * )
      *
      * @var string
@@ -252,9 +261,10 @@ class OrderItem
      *     title="Total Refunded Amount of Ordered Item",
      *     description="Total refunded amount of ordered item",
      *     example="20.45",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $amount_refunded;
 
@@ -263,6 +273,7 @@ class OrderItem
      *     title="Total Base Refunded Amount of Ordered Item",
      *     description="Total base refunded amount of ordered item",
      *     example="$20.45",
+     *     type="string"
      * )
      *
      * @var string
@@ -274,9 +285,10 @@ class OrderItem
      *     title="Tax Percentage Applied On Ordered Item",
      *     description="Tax percentage that applied on order item",
      *     example="10%",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $tax_percent;
 
@@ -285,9 +297,10 @@ class OrderItem
      *     title="Tax Amount of Ordered Item",
      *     description="Tax amount of ordered item",
      *     example="2.045",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $tax_amount;
 
@@ -296,6 +309,7 @@ class OrderItem
      *     title="Base Tax Amount Of Ordered Item",
      *     description="Base tax amount of ordered item",
      *     example="$2.045",
+     *     type="string"
      * )
      *
      * @var string

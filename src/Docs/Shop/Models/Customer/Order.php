@@ -114,10 +114,11 @@ class Order
      * @OA\Property(
      *      title="Grand Total",
      *      description="Grand Total of the Order",
-     *      example="10.00"
+     *      example="10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $grand_total;
 
@@ -126,9 +127,10 @@ class Order
      *      title="Formatted Grand Total",
      *      description="Formatted Grand Total of the Order",
      *      example="$10.00"
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $formatted_grand_total;
 
@@ -137,9 +139,10 @@ class Order
      *      title="Base Grand Total",
      *      description="Base Grand Total of the Order",
      *      example="10.00"
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $base_grand_total;
 
@@ -148,6 +151,7 @@ class Order
      *      title="Formatted Base Grand Total",
      *      description="Formatted Base Grand Total of the Order",
      *      example="$10.00"
+     *      type="string"
      * )
      *
      * @var string
@@ -158,9 +162,11 @@ class Order
      * @OA\Property(
      *     title="Order Items",
      *     description="Order Items"
+     *     type="array",
+     *     @OA\Items(ref="#/components/schemas/OrderItem")
      * )
      *
-     * @var \Webkul\RestApi\Docs\Shop\Models\Customer\OrderItem
+     * @var \Webkul\RestApi\Docs\Shop\Models\Customer\OrderItem[]
      */
     private $items;
 

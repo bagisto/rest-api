@@ -138,10 +138,11 @@ class Cart
      * @OA\Property(
      *      title="Grand Total",
      *      description="Grand Total of the Cart",
-     *      example="10.00"
+     *      example="10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $grand_total;
 
@@ -149,10 +150,11 @@ class Cart
      * @OA\Property(
      *      title="Formatted Grand Total",
      *      description="Formatted Grand Total of the Cart",
-     *      example="$10.00"
+     *      example="$10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $formatted_grand_total;
 
@@ -160,10 +162,11 @@ class Cart
      * @OA\Property(
      *      title="Base Grand Total",
      *      description="Base Grand Total of the Cart",
-     *      example="10.00"
+     *      example="10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $base_grand_total;
 
@@ -182,10 +185,11 @@ class Cart
      * @OA\Property(
      *      title="Sub Total",
      *      description="Sub Total of the Cart",
-     *      example="10.00"
+     *      example="10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $sub_total;
 
@@ -194,9 +198,10 @@ class Cart
      *      title="Formatted Sub Total",
      *      description="Formatted Sub Total of the Cart",
      *      example="$10.00"
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $formatted_sub_total;
 
@@ -204,10 +209,11 @@ class Cart
      * @OA\Property(
      *      title="Base Sub Total",
      *      description="Base Sub Total of the Cart",
-     *      example="10.00"
+     *      example="10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $base_sub_total;
 
@@ -215,7 +221,8 @@ class Cart
      * @OA\Property(
      *      title="Formatted Base Sub Total",
      *      description="Formatted Base Sub Total of the Cart",
-     *      example="$10.00"
+     *      example="$10.00",
+     *      type="string"
      * )
      *
      * @var string
@@ -226,10 +233,11 @@ class Cart
      * @OA\Property(
      *      title="Tax Total",
      *      description="Tax Total of the Cart",
-     *      example="10.00"
+     *      example="10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $tax_total;
 
@@ -237,10 +245,11 @@ class Cart
      * @OA\Property(
      *      title="Formatted Tax Total",
      *      description="Formatted Tax Total of the Cart",
-     *      example="$10.00"
+     *      example="$10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $formatted_tax_total;
 
@@ -248,10 +257,11 @@ class Cart
      * @OA\Property(
      *      title="Base Tax Total",
      *      description="Base Tax Total of the Cart",
-     *      example="10.00"
+     *      example="10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $base_tax_total;
 
@@ -260,6 +270,7 @@ class Cart
      *      title="Formatted Base Tax Total",
      *      description="Formatted Base Tax Total of the Cart",
      *      example="$10.00"
+     *      type="string"
      * )
      *
      * @var string
@@ -270,10 +281,11 @@ class Cart
      * @OA\Property(
      *      title="Discount Total",
      *      description="Discount Total of the Cart",
-     *      example="10.00"
+     *      example="10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $discount;
 
@@ -281,10 +293,11 @@ class Cart
      * @OA\Property(
      *      title="Formatted Discount Total",
      *      description="Formatted Discount Total of the Cart",
-     *      example="$10.00"
+     *      example="$10.00",
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $formatted_discount;
 
@@ -293,9 +306,10 @@ class Cart
      *      title="Base Discount Total",
      *      description="Base Discount Total of the Cart",
      *      example="10.00"
+     *      type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     private $base_discount;
 
@@ -304,6 +318,7 @@ class Cart
      *      title="Formatted Base Discount Total",
      *      description="Formatted Base Discount Total of the Cart",
      *      example="$10.00"
+     *      type="string"
      * )
      *
      * @var string
@@ -335,7 +350,9 @@ class Cart
     /**
      * @OA\Property(
      *     title="Order's Customer",
-     *     description="Order's Customer"
+     *     description="Order's Customer",
+     *     type="object",
+     *     ref="#/components/schemas/Customer"
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Customer\Customer
@@ -346,16 +363,20 @@ class Cart
      * @OA\Property(
      *     title="Cart Items",
      *     description="Cart Items"
+     *     type="array",
+     *     @OA\Items(ref="#/components/schemas/CartItem")
      * )
      *
-     * @var \Webkul\RestApi\Docs\Shop\Models\Customer\CartItem
+     * @var \Webkul\RestApi\Docs\Shop\Models\Customer\CartItem[]
      */
     private $items;
 
     /**
      * @OA\Property(
      *     title="Cart Shipping Rate",
-     *     description="Selected cart's shipping rate"
+     *     description="Selected cart's shipping rate",
+     *     type="object",
+     *     ref="#/components/schemas/CartShippingRate"
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Customer\CartShippingRate
@@ -366,6 +387,8 @@ class Cart
      * @OA\Property(
      *     title="Cart Payment",
      *     description="Selected cart's payment"
+     *     type="object",
+     *     ref="#/components/schemas/CartPayment"
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Customer\CartPayment
@@ -375,7 +398,9 @@ class Cart
     /**
      * @OA\Property(
      *     title="Cart Billing Address",
-     *     description="Cart billing address"
+     *     description="Cart billing address",
+     *     type="object",
+     *     ref="#/components/schemas/CartAddress"
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Customer\CartAddress
@@ -385,7 +410,9 @@ class Cart
     /**
      * @OA\Property(
      *     title="Cart Shipping Address",
-     *     description="Cart shipping address"
+     *     description="Cart shipping address",
+     *     type="object",
+     *     ref="#/components/schemas/CartAddress"
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Customer\CartAddress
