@@ -22,7 +22,7 @@ class CheckoutController
      *
      *                  @OA\Property(
      *                      property="billing",
-     *                      type="array",
+     *                      type="object",
      *                      description="",
      *                      example={
      *                          "id": 14,
@@ -36,32 +36,26 @@ class CheckoutController
      *                          "city": "Marrero",
      *                          "state": "LA",
      *                          "country": "US",
-     *                          "postcode": 70072,
+     *                          "postcode": "70072",
      *                          "phone": 9871234560
      *                      },
-     *
-     *                      @OA\Items(
-     *
-     *                          @OA\Property(property="id", type="integer"),
-     *                          @OA\Property(property="address", type="array", @OA\Items(
-     *                              @OA\Property(type="string")
-     *                          )),
-     *                          @OA\Property(property="save_as_address", type="boolean"),
-     *                          @OA\Property(property="use_for_shipping", type="boolean"),
-     *                          @OA\Property(property="first_name", type="string"),
-     *                          @OA\Property(property="last_name", type="string"),
-     *                          @OA\Property(property="email", type="string"),
-     *                          @OA\Property(property="company_name", type="string"),
-     *                          @OA\Property(property="city", type="string"),
-     *                          @OA\Property(property="state", type="string"),
-     *                          @OA\Property(property="country", type="string"),
-     *                          @OA\Property(property="postcode", type="integer"),
-     *                          @OA\Property(property="phone", type="integer")
-     *                      )
+     *                      @OA\Property(property="id", type="integer"),
+     *                      @OA\Property(property="address", type="array", @OA\Items(@OA\Property(type="string"))),
+     *                      @OA\Property(property="save_as_address", type="boolean"),
+     *                      @OA\Property(property="use_for_shipping", type="boolean"),
+     *                      @OA\Property(property="first_name", type="string"),
+     *                      @OA\Property(property="last_name", type="string"),
+     *                      @OA\Property(property="email", type="string"),
+     *                      @OA\Property(property="company_name", type="string"),
+     *                      @OA\Property(property="city", type="string"),
+     *                      @OA\Property(property="state", type="string"),
+     *                      @OA\Property(property="country", type="string"),
+     *                      @OA\Property(property="postcode", type="string"),
+     *                      @OA\Property(property="phone", type="integer")
      *                  ),
      *                  @OA\Property(
      *                      property="shipping",
-     *                      type="array",
+     *                      type="object",
      *                      description="",
      *                      example={
      *                          "id": null,
@@ -74,27 +68,23 @@ class CheckoutController
      *                          "city": "Mansfield",
      *                          "state": "OH",
      *                          "country": "US",
-     *                          "postcode": 44907,
+     *                          "postcode": "44907",
      *                          "phone": 987654321
      *                      },
-     *
-     *                      @OA\Items(
-     *
-     *                          @OA\Property(property="id", type="integer"),
-     *                          @OA\Property(property="address", type="array", @OA\Items(
-     *                              @OA\Property(type="string")
-     *                          )),
-     *                          @OA\Property(property="save_as_address", type="boolean"),
-     *                          @OA\Property(property="first_name", type="string"),
-     *                          @OA\Property(property="last_name", type="string"),
-     *                          @OA\Property(property="email", type="string"),
-     *                          @OA\Property(property="company_name", type="string"),
-     *                          @OA\Property(property="city", type="string"),
-     *                          @OA\Property(property="state", type="string"),
-     *                          @OA\Property(property="country", type="string"),
-     *                          @OA\Property(property="postcode", type="integer"),
-     *                          @OA\Property(property="phone", type="integer")
-     *                      )
+ *                          @OA\Property(property="id", type="integer"),
+ *                          @OA\Property(property="address", type="array", @OA\Items(
+ *                              @OA\Property(type="string")
+ *                          )),
+ *                          @OA\Property(property="save_as_address", type="boolean"),
+ *                          @OA\Property(property="first_name", type="string"),
+ *                          @OA\Property(property="last_name", type="string"),
+ *                          @OA\Property(property="email", type="string"),
+ *                          @OA\Property(property="company_name", type="string"),
+ *                          @OA\Property(property="city", type="string"),
+ *                          @OA\Property(property="state", type="string"),
+ *                          @OA\Property(property="country", type="string"),
+ *                          @OA\Property(property="postcode", type="string"),
+ *                          @OA\Property(property="phone", type="integer")
      *                  ),
      *                  required={"billing"}
      *              )
@@ -246,15 +236,8 @@ class CheckoutController
      *
      *                  @OA\Property(
      *                      property="payment",
-     *                      type="array",
-     *                      example={
-     *                          "method": "cashondelivery"
-     *                      },
-     *
-     *                      @OA\Items(
-     *
-     *                          @OA\Property(property="method", type="string")
-     *                      )
+     *                      type="object",
+     *                      @OA\Property(property="method", type="string", example="cashondelivery"),
      *                  ),
      *                  required={"payment"}
      *              )

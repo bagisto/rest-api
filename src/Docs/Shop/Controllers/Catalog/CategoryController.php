@@ -163,8 +163,8 @@ class CategoryController
      *
      *              @OA\Property(
      *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/Category"
+     *                  type="array",
+     * *                @OA\Items(ref="#/components/schemas/Category")
      *              )
      *          )
      *      ),

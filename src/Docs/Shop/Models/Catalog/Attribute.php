@@ -83,6 +83,8 @@ class Attribute
      * @OA\Property(
      *     title="Options",
      *     description="Attribute's options"
+     *     type="array",
+     *     @OA\Items(ref="#/components/schemas/AttributeOption")
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\AttributeOption

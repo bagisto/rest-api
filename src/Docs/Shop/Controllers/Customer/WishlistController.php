@@ -21,8 +21,8 @@ class WishlistController
      *
      *              @OA\Property(
      *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/Wishlist"
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Wishlist")
      *              )
      *          )
      *      ),
