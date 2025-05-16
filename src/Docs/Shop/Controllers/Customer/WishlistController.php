@@ -22,7 +22,22 @@ class WishlistController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/Wishlist")
+     *                  @OA\Items(
+     *                      @OA\Property(property="id", type="integer"),
+     *                      @OA\Property(property="product", type="object", ref="#/components/schemas/Product"),
+     *                      @OA\Property(
+     *                          property="created_at",
+     *                          example="2020-01-27 17:50:45",
+     *                          format="datetime",
+     *                          type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                          property="updated_at",
+     *                          example="2020-01-27 17:50:45",
+     *                          format="datetime",
+     *                          type="string"
+     *                     )
+     *                  )
      *              )
      *          )
      *      ),
@@ -67,7 +82,7 @@ class WishlistController
      *              mediaType="application/json",
      *
      *              @OA\Schema(
-     *
+     *                  @OA\Property(property="product_id", type="integer", example=1, required=true),
      *                  @OA\Property(
      *                      property="additional",
      *                      type="array",
@@ -88,10 +103,8 @@ class WishlistController
      *                              type="array",
      *
      *                              @OA\Items(
-     *
      *                                  @OA\Property(property="selected_configurable_option", type="integer"),
      *                                  @OA\Property(property="quantity", type="integer"),
-     *                                  @OA\Property(property="product_id", type="integer"),
      *                                  @OA\Property(
      *                                      property="super_attribute",
      *                                      type="array",
