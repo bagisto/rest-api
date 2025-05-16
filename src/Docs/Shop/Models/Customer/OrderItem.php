@@ -213,7 +213,7 @@ class OrderItem
      * @OA\Property(
      *      title="Base Total",
      *      description="Base total of the Order Item",
-     *      example="42.95"
+     *      example="42.95",
      *      type="string"
      * )
      *

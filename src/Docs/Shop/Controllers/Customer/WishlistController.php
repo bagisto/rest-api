@@ -82,14 +82,14 @@ class WishlistController
      *              mediaType="application/json",
      *
      *              @OA\Schema(
-     *                  @OA\Property(property="product_id", type="integer", example=1, required=true),
+     *                  required={"product_id"},
+     *                  @OA\Property(property="product_id", type="integer", example=1),
      *                  @OA\Property(
      *                      property="additional",
      *                      type="array",
      *                      example={
      *                          "selected_configurable_option": 2,
      *                          "quantity": 1,
-     *                          "product_id": 1,
      *                          "super_attribute": {
      *                              "attribute_id_1": "attribute_option_id_1",
      *                              "attribute_id_2": "attribute_option_id_2"

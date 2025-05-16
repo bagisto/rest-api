@@ -197,7 +197,7 @@ class Cart
      * @OA\Property(
      *      title="Formatted Sub Total",
      *      description="Formatted Sub Total of the Cart",
-     *      example="$10.00"
+     *      example="$10.00",
      *      type="string"
      * )
      *
@@ -269,7 +269,7 @@ class Cart
      * @OA\Property(
      *      title="Formatted Base Tax Total",
      *      description="Formatted Base Tax Total of the Cart",
-     *      example="$10.00"
+     *      example="$10.00",
      *      type="string"
      * )
      *
@@ -305,7 +305,7 @@ class Cart
      * @OA\Property(
      *      title="Base Discount Total",
      *      description="Base Discount Total of the Cart",
-     *      example="10.00"
+     *      example="10.00",
      *      type="string"
      * )
      *
@@ -317,7 +317,7 @@ class Cart
      * @OA\Property(
      *      title="Formatted Base Discount Total",
      *      description="Formatted Base Discount Total of the Cart",
-     *      example="$10.00"
+     *      example="$10.00",
      *      type="string"
      * )
      *
@@ -362,7 +362,7 @@ class Cart
     /**
      * @OA\Property(
      *     title="Cart Items",
-     *     description="Cart Items"
+     *     description="Cart Items",
      *     type="array",
      *     @OA\Items(ref="#/components/schemas/CartItem")
      * )
@@ -386,7 +386,7 @@ class Cart
     /**
      * @OA\Property(
      *     title="Cart Payment",
-     *     description="Selected cart's payment"
+     *     description="Selected cart's payment",
      *     type="object",
      *     ref="#/components/schemas/CartPayment"
      * )

@@ -126,7 +126,7 @@ class Order
      * @OA\Property(
      *      title="Formatted Grand Total",
      *      description="Formatted Grand Total of the Order",
-     *      example="$10.00"
+     *      example="$10.00",
      *      type="string"
      * )
      *
@@ -138,7 +138,7 @@ class Order
      * @OA\Property(
      *      title="Base Grand Total",
      *      description="Base Grand Total of the Order",
-     *      example="10.00"
+     *      example="10.00",
      *      type="string"
      * )
      *
@@ -150,7 +150,7 @@ class Order
      * @OA\Property(
      *      title="Formatted Base Grand Total",
      *      description="Formatted Base Grand Total of the Order",
-     *      example="$10.00"
+     *      example="$10.00",
      *      type="string"
      * )
      *
@@ -161,7 +161,7 @@ class Order
     /**
      * @OA\Property(
      *     title="Order Items",
-     *     description="Order Items"
+     *     description="Order Items",
      *     type="array",
      *     @OA\Items(ref="#/components/schemas/OrderItem")
      * )
