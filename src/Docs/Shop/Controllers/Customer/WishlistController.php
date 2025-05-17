@@ -166,6 +166,15 @@ class WishlistController
      *          )
      *      ),
      *
+     *      @OA\RequestBody(
+     *           @OA\MediaType(
+     *               mediaType="application/json",
+     *               @OA\Schema(
+     *                   @OA\Property(property="quantity", type="integer", example=1, nullable=true)
+     *               )
+     *           )
+     *       ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
