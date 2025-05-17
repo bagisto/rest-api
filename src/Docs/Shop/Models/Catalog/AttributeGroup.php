@@ -58,7 +58,9 @@ class AttributeGroup
     /**
      * @OA\Property(
      *     title="Attributes",
-     *     description="Attributes"
+     *     description="Attributes",
+     *     type="array",
+     *     @OA\Items(ref="#/components/schemas/Attribute")
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\Attribute

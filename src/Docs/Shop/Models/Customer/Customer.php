@@ -92,10 +92,12 @@ class Customer
      * @OA\Property(
      *     title="Status",
      *     description="Customer's Status",
-     *     example="1",
+     *     example=1,
+     *     type="integer",
+     *     format="int64"
      * )
      *
-     * @var string
+     * @var int
      */
     private $status;
 
@@ -126,9 +128,11 @@ class Customer
      * @OA\Property(
      *     title="Notes",
      *     description="Customer's notes",
+     *     type="array",
+     *     @OA\Items(type="string")
      * )
      *
-     * @var string
+     * @var array
      */
     private $notes;
 

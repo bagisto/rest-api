@@ -150,11 +150,11 @@ class CartAddress
      * @OA\Property(
      *     title="Postcode",
      *     description="Address Postcode",
-     *     format="int64",
-     *     example=21797
+     *     format="string",
+     *     example="21797"
      * )
      *
-     * @var int
+     * @var string
      */
     private $postcode;
 
