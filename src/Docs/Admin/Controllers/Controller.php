@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
 
 /**
  * @OA\Info(
- *      version="2.2.0",
+ *      version="2.3.0",
  *      title="Bagisto Admin Rest API Documentation",
  *      description="Bagisto Admin Rest API Documentation",
  *
