@@ -24,17 +24,6 @@ class ProductImage
 
     /**
      * @OA\Property(
-     *     title="Type",
-     *     description="Image type",
-     *     enum={"images"}
-     * )
-     *
-     * @var string
-     */
-    protected $type;
-
-    /**
-     * @OA\Property(
      *     title="Path",
      *     description="Image path",
      *     example="product/{product_id}/{image_name.jpg}"
@@ -98,28 +87,4 @@ class ProductImage
      * @var string
      */
     protected $large_image_url;
-
-    /**
-     * @OA\Property(
-     *     title="Product ID",
-     *     description="Product ID",
-     *     format="int64",
-     *     example=1
-     * )
-     *
-     * @var int
-     */
-    public $product_id;
-
-    /**
-     * @OA\Property(
-     *     title="Position",
-     *     description="Image position",
-     *     format="int64",
-     *     example=0
-     * )
-     *
-     * @var int
-     */
-    public $position;
 }

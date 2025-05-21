@@ -115,7 +115,9 @@ class Product
     /**
      * @OA\Property(
      *     title="Images",
-     *     description="Product's images"
+     *     description="Product's images",
+     *     type="array",
+     *     @OA\Items(ref="#/components/schemas/ProductImage")
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductImage
