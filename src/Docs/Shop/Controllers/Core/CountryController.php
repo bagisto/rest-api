@@ -197,11 +197,10 @@ class CountryController
      *          description="Successful operation",
      *
      *          @OA\JsonContent(
-     *
      *              @OA\Property(
      *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/CountryState"
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/CountryState")
      *              )
      *          )
      *      ),
@@ -232,8 +231,8 @@ class CountryController
      *
      *              @OA\Property(
      *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/CountryState"
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/CountryState")
      *              )
      *          )
      *      ),

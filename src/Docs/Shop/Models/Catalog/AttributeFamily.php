@@ -59,7 +59,9 @@ class AttributeFamily
     /**
      * @OA\Property(
      *     title="Groups",
-     *     description="Attribute's groups"
+     *     description="Attribute's groups",
+     *     type="array",
+     *     @OA\Items(ref="#/components/schemas/AttributeGroup")
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\AttributeGroup

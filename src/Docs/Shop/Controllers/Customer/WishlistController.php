@@ -21,8 +21,23 @@ class WishlistController
      *
      *              @OA\Property(
      *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/Wishlist"
+     *                  type="array",
+     *                  @OA\Items(
+     *                      @OA\Property(property="id", type="integer"),
+     *                      @OA\Property(property="product", type="object", ref="#/components/schemas/Product"),
+     *                      @OA\Property(
+     *                          property="created_at",
+     *                          example="2020-01-27 17:50:45",
+     *                          format="datetime",
+     *                          type="string"
+     *                     ),
+     *                     @OA\Property(
+     *                          property="updated_at",
+     *                          example="2020-01-27 17:50:45",
+     *                          format="datetime",
+     *                          type="string"
+     *                     )
+     *                  )
      *              )
      *          )
      *      ),
@@ -67,14 +82,14 @@ class WishlistController
      *              mediaType="application/json",
      *
      *              @OA\Schema(
-     *
+     *                  required={"product_id"},
+     *                  @OA\Property(property="product_id", type="integer", example=1),
      *                  @OA\Property(
      *                      property="additional",
      *                      type="array",
      *                      example={
      *                          "selected_configurable_option": 2,
      *                          "quantity": 1,
-     *                          "product_id": 1,
      *                          "super_attribute": {
      *                              "attribute_id_1": "attribute_option_id_1",
      *                              "attribute_id_2": "attribute_option_id_2"
@@ -88,10 +103,8 @@ class WishlistController
      *                              type="array",
      *
      *                              @OA\Items(
-     *
      *                                  @OA\Property(property="selected_configurable_option", type="integer"),
      *                                  @OA\Property(property="quantity", type="integer"),
-     *                                  @OA\Property(property="product_id", type="integer"),
      *                                  @OA\Property(
      *                                      property="super_attribute",
      *                                      type="array",
@@ -152,6 +165,15 @@ class WishlistController
      *              type="integer"
      *          )
      *      ),
+     *
+     *      @OA\RequestBody(
+     *           @OA\MediaType(
+     *               mediaType="application/json",
+     *               @OA\Schema(
+     *                   @OA\Property(property="quantity", type="integer", example=1, nullable=true)
+     *               )
+     *           )
+     *       ),
      *
      *      @OA\Response(
      *          response=200,
