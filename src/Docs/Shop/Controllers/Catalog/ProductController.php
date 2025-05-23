@@ -142,7 +142,7 @@ class ProductController
      *              type="integer"
      *          )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="page",
      *          description="Page number",
@@ -153,7 +153,7 @@ class ProductController
      *              type="integer"
      *          )
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -369,12 +369,12 @@ class ProductController
      *                      example=4,
      *                      enum={"5", "4", "3", "2", "1"}
      *                  ),
-    *                  @OA\Property(
-    *                      property="attachments[]",
-    *                      type="array",
-    *                      @OA\Items(type="file"),
-    *                      description="Array of attachment files (images or videos)"
-    *                  ),
+     *                  @OA\Property(
+     *                      property="attachments[]",
+     *                      type="array",
+     *                      @OA\Items(type="file"),
+     *                      description="Array of attachment files (images or videos)"
+     *                  ),
      *                  required={"comment", "rating", "title"}
      *              )
      *          )

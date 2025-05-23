@@ -118,7 +118,7 @@ class CartController extends CustomerController
         }
 
         foreach (request()->qty as $cartId => $qty) {
-            $ids[] = $cartId; 
+            $ids[] = $cartId;
 
             if (! $qty) {
                 return response([
@@ -221,10 +221,10 @@ class CartController extends CustomerController
     }
 
     /**
-     
+
      */
     public function removeCoupon(): Response
-    {   
+    {
         Cart::removeCouponCode()->collectTotals();
 
         $cart = Cart::getCart();
