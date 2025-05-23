@@ -4,18 +4,18 @@ namespace Webkul\RestApi\Docs\Admin\Controllers\Sales;
 
 class ReOrderController
 {
-     /**
+    /**
      * @OA\Post(
      *      path="/api/v1/admin/sales/re-orders/{id}",
      *      operationId="createProductReOrder",
      *      tags={"ReOrders"},
      *      summary="Create admin re-order",
-     *      description="Create product re-order from admin admin section.",
+     *      description="Re-order previous orders without manually adding all products again.",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
      *          name="id",
-     *          description="product id",
+     *          description="order id",
      *          required=true,
      *          in="path",
      *
@@ -23,7 +23,7 @@ class ReOrderController
      *              type="integer"
      *          )
      *      ),
-     *     
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -48,6 +48,7 @@ class ReOrderController
     public function store()
     {
     }
+
     /**
      * @OA\Post(
      *      path="/api/v1/admin/sales/re-orders/{id}/save-address",
@@ -56,7 +57,7 @@ class ReOrderController
      *      summary="Save addresses at the checkout",
      *      description="Save addresses at the checkout",
      *      security={ {"sanctum_admin": {} }},
-     * 
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="cart id",
@@ -232,7 +233,7 @@ class ReOrderController
      *              type="integer"
      *          )
      *      ),
-     * 
+     *
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
@@ -305,7 +306,7 @@ class ReOrderController
      *              type="integer"
      *          )
      *      ),
-     * 
+     *
      *      @OA\RequestBody(
      *
      *          @OA\MediaType(
@@ -406,7 +407,6 @@ class ReOrderController
      *      )
      * )
      */
-
     public function saveOrder()
     {
     }
