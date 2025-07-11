@@ -141,10 +141,11 @@ class Pagination
      * @OA\Property(
      *     title="Path",
      *     description="Path",
+     *     type="string",
      *     example="http://localhost/public/api/v1/examples"
      * )
      *
-     * @var int
+     * @var string
      */
     private $path;
 

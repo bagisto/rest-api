@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Webkul\RestApi\Docs\Shop\Models\Core;
 
 /**
  * @OA\Schema(
- *     title="Themes",
- *     description="Theme model",
+ *     title="ThemeTranslation",
+ *     description="Theme translation model"
  * )
  */
-class Theme
+final class ThemeTranslation
 {
     /**
      * @OA\Property(
      *     title="ID",
      *     description="ID",
      *     format="int64",
-     *     example=1
+     *     example=2
      * )
      *
      * @var int
@@ -24,102 +26,27 @@ class Theme
 
     /**
      * @OA\Property(
-     *     title="Theme code",
-     *     description="Theme code",
-     *     type="string",
-     *     example="default"
-     * )
-     *
-     * @var string
-     */
-    public $theme_code;
-
-    /**
-     * @OA\Property(
-     *     title="channel_id",
-     *     description="channel_id",
+     *     title="Theme Customization ID",
+     *     description="ID of the related theme customization",
      *     format="int64",
-     *     example=1
+     *     example=2
      * )
      *
      * @var int
      */
-    public $channel_id;
+    public $theme_customization_id;
 
     /**
      * @OA\Property(
-     *     title="type",
-     *     description="type",
-     *     example="image_carousel",
+     *     title="Locale",
+     *     description="Locale code",
      *     type="string",
-     *     enum={"image_carousel", "static_content", "category_carousel", "product_carousel", "footer_links", "services_content"}
+     *     example="en"
      * )
      *
      * @var string
      */
-    public $type;
-
-    /**
-     * @OA\Property(
-     *     title="name",
-     *     description="name",
-     *     type="string",
-     *     example="image_carousel"
-     * )
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
-     * @OA\Property(
-     *     title="status",
-     *     description="status",
-     *     type="integer",
-     *     example=1
-     * )
-     *
-     * @var int
-     */
-    public $status;
-
-    /**
-     * @OA\Property(
-     *     title="Created at",
-     *     description="Created at",
-     *     example="2020-01-27 17:50:45",
-     *     format="datetime",
-     *     type="string"
-     * )
-     *
-     * @var \DateTime
-     */
-    private $created_at;
-
-    /**
-     * @OA\Property(
-     *     title="Updated at",
-     *     description="Updated at",
-     *     example="2020-01-27 17:50:45",
-     *     format="datetime",
-     *     type="string"
-     * )
-     *
-     * @var \DateTime
-     */
-    private $updated_at;
-
-    /**
-     * @OA\Property(
-     *     title="sort_order",
-     *     description="sort_order",
-     *     type="integer",
-     *     example=1
-     * )
-     *
-     * @var int
-     */
-    public $sort_order;
+    public $locale;
 
     /**
      * @OA\Property(
@@ -205,16 +132,4 @@ class Theme
      * @var array
      */
     public $options;
-
-    /**
-     * @OA\Property(
-     *     title="Translations",
-     *     description="Theme translations",
-     *     type="array",
-     *     @OA\Items(ref="#/components/schemas/ThemeTranslation")
-     * )
-     *
-     * @var array
-     */
-    public $translations;
 }

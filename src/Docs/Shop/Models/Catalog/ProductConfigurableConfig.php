@@ -198,13 +198,13 @@ class ProductConfigurableConfig
      *          @OA\Property(
      *              property="regular_price",
      *              type="object",
-     *              @OA\Property(property="price", type="integer", example=60.00),
+     *              @OA\Property(property="price", type="string", example="60.00"),
      *              @OA\Property(property="formated_price", type="string", example="$60.00")
      *          ),
      *          @OA\Property(
      *              property="final_price",
      *              type="object",
-     *              @OA\Property(property="price", type="integer", example=60.00),
+     *              @OA\Property(property="price", type="string", example="60.00"),
      *              @OA\Property(property="formated_price", type="string", example="$60.00")
      *          )
      *      )
@@ -301,7 +301,7 @@ class ProductConfigurableConfig
      *          "price": 30
      *      },
      *      @OA\Property(property="formated_price", type="string", example="$30.00"),
-     *      @OA\Property(property="price", type="float", example=30.00)
+     *      @OA\Property(property="price", type="string", example="30.00")
      * )
      *
      * @var object

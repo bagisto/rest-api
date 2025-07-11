@@ -372,7 +372,7 @@ class ProductController
     *                  @OA\Property(
     *                      property="attachments[]",
     *                      type="array",
-    *                      @OA\Items(type="file"),
+    *                      @OA\Items(type="string", format="binary"),
     *                      description="Array of attachment files (images or videos)"
     *                  ),
      *                  required={"comment", "rating", "title"}

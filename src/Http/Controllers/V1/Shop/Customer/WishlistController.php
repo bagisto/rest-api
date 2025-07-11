@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Throwable;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\Product\Repositories\ProductRepository;
@@ -97,20 +98,28 @@ class WishlistController extends CustomerController
             ], 400);
         }
 
-        $result = Cart::moveToCart($wishlistItem, $request->input('quantity'));
+        try {
+            $result = Cart::moveToCart($wishlistItem, $request->input('quantity'));
 
-        if ($result) {
-            $cart = Cart::getCart();
+            if ($result) {
+                $cart = Cart::getCart();
+
+                return response([
+                    'data'    => $cart ? new CartResource($cart) : null,
+                    'message' => trans('rest-api::app.shop.wishlist.moved'),
+                ]);
+            }
 
             return response([
-                'data'    => $cart ? new CartResource($cart) : null,
-                'message' => trans('rest-api::app.shop.wishlist.moved'),
-            ]);
-        }
+                'message' => trans('rest-api::app.shop.wishlist.option-missing'),
+            ], 400);
+        } catch (Throwable $throwable) {
+            report($throwable);
 
-        return response([
-            'message' => trans('rest-api::app.shop.wishlist.option-missing'),
-        ], 400);
+            return response([
+                'message' => trans('rest-api::app.shop.wishlist.unknown-failure'),
+            ], 400);
+        }
     }
 
      /**

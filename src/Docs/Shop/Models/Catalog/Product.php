@@ -70,10 +70,11 @@ class Product
      * @OA\Property(
      *     title="Price",
      *     description="Product price",
-     *     example=12.20
+     *     example="12.20",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     public $price;
 
@@ -81,7 +82,8 @@ class Product
      * @OA\Property(
      *     title="Formatted Price",
      *     description="Product's formatted price",
-     *     example="$12.20"
+     *     example="$12.20",
+     *     type="string"
      * )
      *
      * @var string
@@ -113,7 +115,9 @@ class Product
     /**
      * @OA\Property(
      *     title="Images",
-     *     description="Product's images"
+     *     description="Product's images",
+     *     type="array",
+     *     @OA\Items(ref="#/components/schemas/ProductImage")
      * )
      *
      * @var \Webkul\RestApi\Docs\Shop\Models\Catalog\ProductImage
@@ -287,10 +291,11 @@ class Product
      * @OA\Property(
      *     title="Special Price",
      *     description="Product's special price, Only use if special_price is applied to product",
-     *     example=8.00
+     *     example="8.00",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     public $special_price;
 
@@ -298,7 +303,8 @@ class Product
      * @OA\Property(
      *     title="Formatted Special Price",
      *     description="Product's formatted special price, Only use if special_price is applied to product",
-     *     example="$8.00"
+     *     example="$8.00",
+     *     type="string"
      * )
      *
      * @var string
@@ -309,10 +315,11 @@ class Product
      * @OA\Property(
      *     title="Regular Price",
      *     description="Product's regular price",
-     *     example=12.20
+     *     example="12.20",
+     *     type="string"
      * )
      *
-     * @var float
+     * @var string
      */
     public $regular_price;
 
@@ -320,7 +327,8 @@ class Product
      * @OA\Property(
      *     title="Formatted Regular Price",
      *     description="Product's formatted regular price",
-     *     example="$12.20"
+     *     example="$12.20",
+     *     type="string"
      * )
      *
      * @var string
