@@ -148,6 +148,14 @@ class ProductResource extends JsonResource
                     ? $this->getDownloadableProductInfo($product)
                     : null
             ),
+
+            /* booking product */
+            $this->mergeWhen(
+                $productTypeInstance instanceof \Webkul\Product\Type\Booking,
+                $product->type == 'booking'
+                    ? $this->getBookingProductInfo($product)
+                    : null
+            ),
         ];
     }
 
@@ -228,6 +236,19 @@ class ProductResource extends JsonResource
 
                 return $data;
             }),
+        ];
+    }
+
+    /**
+     * Get booking product's extra information.
+     *
+     * @param  \Webkul\Product\Models\Product  $product
+     * @return array
+     */
+    private function getBookingProductInfo($product)
+    {
+        return [
+            'booking' => $product->booking_products,
         ];
     }
 }

@@ -171,9 +171,269 @@ class CartController
      *                          @OA\Property(type="integer")
      *                      )
      *                  ),
+     *                  @OA\Property(
+     *                      property="booking",
+     *                      type="array",
+     *                      description="Use in booking type product only (Required)",
+     *
+     *                      @OA\Items(
+     *
+     *                          @OA\Property(
+     *                              property="date",
+     *                              type="string",
+     *                              format="datetime",
+     *                              example="2025-05-07"
+     *                          ),
+     *
+     *                           @OA\Property(
+     *                              property="date_from",
+     *                              type="string",
+     *                              format="datetime",
+     *                              example="2025-05-07"
+     *                          ),
+     *
+     *                          @OA\Property(
+     *                              property="date_to",
+     *                              type="string",
+     *                              format="datetime",
+     *                              example="2025-05-14"
+     *                          ),
+     *
+     *                          @OA\Property(
+     *                              property="renting_type",
+     *                              type="string",
+     *                              description="Use in rental type product only (Required)",
+     *                              enum={"hourly", "daily"},
+     *                              example="2025-05-14"
+     *                          ),
+     *
+     *                         @OA\Property(
+     *                             property="slot",
+     *                             type="array",
+     *
+     *                             @OA\Items(
+     *                               @OA\Property(
+     *                                 property="from",
+     *                                 type="integer",
+     *                                 example=1746685800
+     *                               ),
+     *
+     *                               @OA\Property(
+     *                                 property="to",
+     *                                 type="integer",
+     *                                 example=1746685800
+     *                               ),
+     *
+     *                             )
+     *                         ),
+     *                        @OA\Property(
+     *                            property="qty",
+     *                            type="array",
+     *                            description="Use in booking event type product only (Required), index used as event id & value as quantity",
+     *                            example={
+     *                               "3": 1,
+     *                               "4": 2,
+     *                               "5": 1
+     *                            },
+     *                            @OA\Items(
+     *                                @OA\Property(type="integer")
+     *                            )
+     *                        ),
+     *                        @OA\Property(
+     *                            property="note",
+     *                            type="string",
+     *                            example="Use this with booking product table"
+     *                        ),
+     *                      )
+     *                  ),
      *
      *                  required={"product_id", "quantity"}
-     *              )
+     *              ),
+     *
+     *              @OA\Examples(
+     *                    example="SimpleProduct",
+     *                    summary="Simple Product",
+     *                    value={
+     *                        "product_id": 28,
+     *                        "is_buy_now": 0,
+     *                        "quantity": 2
+     *                    }
+     *              ),
+     *
+     *              @OA\Examples(
+     *                 example="ConfigurableAddToCart",
+     *                 summary="Configurable product",
+     *                 value={
+     *                     "product_id": 21,
+     *                     "is_buy_now": 0,
+     *                     "selected_configurable_option": 22,
+     *                     "super_attribute": {
+     *                         "23": 4,
+     *                         "24": 6
+     *                     },
+     *                     "quantity": 2
+     *                 }
+     *              ),
+     *
+     *              @OA\Examples(
+     *                 example="VirtualProduct",
+     *                 summary="Virtual Product",
+     *                 value={
+     *                     "product_id": 29,
+     *                     "is_buy_now": 0,
+     *                     "customizable_options": {
+     *                         "2": {2},
+     *                         "3": {5}
+     *                     },
+     *                     "quantity": 1
+     *                 }
+     *              ),
+     *              @OA\Examples(
+     *                 example="GroupedProduct",
+     *                 summary="Grouped Product",
+     *                 value={
+     *                     "product_id": 5,
+     *                     "is_buy_now": 0,
+     *                     "qty": {
+     *                         "1": 4,
+     *                         "3": 3,
+     *                         "4": 2
+     *                     },
+     *                     "quantity": 1
+     *                 }
+     *              ),
+     *
+     *              @OA\Examples(
+     *                  example="DownloadableProduct",
+     *                  summary="Downloadable Product",
+     *                  value={
+     *                      "product_id": 30,
+     *                      "is_buy_now": 0,
+     *                      "links": {
+     *                          2,
+     *                          3
+     *                      },
+     *                      "quantity": 1
+     *                  }
+     *             ),
+     *
+     *             @OA\Examples(
+     *                  example="BundleProduct",
+     *                  summary="Bundle Product",
+     *                  value={
+     *                      "product_id": 30,
+     *                      "is_buy_now": 0,
+     *                      "bundle_options": {
+     *                          "1": {
+     *                              1
+     *                          },
+     *                          "2": {
+     *                              3
+     *                          },
+     *                          "3": {
+     *                              5
+     *                          },
+     *                          "4": {
+     *                              7
+     *                          }
+     *                      },
+     *                      "bundle_option_qty": {
+     *                          "1": 1,
+     *                          "2": 3
+     *                      },
+     *                      "quantity": 1
+     *                  }
+     *             ),
+     *             @OA\Examples(
+     *                 example="BookingDefaultProduct",
+     *                 summary="Booking Product | Default",
+     *                 value={
+     *                     "product_id": 12,
+     *                     "is_buy_now": 0,
+     *                     "booking": {
+     *                         "date": "2025-05-07",
+     *                         "slot": "1746599400-1746714600"
+     *                     },
+     *                     "quantity": 2
+     *                 }
+     *             ),
+     *
+     *             @OA\Examples(
+     *                example="BookingAppointmentProduct",
+     *                summary="Booking Product | Appointment",
+     *                value={
+     *                    "product_id": 28,
+     *                    "is_buy_now": 0,
+     *                    "booking": {
+     *                        "date": "2025-05-08",
+     *                        "slot": "1746687300-1746688500"
+     *                    },
+     *                    "quantity": 2
+     *                }
+     *            ),
+     *            @OA\Examples(
+     *                example="BookingRentalDailyProduct",
+     *                summary="Booking Product | Rental | Daily",
+     *                value={
+     *                    "product_id": 14,
+     *                    "is_buy_now": 0,
+     *                    "booking": {
+     *                        "renting_type": "daily",
+     *                        "date_from": "2025-05-08",
+     *                        "date_to": "2025-05-09"
+     *                    },
+     *                    "quantity": 2
+     *               }
+     *            ),
+     *            @OA\Examples(
+     *                example="BookingRentalHourlyProduct",
+     *                summary="Booking Product | Rental | Hourly",
+     *                value={
+     *                    "product_id": 15,
+     *                    "is_buy_now": 0,
+     *                    "booking": {
+     *                        "renting_type": "hourly",
+     *                        "date": "2025-05-08",
+     *                        "slot": {
+     *                            "from": 1746685800,
+     *                            "to": 1746689400
+     *                        }
+     *                    },
+     *                    "quantity": 1
+     *                }
+     *            ),
+     *            @OA\Examples(
+     *                example="BookingEventProduct",
+     *                summary="Booking Product | Event",
+     *                value={
+     *                    "product_id": 17,
+     *                    "is_buy_now": 0,
+     *                    "booking": {
+     *                        "qty": {
+     *                            "3": 1,
+     *                            "4": 2,
+     *                            "5": 1
+     *                        }
+     *                    },
+     *                    "quantity": 1
+     *                }
+     *            ),
+     *
+     *            @OA\Examples(
+     *                example="BookingTableProduct",
+     *                summary="Booking Product | Table",
+     *                value={
+     *                    "product_id": 18,
+     *                    "is_buy_now": 0,
+     *                    "booking": {
+     *                        "date": "2025-05-10",
+     *                        "slot": "1746864000-1746865200",
+     *                        "note": "This is a requested note"
+     *                    },
+     *                    "quantity": 1
+     *                }
+     *            ),
+     *
      *          )
      *      ),
      *
