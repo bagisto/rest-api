@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
 
 /**
  * @OA\Info(
- *      version="2.2.0",
+ *      version="2.3.0",
  *      title="Bagisto Store Front Rest API Documentation",
  *      description="Bagisto Store Front Rest API Documentation",
  *
