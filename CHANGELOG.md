@@ -2,7 +2,7 @@
 
 This changelog consists of the bug & security fixes and new features being included in the releases listed below.
 
-## **v2.3.0 (25th of May 2025)** - *Release*
+## Unreleased
 
 * [Compatible] - Compatible with bagito 2.3.0
 
