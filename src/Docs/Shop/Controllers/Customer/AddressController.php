@@ -203,6 +203,11 @@ class AddressController
      *                      example="9876543210"
      *                  ),
      *                  @OA\Property(
+     *                      property="default_address",
+     *                      type="boolean",
+     *                      example="1"
+     *                  ),
+     *                  @OA\Property(
      *                      property="email",
      *                      type="string",
      *                      example="admin@example.com"
@@ -370,6 +375,44 @@ class AddressController
      */
 
     public function update()
+    {
+    }
+
+     /**
+     * @OA\Patch(
+     *      path="/api/v1/customer/addresses/make-default/{id}",
+     *      operationId="SetCustomerDefaultAddress",
+     *      tags={"Addresses"},
+     *      summary="Make the default address",
+     *      description="Make the default address",
+     *      security={ {"sanctum": {} }},
+     *
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Address id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="You've successfully marked this as your default address."),
+     *              )
+     *          )
+     *      ),
+     * )
+     */
+    public function patch()
     {
     }
 

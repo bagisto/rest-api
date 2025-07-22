@@ -31,6 +31,10 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints of Currency"
  * )
  * @OA\Tag(
+ *     name="Themes",
+ *     description="API Endpoints of Themes"
+ * )
+ * @OA\Tag(
  *     name="Channels",
  *     description="API Endpoints of Channel"
  * )
@@ -67,6 +71,14 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints of GDPR"
  * )
  * @OA\Tag(
+ *     name="Cart",
+ *     description="API Endpoints of Cart"
+ * )
+ * @OA\Tag(
+ *     name="Checkout",
+ *     description="API Endpoints of Checkout"
+ * )
+ * @OA\Tag(
  *     name="Orders",
  *     description="API Endpoints of Order"
  * )
@@ -87,20 +99,8 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints of Transaction"
  * )
  * @OA\Tag(
- *     name="Themes",
- *     description="API Endpoints of Themes"
- * )
- * @OA\Tag(
  *     name="Wishlists",
  *     description="API Endpoints of Wishlist"
- * )
- * @OA\Tag(
- *     name="Cart",
- *     description="API Endpoints of Cart"
- * )
- * @OA\Tag(
- *     name="Checkout",
- *     description="API Endpoints of Checkout"
  * )
  * @OA\Tag(
  *     name="Newsletter",

@@ -34,7 +34,9 @@ class CheckoutController extends CustomerController
 
         $rates = [];
 
-        foreach (Shipping::getGroupedAllShippingRates() as $code => $shippingMethod) {
+        $shippingMethods = Shipping::collectRates()['shippingMethods'] ?? [];
+
+        foreach ($shippingMethods as $code => $shippingMethod) {
             $rates[] = [
                 'carrier_title' => $shippingMethod['carrier_title'],
                 'rates'         => CartShippingRateResource::collection(collect($shippingMethod['rates'])),
@@ -89,8 +91,8 @@ class CheckoutController extends CustomerController
         ]);
 
         if (
-            Cart::hasError() 
-            || ! $validatedData['payment'] 
+            Cart::hasError()
+            || ! $validatedData['payment']
             || ! Cart::savePaymentMethod($validatedData['payment'])
         ) {
             abort(400);

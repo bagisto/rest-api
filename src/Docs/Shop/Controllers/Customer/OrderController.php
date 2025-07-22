@@ -186,7 +186,7 @@ class OrderController
      * @OA\Get(
      *      path="/api/v1/customer/orders/reorder/{id}",
      *      operationId="ReOrder",
-     *      tags={"ReOrder"},
+     *      tags={"Orders"},
      *      summary="Customer Re Order",
      *      description="This endpoint adds order items to the customer's cart for reordering. After successfully adding items to the cart, the customer should proceed with the checkout process via the checkout APIs.",
      *      security={ {"sanctum": {} }},
@@ -229,7 +229,7 @@ class OrderController
      *              )
      *          )
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=405,
      *          description="Method not allowed",

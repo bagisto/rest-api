@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
 
         Route::put('{id}', 'update');
 
+        Route::patch('make-default/{id}', 'makeDefault');
+
         Route::delete('{id}', 'destroy');
     });
 

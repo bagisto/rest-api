@@ -36,7 +36,7 @@ class AddressController extends CustomerController
 
         Event::dispatch('customer.addresses.create.before');
 
-        $customerAddress = $this->getRepositoryInstance()->create(array_merge($request->only([
+        $data = array_merge($request->only([
             'company_name',
             'first_name',
             'last_name',
@@ -52,7 +52,15 @@ class AddressController extends CustomerController
         ]), [
             'customer_id' => $customer->id,
             'address'     => implode(PHP_EOL, array_filter($request->input('address'))),
-        ]));
+        ]);
+
+        if (! empty($data['default_address'])) {
+            $this->getRepositoryInstance()->where('customer_id', $data['customer_id'])
+                ->where('default_address', 1)
+                ->update(['default_address' => 0]);
+        }
+
+        $customerAddress = $this->getRepositoryInstance()->create($data);
 
         Event::dispatch('customer.addresses.create.after', $customerAddress);
 
@@ -116,6 +124,37 @@ class AddressController extends CustomerController
 
         return response([
             'message' => trans('rest-api::app.shop.customer.addresses.delete-success'),
+        ]);
+    }
+
+    /**
+     * To change the default address or make the default address,
+     * by default when first address is created will be the default address.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function makeDefault(Request $request, int $id)
+    {
+        $customer = $this->resolveShopUser($request);
+
+        $defaultAddress = $customer->addresses()->where('default_address', 1)->first();
+
+        $addressToSetDefault = $customer->addresses()->find($id);
+
+        if ($defaultAddress && $defaultAddress->id !== $id) {
+            $defaultAddress->update(['default_address' => 0]);
+        }
+
+        if ($addressToSetDefault) {
+            $addressToSetDefault->update(['default_address' => 1]);
+        } else {
+            return response([
+                'message' => trans('rest-api::app.shop.customer.addresses.default-delete'),
+            ]);
+        }
+
+        return response([
+            'message' => trans('rest-api::app.shop.customer.addresses.default-success'),
         ]);
     }
 }
