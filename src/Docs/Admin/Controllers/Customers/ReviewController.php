@@ -8,7 +8,7 @@ class ReviewController
      * @OA\Get(
      *      path="/api/v1/admin/customers/reviews",
      *      operationId="getCustomerReviews",
-     *      tags={"CustomerReviews"},
+     *      tags={"Customer Reviews"},
      *      summary="Get admin customer review list",
      *      description="Returns customer review list, if you want to retrieve all customer reviews at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class ReviewController
      * @OA\Get(
      *      path="/api/v1/admin/customers/reviews/{id}",
      *      operationId="getCustomerReview",
-     *      tags={"CustomerReviews"},
+     *      tags={"Customer Reviews"},
      *      summary="Get admin customer review detail",
      *      description="Returns customer review detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class ReviewController
      * @OA\Put(
      *      path="/api/v1/admin/customers/reviews/{id}",
      *      operationId="updateCustomerReview",
-     *      tags={"CustomerReviews"},
+     *      tags={"Customer Reviews"},
      *      summary="Update customer review",
      *      description="Update customer review",
      *      security={ {"sanctum_admin": {} }},
@@ -200,7 +200,7 @@ class ReviewController
      * @OA\Delete(
      *      path="/api/v1/admin/customers/reviews/{id}",
      *      operationId="deleteCustomerReview",
-     *      tags={"CustomerReviews"},
+     *      tags={"Customer Reviews"},
      *      summary="Delete customer review by id",
      *      description="Delete customer review by id",
      *      security={ {"sanctum_admin": {} }},
@@ -239,7 +239,7 @@ class ReviewController
      * @OA\Post(
      *      path="/api/v1/admin/customers/reviews/mass-destroy",
      *      operationId="massDeleteCustomerReview",
-     *      tags={"CustomerReviews"},
+     *      tags={"Customer Reviews"},
      *      summary="Mass delete customer review by id",
      *      description="Mass delete customer review by id",
      *      security={ {"sanctum_admin": {} }},
@@ -285,7 +285,7 @@ class ReviewController
      * @OA\Post(
      *      path="/api/v1/admin/customers/reviews/mass-update",
      *      operationId="massUpdateCustomerReview",
-     *      tags={"CustomerReviews"},
+     *      tags={"Customer Reviews"},
      *      summary="Mass update customer review by id",
      *      description="Mass update customer review by id",
      *      security={ {"sanctum_admin": {} }},

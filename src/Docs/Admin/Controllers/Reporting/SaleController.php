@@ -8,11 +8,11 @@ class SaleController
      * @OA\Get(
      *     path="/api/v1/admin/reporting/sales/stats",
      *     operationId="getSalesStats",
-     *     tags={"SalesReporting"},
+     *     tags={"Reportings"},
      *     summary="Get statistics for sales",
      *     description="Retrieve statistics based on the specified type.",
      *     security={ {"sanctum_admin": {} }},
-     * 
+     *
      *     @OA\Parameter(
      *         name="type",
      *         in="query",
@@ -23,7 +23,7 @@ class SaleController
      *             enum={"total-sales", "average-sales", "total-orders", "purchase-funnel", "abandoned-carts", "refunds", "tax-collected", "shipping-collected", "top-payment-methods"}
      *         )
      *     ),
-     *     
+     *
      *     @OA\Response(
      *          response=200,
      *          description="Successful operation",

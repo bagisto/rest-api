@@ -35,7 +35,7 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Attribute"
  * )
  * @OA\Tag(
- *     name="Attribute-Families",
+ *     name="Attribute Families",
  *     description="API Endpoints of Attribute-Family"
  * )
  * @OA\Tag(
@@ -75,11 +75,11 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Currency"
  * )
  * @OA\Tag(
- *     name="Exchange-Rates",
+ *     name="Exchange Rates",
  *     description="API Endpoints of Admin Exchange-Rate"
  * )
  * @OA\Tag(
- *     name="Inventory-Sources",
+ *     name="Inventory Sources",
  *     description="API Endpoints of Admin Inventory-Source"
  * )
  * @OA\Tag(
@@ -91,11 +91,11 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Role"
  * )
  * @OA\Tag(
- *     name="Tax-Categories",
+ *     name="Tax Categories",
  *     description="API Endpoints of Admin Tax-Category"
  * )
  * @OA\Tag(
- *     name="Tax-Rates",
+ *     name="Tax Rates",
  *     description="API Endpoints of Admin Tax-Rate"
  * )
  * @OA\Tag(
@@ -103,7 +103,7 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Configuration"
  * )
  * @OA\Tag(
- *     name="Cms-Pages",
+ *     name="CMS Pages",
  *     description="API Endpoints of Admin Cms-Page"
  * )
  * @OA\Tag(
@@ -111,35 +111,35 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Customer"
  * )
  * @OA\Tag(
- *     name="CustomerGroups",
+ *     name="Customer Groups",
  *     description="API Endpoints of Admin CustomerGroup"
  * )
  * @OA\Tag(
- *     name="CustomerReviews",
+ *     name="Customer Reviews",
  *     description="API Endpoints of Admin CustomerReview"
  * )
  * @OA\Tag(
- *     name="CustomerAddresses",
+ *     name="Customer Addresses",
  *     description="API Endpoints of Admin CustomerAddress"
  * )
  *  @OA\Tag(
- *     name="CustomerGDPR",
+ *     name="Customer GDPR",
  *     description="API Endpoints of Admin CustomerGDPR"
  * )
  * @OA\Tag(
- *     name="CatalogRules",
+ *     name="Catalog Rules",
  *     description="API Endpoints of Admin CatalogRule"
  * )
  * @OA\Tag(
- *     name="CartRules",
+ *     name="Cart Rules",
  *     description="API Endpoints of Admin CartRule"
  * )
  * @OA\Tag(
- *     name="CartRuleCoupons",
+ *     name="Cart Rule Coupons",
  *     description="API Endpoints of Admin CartRuleCoupon"
  * )
  * @OA\Tag(
- *     name="EmailTemplates",
+ *     name="Email Templates",
  *     description="API Endpoints of Admin EmailTemplate"
  * )
  * @OA\Tag(
@@ -155,7 +155,7 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Newsletter Subscriptions"
  * )
  * @OA\Tag(
- *     name="SearchSynonym",
+ *     name="Search Synonym",
  *     description="API Endpoints of Admin SearchSynonym"
  * )
  * @OA\Tag(
@@ -163,11 +163,11 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Sitemaps"
  * )
  * @OA\Tag(
- *     name="URLRewrite",
+ *     name="URL Rewrite",
  *     description="API Endpoints of Admin URLRewrite"
  * )
  * @OA\Tag(
- *     name="SearchTerms",
+ *     name="Search Terms",
  *     description="API Endpoints of Admin SearchTerms"
  * )
  * @OA\Tag(
@@ -175,16 +175,8 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Themes customization"
  * )
  * @OA\Tag(
- *     name="CustomersReporting",
- *     description="API Endpoints of Customers Reporting"
- * )
- * @OA\Tag(
- *     name="SalesReporting",
- *     description="API Endpoints of Sales Reporting"
- * )
- * @OA\Tag(
- *     name="ProductsReporting",
- *     description="API Endpoints of Product Reporting"
+ *     name="Reportings",
+ *     description="API Endpoints of Reporting"
  * )
  */
 class Controller

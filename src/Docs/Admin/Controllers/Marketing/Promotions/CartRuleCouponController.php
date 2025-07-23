@@ -8,7 +8,7 @@ class CartRuleCouponController
      * @OA\Get(
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons",
      *      operationId="getCartRuleCoupons",
-     *      tags={"CartRuleCoupons"},
+     *      tags={"Cart Rule Coupons"},
      *      summary="Get admin cart rule's coupon list",
      *      description="Returns cart rule's coupon list",
      *      security={ {"sanctum_admin": {} }},
@@ -53,7 +53,7 @@ class CartRuleCouponController
      * @OA\Get(
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons/{id}",
      *      operationId="getCartRuleCoupon",
-     *      tags={"CartRuleCoupons"},
+     *      tags={"Cart Rule Coupons"},
      *      summary="Get admin cart rule's coupon detail",
      *      description="Returns cart rule's coupon detail",
      *      security={ {"sanctum_admin": {} }},
@@ -103,7 +103,7 @@ class CartRuleCouponController
      * @OA\Post(
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons",
      *      operationId="storeCartRuleCoupon",
-     *      tags={"CartRuleCoupons"},
+     *      tags={"Cart Rule Coupons"},
      *      summary="Store the cart rule's coupon",
      *      description="Store the cart rule's coupon",
      *      security={ {"sanctum_admin": {} }},
@@ -187,7 +187,7 @@ class CartRuleCouponController
      * @OA\Delete(
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons/{id}",
      *      operationId="deleteCartRuleCoupon",
-     *      tags={"CartRuleCoupons"},
+     *      tags={"Cart Rule Coupons"},
      *      summary="Delete cart rule's coupon by id",
      *      description="Delete cart rule's coupon by id",
      *      security={ {"sanctum_admin": {} }},
@@ -237,7 +237,7 @@ class CartRuleCouponController
      * @OA\Post(
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons/mass-destroy",
      *      operationId="massDeleteCoupon",
-     *      tags={"CartRuleCoupons"},
+     *      tags={"Cart Rule Coupons"},
      *      summary="Mass delete cart rule's coupon",
      *      description="Mass delete cart rule's coupon",
      *      security={ {"sanctum_admin": {} }},

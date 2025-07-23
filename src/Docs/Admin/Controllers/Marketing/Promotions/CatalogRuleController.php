@@ -8,7 +8,7 @@ class CatalogRuleController
      * @OA\Get(
      *      path="/api/v1/admin/promotions/catalog-rules",
      *      operationId="getCatalogRules",
-     *      tags={"CatalogRules"},
+     *      tags={"Catalog Rules"},
      *      summary="Get admin catalog rule list",
      *      description="Returns catalog rule list, if you want to retrieve all catalog rules at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class CatalogRuleController
      * @OA\Get(
      *      path="/api/v1/admin/promotions/catalog-rules/{id}",
      *      operationId="getCatalogRule",
-     *      tags={"CatalogRules"},
+     *      tags={"Catalog Rules"},
      *      summary="Get admin catalog rule detail",
      *      description="Returns catalog rule detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class CatalogRuleController
      * @OA\Post(
      *      path="/api/v1/admin/promotions/catalog-rules",
      *      operationId="storeCatalogRule",
-     *      tags={"CatalogRules"},
+     *      tags={"Catalog Rules"},
      *      summary="Store the catalog-rule",
      *      description="Store the catalog-rule",
      *      security={ {"sanctum_admin": {} }},
@@ -282,7 +282,7 @@ class CatalogRuleController
      * @OA\Put(
      *      path="/api/v1/admin/promotions/catalog-rules/{id}",
      *      operationId="updateCatalogRule",
-     *      tags={"CatalogRules"},
+     *      tags={"Catalog Rules"},
      *      summary="Update catalog rule",
      *      description="Update catalog rule",
      *      security={ {"sanctum_admin": {} }},
@@ -445,7 +445,7 @@ class CatalogRuleController
      * @OA\Delete(
      *      path="/api/v1/admin/promotions/catalog-rules/{id}",
      *      operationId="deleteCatalogRule",
-     *      tags={"CatalogRules"},
+     *      tags={"Catalog Rules"},
      *      summary="Delete catalog rule by id",
      *      description="Delete catalog rule by id",
      *      security={ {"sanctum_admin": {} }},

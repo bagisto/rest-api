@@ -8,7 +8,7 @@ class TaxCategoryController
      * @OA\Get(
      *      path="/api/v1/admin/settings/tax-categories",
      *      operationId="getTaxCategories",
-     *      tags={"Tax-Categories"},
+     *      tags={"Tax Categories"},
      *      summary="Get admin tax category list",
      *      description="Returns tax category list, if you want to retrieve all tax categories at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class TaxCategoryController
      * @OA\Get(
      *      path="/api/v1/admin/settings/tax-categories/{id}",
      *      operationId="getTaxCategory",
-     *      tags={"Tax-Categories"},
+     *      tags={"Tax Categories"},
      *      summary="Get admin tax category detail",
      *      description="Returns tax category detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class TaxCategoryController
      * @OA\Post(
      *      path="/api/v1/admin/settings/tax-categories",
      *      operationId="storeTaxCategory",
-     *      tags={"Tax-Categories"},
+     *      tags={"Tax Categories"},
      *      summary="Store the tax category",
      *      description="Store the tax category",
      *      security={ {"sanctum_admin": {} }},
@@ -204,7 +204,7 @@ class TaxCategoryController
      * @OA\Put(
      *      path="/api/v1/admin/settings/tax-categories/{id}",
      *      operationId="updateTaxCategory",
-     *      tags={"Tax-Categories"},
+     *      tags={"Tax Categories"},
      *      summary="Update tax category",
      *      description="Update tax category",
      *      security={ {"sanctum_admin": {} }},
@@ -289,7 +289,7 @@ class TaxCategoryController
      * @OA\Delete(
      *      path="/api/v1/admin/settings/tax-categories/{id}",
      *      operationId="deleteTaxCategory",
-     *      tags={"Tax-Categories"},
+     *      tags={"Tax Categories"},
      *      summary="Delete tax category by id",
      *      description="Delete tax category by id",
      *      security={ {"sanctum_admin": {} }},

@@ -8,11 +8,11 @@ class CustomerController
      * @OA\Get(
      *     path="/api/v1/admin/reporting/customers/stats",
      *     operationId="getCustomersStats",
-     *     tags={"CustomersReporting"},
+     *     tags={"Reportings"},
      *     summary="Get statistics for customers",
      *     description="Retrieve statistics based on the specified type.",
      *     security={ {"sanctum_admin": {} }},
-     * 
+     *
      *     @OA\Parameter(
      *         name="type",
      *         in="query",

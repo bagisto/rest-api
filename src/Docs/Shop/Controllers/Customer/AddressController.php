@@ -402,11 +402,12 @@ class AddressController
      *          description="Successful operation",
      *
      *          @OA\JsonContent(
-     *
+     *              type="object",
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="You've successfully marked this as your default address."),
+     *                  example="You've successfully marked this as your default address.",
+     *                  format="string",
      *              )
      *          )
      *      ),

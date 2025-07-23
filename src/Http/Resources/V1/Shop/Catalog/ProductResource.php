@@ -96,11 +96,11 @@ class ProductResource extends JsonResource
             ),
             'regular_price'           => $this->when(
                 $productTypeInstance->haveDiscount(),
-                data_get($productTypeInstance->getProductPrices(), 'regular_price.price')
+                data_get($productTypeInstance->getProductPrices(), 'regular.price')
             ),
             'formatted_regular_price' => $this->when(
                 $productTypeInstance->haveDiscount(),
-                data_get($productTypeInstance->getProductPrices(), 'regular_price.formated_price')
+                data_get($productTypeInstance->getProductPrices(), 'regular.formatted_price')
             ),
         ];
     }

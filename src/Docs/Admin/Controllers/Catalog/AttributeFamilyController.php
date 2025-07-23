@@ -8,7 +8,7 @@ class AttributeFamilyController
      * @OA\Get(
      *      path="/api/v1/admin/catalog/attribute-families",
      *      operationId="getAdminAttributeFamilies",
-     *      tags={"Attribute-Families"},
+     *      tags={"Attribute Families"},
      *      summary="Get attribute family list for the shop",
      *      description="Returns attribute family list, if you want to retrieve all attribute families at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -93,7 +93,7 @@ class AttributeFamilyController
      * @OA\Get(
      *      path="/api/v1/admin/catalog/attribute-families/{id}",
      *      operationId="getAttributeFamily",
-     *      tags={"Attribute-Families"},
+     *      tags={"Attribute Families"},
      *      summary="Get admin attribute family detail",
      *      description="Returns attribute family detail",
      *      security={ {"sanctum_admin": {} }},
@@ -132,7 +132,7 @@ class AttributeFamilyController
      * @OA\Post(
      *      path="/api/v1/admin/catalog/attribute-families",
      *      operationId="storeAttributeFamily",
-     *      tags={"Attribute-Families"},
+     *      tags={"Attribute Families"},
      *      summary="Store the attribute",
      *      description="Store the attribute family",
      *      security={ {"sanctum_admin": {} }},
@@ -220,7 +220,7 @@ class AttributeFamilyController
      * @OA\Put(
      *      path="/api/v1/admin/catalog/attribute-families/{id}",
      *      operationId="updateAttributeFamily",
-     *      tags={"Attribute-Families"},
+     *      tags={"Attribute Families"},
      *      summary="Update attribute family",
      *      description="Update attribute family",
      *      security={ {"sanctum_admin": {} }},
@@ -333,7 +333,7 @@ class AttributeFamilyController
      * @OA\Delete(
      *      path="/api/v1/admin/catalog/attribute-families/{id}",
      *      operationId="deleteAttributeFamily",
-     *      tags={"Attribute-Families"},
+     *      tags={"Attribute Families"},
      *      summary="Delete attribute family by id",
      *      description="Delete attribute family by id",
      *      security={ {"sanctum_admin": {} }},

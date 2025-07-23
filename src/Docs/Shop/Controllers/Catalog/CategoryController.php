@@ -138,6 +138,54 @@ class CategoryController
 
     /**
      * @OA\Get(
+     *      path="/api/v1/categories/max-price/{id}",
+     *      operationId="getCategoryProductMaxPrice",
+     *      tags={"Categories"},
+     *      summary="Get product maximum price.",
+     *      description="Returns category product maximum price by id",
+     *
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Category id",
+     *          required=true,
+     *          in="path",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  @OA\Property(
+     *                      property="max_price",
+     *                      type="number",
+     *                      format="float",
+     *                      example=25.00
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+    public function getProductMaxPrice()
+    {
+    }
+
+    /**
+     * @OA\Get(
      *      path="/api/v1/descendant-categories",
      *      operationId="getShopDescendantCategories",
      *      tags={"Categories"},
