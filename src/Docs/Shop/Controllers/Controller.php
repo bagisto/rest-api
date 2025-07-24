@@ -43,7 +43,7 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints of Country"
  * )
  * @OA\Tag(
- *     name="AttributeFamilies",
+ *     name="Attribute Families",
  *     description="API Endpoints of AttributeFamily"
  * )
  * @OA\Tag(

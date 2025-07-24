@@ -23,8 +23,32 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin user's authentication"
  * )
  * @OA\Tag(
- *     name="Users",
- *     description="API Endpoints of Admin User"
+ *     name="Orders",
+ *     description="API Endpoints of Admin Order"
+ * )
+ * @OA\Tag(
+ *     name="ReOrders",
+ *     description="API Endpoints of Admin Re Order"
+ * )
+ * @OA\Tag(
+ *     name="Shipments",
+ *     description="API Endpoints of Admin Shipment"
+ * )
+ * @OA\Tag(
+ *     name="Invoices",
+ *     description="API Endpoints of Admin Invoice"
+ * )
+ * @OA\Tag(
+ *     name="Refunds",
+ *     description="API Endpoints of Admin Refund"
+ * )
+ * @OA\Tag(
+ *     name="Transactions",
+ *     description="API Endpoints of Admin Transaction"
+ * )
+ * @OA\Tag(
+ *     name="Products",
+ *     description="API Endpoints of Product"
  * )
  * @OA\Tag(
  *     name="Categories",
@@ -39,76 +63,12 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Attribute-Family"
  * )
  * @OA\Tag(
- *     name="Products",
- *     description="API Endpoints of Product"
- * )
- * @OA\Tag(
- *     name="Orders",
- *     description="API Endpoints of Admin Order"
- * )
- * @OA\Tag(
- *     name="ReOrders",
- *     description="API Endpoints of Admin Re Order"
- * )
- * @OA\Tag(
- *     name="Invoices",
- *     description="API Endpoints of Admin Invoice"
- * )
- * @OA\Tag(
- *     name="Shipments",
- *     description="API Endpoints of Admin Shipment"
- * )
- * @OA\Tag(
- *     name="Refunds",
- *     description="API Endpoints of Admin Refund"
- * )
- * @OA\Tag(
- *     name="Transactions",
- *     description="API Endpoints of Admin Transaction"
- * )
- * @OA\Tag(
- *     name="Locales",
- *     description="API Endpoints of Admin Locale"
- * )
- * @OA\Tag(
- *     name="Currencies",
- *     description="API Endpoints of Admin Currency"
- * )
- * @OA\Tag(
- *     name="Exchange Rates",
- *     description="API Endpoints of Admin Exchange-Rate"
- * )
- * @OA\Tag(
- *     name="Inventory Sources",
- *     description="API Endpoints of Admin Inventory-Source"
- * )
- * @OA\Tag(
- *     name="Channels",
- *     description="API Endpoints of Admin Channel"
- * )
- * @OA\Tag(
- *     name="Roles",
- *     description="API Endpoints of Admin Role"
- * )
- * @OA\Tag(
- *     name="Tax Categories",
- *     description="API Endpoints of Admin Tax-Category"
- * )
- * @OA\Tag(
- *     name="Tax Rates",
- *     description="API Endpoints of Admin Tax-Rate"
- * )
- * @OA\Tag(
- *     name="Configurations",
- *     description="API Endpoints of Admin Configuration"
- * )
- * @OA\Tag(
- *     name="CMS Pages",
- *     description="API Endpoints of Admin Cms-Page"
- * )
- * @OA\Tag(
  *     name="Customers",
  *     description="API Endpoints of Admin Customer"
+ * )
+ * @OA\Tag(
+ *     name="Customer Addresses",
+ *     description="API Endpoints of Admin CustomerAddress"
  * )
  * @OA\Tag(
  *     name="Customer Groups",
@@ -118,13 +78,13 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     name="Customer Reviews",
  *     description="API Endpoints of Admin CustomerReview"
  * )
- * @OA\Tag(
- *     name="Customer Addresses",
- *     description="API Endpoints of Admin CustomerAddress"
- * )
  *  @OA\Tag(
  *     name="Customer GDPR",
  *     description="API Endpoints of Admin CustomerGDPR"
+ * )
+ * @OA\Tag(
+ *     name="CMS Pages",
+ *     description="API Endpoints of Admin Cms-Page"
  * )
  * @OA\Tag(
  *     name="Catalog Rules",
@@ -155,14 +115,6 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin Newsletter Subscriptions"
  * )
  * @OA\Tag(
- *     name="Search Synonym",
- *     description="API Endpoints of Admin SearchSynonym"
- * )
- * @OA\Tag(
- *     name="Sitemaps",
- *     description="API Endpoints of Admin Sitemaps"
- * )
- * @OA\Tag(
  *     name="URL Rewrite",
  *     description="API Endpoints of Admin URLRewrite"
  * )
@@ -171,12 +123,60 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *     description="API Endpoints of Admin SearchTerms"
  * )
  * @OA\Tag(
- *     name="Themes",
- *     description="API Endpoints of Themes customization"
+ *     name="Search Synonym",
+ *     description="API Endpoints of Admin SearchSynonym"
+ * )
+ * @OA\Tag(
+ *     name="Sitemaps",
+ *     description="API Endpoints of Admin Sitemaps"
  * )
  * @OA\Tag(
  *     name="Reportings",
  *     description="API Endpoints of Reporting"
+ * )
+ * @OA\Tag(
+ *     name="Locales",
+ *     description="API Endpoints of Admin Locale"
+ * )
+ * @OA\Tag(
+ *     name="Currencies",
+ *     description="API Endpoints of Admin Currency"
+ * )
+ * @OA\Tag(
+ *     name="Exchange Rates",
+ *     description="API Endpoints of Admin Exchange-Rate"
+ * )
+ * @OA\Tag(
+ *     name="Inventory Sources",
+ *     description="API Endpoints of Admin Inventory-Source"
+ * )
+ * @OA\Tag(
+ *     name="Channels",
+ *     description="API Endpoints of Admin Channel"
+ * )
+ * @OA\Tag(
+ *     name="Users",
+ *     description="API Endpoints of Admin User"
+ * )
+ * @OA\Tag(
+ *     name="Roles",
+ *     description="API Endpoints of Admin Role"
+ * )
+ * @OA\Tag(
+ *     name="Themes",
+ *     description="API Endpoints of Themes customization"
+ * )
+ * @OA\Tag(
+ *     name="Tax Categories",
+ *     description="API Endpoints of Admin Tax-Category"
+ * )
+ * @OA\Tag(
+ *     name="Tax Rates",
+ *     description="API Endpoints of Admin Tax-Rate"
+ * )
+ * @OA\Tag(
+ *     name="Configurations",
+ *     description="API Endpoints of Admin Configuration"
  * )
  */
 class Controller

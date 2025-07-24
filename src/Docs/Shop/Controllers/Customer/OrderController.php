@@ -201,14 +201,17 @@ class OrderController
      *          )
      *      ),
      *
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
-     *                  property="message",
-     *                  type="string",
-     *                  example="Order canceled successfully."
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/Cart"
      *              )
      *          )
      *      ),

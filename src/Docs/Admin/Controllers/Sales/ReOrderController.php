@@ -372,8 +372,8 @@ class ReOrderController
      *      path="/api/v1/admin/sales/re-orders/{id}/save-order",
      *      operationId="saveCheckoutOrder",
      *      tags={"ReOrders"},
-     *      summary="Save payment method at the checkout",
-     *      description="Save payment method at the checkout",
+     *      summary="Save order at the checkout",
+     *      description="Save order at the checkout",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(

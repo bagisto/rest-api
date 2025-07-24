@@ -61,54 +61,6 @@ class WishlistController
      *          )
      *      ),
      *
-     *      @OA\RequestBody(
-     *
-     *          @OA\MediaType(
-     *              mediaType="application/json",
-     *
-     *              @OA\Schema(
-     *
-     *                  @OA\Property(
-     *                      property="additional",
-     *                      type="array",
-     *                      example={
-     *                          "selected_configurable_option": 2,
-     *                          "quantity": 1,
-     *                          "product_id": 1,
-     *                          "super_attribute": {
-     *                              "attribute_id_1": "attribute_option_id_1",
-     *                              "attribute_id_2": "attribute_option_id_2"
-     *                          }
-     *                      },
-     *
-     *                      @OA\Items(
-     *
-     *                          @OA\Property(
-     *                              property="additional",
-     *                              type="array",
-     *
-     *                              @OA\Items(
-     *
-     *                                  @OA\Property(property="selected_configurable_option", type="integer"),
-     *                                  @OA\Property(property="quantity", type="integer"),
-     *                                  @OA\Property(property="product_id", type="integer"),
-     *                                  @OA\Property(
-     *                                      property="super_attribute",
-     *                                      type="array",
-     *
-     *                                      @OA\Items(
-     *
-     *                                          @OA\Property(type="integer")
-     *                                      )
-     *                                  ),
-     *                              )
-     *                          )
-     *                      )
-     *                  )
-     *              )
-     *          )
-     *      ),
-     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -139,7 +91,7 @@ class WishlistController
      *      operationId="moveToCartCustomerWishlist",
      *      tags={"Wishlists"},
      *      summary="Move Product From Wishlist To Cart",
-     *      description="Move product from wishlist to cart",
+     *      description="The quantity field is used to specify the number of items to add or update in the cart. If omitted, a default quantity of 1 will be assumed.",
      *      security={ {"sanctum": {} }},
      *
      *      @OA\Parameter(
@@ -147,6 +99,17 @@ class WishlistController
      *          description="Product id",
      *          required=true,
      *          in="path",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Parameter(
+     *          name="quantity",
+     *          description="Product quantity",
+     *          required=false,
+     *          in="query",
      *
      *          @OA\Schema(
      *              type="integer"

@@ -111,8 +111,8 @@ class AccountController
     *                  ),
     *                  @OA\Property(
     *                      property="image[]",
-    *                      type="array",
-    *                      @OA\Items(type="file"),
+    *                      type="string",
+    *                      format="binary",
     *                      description="Customer Profile Image"
     *                  ),
     *                  @OA\Property(
