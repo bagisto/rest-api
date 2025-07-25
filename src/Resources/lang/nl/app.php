@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Adres is succesvol toegevoegd.',
-                'delete-success' => 'Adres succesvol verwijderd.',
-                'update-success' => 'Adres succesvol bijgewerkt.',
+                'create-success'  => 'Adres is succesvol toegevoegd.',
+                'delete-success'  => 'Adres succesvol verwijderd.',
+                'update-success'  => 'Adres succesvol bijgewerkt.',
+                'default-delete'  => 'Standaardadres kan niet worden gewijzigd.',
+                'default-success' => 'Succesvol gemarkeerd als uw standaardadres.',
 
                 'mass-operations' => [
                     'delete-success' => 'Geselecteerde adressen succesvol verwijderd.',

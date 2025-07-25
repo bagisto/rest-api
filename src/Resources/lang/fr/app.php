@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Adresse ajoutée avec succès.',
-                'delete-success' => 'Adresse supprimée avec succès',
-                'update-success' => 'Adresse mise à jour avec succès.',
+                'create-success'  => 'Adresse ajoutée avec succès.',
+                'delete-success'  => 'Adresse supprimée avec succès',
+                'update-success'  => 'Adresse mise à jour avec succès.',
+                'default-delete'  => "L'adresse par défaut ne peut pas être modifiée.",
+                'default-success' => "Adresse par défaut définie avec succès.",
 
                 'mass-operations' => [
                     'delete-success' => 'Adresses sélectionnées supprimées avec succès.',

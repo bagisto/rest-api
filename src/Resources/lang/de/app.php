@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Adresse wurde erfolgreich hinzugefügt.',
-                'delete-success' => 'Adresse erfolgreich gelöscht',
-                'update-success' => 'Adresse erfolgreich aktualisiert.',
+                'create-success'  => 'Adresse wurde erfolgreich hinzugefügt.',
+                'delete-success'  => 'Adresse erfolgreich gelöscht',
+                'update-success'  => 'Adresse erfolgreich aktualisiert.',
+                'default-delete'  => 'Standardadresse kann nicht geändert werden.',
+                'default-success' => 'Erfolgreich als Standardadresse markiert.',
 
                 'mass-operations' => [
                     'delete-success' => 'Ausgewählte Adressen erfolgreich gelöscht.',

@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Adres başarıyla eklendi.',
-                'delete-success' => 'Adres başarıyla silindi.',
-                'update-success' => 'Adres başarıyla güncellendi.',
+                'create-success'  => 'Adres başarıyla eklendi.',
+                'delete-success'  => 'Adres başarıyla silindi.',
+                'update-success'  => 'Adres başarıyla güncellendi.',
+                'default-delete'  => 'Varsayılan adres değiştirilemez.',
+                'default-success' => 'Başarıyla varsayılan adres olarak işaretlendi.',
 
                 'mass-operations' => [
                     'delete-success' => 'Seçilen adresler başarıyla silindi.',

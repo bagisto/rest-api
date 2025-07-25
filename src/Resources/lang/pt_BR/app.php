@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Endereço adicionado com sucesso.',
-                'delete-success' => 'Endereço excluído com sucesso.',
-                'update-success' => 'Endereço atualizado com sucesso.',
+                'create-success'  => 'Endereço adicionado com sucesso.',
+                'delete-success'  => 'Endereço excluído com sucesso.',
+                'update-success'  => 'Endereço atualizado com sucesso.',
+                'default-delete'  => 'O endereço padrão não pode ser alterado.',
+                'default-success' => 'Marcado com sucesso como seu endereço padrão.',
 
                 'mass-operations' => [
                     'delete-success' => 'Endereços selecionados excluídos com sucesso.',

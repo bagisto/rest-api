@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Indirizzo aggiunto con successo.',
-                'delete-success' => 'Indirizzo eliminato con successo.',
-                'update-success' => 'Indirizzo aggiornato con successo.',
+                'create-success'  => 'Indirizzo aggiunto con successo.',
+                'delete-success'  => 'Indirizzo eliminato con successo.',
+                'update-success'  => 'Indirizzo aggiornato con successo.',
+                'default-delete'  => "L'indirizzo predefinito non può essere modificato.",
+                'default-success' => 'Contrassegnato correttamente come indirizzo predefinito.',
 
                 'mass-operations' => [
                     'delete-success' => 'Indirizzi selezionati eliminati con successo.',
@@ -488,7 +490,7 @@ return [
                     'success'        => 'Codice del coupon applicato con successo.',
                 ],
 
-                'move-wishlist' => [                    
+                'move-wishlist' => [
                     'success' => 'Articolo spostato nella lista dei desideri con successo.',
                 ],
             ],

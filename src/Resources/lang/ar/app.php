@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'تمت إضافة العنوان بنجاح.',
-                'delete-success' => 'تم حذف العنوان بنجاح.',
-                'update-success' => 'تم تحديث العنوان بنجاح.',
+                'create-success'  => 'تمت إضافة العنوان بنجاح.',
+                'delete-success'  => 'تم حذف العنوان بنجاح.',
+                'update-success'  => 'تم تحديث العنوان بنجاح.',
+                'default-delete'  => 'لا يمكن تغيير العنوان الافتراضي.',
+                'default-success' => 'تم تعيين العنوان كافتراضي بنجاح.',
 
                 'mass-operations' => [
                     'delete-success' => 'تم حذف العناوين المحددة بنجاح.',

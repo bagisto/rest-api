@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Адрес успешно добавлен.',
-                'delete-success' => 'Адрес успешно удален.',
-                'update-success' => 'Адрес успешно обновлен.',
+                'create-success'  => 'Адрес успешно добавлен.',
+                'delete-success'  => 'Адрес успешно удален.',
+                'update-success'  => 'Адрес успешно обновлен.',
+                'default-delete'  => 'Невозможно изменить адрес по умолчанию.',
+                'default-success' => 'Успешно установлен как адрес по умолчанию.',
 
                 'mass-operations' => [
                     'delete-success' => 'Выбранные адреса успешно удалены.',

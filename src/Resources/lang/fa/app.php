@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'آدرس با موفقیت اضافه شد.',
-                'delete-success' => 'آدرس با موفقیت حذف شد',
-                'update-success' => 'آدرس با موفقیت به روز شد.',
+                'create-success'  => 'آدرس با موفقیت اضافه شد.',
+                'delete-success'  => 'آدرس با موفقیت حذف شد',
+                'update-success'  => 'آدرس با موفقیت به روز شد.',
+                'default-delete'  => 'آدرس پیش‌فرض قابل تغییر نیست.',
+                'default-success' => 'با موفقیت به‌عنوان آدرس پیش‌فرض علامت‌گذاری شد.',
 
                 'mass-operations' => [
                     'delete-success' => 'آدرس‌های انتخاب شده با موفقیت حذف شدند.',

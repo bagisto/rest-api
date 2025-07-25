@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => '地址已成功添加。',
-                'delete-success' => '地址已成功删除',
-                'update-success' => '地址已成功更新。',
+                'create-success'  => '地址已成功添加。',
+                'delete-success'  => '地址已成功删除',
+                'update-success'  => '地址已成功更新。',
+                'default-delete'  => '默认地址无法更改。',
+                'default-success' => '已成功设置为默认地址。',
 
                 'mass-operations' => [
                     'delete-success' => '所选地址已成功删除。',
