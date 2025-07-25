@@ -15,7 +15,7 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {
-        $data = [
+        return [
             'id'                    => $this->id,
             'name'                  => $this->name,
             'slug'                  => $this->slug,
@@ -33,13 +33,5 @@ class CategoryResource extends JsonResource
             'created_at'            => $this->created_at,
             'updated_at'            => $this->updated_at,
         ];
-
-        $action = $request->route()?->getActionMethod();
-
-        if ($action === 'getResource') {
-            $data['filterable_attributes'] = $this->filterableAttributes;
-        }
-
-        return $data;
     }
 }
