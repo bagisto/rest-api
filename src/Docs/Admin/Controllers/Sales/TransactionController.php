@@ -179,8 +179,12 @@ class TransactionController
      *                  @OA\Property(
      *                      property="payment_method",
      *                      type="string",
-     *                      example="moneytransfer",
-     *                      enum={"cashondelivery", "moneytransfer"}
+     *                      enum={"moneytransfer", "paypal_standard", "paypal_smart_button"},
+     *                      example="paypal_standard",
+     *                      description="options:
+     *                       - `moneytransfer`: Money Transfer
+     *                       - `paypal_standard`: PayPal Standard
+     *                       - `paypal_smart_button`: PayPal Smart Button"
      *                  ),
      *                  @OA\Property(
      *                      property="amount",

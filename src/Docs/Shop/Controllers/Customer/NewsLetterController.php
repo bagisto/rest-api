@@ -11,7 +11,7 @@ class NewsLetterController
      *      tags={"Customers"},
      *      summary="Add subscription by customer",
      *      description="Add subscription by customer",
-     *      security={ {"sanctum": {} }},
+     *      security={},
      *
      *      @OA\RequestBody(
      *

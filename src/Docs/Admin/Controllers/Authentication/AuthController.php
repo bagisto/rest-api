@@ -11,6 +11,7 @@ class AuthController
      *      tags={"Authentication"},
      *      summary="Login admin user",
      *      description="Login admin user",
+     *      security={},
      *
      *      @OA\RequestBody(
      *
@@ -86,6 +87,7 @@ class AuthController
      *      tags={"Authentication"},
      *      summary="Admin user's forgot password",
      *      description="Admin user's forgot password",
+     *      security={},
      *
      *      @OA\RequestBody(
      *

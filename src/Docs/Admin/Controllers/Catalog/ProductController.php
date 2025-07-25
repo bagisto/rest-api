@@ -197,7 +197,33 @@ class ProductController
      *                      )
      *                  ),
      *                  required={"type", "attribute_family_id", "sku"}
-     *              )
+     *              ),
+     *              @OA\Examples(
+     *                 example="Standard",
+     *                 summary="Standard",
+     *                 value={
+     *                     "type": "simple",
+     *                     "attribute_family_id": 1,
+     *                     "sku": "furniture"
+     *                 }
+     *              ),
+     *               @OA\Examples(
+     *                 example="Configurable",
+     *                 summary="Configurable product",
+     *                 value={
+     *                     "type": "Configurable",
+     *                     "attribute_family_id": 1,
+     *                     "sku": "furniture",
+     *                     "super_attributes": {
+     *                          "color": {
+     *                              1,
+     *                          },
+     *                          "size": {
+     *                              6,
+     *                          },
+     *                      },
+     *                 },
+     *              ),
      *          )
      *      ),
      *
