@@ -3,20 +3,25 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\SubscribersListRepository;
+use Webkul\Customer\Repositories\CustomerRepository;
 
 class NewsLetterController extends CustomerController
 {
     /**
      * Create a new controller instance.
      */
-    public function __construct(protected SubscribersListRepository $subscriptionRepository) {}
+    public function __construct(
+        protected SubscribersListRepository $subscriptionRepository,
+        protected CustomerRepository $customerRepository,
+    ) {}
 
     /**
      * Store a newly created News Letter by customer.
      */
-    public function store(Request $request): \Illuminate\Http\Response
+    public function store(Request $request): Response
     {
         $this->validate($request, [
             'email' => 'email|required',
@@ -34,7 +39,7 @@ class NewsLetterController extends CustomerController
 
         Event::dispatch('customer.subscription.before');
 
-        $customer = auth()->user();
+        $customer = $this->customerRepository->where('email', $email)->first();
 
         $subscription = $this->subscriptionRepository->create([
             'email'         => $email,

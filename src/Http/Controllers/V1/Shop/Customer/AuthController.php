@@ -152,7 +152,7 @@ class AuthController extends CustomerController
         $data = $request->all();
 
         if (
-            core()->getCurrentChannel()->theme === 'default' 
+            core()->getCurrentChannel()->theme === 'default'
             && ! isset($data['image'])
         ) {
             $data['image']['image_0'] = '';
@@ -215,7 +215,7 @@ class AuthController extends CustomerController
                 if (! empty($data['image'])) {
                     Storage::delete((string)$customer->image);
                 }
-                
+
                 $customer->image = null;
 
                 $customer->save();

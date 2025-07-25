@@ -8,7 +8,7 @@ class GDPRController
      * @OA\Get(
      *      path="/api/v1/admin/customers/gdpr",
      *      operationId="getCustomerGDPRRequests",
-     *      tags={"CustomerGDPR"},
+     *      tags={"Customer GDPR"},
      *      summary="Get GDPR Requests List of the Customer",
      *      description="Returns a list of GDPR data requests. Supports pagination and sorting.",
      *      security={ {"sanctum_admin": {} }},
@@ -23,7 +23,7 @@ class GDPRController
      *              type="integer"
      *          )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="sort",
      *          description="Sort column",
@@ -35,7 +35,7 @@ class GDPRController
      *              type="string"
      *          )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="order",
      *          description="Sort order",
@@ -47,7 +47,7 @@ class GDPRController
      *              enum={"desc", "asc"}
      *          )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="page",
      *          description="Page number",
@@ -94,7 +94,7 @@ class GDPRController
      * @OA\Get(
      *      path="/api/v1/admin/customers/gdpr/{id}",
      *      operationId="getCustomerGDPRRequest",
-     *      tags={"CustomerGDPR"},
+     *      tags={"Customer GDPR"},
      *      summary="Get GDPR Request of the Customer",
      *      description="Returns detailed information of a specific GDPR data request.",
      *      security={ {"sanctum_admin": {} }},
@@ -133,7 +133,7 @@ class GDPRController
      * @OA\Put(
      *      path="/api/v1/admin/customers/gdpr/{id}",
      *      operationId="updateGDPRRequest",
-     *      tags={"CustomerGDPR"},
+     *      tags={"Customer GDPR"},
      *      summary="Update GDPR Request",
      *      description="Update the GDPR request's information.",
      *      security={ {"sanctum_admin": {} }},
@@ -194,7 +194,7 @@ class GDPRController
      * @OA\Delete(
      *      path="/api/v1/admin/customers/gdpr/{id}",
      *      operationId="deleteCustomerGDPRRequest",
-     *      tags={"CustomerGDPR"},
+     *      tags={"Customer GDPR"},
      *      summary="Delete customer GDPR by id",
      *      description="Delete customer GDPR by id",
      *      security={ {"sanctum_admin": {} }},

@@ -8,7 +8,7 @@ class InventorySourceController
      * @OA\Get(
      *      path="/api/v1/admin/settings/inventory-sources",
      *      operationId="getSettingInventorySources",
-     *      tags={"Inventory-Sources"},
+     *      tags={"Inventory Sources"},
      *      summary="Get admin inventory source list",
      *      description="Returns inventory source list, if you want to retrieve all inventory sources at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class InventorySourceController
      * @OA\Get(
      *      path="/api/v1/admin/settings/inventory-sources/{id}",
      *      operationId="getSalesInventorySource",
-     *      tags={"Inventory-Sources"},
+     *      tags={"Inventory Sources"},
      *      summary="Get admin inventory source detail",
      *      description="Returns inventory source detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class InventorySourceController
      * @OA\Post(
      *      path="/api/v1/admin/settings/inventory-sources",
      *      operationId="storeSettingInventorySource",
-     *      tags={"Inventory-Sources"},
+     *      tags={"Inventory Sources"},
      *      summary="Store the inventory source",
      *      description="Store the inventory source",
      *      security={ {"sanctum_admin": {} }},
@@ -253,7 +253,7 @@ class InventorySourceController
      * @OA\Put(
      *      path="/api/v1/admin/settings/inventory-sources/{id}",
      *      operationId="updateSettingInventorySource",
-     *      tags={"Inventory-Sources"},
+     *      tags={"Inventory Sources"},
      *      summary="Update inventory source",
      *      description="Update inventory source",
      *      security={ {"sanctum_admin": {} }},
@@ -393,7 +393,7 @@ class InventorySourceController
      * @OA\Delete(
      *      path="/api/v1/admin/settings/inventory-sources/{id}",
      *      operationId="deleteInventorySource",
-     *      tags={"Inventory-Sources"},
+     *      tags={"Inventory Sources"},
      *      summary="Delete inventory source by id",
      *      description="Delete inventory source by id",
      *      security={ {"sanctum_admin": {} }},

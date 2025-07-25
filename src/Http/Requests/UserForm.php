@@ -29,7 +29,7 @@ class UserForm extends FormRequest
             'password'              => 'nullable|min:6|confirmed',
             'password_confirmation' => 'nullable|required_with:password|same:password',
             'status'                => 'sometimes',
-            'role_id'               => 'required',
+            'role_id'               => 'required|exists:roles,id',
             'image'                 => 'array',
             'image.*'               => 'mimes:jpeg,jpg,png,gif|max:10000',
         ];

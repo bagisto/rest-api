@@ -4,6 +4,7 @@ namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Payment\Facades\Payment;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
@@ -13,9 +14,15 @@ use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Transformers\OrderResource as OrderTransformer;
 use Webkul\Shipping\Facades\Shipping;
 use Webkul\Shop\Http\Requests\CartAddressRequest;
+use Webkul\Customer\Repositories\CustomerAddressRepository;
 
 class CheckoutController extends CustomerController
 {
+    public function __construct(
+        protected CustomerAddressRepository $customerAddressRepository,
+    ) {
+    }
+
     /**
      * Save customer address.
      */
@@ -34,7 +41,15 @@ class CheckoutController extends CustomerController
 
         $rates = [];
 
-        foreach (Shipping::getGroupedAllShippingRates() as $code => $shippingMethod) {
+        foreach ($data as $key => $address) {
+            if (isset($address['save_as_address']) && $address['save_as_address']) {
+                $this->storeAddress($cartAddressRequest, $address);
+            }
+        }
+
+        $shippingMethods = Shipping::collectRates()['shippingMethods'] ?? [];
+
+        foreach ($shippingMethods as $code => $shippingMethod) {
             $rates[] = [
                 'carrier_title' => $shippingMethod['carrier_title'],
                 'rates'         => CartShippingRateResource::collection(collect($shippingMethod['rates'])),
@@ -89,8 +104,8 @@ class CheckoutController extends CustomerController
         ]);
 
         if (
-            Cart::hasError() 
-            || ! $validatedData['payment'] 
+            Cart::hasError()
+            || ! $validatedData['payment']
             || ! Cart::savePaymentMethod($validatedData['payment'])
         ) {
             abort(400);
@@ -187,5 +202,45 @@ class CheckoutController extends CustomerController
         if (! $cart->payment) {
             throw new \Exception(trans('rest-api::app.shop.checkout.specify-payment-method'));
         }
+    }
+
+    /**
+     * Store address.
+     */
+    protected function storeAddress($request, array $address)
+    {
+        $customer = $this->resolveShopUser($request);
+
+        Event::dispatch('customer.addresses.create.before');
+
+        $data = array_merge([
+            'company_name'     => $address['company_name'] ?? null,
+            'first_name'       => $address['first_name'] ?? null,
+            'last_name'        => $address['last_name'] ?? null,
+            'vat_id'           => $address['vat_id'] ?? null,
+            'address'          => implode(PHP_EOL, array_filter($address['address'] ?? [])),
+            'country'          => $address['country'] ?? null,
+            'state'            => $address['state'] ?? null,
+            'city'             => $address['city'] ?? null,
+            'postcode'         => $address['postcode'] ?? null,
+            'phone'            => $address['phone'] ?? null,
+            'email'            => $address['email'] ?? null,
+            'default_address'  => $address['default_address'] ?? 0,
+        ], [
+            'customer_id' => $customer->id,
+        ]);
+
+        // Ensure only one default address
+        if (! empty($data['default_address'])) {
+            $this->customerAddressRepository->where('customer_id', $data['customer_id'])
+                ->where('default_address', 1)
+                ->update(['default_address' => 0]);
+        }
+
+        $customerAddress = $this->customerAddressRepository->create($data);
+
+        Event::dispatch('customer.addresses.create.after', $customerAddress);
+
+        return $customerAddress;
     }
 }

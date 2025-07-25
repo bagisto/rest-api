@@ -54,6 +54,8 @@ class CartController extends CustomerController
     {
         $this->validate(request(), [
             'product_id' => 'required|integer|exists:products,id',
+            'is_buy_now' => 'integer|in:0,1',
+            'quantity'   => 'integer|min:1',
         ]);
 
         if ($productId != request()->product_id) {

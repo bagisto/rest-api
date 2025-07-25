@@ -8,7 +8,7 @@ class SearchSynonymController
      * @OA\Get(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms",
      *      operationId="getSearchSynonyms",
-     *      tags={"SearchSynonym"},
+     *      tags={"Search Synonym"},
      *      summary="Get admin SearchSynonym list",
      *      description="Returns SearchSynonym list, if you want to retrieve all events at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class SearchSynonymController
      * @OA\Get(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
      *      operationId="getSearchSynonym",
-     *      tags={"SearchSynonym"},
+     *      tags={"Search Synonym"},
      *      summary="Get admin SearchSynonym detail",
      *      description="Returns SearchSynonym detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class SearchSynonymController
      * @OA\Post(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms",
      *      operationId="storeSearchSynonym",
-     *      tags={"SearchSynonym"},
+     *      tags={"Search Synonym"},
      *      summary="Store the SearchSynonym",
      *      description="Store the SearchSynonym",
      *      security={ {"sanctum_admin": {} }},
@@ -191,7 +191,7 @@ class SearchSynonymController
      * @OA\Put(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
      *      operationId="updateSearchSynonym",
-     *      tags={"SearchSynonym"},
+     *      tags={"Search Synonym"},
      *      summary="Update SearchSynonym",
      *      description="Update SearchSynonym",
      *      security={ {"sanctum_admin": {} }},
@@ -263,7 +263,7 @@ class SearchSynonymController
      * @OA\Delete(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
      *      operationId="deleteSearchSynonym",
-     *      tags={"SearchSynonym"},
+     *      tags={"Search Synonym"},
      *      summary="Delete SearchSynonym by id",
      *      description="Delete SearchSynonym by id",
      *      security={ {"sanctum_admin": {} }},
@@ -302,7 +302,7 @@ class SearchSynonymController
      * @OA\Post(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms/mass-destroy",
      *      operationId="massDeleteSearchSynonym",
-     *      tags={"SearchSynonym"},
+     *      tags={"Search Synonym"},
      *      summary="Mass delete SearchSynonyms",
      *      description="Mass delete SearchSynonyms",
      *      security={ {"sanctum_admin": {} }},

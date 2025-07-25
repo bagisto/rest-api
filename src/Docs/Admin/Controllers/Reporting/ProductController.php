@@ -8,11 +8,11 @@ class ProductController
      * @OA\Get(
      *     path="/api/v1/admin/reporting/products/stats",
      *     operationId="getProductsStats",
-     *     tags={"ProductsReporting"},
+     *     tags={"Reportings"},
      *     summary="Get statistics for products",
      *     description="Retrieve statistics based on the specified type.",
      *     security={ {"sanctum_admin": {} }},
-     * 
+     *
      *     @OA\Parameter(
      *         name="type",
      *         in="query",
@@ -23,7 +23,7 @@ class ProductController
      *             enum={"total-sold-quantities", "total-products-added-to-wishlist", "top-selling-products-by-revenue", "top-selling-products-by-quantity", "products-with-most-reviews", "products-with-most-visits", "last-search-terms", "top-search-terms"}
      *         )
      *     ),
-     *     
+     *
      *     @OA\Response(
      *          response=200,
      *          description="Successful operation",

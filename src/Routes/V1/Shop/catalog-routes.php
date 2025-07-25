@@ -40,6 +40,7 @@ Route::controller(CategoryController::class)->prefix('categories')->group(functi
 
     Route::get('{id}', 'getResource');
 
+    Route::get('max-price/{id}', 'getProductMaxPrice');
 });
 
 /**

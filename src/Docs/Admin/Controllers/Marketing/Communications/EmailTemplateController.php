@@ -8,7 +8,7 @@ class EmailTemplateController
      * @OA\Get(
      *      path="/api/v1/admin/promotions/email-templates",
      *      operationId="getEmailTemplates",
-     *      tags={"EmailTemplates"},
+     *      tags={"Email Templates"},
      *      summary="Get admin email template list",
      *      description="Returns email template list, if you want to retrieve all email templates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class EmailTemplateController
      * @OA\Get(
      *      path="/api/v1/admin/promotions/email-templates/{id}",
      *      operationId="getEmailTemplate",
-     *      tags={"EmailTemplates"},
+     *      tags={"Email Templates"},
      *      summary="Get admin email template detail",
      *      description="Returns email template detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class EmailTemplateController
      * @OA\Post(
      *      path="/api/v1/admin/promotions/email-templates",
      *      operationId="storeEmailTemplate",
-     *      tags={"EmailTemplates"},
+     *      tags={"Email Templates"},
      *      summary="Store the email template",
      *      description="Store the email template",
      *      security={ {"sanctum_admin": {} }},
@@ -198,7 +198,7 @@ class EmailTemplateController
      * @OA\Put(
      *      path="/api/v1/admin/promotions/email-templates/{id}",
      *      operationId="updateEmailTemplate",
-     *      tags={"EmailTemplates"},
+     *      tags={"Email Templates"},
      *      summary="Update email template",
      *      description="Update email template",
      *      security={ {"sanctum_admin": {} }},
@@ -277,7 +277,7 @@ class EmailTemplateController
      * @OA\Delete(
      *      path="/api/v1/admin/promotions/email-templates/{id}",
      *      operationId="deleteEmailTemplate",
-     *      tags={"EmailTemplates"},
+     *      tags={"Email Templates"},
      *      summary="Delete email template by id",
      *      description="Delete email template by id",
      *      security={ {"sanctum_admin": {} }},

@@ -8,10 +8,10 @@ class NewsLetterController
      * @OA\Post(
      *      path="/api/v1/customer/subscription",
      *      operationId="createSubscription",
-     *      tags={"Newsletter"},
+     *      tags={"Customers"},
      *      summary="Add subscription by customer",
      *      description="Add subscription by customer",
-     *      security={ {"sanctum": {} }},
+     *      security={},
      *
      *      @OA\RequestBody(
      *

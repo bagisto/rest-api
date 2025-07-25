@@ -8,7 +8,7 @@ class PageController
      * @OA\Get(
      *      path="/api/v1/admin/cms",
      *      operationId="getCmsPages",
-     *      tags={"Cms-Pages"},
+     *      tags={"CMS Pages"},
      *      summary="Get admin CMS page list",
      *      description="Returns CMS page list, if you want to retrieve all CMS pages at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class PageController
      * @OA\Get(
      *      path="/api/v1/admin/cms/{id}",
      *      operationId="getCMSPage",
-     *      tags={"Cms-Pages"},
+     *      tags={"CMS Pages"},
      *      summary="Get admin CMS page detail",
      *      description="Returns CMS page detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class PageController
      * @OA\Post(
      *      path="/api/v1/admin/cms",
      *      operationId="storeCMSPage",
-     *      tags={"Cms-Pages"},
+     *      tags={"CMS Pages"},
      *      summary="Store the CMS page",
      *      description="Store the CMS page",
      *      security={ {"sanctum_admin": {} }},
@@ -224,7 +224,7 @@ class PageController
      * @OA\Put(
      *      path="/api/v1/admin/cms/{id}",
      *      operationId="updateCMSPage",
-     *      tags={"Cms-Pages"},
+     *      tags={"CMS Pages"},
      *      summary="Update CMS page",
      *      description="Update CMS page",
      *      security={ {"sanctum_admin": {} }},
@@ -333,7 +333,7 @@ class PageController
      * @OA\Delete(
      *      path="/api/v1/admin/cms/{id}",
      *      operationId="deleteCMSPage",
-     *      tags={"Cms-Pages"},
+     *      tags={"CMS Pages"},
      *      summary="Delete CMS page by id",
      *      description="Delete CMS page by id",
      *      security={ {"sanctum_admin": {} }},
@@ -372,7 +372,7 @@ class PageController
      * @OA\Post(
      *      path="/api/v1/admin/cms/mass-destroy",
      *      operationId="massDeleteCMSPage",
-     *      tags={"Cms-Pages"},
+     *      tags={"CMS Pages"},
      *      summary="Mass delete cms pages",
      *      description="Mass delete cms pages",
      *      security={ {"sanctum_admin": {} }},

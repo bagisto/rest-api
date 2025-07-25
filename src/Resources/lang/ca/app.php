@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'L\'adresse a été ajoutée avec succès.',
-                'delete-success' => 'L\'adresse a été supprimée avec succès.',
-                'update-success' => 'L\'adresse a été mise à jour avec succès.',
+                'create-success'  => 'L\'adresse a été ajoutée avec succès.',
+                'delete-success'  => 'L\'adresse a été supprimée avec succès.',
+                'update-success'  => 'L\'adresse a été mise à jour avec succès.',
+                'default-delete'  => 'No es pot canviar l’adreça predeterminada.',
+                'default-success' => 'S’ha marcat correctament com a adreça predeterminada.',
 
                 'mass-operations' => [
                     'delete-success' => 'Les adresses sélectionnées ont été supprimées avec succès.',

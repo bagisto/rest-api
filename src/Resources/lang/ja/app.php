@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => '住所が正常に追加されました。',
-                'delete-success' => '住所が正常に削除されました。',
-                'update-success' => '住所が正常に更新されました。',
+                'create-success'  => '住所が正常に追加されました。',
+                'delete-success'  => '住所が正常に削除されました。',
+                'update-success'  => '住所が正常に更新されました。',
+                'default-delete'  => 'デフォルトの住所は変更できません。',
+                'default-success' => 'デフォルトの住所として正常に設定されました。',
 
                 'mass-operations' => [
                     'delete-success' => '選択した住所が正常に削除されました。',

@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Address have been successfully added.',
-                'delete-success' => 'Address successfully deleted',
-                'update-success' => 'Address updated successfully.',
+                'create-success'  => 'Address have been successfully added.',
+                'delete-success'  => 'Address successfully deleted',
+                'update-success'  => 'Address updated successfully.',
+                'default-delete'  => 'Default address cannot be changed.',
+                'default-success' => 'successfully marked as your default address',
 
                 'mass-operations' => [
                     'delete-success' => 'Selected addresses successfully deleted.',

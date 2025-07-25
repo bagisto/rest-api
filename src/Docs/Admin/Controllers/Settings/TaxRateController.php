@@ -8,7 +8,7 @@ class TaxRateController
      * @OA\Get(
      *      path="/api/v1/admin/settings/tax-rates",
      *      operationId="getTaxRates",
-     *      tags={"Tax-Rates"},
+     *      tags={"Tax Rates"},
      *      summary="Get admin tax rate list",
      *      description="Returns tax rate list, if you want to retrieve all tax rates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class TaxRateController
      * @OA\Get(
      *      path="/api/v1/admin/settings/tax-rates/{id}",
      *      operationId="getTaxRate",
-     *      tags={"Tax-Rates"},
+     *      tags={"Tax Rates"},
      *      summary="Get admin tax rate detail",
      *      description="Returns tax rate detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class TaxRateController
      * @OA\Post(
      *      path="/api/v1/admin/settings/tax-rates",
      *      operationId="storeTaxRate",
-     *      tags={"Tax-Rates"},
+     *      tags={"Tax Rates"},
      *      summary="Store the tax rate",
      *      description="Store the tax rate",
      *      security={ {"sanctum_admin": {} }},
@@ -228,7 +228,7 @@ class TaxRateController
      * @OA\Put(
      *      path="/api/v1/admin/settings/tax-rates/{id}",
      *      operationId="updateTaxRates",
-     *      tags={"Tax-Rates"},
+     *      tags={"Tax Rates"},
      *      summary="Update tax rate",
      *      description="Update tax rate",
      *      security={ {"sanctum_admin": {} }},
@@ -337,7 +337,7 @@ class TaxRateController
      * @OA\Delete(
      *      path="/api/v1/admin/settings/tax-rates/{id}",
      *      operationId="deleteTaxRate",
-     *      tags={"Tax-Rates"},
+     *      tags={"Tax Rates"},
      *      summary="Delete tax rate by id",
      *      description="Delete tax rate by id",
      *      security={ {"sanctum_admin": {} }},

@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Adres został pomyślnie dodany.',
-                'delete-success' => 'Adres pomyślnie usunięty.',
-                'update-success' => 'Adres został pomyślnie zaktualizowany.',
+                'create-success'  => 'Adres został pomyślnie dodany.',
+                'delete-success'  => 'Adres pomyślnie usunięty.',
+                'update-success'  => 'Adres został pomyślnie zaktualizowany.',
+                'default-delete'  => 'Nie można zmienić domyślnego adresu.',
+                'default-success' => 'Pomyślnie ustawiono jako domyślny adres.',
 
                 'mass-operations' => [
                     'delete-success' => 'Wybrane adresy pomyślnie usunięte.',
@@ -402,22 +404,22 @@ return [
                 'message' => 'Ups! Strona, którą szukasz, jest na wakacjach. Wygląda na to, że nie możemy znaleźć tego, czego szukasz.',
                 'title'   => '404 Strona nie znaleziona',
             ],
-    
+
             '401' => [
                 'message' => 'Ups! Wygląda na to, że nie masz dostępu do tej strony. Wydaje się, że brakuje Ci niezbędnych uprawnień.',
                 'title'   => '401 Nieautoryzowany',
             ],
-    
+
             '403' => [
                 'message' => 'Ups! Ta strona jest niedostępna. Wygląda na to, że nie masz wymaganych uprawnień do przeglądania tego treści.',
                 'title'   => '403 Dostęp zabroniony',
             ],
-    
+
             '500' => [
                 'message' => 'Ups! Coś poszło nie tak. Wydaje się, że mamy problemy z załadowaniem strony, której szukasz.',
                 'title'   => '500 Wewnętrzny błąd serwera',
             ],
-    
+
             '503' => [
                 'message' => 'Ups! Wygląda na to, że jesteśmy tymczasowo wyłączeni z powodu prac konserwacyjnych. Proszę wrócić za chwilę.',
                 'title'   => '503 Usługa niedostępna',
@@ -535,22 +537,22 @@ return [
                 'message' => 'Ups! Strona, którą szukasz, jest na wakacjach. Wygląda na to, że nie możemy znaleźć tego, czego szukasz.',
                 'title'   => '404 Strona nie znaleziona',
             ],
-    
+
             '401' => [
                 'message' => 'Ups! Wygląda na to, że nie masz dostępu do tej strony. Wydaje się, że brakuje Ci niezbędnych uprawnień.',
                 'title'   => '401 Nieautoryzowany',
             ],
-    
+
             '403' => [
                 'message' => 'Ups! Ta strona jest niedostępna. Wygląda na to, że nie masz wymaganych uprawnień do przeglądania tego treści.',
                 'title'   => '403 Dostęp zabroniony',
             ],
-    
+
             '500' => [
                 'message' => 'Ups! Coś poszło nie tak. Wydaje się, że mamy problemy z załadowaniem strony, której szukasz.',
                 'title'   => '500 Wewnętrzny błąd serwera',
             ],
-    
+
             '503' => [
                 'message' => 'Ups! Wygląda na to, że jesteśmy tymczasowo wyłączeni z powodu prac konserwacyjnych. Proszę wrócić za chwilę.',
                 'title'   => '503 Usługa niedostępna',

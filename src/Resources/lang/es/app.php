@@ -141,9 +141,11 @@ return [
             ],
 
             'addresses' => [
-                'create-success' => 'Dirección añadida con éxito.',
-                'delete-success' => 'Dirección eliminada correctamente',
-                'update-success' => 'Dirección actualizada con éxito.',
+                'create-success'  => 'Dirección añadida con éxito.',
+                'delete-success'  => 'Dirección eliminada correctamente',
+                'update-success'  => 'Dirección actualizada con éxito.',
+                'default-delete'  => 'No se puede cambiar la dirección predeterminada.',
+                'default-success' => 'Marcada exitosamente como tu dirección predeterminada.',
 
                 'mass-operations' => [
                     'delete-success' => 'Direcciones seleccionadas eliminadas correctamente.',

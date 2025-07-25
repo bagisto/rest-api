@@ -25,6 +25,13 @@ Route::controller(AuthController::class)->prefix('customer')->group(function () 
 });
 
 /**
+ * News Letter routes.
+ */
+Route::controller(NewsLetterController::class)->prefix('customer/subscription')->group(function () {
+    Route::post('', 'store');
+});
+
+/**
  * Customer authorized routes.
  */
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
@@ -50,6 +57,8 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::post('', 'store');
 
         Route::put('{id}', 'update');
+
+        Route::patch('make-default/{id}', 'makeDefault');
 
         Route::delete('{id}', 'destroy');
     });
@@ -156,10 +165,4 @@ Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function ()
         Route::put('revoke/{id}', 'revoke');
     });
 
-    /**
-     * News Letter routes.
-     */
-    Route::controller(NewsLetterController::class)->prefix('customer/subscription')->group(function () {
-        Route::post('', 'store');
-    });
 });

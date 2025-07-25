@@ -8,7 +8,7 @@ class AddressController
      * @OA\Get(
      *      path="/api/v1/admin/customers/{customer_id}/addresses",
      *      operationId="getCustomerAddresses",
-     *      tags={"CustomerAddresses"},
+     *      tags={"Customer Addresses"},
      *      summary="Get admin customer address list",
      *      description="Returns customer address list, if you want to retrieve all customer addresses at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -109,7 +109,7 @@ class AddressController
      * @OA\Get(
      *      path="/api/v1/admin/customers/{customer_id}/addresses/{id}",
      *      operationId="getCustomerAddress",
-     *      tags={"CustomerAddresses"},
+     *      tags={"Customer Addresses"},
      *      summary="Get admin customer's address detail",
      *      description="Returns customer's address detail",
      *      security={ {"sanctum_admin": {} }},
@@ -159,7 +159,7 @@ class AddressController
      * @OA\Post(
      *      path="/api/v1/admin/customers/{customer_id}/addresses",
      *      operationId="storeCustomerAddress",
-     *      tags={"CustomerAddresses"},
+     *      tags={"Customer Addresses"},
      *      summary="Store the customer's address",
      *      description="Store the customer's address",
      *      security={ {"sanctum_admin": {} }},
@@ -300,7 +300,7 @@ class AddressController
      * @OA\Put(
      *      path="/api/v1/admin/customers/{customer_id}/addresses/{id}",
      *      operationId="updateCustomerAddress",
-     *      tags={"CustomerAddresses"},
+     *      tags={"Customer Addresses"},
      *      summary="Update customer's addresses",
      *      description="Update customer's addresses",
      *      security={ {"sanctum_admin": {} }},
@@ -459,7 +459,7 @@ class AddressController
      * @OA\Delete(
      *      path="/api/v1/admin/customers/{customer_id}/addresses/{id}",
      *      operationId="deleteCustomerAddress",
-     *      tags={"CustomerAddresses"},
+     *      tags={"Customer Addresses"},
      *      summary="Delete customer's address by id",
      *      description="Delete customer's address by id",
      *      security={ {"sanctum_admin": {} }},
@@ -509,7 +509,7 @@ class AddressController
      * @OA\Post(
      *      path="/api/v1/admin/customers/{customer_id}/addresses/mass-destroy",
      *      operationId="massDeleteCustomerAddress",
-     *      tags={"CustomerAddresses"},
+     *      tags={"Customer Addresses"},
      *      summary="Mass delete customer's address' by id",
      *      description="Mass delete customer's address' by id",
      *      security={ {"sanctum_admin": {} }},

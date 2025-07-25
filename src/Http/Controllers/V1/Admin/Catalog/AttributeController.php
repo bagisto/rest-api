@@ -33,12 +33,17 @@ class AttributeController extends CatalogController
      */
     public function store()
     {
-        $this->validate(request(), [
+        $rules = [
             'code'          => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
             'admin_name'    => 'required',
             'type'          => 'required',
-            'default_value' => 'integer',
-        ]);
+        ];
+
+        if (request('type') === 'boolean') {
+            $rules['default_value'] = 'in:0,1';
+        }
+
+        $this->validate(request(), $rules);
 
         $data = request()->all();
 

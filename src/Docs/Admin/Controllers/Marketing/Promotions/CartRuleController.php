@@ -8,7 +8,7 @@ class CartRuleController
      * @OA\Get(
      *      path="/api/v1/admin/promotions/cart-rules",
      *      operationId="getCartRules",
-     *      tags={"CartRules"},
+     *      tags={"Cart Rules"},
      *      summary="Get admin cart rule list",
      *      description="Returns cart rule list, if you want to retrieve all cart rules at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class CartRuleController
      * @OA\Get(
      *      path="/api/v1/admin/promotions/cart-rules/{id}",
      *      operationId="getCartRule",
-     *      tags={"CartRules"},
+     *      tags={"Cart Rules"},
      *      summary="Get admin cart rule detail",
      *      description="Returns cart rule detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class CartRuleController
      * @OA\Post(
      *      path="/api/v1/admin/promotions/cart-rules",
      *      operationId="storeCartRule",
-     *      tags={"CartRules"},
+     *      tags={"Cart Rules"},
      *      summary="Store the cart rule",
      *      description="Store the cart rule",
      *      security={ {"sanctum_admin": {} }},
@@ -338,7 +338,7 @@ class CartRuleController
      * @OA\Put(
      *      path="/api/v1/admin/promotions/cart-rules/{id}",
      *      operationId="updateCartRule",
-     *      tags={"CartRules"},
+     *      tags={"Cart Rules"},
      *      summary="Update cart rule",
      *      description="Update cart rule",
      *      security={ {"sanctum_admin": {} }},
@@ -557,7 +557,7 @@ class CartRuleController
      * @OA\Delete(
      *      path="/api/v1/admin/promotions/cart-rules/{id}",
      *      operationId="deleteCartRule",
-     *      tags={"CartRules"},
+     *      tags={"Cart Rules"},
      *      summary="Delete cart rule by id",
      *      description="Delete cart rule by id",
      *      security={ {"sanctum_admin": {} }},

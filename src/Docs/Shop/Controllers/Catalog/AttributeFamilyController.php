@@ -8,7 +8,7 @@ class AttributeFamilyController
      * @OA\Get(
      *      path="/api/v1/attribute-families",
      *      operationId="getShopAttributeFamilies",
-     *      tags={"AttributeFamilies"},
+     *      tags={"Attribute Families"},
      *      summary="Get attribute family list for the shop",
      *      description="Returns attribute family list, if you want to retrieve all attribute families at once pass pagination=0 otherwise ignore this parameter",
      *
@@ -97,7 +97,7 @@ class AttributeFamilyController
      * @OA\Get(
      *      path="/api/v1/attribute-families/{id}",
      *      operationId="getShopAttributeFamily",
-     *      tags={"AttributeFamilies"},
+     *      tags={"Attribute Families"},
      *      summary="Get shop attribute family by id",
      *      description="Returns shop attribute family by id",
      *

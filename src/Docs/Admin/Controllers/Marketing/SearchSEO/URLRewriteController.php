@@ -8,7 +8,7 @@ class URLRewriteController
      * @OA\Get(
      *      path="/api/v1/admin/marketing/search-seo/url-rewrites",
      *      operationId="getURLRewrites",
-     *      tags={"URLRewrite"},
+     *      tags={"URL Rewrite"},
      *      summary="Get admin URLRewrites list",
      *      description="Returns URLRewrites list, if you want to retrieve all events at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
@@ -98,7 +98,7 @@ class URLRewriteController
      * @OA\Get(
      *      path="/api/v1/admin/marketing/search-seo/url-rewrites/{id}",
      *      operationId="getURLRewrite",
-     *      tags={"URLRewrite"},
+     *      tags={"URL Rewrite"},
      *      summary="Get admin URLRewrite detail",
      *      description="Returns URLRewrite detail",
      *      security={ {"sanctum_admin": {} }},
@@ -137,7 +137,7 @@ class URLRewriteController
      * @OA\Post(
      *      path="/api/v1/admin/marketing/search-seo/url-rewrites",
      *      operationId="storeURLRewrite",
-     *      tags={"URLRewrite"},
+     *      tags={"URL Rewrite"},
      *      summary="Store the URLRewrites",
      *      description="Store the URLRewrites",
      *      security={ {"sanctum_admin": {} }},
@@ -210,7 +210,7 @@ class URLRewriteController
      * @OA\Put(
      *      path="/api/v1/admin/marketing/search-seo/url-rewrites/{id}",
      *      operationId="updateURLRewrite",
-     *      tags={"URLRewrite"},
+     *      tags={"URL Rewrite"},
      *      summary="Update URLRewrite",
      *      description="Update URLRewrite",
      *      security={ {"sanctum_admin": {} }},
@@ -301,7 +301,7 @@ class URLRewriteController
      * @OA\Delete(
      *      path="/api/v1/admin/marketing/search-seo/url-rewrites/{id}",
      *      operationId="deleteURLRewrite",
-     *      tags={"URLRewrite"},
+     *      tags={"URL Rewrite"},
      *      summary="Delete URLRewrite by id",
      *      description="Delete URLRewrite by id",
      *      security={ {"sanctum_admin": {} }},
@@ -340,7 +340,7 @@ class URLRewriteController
      * @OA\Post(
      *      path="/api/v1/admin/marketing/search-seo/url-rewrites/mass-destroy",
      *      operationId="massDeleteURLRewrites",
-     *      tags={"URLRewrite"},
+     *      tags={"URL Rewrite"},
      *      summary="Mass delete URLRewrites",
      *      description="Mass delete URLRewrites",
      *      security={ {"sanctum_admin": {} }},
