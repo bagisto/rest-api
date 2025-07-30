@@ -9,7 +9,7 @@ class OrderController
      *      path="/api/v1/admin/sales/orders",
      *      operationId="getSalesOrders",
      *      tags={"Orders"},
-     *      summary="Get admin order list",
+     *      summary="Get order list",
      *      description="Returns order list, if you want to retrieve all orders at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class OrderController
      *      path="/api/v1/admin/sales/orders/{id}",
      *      operationId="getSalesOrder",
      *      tags={"Orders"},
-     *      summary="Get admin order detail",
+     *      summary="Get order detail",
      *      description="Returns order detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -138,7 +138,7 @@ class OrderController
      *      path="/api/v1/admin/sales/orders/{id}/cancel",
      *      operationId="cancelAdminOrder",
      *      tags={"Orders"},
-     *      summary="Cancel order by admin",
+     *      summary="Cancel order",
      *      description="Cancel order by admin",
      *      security={ {"sanctum_admin": {} }},
      *

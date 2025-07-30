@@ -9,7 +9,7 @@ class GroupController
      *      path="/api/v1/admin/customers/groups",
      *      operationId="getCustomerGroups",
      *      tags={"Customer Groups"},
-     *      summary="Get admin customer group list",
+     *      summary="Get customer group list",
      *      description="Returns customer group list, if you want to retrieve all customer groups at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class GroupController
      *      path="/api/v1/admin/customers/groups/{id}",
      *      operationId="getCustomerGroup",
      *      tags={"Customer Groups"},
-     *      summary="Get admin customer group detail",
+     *      summary="Get customer group detail",
      *      description="Returns customer group detail",
      *      security={ {"sanctum_admin": {} }},
      *

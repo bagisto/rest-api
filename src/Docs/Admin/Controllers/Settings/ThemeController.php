@@ -9,8 +9,8 @@ class ThemeController
      *      path="/api/v1/admin/settings/theme/customizations",
      *      operationId="getSettingThemes",
      *      tags={"Themes"},
-     *      summary="Get admin themes list",
-     *      description="Returns themes list, if you want to retrieve all themes at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get themes",
+     *      description="Returns themes, if you want to retrieve all themes at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -105,8 +105,8 @@ class ThemeController
      *      path="/api/v1/admin/settings/theme/customizations/{id}",
      *      operationId="getSettingTheme",
      *      tags={"Themes"},
-     *      summary="Get admin Themes detail",
-     *      description="Returns Themes detail",
+     *      summary="Get Theme detail",
+     *      description="Returns Theme detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(

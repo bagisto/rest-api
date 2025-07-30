@@ -9,7 +9,7 @@ class CategoryController
      *      path="/api/v1/admin/catalog/categories",
      *      operationId="getAdminCategories",
      *      tags={"Categories"},
-     *      summary="Get category list for the shop",
+     *      summary="Get categories",
      *      description="Returns category list, if you want to retrieve all categories at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -94,7 +94,7 @@ class CategoryController
      *      path="/api/v1/admin/catalog/categories/{id}",
      *      operationId="getCategory",
      *      tags={"Categories"},
-     *      summary="Get admin category detail",
+     *      summary="Get category detail",
      *      description="Returns category detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -233,7 +233,7 @@ class CategoryController
      *              )
      *          )
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",

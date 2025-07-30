@@ -9,7 +9,7 @@ class CurrencyController
      *      path="/api/v1/admin/settings/currencies",
      *      operationId="getSettingCurrencies",
      *      tags={"Currencies"},
-     *      summary="Get admin currency list",
+     *      summary="Get currencies",
      *      description="Returns currency list, if you want to retrieve all currencies at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class CurrencyController
      *      path="/api/v1/admin/settings/currencies/{id}",
      *      operationId="getSalesCurrency",
      *      tags={"Currencies"},
-     *      summary="Get admin currency detail",
+     *      summary="Get currency detail",
      *      description="Returns currency detail",
      *      security={ {"sanctum_admin": {} }},
      *

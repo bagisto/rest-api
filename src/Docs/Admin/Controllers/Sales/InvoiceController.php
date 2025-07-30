@@ -9,7 +9,7 @@ class InvoiceController
      *      path="/api/v1/admin/sales/invoices",
      *      operationId="getOrderInvoices",
      *      tags={"Invoices"},
-     *      summary="Get admin order's invoices list",
+     *      summary="Get order's invoices list",
      *      description="Returns order's invoices list, if you want to retrieve all invoices at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -110,7 +110,7 @@ class InvoiceController
      *      path="/api/v1/admin/sales/invoices/{id}",
      *      operationId="getOrderInvoiceDetail",
      *      tags={"Invoices"},
-     *      summary="Get admin order's invoice detail",
+     *      summary="Get invoice detail",
      *      description="Returns order's invoice detail",
      *      security={ {"sanctum_admin": {} }},
      *

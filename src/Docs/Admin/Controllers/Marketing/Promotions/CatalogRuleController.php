@@ -9,7 +9,7 @@ class CatalogRuleController
      *      path="/api/v1/admin/promotions/catalog-rules",
      *      operationId="getCatalogRules",
      *      tags={"Catalog Rules"},
-     *      summary="Get admin catalog rule list",
+     *      summary="Get catalog rule list",
      *      description="Returns catalog rule list, if you want to retrieve all catalog rules at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class CatalogRuleController
      *      path="/api/v1/admin/promotions/catalog-rules/{id}",
      *      operationId="getCatalogRule",
      *      tags={"Catalog Rules"},
-     *      summary="Get admin catalog rule detail",
+     *      summary="Get catalog rule detail",
      *      description="Returns catalog rule detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -138,8 +138,8 @@ class CatalogRuleController
      *      path="/api/v1/admin/promotions/catalog-rules",
      *      operationId="storeCatalogRule",
      *      tags={"Catalog Rules"},
-     *      summary="Store the catalog-rule",
-     *      description="Store the catalog-rule",
+     *      summary="Store the catalog rule",
+     *      description="Store the catalog rule",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(

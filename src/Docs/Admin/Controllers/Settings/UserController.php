@@ -9,8 +9,8 @@ class UserController
      *      path="/api/v1/admin/settings/users",
      *      operationId="getUsers",
      *      tags={"Users"},
-     *      summary="Get admin users list",
-     *      description="Returns user list, if you want to retrieve all users at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get users list",
+     *      description="Returns users list, if you want to retrieve all users at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -99,7 +99,7 @@ class UserController
      *      path="/api/v1/admin/settings/users/{id}",
      *      operationId="getUser",
      *      tags={"Users"},
-     *      summary="Get admin user detail",
+     *      summary="Get user detail",
      *      description="Returns user detail",
      *      security={ {"sanctum_admin": {} }},
      *

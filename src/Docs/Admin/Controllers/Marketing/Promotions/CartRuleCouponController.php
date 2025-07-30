@@ -9,7 +9,7 @@ class CartRuleCouponController
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons",
      *      operationId="getCartRuleCoupons",
      *      tags={"Cart Rule Coupons"},
-     *      summary="Get admin cart rule's coupon list",
+     *      summary="Get cart rule's coupon list",
      *      description="Returns cart rule's coupon list",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -54,7 +54,7 @@ class CartRuleCouponController
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons/{id}",
      *      operationId="getCartRuleCoupon",
      *      tags={"Cart Rule Coupons"},
-     *      summary="Get admin cart rule's coupon detail",
+     *      summary="Get cart rule's coupon detail",
      *      description="Returns cart rule's coupon detail",
      *      security={ {"sanctum_admin": {} }},
      *

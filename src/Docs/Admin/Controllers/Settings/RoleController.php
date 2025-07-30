@@ -9,8 +9,8 @@ class RoleController
      *      path="/api/v1/admin/settings/roles",
      *      operationId="getRoles",
      *      tags={"Roles"},
-     *      summary="Get admin role list",
-     *      description="Returns role list, if you want to retrieve all roles at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get role's",
+     *      description="Returns role's, if you want to retrieve all roles at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -99,7 +99,7 @@ class RoleController
      *      path="/api/v1/admin/settings/roles/{id}",
      *      operationId="getRole",
      *      tags={"Roles"},
-     *      summary="Get admin role detail",
+     *      summary="Get role detail",
      *      description="Returns role detail",
      *      security={ {"sanctum_admin": {} }},
      *

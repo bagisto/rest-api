@@ -9,8 +9,8 @@ class InventorySourceController
      *      path="/api/v1/admin/settings/inventory-sources",
      *      operationId="getSettingInventorySources",
      *      tags={"Inventory Sources"},
-     *      summary="Get admin inventory source list",
-     *      description="Returns inventory source list, if you want to retrieve all inventory sources at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get inventory sources",
+     *      description="Returns inventory sources, if you want to retrieve all inventory sources at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -99,7 +99,7 @@ class InventorySourceController
      *      path="/api/v1/admin/settings/inventory-sources/{id}",
      *      operationId="getSalesInventorySource",
      *      tags={"Inventory Sources"},
-     *      summary="Get admin inventory source detail",
+     *      summary="Get inventory source detail",
      *      description="Returns inventory source detail",
      *      security={ {"sanctum_admin": {} }},
      *

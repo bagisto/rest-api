@@ -9,8 +9,8 @@ class TaxCategoryController
      *      path="/api/v1/admin/settings/tax-categories",
      *      operationId="getTaxCategories",
      *      tags={"Tax Categories"},
-     *      summary="Get admin tax category list",
-     *      description="Returns tax category list, if you want to retrieve all tax categories at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get tax categories",
+     *      description="Returns tax categories, if you want to retrieve all tax categories at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -99,7 +99,7 @@ class TaxCategoryController
      *      path="/api/v1/admin/settings/tax-categories/{id}",
      *      operationId="getTaxCategory",
      *      tags={"Tax Categories"},
-     *      summary="Get admin tax category detail",
+     *      summary="Get tax category detail",
      *      description="Returns tax category detail",
      *      security={ {"sanctum_admin": {} }},
      *

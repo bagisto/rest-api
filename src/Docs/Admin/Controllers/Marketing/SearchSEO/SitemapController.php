@@ -9,8 +9,8 @@ class SitemapController
      *      path="/api/v1/admin/marketing/search-seo/sitemaps",
      *      operationId="getSitemaps",
      *      tags={"Sitemaps"},
-     *      summary="Get admin Sitemaps list",
-     *      description="Returns SearchSynonym list, if you want to retrieve all events at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get Sitemaps",
+     *      description="Returns sitemaps, if you want to retrieve all sitemaps at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -99,8 +99,8 @@ class SitemapController
      *      path="/api/v1/admin/marketing/search-seo/sitemaps/{id}",
      *      operationId="getSitemap",
      *      tags={"Sitemaps"},
-     *      summary="Get admin Sitemaps detail",
-     *      description="Returns Sitemaps detail",
+     *      summary="Returns sitemap detail",
+     *      description="Get sitemap detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -138,8 +138,8 @@ class SitemapController
      *      path="/api/v1/admin/marketing/search-seo/sitemaps",
      *      operationId="storeSitemaps",
      *      tags={"Sitemaps"},
-     *      summary="Store the Sitemaps",
-     *      description="Store the Sitemaps",
+     *      summary="Store the sitemap",
+     *      description="Store the sitemap",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
@@ -192,8 +192,8 @@ class SitemapController
      *      path="/api/v1/admin/marketing/search-seo/sitemaps/{id}",
      *      operationId="updateSitemaps",
      *      tags={"Sitemaps"},
-     *      summary="Update Sitemaps",
-     *      description="Update Sitemaps",
+     *      summary="Update Sitemap",
+     *      description="Update Sitemap",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -264,8 +264,8 @@ class SitemapController
      *      path="/api/v1/admin/marketing/search-seo/sitemaps/{id}",
      *      operationId="deleteSitemaps",
      *      tags={"Sitemaps"},
-     *      summary="Delete Sitemaps by id",
-     *      description="Delete Sitemaps by id",
+     *      summary="Delete sitemap by id",
+     *      description="Delete sitemap by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(

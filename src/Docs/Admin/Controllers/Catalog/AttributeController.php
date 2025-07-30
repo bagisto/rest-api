@@ -9,7 +9,7 @@ class AttributeController
      *      path="/api/v1/admin/catalog/attributes",
      *      operationId="getAdminAttributes",
      *      tags={"Attributes"},
-     *      summary="Get attribute list for the shop",
+     *      summary="Get list of attributes",
      *      description="Returns attribute list, if you want to retrieve all attributes at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -94,7 +94,7 @@ class AttributeController
      *      path="/api/v1/admin/catalog/attributes/{id}",
      *      operationId="getAttribute",
      *      tags={"Attributes"},
-     *      summary="Get admin attribute detail",
+     *      summary="Get attribute detail",
      *      description="Returns attribute detail",
      *      security={ {"sanctum_admin": {} }},
      *

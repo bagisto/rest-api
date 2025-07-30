@@ -9,8 +9,8 @@ class LocaleController
      *      path="/api/v1/admin/settings/locales",
      *      operationId="getSettingLocales",
      *      tags={"Locales"},
-     *      summary="Get admin locale list",
-     *      description="Returns locale list, if you want to retrieve all locales at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get locales list ",
+     *      description="Returns locales list, if you want to retrieve all locales at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -99,7 +99,7 @@ class LocaleController
      *      path="/api/v1/admin/settings/locales/{id}",
      *      operationId="getSalesLocale",
      *      tags={"Locales"},
-     *      summary="Get admin locale detail",
+     *      summary="Get locale detail",
      *      description="Returns locale detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -300,7 +300,6 @@ class LocaleController
     public function update()
     {
     }
-
 
     /**
      * @OA\Delete(

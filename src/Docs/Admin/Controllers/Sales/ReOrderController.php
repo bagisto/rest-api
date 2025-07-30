@@ -9,7 +9,7 @@ class ReOrderController
      *      path="/api/v1/admin/sales/re-orders/{id}",
      *      operationId="createProductReOrder",
      *      tags={"ReOrders"},
-     *      summary="Create admin re-order",
+     *      summary="Create re-order",
      *      description="Re-order previous orders without manually adding all products again.",
      *      security={ {"sanctum_admin": {} }},
      *

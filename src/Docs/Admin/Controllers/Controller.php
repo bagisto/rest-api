@@ -20,165 +20,163 @@ namespace Webkul\RestApi\Docs\Admin\Controllers;
  *
  * @OA\Tag(
  *     name="Authentication",
- *     description="API Endpoints of Admin user's authentication"
+ *     description="API Endpoints for Authentication"
  * )
  * @OA\Tag(
  *     name="Orders",
- *     description="API Endpoints of Admin Order"
+ *     description="API Endpoints for Orders"
  * )
  * @OA\Tag(
  *     name="ReOrders",
- *     description="API Endpoints of Admin Re Order"
+ *     description="API Endpoints for Re Orders"
  * )
  * @OA\Tag(
  *     name="Shipments",
- *     description="API Endpoints of Admin Shipment"
+ *     description="API Endpoints for Shipments"
  * )
  * @OA\Tag(
  *     name="Invoices",
- *     description="API Endpoints of Admin Invoice"
+ *     description="API Endpoints for Invoices"
  * )
  * @OA\Tag(
  *     name="Refunds",
- *     description="API Endpoints of Admin Refund"
+ *     description="API Endpoints for Refunds"
  * )
  * @OA\Tag(
  *     name="Transactions",
- *     description="API Endpoints of Admin Transaction"
+ *     description="API Endpoints for Transactions"
  * )
  * @OA\Tag(
  *     name="Products",
- *     description="API Endpoints of Product"
+ *     description="API Endpoints for Products"
  * )
  * @OA\Tag(
  *     name="Categories",
- *     description="API Endpoints of Category"
+ *     description="API Endpoints for Categories"
  * )
  * @OA\Tag(
  *     name="Attributes",
- *     description="API Endpoints of Attribute"
+ *     description="API Endpoints for Product Attributes"
  * )
  * @OA\Tag(
  *     name="Attribute Families",
- *     description="API Endpoints of Attribute-Family"
+ *     description="API Endpoints for Product Attribute Families"
  * )
  * @OA\Tag(
  *     name="Customers",
- *     description="API Endpoints of Admin Customer"
+ *     description="API Endpoints for Customers"
  * )
  * @OA\Tag(
  *     name="Customer Addresses",
- *     description="API Endpoints of Admin CustomerAddress"
+ *     description="API Endpoints for Customer Addresses"
  * )
  * @OA\Tag(
  *     name="Customer Groups",
- *     description="API Endpoints of Admin CustomerGroup"
+ *     description="API Endpoints for Customer Groups"
  * )
  * @OA\Tag(
  *     name="Customer Reviews",
- *     description="API Endpoints of Admin CustomerReview"
+ *     description="API Endpoints for Customer Reviews"
  * )
  *  @OA\Tag(
  *     name="Customer GDPR",
- *     description="API Endpoints of Admin CustomerGDPR"
+ *     description="API Endpoints for Customer GDPR"
  * )
  * @OA\Tag(
  *     name="CMS Pages",
- *     description="API Endpoints of Admin Cms-Page"
+ *     description="API Endpoints for CMS Pages"
  * )
  * @OA\Tag(
  *     name="Catalog Rules",
- *     description="API Endpoints of Admin CatalogRule"
+ *     description="API Endpoints for Catalog Rules"
  * )
  * @OA\Tag(
  *     name="Cart Rules",
- *     description="API Endpoints of Admin CartRule"
+ *     description="API Endpoints for Cart Rules"
  * )
  * @OA\Tag(
  *     name="Cart Rule Coupons",
- *     description="API Endpoints of Admin CartRuleCoupon"
+ *     description="API Endpoints for Cart Rule Coupons"
  * )
  * @OA\Tag(
  *     name="Email Templates",
- *     description="API Endpoints of Admin EmailTemplate"
+ *     description="API Endpoints for Email Templates"
  * )
  * @OA\Tag(
  *     name="Events",
- *     description="API Endpoints of Admin Event"
+ *     description="API Endpoints for Events"
  * )
  * @OA\Tag(
  *     name="Campaigns",
- *     description="API Endpoints of Admin Campaign"
+ *     description="API Endpoints for Campaigns"
  * )
  * @OA\Tag(
  *     name="Newsletter Subscriptions",
- *     description="API Endpoints of Admin Newsletter Subscriptions"
+ *     description="API Endpoints for Newsletter Subscriptions"
  * )
  * @OA\Tag(
  *     name="URL Rewrite",
- *     description="API Endpoints of Admin URLRewrite"
+ *     description="API Endpoints for URL Rewrites"
  * )
  * @OA\Tag(
  *     name="Search Terms",
- *     description="API Endpoints of Admin SearchTerms"
+ *     description="API Endpoints for Search Terms"
  * )
  * @OA\Tag(
- *     name="Search Synonym",
- *     description="API Endpoints of Admin SearchSynonym"
+ *     name="Search Synonyms",
+ *     description="API Endpoints for Search Synonyms"
  * )
  * @OA\Tag(
  *     name="Sitemaps",
- *     description="API Endpoints of Admin Sitemaps"
+ *     description="API Endpoints for Sitemaps"
  * )
  * @OA\Tag(
  *     name="Reportings",
- *     description="API Endpoints of Reporting"
+ *     description="API Endpoints for Reportings"
  * )
  * @OA\Tag(
  *     name="Locales",
- *     description="API Endpoints of Admin Locale"
+ *     description="API Endpoints for Locales"
  * )
  * @OA\Tag(
  *     name="Currencies",
- *     description="API Endpoints of Admin Currency"
+ *     description="API Endpoints for Currencies"
  * )
  * @OA\Tag(
  *     name="Exchange Rates",
- *     description="API Endpoints of Admin Exchange-Rate"
+ *     description="API Endpoints for Exchange Rates"
  * )
  * @OA\Tag(
  *     name="Inventory Sources",
- *     description="API Endpoints of Admin Inventory-Source"
+ *     description="API Endpoints for Inventory Sources"
  * )
  * @OA\Tag(
  *     name="Channels",
- *     description="API Endpoints of Admin Channel"
+ *     description="API Endpoints for Channels"
  * )
  * @OA\Tag(
  *     name="Users",
- *     description="API Endpoints of Admin User"
+ *     description="API Endpoints for Users"
  * )
  * @OA\Tag(
  *     name="Roles",
- *     description="API Endpoints of Admin Role"
+ *     description="API Endpoints for Roles"
  * )
  * @OA\Tag(
  *     name="Themes",
- *     description="API Endpoints of Themes customization"
+ *     description="API Endpoints for Themes"
  * )
  * @OA\Tag(
  *     name="Tax Categories",
- *     description="API Endpoints of Admin Tax-Category"
+ *     description="API Endpoints for Tax Categories"
  * )
  * @OA\Tag(
  *     name="Tax Rates",
- *     description="API Endpoints of Admin Tax-Rate"
+ *     description="API Endpoints for Tax Rates"
  * )
  * @OA\Tag(
  *     name="Configurations",
- *     description="API Endpoints of Admin Configuration"
+ *     description="API Endpoints for Configurations"
  * )
  */
-class Controller
-{
-}
+class Controller {}

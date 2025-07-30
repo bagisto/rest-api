@@ -9,8 +9,8 @@ class TaxRateController
      *      path="/api/v1/admin/settings/tax-rates",
      *      operationId="getTaxRates",
      *      tags={"Tax Rates"},
-     *      summary="Get admin tax rate list",
-     *      description="Returns tax rate list, if you want to retrieve all tax rates at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get list of tax rate",
+     *      description="Returns list of tax rate, if you want to retrieve all tax rates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -99,7 +99,7 @@ class TaxRateController
      *      path="/api/v1/admin/settings/tax-rates/{id}",
      *      operationId="getTaxRate",
      *      tags={"Tax Rates"},
-     *      summary="Get admin tax rate detail",
+     *      summary="Get tax rate detail",
      *      description="Returns tax rate detail",
      *      security={ {"sanctum_admin": {} }},
      *

@@ -9,7 +9,7 @@ class AttributeFamilyController
      *      path="/api/v1/admin/catalog/attribute-families",
      *      operationId="getAdminAttributeFamilies",
      *      tags={"Attribute Families"},
-     *      summary="Get attribute family list for the shop",
+     *      summary="Get attribute families",
      *      description="Returns attribute family list, if you want to retrieve all attribute families at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -94,7 +94,7 @@ class AttributeFamilyController
      *      path="/api/v1/admin/catalog/attribute-families/{id}",
      *      operationId="getAttributeFamily",
      *      tags={"Attribute Families"},
-     *      summary="Get admin attribute family detail",
+     *      summary="Get attribute family detail",
      *      description="Returns attribute family detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -133,7 +133,7 @@ class AttributeFamilyController
      *      path="/api/v1/admin/catalog/attribute-families",
      *      operationId="storeAttributeFamily",
      *      tags={"Attribute Families"},
-     *      summary="Store the attribute",
+     *      summary="Store the attribute family",
      *      description="Store the attribute family",
      *      security={ {"sanctum_admin": {} }},
      *

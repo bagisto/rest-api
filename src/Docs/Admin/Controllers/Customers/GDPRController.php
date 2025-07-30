@@ -9,7 +9,7 @@ class GDPRController
      *      path="/api/v1/admin/customers/gdpr",
      *      operationId="getCustomerGDPRRequests",
      *      tags={"Customer GDPR"},
-     *      summary="Get GDPR Requests List of the Customer",
+     *      summary="Get list of customer's GDPR requests",
      *      description="Returns a list of GDPR data requests. Supports pagination and sorting.",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -95,7 +95,7 @@ class GDPRController
      *      path="/api/v1/admin/customers/gdpr/{id}",
      *      operationId="getCustomerGDPRRequest",
      *      tags={"Customer GDPR"},
-     *      summary="Get GDPR Request of the Customer",
+     *      summary="Get a GDPR request's of the customer",
      *      description="Returns detailed information of a specific GDPR data request.",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -195,7 +195,7 @@ class GDPRController
      *      path="/api/v1/admin/customers/gdpr/{id}",
      *      operationId="deleteCustomerGDPRRequest",
      *      tags={"Customer GDPR"},
-     *      summary="Delete customer GDPR by id",
+     *      summary="Delete customer GDPR request by id",
      *      description="Delete customer GDPR by id",
      *      security={ {"sanctum_admin": {} }},
      *

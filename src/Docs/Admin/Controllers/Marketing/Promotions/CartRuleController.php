@@ -9,7 +9,7 @@ class CartRuleController
      *      path="/api/v1/admin/promotions/cart-rules",
      *      operationId="getCartRules",
      *      tags={"Cart Rules"},
-     *      summary="Get admin cart rule list",
+     *      summary="Get cart rule list",
      *      description="Returns cart rule list, if you want to retrieve all cart rules at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class CartRuleController
      *      path="/api/v1/admin/promotions/cart-rules/{id}",
      *      operationId="getCartRule",
      *      tags={"Cart Rules"},
-     *      summary="Get admin cart rule detail",
+     *      summary="Get cart rule detail",
      *      description="Returns cart rule detail",
      *      security={ {"sanctum_admin": {} }},
      *

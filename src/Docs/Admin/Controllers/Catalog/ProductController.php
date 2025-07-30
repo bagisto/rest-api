@@ -9,7 +9,7 @@ class ProductController
      *      path="/api/v1/admin/catalog/products",
      *      operationId="getProducts",
      *      tags={"Products"},
-     *      summary="Get admin catalog product list",
+     *      summary="Get product list",
      *      description="Returns catalog product list, if you want to retrieve all catalog products at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -105,7 +105,7 @@ class ProductController
      *      path="/api/v1/admin/catalog/products/{id}",
      *      operationId="getProduct",
      *      tags={"Products"},
-     *      summary="Get admin catalog product detail",
+     *      summary="Get product detail",
      *      description="Returns catalog product detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -148,7 +148,7 @@ class ProductController
      *      path="/api/v1/admin/catalog/products",
      *      operationId="storeProduct",
      *      tags={"Products"},
-     *      summary="Store the catalog product",
+     *      summary="Store the product",
      *      description="Store the catalog product",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -1864,8 +1864,8 @@ class ProductController
      *      path="/api/v1/admin/catalog/products/{id}/inventories",
      *      operationId="updateProductInventory",
      *      tags={"Products"},
-     *      summary="Update the catalog product's inventory",
-     *      description="Update the catalog product's inventory",
+     *      summary="Update the product's inventory",
+     *      description="Update the product's inventory",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -1931,7 +1931,7 @@ class ProductController
      *      path="/api/v1/admin/catalog/products/{id}",
      *      operationId="deleteProduct",
      *      tags={"Products"},
-     *      summary="Delete catalog product by id",
+     *      summary="Delete product by id",
      *      description="Delete catalog product by id",
      *      security={ {"sanctum_admin": {} }},
      *

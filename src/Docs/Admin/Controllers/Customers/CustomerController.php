@@ -9,7 +9,7 @@ class CustomerController
      *      path="/api/v1/admin/customers",
      *      operationId="getCustomers",
      *      tags={"Customers"},
-     *      summary="Get admin customer list",
+     *      summary="Get customers",
      *      description="Returns customer list, if you want to retrieve all customers at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class CustomerController
      *      path="/api/v1/admin/customers/{id}",
      *      operationId="getCustomer",
      *      tags={"Customers"},
-     *      summary="Get admin customer detail",
+     *      summary="Get customer detail",
      *      description="Returns customer detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -481,7 +481,7 @@ class CustomerController
      *      path="/api/v1/admin/customers/{id}/orders",
      *      operationId="getCustomerOrders",
      *      tags={"Customers"},
-     *      summary="Get admin customer's order list",
+     *      summary="Get customer's orders",
      *      description="Returns customer's order list",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -521,8 +521,8 @@ class CustomerController
      *      path="/api/v1/admin/customers/{id}/invoices",
      *      operationId="getCustomerInvoices",
      *      tags={"Customers"},
-     *      summary="Get admin order's invoice list by customer id",
-     *      description="Get admin order's invoice list by customer id",
+     *      summary="Get all order invoices by customer ID",
+     *      description="Get all order invoices by customer ID	",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -557,48 +557,48 @@ class CustomerController
     }
 
     /**
-    * @OA\Post(
-    *      path="/api/v1/admin/customers/{id}/notes",
-    *      operationId="storeCustomerNote",
-    *      tags={"Customers"},
-    *      summary="Store the customer's note by customer id",
-    *      description="Store the customer's note by customer id",
-    *      security={ {"sanctum_admin": {} }},
-    *
-    *      @OA\Parameter(
-    *          name="id",
-    *          description="Customer ID",
-    *          required=true,
-    *          in="path",
-    *          @OA\Schema(
-    *              type="integer"
-    *          )
-    *      ),
-    *
-    *      @OA\RequestBody(
-    *          required=true,
-    *          @OA\MediaType(
-    *              mediaType="multipart/form-data",
-    *              @OA\Schema(
-    *                  @OA\Property(
-    *                      property="note",
-    *                      description="Customer's note",
-    *                      type="string",
-    *                      example="This is a first note for this customer"
-    *                  ),
-    *                  @OA\Property(
-    *                      property="customer_notified",
-    *                      description="Flag indicating if customer has been notified",
-    *                      type="integer",
-    *                      enum={"0", "1"},
-    *                      example=1  
-    *                  ),
-    *                  required={"note"}
-    *              )
-    *          )
-    *      ),
-    *
-    *      @OA\Response(
+     * @OA\Post(
+     *      path="/api/v1/admin/customers/{id}/notes",
+     *      operationId="storeCustomerNote",
+     *      tags={"Customers"},
+     *      summary="Store the customer's note by customer id",
+     *      description="Store the customer's note by customer id",
+     *      security={ {"sanctum_admin": {} }},
+     *
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Customer ID",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(
+     *                      property="note",
+     *                      description="Customer's note",
+     *                      type="string",
+     *                      example="This is a first note for this customer"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="customer_notified",
+     *                      description="Flag indicating if customer has been notified",
+     *                      type="integer",
+     *                      enum={"0", "1"},
+     *                      example=1
+     *                  ),
+     *                  required={"note"}
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
      *
@@ -613,7 +613,7 @@ class CustomerController
      *          )
      *      )
      * )
-    */
+     */
     public function storeNote()
     {
     }

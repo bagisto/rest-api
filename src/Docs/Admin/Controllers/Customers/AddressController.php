@@ -9,7 +9,7 @@ class AddressController
      *      path="/api/v1/admin/customers/{customer_id}/addresses",
      *      operationId="getCustomerAddresses",
      *      tags={"Customer Addresses"},
-     *      summary="Get admin customer address list",
+     *      summary="Get customer address list",
      *      description="Returns customer address list, if you want to retrieve all customer addresses at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -110,7 +110,7 @@ class AddressController
      *      path="/api/v1/admin/customers/{customer_id}/addresses/{id}",
      *      operationId="getCustomerAddress",
      *      tags={"Customer Addresses"},
-     *      summary="Get admin customer's address detail",
+     *      summary="Get customer's address detail",
      *      description="Returns customer's address detail",
      *      security={ {"sanctum_admin": {} }},
      *

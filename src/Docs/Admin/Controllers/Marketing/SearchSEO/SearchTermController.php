@@ -9,8 +9,8 @@ class SearchTermController
      *      path="/api/v1/admin/marketing/search-seo/search-terms",
      *      operationId="getSearchTerms",
      *      tags={"Search Terms"},
-     *      summary="Get admin SearchTerms list",
-     *      description="Returns SearchTerms list, if you want to retrieve all events at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get search terms",
+     *      description="Returns search terms, if you want to retrieve all search terms at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -99,8 +99,8 @@ class SearchTermController
      *      path="/api/v1/admin/marketing/search-seo/search-terms/{id}",
      *      operationId="getSearchTerm",
      *      tags={"Search Terms"},
-     *      summary="Get admin SearchTerm detail",
-     *      description="Returns SearchTerm detail",
+     *      summary="Get search term detail",
+     *      description="Returns search term detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -138,8 +138,8 @@ class SearchTermController
      *      path="/api/v1/admin/marketing/search-seo/search-terms",
      *      operationId="storeSearchTerms",
      *      tags={"Search Terms"},
-     *      summary="Store the SearchTerms",
-     *      description="Store the SearchTerms",
+     *      summary="Store the search term",
+     *      description="Store the search term",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
@@ -204,8 +204,8 @@ class SearchTermController
      *      path="/api/v1/admin/marketing/search-seo/search-terms/{id}",
      *      operationId="updateSearchTerms",
      *      tags={"Search Terms"},
-     *      summary="Update SearchTerms",
-     *      description="Update SearchTerms",
+     *      summary="Update search term",
+     *      description="Update search term",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -288,8 +288,8 @@ class SearchTermController
      *      path="/api/v1/admin/marketing/search-seo/search-terms/{id}",
      *      operationId="deleteSearchTerm",
      *      tags={"Search Terms"},
-     *      summary="Delete SearchTerm by id",
-     *      description="Delete SearchTerms by id",
+     *      summary="Delete search term by id",
+     *      description="Delete search term by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -327,8 +327,8 @@ class SearchTermController
      *      path="/api/v1/admin/marketing/search-seo/search-terms/mass-destroy",
      *      operationId="massDeleteSearchTerms",
      *      tags={"Search Terms"},
-     *      summary="Mass delete SearchTerms",
-     *      description="Mass delete SearchTerms",
+     *      summary="Mass delete search term",
+     *      description="Mass delete search term",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(

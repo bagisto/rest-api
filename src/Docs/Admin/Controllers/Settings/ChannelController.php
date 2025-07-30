@@ -9,7 +9,7 @@ class ChannelController
      *      path="/api/v1/admin/settings/channels",
      *      operationId="getChannels",
      *      tags={"Channels"},
-     *      summary="Get admin channel list",
+     *      summary="Get channels",
      *      description="Returns channel list, if you want to retrieve all channels at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class ChannelController
      *      path="/api/v1/admin/settings/channels/{id}",
      *      operationId="getChannel",
      *      tags={"Channels"},
-     *      summary="Get admin channel detail",
+     *      summary="Get channel detail",
      *      description="Returns channel detail",
      *      security={ {"sanctum_admin": {} }},
      *

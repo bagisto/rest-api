@@ -9,7 +9,7 @@ class ExchangeRateController
      *      path="/api/v1/admin/settings/exchange-rates",
      *      operationId="getSettingExchangeRates",
      *      tags={"Exchange Rates"},
-     *      summary="Get admin exchange rate list",
+     *      summary="Get exchange rate list",
      *      description="Returns exchange rate list, if you want to retrieve all exchange rates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class ExchangeRateController
      *      path="/api/v1/admin/settings/exchange-rates/{id}",
      *      operationId="getSalesExchangeRates",
      *      tags={"Exchange Rates"},
-     *      summary="Get admin exchange rate detail",
+     *      summary="Get exchange rate detail",
      *      description="Returns exchange rate detail",
      *      security={ {"sanctum_admin": {} }},
      *

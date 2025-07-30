@@ -9,7 +9,7 @@ class ReviewController
      *      path="/api/v1/admin/customers/reviews",
      *      operationId="getCustomerReviews",
      *      tags={"Customer Reviews"},
-     *      summary="Get admin customer review list",
+     *      summary="Get customer review list",
      *      description="Returns customer review list, if you want to retrieve all customer reviews at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -99,7 +99,7 @@ class ReviewController
      *      path="/api/v1/admin/customers/reviews/{id}",
      *      operationId="getCustomerReview",
      *      tags={"Customer Reviews"},
-     *      summary="Get admin customer review detail",
+     *      summary="Get customer review detail",
      *      description="Returns customer review detail",
      *      security={ {"sanctum_admin": {} }},
      *

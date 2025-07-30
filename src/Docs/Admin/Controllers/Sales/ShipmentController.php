@@ -9,7 +9,7 @@ class ShipmentController
      *      path="/api/v1/admin/sales/shipments",
      *      operationId="getOrderShipments",
      *      tags={"Shipments"},
-     *      summary="Get admin order's shipments list",
+     *      summary="Get order's shipments list",
      *      description="Returns order's shipments list, if you want to retrieve all shipments at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -110,7 +110,7 @@ class ShipmentController
      *      path="/api/v1/admin/sales/shipments/{id}",
      *      operationId="getOrderShipmentDetail",
      *      tags={"Shipments"},
-     *      summary="Get admin order's Shipment detail",
+     *      summary="Get order's Shipment detail",
      *      description="Returns order's Shipment detail",
      *      security={ {"sanctum_admin": {} }},
      *
