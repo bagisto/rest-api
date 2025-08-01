@@ -9,8 +9,8 @@ class CategoryController
      *      path="/api/v1/categories",
      *      operationId="getShopCategories",
      *      tags={"Categories"},
-     *      summary="Get category list for the shop",
-     *      description="Returns category list, if you want to retrieve all categories at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get categories",
+     *      description="Returns categories, if you want to retrieve all categories at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -98,8 +98,8 @@ class CategoryController
      *      path="/api/v1/categories/{id}",
      *      operationId="getShopCategory",
      *      tags={"Categories"},
-     *      summary="Get shop category by id",
-     *      description="Returns shop category by id",
+     *      summary="Get category by id",
+     *      description="Returns category by id",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -141,7 +141,7 @@ class CategoryController
      *      path="/api/v1/categories/max-price/{id}",
      *      operationId="getCategoryProductMaxPrice",
      *      tags={"Categories"},
-     *      summary="Get product maximum price.",
+     *      summary="Get category product maximum price.",
      *      description="Returns category product maximum price by id",
      *
      *      @OA\Parameter(
@@ -189,8 +189,8 @@ class CategoryController
      *      path="/api/v1/descendant-categories",
      *      operationId="getShopDescendantCategories",
      *      tags={"Categories"},
-     *      summary="Get shop descendant categories",
-     *      description="Returns shop descendant categories based on the parent category id",
+     *      summary="Get descendant categories",
+     *      description="Returns descendant categories based on the parent category id",
      *
      *      @OA\Parameter(
      *          name="parent_id",

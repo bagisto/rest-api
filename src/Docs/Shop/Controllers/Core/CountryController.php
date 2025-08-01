@@ -9,8 +9,8 @@ class CountryController
      *      path="/api/v1/countries",
      *      operationId="getShopCountries",
      *      tags={"Countries"},
-     *      summary="Get country list for the shop",
-     *      description="Returns country list, if you want to retrieve all countries at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get countries",
+     *      description="Returns countries, if you want to retrieve all countries at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -121,8 +121,8 @@ class CountryController
      *      path="/api/v1/countries/{id}",
      *      operationId="getShopCountry",
      *      tags={"Countries"},
-     *      summary="Get shop country by id",
-     *      description="Returns shop country by id",
+     *      summary="Get country by id",
+     *      description="Returns country by id",
      *
      *      @OA\Parameter(
      *          name="id",

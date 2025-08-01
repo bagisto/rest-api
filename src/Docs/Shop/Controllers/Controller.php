@@ -19,92 +19,84 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  * )
  *
  * @OA\Tag(
- *     name="Configs",
- *     description="API Endpoints of Core Config"
+ *     name="Configurations",
+ *     description="API Endpoints for Core Configuration"
  * )
  * @OA\Tag(
  *     name="Locales",
- *     description="API Endpoints of Locale"
+ *     description="API Endpoints for Locales"
  * )
  * @OA\Tag(
  *     name="Currencies",
- *     description="API Endpoints of Currency"
+ *     description="API Endpoints for Currencies"
  * )
  * @OA\Tag(
  *     name="Themes",
- *     description="API Endpoints of Themes"
+ *     description="API Endpoints for Themes"
  * )
  * @OA\Tag(
  *     name="Channels",
- *     description="API Endpoints of Channel"
+ *     description="API Endpoints for Channels"
  * )
  * @OA\Tag(
  *     name="Countries",
- *     description="API Endpoints of Country"
+ *     description="API Endpoints for Countries"
  * )
  * @OA\Tag(
  *     name="Attribute Families",
- *     description="API Endpoints of AttributeFamily"
+ *     description="API Endpoints for Product Attribute Families"
  * )
  * @OA\Tag(
  *     name="Attributes",
- *     description="API Endpoints of Attribute"
+ *     description="API Endpoints for Product Attributes"
  * )
  * @OA\Tag(
  *     name="Categories",
- *     description="API Endpoints of Category"
+ *     description="API Endpoints for Categories"
  * )
  * @OA\Tag(
  *     name="Products",
- *     description="API Endpoints of Product"
+ *     description="API Endpoints for Products"
  * )
  * @OA\Tag(
  *     name="Customers",
- *     description="API Endpoints of Customer"
+ *     description="API Endpoints for Customers"
  * )
  * @OA\Tag(
  *     name="Addresses",
- *     description="API Endpoints of Address"
+ *     description="API Endpoints for Addresses"
  * )
  * @OA\Tag(
  *     name="GDPR",
- *     description="API Endpoints of GDPR"
+ *     description="API Endpoints for GDPR"
  * )
  * @OA\Tag(
  *     name="Cart",
- *     description="API Endpoints of Cart"
+ *     description="API Endpoints for Cart"
  * )
  * @OA\Tag(
  *     name="Checkout",
- *     description="API Endpoints of Checkout"
+ *     description="API Endpoints for Checkout"
  * )
  * @OA\Tag(
  *     name="Orders",
- *     description="API Endpoints of Order"
- * )
- * @OA\Tag(
- *     name="ReOrder",
- *     description="API Endpoints of Re Order"
+ *     description="API Endpoints for Orders"
  * )
  * @OA\Tag(
  *     name="Invoices",
- *     description="API Endpoints of Invoice"
+ *     description="API Endpoints for Invoices"
  * )
  * @OA\Tag(
  *     name="Shipments",
- *     description="API Endpoints of Shipment"
+ *     description="API Endpoints for Shipments"
  * )
  * @OA\Tag(
  *     name="Transactions",
- *     description="API Endpoints of Transaction"
+ *     description="API Endpoints for Transactions"
  * )
  * @OA\Tag(
  *     name="Wishlists",
- *     description="API Endpoints of Wishlist"
- * )
- * @OA\Tag(
- *     name="Newsletter",
- *     description="API Endpoints of Newsletters"
+ *     description="API Endpoints for Wishlists"
  * )
  */
 class Controller

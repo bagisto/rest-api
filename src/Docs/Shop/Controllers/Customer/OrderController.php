@@ -9,7 +9,7 @@ class OrderController
      *      path="/api/v1/customer/orders",
      *      operationId="getCustomerOrders",
      *      tags={"Orders"},
-     *      summary="Get logged in customer's order list",
+     *      summary="Get logged in customer's orders",
      *      description="Returns order list, if you want to retrieve all orders at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum": {} }},
      *
@@ -187,7 +187,7 @@ class OrderController
      *      path="/api/v1/customer/orders/reorder/{id}",
      *      operationId="ReOrder",
      *      tags={"Orders"},
-     *      summary="Customer Re Order",
+     *      summary="Customer Reorder",
      *      description="This endpoint adds order items to the customer's cart for reordering. After successfully adding items to the cart, the customer should proceed with the checkout process via the checkout APIs.",
      *      security={ {"sanctum": {} }},
      *

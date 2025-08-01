@@ -9,8 +9,8 @@ class WishlistController
      *      path="/api/v1/customer/wishlist",
      *      operationId="getCustomerWishlistDetail",
      *      tags={"Wishlists"},
-     *      summary="Get customer's wishlist",
-     *      description="Returns customer's wishlist",
+     *      summary="Get customer's wishlists",
+     *      description="Returns customer's wishlists",
      *      security={ {"sanctum": {} }},
      *
      *      @OA\Response(
@@ -90,7 +90,7 @@ class WishlistController
      *      path="/api/v1/customer/wishlist/{id}/move-to-cart",
      *      operationId="moveToCartCustomerWishlist",
      *      tags={"Wishlists"},
-     *      summary="Move Product From Wishlist To Cart",
+     *      summary="Move product from wishlist to cart",
      *      description="The quantity field is used to specify the number of items to add or update in the cart. If omitted, a default quantity of 1 will be assumed.",
      *      security={ {"sanctum": {} }},
      *

@@ -9,8 +9,8 @@ class ChannelController
      *      path="/api/v1/channels",
      *      operationId="getShopChannels",
      *      tags={"Channels"},
-     *      summary="Get channel list for the shop",
-     *      description="Returns channel list, if you want to retrieve all channels at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get channels",
+     *      description="Returns channels, if you want to retrieve all channels at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -98,8 +98,8 @@ class ChannelController
      *      path="/api/v1/channels/{id}",
      *      operationId="getShopChannel",
      *      tags={"Channels"},
-     *      summary="Get shop channel by id",
-     *      description="Returns shop channel by id",
+     *      summary="Get channel by id",
+     *      description="Returns channel by id",
      *
      *      @OA\Parameter(
      *          name="id",

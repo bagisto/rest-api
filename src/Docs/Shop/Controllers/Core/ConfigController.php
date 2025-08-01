@@ -4,58 +4,12 @@ namespace Webkul\RestApi\Docs\Shop\Controllers\Core;
 
 class ConfigController
 {
-    /**
-     * @OA\Get(
-     *      path="/api/v1/core-configs",
-     *      operationId="getCoreConfig",
-     *      tags={"Configs"},
-     *      summary="Get Core Config Value",
-     *      description="Get core config field value by id",
-     *
-     *      @OA\Parameter(
-     *          name="_config[]",
-     *          description="Config id",
-     *          required=true,
-     *          in="query",
-     *
-     *          @OA\Schema(
-     *              type="array",
-     *
-     *              @OA\Items(type="string")
-     *          ),
-     *          example={"general.general.locale_options.weight_unit"}
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(
-     *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/ConfigValue"
-     *              )
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
-     *      )
-     * )
-     */
-    public function getCoreConfigs()
-    {
-    }
-
-    /**
+     /**
      * @OA\Get(
      *      path="/api/v1/core-config-fields",
      *      operationId="getCoreConfigList",
-     *      tags={"Configs"},
-     *      summary="Get config records list",
+     *      tags={"Configurations"},
+     *      summary="Get configurations",
      *      description="Returns config list, if you want to retrieve all config records at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
@@ -141,10 +95,56 @@ class ConfigController
 
     /**
      * @OA\Get(
+     *      path="/api/v1/core-configs",
+     *      operationId="getCoreConfig",
+     *      tags={"Configurations"},
+     *      summary="Get core configuration value by code",
+     *      description="Get core configuration value by code",
+     *
+     *      @OA\Parameter(
+     *          name="_config[]",
+     *          description="configuration code",
+     *          required=true,
+     *          in="query",
+     *
+     *          @OA\Schema(
+     *              type="array",
+     *
+     *              @OA\Items(type="string")
+     *          ),
+     *          example={"general.general.locale_options.weight_unit"}
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/ConfigValue"
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+    public function getCoreConfigs()
+    {
+    }
+
+    /**
+     * @OA\Get(
      *      path="/api/v1/core-config-fields/{id}",
      *      operationId="getCoreConfigDetail",
-     *      tags={"Configs"},
-     *      summary="Get config's record by id",
+     *      tags={"Configurations"},
+     *      summary="Get configuration by id",
      *      description="Returns config's record by id",
      *
      *      @OA\Parameter(

@@ -9,8 +9,8 @@ class ProductController
      *      path="/api/v1/products",
      *      operationId="getShopProducts",
      *      tags={"Products"},
-     *      summary="Get product list for the shop",
-     *      description="Returns product list, if you want to retrieve all products at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get products",
+     *      description="Returns products, if you want to retrieve all products at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="category_id",
@@ -117,11 +117,54 @@ class ProductController
 
     /**
      * @OA\Get(
+     *      path="/api/v1/products/{id}",
+     *      operationId="getShopProduct",
+     *      tags={"Products"},
+     *      summary="Get product by id",
+     *      description="Returns product by id",
+     *
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Product id",
+     *          required=true,
+     *          in="path",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/Product"
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+    public function get()
+    {
+    }
+
+    /**
+     * @OA\Get(
      *      path="/api/v1/products/{product_id}/reviews",
      *      operationId="getShopProductReviews",
      *      tags={"Products"},
-     *      summary="Get shop product reviews by product id",
-     *      description="Returns shop product reviews by product id",
+     *      summary="Get product reviews by product id",
+     *      description="Returns product reviews by product id",
      *
      *      @OA\Parameter(
      *          name="product_id",
@@ -178,54 +221,11 @@ class ProductController
 
     /**
      * @OA\Get(
-     *      path="/api/v1/products/{id}",
-     *      operationId="getShopProduct",
-     *      tags={"Products"},
-     *      summary="Get shop product by id",
-     *      description="Returns shop product by id",
-     *
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="Product id",
-     *          required=true,
-     *          in="path",
-     *
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(
-     *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/Product"
-     *              )
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
-     *      )
-     * )
-     */
-    public function get()
-    {
-    }
-
-    /**
-     * @OA\Get(
      *      path="/api/v1/products/{id}/additional-information",
      *      operationId="getShopProductAdditionalInfo",
      *      tags={"Products"},
-     *      summary="Get product's additional info by id",
-     *      description="Get product's additional info by id",
+     *      summary="Get product's additional info by product id",
+     *      description="Get product's additional info by product id",
      *
      *      @OA\Parameter(
      *          name="id",

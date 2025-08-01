@@ -9,7 +9,7 @@ class GDPRController
      *      path="/api/v1/customer/gdpr",
      *      operationId="getCustomerGDPRList",
      *      tags={"GDPR"},
-     *      summary="Get GDPR Requests List for Logged-in Customer",
+     *      summary="Get GDPR requests logged-in Customer",
      *      description="Returns a list of GDPR data requests submitted by the logged-in customer. Supports pagination and sorting.",
      *      security={ {"sanctum": {} }},
      *
@@ -23,7 +23,7 @@ class GDPRController
      *              type="integer"
      *          )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="sort",
      *          description="Sort column",
@@ -35,7 +35,7 @@ class GDPRController
      *              type="string"
      *          )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="order",
      *          description="Sort order",
@@ -47,7 +47,7 @@ class GDPRController
      *              enum={"desc", "asc"}
      *          )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="page",
      *          description="Page number",
@@ -95,7 +95,7 @@ class GDPRController
      *      path="/api/v1/customer/gdpr/{id}",
      *      operationId="getCustomerGDPRDetail",
      *      tags={"GDPR"},
-     *      summary="Get GDPR Request Detail by ID for Logged-in Customer",
+     *      summary="Get GDPR Request Details by ID for Logged-in Customer",
      *      description="Returns detailed information of a specific GDPR data request identified by ID for the logged-in customer.",
      *      security={ {"sanctum": {} }},
      *

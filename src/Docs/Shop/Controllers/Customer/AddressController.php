@@ -9,7 +9,7 @@ class AddressController
      *      path="/api/v1/customer/addresses",
      *      operationId="getCustomerAddresses",
      *      tags={"Addresses"},
-     *      summary="Get logged in customer's address list",
+     *      summary="Get logged in customer addresses",
      *      description="Returns address list, if you want to retrieve all addresses at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum": {} }},
      *

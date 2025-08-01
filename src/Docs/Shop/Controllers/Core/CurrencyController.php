@@ -9,8 +9,8 @@ class CurrencyController
      *      path="/api/v1/currencies",
      *      operationId="getShopCurrencies",
      *      tags={"Currencies"},
-     *      summary="Get currency list for the shop",
-     *      description="Returns currency list, if you want to retrieve all currencies at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get currencies",
+     *      description="Returns currencies, if you want to retrieve all currencies at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -98,8 +98,8 @@ class CurrencyController
      *      path="/api/v1/currencies/{id}",
      *      operationId="getShopCurrency",
      *      tags={"Currencies"},
-     *      summary="Get shop currency by id",
-     *      description="Returns shop currency by id",
+     *      summary="Get currency by id",
+     *      description="Returns currency by id",
      *
      *      @OA\Parameter(
      *          name="id",
