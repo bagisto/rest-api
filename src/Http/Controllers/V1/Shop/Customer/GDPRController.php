@@ -3,11 +3,11 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Webkul\GDPR\Repositories\GDPRDataRequestRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\GDPRRequestResource;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class GDPRController extends CustomerController
 {
@@ -42,8 +42,6 @@ class GDPRController extends CustomerController
 
     /**
      * Store a new GDPR request.
-     *
-     * @return JsonResponse
      */
     public function store(Request $request): JsonResponse
     {
@@ -52,7 +50,7 @@ class GDPRController extends CustomerController
         $params = request()->only(['message', 'type']) + [
             'status'        => 'pending',
             'customer_id'   => $customer->id,
-            'customer_name' => $customer->first_name . ' ' . $customer->last_name,
+            'customer_name' => $customer->first_name.' '.$customer->last_name,
             'email'         => $customer->email,
         ];
 
@@ -70,9 +68,6 @@ class GDPRController extends CustomerController
 
     /**
      * Revoke a GDPR request.
-     *
-     * @param int $id
-     * @return JsonResponse
      */
     public function revoke(Request $request, int $id): JsonResponse
     {

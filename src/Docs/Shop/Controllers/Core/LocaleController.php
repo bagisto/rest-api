@@ -9,8 +9,8 @@ class LocaleController
      *      path="/api/v1/locales",
      *      operationId="getShopLocales",
      *      tags={"Locales"},
-     *      summary="Get locale list for the shop",
-     *      description="Returns locale list, if you want to retrieve all locals at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get locales",
+     *      description="Returns locales, if you want to retrieve all locals at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -89,16 +89,14 @@ class LocaleController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/locales/{id}",
      *      operationId="getShopLocale",
      *      tags={"Locales"},
-     *      summary="Get shop locale by id",
+     *      summary="Get locale by id",
      *      description="Returns shop locale by id",
      *
      *      @OA\Parameter(
@@ -132,7 +130,5 @@ class LocaleController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 }

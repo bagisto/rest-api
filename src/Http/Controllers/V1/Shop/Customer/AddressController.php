@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Customer\CustomerAddressResource;
@@ -14,7 +14,7 @@ class AddressController extends CustomerController
     /**
      * Repository class name.
      */
-    public function repository():string
+    public function repository(): string
     {
         return CustomerAddressRepository::class;
     }

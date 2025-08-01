@@ -9,7 +9,7 @@ class InvoiceController
      *      path="/api/v1/admin/sales/invoices",
      *      operationId="getOrderInvoices",
      *      tags={"Invoices"},
-     *      summary="Get admin order's invoices list",
+     *      summary="Get order's invoices list",
      *      description="Returns order's invoices list, if you want to retrieve all invoices at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -101,16 +101,14 @@ class InvoiceController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/sales/invoices/{id}",
      *      operationId="getOrderInvoiceDetail",
      *      tags={"Invoices"},
-     *      summary="Get admin order's invoice detail",
+     *      summary="Get invoice detail",
      *      description="Returns order's invoice detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -140,9 +138,7 @@ class InvoiceController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -181,7 +177,6 @@ class InvoiceController
      *                          @OA\Property(property=1, type="integer", example=1)
      *                      )
      *                  ),
-     *
      *                  @OA\Property(
      *                      property="can_create_transaction",
      *                      description="User for create invoice transaction",
@@ -238,7 +233,5 @@ class InvoiceController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

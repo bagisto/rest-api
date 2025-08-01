@@ -145,7 +145,7 @@ return [
                 'delete-success'  => 'Adresse supprimée avec succès',
                 'update-success'  => 'Adresse mise à jour avec succès.',
                 'default-delete'  => "L'adresse par défaut ne peut pas être modifiée.",
-                'default-success' => "Adresse par défaut définie avec succès.",
+                'default-success' => 'Adresse par défaut définie avec succès.',
 
                 'mass-operations' => [
                     'delete-success' => 'Adresses sélectionnées supprimées avec succès.',
@@ -244,8 +244,8 @@ return [
                     'update-success' => 'Coupon de règle de panier mis à jour avec succès.',
 
                     'mass-operations' => [
-                        'delete-success' => 'Les coupons de règle de panier ont été supprimés avec succès'
-                    ]
+                        'delete-success' => 'Les coupons de règle de panier ont été supprimés avec succès',
+                    ],
                 ],
             ],
 

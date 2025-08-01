@@ -21,7 +21,7 @@ class SearchTermResource extends JsonResource
             'channel_id'   => $this->channel_id,
             'locale'       => $this->locale,
             'updated_at'   => $this->updated_at,
-            'created_at'   => $this->created_at
+            'created_at'   => $this->created_at,
         ];
     }
 }

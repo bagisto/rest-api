@@ -244,8 +244,8 @@ return [
                     'update-success' => 'カートルールクーポンが正常に更新されました。',
 
                     'mass-operations' => [
-                        'delete-success' => 'カート ルール クーポンが正常に削除されました'
-                    ]
+                        'delete-success' => 'カート ルール クーポンが正常に削除されました',
+                    ],
                 ],
             ],
 

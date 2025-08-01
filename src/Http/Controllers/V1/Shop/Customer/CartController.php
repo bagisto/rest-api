@@ -2,9 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
-use Illuminate\Http\Response;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\Checkout\Facades\Cart;
@@ -222,9 +221,6 @@ class CartController extends CustomerController
         }
     }
 
-    /**
-
-     */
     public function removeCoupon(): Response
     {
         Cart::removeCouponCode()->collectTotals();

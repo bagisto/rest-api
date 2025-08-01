@@ -5,9 +5,9 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-use Webkul\Sitemap\Repositories\SitemapRepository;
-use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\SearchSEO\SitemapResource;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
+use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\SearchSEO\SitemapResource;
+use Webkul\Sitemap\Repositories\SitemapRepository;
 
 class SitemapController extends MarketingController
 {
@@ -74,7 +74,7 @@ class SitemapController extends MarketingController
         Event::dispatch('marketing.search_seo.sitemap.update.after', $sitemap);
 
         return response([
-            'data' => new SitemapResource($sitemap),
+            'data'    => new SitemapResource($sitemap),
             'message' => trans('rest-api::app.admin.marketing.search-seo.sitemaps.update-success'),
         ]);
     }

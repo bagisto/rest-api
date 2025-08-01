@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Catalog;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\CategoryRequest;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\Admin\Http\Requests\MassUpdateRequest;
@@ -146,7 +146,7 @@ class CategoryController extends CatalogController
     public function massDestroy(MassDestroyRequest $massDestroyRequest): Response
     {
         $categoryIds = collect($massDestroyRequest->input('indices'));
-    
+
         $categoryIds->each(function ($categoryId) {
             $category = $this->getRepositoryInstance()->find($categoryId);
 

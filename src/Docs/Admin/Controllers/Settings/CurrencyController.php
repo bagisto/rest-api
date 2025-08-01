@@ -9,7 +9,7 @@ class CurrencyController
      *      path="/api/v1/admin/settings/currencies",
      *      operationId="getSettingCurrencies",
      *      tags={"Currencies"},
-     *      summary="Get admin currency list",
+     *      summary="Get currencies",
      *      description="Returns currency list, if you want to retrieve all currencies at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class CurrencyController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/settings/currencies/{id}",
      *      operationId="getSalesCurrency",
      *      tags={"Currencies"},
-     *      summary="Get admin currency detail",
+     *      summary="Get currency detail",
      *      description="Returns currency detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class CurrencyController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -148,6 +144,7 @@ class CurrencyController
      *              mediaType="multipart/form-data",
      *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="code",
      *                      type="string",
@@ -217,9 +214,7 @@ class CurrencyController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -321,9 +316,7 @@ class CurrencyController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -360,7 +353,5 @@ class CurrencyController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

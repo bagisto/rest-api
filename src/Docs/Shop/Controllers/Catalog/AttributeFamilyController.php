@@ -9,8 +9,8 @@ class AttributeFamilyController
      *      path="/api/v1/attribute-families",
      *      operationId="getShopAttributeFamilies",
      *      tags={"Attribute Families"},
-     *      summary="Get attribute family list for the shop",
-     *      description="Returns attribute family list, if you want to retrieve all attribute families at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get product attribute families",
+     *      description="Returns product attribute families, if you want to retrieve all attribute families at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -89,17 +89,15 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/attribute-families/{id}",
      *      operationId="getShopAttributeFamily",
      *      tags={"Attribute Families"},
-     *      summary="Get shop attribute family by id",
-     *      description="Returns shop attribute family by id",
+     *      summary="Get attribute family by id",
+     *      description="Returns attribute family by id",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -132,7 +130,5 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 }

@@ -18,7 +18,7 @@ use Webkul\Shop\Http\Requests\CartAddressRequest;
 
 class ReOrderController extends SalesController
 {
-   /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -31,7 +31,6 @@ class ReOrderController extends SalesController
         protected ProductRepository $productRepository,
         protected CartRuleCouponRepository $cartRuleCouponRepository
     ) {}
-
 
     /**
      * Reorder action for the specified resource.
@@ -52,8 +51,8 @@ class ReOrderController extends SalesController
         }
 
         return response([
-            'data' => $cart,
-            'message' => trans('rest-api::app.admin.sales.re-order.create')
+            'data'    => $cart,
+            'message' => trans('rest-api::app.admin.sales.re-order.create'),
         ]);
     }
 
@@ -86,7 +85,7 @@ class ReOrderController extends SalesController
             }
 
             return response([
-                'data' => $rates,
+                'data'    => $rates,
                 'message' => trans('rest-api::app.admin.sales.re-order.address-create-success'),
             ]);
         }
@@ -192,7 +191,7 @@ class ReOrderController extends SalesController
         Cart::deActivateCart();
 
         return response([
-            'message' =>  trans('rest-api::app.admin.sales.re-order.order-create-success'),
+            'message' => trans('rest-api::app.admin.sales.re-order.order-create-success'),
         ]);
     }
 

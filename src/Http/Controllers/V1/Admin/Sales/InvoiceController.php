@@ -44,7 +44,7 @@ class InvoiceController extends SalesController
         ]);
 
         $data = array_merge($request->all(), [
-            'order_id' => $orderId
+            'order_id' => $orderId,
         ]);
 
         if (! $this->getRepositoryInstance()->haveProductToInvoice($data)) {
@@ -60,7 +60,7 @@ class InvoiceController extends SalesController
         }
 
         $invoice = $this->getRepositoryInstance()->create(array_merge($data, [
-            'order_id' => $orderId
+            'order_id' => $orderId,
         ]));
 
         return response([

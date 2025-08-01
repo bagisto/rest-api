@@ -9,8 +9,8 @@ class SubscriptionController
      *      path="/api/v1/admin/marketing/communications/subscribers",
      *      operationId="getSubscribers",
      *      tags={"Newsletter Subscriptions"},
-     *      summary="Get admin Subscribers list",
-     *      description="Returns Subscribers list, if you want to retrieve all Subscribers at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get Subscriber's list",
+     *      description="Returns Subscriber's list, if you want to retrieve all Subscribers at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -90,16 +90,14 @@ class SubscriptionController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
      *      operationId="getSubscriber",
      *      tags={"Newsletter Subscriptions"},
-     *      summary="Get admin Subscriber detail",
+     *      summary="Get Subscriber detail",
      *      description="Returns getSubscriber detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,11 +127,9 @@ class SubscriptionController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
-        /**
+    /**
      * @OA\Put(
      *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
      *      operationId="updateSubscriber",
@@ -202,17 +198,15 @@ class SubscriptionController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
      *      path="/api/v1/admin/marketing/communications/subscribers/{id}",
      *      operationId="deleteSubscriber",
      *      tags={"Newsletter Subscriptions"},
-     *      summary="Delete Subscribers by id",
-     *      description="Delete Subscribers by id",
+     *      summary="Delete Subscriber by id",
+     *      description="Delete Subscriber by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -241,7 +235,5 @@ class SubscriptionController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

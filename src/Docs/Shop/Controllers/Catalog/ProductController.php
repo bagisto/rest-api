@@ -9,8 +9,8 @@ class ProductController
      *      path="/api/v1/products",
      *      operationId="getShopProducts",
      *      tags={"Products"},
-     *      summary="Get product list for the shop",
-     *      description="Returns product list, if you want to retrieve all products at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get products",
+     *      description="Returns products, if you want to retrieve all products at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="category_id",
@@ -111,78 +111,15 @@ class ProductController
      *      )
      * )
      */
-    public function list()
-    {
-    }
-
-    /**
-     * @OA\Get(
-     *      path="/api/v1/products/{product_id}/reviews",
-     *      operationId="getShopProductReviews",
-     *      tags={"Products"},
-     *      summary="Get shop product reviews by product id",
-     *      description="Returns shop product reviews by product id",
-     *
-     *      @OA\Parameter(
-     *          name="product_id",
-     *          description="Product id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *
-     *      @OA\Parameter(
-     *          name="limit",
-     *          description="Limit",
-     *          in="query",
-     *
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *
-     *      @OA\Parameter(
-     *          name="page",
-     *          description="Page number",
-     *          required=false,
-     *          in="query",
-     *
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *          @OA\JsonContent(
-     *              @OA\Property(
-     *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/ProductReview"
-     *              )
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
-     *      )
-     * )
-     */
-    public function reviews()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/products/{id}",
      *      operationId="getShopProduct",
      *      tags={"Products"},
-     *      summary="Get shop product by id",
-     *      description="Returns shop product by id",
+     *      summary="Get product by id",
+     *      description="Returns product by id",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -215,17 +152,77 @@ class ProductController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
+
+    /**
+     * @OA\Get(
+     *      path="/api/v1/products/{product_id}/reviews",
+     *      operationId="getShopProductReviews",
+     *      tags={"Products"},
+     *      summary="Get product reviews by product id",
+     *      description="Returns product reviews by product id",
+     *
+     *      @OA\Parameter(
+     *          name="product_id",
+     *          description="Product id",
+     *          required=true,
+     *          in="path",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Parameter(
+     *          name="limit",
+     *          description="Limit",
+     *          in="query",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Parameter(
+     *          name="page",
+     *          description="Page number",
+     *          required=false,
+     *          in="query",
+     *
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/ProductReview"
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+    public function reviews() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/products/{id}/additional-information",
      *      operationId="getShopProductAdditionalInfo",
      *      tags={"Products"},
-     *      summary="Get product's additional info by id",
-     *      description="Get product's additional info by id",
+     *      summary="Get product's additional info by product id",
+     *      description="Get product's additional info by product id",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -282,9 +279,7 @@ class ProductController
      *      )
      * )
      */
-    public function additionalInformation()
-    {
-    }
+    public function additionalInformation() {}
 
     /**
      * @OA\Get(
@@ -325,9 +320,7 @@ class ProductController
      *      )
      * )
      */
-    public function configurableConfig()
-    {
-    }
+    public function configurableConfig() {}
 
     /**
      * @OA\Post(
@@ -351,9 +344,12 @@ class ProductController
      *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="title",
      *                      type="string"
@@ -372,6 +368,7 @@ class ProductController
      *                  @OA\Property(
      *                      property="attachments[]",
      *                      type="array",
+     *
      *                      @OA\Items(type="file"),
      *                      description="Array of attachment files (images or videos)"
      *                  ),
@@ -385,6 +382,7 @@ class ProductController
      *          description="Successful operation",
      *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -404,7 +402,5 @@ class ProductController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

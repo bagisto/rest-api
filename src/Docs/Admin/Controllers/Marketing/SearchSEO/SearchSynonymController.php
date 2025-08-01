@@ -9,8 +9,8 @@ class SearchSynonymController
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms",
      *      operationId="getSearchSynonyms",
      *      tags={"Search Synonym"},
-     *      summary="Get admin SearchSynonym list",
-     *      description="Returns SearchSynonym list, if you want to retrieve all events at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get search synonyms",
+     *      description="Returns search synonyms, if you want to retrieve all search synonyms at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -90,16 +90,14 @@ class SearchSynonymController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
      *      operationId="getSearchSynonym",
      *      tags={"Search Synonym"},
-     *      summary="Get admin SearchSynonym detail",
+     *      summary="Get search synonym detail",
      *      description="Returns SearchSynonym detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,17 +127,15 @@ class SearchSynonymController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
-     /**
+    /**
      * @OA\Post(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms",
      *      operationId="storeSearchSynonym",
      *      tags={"Search Synonym"},
-     *      summary="Store the SearchSynonym",
-     *      description="Store the SearchSynonym",
+     *      summary="Store the search synonym",
+     *      description="Store the search synonym",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
@@ -183,17 +179,15 @@ class SearchSynonymController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
      *      operationId="updateSearchSynonym",
      *      tags={"Search Synonym"},
-     *      summary="Update SearchSynonym",
-     *      description="Update SearchSynonym",
+     *      summary="Update search synonym",
+     *      description="Update search synonym",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -255,17 +249,15 @@ class SearchSynonymController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms/{id}",
      *      operationId="deleteSearchSynonym",
      *      tags={"Search Synonym"},
-     *      summary="Delete SearchSynonym by id",
-     *      description="Delete SearchSynonym by id",
+     *      summary="Delete search synonym by id",
+     *      description="Delete search synonym by id",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -294,17 +286,15 @@ class SearchSynonymController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
      *      path="/api/v1/admin/marketing/search-seo/search-synonyms/mass-destroy",
      *      operationId="massDeleteSearchSynonym",
      *      tags={"Search Synonym"},
-     *      summary="Mass delete SearchSynonyms",
-     *      description="Mass delete SearchSynonyms",
+     *      summary="Mass delete search synonym",
+     *      description="Mass delete search synonym",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\RequestBody(
@@ -347,7 +337,5 @@ class SearchSynonymController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 }

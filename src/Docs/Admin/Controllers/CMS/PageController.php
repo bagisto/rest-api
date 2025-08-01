@@ -9,8 +9,8 @@ class PageController
      *      path="/api/v1/admin/cms",
      *      operationId="getCmsPages",
      *      tags={"CMS Pages"},
-     *      summary="Get admin CMS page list",
-     *      description="Returns CMS page list, if you want to retrieve all CMS pages at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get CMS pages",
+     *      description="Returns CMS pages, if you want to retrieve all CMS pages at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -90,16 +90,14 @@ class PageController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/cms/{id}",
      *      operationId="getCMSPage",
      *      tags={"CMS Pages"},
-     *      summary="Get admin CMS page detail",
+     *      summary="Get CMS page detail",
      *      description="Returns CMS page detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class PageController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -216,9 +212,7 @@ class PageController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -325,9 +319,7 @@ class PageController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -364,9 +356,7 @@ class PageController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
@@ -410,7 +400,5 @@ class PageController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 }

@@ -9,7 +9,7 @@ class OrderController
      *      path="/api/v1/customer/orders",
      *      operationId="getCustomerOrders",
      *      tags={"Orders"},
-     *      summary="Get logged in customer's order list",
+     *      summary="Get logged in customer's orders",
      *      description="Returns order list, if you want to retrieve all orders at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum": {} }},
      *
@@ -90,9 +90,7 @@ class OrderController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -134,9 +132,7 @@ class OrderController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -178,16 +174,14 @@ class OrderController
      *      )
      * )
      */
-    public function cancel()
-    {
-    }
+    public function cancel() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/customer/orders/reorder/{id}",
      *      operationId="ReOrder",
      *      tags={"Orders"},
-     *      summary="Customer Re Order",
+     *      summary="Customer Reorder",
      *      description="This endpoint adds order items to the customer's cart for reordering. After successfully adding items to the cart, the customer should proceed with the checkout process via the checkout APIs.",
      *      security={ {"sanctum": {} }},
      *
@@ -196,11 +190,11 @@ class OrderController
      *          description="Order id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
-     *
      *
      *      @OA\Response(
      *          response=200,
@@ -219,7 +213,9 @@ class OrderController
      *      @OA\Response(
      *          response=404,
      *          description="Something went wrong!",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="title",
      *                  type="string",
@@ -236,7 +232,9 @@ class OrderController
      *      @OA\Response(
      *          response=405,
      *          description="Method not allowed",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -246,7 +244,5 @@ class OrderController
      *      ),
      * )
      */
-    public function reorder()
-    {
-    }
+    public function reorder() {}
 }

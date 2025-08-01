@@ -9,7 +9,7 @@ class TransactionController
      *      path="/api/v1/admin/sales/transactions",
      *      operationId="getOrderTransactions",
      *      tags={"Transactions"},
-     *      summary="Get admin order's transactions list",
+     *      summary="Get order's transactions list",
      *      description="Returns order's transactions list, if you want to retrieve all transactions at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -112,16 +112,14 @@ class TransactionController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/sales/transactions/{id}",
      *      operationId="getOrderTransactionDetail",
      *      tags={"Transactions"},
-     *      summary="Get admin order's transaction detail",
+     *      summary="Get transaction detail",
      *      description="Returns order's transaction detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -151,9 +149,7 @@ class TransactionController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -240,7 +236,5 @@ class TransactionController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

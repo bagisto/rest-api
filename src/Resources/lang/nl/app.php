@@ -244,8 +244,8 @@ return [
                     'update-success' => 'Coupon voor winkelwagenregel succesvol bijgewerkt.',
 
                     'mass-operations' => [
-                        'delete-success' => 'Winkelwagenregelcoupons zijn succesvol verwijderd'
-                    ]
+                        'delete-success' => 'Winkelwagenregelcoupons zijn succesvol verwijderd',
+                    ],
                 ],
             ],
 

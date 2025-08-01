@@ -9,8 +9,8 @@ class ThemeController
      *      path="/api/v1/admin/settings/theme/customizations",
      *      operationId="getSettingThemes",
      *      tags={"Themes"},
-     *      summary="Get admin themes list",
-     *      description="Returns themes list, if you want to retrieve all themes at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get themes",
+     *      description="Returns themes, if you want to retrieve all themes at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -96,17 +96,15 @@ class ThemeController
      * )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/settings/theme/customizations/{id}",
      *      operationId="getSettingTheme",
      *      tags={"Themes"},
-     *      summary="Get admin Themes detail",
-     *      description="Returns Themes detail",
+     *      summary="Get Theme detail",
+     *      description="Returns Theme detail",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -135,9 +133,7 @@ class ThemeController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -205,9 +201,7 @@ class ThemeController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -255,8 +249,6 @@ class ThemeController
      *                              property="images",
      *                              type="object",
      *                              description="Image carousel images",
-     *
-     *
      *                              @OA\Property(
      *                                  property="link",
      *                                  type="string",
@@ -337,9 +329,7 @@ class ThemeController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -376,7 +366,5 @@ class ThemeController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

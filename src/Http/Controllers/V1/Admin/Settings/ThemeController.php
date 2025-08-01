@@ -2,9 +2,9 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Response;
 use Webkul\RestApi\Http\Resources\V1\Admin\Settings\ThemeResource;
 use Webkul\Theme\Repositories\ThemeCustomizationRepository;
 

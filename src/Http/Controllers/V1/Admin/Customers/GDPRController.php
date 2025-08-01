@@ -2,10 +2,10 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Customers;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\GDPR\Repositories\GDPRDataRequestRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Customer\GDPRRequestResource;
-use Illuminate\Http\Response;
 
 class GDPRController extends BaseController
 {

@@ -55,12 +55,12 @@ class ShipmentController extends SalesController
         ]);
 
         $data = array_merge(request()->only([
-            'shipment', 
+            'shipment',
             'carrier_title',
             'source',
             'items',
         ]), [
-            'order_id' => $orderId
+            'order_id' => $orderId,
         ]);
 
         if (! $this->isInventoryValidate($data)) {

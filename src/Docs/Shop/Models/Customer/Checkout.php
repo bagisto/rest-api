@@ -8,6 +8,4 @@ namespace Webkul\RestApi\Docs\Shop\Models\Customer;
  *     description="Checkout model",
  * )
  */
-class Checkout
-{
-}
+class Checkout {}

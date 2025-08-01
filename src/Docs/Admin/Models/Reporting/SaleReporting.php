@@ -31,8 +31,10 @@ class SaleReporting
      *             property="previous",
      *             description="Sales statistics for previous period",
      *             type="array",
+     *
      *             @OA\Items(
      *                 type="object",
+     *
      *                 @OA\Property(property="label", type="string", example="18 Jan"),
      *                 @OA\Property(property="total", type="integer", example=0),
      *                 @OA\Property(property="count", type="integer", example=0)
@@ -42,8 +44,10 @@ class SaleReporting
      *             property="current",
      *             description="Sales statistics for current period",
      *             type="array",
+     *
      *             @OA\Items(
      *                 type="object",
+     *
      *                 @OA\Property(property="label", type="string", example="17 Feb"),
      *                 @OA\Property(property="total", type="integer", example=0),
      *                 @OA\Property(property="count", type="integer", example=0)

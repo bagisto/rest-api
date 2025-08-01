@@ -9,7 +9,7 @@ class ChannelController
      *      path="/api/v1/admin/settings/channels",
      *      operationId="getChannels",
      *      tags={"Channels"},
-     *      summary="Get admin channel list",
+     *      summary="Get channels",
      *      description="Returns channel list, if you want to retrieve all channels at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class ChannelController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/settings/channels/{id}",
      *      operationId="getChannel",
      *      tags={"Channels"},
-     *      summary="Get admin channel detail",
+     *      summary="Get channel detail",
      *      description="Returns channel detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class ChannelController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -283,9 +279,7 @@ class ChannelController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -438,9 +432,7 @@ class ChannelController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -477,7 +469,5 @@ class ChannelController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

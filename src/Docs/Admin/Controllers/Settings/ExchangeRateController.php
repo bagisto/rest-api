@@ -9,7 +9,7 @@ class ExchangeRateController
      *      path="/api/v1/admin/settings/exchange-rates",
      *      operationId="getSettingExchangeRates",
      *      tags={"Exchange Rates"},
-     *      summary="Get admin exchange rate list",
+     *      summary="Get exchange rate list",
      *      description="Returns exchange rate list, if you want to retrieve all exchange rates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class ExchangeRateController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/settings/exchange-rates/{id}",
      *      operationId="getSalesExchangeRates",
      *      tags={"Exchange Rates"},
-     *      summary="Get admin exchange rate detail",
+     *      summary="Get exchange rate detail",
      *      description="Returns exchange rate detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class ExchangeRateController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -191,9 +187,7 @@ class ExchangeRateController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -270,9 +264,7 @@ class ExchangeRateController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -309,7 +301,5 @@ class ExchangeRateController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

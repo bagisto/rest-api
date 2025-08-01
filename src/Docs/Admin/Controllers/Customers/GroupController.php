@@ -9,7 +9,7 @@ class GroupController
      *      path="/api/v1/admin/customers/groups",
      *      operationId="getCustomerGroups",
      *      tags={"Customer Groups"},
-     *      summary="Get admin customer group list",
+     *      summary="Get customer group list",
      *      description="Returns customer group list, if you want to retrieve all customer groups at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class GroupController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/customers/groups/{id}",
      *      operationId="getCustomerGroup",
      *      tags={"Customer Groups"},
-     *      summary="Get admin customer group detail",
+     *      summary="Get customer group detail",
      *      description="Returns customer group detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class GroupController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -183,9 +179,7 @@ class GroupController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -255,9 +249,7 @@ class GroupController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -294,7 +286,5 @@ class GroupController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

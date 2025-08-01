@@ -9,7 +9,7 @@ class AttributeFamilyController
      *      path="/api/v1/admin/catalog/attribute-families",
      *      operationId="getAdminAttributeFamilies",
      *      tags={"Attribute Families"},
-     *      summary="Get attribute family list for the shop",
+     *      summary="Get attribute families",
      *      description="Returns attribute family list, if you want to retrieve all attribute families at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -85,16 +85,14 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/catalog/attribute-families/{id}",
      *      operationId="getAttributeFamily",
      *      tags={"Attribute Families"},
-     *      summary="Get admin attribute family detail",
+     *      summary="Get attribute family detail",
      *      description="Returns attribute family detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -124,16 +122,14 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
      *      path="/api/v1/admin/catalog/attribute-families",
      *      operationId="storeAttributeFamily",
      *      tags={"Attribute Families"},
-     *      summary="Store the attribute",
+     *      summary="Store the attribute family",
      *      description="Store the attribute family",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -212,9 +208,7 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -269,14 +263,15 @@ class AttributeFamilyController
      *                          @OA\Property(
      *                              property="custom_attributes",
      *                              type="array",
+     *
      *                              @OA\Items(
      *                                  type="object",
+     *
      *                                  @OA\Property(property="id", type="integer", example=1),
      *                                  @OA\Property(property="position", type="integer", example=1)
      *                              )
      *                          )
      *                      ),
-     *
      *                      @OA\Property(
      *                          property="9",
      *                          type="object",
@@ -287,8 +282,10 @@ class AttributeFamilyController
      *                          @OA\Property(
      *                              property="custom_attributes",
      *                              type="array",
+     *
      *                              @OA\Items(
      *                                  type="object",
+     *
      *                                  @OA\Property(property="id", type="integer", example=9),
      *                                  @OA\Property(property="position", type="integer", example=1)
      *                              )
@@ -325,9 +322,7 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -364,7 +359,5 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

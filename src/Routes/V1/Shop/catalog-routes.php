@@ -22,7 +22,6 @@ Route::controller(ProductController::class)->prefix('products')->group(function 
     Route::get('{id}/reviews', 'reviews');
 });
 
-
 Route::group(['middleware' => ['auth:sanctum', 'sanctum.customer']], function () {
     /**
      * Review routes.

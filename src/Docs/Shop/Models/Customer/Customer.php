@@ -110,7 +110,6 @@ class Customer
      */
     private $subscribed_to_news_letter;
 
-
     /**
      * @OA\Property(
      *     title="Image",

@@ -9,7 +9,7 @@ class AddressController
      *      path="/api/v1/customer/addresses",
      *      operationId="getCustomerAddresses",
      *      tags={"Addresses"},
-     *      summary="Get logged in customer's address list",
+     *      summary="Get logged in customer addresses",
      *      description="Returns address list, if you want to retrieve all addresses at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum": {} }},
      *
@@ -90,9 +90,7 @@ class AddressController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -134,9 +132,7 @@ class AddressController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -148,9 +144,12 @@ class AddressController
      *      security={ {"sanctum": {} }},
      *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="company_name",
      *                      type="string",
@@ -171,10 +170,12 @@ class AddressController
      *                      description="Street Address",
      *                      type="array",
      *                      example={"5230, N Lincoln Ave"},
+     *
      *                      @OA\Items(
      *                          type="string"
      *                      )
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="country",
      *                      type="string",
@@ -225,7 +226,9 @@ class AddressController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -238,10 +241,13 @@ class AddressController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(
      *                  example="result",
      *                  value={"message":"The first name field is required.","errors":{"first_name":{"The first name field is required."}}},
@@ -251,9 +257,7 @@ class AddressController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -269,15 +273,19 @@ class AddressController
      *          description="Address id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
      *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="company_name",
      *                      type="string",
@@ -298,10 +306,12 @@ class AddressController
      *                      description="Street Address",
      *                      type="array",
      *                      example={"5230, N Lincoln Ave"},
+     *
      *                      @OA\Items(
      *                          type="string"
      *                      )
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="country",
      *                      type="string",
@@ -347,7 +357,9 @@ class AddressController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -360,10 +372,13 @@ class AddressController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(
      *                  example="result",
      *                  value={"message":"The first name field is required.","errors":{"first_name":{"The first name field is required."}}},
@@ -373,12 +388,9 @@ class AddressController
      *      )
      * )
      */
+    public function update() {}
 
-    public function update()
-    {
-    }
-
-     /**
+    /**
      * @OA\Patch(
      *      path="/api/v1/customer/addresses/make-default/{id}",
      *      operationId="SetCustomerDefaultAddress",
@@ -392,6 +404,7 @@ class AddressController
      *          description="Address id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
@@ -403,6 +416,7 @@ class AddressController
      *
      *          @OA\JsonContent(
      *              type="object",
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -413,9 +427,7 @@ class AddressController
      *      ),
      * )
      */
-    public function patch()
-    {
-    }
+    public function patch() {}
 
     /**
      * @OA\Delete(
@@ -457,7 +469,5 @@ class AddressController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

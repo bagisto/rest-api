@@ -9,7 +9,7 @@ class ReOrderController
      *      path="/api/v1/admin/sales/re-orders/{id}",
      *      operationId="createProductReOrder",
      *      tags={"ReOrders"},
-     *      summary="Create admin re-order",
+     *      summary="Create re-order",
      *      description="Re-order previous orders without manually adding all products again.",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -45,9 +45,7 @@ class ReOrderController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Post(
@@ -210,9 +208,7 @@ class ReOrderController
      *      )
      * )
      */
-    public function saveAddress()
-    {
-    }
+    public function saveAddress() {}
 
     /**
      * @OA\Post(
@@ -283,9 +279,7 @@ class ReOrderController
      *      )
      * )
      */
-    public function saveShipping()
-    {
-    }
+    public function saveShipping() {}
 
     /**
      * @OA\Post(
@@ -363,9 +357,7 @@ class ReOrderController
      *      )
      * )
      */
-    public function savePayment()
-    {
-    }
+    public function savePayment() {}
 
     /**
      * @OA\Post(
@@ -407,7 +399,5 @@ class ReOrderController
      *      )
      * )
      */
-    public function saveOrder()
-    {
-    }
+    public function saveOrder() {}
 }

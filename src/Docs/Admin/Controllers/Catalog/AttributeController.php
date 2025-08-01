@@ -9,7 +9,7 @@ class AttributeController
      *      path="/api/v1/admin/catalog/attributes",
      *      operationId="getAdminAttributes",
      *      tags={"Attributes"},
-     *      summary="Get attribute list for the shop",
+     *      summary="Get list of attributes",
      *      description="Returns attribute list, if you want to retrieve all attributes at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -85,16 +85,14 @@ class AttributeController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/catalog/attributes/{id}",
      *      operationId="getAttribute",
      *      tags={"Attributes"},
-     *      summary="Get admin attribute detail",
+     *      summary="Get attribute detail",
      *      description="Returns attribute detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -124,9 +122,7 @@ class AttributeController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -328,9 +324,7 @@ class AttributeController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -534,9 +528,7 @@ class AttributeController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -573,9 +565,7 @@ class AttributeController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
@@ -619,7 +609,5 @@ class AttributeController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 }

@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ExchangeRateRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Settings\ExchangeRateResource;
@@ -54,7 +54,7 @@ class ExchangeRateController extends SettingController
     public function update(Request $request, int $id): Response
     {
         $validatedData = $request->validate([
-            'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,' . $id],
+            'target_currency' => ['required', 'unique:currency_exchange_rates,target_currency,'.$id],
             'rate'            => 'required|numeric',
         ]);
 

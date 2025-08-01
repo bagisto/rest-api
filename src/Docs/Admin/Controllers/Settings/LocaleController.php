@@ -9,8 +9,8 @@ class LocaleController
      *      path="/api/v1/admin/settings/locales",
      *      operationId="getSettingLocales",
      *      tags={"Locales"},
-     *      summary="Get admin locale list",
-     *      description="Returns locale list, if you want to retrieve all locales at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get locales list ",
+     *      description="Returns locales list, if you want to retrieve all locales at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
      *      @OA\Parameter(
@@ -90,16 +90,14 @@ class LocaleController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/settings/locales/{id}",
      *      operationId="getSalesLocale",
      *      tags={"Locales"},
-     *      summary="Get admin locale detail",
+     *      summary="Get locale detail",
      *      description="Returns locale detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class LocaleController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -201,9 +197,7 @@ class LocaleController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Post(
@@ -219,6 +213,7 @@ class LocaleController
      *          description="Locale id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
@@ -227,9 +222,12 @@ class LocaleController
      *      @OA\RequestBody(
      *          required=true,
      *          content={
+     *
      *              @OA\MediaType(
      *                  mediaType="multipart/form-data",
+     *
      *                  @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="_method",
      *                      type="string",
@@ -265,7 +263,9 @@ class LocaleController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -286,7 +286,9 @@ class LocaleController
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(
      *                  example="result",
      *                  value={"message":"The code has already been taken."},
@@ -296,11 +298,7 @@ class LocaleController
      *      )
      * )
      */
-
-    public function update()
-    {
-    }
-
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -342,7 +340,5 @@ class LocaleController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

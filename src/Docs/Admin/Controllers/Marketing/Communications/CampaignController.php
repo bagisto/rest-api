@@ -9,7 +9,7 @@ class CampaignController
      *      path="/api/v1/admin/promotions/campaigns",
      *      operationId="getCampaigns",
      *      tags={"Campaigns"},
-     *      summary="Get admin campaign list",
+     *      summary="Get campaign list",
      *      description="Returns campaign list, if you want to retrieve all campaigns at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class CampaignController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/promotions/campaigns/{id}",
      *      operationId="getCampaign",
      *      tags={"Campaigns"},
-     *      summary="Get admin campaign detail",
+     *      summary="Get campaign detail",
      *      description="Returns campaign detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class CampaignController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -214,9 +210,7 @@ class CampaignController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -317,9 +311,7 @@ class CampaignController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -356,7 +348,5 @@ class CampaignController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

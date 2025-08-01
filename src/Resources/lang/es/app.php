@@ -244,8 +244,8 @@ return [
                     'update-success' => 'Cupón de regla de carrito actualizado con éxito.',
 
                     'mass-operations' => [
-                        'delete-success' => 'Cupones de regla de carrito eliminados correctamente'
-                    ]
+                        'delete-success' => 'Cupones de regla de carrito eliminados correctamente',
+                    ],
                 ],
             ],
 

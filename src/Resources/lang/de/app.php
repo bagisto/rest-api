@@ -244,8 +244,8 @@ return [
                     'update-success' => 'Warenkorbregel-Coupon erfolgreich aktualisiert.',
 
                     'mass-operations' => [
-                        'delete-success' => 'Warenkorbregel-Gutscheine erfolgreich gelöscht'
-                    ]
+                        'delete-success' => 'Warenkorbregel-Gutscheine erfolgreich gelöscht',
+                    ],
                 ],
             ],
 

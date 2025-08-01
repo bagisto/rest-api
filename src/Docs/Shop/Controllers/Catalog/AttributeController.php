@@ -9,8 +9,8 @@ class AttributeController
      *      path="/api/v1/attributes",
      *      operationId="getShopAttributes",
      *      tags={"Attributes"},
-     *      summary="Get attribute list for the shop",
-     *      description="Returns attribute list, if you want to retrieve all attributes at once pass pagination=0 otherwise ignore this parameter",
+     *      summary="Get attributes",
+     *      description="Returns attributes list, if you want to retrieve all attributes at once pass pagination=0 otherwise ignore this parameter",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -89,17 +89,15 @@ class AttributeController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/attributes/{id}",
      *      operationId="getShopAttribute",
      *      tags={"Attributes"},
-     *      summary="Get shop attribute by id",
-     *      description="Returns shop attribute by id",
+     *      summary="Get attribute by id",
+     *      description="Returns attribute by id",
      *
      *      @OA\Parameter(
      *          name="id",
@@ -132,7 +130,5 @@ class AttributeController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 }

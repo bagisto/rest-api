@@ -38,9 +38,7 @@ class ThemeController
      *      )
      * )
      */
-    public function getThemeCustomizations()
-    {
-    }
+    public function getThemeCustomizations() {}
 
     /**
      * @OA\Get(
@@ -81,7 +79,5 @@ class ThemeController
      *      )
      * )
      */
-    public function repository()
-    {
-    }
+    public function repository() {}
 }

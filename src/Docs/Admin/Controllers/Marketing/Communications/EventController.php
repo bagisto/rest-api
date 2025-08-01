@@ -9,7 +9,7 @@ class EventController
      *      path="/api/v1/admin/promotions/events",
      *      operationId="getEvents",
      *      tags={"Events"},
-     *      summary="Get admin event list",
+     *      summary="Get event list",
      *      description="Returns event list, if you want to retrieve all events at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class EventController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/promotions/events/{id}",
      *      operationId="getEvent",
      *      tags={"Events"},
-     *      summary="Get admin event detail",
+     *      summary="Get event detail",
      *      description="Returns event detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class EventController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -190,9 +186,7 @@ class EventController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -269,9 +263,7 @@ class EventController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -308,7 +300,5 @@ class EventController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

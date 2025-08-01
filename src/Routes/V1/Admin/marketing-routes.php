@@ -1,17 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SitemapController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\EventController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\URLRewriteController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CatalogRuleController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\CampaignController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\EventController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\SubscriptionController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\TemplateController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleCouponController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CatalogRuleController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SearchSynonymController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SearchTermController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions\CartRuleCouponController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Communications\SubscriptionController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\SitemapController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\SearchSEO\URLRewriteController;
 
 /*
 |----------------------------------------------------------------
@@ -116,7 +116,7 @@ Route::group([
 
 /*
 |-----------------------------------------------
-| Routes According to New formate 
+| Routes According to New formate
 |-----------------------------------------------
 */
 

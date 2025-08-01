@@ -9,7 +9,7 @@ class EmailTemplateController
      *      path="/api/v1/admin/promotions/email-templates",
      *      operationId="getEmailTemplates",
      *      tags={"Email Templates"},
-     *      summary="Get admin email template list",
+     *      summary="Get email template's",
      *      description="Returns email template list, if you want to retrieve all email templates at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class EmailTemplateController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/promotions/email-templates/{id}",
      *      operationId="getEmailTemplate",
      *      tags={"Email Templates"},
-     *      summary="Get admin email template detail",
+     *      summary="Get email template detail",
      *      description="Returns email template detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class EmailTemplateController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -190,9 +186,7 @@ class EmailTemplateController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -269,9 +263,7 @@ class EmailTemplateController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -308,7 +300,5 @@ class EmailTemplateController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

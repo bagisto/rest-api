@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Webkul\Core\Repositories\LocaleRepository;
 use Webkul\RestApi\Http\Resources\V1\Admin\Settings\LocaleResource;
 

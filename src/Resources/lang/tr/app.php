@@ -244,8 +244,8 @@ return [
                     'update-success' => 'Sepet Kuralı Kuponu başarıyla güncellendi.',
 
                     'mass-operations' => [
-                        'delete-success' => 'Sepet Kuralı Kuponları başarıyla silindi'
-                    ]
+                        'delete-success' => 'Sepet Kuralı Kuponları başarıyla silindi',
+                    ],
                 ],
             ],
 

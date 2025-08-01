@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\CMS;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\CMS\Repositories\PageRepository;

@@ -9,7 +9,7 @@ class ReviewController
      *      path="/api/v1/admin/customers/reviews",
      *      operationId="getCustomerReviews",
      *      tags={"Customer Reviews"},
-     *      summary="Get admin customer review list",
+     *      summary="Get customer review list",
      *      description="Returns customer review list, if you want to retrieve all customer reviews at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class ReviewController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/customers/reviews/{id}",
      *      operationId="getCustomerReview",
      *      tags={"Customer Reviews"},
-     *      summary="Get admin customer review detail",
+     *      summary="Get customer review detail",
      *      description="Returns customer review detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,9 +127,7 @@ class ReviewController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Put(
@@ -192,9 +188,7 @@ class ReviewController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -231,9 +225,7 @@ class ReviewController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
@@ -277,9 +269,7 @@ class ReviewController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 
     /**
      * @OA\Post(
@@ -330,7 +320,5 @@ class ReviewController
      *      )
      * )
      */
-    public function massUpdate()
-    {
-    }
+    public function massUpdate() {}
 }

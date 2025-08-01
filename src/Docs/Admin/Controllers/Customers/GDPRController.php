@@ -9,7 +9,7 @@ class GDPRController
      *      path="/api/v1/admin/customers/gdpr",
      *      operationId="getCustomerGDPRRequests",
      *      tags={"Customer GDPR"},
-     *      summary="Get GDPR Requests List of the Customer",
+     *      summary="Get list of customer's GDPR requests",
      *      description="Returns a list of GDPR data requests. Supports pagination and sorting.",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -72,12 +72,16 @@ class GDPRController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
+     *
      *                  @OA\Items(ref="#/components/schemas/GDPR")
      *              ),
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
@@ -86,16 +90,14 @@ class GDPRController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/customers/gdpr/{id}",
      *      operationId="getCustomerGDPRRequest",
      *      tags={"Customer GDPR"},
-     *      summary="Get GDPR Request of the Customer",
+     *      summary="Get a GDPR request's of the customer",
      *      description="Returns detailed information of a specific GDPR data request.",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -104,13 +106,16 @@ class GDPRController
      *          description="GDPR request ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(type="integer")
      *      ),
      *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -125,9 +130,7 @@ class GDPRController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Put(
@@ -143,12 +146,15 @@ class GDPRController
      *          description="GDPR request ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(type="integer")
      *      ),
      *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="status",
      *                  type="string",
@@ -160,7 +166,9 @@ class GDPRController
      *      @OA\Response(
      *          response=200,
      *          description="GDPR request updated successfully",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -176,7 +184,9 @@ class GDPRController
      *      @OA\Response(
      *          response=500,
      *          description="Unable to update GDPR request",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -186,16 +196,14 @@ class GDPRController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
      *      path="/api/v1/admin/customers/gdpr/{id}",
      *      operationId="deleteCustomerGDPRRequest",
      *      tags={"Customer GDPR"},
-     *      summary="Delete customer GDPR by id",
+     *      summary="Delete customer GDPR request by id",
      *      description="Delete customer GDPR by id",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -225,7 +233,5 @@ class GDPRController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

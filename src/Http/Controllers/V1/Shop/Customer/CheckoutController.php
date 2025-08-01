@@ -2,10 +2,11 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Checkout\Facades\Cart;
+use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\Payment\Facades\Payment;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartShippingRateResource;
@@ -14,21 +15,19 @@ use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Transformers\OrderResource as OrderTransformer;
 use Webkul\Shipping\Facades\Shipping;
 use Webkul\Shop\Http\Requests\CartAddressRequest;
-use Webkul\Customer\Repositories\CustomerAddressRepository;
 
 class CheckoutController extends CustomerController
 {
     public function __construct(
         protected CustomerAddressRepository $customerAddressRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * Save customer address.
      */
     public function saveAddress(CartAddressRequest $cartAddressRequest): Response
     {
-        $data =  $cartAddressRequest->all();
+        $data = $cartAddressRequest->all();
 
         if (
             Cart::hasError()

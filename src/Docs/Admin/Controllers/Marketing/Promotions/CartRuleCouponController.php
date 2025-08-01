@@ -9,7 +9,7 @@ class CartRuleCouponController
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons",
      *      operationId="getCartRuleCoupons",
      *      tags={"Cart Rule Coupons"},
-     *      summary="Get admin cart rule's coupon list",
+     *      summary="Get cart rule's coupon list",
      *      description="Returns cart rule's coupon list",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -45,16 +45,14 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/promotions/cart-rules/{cart_rule_id}/coupons/{id}",
      *      operationId="getCartRuleCoupon",
      *      tags={"Cart Rule Coupons"},
-     *      summary="Get admin cart rule's coupon detail",
+     *      summary="Get cart rule's coupon detail",
      *      description="Returns cart rule's coupon detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -95,9 +93,7 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function show()
-    {
-    }
+    public function show() {}
 
     /**
      * @OA\Post(
@@ -179,9 +175,7 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Delete(
@@ -229,9 +223,7 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
@@ -286,7 +278,5 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 }

@@ -9,7 +9,7 @@ class RefundController
      *      path="/api/v1/admin/sales/refunds",
      *      operationId="getOrderRefunds",
      *      tags={"Refunds"},
-     *      summary="Get admin order's refunds list",
+     *      summary="Get order's refunds list",
      *      description="Returns order's refunds list, if you want to retrieve all refunds at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -101,16 +101,14 @@ class RefundController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/sales/refunds/{id}",
      *      operationId="getOrderRefundDetail",
      *      tags={"Refunds"},
-     *      summary="Get admin order's refund detail",
+     *      summary="Get refund detail",
      *      description="Returns order's refund detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -140,9 +138,7 @@ class RefundController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -248,7 +244,5 @@ class RefundController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

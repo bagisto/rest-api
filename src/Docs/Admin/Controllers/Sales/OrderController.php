@@ -9,7 +9,7 @@ class OrderController
      *      path="/api/v1/admin/sales/orders",
      *      operationId="getSalesOrders",
      *      tags={"Orders"},
-     *      summary="Get admin order list",
+     *      summary="Get order list",
      *      description="Returns order list, if you want to retrieve all orders at once pass pagination=0 otherwise ignore this parameter",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -90,16 +90,14 @@ class OrderController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
      *      path="/api/v1/admin/sales/orders/{id}",
      *      operationId="getSalesOrder",
      *      tags={"Orders"},
-     *      summary="Get admin order detail",
+     *      summary="Get order detail",
      *      description="Returns order detail",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -129,16 +127,14 @@ class OrderController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
      *      path="/api/v1/admin/sales/orders/{id}/cancel",
      *      operationId="cancelAdminOrder",
      *      tags={"Orders"},
-     *      summary="Cancel order by admin",
+     *      summary="Cancel order",
      *      description="Cancel order by admin",
      *      security={ {"sanctum_admin": {} }},
      *
@@ -178,9 +174,7 @@ class OrderController
      *      )
      * )
      */
-    public function cancel()
-    {
-    }
+    public function cancel() {}
 
     /**
      * @OA\Post(
@@ -251,7 +245,5 @@ class OrderController
      *      )
      * )
      */
-    public function comment()
-    {
-    }
+    public function comment() {}
 }

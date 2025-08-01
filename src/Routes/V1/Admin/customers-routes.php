@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\AddressController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\CustomerController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\GDPRController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\GroupController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\ReviewController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Customers\GDPRController;
 
 Route::group([
     'middleware' => ['auth:sanctum', 'sanctum.admin'],
