@@ -35,7 +35,7 @@ class ReviewController extends BaseController
         $this->validate(request(), [
             'status' => 'required|in:approved,disapproved,pending',
         ]);
-        
+
         Event::dispatch('customer.review.update.before', $id);
 
         $review = $this->getRepositoryInstance()->update(request()->only(['status']), $id);

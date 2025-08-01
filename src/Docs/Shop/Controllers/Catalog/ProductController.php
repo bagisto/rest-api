@@ -111,9 +111,7 @@ class ProductController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -154,9 +152,7 @@ class ProductController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Get(
@@ -171,6 +167,7 @@ class ProductController
      *          description="Product id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
@@ -200,7 +197,9 @@ class ProductController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -215,9 +214,7 @@ class ProductController
      *      )
      * )
      */
-    public function reviews()
-    {
-    }
+    public function reviews() {}
 
     /**
      * @OA\Get(
@@ -282,9 +279,7 @@ class ProductController
      *      )
      * )
      */
-    public function additionalInformation()
-    {
-    }
+    public function additionalInformation() {}
 
     /**
      * @OA\Get(
@@ -325,9 +320,7 @@ class ProductController
      *      )
      * )
      */
-    public function configurableConfig()
-    {
-    }
+    public function configurableConfig() {}
 
     /**
      * @OA\Post(
@@ -351,9 +344,12 @@ class ProductController
      *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="title",
      *                      type="string"
@@ -372,6 +368,7 @@ class ProductController
      *                  @OA\Property(
      *                      property="attachments[]",
      *                      type="array",
+     *
      *                      @OA\Items(type="file"),
      *                      description="Array of attachment files (images or videos)"
      *                  ),
@@ -385,6 +382,7 @@ class ProductController
      *          description="Successful operation",
      *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -404,7 +402,5 @@ class ProductController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

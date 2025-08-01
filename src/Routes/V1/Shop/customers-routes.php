@@ -5,13 +5,13 @@ use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\AddressController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\AuthController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\CartController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\CheckoutController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\GDPRController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\InvoiceController;
+use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\NewsLetterController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\OrderController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\ShipmentController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\TransactionController;
 use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\WishlistController;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\NewsLetterController;
-use Webkul\RestApi\Http\Controllers\V1\Shop\Customer\GDPRController;
 
 /**
  * Customer unauthorized routes.

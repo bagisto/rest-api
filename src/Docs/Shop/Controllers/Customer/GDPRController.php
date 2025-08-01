@@ -72,12 +72,16 @@ class GDPRController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
+     *
      *                  @OA\Items(ref="#/components/schemas/GDPR")
      *              ),
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
@@ -86,9 +90,7 @@ class GDPRController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -104,13 +106,16 @@ class GDPRController
      *          description="GDPR request ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(type="integer")
      *      ),
      *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -125,9 +130,7 @@ class GDPRController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -139,9 +142,12 @@ class GDPRController
      *      security={ {"sanctum": {} }},
      *
      *      @OA\RequestBody(
+     *
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="type",
      *                      type="string",
@@ -161,7 +167,9 @@ class GDPRController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -174,10 +182,13 @@ class GDPRController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=422,
      *          description="Error: Unprocessable Content",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(
      *                  example="result",
      *                  value={"message":"The Type field is required.","errors":{"type":{"The Type field is required."}}},
@@ -187,9 +198,7 @@ class GDPRController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -205,13 +214,16 @@ class GDPRController
      *          description="GDPR request ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(type="integer")
      *      ),
      *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -224,10 +236,13 @@ class GDPRController
      *              )
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=404,
      *          description="GDPR request not found or cannot be revoked",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -237,7 +252,5 @@ class GDPRController
      *      )
      * )
      */
-    public function revoke()
-    {
-    }
+    public function revoke() {}
 }

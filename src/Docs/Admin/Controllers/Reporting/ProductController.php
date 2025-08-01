@@ -18,6 +18,7 @@ class ProductController
      *         in="query",
      *         description="The type of statistics to retrieve. Options: total-sold-quantities, total-products-added-to-wishlist, top-selling-products-by-revenue, top-selling-products-by-quantity, products-with-most-reviews, products-with-most-visits, last-search-terms, top-search-terms",
      *         required=true,
+     *
      *         @OA\Schema(
      *             type="string",
      *             enum={"total-sold-quantities", "total-products-added-to-wishlist", "top-selling-products-by-revenue", "top-selling-products-by-quantity", "products-with-most-reviews", "products-with-most-visits", "last-search-terms", "top-search-terms"}
@@ -29,12 +30,15 @@ class ProductController
      *          description="Successful operation",
      *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
      *                  description="Product statistics data",
+     *
      *                  @OA\Items(ref="#/components/schemas/ProductReporting")
      *              ),
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
@@ -43,7 +47,5 @@ class ProductController
      *      )
      * )
      */
-    public function stats()
-    {
-    }
+    public function stats() {}
 }

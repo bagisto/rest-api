@@ -2,15 +2,15 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Webkul\Core\Repositories\SubscribersListRepository;
 use Webkul\Core\Rules\PhoneNumber;
@@ -145,7 +145,7 @@ class AuthController extends CustomerController
             'current_password'          => 'required_with:new_password',
             'image'                     => 'array',
             'image.*'                   => 'mimes:bmp,jpeg,jpg,png,webp',
-            'phone'                     => ['required', new PhoneNumber(), 'unique:customers,phone,'.$customer->id],
+            'phone'                     => ['required', new PhoneNumber, 'unique:customers,phone,'.$customer->id],
             'subscribed_to_news_letter' => 'nullable',
         ]);
 
@@ -175,7 +175,7 @@ class AuthController extends CustomerController
         Event::dispatch('customer.update.before');
 
         if ($customer = $this->customerRepository->update($data, $customer->id)) {
-            if ($isPasswordChanged){
+            if ($isPasswordChanged) {
                 Event::dispatch('customer.password.update.after', $customer);
             }
 
@@ -213,7 +213,7 @@ class AuthController extends CustomerController
                 $this->customerRepository->uploadImages($data, $customer);
             } elseif (isset($data['image'])) {
                 if (! empty($data['image'])) {
-                    Storage::delete((string)$customer->image);
+                    Storage::delete((string) $customer->image);
                 }
 
                 $customer->image = null;

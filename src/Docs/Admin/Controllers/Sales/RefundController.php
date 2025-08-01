@@ -101,9 +101,7 @@ class RefundController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -140,9 +138,7 @@ class RefundController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -248,7 +244,5 @@ class RefundController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

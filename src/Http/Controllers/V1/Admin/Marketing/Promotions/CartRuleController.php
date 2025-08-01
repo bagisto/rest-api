@@ -4,8 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
-use Webkul\CartRule\Repositories\CartRuleRepository;
 use Webkul\Admin\Http\Requests\CartRuleRequest;
+use Webkul\CartRule\Repositories\CartRuleRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Promotions\CartRuleResource;
 

@@ -99,6 +99,4 @@ namespace Webkul\RestApi\Docs\Shop\Controllers;
  *     description="API Endpoints for Wishlists"
  * )
  */
-class Controller
-{
-}
+class Controller {}

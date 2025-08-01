@@ -89,9 +89,7 @@ class LocaleController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -132,7 +130,5 @@ class LocaleController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 }

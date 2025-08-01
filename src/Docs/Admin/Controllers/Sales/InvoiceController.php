@@ -101,9 +101,7 @@ class InvoiceController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -140,9 +138,7 @@ class InvoiceController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -181,7 +177,6 @@ class InvoiceController
      *                          @OA\Property(property=1, type="integer", example=1)
      *                      )
      *                  ),
-     *
      *                  @OA\Property(
      *                      property="can_create_transaction",
      *                      description="User for create invoice transaction",
@@ -238,7 +233,5 @@ class InvoiceController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

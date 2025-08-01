@@ -27,7 +27,6 @@ class SearchSynonymController extends MarketingController
         return SearchSynonymResource::class;
     }
 
-
     /**
      * Store a newly created resource.
      */

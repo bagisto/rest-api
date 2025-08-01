@@ -213,10 +213,10 @@ return [
             ],
             'security' => [
                 [
-                    'sanctum_admin' => []
+                    'sanctum_admin' => [],
                 ],
                 [
-                    'sanctum' => []
+                    'sanctum' => [],
                 ],
             ],
         ],

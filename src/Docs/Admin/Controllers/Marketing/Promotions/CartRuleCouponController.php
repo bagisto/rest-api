@@ -45,9 +45,7 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -95,9 +93,7 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function show()
-    {
-    }
+    public function show() {}
 
     /**
      * @OA\Post(
@@ -179,9 +175,7 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Delete(
@@ -229,9 +223,7 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
@@ -286,7 +278,5 @@ class CartRuleCouponController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 }

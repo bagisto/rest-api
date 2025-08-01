@@ -10,9 +10,7 @@ class CurrencyMiddleware
     /**
      * Create a middleware instance.
      */
-    public function __construct(protected CurrencyRepository $currencyRepository)
-    {
-    }
+    public function __construct(protected CurrencyRepository $currencyRepository) {}
 
     /**
      * Handle an incoming request.

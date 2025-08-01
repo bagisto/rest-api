@@ -48,7 +48,7 @@ class SubscriptionController extends MarketingController
 
         $result = $subscriber->update(['is_subscribed' => $validatedData['is_subscribed']]);
 
-        if (!$result) {
+        if (! $result) {
             return response([
                 'message' => trans('rest-api::app.admin.marketing.communications.subscribers.update-failed'),
             ], 500);

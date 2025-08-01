@@ -29,8 +29,10 @@ class ProductReporting
      *         @OA\Property(
      *             property="previous",
      *             type="array",
+     *
      *             @OA\Items(
      *                 type="object",
+     *
      *                 @OA\Property(property="label", type="string", example="18 Jan"),
      *                 @OA\Property(property="total", type="integer", example=0)
      *             )
@@ -38,8 +40,10 @@ class ProductReporting
      *         @OA\Property(
      *             property="current",
      *             type="array",
+     *
      *             @OA\Items(
      *                 type="object",
+     *
      *                 @OA\Property(property="label", type="string", example="17 Mar"),
      *                 @OA\Property(property="total", type="integer", example=0)
      *             )

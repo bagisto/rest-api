@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Webkul\Core\Repositories\CurrencyRepository;
 use Webkul\Core\Rules\Code;
 use Webkul\RestApi\Http\Resources\V1\Admin\Settings\CurrencyResource;
@@ -58,7 +58,7 @@ class CurrencyController extends SettingController
     public function update(Request $request, int $id): Response
     {
         $request->validate([
-            'code' => ['required', 'unique:currencies,code,' . $id, new Code],
+            'code' => ['required', 'unique:currencies,code,'.$id, new Code],
             'name' => 'required',
         ]);
 

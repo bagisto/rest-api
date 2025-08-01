@@ -101,9 +101,7 @@ class ShipmentController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -140,9 +138,7 @@ class ShipmentController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -263,7 +259,5 @@ class ShipmentController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

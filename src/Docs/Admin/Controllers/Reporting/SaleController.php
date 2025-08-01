@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Docs\Admin\Controllers\Reporting;
 
 class SaleController
 {
-     /**
+    /**
      * @OA\Get(
      *     path="/api/v1/admin/reporting/sales/stats",
      *     operationId="getSalesStats",
@@ -18,6 +18,7 @@ class SaleController
      *         in="query",
      *         description="The type of statistics to retrieve. Options: total-sales, average-sales, total-orders, purchase-funnel, abandoned-carts, refunds, tax-collected, shipping-collected, top-payment-methods",
      *         required=true,
+     *
      *         @OA\Schema(
      *             type="string",
      *             enum={"total-sales", "average-sales", "total-orders", "purchase-funnel", "abandoned-carts", "refunds", "tax-collected", "shipping-collected", "top-payment-methods"}
@@ -45,7 +46,5 @@ class SaleController
      *      )
      * )
      */
-    public function stats()
-    {
-    }
+    public function stats() {}
 }

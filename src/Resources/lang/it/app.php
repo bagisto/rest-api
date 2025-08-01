@@ -244,8 +244,8 @@ return [
                     'update-success' => 'Coupon della regola del carrello aggiornato con successo.',
 
                     'mass-operations' => [
-                        'delete-success' => 'Coupon delle regole del carrello eliminati con successo'
-                    ]
+                        'delete-success' => 'Coupon delle regole del carrello eliminati con successo',
+                    ],
                 ],
             ],
 

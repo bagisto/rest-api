@@ -39,7 +39,7 @@ class Handler extends BaseHandler
 
             if ($request->wantsJson()) {
                 return response()->json([
-                    'error' => trans("rest-api::app.{$nameSpace}.errors.401.message")
+                    'error' => trans("rest-api::app.{$nameSpace}.errors.401.message"),
                 ], 401);
             }
 
@@ -86,7 +86,7 @@ class Handler extends BaseHandler
 
             if ($request->wantsJson()) {
                 return response()->json([
-                    'error' => trans("rest-api::app.{$nameSpace}.errors.message")
+                    'error' => trans("rest-api::app.{$nameSpace}.errors.message"),
                 ], $errorCode);
             }
 

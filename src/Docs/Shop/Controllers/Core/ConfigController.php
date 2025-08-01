@@ -4,7 +4,7 @@ namespace Webkul\RestApi\Docs\Shop\Controllers\Core;
 
 class ConfigController
 {
-     /**
+    /**
      * @OA\Get(
      *      path="/api/v1/core-config-fields",
      *      operationId="getCoreConfigList",
@@ -89,9 +89,7 @@ class ConfigController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -135,9 +133,7 @@ class ConfigController
      *      )
      * )
      */
-    public function getCoreConfigs()
-    {
-    }
+    public function getCoreConfigs() {}
 
     /**
      * @OA\Get(
@@ -178,7 +174,5 @@ class ConfigController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 }

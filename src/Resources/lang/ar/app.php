@@ -80,11 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'تمت إضافة الفئة بنجاح.',
-                'delete-success' => 'تم حذف الفئة بنجاح.',
+                'create-success'       => 'تمت إضافة الفئة بنجاح.',
+                'delete-success'       => 'تم حذف الفئة بنجاح.',
                 'root-category-delete' => 'The Root category can not be deleted.',
-                'update-success' => 'تم تحديث الفئة بنجاح.',
-                'not-exist'      => 'لم يتم العثور على الفئة.',
+                'update-success'       => 'تم تحديث الفئة بنجاح.',
+                'not-exist'            => 'لم يتم العثور على الفئة.',
 
                 'mass-operations' => [
                     'delete-success'  => 'تم حذف الفئات المحددة بنجاح.',
@@ -244,8 +244,8 @@ return [
                     'update-success' => 'تم تحديث كوبون قاعدة السلة بنجاح.',
 
                     'mass-operations' => [
-                        'delete-success' => 'تم حذف كوبونات قاعدة سلة التسوق بنجاح'
-                    ]
+                        'delete-success' => 'تم حذف كوبونات قاعدة سلة التسوق بنجاح',
+                    ],
                 ],
             ],
 

@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\InvoiceController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\OrderController;
-use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\ReOrderController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\RefundController;
+use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\ReOrderController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\ShipmentController;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Sales\TransactionController;
 

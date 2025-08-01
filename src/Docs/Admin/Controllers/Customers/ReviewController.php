@@ -90,9 +90,7 @@ class ReviewController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -129,9 +127,7 @@ class ReviewController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Put(
@@ -192,9 +188,7 @@ class ReviewController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -231,9 +225,7 @@ class ReviewController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
@@ -277,9 +269,7 @@ class ReviewController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 
     /**
      * @OA\Post(
@@ -330,7 +320,5 @@ class ReviewController
      *      )
      * )
      */
-    public function massUpdate()
-    {
-    }
+    public function massUpdate() {}
 }

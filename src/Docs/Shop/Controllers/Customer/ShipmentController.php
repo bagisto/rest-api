@@ -79,9 +79,7 @@ class ShipmentController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -123,7 +121,5 @@ class ShipmentController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 }

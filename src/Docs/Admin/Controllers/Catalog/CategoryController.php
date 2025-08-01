@@ -85,9 +85,7 @@ class CategoryController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -124,9 +122,7 @@ class CategoryController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -139,9 +135,12 @@ class CategoryController
      *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="locale",
      *                      type="string",
@@ -203,8 +202,10 @@ class CategoryController
      *                      property="attributes[]",
      *                      description="Category's attributes for filter",
      *                      type="array",
+     *
      *                      @OA\Items(type="string", example="11")
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="slug",
      *                      description="Category's slug",
@@ -237,20 +238,21 @@ class CategoryController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="Category created successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/Category")
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -371,9 +373,7 @@ class CategoryController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -410,9 +410,7 @@ class CategoryController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
@@ -463,9 +461,7 @@ class CategoryController
      *      )
      * )
      */
-    public function massUpdate()
-    {
-    }
+    public function massUpdate() {}
 
     /**
      * @OA\Post(
@@ -509,7 +505,5 @@ class CategoryController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 }

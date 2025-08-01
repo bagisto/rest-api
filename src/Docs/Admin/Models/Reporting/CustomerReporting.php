@@ -14,7 +14,9 @@ class CustomerReporting
      * @OA\Property(
      *     title="Statistics",
      *     description="Statistics of the customer report",
+     *
      *     @OA\Items(
+     *
      *         @OA\Property(property="id", type="integer", example=null),
      *         @OA\Property(property="email", type="string", example="admin@example.com"),
      *         @OA\Property(property="full_name", type="string", example="John Doe"),

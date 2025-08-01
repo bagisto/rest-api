@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Settings;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
 use Webkul\Core\Repositories\ChannelRepository;
 use Webkul\Core\Rules\Code;
@@ -162,7 +162,7 @@ class ChannelController extends SettingController
     /**
      * Set the seo content and return back the updated array.
      */
-    private function setSEOContent(array $data, string $locale = null): array
+    private function setSEOContent(array $data, ?string $locale = null): array
     {
         $editedData = $locale ? $data[$locale] : $data;
 

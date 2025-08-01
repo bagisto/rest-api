@@ -90,9 +90,7 @@ class OrderController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -129,9 +127,7 @@ class OrderController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -178,9 +174,7 @@ class OrderController
      *      )
      * )
      */
-    public function cancel()
-    {
-    }
+    public function cancel() {}
 
     /**
      * @OA\Post(
@@ -251,7 +245,5 @@ class OrderController
      *      )
      * )
      */
-    public function comment()
-    {
-    }
+    public function comment() {}
 }

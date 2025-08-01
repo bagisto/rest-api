@@ -112,9 +112,7 @@ class TransactionController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -151,9 +149,7 @@ class TransactionController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -240,7 +236,5 @@ class TransactionController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

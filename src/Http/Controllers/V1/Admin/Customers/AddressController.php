@@ -18,8 +18,7 @@ class AddressController extends BaseController
      *
      * @return void
      */
-    public function __construct(protected CustomerRepository $customerRepository)
-    {}
+    public function __construct(protected CustomerRepository $customerRepository) {}
 
     /**
      * Repository class name.
@@ -39,7 +38,7 @@ class AddressController extends BaseController
 
     /**
      * Fetch address by customer id.
-     * 
+     *
      * @return \Response
      */
     public function index(Request $request, int $customerId)
@@ -86,7 +85,7 @@ class AddressController extends BaseController
             'email',
             'default_address',
         ]), [
-            'address' => implode(PHP_EOL, array_filter(request()->input('address'))),
+            'address'     => implode(PHP_EOL, array_filter(request()->input('address'))),
             'customer_id' => $customerId,
         ]);
 
@@ -135,7 +134,7 @@ class AddressController extends BaseController
             'email',
             'default_address',
         ]), [
-            'address' => implode(PHP_EOL, array_filter(request()->input('address'))),
+            'address'     => implode(PHP_EOL, array_filter(request()->input('address'))),
             'customer_id' => $customerId,
         ]);
 

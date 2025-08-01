@@ -156,9 +156,7 @@ class CheckoutController
      *      )
      * )
      */
-    public function saveAddress()
-    {
-    }
+    public function saveAddress() {}
 
     /**
      * @OA\Post(
@@ -224,9 +222,7 @@ class CheckoutController
      *      )
      * )
      */
-    public function saveShipping()
-    {
-    }
+    public function saveShipping() {}
 
     /**
      * @OA\Post(
@@ -294,9 +290,7 @@ class CheckoutController
      *      )
      * )
      */
-    public function savePayment()
-    {
-    }
+    public function savePayment() {}
 
     /**
      * @OA\Post(
@@ -345,9 +339,7 @@ class CheckoutController
      *      )
      * )
      */
-    public function checkMinimumOrder()
-    {
-    }
+    public function checkMinimumOrder() {}
 
     /**
      * @OA\Post(
@@ -391,7 +383,5 @@ class CheckoutController
      *      )
      * )
      */
-    public function saveOrder()
-    {
-    }
+    public function saveOrder() {}
 }

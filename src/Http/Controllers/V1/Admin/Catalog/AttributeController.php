@@ -34,7 +34,7 @@ class AttributeController extends CatalogController
     public function store()
     {
         $rules = [
-            'code'          => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code()],
+            'code'          => ['required', 'not_in:type,attribute_family_id', 'unique:attributes,code', new Code],
             'admin_name'    => 'required',
             'type'          => 'required',
         ];

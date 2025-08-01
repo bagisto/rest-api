@@ -90,9 +90,7 @@ class CurrencyController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -129,9 +127,7 @@ class CurrencyController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -148,6 +144,7 @@ class CurrencyController
      *              mediaType="multipart/form-data",
      *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="code",
      *                      type="string",
@@ -217,9 +214,7 @@ class CurrencyController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -321,9 +316,7 @@ class CurrencyController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -360,7 +353,5 @@ class CurrencyController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

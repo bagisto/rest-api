@@ -244,8 +244,8 @@ return [
                     'update-success' => 'Kupon reguły koszyka został pomyślnie zaktualizowany.',
 
                     'mass-operations' => [
-                        'delete-success' => 'Pomyślnie usunięto kupony reguły koszyka'
-                    ]
+                        'delete-success' => 'Pomyślnie usunięto kupony reguły koszyka',
+                    ],
                 ],
             ],
 

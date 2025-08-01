@@ -15,7 +15,7 @@ class ThemeController extends CoreController
     /**
      * Repository class name.
      */
-    public function repository():string
+    public function repository(): string
     {
         return ThemeCustomizationRepository::class;
     }

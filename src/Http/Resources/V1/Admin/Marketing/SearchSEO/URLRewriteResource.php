@@ -22,7 +22,7 @@ class URLRewriteResource extends JsonResource
             'redirect_type' => $this->redirect_type,
             'locale'        => $this->locale,
             'created_at'    => $this->created_at,
-            'updated_at'    => $this->updated_at
+            'updated_at'    => $this->updated_at,
         ];
     }
 }

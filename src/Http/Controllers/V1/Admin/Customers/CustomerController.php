@@ -66,7 +66,7 @@ class CustomerController extends BaseController
             'date_of_birth',
             'phone',
             'customer_group_id',
-            'channel_id'
+            'channel_id',
         ]), [
             'password'    => bcrypt($password),
             'is_verified' => 1,

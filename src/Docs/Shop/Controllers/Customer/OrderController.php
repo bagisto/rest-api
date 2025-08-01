@@ -90,9 +90,7 @@ class OrderController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -134,9 +132,7 @@ class OrderController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -178,9 +174,7 @@ class OrderController
      *      )
      * )
      */
-    public function cancel()
-    {
-    }
+    public function cancel() {}
 
     /**
      * @OA\Get(
@@ -196,11 +190,11 @@ class OrderController
      *          description="Order id",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(
      *              type="integer"
      *          )
      *      ),
-     *
      *
      *      @OA\Response(
      *          response=200,
@@ -219,7 +213,9 @@ class OrderController
      *      @OA\Response(
      *          response=404,
      *          description="Something went wrong!",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="title",
      *                  type="string",
@@ -236,7 +232,9 @@ class OrderController
      *      @OA\Response(
      *          response=405,
      *          description="Method not allowed",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -246,7 +244,5 @@ class OrderController
      *      ),
      * )
      */
-    public function reorder()
-    {
-    }
+    public function reorder() {}
 }

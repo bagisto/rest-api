@@ -89,9 +89,7 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -132,7 +130,5 @@ class AttributeFamilyController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 }

@@ -4,8 +4,8 @@ namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Event;
-use Webkul\CatalogRule\Helpers\CatalogRuleIndex;
 use Webkul\Admin\Http\Requests\CatalogRuleRequest;
+use Webkul\CatalogRule\Helpers\CatalogRuleIndex;
 use Webkul\CatalogRule\Repositories\CatalogRuleRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
 use Webkul\RestApi\Http\Resources\V1\Admin\Marketing\Promotions\CatalogRuleResource;

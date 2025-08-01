@@ -67,7 +67,7 @@ class CategoryController extends CatalogController
 
         return response([
             'data' => [
-                'max_price' => $maxPrice
+                'max_price' => $maxPrice,
             ],
         ]);
     }

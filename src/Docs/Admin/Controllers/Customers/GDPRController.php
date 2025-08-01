@@ -72,12 +72,16 @@ class GDPRController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
+     *
      *                  @OA\Items(ref="#/components/schemas/GDPR")
      *              ),
+     *
      *              @OA\Property(
      *                  property="meta",
      *                  ref="#/components/schemas/Pagination"
@@ -86,9 +90,7 @@ class GDPRController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -104,13 +106,16 @@ class GDPRController
      *          description="GDPR request ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(type="integer")
      *      ),
      *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
@@ -125,9 +130,7 @@ class GDPRController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Put(
@@ -143,12 +146,15 @@ class GDPRController
      *          description="GDPR request ID",
      *          required=true,
      *          in="path",
+     *
      *          @OA\Schema(type="integer")
      *      ),
      *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="status",
      *                  type="string",
@@ -160,7 +166,9 @@ class GDPRController
      *      @OA\Response(
      *          response=200,
      *          description="GDPR request updated successfully",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -176,7 +184,9 @@ class GDPRController
      *      @OA\Response(
      *          response=500,
      *          description="Unable to update GDPR request",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
@@ -186,9 +196,7 @@ class GDPRController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -225,7 +233,5 @@ class GDPRController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

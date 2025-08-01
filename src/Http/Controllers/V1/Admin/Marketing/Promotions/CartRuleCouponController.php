@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\Promotions;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Webkul\Admin\Http\Requests\MassDestroyRequest;
 use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\RestApi\Http\Controllers\V1\Admin\Marketing\MarketingController;
@@ -94,7 +94,7 @@ class CartRuleCouponController extends MarketingController
             ->where('id', $id)
             ->firstOrFail();
 
-            $cartRuleCoupon->delete();
+        $cartRuleCoupon->delete();
 
         return response([
             'message' => trans('rest-api::app.admin.marketing.promotions.cart-rule-coupons.delete-success'),

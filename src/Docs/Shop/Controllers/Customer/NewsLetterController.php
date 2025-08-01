@@ -51,7 +51,5 @@ class NewsLetterController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

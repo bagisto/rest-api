@@ -96,9 +96,7 @@ class ThemeController
      * )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -135,9 +133,7 @@ class ThemeController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -205,9 +201,7 @@ class ThemeController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Put(
@@ -255,8 +249,6 @@ class ThemeController
      *                              property="images",
      *                              type="object",
      *                              description="Image carousel images",
-     *
-     *
      *                              @OA\Property(
      *                                  property="link",
      *                                  type="string",
@@ -337,9 +329,7 @@ class ThemeController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -376,7 +366,5 @@ class ThemeController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 }

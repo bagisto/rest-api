@@ -37,9 +37,7 @@ class CartController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -184,21 +182,18 @@ class CartController
      *                              format="datetime",
      *                              example="2025-05-07"
      *                          ),
-     *
      *                           @OA\Property(
      *                              property="date_from",
      *                              type="string",
      *                              format="datetime",
      *                              example="2025-05-07"
      *                          ),
-     *
      *                          @OA\Property(
      *                              property="date_to",
      *                              type="string",
      *                              format="datetime",
      *                              example="2025-05-14"
      *                          ),
-     *
      *                          @OA\Property(
      *                              property="renting_type",
      *                              type="string",
@@ -206,18 +201,17 @@ class CartController
      *                              enum={"hourly", "daily"},
      *                              example="2025-05-14"
      *                          ),
-     *
      *                         @OA\Property(
      *                             property="slot",
      *                             type="array",
      *
      *                             @OA\Items(
+     *
      *                               @OA\Property(
      *                                 property="from",
      *                                 type="integer",
      *                                 example=1746685800
      *                               ),
-     *
      *                               @OA\Property(
      *                                 property="to",
      *                                 type="integer",
@@ -235,7 +229,9 @@ class CartController
      *                               "4": 2,
      *                               "5": 1
      *                            },
+     *
      *                            @OA\Items(
+     *
      *                                @OA\Property(type="integer")
      *                            )
      *                        ),
@@ -259,7 +255,6 @@ class CartController
      *                        "quantity": 2
      *                    }
      *              ),
-     *
      *              @OA\Examples(
      *                 example="ConfigurableAddToCart",
      *                 summary="Configurable product",
@@ -274,7 +269,6 @@ class CartController
      *                     "quantity": 2
      *                 }
      *              ),
-     *
      *              @OA\Examples(
      *                 example="VirtualProduct",
      *                 summary="Virtual Product",
@@ -302,7 +296,6 @@ class CartController
      *                     "quantity": 1
      *                 }
      *              ),
-     *
      *              @OA\Examples(
      *                  example="DownloadableProduct",
      *                  summary="Downloadable Product",
@@ -316,7 +309,6 @@ class CartController
      *                      "quantity": 1
      *                  }
      *             ),
-     *
      *             @OA\Examples(
      *                  example="BundleProduct",
      *                  summary="Bundle Product",
@@ -357,7 +349,6 @@ class CartController
      *                     "quantity": 2
      *                 }
      *             ),
-     *
      *             @OA\Examples(
      *                example="BookingAppointmentProduct",
      *                summary="Booking Product | Appointment",
@@ -418,7 +409,6 @@ class CartController
      *                    "quantity": 1
      *                }
      *            ),
-     *
      *            @OA\Examples(
      *                example="BookingTableProduct",
      *                summary="Booking Product | Table",
@@ -466,9 +456,7 @@ class CartController
      *      )
      * )
      */
-    public function add()
-    {
-    }
+    public function add() {}
 
     /**
      * @OA\Put(
@@ -534,9 +522,7 @@ class CartController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Delete(
@@ -578,9 +564,7 @@ class CartController
      *      )
      * )
      */
-    public function removeItem()
-    {
-    }
+    public function removeItem() {}
 
     /**
      * @OA\Delete(
@@ -611,9 +595,7 @@ class CartController
      *      )
      * )
      */
-    public function remove()
-    {
-    }
+    public function remove() {}
 
     /**
      * @OA\Post(
@@ -655,9 +637,7 @@ class CartController
      *      )
      * )
      */
-    public function moveToWishlist()
-    {
-    }
+    public function moveToWishlist() {}
 
     /**
      * @OA\Post(
@@ -704,9 +684,7 @@ class CartController
      *      )
      * )
      */
-    public function applyCoupon()
-    {
-    }
+    public function applyCoupon() {}
 
     /**
      * @OA\Delete(
@@ -737,7 +715,5 @@ class CartController
      *      )
      * )
      */
-    public function removeCoupon()
-    {
-    }
+    public function removeCoupon() {}
 }

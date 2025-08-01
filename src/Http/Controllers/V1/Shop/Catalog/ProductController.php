@@ -10,7 +10,7 @@ use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductReviewResource;
 
 class ProductController extends CatalogController
 {
-        /**
+    /**
      * Create a controller instance.
      *
      * @return void

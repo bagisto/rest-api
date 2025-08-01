@@ -105,7 +105,7 @@ class SearchTermController extends MarketingController
         ]);
     }
 
-     /**
+    /**
      * To mass delete the url rewrites.
      */
     public function massDestroy(MassDestroyRequest $massDestroyRequest): Response

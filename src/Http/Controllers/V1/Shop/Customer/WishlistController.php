@@ -2,8 +2,8 @@
 
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\Product\Repositories\ProductRepository;
@@ -109,7 +109,7 @@ class WishlistController extends CustomerController
         ], 400);
     }
 
-     /**
+    /**
      * Method for removing all items from the wishlist.
      */
     public function destroyAll(Request $request): Response

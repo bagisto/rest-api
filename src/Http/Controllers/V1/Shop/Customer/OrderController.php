@@ -3,10 +3,10 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Customer;
 
 use Illuminate\Http\Request;
-use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
-use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\RestApi\Http\Resources\V1\Shop\Checkout\CartResource;
+use Webkul\RestApi\Http\Resources\V1\Shop\Sales\OrderResource;
+use Webkul\Sales\Repositories\OrderRepository;
 
 class OrderController extends CustomerController
 {
@@ -52,7 +52,7 @@ class OrderController extends CustomerController
         $order = $this->resolveShopUser($request)->orders()->findOrFail($id);
 
         if (
-            ! $order->canReorder() 
+            ! $order->canReorder()
             || ! core()->getConfigData('sales.order_settings.reorder.shop')
         ) {
             return response([

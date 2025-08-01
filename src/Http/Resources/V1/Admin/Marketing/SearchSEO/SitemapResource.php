@@ -14,13 +14,13 @@ class SitemapResource extends JsonResource
      */
     public function toArray($request)
     {
-       return [
-            "id"           => $this->id,
-            "file_name"    => $this->file_name,
-            "path"         => $this->path,
-            "generated_at" => $this->generated_at,
-            "updated_at"   => $this->updated_at,
-            "created_at"   => $this->created_at,
-       ];
+        return [
+            'id'           => $this->id,
+            'file_name'    => $this->file_name,
+            'path'         => $this->path,
+            'generated_at' => $this->generated_at,
+            'updated_at'   => $this->updated_at,
+            'created_at'   => $this->created_at,
+        ];
     }
 }

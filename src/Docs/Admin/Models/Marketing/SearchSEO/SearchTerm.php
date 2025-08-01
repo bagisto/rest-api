@@ -28,7 +28,7 @@ class SearchTerm
      *     description="SearchTerm's Term",
      *     type="string",
      *     example="Adorable"
-     * 
+     *
      * )
      *
      * @var string
@@ -41,15 +41,14 @@ class SearchTerm
      *     description="SearchTerm Redirect URL",
      *     type="string",
      *     example="http://localhost/bagisto_2.x/public"
-     * 
+     *
      * )
      *
      * @var string
      */
-
     private $redirect_url;
 
-        /**
+    /**
      * @OA\Property(
      *     title="Channel ID",
      *     description="SearchTerm Channel ID",

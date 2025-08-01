@@ -3,8 +3,8 @@
 namespace Webkul\RestApi\Http\Controllers\V1\Shop\Catalog;
 
 use Illuminate\Http\Request;
-use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\Product\Repositories\ProductReviewAttachmentRepository;
+use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\RestApi\Http\Resources\V1\Shop\Catalog\ProductReviewResource;
 
 class ProductReviewController extends CatalogController

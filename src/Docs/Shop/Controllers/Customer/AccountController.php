@@ -37,9 +37,7 @@ class AccountController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -52,9 +50,12 @@ class AccountController
      *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
+     *
      *              @OA\Schema(
+     *
      *                  @OA\Property(
      *                      property="_method",
      *                      type="string",
@@ -129,6 +130,7 @@ class AccountController
      *          description="Successful operation",
      *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="message", type="string", example="Your account has been updated  successfully."),
      *              @OA\Property(property="data", type="object", ref="#/components/schemas/Customer")
      *          )
@@ -139,14 +141,13 @@ class AccountController
      *          description="Error: Unprocessable Content",
      *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(example="result", value={"message":"The email has already been taken.","errors": {"email":{"The email has already been taken."}}}, summary="An result object.")
      *          )
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Post(
@@ -173,7 +174,5 @@ class AccountController
      *      )
      * )
      */
-    public function logout()
-    {
-    }
+    public function logout() {}
 }

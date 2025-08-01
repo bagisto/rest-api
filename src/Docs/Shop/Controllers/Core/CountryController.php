@@ -112,9 +112,7 @@ class CountryController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -156,9 +154,7 @@ class CountryController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Get(
@@ -212,9 +208,7 @@ class CountryController
      *      )
      * )
      */
-    public function states()
-    {
-    }
+    public function states() {}
 
     /**
      * @OA\Get(
@@ -244,7 +238,5 @@ class CountryController
      *      )
      * )
      */
-    public function getCountryStateGroups()
-    {
-    }
+    public function getCountryStateGroups() {}
 }

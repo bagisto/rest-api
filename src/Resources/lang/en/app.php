@@ -80,11 +80,11 @@ return [
             ],
 
             'categories' => [
-                'create-success' => 'Category have been successfully added.',
-                'delete-success' => 'Category successfully deleted',
+                'create-success'       => 'Category have been successfully added.',
+                'delete-success'       => 'Category successfully deleted',
                 'root-category-delete' => 'The Root category can not be deleted.',
-                'update-success' => 'Category updated successfully.',
-                'not-exist'      => 'Category not found',
+                'update-success'       => 'Category updated successfully.',
+                'not-exist'            => 'Category not found',
 
                 'mass-operations' => [
                     'delete-success'  => 'Selected Categories successfully deleted.',
@@ -244,8 +244,8 @@ return [
                     'update-success' => 'Cart Rule Coupon updated successfully.',
 
                     'mass-operations' => [
-                        'delete-success' => 'Cart Rule Coupons successfully deleted'
-                    ]
+                        'delete-success' => 'Cart Rule Coupons successfully deleted',
+                    ],
                 ],
             ],
 

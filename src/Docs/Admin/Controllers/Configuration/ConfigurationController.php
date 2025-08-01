@@ -29,9 +29,7 @@ class ConfigurationController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Post(
@@ -124,7 +122,5 @@ class ConfigurationController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 }

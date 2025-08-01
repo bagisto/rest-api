@@ -15,6 +15,7 @@ class RestApiServiceProvider extends ServiceProvider
      * @var array
      */
     protected $middlewareAliases = [
+        'etag'             => \Webkul\RestApi\Http\Middleware\ETagMiddleware::class,
         'sanctum.admin'    => \Webkul\RestApi\Http\Middleware\AdminMiddleware::class,
         'sanctum.customer' => \Webkul\RestApi\Http\Middleware\CustomerMiddleware::class,
         'sanctum.locale'   => \Webkul\RestApi\Http\Middleware\LocaleMiddleware::class,
@@ -71,7 +72,7 @@ class RestApiServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-            ->middleware('api')
+            ->middleware(['api', 'etag'])
             ->group(__DIR__.'/../Routes/api.php');
     }
 

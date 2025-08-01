@@ -96,9 +96,7 @@ class ProductController
      *      )
      * )
      */
-    public function list()
-    {
-    }
+    public function list() {}
 
     /**
      * @OA\Get(
@@ -139,9 +137,7 @@ class ProductController
      *      )
      * )
      */
-    public function get()
-    {
-    }
+    public function get() {}
 
     /**
      * @OA\Post(
@@ -198,6 +194,7 @@ class ProductController
      *                  ),
      *                  required={"type", "attribute_family_id", "sku"}
      *              ),
+     *
      *              @OA\Examples(
      *                 example="Standard",
      *                 summary="Standard",
@@ -256,9 +253,7 @@ class ProductController
      *      )
      * )
      */
-    public function store()
-    {
-    }
+    public function store() {}
 
     /**
      * @OA\Post(
@@ -589,9 +584,7 @@ class ProductController
      *      )
      * )
      */
-    public function update()
-    {
-    }
+    public function update() {}
 
     /**
      * @OA\Put(
@@ -607,16 +600,19 @@ class ProductController
      *         in="path",
      *         required=true,
      *         description="Product ID",
+     *
      *         @OA\Schema(type="integer")
      *     ),
      *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\MediaType(
      *             mediaType="application/json",
      *
      *             @OA\Schema(
      *                 required={"sku", "name", "url_key", "short_description", "description"},
+     *
      *                 @OA\Property(
      *                      property="channel",
      *                      description="Store's channel code",
@@ -805,13 +801,13 @@ class ProductController
      *
      *                      @OA\Items(type="integer", example=1)
      *                  ),
+     *
      *                  @OA\Property(
      *                      property="inventories",
      *                      description="Inventories",
      *                      type="object",
      *                      @OA\Property(property="1", description="Inventory source id", format="id", type="integer", example=270)
      *                  ),
-     *
      *                  @OA\Property(
      *                      property="variants",
      *                      description="Product's variants, `Only use in case of configurable type product (required field)`",
@@ -1050,7 +1046,6 @@ class ProductController
      *                          )
      *                      )
      *                  ),
-     *
      *                  @OA\Property(
      *                      property="booking",
      *                      description="Booking product options, `Info: Only use in booking type product`",
@@ -1847,17 +1842,18 @@ class ProductController
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(property="message", type="string", example="Product updated successfully."),
      *             @OA\Property(property="data", type="object")
      *         )
      *     ),
+     *
      *     @OA\Response(response=401, description="Unauthenticated")
      * )
      */
-    public function updateOtherTypeProduct()
-    {
-    }
+    public function updateOtherTypeProduct() {}
 
     /**
      * @OA\Post(
@@ -1922,9 +1918,7 @@ class ProductController
      *      )
      * )
      */
-    public function updateInventories()
-    {
-    }
+    public function updateInventories() {}
 
     /**
      * @OA\Delete(
@@ -1961,9 +1955,7 @@ class ProductController
      *      )
      * )
      */
-    public function destroy()
-    {
-    }
+    public function destroy() {}
 
     /**
      * @OA\Post(
@@ -2014,9 +2006,7 @@ class ProductController
      *      )
      * )
      */
-    public function massUpdate()
-    {
-    }
+    public function massUpdate() {}
 
     /**
      * @OA\Post(
@@ -2060,7 +2050,5 @@ class ProductController
      *      )
      * )
      */
-    public function massDestroy()
-    {
-    }
+    public function massDestroy() {}
 }
